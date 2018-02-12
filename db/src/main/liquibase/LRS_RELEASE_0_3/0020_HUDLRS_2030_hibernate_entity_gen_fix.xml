@@ -1,0 +1,29 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="jordanchavez@kpmg.com" id="HUDLRS_2030_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql><![CDATA[
+			ALTER TABLE DOCUMENT ALTER COLUMN REVIEW_ID UNIQUEIDENTIFIER NOT NULL
+			ALTER TABLE DOCUMENT DROP COLUMN REVIEW_LEVEL_ID
+			EXEC SP_RENAME 'DOCUMENTTODOCTYPREF', 'DOCUMENT_FK_DOCUMENT_TYPE_ID'
+		]]></sql>
+    </changeSet>
+    <changeSet context="ALL"  author="jordanchavez@kpmg.com" id="HUDLRS_2030_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql><![CDATA[
+			ALTER TABLE FINDING_DOCUMENT ADD FINDING_DOCUMENT_ID UNIQUEIDENTIFIER NOT NULL
+			ALTER TABLE FINDING_DOCUMENT DROP CONSTRAINT FINDING_DOCUMENT_PK
+			ALTER TABLE FINDING_DOCUMENT ADD CONSTRAINT FINDING_DOCUMENT_PK PRIMARY KEY NONCLUSTERED(FINDING_DOCUMENT_ID)
+			ALTER TABLE FINDING_DOCUMENT ADD CREATED_BY CHAR(6) NULL
+			ALTER TABLE FINDING_DOCUMENT ADD UPDATED_BY CHAR(6) NULL
+			ALTER TABLE FINDING_DOCUMENT ADD CREATED_TS DATETIME NULL
+			ALTER TABLE FINDING_DOCUMENT ADD UPDATED_TS DATETIME NULL
+			EXEC SP_RENAME 'FINDINGDOCTORVWFIND', 'FINDING_DOCUMENT_FK_RVW_LVL_FINDING'
+			EXEC SP_RENAME 'FINDINGDOCTODOCUMENT', 'FINDING_DOCUMENT_FK_DOCUMENT_ID'
+		]]></sql>
+    </changeSet>
+    <changeSet context="ALL"  author="jordanchavez@kpmg.com" id="HUDLRS_2030_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql><![CDATA[
+			UPDATE LOAN_SELECTION SET SLCTN_REASON_ID = (SELECT SLCTN_REASON_ID FROM SELECTION_PARAMETERS WHERE SELECTION_REASON_NAME = 'FHA Manual') WHERE SLCTN_REASON_ID IS NULL
+			ALTER TABLE LOAN_SELECTION ALTER COLUMN SLCTN_REASON_ID UNIQUEIDENTIFIER NOT NULL
+		]]></sql>
+    </changeSet>
+</databaseChangeLog>

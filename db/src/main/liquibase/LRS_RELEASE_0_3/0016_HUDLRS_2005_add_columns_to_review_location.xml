@@ -1,0 +1,54 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_2005_alter_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+
+			alter table review_location add ACTIVATION_DATE DATETIME null
+			alter table review_location add DEACTIVATION_DATE DATETIME null
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_2005_insert_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Review Location','Activation Date','ACTIVATION_DATE','C20225', getdate(),'STATIC','Activation Date')			
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Review Location','Deactivation Date','DEACTIVATION_DATE','C20225', getdate(),'STATIC','Deactivation Date')			
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_2005_insert_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table review_location add MAILING_ADDRESS_2 varchar(100) null
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Review Location','Mailing Address 2','MAILING_ADDRESS_2','C20225', getdate(),'STATIC','Mailing Address 2')			
+		]]>
+        </sql>
+    </changeSet>			
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_2005_insert_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update review_location set mailing_address = '3664 Westwood Avenue'	,     mailing_address_2 = 'Suite PUD' where location_name = 'DEN-PUD'
+			update review_location set mailing_address = '3664 Westwood Avenue'	,     mailing_address_2 = 'Suite QAD' where location_name = 'DEN-QAD'
+			update review_location set mailing_address = '1625 Red Bull Lane'		, mailing_address_2 = 'Suite PUD' where location_name = 'ATL-PUD'	
+			update review_location set mailing_address = '1625 Red Bull Lane'		, mailing_address_2 = 'Suite QAD' where location_name = 'ATL-QAD'	
+			update review_location set mailing_address = '2660 Robinson Lane'		, mailing_address_2 = 'Suite PUD' where location_name = 'SNA-PUD'	
+			update review_location set mailing_address = '2660 Robinson Lane'		, mailing_address_2 = 'Suite QAD' where location_name = 'SNA-QAD'	
+			update review_location set mailing_address = '2495 Midway Road'		,     mailing_address_2 = 'Suite PUD' where location_name = 'PHI-PUD'	
+			update review_location set mailing_address = '2495 Midway Road'		,     mailing_address_2 = 'Suite QAD' where location_name = 'PHI-QAD'	
+			update review_location set mailing_address = '451 7th St NW'            , mailing_address_2 = 'Suite HQ'  where location_name = 'HQ'       
+		]]>
+        </sql>
+    </changeSet>
+	</databaseChangeLog>
+
+
+
+
+
+
+
+
+
+

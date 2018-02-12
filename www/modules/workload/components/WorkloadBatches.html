@@ -1,0 +1,117 @@
+<div class="workload-container panel-group">
+    <div *ngIf="activeBatch">
+        <div class="batch-title">BATCH {{activeBatch?.batchNumber}} - {{activeBatch?.lenderName}} ({{activeBatch?.lenderId}})</div>
+        <div class="batch-header">
+            <ul class="list-inline">
+                <li *ngFor="let header of batchHeaders" class="list-inline-item sub-header">{{header.title}}</li>
+            </ul>
+            <ul class="list-inline batch-info">
+                <li class="list-inline-item">{{activeBatch?.selectionReason}}</li>
+                <li class="list-inline-item">{{activeBatch?.reviewType}}</li>
+                <li class="list-inline-item">{{activeBatch?.creationDate | datePipe}}</li>
+                <li class="list-inline-item">{{batchOwner?.nameFirst}} {{batchOwner?.nameLast}}</li>
+                <li class="list-inline-item">{{activeBatch?.reviewLevel}}</li>
+                <li class="list-inline-item">{{activeBatch?.reviewLevel}}</li>
+            </ul>
+        </div>
+        <hr>
+        <div class="operational-review">
+            <sortable-defect-table *ngIf="operationalReview?.length" [title]="'OPERATIONAL REVIEW'" [items]="operationalReview" [categories]="categories" [reviewRoute]="batchRoute"
+                [findings]="operationalDefectAreas" [activeBatch]="activeBatch" (onEditReviewClick)="showEditReviewModal($event, true)">
+            </sortable-defect-table>
+            <sortable-defect-table *ngIf="!operationalReview?.length" [title]="'OPERATIONAL REVIEW'" [items]="placeHolderReview" [categories]="categories" reviewRoute="''"
+                [findings]="''" [placeHolder]="'true'">
+            </sortable-defect-table>
+            <div *ngIf="activeBatch?.requestOperationalDocuments">
+                <div class="batch-title">OPERATIONAL REVIEW RESPONSE DOCUMENTS</div>
+                <div *ngIf="activeBatch.operationalReview && (!activeBatch.operationalDocuments || !this.activeBatch.operationalDocuments.length)">Operational document request expired ({{activeBatch.operationalDocumentsDueDate | datePipe}})</div>
+                <div class="batch-documents" *ngFor="let document of activeBatch.operationalDocuments">
+                    <hr>
+                    <div class="document-area">
+                        <span class="glyphicon glyphicon-file pull-left" [class.success]="document.documentId" aria-label="Document" title="Document"></span>
+                        <a [href]="getResponseDocumentURL(document)" target="_blank"> {{document.fileName}} </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sortable-table">
+            <sortable-defect-table [title]="'LOAN REVIEWS'" [items]="activeReviews" [activeBatch]="activeBatch" [categories]="categories" [reviewRoute]="batchRoute"
+                icon="'edit'" [findings]="defectAreas" [batchLevel]="activeBatch.reviewLevel" (onEditReviewClick)="showEditReviewModal($event)">
+            </sortable-defect-table>
+        </div>
+        <button *ngIf="checkBatchOwner()" class="btn btn-default submit-batch" [ngClass]="{'disabled': !batchReadyToReview()}" (click)="batchSubmit()">Submit Batch</button>
+        <button *ngIf="checkHQAdmin()" class="btn btn-default btn-danger" (click)="batchCancel()">Cancel Batch</button>
+        <div style="clear:both"></div>
+    </div>
+    <div class="batch-title" *ngIf="!activeBatch">NO CURRENT BATCHES</div>
+
+    <!-- Cancel a batch review -->
+    <modal [(isOpen)]="cancelCaseModal.isOpen"
+           confirmText="Cancel Review"
+           [closeOnSave]="false"
+           title="CONFIRM CANCELATION"
+           (confirmChange)="onCancelReview(cancelCaseModal.review)"
+           [hasCancelButton]="true">
+        <form class="modal-inner-body container-fluid">
+
+            <div class="row modal-inner-body-info">
+                <div class="col-xs-12">
+                    <p>Please provide a reason for canceling this review.</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-7">
+                    <div class="form-group">
+                        <label class="small" for="cancellationReasonId">Cancellation Reason</label>
+                        <select id="cancellationReasonId" name="cancellationReasonId" [(ngModel)]="cancelCaseModal.cancellationReasonId" class="form-control input-sm">
+                            <option *ngFor="let reason of cancellationReasons" [value]="reason.code">
+                                {{reason.description}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </modal>
+
+    <!-- Reassign a case -->
+    <modal [(isOpen)]="reassignCaseModal.isOpen" confirmText="Submit" [closeOnSave]="false" title="REASSIGN CASE #{{reassignCaseModal.review?.caseNumber}}"
+        (confirmChange)="onReassign(reassignCaseModal.review)" [hasCancelButton]="false">
+        <form class="modal-inner-body container-fluid">
+            <div class="row">
+                <div class="col-xs-7">
+                    <div class="form-group">
+                        <label class="small" for="selectedTeamMemberId">Team Member</label>
+                        <select id="selectedTeamMemberId" name="selectedTeamMemberId" [(ngModel)]="reassignCaseModal.selectedTeamMemberId" class="form-control input-sm">
+						<option *ngFor="let reviewer of reviewersByLocation" [value]="reviewer.reviewerId">
+							{{reviewer.nameLast}}, {{reviewer.nameFirst}} ({{reviewer.remainingCapacity}})
+						</option>
+					</select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-7">
+                    <div class="form-group">
+                        <label class="small" for="reassigmentReasonId">Reassignment Reason</label>
+                        <select id="reassigmentReasonId" name="reassigmentReasonId" [(ngModel)]="reassignCaseModal.reassigmentReasonId" class="form-control input-sm">
+						<option *ngFor="let reason of reassignmentReasons" [value]="reason.code">
+							{{reason.description}}
+						</option>
+					</select>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+        <div class="modal-inner-footer my-team-workload">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button *ngIf="isLocationOrHQAdmin()"  type="button" class="btn btn-default btn-danger" (click)="onConfirmCancelReview(reassignCaseModal.review)">Cancel Review</button>
+        </div>
+
+    </modal>
+</div>

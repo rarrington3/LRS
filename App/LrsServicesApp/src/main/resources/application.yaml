@@ -1,0 +1,77 @@
+spring:
+  mail:
+    host: localhost
+    port: 25
+    username:
+    password:
+lrs:
+  workflowUri: http://localhost:8000/LrsWorkflow
+  mule:
+    logBody: true
+    piiMask: false
+    # dev api server: https://esbapi-dev.hhq.hud.dev/hud-esb
+    # test api server: https://esbapi-test.testcntr.nonprod.hud.gov/hud-esb
+    # local: http://localhost:8000/LrsServices/api/v1/devMule
+    rootUri: &muleRootUri https://esbapi-dev.hhq.hud.dev/hud-esb
+    
+    oauth:
+      # dev authUri: https://esboam-dev.hhq.hud.dev/openam/oauth2/authorize?realm=/
+      # test authUri: https://esboam-test.testcntr.nonprod.hud.gov/openam/oauth2/authorize?realm=/
+      authUri: https://esboam-dev.hhq.hud.dev/openam/oauth2/authorize?realm=/
+      # dev cookieUri: https://esboam-dev.hhq.hud.dev/openam/json/authenticate?realm=/
+      # test cookieUri: https://esboam-test.testcntr.nonprod.hud.gov/openam/json/authenticate?realm=/
+      cookieUri: https://esboam-dev.hhq.hud.dev/openam/json/authenticate?realm=/
+      userID: X00050
+      userPassword: Summer@2017
+      audit:
+        authenticationId: X00050
+    authorizations:
+      rootUri: *muleRootUri
+    lenders:
+      rootUri: *muleRootUri
+    monthly:
+      rootUri: *muleRootUri
+    ec:
+      rootUri: *muleRootUri
+    epd:
+      rootUri: *muleRootUri
+    lenderMonitoring:
+      rootUri: *muleRootUri
+    case:
+      rootUri: *muleRootUri
+    batchCase:
+      rootUri: *muleRootUri
+    underwriter:
+      rootUri: *muleRootUri
+    binderRequest:
+      rootUri: *muleRootUri
+    binderReceipt:
+      rootUri: *muleRootUri
+    document:
+      rootUri: *muleRootUri
+    indemnification:
+      rootUri: *muleRootUri
+  ui:
+    microstrategyUrl: https://entptest.hud.gov/LrsDev/MicroStrategy
+    electronicCaseBinder: https://hwvalwd1868.hud.gov/clas/html/f17eb-ev.cfm?CaseNumber={caseNumber}
+    electronicAppraisal: https://hwvalwd1868.hud.gov/clas/html/f17eaprsl.cfm?key={caseNumber}
+    totalScorecardEmulator: https://hwvalwd1868.hud.gov/clas/html/f17ausform.cfm?type=pop&case_no={caseNumber}
+    totalScorecardEmulatorComparison: https://hwvalwd1868.hud.gov/clas/html/f17ausform.cfm?type=pop&case_no={caseNumber}&comp_data=Y
+  devMode: true
+  returnExceptions: true
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;database=LRSDB;
+    username: sa
+    password: "lrs#12345"
+  ext:
+    datasource:
+      url: jdbc:sqlserver://localhost:1433;database=LRSEXTDB;
+      username: sa
+      password: "lrs#12345"
+  template:
+    link:
+      protocolAndHost: http://localhost:8075
+  log:
+    directory:
+      jboss:
+        root: ../standalone/log

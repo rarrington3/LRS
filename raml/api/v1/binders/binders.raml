@@ -1,0 +1,71 @@
+displayName: binders
+
+/fha:
+    displayName: fhaBinders
+    description: |
+      These services are used by FHA to view and manage their binder requests.
+    get:
+        description: Get a list of all binder requests.
+        securedBy:
+            - fhac:
+                roles: [ROLE_PROGRAM_ASSISTANT, ROLE_REVIEW_LOCATION_ADMIN, ROLE_HQ_ADMIN, ROLE_REVIEWER]
+        responses:
+            200:
+                body:
+                  example: !include "binder-collection.example.json"
+                  schema: BinderCollection
+
+    /{binderId}/receive:
+      displayName: fhaBinders
+      put:
+        description: |
+            This service is used to mark when a binder is received.
+            Upon receipt, the services assign the binder and return it.
+        securedBy:
+            - fhac:
+                roles: [ROLE_PROGRAM_ASSISTANT, ROLE_REVIEW_LOCATION_ADMIN, ROLE_HQ_ADMIN]
+            - requestGeography
+        responses:
+            200:
+                description: The service successfully modified binder.
+            409:
+                description: |
+                    Unable to process request to do conflict in state of object. Any specific details included in body.
+
+/lender:
+    displayName: lenderBinders
+    description: |
+      These services are used by Lenders to view and manage their binder requests.
+    get:
+        description: Get a list of all binder requests.
+        securedBy:
+            - fhac:
+                roles: [ROLE_LRS_READ_ONLY, ROLE_RESPONSE_COORDINATOR, ROLE_INDEMNIFIER]
+        responses:
+            200:
+                body:
+                  example: !include "binder-collection.example.json"
+                  schema: BinderCollection
+
+    /{binderId}/send:
+      displayName: lenderBinder
+      description: |
+        This service is used to mark the send date of the binder.
+      put:
+        description: |
+            Update a specific binder request by ID.
+        securedBy:
+            - fhac:
+                roles: [ROLE_RESPONSE_COORDINATOR, ROLE_INDEMNIFIER]
+        body:
+            schema: Binder
+            example: !include "binder.example.json"
+        responses:
+            200:
+                description: The service successfully modified binder.
+                body:
+                    schema: Binder
+                    example: !include "binder.example.json"
+            409:
+                description: |
+                    Unable to process request to do conflict in state of object. Any specific details included in body.

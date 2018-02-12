@@ -1,0 +1,71 @@
+[
+    {
+        "emailCategory": "Mitigation Email",
+        "templateVersions": [
+            {
+                "version": 1,
+                "emailName": "Initial version",
+                "lastModifiedDate": "2016-07-28",
+                "activationDate": "2016-07-28",
+                "lastModifiedBy": "Justin Burch",
+                "id": "a1a48fdd-ee56-4a93-938f-08f17f1ad417",
+                "isActive": false
+            },
+            {
+                "version": 2,
+                "emailName": "Modified terms per Admin Ruling",
+                "lastModifiedDate": "2016-07-28",
+                "activationDate": "2016-07-28",
+                "lastModifiedBy": "Justin Burch",
+                "id": "1df86bb0-12f5-4225-9cb2-908a6eab8bb6",
+                "isActive": true
+            },
+            {
+                "version": 3,
+                "emailName": "Edits to syntax and spelling",
+                "lastModifiedDate": "2016-07-28",
+                "activationDate": "2016-07-28",
+                "lastModifiedBy": "Justin Burch",
+                "id": "7e0b2517-8c7a-46a0-b56e-5003ec48dfa7",
+                "isActive": false
+            }
+        ]
+    },
+    {
+        "emailCategory": "Indemnification Email",
+        "templateVersions": [
+            {
+                "version": 1,
+                "emailName": "Initial version",
+                "lastModifiedDate": "2016-07-28",
+                "activationDate": "2016-07-28",
+                "lastModifiedBy": "Justin Burch",
+                "id": "e7c6539b-2cd6-4be2-9f57-9815c668aa69",
+                "isActive": true
+            },
+            {
+                "version": 2,
+                "emailName": "Modified spelling and terms per HOC input",
+                "lastModifiedDate": "2016-07-28",
+                "activationDate": "2016-07-28",
+                "lastModifiedBy": "Justin Burch",
+                "id": "3513047e-4630-4bdb-a50d-1e549bc72b26",
+                "isActive": true
+            }
+        ]
+    },
+    {
+        "emailCategory": "Other Email",
+        "templateVersions": [
+            {
+                "version": 1,
+                "emailName": "Initial version",
+                "lastModifiedDate": "2016-07-28",
+                "activationDate": "2016-07-28",
+                "lastModifiedBy": "Justin Burch",
+                "id": "8b14ea64-ce46-4adb-ac07-64ac994b5d48",
+                "isActive": true
+            }
+        ]
+    }
+]

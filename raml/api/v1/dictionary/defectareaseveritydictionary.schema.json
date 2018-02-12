@@ -1,0 +1,21 @@
+{
+    "id": "http://LRS/DefectAreaSeverityDictionary",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": ["defectAreaCode", "defectSeverityTierCode", "description"],
+    "additionalProperties": false,
+    "properties": {
+        "defectAreaCode": {
+            "description": "The unique 2 char identifier of this defect area. This code can be displayed to users as well as used to reference defect areas between related entities.",
+            "type": "string"
+        },
+        "defectSeverityTierCode": {
+            "description": "The defect severity tier code of this defect area",
+            "type": "string"
+        },
+        "description": {
+            "description": "The description for the defect severity tier code of this defect area",
+            "type": "string"
+        }
+    }
+}

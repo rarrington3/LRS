@@ -1,0 +1,32 @@
+{{> jsFileHeader }}
+
+import {Directive, ElementRef, Input} from '@angular/core';
+
+@Directive({
+    selector: '[{{headlessCamelCase scaffold.name}}]'
+})
+/**
+ * @see https://angular.io/docs/ts/latest/api/core/Directive-decorator.html
+ * @example
+ * <div [{{headlessCamelCase scaffold.name}}]="true"></div>
+ */
+export default class {{camelCase scaffold.name}} {
+    /**
+     * An example input for this directive
+     * @see https://angular.io/docs/ts/latest/api/core/Input-var.html
+     */
+    @Input('{{headlessCamelCase scaffold.name}}') value:boolean = false;
+
+    constructor(elementRef:ElementRef) {
+		this.$element = elementRef.nativeElement;
+	}
+
+    ngOnChanges() {
+        if (this.value) {
+            this.$element.classList.add('{{headlessCamelCase scaffold.name}}');
+        }
+        else {
+            this.$element.classList.remove('{{headlessCamelCase scaffold.name}}');
+        }
+    }
+}

@@ -1,0 +1,21 @@
+{{> jsFileHeader }}
+
+import { {{camelCase scaffold.name}}Module } from './main';
+
+describe('{{scaffold.name}}/main.js', function () {
+
+    let module;
+
+    beforeEach(function () {
+        module = new {{camelCase scaffold.name}}Module();
+    });
+
+    it('should be creatable', function () {
+        expect(module).toBeDefined();
+    });
+
+    afterEach(function () {
+        module = null;
+    });
+
+});

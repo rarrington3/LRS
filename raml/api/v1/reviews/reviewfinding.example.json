@@ -1,0 +1,21 @@
+{
+    "findingId": "A93C4BDE-71AF-4579-B6E6-C6D5515A2C51",
+    "reviewLevelId": "1722D21A-D282-4655-912D-C360185F2A05",
+    "originalReviewLevelId": "1722D21A-D282-4655-912D-C360185F2A05",
+    "defectAreaCode": "BA",
+    "questionIds": [
+        "8C90DC5F-9BA9-42CC-B601-9B7C1CE071A2"
+    ],
+    "selectedSourceCode": "2",
+    "selectedCauseCode": "B",
+    "selectedTierCode": "3",
+    "commentToLender": "We found another issue with the loan. This is some notes to the lender.",
+    "ratingCode": "U",
+    "lenderResponseComment": "Sample response to FHA from the lender about this finding/defect and an explandation.",
+    "lenderResponseDocuments": [
+        { "documentId": "1AA38E66-75F2-4678-8AC3-52A005CF5745", "documentType": "RESP", "fileName": "borrower_w2.jpg" },
+        { "documentId": "1AA38E66-75F2-4678-8AC3-52A005CF5746", "documentType": "RESP", "fileName": "borrowerId.pdf" },
+        { "documentId": "1AA38E66-75F2-4678-8AC3-52A005CF5747", "documentType": "RESP", "fileName": "mortgage_papers.pdf" }
+    ],
+    "isAdhoc": false
+}

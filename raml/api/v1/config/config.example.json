@@ -1,0 +1,8 @@
+{
+    "lrsUiDev": true,
+    "electronicCaseBinder": "https://hwvalwd1868.hud.gov/clas/html/f17eb-ev.cfm?CaseNumber={caseNumber}",
+    "electronicAppraisal": "https://hwvalwd1868.hud.gov/clas/html/f17eaprsl.cfm?key={caseNumber}",
+    "totalScorecardEmulator": "https://hwvalwd1868.hud.gov/clas/html/f17ausform.cfm?type=pop&case_no={caseNumber}",
+    "totalScorecardEmulatorComparison": "https://hwvalwd1868.hud.gov/clas/html/f17ausform.cfm?type=pop&case_no={caseNumber}&comp_data=Y",
+    "microstrategyUrl": "https://entptest.hud.gov/LrsDev/MicroStrategy"
+}

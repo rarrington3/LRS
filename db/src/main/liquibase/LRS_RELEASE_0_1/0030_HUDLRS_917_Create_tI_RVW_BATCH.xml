@@ -1,0 +1,46 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_917_Create_tI_RVW_BATCH" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createProcedure>
+		<![CDATA[
+            CREATE TRIGGER tI_RVW_BATCH ON RVW_BATCH FOR insert AS
+            
+            BEGIN
+              DECLARE  @MTGEE5  CHAR(5),
+                       @counter int,
+                       @char_counter char(3),
+                       @year    char(4),
+            		       @batch_id uniqueidentifier
+            
+            select @MTGEE5 = MTGEE5,
+                   @batch_id = batch_id
+            from inserted
+            
+            select @year = convert(char(4), year(CURRENT_TIMESTAMP) )
+            
+            
+            select @counter = max(substring(batch_reference_id, 12, 14))
+            from RVW_BATCH
+            where substring(batch_reference_id, 1, 10) = @MTGEE5 + '-' + @year
+            
+            if @counter is null
+            begin
+                select @counter = 1
+            end
+            else    
+            begin
+                select @counter = @counter + 1
+            end
+            
+                
+            select @char_counter = REPLICATE('0', 3 - datalength(convert(varchar(3),@counter)) ) + convert(varchar(3),@counter)
+            
+            update RVW_BATCH
+            set batch_reference_id = @MTGEE5 + '-' + @year + '-' + @char_counter
+            where batch_id = @batch_id
+            
+            end   
+		]]>
+        </createProcedure>
+    </changeSet>
+</databaseChangeLog>    

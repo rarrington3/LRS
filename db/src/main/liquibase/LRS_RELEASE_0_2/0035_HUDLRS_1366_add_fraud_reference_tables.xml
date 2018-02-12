@@ -1,0 +1,208 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1366_create_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create table FRAUD_TYPE_REF
+			(FRAUD_TYPE_ID uniqueidentifier not null default newid(),
+			 FRAUD_TYPE_DESCRIPTION varchar(30) not null)
+			 
+			 create table FRAUD_PARTICIPANT_REF
+			 (FRAUD_PARTICIPANT_ID uniqueidentifier not null default newid(),
+			  FRAUD_PARTICIPANT_DESCRIPTION varchar(30) not null)
+			  
+			create table DEFECT_AREA_REF
+			(DEFECT_AREA_ID uniqueidentifier not null default newid(),
+			 DEFECT_AREA_DESCRIPTION varchar(30) not null)
+			
+			create table SELECT_REQUEST_FRAUD_TYPE 
+			(SLCTN_REQ_ID  uniqueidentifier not null,
+			 FRAUD_TYPE_ID uniqueidentifier not null)
+
+			create table SELECT_REQUEST_FRAUD_PRTCPNT  
+			(SLCTN_REQ_ID  uniqueidentifier not null,
+			 FRAUD_PARTICIPANT_ID uniqueidentifier not null)			
+			
+			create table SELECT_REQUEST_CASE_REF
+			(SLCTN_REQ_ID  uniqueidentifier not null,
+			 CASE_NUMBER char(11) not null)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1366_alter_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table FRAUD_TYPE_REF add constraint FRAUD_TYPE_REF_PK primary key nonclustered (FRAUD_TYPE_ID)		
+			alter table FRAUD_PARTICIPANT_REF add constraint FRAUD_PARTICIPANT_REF_PK primary key nonclustered (FRAUD_PARTICIPANT_ID)					
+			alter table DEFECT_AREA_REF add constraint DEFECT_AREA_REF_PK primary key nonclustered (DEFECT_AREA_ID)			
+			alter table SELECT_REQUEST_FRAUD_TYPE add constraint SELECT_REQUEST_FRAUD_TYPE_PK primary key nonclustered (SLCTN_REQ_ID,FRAUD_TYPE_ID)				
+			alter table SELECT_REQUEST_FRAUD_PRTCPNT add constraint SELECT_RQST_FRAUD_PART_PK primary key nonclustered (SLCTN_REQ_ID,FRAUD_PARTICIPANT_ID)							
+			alter table SELECT_REQUEST_CASE_REF add constraint SELECT_REQUEST_CASE_REF_PK primary key nonclustered (SLCTN_REQ_ID,CASE_NUMBER)										
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1366_alter_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+            ALTER TABLE SELECT_REQUEST_FRAUD_TYPE ADD CONSTRAINT SELRQSTFRAUDTYPEFKSELECTREQST FOREIGN KEY(SLCTN_REQ_ID) REFERENCES SELECT_REQUEST_LENDER_SELF(SLCTN_REQ_ID)
+            ALTER TABLE SELECT_REQUEST_FRAUD_TYPE ADD CONSTRAINT SELRQSTFRAUDTYPEFKFRAUDTYP FOREIGN KEY(FRAUD_TYPE_ID) REFERENCES FRAUD_TYPE_REF(FRAUD_TYPE_ID)
+            ALTER TABLE SELECT_REQUEST_FRAUD_PRTCPNT ADD CONSTRAINT SELRQSTFRAUDPARTFKSELECTREQST FOREIGN KEY(SLCTN_REQ_ID) REFERENCES SELECT_REQUEST_LENDER_SELF(SLCTN_REQ_ID)
+            ALTER TABLE SELECT_REQUEST_FRAUD_PRTCPNT ADD CONSTRAINT SELRQSTFRAUDPARTFKFRAUDPART FOREIGN KEY(FRAUD_PARTICIPANT_ID) REFERENCES FRAUD_PARTICIPANT_REF(FRAUD_PARTICIPANT_ID)				
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1366_insert_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			INSERT INTO fraud_participant_ref(FRAUD_PARTICIPANT_ID,FRAUD_PARTICIPANT_DESCRIPTION) values('A5C9EAFA-7701-4AE1-949A-F98A13D27FC6','TPO Broker')
+			INSERT INTO fraud_participant_ref(FRAUD_PARTICIPANT_ID,FRAUD_PARTICIPANT_DESCRIPTION) values('94DB5AE0-233B-4437-A654-E146D705B8F5','Real Estate Agent')
+			INSERT INTO fraud_participant_ref(FRAUD_PARTICIPANT_ID,FRAUD_PARTICIPANT_DESCRIPTION) values('FB28CD8C-8BE4-456D-9ED5-381CA4C94CE8','Loan Officer')
+			INSERT INTO fraud_participant_ref(FRAUD_PARTICIPANT_ID,FRAUD_PARTICIPANT_DESCRIPTION) values('46A3BCB6-E140-4EE1-AAFD-E13CC9BC9DAC','Title Agent')
+			INSERT INTO fraud_participant_ref(FRAUD_PARTICIPANT_ID,FRAUD_PARTICIPANT_DESCRIPTION) values('588A3336-0551-4CCD-95F1-9D84178542F2','Appraiser')
+			INSERT INTO fraud_participant_ref(FRAUD_PARTICIPANT_ID,FRAUD_PARTICIPANT_DESCRIPTION) values('A6399F37-3301-4128-8D1F-A5ACFCBAEE75','Borrower')
+			INSERT INTO fraud_participant_ref(FRAUD_PARTICIPANT_ID,FRAUD_PARTICIPANT_DESCRIPTION) values('12F84AE7-E51D-4F46-B8E7-4018A3EDD62C','Processor')
+			INSERT INTO fraud_participant_ref(FRAUD_PARTICIPANT_ID,FRAUD_PARTICIPANT_DESCRIPTION) values('F9A090DF-D4EB-466D-AA74-D21817416341','Underwriter')
+			INSERT INTO fraud_participant_ref(FRAUD_PARTICIPANT_ID,FRAUD_PARTICIPANT_DESCRIPTION) values('80E1FFC5-4F13-4D3C-BB92-3218779F1AFB','Seller')
+			INSERT INTO fraud_participant_ref(FRAUD_PARTICIPANT_ID,FRAUD_PARTICIPANT_DESCRIPTION) values('26C0E60C-63A3-4851-9F77-0EA1939BB7B2','Attorney')
+			INSERT INTO fraud_participant_ref(FRAUD_PARTICIPANT_ID,FRAUD_PARTICIPANT_DESCRIPTION) values('F9368723-7F7E-4212-96F8-E255C793E6AC','Other')
+			INSERT INTO fraud_type_ref(FRAUD_TYPE_ID,FRAUD_TYPE_DESCRIPTION) values('E87AACA6-A8C1-4D9D-9FFA-923E1B8E49F2','Appraisal Fraud'  )
+			INSERT INTO fraud_type_ref(FRAUD_TYPE_ID,FRAUD_TYPE_DESCRIPTION) values('461C5F70-037E-418D-A319-CE881A9EE168','Credit'           )
+			INSERT INTO fraud_type_ref(FRAUD_TYPE_ID,FRAUD_TYPE_DESCRIPTION) values('0DF0AC3E-AFE8-40C6-A577-F7FC5BDBE85E','Dual Transaction' )
+			INSERT INTO fraud_type_ref(FRAUD_TYPE_ID,FRAUD_TYPE_DESCRIPTION) values('4A1C7935-5C92-43F8-9038-ACC5D1668951','Employment'       )
+			INSERT INTO fraud_type_ref(FRAUD_TYPE_ID,FRAUD_TYPE_DESCRIPTION) values('095FB835-CA0F-454D-8A8D-CCE9E0727545','Equity Skimming'  )
+			INSERT INTO fraud_type_ref(FRAUD_TYPE_ID,FRAUD_TYPE_DESCRIPTION) values('F99AB369-7500-4CE3-BFE4-08749993F4A5','Income'           )
+			INSERT INTO fraud_type_ref(FRAUD_TYPE_ID,FRAUD_TYPE_DESCRIPTION) values('43FEB2FD-D730-40FB-B763-2DCCD815357D','Other'            )
+			INSERT INTO fraud_type_ref(FRAUD_TYPE_ID,FRAUD_TYPE_DESCRIPTION) values('20874D88-91E1-41AE-9918-67644112622F','Property Flip'    )
+			INSERT INTO fraud_type_ref(FRAUD_TYPE_ID,FRAUD_TYPE_DESCRIPTION) values('5721273E-CB43-49F6-A8E7-CB02ADD46C07','Source of Funds'  )
+			INSERT INTO fraud_type_ref(FRAUD_TYPE_ID,FRAUD_TYPE_DESCRIPTION) values('0253FE1B-90FF-4F26-AD12-05FB058D9332','Strawbuyer'       )
+			INSERT INTO DEFECT_AREA_REF(DEFECT_AREA_ID,DEFECT_AREA_DESCRIPTION)VALUES('822396CA-3097-4F02-ADA4-F56ECF6DE2BB','Servicing')
+			INSERT INTO DEFECT_AREA_REF(DEFECT_AREA_ID,DEFECT_AREA_DESCRIPTION)VALUES('2C8D6F92-6A68-412B-A782-2FEB04A2B2B9','Underwriting')
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1366_drop_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table select_request_lender_self drop column type_of_fraud
+			alter table select_request_lender_self drop column case_number
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1366_insert_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into dict_metadata_entity(ENTITY_NAME, DB_VIEW_OR_TABLE,CREATED_BY,CREATED_TS) values('Fraud Type Reference','FRAUD_TYPE_REF','C20225',getdate())
+			insert into dict_metadata_entity(ENTITY_NAME, DB_VIEW_OR_TABLE,CREATED_BY,CREATED_TS) values('Fraud Participant Reference','FRAUD_PARTICIPANT_REF','C20225',getdate())
+			insert into dict_metadata_entity(ENTITY_NAME, DB_VIEW_OR_TABLE,CREATED_BY,CREATED_TS) values('Defect Area Reference','DEFECT_AREA_REF','C20225',getdate())
+			insert into dict_metadata_entity(ENTITY_NAME, DB_VIEW_OR_TABLE,CREATED_BY,CREATED_TS) values('Select Request Fraud Type','SELECT_REQUEST_FRAUD_TYPE','C20225',getdate()) 
+			insert into dict_metadata_entity(ENTITY_NAME, DB_VIEW_OR_TABLE,CREATED_BY,CREATED_TS) values('Select Request Fraud Participant','SELECT_RQST_FRAUD_PARTICIPANT','C20225',getdate())
+			insert into dict_metadata_entity(ENTITY_NAME, DB_VIEW_OR_TABLE,CREATED_BY,CREATED_TS) values('Case Reference','SELECT_REQUEST_CASE_REF','C20225',getdate())
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Fraud Type Reference','Fraud Type ID','FRAUD_TYPE_ID','C20225', getdate(),'STATIC','Fraud Type ID')
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Fraud Type Reference','Fraud Type Description','FRAUD_TYPE_DESCRIPTION','C20225', getdate(),'STATIC','Fraud Type Description')
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Fraud Participant Reference','Fraud Participant ID','FRAUD_PARTICIPANT_ID','C20225', getdate(),'STATIC','Fraud Participant ID')
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Fraud Participant Reference','Fraud Participant Description','FRAUD_PARTICIPANT_DESCRIPTION','C20225', getdate(),'STATIC','Fraud Participant Description')
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Defect Area Reference','Defect Area ID','DEFECT_AREA_ID','C20225', getdate(),'STATIC','Defect Area ID')
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Defect Area Reference','Defect Area Description','DEFECT_AREA_DESCRIPTION','C20225', getdate(),'STATIC','Defect Area Description')
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Select Request Fraud Type','Select Request ID','SLCTN_REQ_ID','C20225', getdate(),'STATIC','Select Request ID')
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Select Request Fraud Type','Fraud Type ID','FRAUD_TYPE_ID','C20225', getdate(),'STATIC','Fraud Type ID')
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Select Request Fraud Participant','Select Request ID','SLCTN_REQ_ID','C20225', getdate(),'STATIC','Select Request ID')
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Select Request Fraud Participant','Fraud Participant ID','FRAUD_PARTICIPANT_ID','C20225', getdate(),'STATIC','Fraud Participant ID')
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Reference','Select Request ID','SLCTN_REQ_ID','C20225', getdate(),'STATIC','Select Request ID')
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Reference','Case Number','CASE_NUMBER','C20225', getdate(),'STATIC','Case Number')
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1366_rename_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			EXEC sp_rename 'DEFECT_AREA_REF', 'DEFECT_TYPE_REF'
+			alter table DEFECT_TYPE_REF DROP constraint DEFECT_AREA_REF_PK
+			EXEC sp_rename 'DEFECT_TYPE_REF.DEFECT_AREA_ID', 'DEFECT_TYPE_ID', 'COLUMN'
+			EXEC sp_rename 'DEFECT_TYPE_REF.DEFECT_AREA_DESCRIPTION', 'DEFECT_TYPE_DESCRIPTION', 'COLUMN'
+			alter table DEFECT_TYPE_REF add constraint DEFECT_TYPE_REF_PK primary key nonclustered (DEFECT_TYPE_ID)			
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1366_update_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from dict_metadata_field 
+			where entity_name = 'Defect Area Reference'
+		
+			update dict_metadata_entity
+			set DB_VIEW_OR_TABLE = 'DEFECT_TYPE_REF',
+			    entity_name = 'Defect Type Reference'
+			where entity_name = 'Defect Area Reference'
+			
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Defect Type Reference','Defect Type ID','DEFECT_TYPE_ID','C20225', getdate(),'STATIC','Defect Type ID')
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Defect Type Reference','Defect Type Description','DEFECT_TYPE_DESCRIPTION','C20225', getdate(),'STATIC','Defect Type Description')
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1366_create_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create table SELECT_REQUEST_DEFECT_TYPE
+			(SLCTN_REQ_ID   uniqueidentifier not null,
+			 DEFECT_TYPE_ID  uniqueidentifier not null)
+			 
+			create table SELECT_REQUEST_DEFECT
+			(SLCTN_REQ_ID   uniqueidentifier not null,
+			 DEFECT_CD  VARCHAR(16) not null)			 
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1366_alter_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table SELECT_REQUEST_DEFECT_TYPE add constraint SELECT_REQUEST_DEFECT_TYPE_PK primary key nonclustered (SLCTN_REQ_ID,DEFECT_TYPE_ID)										
+            ALTER TABLE SELECT_REQUEST_DEFECT_TYPE ADD CONSTRAINT SLCTRQSTDEFECTTYPEFKSELECTREQST FOREIGN KEY(SLCTN_REQ_ID) REFERENCES SELECT_REQUEST_LENDER_SELF(SLCTN_REQ_ID)
+            ALTER TABLE SELECT_REQUEST_DEFECT_TYPE ADD CONSTRAINT SLCTRQSTDEFECTTYPEFKDEFTYP FOREIGN KEY(DEFECT_TYPE_ID) REFERENCES DEFECT_TYPE_REF(DEFECT_TYPE_ID)		
+
+			alter table SELECT_REQUEST_DEFECT add constraint SELECT_REQUEST_DEFECT_PK primary key nonclustered (SLCTN_REQ_ID,DEFECT_CD)										
+            ALTER TABLE SELECT_REQUEST_DEFECT ADD CONSTRAINT SELECTRQSTDEFECTFKSELECTREQST FOREIGN KEY(SLCTN_REQ_ID) REFERENCES SELECT_REQUEST_LENDER_SELF(SLCTN_REQ_ID)
+            ALTER TABLE SELECT_REQUEST_DEFECT ADD CONSTRAINT SELECTRQSTDEFECTFKDEFECT FOREIGN KEY(DEFECT_CD) REFERENCES DEFECT(DEFECT_CD)				
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1366_insert_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into dict_metadata_entity(ENTITY_NAME, DB_VIEW_OR_TABLE,CREATED_BY,CREATED_TS) values('Select Request Defect Type','SELECT_REQUEST_DEFECT_TYPE','C20225',getdate())
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Select Request Defect Type','Select Request ID','SLCTN_REQ_ID','C20225', getdate(),'STATIC','Select Request ID')
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Select Request Defect Type','Defect Type ID','DEFECT_TYPE_ID','C20225', getdate(),'STATIC','Defect Type ID')
+			
+			insert into dict_metadata_entity(ENTITY_NAME, DB_VIEW_OR_TABLE,CREATED_BY,CREATED_TS) values('Select Request Defect','SELECT_REQUEST_DEFECT','C20225',getdate())
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Select Request Defect','Select Request ID','SLCTN_REQ_ID','C20225', getdate(),'STATIC','Select Request ID')
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Select Request Defect','Defect Code','DEFECT_CD','C20225', getdate(),'STATIC','Defect Code')			
+
+			delete from dict_metadata_field 
+			where entity_name = 'Case Reference'
+
+			update dict_metadata_entity
+			set entity_name = 'Select Request Case Reference'
+            where entity_name = 'Case Reference'
+
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Select Request Case Reference','Select Request ID','SLCTN_REQ_ID','C20225', getdate(),'STATIC','Select Request ID')
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Select Request Case Reference','Case Number','CASE_NUMBER','C20225', getdate(),'STATIC','Case Number')
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1366_alter_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table select_request_lender_self drop column defect_areas
+		]]>
+        </sql>
+    </changeSet>		
+ </databaseChangeLog>
+
+
+
+
+
+
+
+
+
+

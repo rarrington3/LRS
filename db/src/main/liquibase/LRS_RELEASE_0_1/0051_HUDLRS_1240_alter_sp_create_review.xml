@@ -1,0 +1,176 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1240_alter_sp_create_review_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER proc [dbo].[sp_create_review]
+			(@selection_id uniqueidentifier,
+			 @login_credential char(6))
+			as
+
+			declare @review_id uniqueidentifier,
+					@review_lvl_id uniqueidentifier,
+					@prsnnl_id uniqueidentifier
+
+			--alter table review NOCHECK CONSTRAINT GUID_reivew_ID
+
+			--select @selection_id = convert(uniqueidentifier, @in_selection_id)
+
+			select @review_id = newid() 
+
+			select @prsnnl_id = prsnnl_id
+			from personnel
+			where login_credential = @login_credential
+			  and status_code = 'A'
+
+			insert into review
+			(review_id     ,
+			 batch_id      ,
+			 case_number   ,
+			 selection_id  ,
+			 created_ts   ,
+			 orig_rvwr_prsnnl_id,
+			 review_scope,
+			ORIG_ASSIGN_DT,
+			STATUS 
+			)
+			select
+			@review_id     ,
+			batch_id       ,
+			case_number    ,
+			@selection_id  ,
+			getdate()      ,
+			@prsnnl_id,
+			'Full',
+			getdate(),
+			'Under Review'
+			from loan_selection
+			where convert(char(36), selection_id) = @selection_id
+
+
+
+			--alter table review with check check CONSTRAINT GUID_reivew_ID
+
+			--alter table review_level NOCHECK CONSTRAINT GUID_REVIEW_LVL_ID
+
+			select @review_lvl_id = newid()
+
+			insert into review_level
+			(review_lvl_id,
+			 review_id,
+			 rvw_location_id,
+			 created_ts,
+			 orig_rvwr_prsnnl_id,
+			 rvwr_prsnnl_id,
+			 status)
+			select
+			@review_lvl_id ,
+			@review_id     ,
+			rvw_location_id,
+			getdate(),
+			@prsnnl_id,
+			@prsnnl_id,
+			'Assigned'
+			from loan_selection
+			where selection_id = @selection_id
+
+			--alter table review_level with check check CONSTRAINT GUID_REVIEW_LVL_ID
+
+
+			insert into rvw_lvl_case_summary
+			(review_id                      ,
+			review_lvl_id,
+			assumed_loan_ind               ,
+			cashout_refi_ind               ,
+			declining_mkt_ind              ,
+			disaster_ind                   ,
+			gift_ltr_amt                   ,
+			gift_ltr_2_amt                 ,
+			gift_ltr_src                   ,
+			--gift_ltr_2_source              ,
+			invest_2nd_resid_ind           ,
+			num_living_units               ,
+			loan_prps                      ,
+			ratio_loan_to_vl_new           ,
+			loan_type                      ,
+			fctry_fbrct                    ,
+			--market_condition_rpt           ,
+			--max_claim_amt                  ,
+			mixed_use_prop_ind             ,
+			current_at_endorse_ind         ,
+			--non_pub_util_common_ind        ,
+			paystubs_cover_30_days_ind     ,
+			product_type                   ,
+			--prop_curr_occupancy_type       ,
+			pd_strmln_flg                  ,
+			--property_repairs               ,
+			pub_well_septic_avail_area_ind ,
+			pub_well_septic_avail_site_ind ,
+			--ratio_tot_pmt_to_tot_inc       ,
+			rfnc_cd                        ,
+			--repair_escrow_acct_estab       ,
+			--sls_prc_gt_acq_cost            ,
+			soa_cd                         ,
+			--underwriting_method            ,
+			--util_on_at_inspection          ,
+			--created_by                     ,
+			--updated_by                     ,
+			created_ts  ,
+			bldg_typ                     
+			)
+			select 
+			@review_id                      ,
+			@review_lvl_id ,
+			'N',
+			cashout_refi_ind               ,
+			'N'              ,
+			'N'              ,
+			gift_ltr_amt                   ,
+			gift_ltr_2_amt                 ,
+			gift_ltr_src                   ,
+			--gift_ltr_2_source              ,
+			'N'           ,
+			1               ,
+			loan_prps                      ,
+			ratio_loan_to_vl_new           ,
+			loan_type                      ,
+			fctry_fbrct                    ,
+			--market_condition_rpt           ,
+			--max_claim_amt                  ,
+			'N'     ,
+			'N'     ,
+			--'N'     ,
+			'N'     ,
+			product_type                   ,
+			--prop_curr_occupancy_type       ,
+			pd_strmln_flg                  ,
+			--property_repairs               ,
+			'N' ,
+			'N' ,
+			--ratio_tot_pmt_to_tot_inc       ,
+			rfnc_cd                        ,
+			--repair_escrow_acct_estab       ,
+			--sls_prc_gt_acq_cost            ,
+			soa_cd                         ,
+			--underwriting_method            ,
+			--util_on_at_inspection          ,
+			--created_by                     ,
+			--updated_by                     ,
+			getdate()     ,
+			bldg_typ                       
+			from loan_selection_case_summary
+			where selection_id = @selection_id
+
+			insert into REVIEW_QATREE (REVIEW_ID, QATREE_ID, CREATED_BY, UPDATED_BY, CREATED_TS, UPDATED_TS)
+			select @review_id, QATREE_ID, 'H00001', 'H00001', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
+			from LOAN_SELECTION ls, qatree Q1, REVIEW_TYPE_DEFECT rtd
+			where ls.REVIEW_TYPE = rtd.REVIEW_TYPE and rtd.DEFECT_CD = Q1.DEFECT_CD
+			   and Q1.QATREE_VERSION_ID = (select max(QATREE_VERSION_ID) from QATREE Q2 where Q1.DEFECT_CD = Q2.DEFECT_CD)
+			   and ls.SELECTION_ID = @selection_id
+
+		]]>
+        </sql>
+    </changeSet>
+	
+</databaseChangeLog>
+

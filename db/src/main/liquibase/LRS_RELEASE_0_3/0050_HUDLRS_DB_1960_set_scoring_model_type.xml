@@ -1,0 +1,28 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_1960_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			UPDATE SCORING_MODEL SET SCORING_MODEL_TYPE_ID = (SELECT SCORING_MODEL_TYPE_ID FROM SCORING_MODEL_TYPE_REF WHERE CODE = 'SLCT') 
+			WHERE DESCRIPTION in
+			(
+			 'Lender Monitoring Fwd Servicing'       ,
+             'Lender Monitoring Rev Servicing'       ,
+             'Lender Monitoring Rev Comprehensive'   ,
+             'Lender Monitoring Fwd Comprehensive'   ,
+             'Lender Monitoring Fwd Underwriting'    ,
+             'Lender Monitoring Rev Underwriting'    ,
+             'National QC'                           ,
+             'Defect Probability Rev'                ,
+             'Early Claim'                           ,
+             'Early Payment Default'                 ,
+             'Defect Probability Fwd'                ,
+             'Lender Increased'                      ,
+             'Underwriter Increased'                 ,
+             'NonPerforming Loan'                    ,
+             'Random'
+			)
+		]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>    

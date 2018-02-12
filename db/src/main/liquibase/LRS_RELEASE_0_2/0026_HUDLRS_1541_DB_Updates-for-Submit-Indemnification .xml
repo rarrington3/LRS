@@ -1,0 +1,33 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1591_alter_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+				Alter table rvw_lvl_indem add TERMS_OF_AGREEMENT_CD CHAR(2) null
+				Alter table rvw_lvl_indem add INDEM_START_CD CHAR(2) null
+				Alter table rvw_lvl_indem add EXPIRATION_DATE DATETIME null
+				Alter table rvw_lvl_indem add INDEM_TRANSFERABLE_IND CHAR(1) null
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1591_insert_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Review Level Indemnification','Terms of Agreement code','TERMS_OF_AGREEMENT_CD','C20225', getdate(),'STATIC','Terms of Agreement code')      
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Review Level Indemnification','Indem Start Date','INDEM_START_CD','C20225', getdate(),'STATIC','Indem Start Date')      
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Review Level Indemnification','Expiration Date','EXPIRATION_DATE','C20225', getdate(),'STATIC','Expiration Date')      
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Review Level Indemnification','Indem Transferable Indicator','INDEM_TRANSFERABLE_IND','C20225', getdate(),'STATIC','Indem Transferable Indicator')      
+		]]>
+        </sql>
+    </changeSet>	
+ </databaseChangeLog>
+
+
+
+
+
+
+
+
+
+

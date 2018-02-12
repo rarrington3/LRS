@@ -1,0 +1,62 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1301_add_column_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table SELECT_REQUEST_MANUAL_FHA add FILE_DELIVERY_LOCATION_CD char(2) null
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1301_add_metadata_data_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into dict_metadata_field (entity_name, field_name, db_column, created_by, created_ts, subject_area, ui_control_type) values('Manual Loan Selection Request', 'File Delivery Location', 'FILE_DELIVERY_LOCATION_CD','C20225', getdate(),'UNKNOWN','STATIC')						
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1301_add_lrs_gen_lookup_data_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into lrs_gen_lookup (lookup_entity,lookup_field,lookup_code,lookup_description,created_by, created_ts) values('Manual Loan Selection Request','File Delivery Location','10','FHA'  ,'C20225',getdate())
+			insert into lrs_gen_lookup (lookup_entity,lookup_field,lookup_code,lookup_description,created_by, created_ts) values('Manual Loan Selection Request','File Delivery Location','20','Lender','C20225',getdate())
+		]]>
+        </sql>
+    </changeSet>	
+   <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1301_drop_column_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table SELECT_REQUEST_MANUAL_FHA drop column FILE_DELIVERY_LOCATION_CD 
+		]]>
+        </sql>
+    </changeSet>
+   <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1301_add_column_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table SELECT_REQUEST_LENDER_MON add FILE_DELIVERY_LOCATION_CD char(2) null
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1301_update_metadata_data_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update dict_metadata_field
+			set entity_name = 'Lender Monitoring Selection Request'
+			where entity_name = 'Manual Loan Selection Request'
+			and field_name = 'File Delivery Location'
+			and db_column = 'FILE_DELIVERY_LOCATION_CD'
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1301_update_lrs_gen_lookup_data_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update lrs_gen_lookup
+			set lookup_entity = 'Lender Monitoring Selection Request'
+			where lookup_entity = 'Manual Loan Selection Request'
+			  and lookup_field = 'File Delivery Location'
+		]]>
+        </sql>
+    </changeSet>	
+	
+</databaseChangeLog>
+

@@ -1,0 +1,46 @@
+[
+    {
+        "code": "FPqwer",
+        "description": "TPO Broker"
+    },
+    {
+        "code": "FPasdf",
+        "description": "Real Estate Agent"
+    },
+    {
+        "code": "FPzxcv",
+        "description": "Loan Officer"
+    },
+    {
+        "code": "FPwert",
+        "description": "Title Agent"
+    },
+    {
+        "code": "FPsdfg",
+        "description": "Appraiser"
+    },
+    {
+        "code": "FPxcvb",
+        "description": "Borrower"
+    },
+    {
+        "code": "FPerty",
+        "description": "Processor"
+    },
+    {
+        "code": "FPdfgh",
+        "description": "Underwriter"
+    },
+    {
+        "code": "FPcvbn",
+        "description": "Seller"
+    },
+    {
+        "code": "FPrtyu",
+        "description": "Attorney"
+    },
+    {
+        "code": "FPfghj",
+        "description": "Other"
+    }
+]

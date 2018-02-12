@@ -1,0 +1,49 @@
+<div class="lrs-content-panel model-admin-body container-fluid">
+
+    <div class="row">
+        <div class="section-heading">Email Templates</div>
+
+        <hr/>
+
+        <div *ngFor="let group of emailGroups">
+
+            <div class="sub-section-heading">{{group.emailCategory}}</div>
+
+            <table class="table lrs-case-table">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th scope="col">Version</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Last Modified Date</th>
+                    <th scope="col">Activation Date</th>
+                    <th scope="col">Last Modified By</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let template of group.templateVersions">
+                    <td *ngIf="template.isActive" scope="row">
+                        <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+                    </td>
+                    <td *ngIf="!template.isActive" scope="row">
+                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                    </td>
+                    <td>{{template.version}}</td>
+                    <td scope="row" [ngClass]="{'active-status': template.isActive}">{{template.emailName}}</td>
+                    <td [class.active-status]="template.isActive">{{template.lastModifiedDate | datePipe}}</td>
+                    <td [class.active-status]="template.isActive">{{template.activationDate | datePipe}}</td>
+                    <td [class.active-status]="template.isActive">{{template.lastModifiedBy}}</td>
+                    <td><button *ngIf="!template.isActive" class="btn btn-primary" [routerLink]="['../editEmailTemplate', {templateId: template.id}]" [attr.aria-label]="'Edit ' + template.emailName">Edit</button></td>
+                    <td><button class="btn btn-primary" (click)="duplicateTemplate(template)" [attr.aria-label]="'Duplicate ' + template.emailName">Duplicate</button></td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+

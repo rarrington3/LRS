@@ -1,0 +1,42 @@
+[
+    {
+        "code": "FTwqer",
+        "description": "Appraisal Fraud"
+    },
+    {
+        "code": "FTasdf",
+        "description": "Credit"
+    },
+    {
+        "code": "FTzxcv",
+        "description": "Dual Transaction"
+    },
+    {
+        "code": "FTwert",
+        "description": "Employment"
+    },
+    {
+        "code": "FTsdfg",
+        "description": "Equity Skimming"
+    },
+    {
+        "code": "FTxcvb",
+        "description": "Income"
+    },
+    {
+        "code": "FTerty",
+        "description": "Other"
+    },
+    {
+        "code": "FTdfgh",
+        "description": "Property Flip"
+    },
+    {
+        "code": "FTcvbn",
+        "description": "Source of Funds"
+    },
+    {
+        "code": "FTrtyu",
+        "description": "Strawbuyer"
+    }
+]

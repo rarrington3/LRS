@@ -1,0 +1,29 @@
+{
+    "id": "http://LRS/ReviewerCreation",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": ["hudId", "locationId", "reportsTo"],
+    "additionalProperties": false,
+    "properties": {
+        "hudId": {
+            "description": "The identifier of the reviewer. This corresponds to their ID in FHA Connection.",
+            "type": "string"
+        },
+        "locationId": {
+            "description": "The ID of the geogrpahical location where the reviewer does the review.",
+            "type": "string"
+        },
+        "reportsTo": {
+            "description": "The ID of the person who the reviewer reports to.",
+            "type": "string"
+        },
+        "nameFirst": {
+            "description": "The forename of the reviewer.",
+            "type": "string"
+        },
+        "nameLast": {
+            "description": "The family name of the reviewer.",
+            "type": "string"
+        }
+    }
+}

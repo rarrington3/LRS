@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <div *ngIf="defectAreaLoading" class="lrs-loading">
+                <span class="glyphicon glyphicon-refresh"
+                      aria-label="loading" title="Loading">
+                </span>
+            </div>
+            <div *ngIf="!defectAreaLoading && !defectArea.remediationTypes.length" class="lrs-no-results">
+                <span class="small" aria-label="no results">No results found</span>
+            </div>
+            <div>
+                <h6 aria-hidden="true">Remediation Types</h6>
+            </div>
+            <table *ngIf="!defectAreaLoading && defectArea.remediationTypes.length"
+                   class="table table-bordered outer-bordered header-less-bordered remediation-table">
+                <tbody>
+                <tr *ngFor="let remediationType of defectArea.remediationTypes">
+                    <td class="remediation-desc-col">
+                        <p>
+                            {{remediationType.description}}
+                        </p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

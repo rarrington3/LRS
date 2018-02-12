@@ -1,0 +1,83 @@
+{
+    "id": "http://LRS/Location",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": ["locationId", "name"],
+    "additionalProperties": true,
+    "properties": {
+        "locationId": {
+            "description": "The identifier of the object",
+            "type": "string"
+        },
+        "name": {
+            "description": "The display name for this location.",
+            "type": "string"
+        },
+        "address":{
+            "description": "Property address for location.",
+            "type": "string"
+        },
+        "address2":{
+            "description": "Extended property address for location.",
+            "type": "string"
+        },
+        "city": {
+            "description": "City location is in.",
+            "type": "string"
+        },
+        "state": {
+            "description": "State location city is in.",
+            "type": "string"
+        },
+        "zipCode": {
+            "description": "Zip code location city is in.",
+            "type": "string"
+        },
+        "capacity": {
+            "description": "The monthly review capacity for this location.",
+            "type": "integer"
+        },
+        "contactName": {
+            "description": "The name of the person to contact for information at this location.",
+            "type": "string"
+        },
+        "contactPhone": {
+            "description": "The phone number to call for information at this location.",
+            "type": "string"
+        },
+        "contactPhoneExtension": {
+            "description": "The specific extension to use on this line.",
+            "type": "string"
+        },
+        "locationOwner": {
+            "description": "The name of the person who owns this location.",
+            "type": "string"
+        },
+        "activationDate": {
+            "description": "The date the location became active.",
+            "type": "string",
+            "format": "date"
+        },
+        "deActivationDate": {
+            "description": "The date the location was deactivated.",
+            "type": "string",
+            "format": "date"
+        },
+        "allowedSelectionReasons": {
+            "description": "Possible selection reasons allowed for location.",
+            "type": "array",
+            "items": {"type": "string"}
+        },
+        "allowedReviewTypes": {
+            "description": "Possible types of reviews allowed for location.",
+            "type": "array",
+            "items": {"type": "string"}
+        },
+        "allowedProductTypes": {
+            "description": "Possible types of loans allowed for location.",
+            "type": "array",
+            "items": {"type": "string"}
+        }
+
+    }
+}

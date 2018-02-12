@@ -1,0 +1,55 @@
+@import '../../bootstrap/_variables.less';
+@import '../../shared/_mixins.less';
+:host-context {
+    /* styles should be scoped under host-context */
+    .content-panel-inner {
+        min-height: 200px;
+    }
+    .the-sub-header {
+        background-color: @brand-secondary;
+        color: white;
+        .sub-title,
+        .loan-overview {
+            float: left;
+            padding: 10px 12px;
+            height: 60px;
+            padding-top: 20px;
+            border-right: 1px solid @brand-blue-border-color;
+        }
+        .sub-title {
+            margin: 0;
+            padding-top: 16px;
+            padding-bottom: 3px;
+            border-left: 1px solid @brand-blue-border-color;
+        }
+        .loan-overview {
+            p {
+                margin: 0px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            .description {
+                font-weight: 100;
+            }
+            .h5 {
+                font-weight: 600;
+            }
+        }
+        .sub-buttons {
+            text-align: right;
+            padding-top: 10px;
+            .btn {
+                display: inline-block;
+                text-align: center;
+            }
+        }
+        .btn-primary {
+            background-color: white;
+            color: @brand-primary;
+        }
+    }
+    .content-area {
+        padding-top: 5px;
+    }
+}

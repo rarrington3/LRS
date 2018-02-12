@@ -1,0 +1,61 @@
+{{#each methods}}
+{{#each securedBy}}
+    {{#if fhac}}
+@PreAuthorize("{{#each (asArray fhac.roles)}}hasRole('{{this}}'){{#unless @last}} or {{/unless}}{{/each}}")
+    {{/if}}
+{{/each}}
+@RequestMapping(
+    value = "{{fullUri this}}",
+    method = RequestMethod.{{upperCase method}},
+    {{#if body}}
+    consumes ={ MediaType.{{#if body.[multipart/form-data]}}MULTIPART_FORM_DATA_VALUE{{else}}APPLICATION_JSON_VALUE{{/if}} },
+    {{/if}}
+    produces = { MediaType.APPLICATION_JSON_VALUE }
+)
+public ResponseEntity<?> {{fullServiceAction}}(
+{{#each (allParameters this)}}
+    {{#compare location 'body'}}@RequestBody {{dto}} {{displayName}},{{/compare}}
+    {{#compare location 'uri'}}@PathVariable("{{displayName}}") {{jsonTypeToJavaType this}} {{displayName}},{{/compare}}
+    {{#compare location 'querystring'}}@RequestParam(value = "{{displayName}}", required = {{required}}{{#if default}}, defaultValue = "{{default}}"{{/if}}) {{jsonTypeToJavaType this}} {{displayName}},{{/compare}}
+{{/each}}
+    HttpServletRequest request,
+    HttpServletResponse response
+) {
+{{#if (securedBySchemesExcept this 'fhac')}}
+    policyImpl.validate(new ArrayList<String>(Arrays.asList(
+        {{#each (securedBySchemesExcept this 'fhac')}}"{{this}}"{{#unless @last}}, {{/unless}}{{/each}}
+    )),
+        {{#if (hasJsonBodyParameter this)}}data, {{else}} null, // json body dto {{/if}}
+        {{#unless (containsParameter this 'reviewId')}}null, // {{/unless}} reviewId,
+        {{#unless (containsParameter this 'reviewLevelId')}}null, // {{/unless}} reviewLevelId,
+        {{#unless (containsParameter this 'reviewerId')}}null, // {{/unless}} reviewerId,
+        {{#unless (containsParameter this 'binderId')}}null, // {{/unless}} binderId,
+        {{#unless (containsParameter this 'batchId')}}null // {{/unless}} batchId
+    );
+{{/if}}
+{{#if (isMockEnabled this @root)}}
+    throw new UnsupportedOperationException("{{fullServiceAction}} is disabled because the 'mock' flag is set on it in RAML");
+{{else}}
+
+    {{#if (isConstant this)}}
+    response.setHeader("Cache-Control", "max-age=86400");
+    {{else}}
+    response.setHeader("cache-control", "no-cache, no-store, must-revalidate");
+    response.setHeader("pragma", "no-cache");
+    response.setHeader("expires", "0");
+    {{/if}}
+
+    return {{serviceController}}ControllerImpl.{{serviceAction}}(
+        {{#each (allParameters this)}}
+        {{displayName}},
+        {{/each}}
+        request,
+        response
+    );
+{{/if}}
+}
+
+{{/each}}
+{{#each resources as |res|}}
+{{>javaMethodsForResources res}}
+{{/each}}

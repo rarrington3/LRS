@@ -1,0 +1,44 @@
+@import "../../bootstrap/_variables";
+@import "../../shared/_mixins";
+
+:host-context {
+	/* styles should be scoped under host-context */
+	margin-bottom: 10px;
+	padding: 0 5px 0;
+	display: table-cell;
+
+
+	.form-group {
+		margin: 0;
+	}
+
+	.form-control.static {
+		border: none;
+		background: none;
+		box-shadow: none;
+	}
+
+	.input-group {
+		margin:0;
+		padding-right: 0;
+		width: 100%;
+	}
+
+	.field-input{
+		text-align: right;
+		padding-right: 5px;
+		margin: 10px 0 0 0;
+        max-width: 250px;
+
+		.ng-invalid {
+			border: 1px solid @brand-danger;
+		}
+	}
+
+	.field-label {
+		text-align: left;
+		margin: 10px 0 0 0;
+	}
+
+
+}

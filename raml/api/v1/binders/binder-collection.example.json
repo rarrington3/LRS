@@ -1,0 +1,46 @@
+[
+    {
+        "binderId": "11A75226-4290-43CC-9EC7-E7A0C6617E66",
+        "caseNumber": "051-3576307",
+        "borrowerName": "Robinson, Lawrence",
+        "lenderName": "First National Bank",
+        "propertyStreetAddress": "1001 Delaware Street",
+        "requestedDate": "2016-07-21",
+        "requestedFrom": "Records Center",
+        "dueDate": "2016-10-17",
+        "binderReceived": "2016-09-30",
+        "sendDate": "2016-09-30",
+        "locationName": "SNA-QAD",
+        "assignedTo": "Carlton Sheets",
+        "isElectronic": false,
+        "statusCode": "RECEIVED"
+    },
+    {
+        "binderId": "70C4308D-4182-41D8-8D7F-A7E401F25F46",
+        "caseNumber": "351-1264427",
+        "borrowerName": "Zeldberg, Leonie",
+        "lenderName": "Chase",
+        "propertyStreetAddress": "111 West St",
+        "requestedDate": "2016-09-30",
+        "requestedFrom": "Lender",
+        "dueDate": "2016-10-19",
+        "locationName": "PHI-PUD",
+        "assignedTo": "Kenny Blankenship",
+        "isElectronic": true,
+        "statusCode": "REQUESTED"
+    },
+    {
+        "binderId": "87BBD06B-BDD8-45FC-82D7-F0984C8BA22D",
+        "caseNumber": "351-1768306",
+        "borrowerName": "Baker, Tiffany",
+        "lenderName": "Wells Fargo",
+        "propertyStreetAddress": "100 Mountain View",
+        "requestedDate": "2016-10-01",
+        "requestedFrom": "Review Location",
+        "dueDate": "2016-11-11",
+        "locationName": "DEN-PUD",
+        "assignedTo": "Alice Wunderkind",
+        "isElectronic": true,
+        "statusCode": "REQUESTED"
+    }
+]

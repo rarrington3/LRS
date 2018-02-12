@@ -1,0 +1,94 @@
+<div class="panel panel-default lrs-panel-primary">
+    <div class="panel-heading">
+        <a class="panel-title qa-model-title"
+           [routerLink]="['../../qaModels/']">Q&A Models - </a>
+        <a class="qa-model-subtitle"
+           [routerLink]="['../../qaModel/', qaModel.qaModelId]">{{qaModel.name}} </a>
+        <span class="glyphicon glyphicon-lock"
+              [class.glyphicon-check]="qaModel.statusCode === qaModelStatusCode.ACTIVE"
+              [class.glyphicon-cog]="qaModel.statusCode === qaModelStatusCode.DRAFT"
+              [class.glyphicon-lock]="qaModel.statusCode === qaModelStatusCode.ARCHIVED"
+              [class.text-success]="qaModel.statusCode === qaModelStatusCode.ACTIVE"
+              [attr.aria-label]="qaModel.status"
+              [title]="qaModel.status">
+        </span>
+        <span [class.text-success]="qaModel.statusCode === qaModelStatusCode.ACTIVE">{{qaModel.status}}</span>
+        <table class="qa-model-header-table pull-right">
+            <thead>
+            <tr>
+                <th class="small">Version</th>
+                <th class="small">Creation Date</th>
+                <th class="small">Last Modified Date</th>
+                <th class="small">Last Modified By</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{qaModel.version}}</td>
+                <td>{{qaModel.createdDate | datePipe}}</td>
+                <td>{{qaModel.modifiedDate | datePipe}}</td>
+                <td>{{qaModel.modifiedBy}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-body">
+        <div *ngIf="qaModelLoading" class="lrs-loading">
+            <span class="glyphicon glyphicon-refresh"
+                  aria-label="loading" title="Loading">
+            </span>
+        </div>
+        <div *ngIf="!qaModelLoading">
+            <div class="row">
+                <div class="col-xs-12">
+                    <table *ngIf="!qaModelLoading && qaModel.categories.length"
+                           class="table table-bordered outer-bordered header-less-bordered qa-tree-attributes-table">
+                        <tbody>
+                        <tr *ngFor="let category of qaModel.categories; let i = index">
+                            <td class="category-col">
+                                <div class="qa-model-category-wrapper">
+                                    <div class="form-group">
+                                        <label class="control-label">
+                                            Category
+                                        </label>
+                                        <p class="qa-model-category-name">
+                                            {{category.name}}
+                                        </p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">
+                                            Fields
+                                        </label>
+                                        <div>
+                                            <div *ngIf="qaModelLoading" class="lrs-loading">
+                                                <span class="glyphicon glyphicon-refresh"
+                                                      aria-label="loading" title="Loading">
+                                                </span>
+                                            </div>
+                                            <div *ngIf="!qaModelLoading && !category.loanAttributes.length"
+                                                 class="lrs-no-results">
+                                                <span class="small" aria-label="no results">No results found</span>
+                                            </div>
+                                            <table *ngIf="!qaModelLoading && category.loanAttributes.length"
+                                                   class="table table-bordered outer-bordered header-less-bordered attributes-table">
+                                                <tbody>
+                                                <tr *ngFor="let loanAttribute of category.loanAttributes">
+                                                    <td class="attributes-name-col">
+                                                        <span
+                                                            aria-label="Name">{{loanAttribute.fieldName}}</span>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

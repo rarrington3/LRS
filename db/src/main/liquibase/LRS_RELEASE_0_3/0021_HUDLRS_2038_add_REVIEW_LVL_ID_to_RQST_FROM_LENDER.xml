@@ -1,0 +1,30 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL" author="jordanchavez@kpmg.com" id="HUDLRS_2038_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql><![CDATA[
+			ALTER TABLE RQST_FROM_LENDER ADD REVIEW_LVL_ID UNIQUEIDENTIFIER NULL
+			ALTER TABLE RQST_FROM_LENDER ADD CONSTRAINT RQST_FROM_LENDER_FK_REVIEW_LVL_ID FOREIGN KEY(REVIEW_LVL_ID) REFERENCES REVIEW_LEVEL(REVIEW_LVL_ID)
+		]]></sql>
+    </changeSet>
+    <changeSet context="ALL" author="jordanchavez@kpmg.com" id="HUDLRS_2038_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql><![CDATA[
+			UPDATE RQ SET RQ.REVIEW_LVL_ID = RL.REVIEW_LVL_ID
+			FROM RQST_FROM_LENDER RQ
+			INNER JOIN REVIEW_LEVEL RL ON RL.CREATED_TS = (SELECT MAX(CREATED_TS) FROM REVIEW_LEVEL WHERE REVIEW_ID = RQ.REVIEW_ID AND CREATED_TS <= RQ.CREATED_TS)
+		]]></sql>
+    </changeSet>
+    <changeSet context="ALL" author="jordanchavez@kpmg.com" id="HUDLRS_2038_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql><![CDATA[
+			ALTER TABLE RQST_FROM_LENDER ALTER COLUMN REVIEW_LVL_ID UNIQUEIDENTIFIER NOT NULL
+			ALTER TABLE RQST_FROM_LENDER DROP CONSTRAINT RQST_FROM_LENDER_FK_REVIEW
+			ALTER TABLE RQST_FROM_LENDER DROP COLUMN REVIEW_ID
+		]]></sql>
+    </changeSet>
+    <changeSet context="ALL" author="jordanchavez@kpmg.com" id="HUDLRS_2038_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql><![CDATA[
+			INSERT DICT_METADATA_FIELD(ENTITY_NAME, DB_COLUMN, DESCRIPTION, DISPLAY_NAME, FIELD_NAME, CREATED_BY, CREATED_TS, UPDATED_BY, UPDATED_TS) VALUES
+				('Request of Lender', 'REVIEW_LVL_ID', 'Review Level ID', 'Review Level ID', 'Review Level ID', 'jchav', CURRENT_TIMESTAMP, 'jchav', CURRENT_TIMESTAMP)
+			DELETE FROM DICT_METADATA_FIELD WHERE ENTITY_NAME = 'Request of Lender' AND DB_COLUMN = 'REVIEW_ID'
+		]]></sql>
+    </changeSet>
+</databaseChangeLog>

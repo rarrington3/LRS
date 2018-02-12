@@ -1,0 +1,8 @@
+<div class="filterTitle">Batches</div>
+
+<ul class="list-group">
+    <li class="list-group-item category" *ngFor="let batch of lenderBatchCollection" [class.activeFilter]="batch.batchId===activeBatch?.batchId"
+        (click)="getBatchInfo(batch)">
+        <a href="javascript:void(0);">{{batch.batchNumber}}</a><div class="badge">{{batch?.reviews.length}}</div>
+    </li>
+</ul>

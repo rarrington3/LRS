@@ -1,0 +1,110 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-6">
+            <div *ngIf="defectAreaLoading" class="lrs-loading">
+                <span class="glyphicon glyphicon-refresh"
+                      aria-label="loading" title="Loading">
+                </span>
+            </div>
+            <div *ngIf="!defectAreaLoading && !defectArea.sources.length" class="lrs-no-results">
+                <span class="small" aria-label="no results">No results found</span>
+            </div>
+            <div>
+                <h6 aria-hidden="true">Sources</h6>
+            </div>
+            <table *ngIf="!defectAreaLoading && defectArea.sources.length"
+                   class="table table-bordered outer-bordered header-less-bordered sources-table">
+                <tbody>
+                <tr *ngFor="let source of defectArea.sources; let i=index">
+                    <td class="sources-code-col">
+                        {{source.code}}
+                    </td>
+                    <td class="sources-desc-col">
+                        {{source.description}}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-xs-6">
+            <div *ngIf="defectAreaLoading" class="lrs-loading">
+                <span class="glyphicon glyphicon-refresh"
+                      aria-label="loading" title="Loading">
+                </span>
+            </div>
+            <div *ngIf="!defectAreaLoading && !defectArea.causes.length" class="lrs-no-results">
+                <span class="small" aria-label="no results">No results found</span>
+            </div>
+            <div>
+                <h6 aria-hidden="true">Causes</h6>
+            </div>
+            <table *ngIf="!defectAreaLoading && defectArea.causes.length"
+                   class="table table-bordered outer-bordered header-less-bordered causes-table">
+                <tbody>
+                <tr *ngFor="let cause of defectArea.causes; let i=index">
+                    <td class="causes-code-col">
+                        {{cause.code}}
+                    </td>
+                    <td class="causes-desc-col">
+                        {{cause.description}}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-default threshold-panel">
+                <div class="panel-heading" role="tab" id="thresholdHeadingOne">
+                    <h4 class="panel-title">
+                        <a class="lrs-arrow" role="button" data-toggle="collapse" href="#thresholdCollapseOne"
+                           aria-expanded="true" aria-controls="thresholdCollapseOne">
+                            <span class="caret" aria-hidden="true"></span>
+                            Define Acceptable Threshold
+                        </a>
+                    </h4>
+                </div>
+                <div id="thresholdCollapseOne" class="panel-collapse collapse in" role="tabpanel"
+                     aria-labelledby="thresholdHeadingOne">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div *ngIf="defectAreaLoading" class="lrs-loading">
+                                    <span class="glyphicon glyphicon-refresh"
+                                          aria-label="loading" title="Loading">
+                                    </span>
+                                </div>
+                                <div *ngIf="!defectAreaLoading && !defectArea.sources.length" class="lrs-no-results">
+                                    <span class="small" aria-label="no results">No results found</span>
+                                </div>
+                                <table *ngIf="!defectAreaLoading && defectArea.sources.length"
+                                       class="table table-bordered outer-bordered header-less-bordered threshold-table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="row">
+                                        </th>
+                                        <th *ngFor="let cause of defectArea.causes" scope="col" class="threshold-code-col">
+                                            [{{cause.code}}]
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let source of defectArea.sources">
+                                        <th scope="row">
+                                            [{{source.code}}]
+                                        </th>
+                                        <td *ngFor="let cause of defectArea.causes" class="threshold-code-col">
+                                            {{getThreshold(source, cause).severityCode}}
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,88 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="mtross" id="HUDLRS_2967_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			INSERT INTO EMAIL_TEMPLATE_VERSION 
+			VALUES (
+				NEWID(),
+				(SELECT EMAIL_TEMPLATE_ID FROM EMAIL_TEMPLATE WHERE CODE = 'DAILY_LENDER'),
+				'DAILY COMBINED LENDER EMAIL',
+				'Initial Version',
+				1, 
+				'Y', 
+				CURRENT_TIMESTAMP,
+				'Request Summary - [Lender Name]',
+				'Lender ID: [Lender ID]' + CHAR(13) + CHAR(10) +
+					'Lender Name: [Lender Name]' + CHAR(13) + CHAR(10) + CHAR(13) + CHAR(10) +
+					'(Boilerplate language regarding Binder Requests to be provided later)' + CHAR(13) + CHAR(10) +
+					'[Binder Request Count]' + CHAR(13) + CHAR(10) + CHAR(13) + CHAR(10) +
+					'(Boilerplate language regarding Reponse Requests to be provided later)' + CHAR(13) + CHAR(10) +
+					'[Response Request Count]' + CHAR(13) + CHAR(10) + CHAR(13) + CHAR(10) +
+					'(Boilerplate language directing the lender to LRS for any additional details)' + CHAR(13) + CHAR(10) + CHAR(13) + CHAR(10) +
+					'[Lender Active Reviews Link]',
+				'C59058', 
+				CURRENT_TIMESTAMP, 
+				'C59058', 
+				CURRENT_TIMESTAMP
+			)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="mtross" id="HUDLRS_2967_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			INSERT INTO EMAIL_TEMPLATE_VERSION 
+			VALUES (
+				NEWID(),
+				(SELECT EMAIL_TEMPLATE_ID FROM EMAIL_TEMPLATE WHERE CODE = 'LENDER_MONITORING'),
+				'LENDER MONITORING EMAIL',
+				'Initial Version',
+				1, 
+				'Y', 
+				CURRENT_TIMESTAMP,
+				'Lender Monitoring Initiation - [Lender Name]',
+				'Lender ID: [Lender ID]' + CHAR(13) + CHAR(10) +
+					'Lender Name: [Lender Name]' + CHAR(13) + CHAR(10) + CHAR(13) + CHAR(10) +
+					'(Boilerplate language to be provided later)' + CHAR(13) + CHAR(10) + CHAR(13) + CHAR(10) +
+					'Review Location: [Review Location]' + CHAR(13) + CHAR(10) + 
+					'Review Type: [Review Type]' + CHAR(13) + CHAR(10) +
+					'File Delivery Location: [File Delivery Location]' + CHAR(13) + CHAR(10) +
+					'Date of Site Visit: [Date Of Site Visit]' + CHAR(13) + CHAR(10) +
+					'Loan Type: [Loan Type]' + CHAR(13) + CHAR(10) +
+					'Case Count: [Case Count]' + CHAR(13) + CHAR(10) + CHAR(13) + CHAR(10) +
+					'(Boilerplate language regarding Operational Review to be provided later)' + CHAR(13) + CHAR(10) + CHAR(13) + CHAR(10) +
+					'[Operational Review Guidance]' + CHAR(13) + CHAR(10) + CHAR(13) + CHAR(10) +
+					'(Boilerplate language describing Batch idea and directing the lender to LRS for any additional details)' + CHAR(13) + CHAR(10) + CHAR(13) + CHAR(10) +
+					'[Lender Batch Summary Screen Link]',
+				'C59058', 
+				CURRENT_TIMESTAMP, 
+				'C59058', 
+				CURRENT_TIMESTAMP
+			)
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="mtross" id="HUDLRS_2967_003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			INSERT INTO EMAIL_TEMPLATE_VARIABLE VALUES (NEWID(), (SELECT EMAIL_TEMPLATE_ID FROM EMAIL_TEMPLATE WHERE CODE = 'DAILY_LENDER'), 'Lender ID', '[Lender ID]')
+			INSERT INTO EMAIL_TEMPLATE_VARIABLE VALUES (NEWID(), (SELECT EMAIL_TEMPLATE_ID FROM EMAIL_TEMPLATE WHERE CODE = 'DAILY_LENDER'), 'Lender Name', '[Lender Name]')
+			INSERT INTO EMAIL_TEMPLATE_VARIABLE VALUES (NEWID(), (SELECT EMAIL_TEMPLATE_ID FROM EMAIL_TEMPLATE WHERE CODE = 'DAILY_LENDER'), 'Binder Request Count', '[Binder Request Count]')
+			INSERT INTO EMAIL_TEMPLATE_VARIABLE VALUES (NEWID(), (SELECT EMAIL_TEMPLATE_ID FROM EMAIL_TEMPLATE WHERE CODE = 'DAILY_LENDER'), 'Response Request Count', '[Response Request Count]')
+			INSERT INTO EMAIL_TEMPLATE_VARIABLE VALUES (NEWID(), (SELECT EMAIL_TEMPLATE_ID FROM EMAIL_TEMPLATE WHERE CODE = 'DAILY_LENDER'), 'Lender Active Reviews Link', '[Lender Active Reviews Link]')
+			INSERT INTO EMAIL_TEMPLATE_VARIABLE VALUES (NEWID(), (SELECT EMAIL_TEMPLATE_ID FROM EMAIL_TEMPLATE WHERE CODE = 'LENDER_MONITORING'), 'Lender ID', '[Lender ID]')
+			INSERT INTO EMAIL_TEMPLATE_VARIABLE VALUES (NEWID(), (SELECT EMAIL_TEMPLATE_ID FROM EMAIL_TEMPLATE WHERE CODE = 'LENDER_MONITORING'), 'Review Location', '[Review Location]')
+			INSERT INTO EMAIL_TEMPLATE_VARIABLE VALUES (NEWID(), (SELECT EMAIL_TEMPLATE_ID FROM EMAIL_TEMPLATE WHERE CODE = 'LENDER_MONITORING'), 'Review Type', '[Review Type]')
+			INSERT INTO EMAIL_TEMPLATE_VARIABLE VALUES (NEWID(), (SELECT EMAIL_TEMPLATE_ID FROM EMAIL_TEMPLATE WHERE CODE = 'LENDER_MONITORING'), 'File Delivery Location', '[File Delivery Location]')
+			INSERT INTO EMAIL_TEMPLATE_VARIABLE VALUES (NEWID(), (SELECT EMAIL_TEMPLATE_ID FROM EMAIL_TEMPLATE WHERE CODE = 'LENDER_MONITORING'), 'Date Of Site Visit', '[Date Of Site Visit]')
+			INSERT INTO EMAIL_TEMPLATE_VARIABLE VALUES (NEWID(), (SELECT EMAIL_TEMPLATE_ID FROM EMAIL_TEMPLATE WHERE CODE = 'LENDER_MONITORING'), 'Loan Type', '[Loan Type]')
+			INSERT INTO EMAIL_TEMPLATE_VARIABLE VALUES (NEWID(), (SELECT EMAIL_TEMPLATE_ID FROM EMAIL_TEMPLATE WHERE CODE = 'LENDER_MONITORING'), 'Case Count', '[Case Count]')
+			INSERT INTO EMAIL_TEMPLATE_VARIABLE VALUES (NEWID(), (SELECT EMAIL_TEMPLATE_ID FROM EMAIL_TEMPLATE WHERE CODE = 'LENDER_MONITORING'), 'Operational Review Guidance', '[Operational Review Guidance]')
+			INSERT INTO EMAIL_TEMPLATE_VARIABLE VALUES (NEWID(), (SELECT EMAIL_TEMPLATE_ID FROM EMAIL_TEMPLATE WHERE CODE = 'LENDER_MONITORING'), 'Lender Batch Summary Screen Link', '[Lender Batch Summary Screen Link]')
+		]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>    
+
+

@@ -1,0 +1,119 @@
+package gov.hud.lrs.workflow
+
+import java.lang.Boolean;
+import java.lang.Integer;
+import java.util.List;
+import gov.hud.lrs.workflow.service.AssignmentRulesParameters;
+
+rule "Can Review Type Multiplier"
+	no-loop true
+	//
+	when
+		rulesParameters:AssignmentRulesParameters(rulesParameters.personnelHasReviewType())
+	then
+	   rulesParameters.addFactorScore("Can Review Type Multiplier");
+end
+
+rule "Can Review Level Multiplier"
+	no-loop true
+	// Check the person has the review level type
+	// Add a custom check for a RL QC and National QC selection to not check for the initial/mitigation review level skill. 
+	// We want RL QC and National QC selections to go to anyone that has the QC selection reason skill, 
+	// even if they don't have the inital/mitigation skill.
+	when
+		rulesParameters:AssignmentRulesParameters(rulesParameters.personnelHasReviewLevelType())
+	then
+	   rulesParameters.addFactorScore("Can Review Level Multiplier");
+end
+
+rule "Can Review Product Multiplier"
+	no-loop true
+	//
+	when
+		rulesParameters:AssignmentRulesParameters(rulesParameters.personnelHasProductType())
+	then
+	   rulesParameters.addFactorScore("Can Review Product Multiplier");
+end
+
+rule "Can Review Reason Multiplier"
+	no-loop true
+	//
+	when
+		rulesParameters:AssignmentRulesParameters(rulesParameters.personnelHasSelectionReason())
+	then
+	   rulesParameters.addFactorScore("Can Review Reason Multiplier");
+end
+
+rule "Current Workload Multiplier"
+	no-loop true
+	// 100+ ((Remaining Capacity/(Reviewer Capacity + 1)))
+	when
+		rulesParameters:AssignmentRulesParameters()
+	then
+	   rulesParameters.addFactorScore("Current Workload Multiplier", (100 + ((new Double(rulesParameters.getRemainingCapacity())/(new Double(rulesParameters.getPersonnel().getReviewerCapacity()) + 1)))));
+end
+
+rule "Availability Multiplier"
+	no-loop true
+	//Reviewer has no ongoing Unavailability ( Personnel.[AVAILABILITY_IND] is Y )
+	when
+		rulesParameters:AssignmentRulesParameters(personnel.getAvailabilityInd() == 'Y')
+	then
+	   rulesParameters.addFactorScore("Availability Multiplier");
+end
+
+rule "Mitigation Consistency Multiplier"
+	no-loop true
+	// (IF Not Reassign AND Review Level = Mitigation AND Reviewer is not Previous Review Level's Reviewer) 
+	when
+		rulesParameters:AssignmentRulesParameters(!isManualAssign() && reviewLevelIsMitigationAndReviewerIsNotPreviousReviewLevelReviewer())
+	then
+	   rulesParameters.addFactorScore("Mitigation Consistency Multiplier");
+end
+
+rule "Escalation 1 Consistency Multiplier"
+	no-loop true
+	// (IF Not Reassign AND Review Level = Escalation with iteration 1 AND previousReviewLevelRevieweIsNotReportsToThisReviewer)  
+	when
+		rulesParameters:AssignmentRulesParameters(!isManualAssign() && reviewLevelIsEscalation1() && !previousReviewLevelReviewerReportsToThisReviewer())
+	then
+	   rulesParameters.addFactorScore("Escalation 1 Consistency Multiplier");
+end
+
+rule "Escalation or HQ Escalation greater than 1 Consistency Multiplier"
+	no-loop true
+	// (IF Not Reassign AND Review Level = Escalation or HQ Escalation with iteration greater than 1 AND Reviewer is not Previous Review Level's Reviewer)  
+	when
+		rulesParameters:AssignmentRulesParameters(!isManualAssign() && reviewLevelIsEscalationOrHqEscalationIterationGreaterThan1() && !previousReviewLevelReviewer())
+	then
+	   rulesParameters.addFactorScore("Escalation or HQ Escalation greater than 1 Consistency Multiplier");
+end
+
+rule "Mitigate With Same Reviewer Multiplier"
+	no-loop true
+	//IF Review Level = Mitigation AND Reviewer = Previous Review Level's Reviewer
+	when
+		rulesParameters:AssignmentRulesParameters(reviewLevelIsMitigationAndReviewerIsPreviousReviewLevelReviewer())
+	then
+	   rulesParameters.addFactorScore("Mitigate With Same Reviewer Multiplier");
+end
+
+rule "On Batch Team Multiplier"
+	no-loop true
+	// IF 'Batch Indicator' = TRUE AND Reviewer not in 'Batch Team'
+	when
+		rulesParameters:AssignmentRulesParameters(batchExistsAndReviewerNotInBatch())
+	then
+	   rulesParameters.addFactorScore("On Batch Team Multiplier");
+end
+
+// will add as part of qc work
+rule "QC Reviewer Multiplier"
+	no-loop true
+	//IF Selection Reason = 'Manual QC'(Either National QC or ReviewLocation QC) AND IF Reviewer has previously been assigned/completed one or more Review Levels on the original Loan Review
+	when
+		rulesParameters:AssignmentRulesParameters(selectionReasonIsNationalQCOrReviewLocationQC() && reviewerIsOriginalReviewerForPreviousReviewLevel())
+	then
+	   rulesParameters.addFactorScore("QC Reviewer Multiplier");
+end
+

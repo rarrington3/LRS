@@ -1,0 +1,45 @@
+
+{{#if displayName}}
+    {{#if description}}
+    /**
+    * {{{trim description}}}
+    **/
+    {{/if}}
+    {{displayName}}: {
+{{#each methods as |method|}}
+
+        /**
+        * {{#if method.description}}{{{trim method.description}}}{{else if method._resource.description}}{{{trim method._resource.description}}}{{/if}}
+        * {{upperCase method.method}} {{fullUri method}}
+        * @param {{leftBrace}}Object{{rightBrace}} params
+    {{#forEachParameter method}}
+        * @param {{leftBrace}}{{type}}{{rightBrace}} params.{{displayName}} {{#if description}}- {{{trim description}}}{{/if}}
+    {{/forEachParameter}}
+        **/
+        {{methodNameForHttpVerb method.method}}: function( params ) {
+            var jqXhrConfig = {
+                method: '{{method.method}}',
+                url: '{{fullUri method}}',
+                headers: {}
+            };
+            params = _.extend({}, module.exports.defaultParameters, params);
+        {{#forEachUriParameter method}}
+            if(params['{{displayName}}']) { jqXhrConfig.url = jqXhrConfig.url.replace(/\\{{leftBrace}}{{ displayName }}\\{{rightBrace}}/g, params['{{displayName}}'] ); }
+        {{/forEachUriParameter}}
+        {{#forEachHeaderParameter method}}
+            if(params['{{displayName}}']) { jqXhrConfig.headers['{{displayName}}'] = params['{{displayName}}']; }
+        {{/forEachHeaderParameter}}
+            var querystring = {};
+        {{#forEachQueryStringParameter method}}
+            if(params['{{displayName}}']) { querystring['{{displayName}}'] = params['{{displayName}}']; }
+        {{/forEachQueryStringParameter}}
+            jqXhrConfig.url += '?' + $.param(querystring);
+            module.exports.authenticationProvider(jqXhrConfig, params);
+            return $.ajax(options);
+        },
+{{/each}}
+{{#each resources}}
+    {{>resource this}}
+{{/each}}
+    },
+{{/if}}

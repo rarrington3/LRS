@@ -1,0 +1,43 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2194_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create table DOCUMENT_FILE
+			(DOCUMENT_FILE_ID UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID(),
+			 DOCUMENT_FILE varbinary(max) NOT NULL)
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_2194_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table DOCUMENT_FILE ADD CONSTRAINT DOCUMENT_FILE_PK primary key (DOCUMENT_FILE_ID)
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2194_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table DOCUMENT add DOCUMENT_FILE_ID UNIQUEIDENTIFIER NULL
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2194_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table DOCUMENT add constraint DOCUMENT_FK_DOCUMENT_FILE_ID foreign key (DOCUMENT_FILE_ID) references DOCUMENT_FILE(DOCUMENT_FILE_ID)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2194_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_ENTITY(ENTITY_NAME, DB_VIEW_OR_TABLE, CREATED_BY,CREATED_TS) values('Document File', 'DOCUMENT_FILE','C20225',getdate())
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Document File','Document File ID','DOCUMENT_FILE_ID','C20225',getdate(),'Document File ID')
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Document File','Document File','DOCUMENT_FILE','C20225',getdate(),'Document File')			
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('LRS Documents','Document File ID','DOCUMENT_FILE_ID','C20225',getdate(),'Document File ID')			
+		]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>    

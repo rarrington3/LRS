@@ -1,0 +1,18 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3444_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			 update a
+			set condition_operator = 'in'
+			from QATREE_QSTN_CONDITION a, QATREE_QUESTION b
+			where FIELD_NAME = 'Property Disposition Streamline Refinance Flag'
+			and a.QUESTION_ID = b.QUESTION_ID
+			and b.QUESTION_REFERENCE like 'LO%'
+
+		]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>    
+
+

@@ -1,0 +1,59 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <div *ngIf="defectAreaLoading" class="lrs-loading">
+                <span class="glyphicon glyphicon-refresh"
+                      aria-label="loading" title="Loading">
+                </span>
+            </div>
+            <div *ngIf="!defectAreaLoading && !defectArea.remediationTypes.length" class="lrs-no-results">
+                <span class="small" aria-label="no results">No results found</span>
+            </div>
+            <div>
+                <h6 aria-hidden="true">Remediation Types</h6>
+            </div>
+            <table *ngIf="!defectAreaLoading && defectArea.remediationTypes.length"
+                   class="table table-bordered lrs-sortable-table remediation-table">
+                <tbody>
+                <tr *ngFor="let remediationType of defectArea.remediationTypes">
+                    <td class="lrs-order-col">
+                        <button type="button" class="btn btn-xs btn-default lrs-sort-up"
+                                aria-pressed="false"
+                                (click)="sortUp(defectArea.remediationTypes, remediationType)">
+                            <span class="glyphicon glyphicon-chevron-up small" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-xs btn-default lrs-sort-down"
+                                aria-pressed="false"
+                                (click)="sortDown(defectArea.remediationTypes, remediationType)">
+                            <span class="glyphicon glyphicon-chevron-down small" aria-hidden="true"></span>
+                        </button>
+                    </td>
+                    <td class="remediation-desc-col">
+                        <input type="text"
+                               class="form-control input-sm"
+                               [(ngModel)]="remediationType.description"
+                               (ngModelChange)="askForSave()"
+                               required
+                               maxlength="30">
+                    </td>
+                    <td>
+                        <button type="button"
+                                class="btn btn-default"
+                                (click)="remove(defectArea.remediationTypes, remediationType)">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <button class="btn btn-primary"
+                    (click)="add()">
+                + Add Remediation Type
+            </button>
+        </div>
+    </div>
+</div>

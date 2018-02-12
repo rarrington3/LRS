@@ -1,0 +1,175 @@
+@import '../../bootstrap/_variables';
+@import '../../shared/_mixins';
+
+:host-context {
+    /* styles should be scoped under host-context */
+
+    strong {
+        color: #767676;
+    }
+
+    .table .table {
+        background-color: transparent;
+    }
+
+    .qa-tree-questions-table {
+        .questions-col {
+            padding: 0;
+
+            > .panel {
+                margin: 0;
+            }
+        }
+    }
+
+    .qa-tree-panel {
+        .control-label {
+            color: #767676;
+            font-weight: bold;
+        }
+
+        .hr-wrapper {
+            hr {
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+        }
+
+        .panel-heading {
+            padding: 5px 5px 5px 15px;
+
+            .panel-title {
+                max-width: 700px;
+                .text-ellipsis();
+            }
+        }
+
+        .panel-body {
+            padding: 0 20px;
+        }
+    }
+
+    .qa-tree-title-table {
+        .title-col {
+            width: 100%
+        }
+    }
+
+    .qa-model-question-code {
+        max-width: 100px;
+    }
+
+    .qa-tree-conditions-table {
+        width: 100%;
+
+        td, th {
+            padding: 5px 3px;
+        }
+
+        .action-col {
+            min-width: 45px;
+            max-width: 45px;
+        }
+
+        .field-condition-col {
+            width: 50%;
+        }
+
+        .operator-col, .value-col {
+            width: 25%;
+        }
+    }
+
+    .qa-model-add-conditional-button {
+        margin-bottom: 10px;
+    }
+
+    .qa-tree-answers-table {
+        width: 100%;
+
+        td, th {
+            padding: 5px 3px;
+        }
+
+        tr {
+            th {
+                padding-top: 11px;
+                vertical-align: top
+            }
+        }
+
+        .answer-col {
+            width: 80px;
+        }
+
+        .outcome-col {
+            width: 100%
+        }
+    }
+
+    .qa-model-answer-select-wrapper {
+        max-width: 300px;
+    }
+
+    .qa-model-finding-wrapper {
+        background-color: @brand-gray;
+        border-radius: @border-radius-base;
+        margin-top: 10px;
+        border: 1px solid @brand-grey-border-color;
+        position: relative;
+
+        > .row {
+            margin-left: 0;
+            margin-right: 0;
+            padding-bottom: 15px;
+            padding-top: 15px;
+        }
+    }
+
+    .qa-tree-findings-table {
+
+        .action-col {
+            min-width: 45px;
+            max-width: 45px;
+        }
+
+        .source-col, .cause-col {
+            min-width: 300px;
+            max-width: 300px;
+        }
+    }
+
+    .nested-tables(@n, @i: 0) when (@i =< @n) {
+        .table.qa-tree-questions-table-nested-@{i} {
+
+            @result: @i / 2;
+            @reminder: @result - floor(@result);
+
+            .qa-tree-panel when (@reminder > 0) { // reminder > 0 means is a nested odd number
+                background-color: @brand-gray;
+            }
+
+            .qa-tree-panel when (@reminder = 0) { // reminder = 0 means is a nested even number
+                background-color: @panel-bg;
+            }
+
+            .qa-model-finding-wrapper when (@reminder > 0) { // reminder > 0 means is a nested odd number
+                background-color: @panel-bg;
+            }
+
+            .qa-model-finding-wrapper when (@reminder = 0) { // reminder = 0 means is a nested even number
+                background-color: @brand-gray;
+            }
+
+            .qa-tree-findings-table {
+                .source-col, .cause-col { // reducing width per level of nesting
+                    min-width: 300px - (30px * @i);
+                    max-width: 300px - (30px * @i);
+                }
+            }
+        }
+        .nested-tables(@n, (@i + 1)); // loop
+    }
+
+    .nested-tables(4); // only 5 level deep
+}

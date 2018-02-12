@@ -1,0 +1,321 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1166_db_update_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table SCORING_MODEL_VERSION alter column STATUS varchar(50) null
+			alter table EXCEPTION             alter column STATUS varchar(50) null
+			alter table LOAN_SELECTION        alter column STATUS varchar(50) null
+			alter table RQST_FROM_LENDER      alter column STATUS varchar(50) null
+			alter table RVW_BATCH             alter column STATUS varchar(50) null
+			alter table REQUESTED_BINDER      alter column STATUS varchar(50) null
+			alter table REVIEW                alter column STATUS varchar(50) null
+			alter table REVIEW_LEVEL          alter column STATUS varchar(50) null
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1166_db_update_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			drop table missing
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			sp_rename 'selection_parameters.review_type', 'SELECT_REVIEW_TYPE', 'COLUMN'
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table selection_parameters alter column model_id uniqueidentifier null
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table selection_parameters add SELECTION_REASON varchar(50) null
+		]]>
+        </sql>
+    </changeSet>			
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [QATREE_QSTN_RULES] drop CONSTRAINT [QUESTIONRULESTOSELREASON] 
+		]]>
+        </sql>
+    </changeSet>			
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [LOAN_SELECTION_PENDING] drop CONSTRAINT [PENDSELECTIONTOREASON]
+		]]>
+        </sql>
+    </changeSet>			
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0006" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [DELIV_PARMS_REQUEST] drop CONSTRAINT [DELIVPARMSREQSELPARMS] 
+		]]>
+        </sql>
+    </changeSet>			
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0007" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [DELIV_PARMS_ITERATION] drop CONSTRAINT [DELIVPARMSSELPARMS]
+		]]>
+        </sql>
+    </changeSet>			
+	<changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0008" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table SELECT_REQUEST_MANUAL_FHA alter column SLCTN_REASON_ID uniqueidentifier null
+		]]>
+        </sql>
+    </changeSet>						
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0009" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [QATREE_QSTN_RULES] drop CONSTRAINT [QATREE_QSTN_RULES_PK]
+		]]>
+        </sql>
+    </changeSet>						
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0010" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table QATREE_QSTN_RULES alter column SLCTN_REASON_ID uniqueidentifier not null
+		]]>
+        </sql>
+    </changeSet>						
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0011" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [QATREE_QSTN_RULES]
+				ADD CONSTRAINT [QATREE_QSTN_RULES_PK] PRIMARY KEY  NONCLUSTERED ([REVIEW_TYPE] ASC,[SLCTN_REASON_ID] ASC)
+		]]>
+        </sql>
+    </changeSet>							
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0012" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [LOAN_SELECTION_PENDING] drop CONSTRAINT [LOAN_SELECTION_PENDING_PK]
+		]]>
+        </sql>
+    </changeSet>						
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0013" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table LOAN_SELECTION_PENDING alter column SLCTN_REASON_ID uniqueidentifier not null
+		]]>
+        </sql>
+    </changeSet>						
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0014" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [LOAN_SELECTION_PENDING]
+				ADD CONSTRAINT [LOAN_SELECTION_PENDING_PK] PRIMARY KEY  NONCLUSTERED ([CASE_NUMBER] ASC,[SELECTION_DT] ASC,[SLCTN_REASON_ID] ASC)
+		]]>
+        </sql>
+    </changeSet>							
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0015" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [DELIV_PARMS_REQUEST] drop CONSTRAINT [DELIV_PARMS_REQUEST_PK]
+		]]>
+        </sql>
+    </changeSet>						
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0016" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table DELIV_PARMS_REQUEST alter column SLCTN_REASON_ID uniqueidentifier not null
+		]]>
+        </sql>
+    </changeSet>						
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0017" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [DELIV_PARMS_REQUEST]
+				ADD CONSTRAINT [DELIV_PARMS_REQUEST_PK] PRIMARY KEY  NONCLUSTERED ([INTERATION_NUM] ASC,[REVIEW_LEVEL_CD] ASC,[SLCTN_REASON_ID] ASC)
+		]]>
+        </sql>
+    </changeSet>							
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0018" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [DELIV_PARMS_ITERATION] drop CONSTRAINT [DELIV_PARMS_ITERATION_PK]
+		]]>
+        </sql>
+    </changeSet>						
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0019" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table DELIV_PARMS_ITERATION alter column SLCTN_REASON_ID uniqueidentifier not null
+		]]>
+        </sql>
+    </changeSet>						
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0020" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [DELIV_PARMS_ITERATION]
+				ADD CONSTRAINT [DELIV_PARMS_ITERATION_PK] PRIMARY KEY  NONCLUSTERED ([REVIEW_LEVEL_CD] ASC,[SLCTN_REASON_ID] ASC)
+		]]>
+        </sql>
+    </changeSet>							
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0021" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [SELECTION_PARAMETERS] drop CONSTRAINT [SELECTION_PARAMETERS_PK]
+		]]>
+        </sql>
+    </changeSet>						
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0022" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table SELECTION_PARAMETERS alter column SLCTN_REASON_ID uniqueidentifier not null 
+		]]>
+        </sql>
+    </changeSet>						
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0023" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE SELECTION_PARAMETERS ADD  CONSTRAINT SLCTN_REASON_ID_GUID  DEFAULT (newid()) FOR SLCTN_REASON_ID
+		]]>
+        </sql>
+    </changeSet>						
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0024" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [SELECTION_PARAMETERS]
+				ADD CONSTRAINT [SELECTION_PARAMETERS_PK] PRIMARY KEY  NONCLUSTERED ([SLCTN_REASON_ID] ASC)
+		]]>
+        </sql>
+    </changeSet>							
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0025" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [QATREE_QSTN_RULES]
+				ADD CONSTRAINT [QUESTIONRULESTOSELREASON] FOREIGN KEY ([SLCTN_REASON_ID]) REFERENCES [SELECTION_PARAMETERS]([SLCTN_REASON_ID])
+		]]>
+        </sql>
+    </changeSet>							
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0026" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [LOAN_SELECTION_PENDING]
+				ADD CONSTRAINT [PENDSELECTIONTOREASON] FOREIGN KEY ([SLCTN_REASON_ID]) REFERENCES [SELECTION_PARAMETERS]([SLCTN_REASON_ID])
+		]]>
+        </sql>
+    </changeSet>							
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0027" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [DELIV_PARMS_REQUEST]
+				ADD CONSTRAINT [DELIVPARMSREQSELPARMS] FOREIGN KEY ([SLCTN_REASON_ID]) REFERENCES [SELECTION_PARAMETERS]([SLCTN_REASON_ID])
+		]]>
+        </sql>
+    </changeSet>							
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0029" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [DELIV_PARMS_ITERATION]
+				ADD CONSTRAINT [DELIVPARMSSELPARMS] FOREIGN KEY ([SLCTN_REASON_ID]) REFERENCES [SELECTION_PARAMETERS]([SLCTN_REASON_ID])
+		]]>
+        </sql>
+    </changeSet>							
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0030" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+				ALTER TABLE selection_parameters
+				ADD CONSTRAINT [SELECTIONPARMTOMOD] FOREIGN KEY (model_id) REFERENCES SCORING_MODEL(model_id)	
+		]]>
+        </sql>
+    </changeSet>							
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0031" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into selection_parameters (selection_reason,batches_allowed_ind,capacity_handling_rule, model_id, model_score_threshold, priority, processing_cycle, require_full_qatree_ind, select_review_type, sampling_method, sampling_percentage, created_by, created_ts) values('Conditional'                      ,'N','Ignore'   , null                                   ,9999,7 ,'Manual' ,'N','Underwriting' ,' '     ,null,'C20225',getdate())
+			insert into selection_parameters (selection_reason,batches_allowed_ind,capacity_handling_rule, model_id, model_score_threshold, priority, processing_cycle, require_full_qatree_ind, select_review_type, sampling_method, sampling_percentage, created_by, created_ts) values('FHA Manual'                       ,'Y','Ignore'   , null                                   ,9999,5 ,'Manual' ,'N','Specified'    ,' '     ,null,'C20225',getdate())
+			insert into selection_parameters (selection_reason,batches_allowed_ind,capacity_handling_rule, model_id, model_score_threshold, priority, processing_cycle, require_full_qatree_ind, select_review_type, sampling_method, sampling_percentage, created_by, created_ts) values('Lender Self Report'               ,'Y','Ignore'   , null                                   ,9999,1 ,'Manual' ,'N','Specified'    ,' '     ,null,'C20225',getdate())
+			insert into selection_parameters (selection_reason,batches_allowed_ind,capacity_handling_rule, model_id, model_score_threshold, priority, processing_cycle, require_full_qatree_ind, select_review_type, sampling_method, sampling_percentage, created_by, created_ts) values('OIG Manual'                       ,'Y','Ignore'   , null                                   ,9999,11,'Manual' ,'N','Specified'    ,' '     ,null,'C20225',getdate())
+			insert into selection_parameters (selection_reason,batches_allowed_ind,capacity_handling_rule, model_id, model_score_threshold, priority, processing_cycle, require_full_qatree_ind, select_review_type, sampling_method, sampling_percentage, created_by, created_ts) values('Risk Monthly (Remaining Capacity)','N','Remaining', 'B9C4DB9F-6163-45EC-89E9-8CDEF99CEE7B',1   ,40,'Monthly','N','Underwriting' ,'Top'   ,null,'C20225',getdate())
+			insert into selection_parameters (selection_reason,batches_allowed_ind,capacity_handling_rule, model_id, model_score_threshold, priority, processing_cycle, require_full_qatree_ind, select_review_type, sampling_method, sampling_percentage, created_by, created_ts) values('Risk Monthly (Threshold)'         ,'N','Ignore'   , 'A93184EE-41FC-4B02-87AD-B28669809530',90  ,4 ,'Monthly','N','Underwriting' ,'Top'   ,100 ,'C20225',getdate())
+			insert into selection_parameters (selection_reason,batches_allowed_ind,capacity_handling_rule, model_id, model_score_threshold, priority, processing_cycle, require_full_qatree_ind, select_review_type, sampling_method, sampling_percentage, created_by, created_ts) values('Lender Increased'                 ,'N','Ignore'   , 'A963EFE7-46E9-4F3E-9E9C-E194B4D747DD',9999,8 ,'Monthly','N','Underwrtiting','Top'   ,100 ,'C20225',getdate())
+			insert into selection_parameters (selection_reason,batches_allowed_ind,capacity_handling_rule, model_id, model_score_threshold, priority, processing_cycle, require_full_qatree_ind, select_review_type, sampling_method, sampling_percentage, created_by, created_ts) values('Underwriter Increased'            ,'N','Ignore'   , '128E117A-0E77-4025-B880-E403AF0E3763',9999,9 ,'Monthly','N','Underwrtiting','Top'   ,100 ,'C20225',getdate())
+			insert into selection_parameters (selection_reason,batches_allowed_ind,capacity_handling_rule, model_id, model_score_threshold, priority, processing_cycle, require_full_qatree_ind, select_review_type, sampling_method, sampling_percentage, created_by, created_ts) values('Random Monthly'                   ,'N','Ignore'   , 'A27A5CD9-432B-49C5-8155-141226E05FFC',9999,10,'Monthly','N','Underwrtiting','Random',null,'C20225',getdate())
+			insert into selection_parameters (selection_reason,batches_allowed_ind,capacity_handling_rule, model_id, model_score_threshold, priority, processing_cycle, require_full_qatree_ind, select_review_type, sampling_method, sampling_percentage, created_by, created_ts) values('Early Claims'                     ,'N','Ignore'   , 'AD677DC1-AC8A-4467-AE60-AE40CBA3F55F',1   ,3 ,'Monthly','N','Underwrtiting','Top'   ,100, 'C20225',getdate())
+			insert into selection_parameters (selection_reason,batches_allowed_ind,capacity_handling_rule, model_id, model_score_threshold, priority, processing_cycle, require_full_qatree_ind, select_review_type, sampling_method, sampling_percentage, created_by, created_ts) values('Early Payment Default'            ,'N','Ignore'   , 'F0B81572-2536-464E-881C-AC4549999EF8',9999,2 ,'Monthly','N','Underwrtiting','Top'   ,100, 'C20225',getdate())
+			insert into selection_parameters (selection_reason,batches_allowed_ind,capacity_handling_rule, model_id, model_score_threshold, priority, processing_cycle, require_full_qatree_ind, select_review_type, sampling_method, sampling_percentage, created_by, created_ts) values('National QC'                      ,'N','Ignore'   , '24E55C00-B0BC-434D-A8AA-DD2B6AFC6E6D',9999,30,'Nightly','N','Per Rule'     ,'Top'   ,5  , 'C20225',getdate())
+			insert into selection_parameters (selection_reason,batches_allowed_ind,capacity_handling_rule, model_id, model_score_threshold, priority, processing_cycle, require_full_qatree_ind, select_review_type, sampling_method, sampling_percentage, created_by, created_ts) values('Random Daily'                     ,'N','Ignore'   , 'A27A5CD9-432B-49C5-8155-141226E05FFC',9999,21,'Nightly','N','Underwrtiting','Random',null,'C20225',getdate())
+			insert into selection_parameters (selection_reason,batches_allowed_ind,capacity_handling_rule, model_id, model_score_threshold, priority, processing_cycle, require_full_qatree_ind, select_review_type, sampling_method, sampling_percentage, created_by, created_ts) values('Lender Monitoring'                ,'Y','Ignore'   , null                                  ,9999,6 ,'Nightly','N','Specified'    ,'Top'   ,100, 'C20225',getdate())
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0032" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update DICT_METADATA_FIELD
+			set DB_COLUMN = 'SELECT_REVIEW_TYPE'
+			where ENTITY_NAME = 'Selection Parameters'
+			and DB_COLUMN = 'REVIEW_TYPE'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0033" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update DICT_METADATA_FIELD
+			set FIELD_NAME = 'Selection Reason ID'
+			where ENTITY_NAME = 'Selection Parameters'
+			and DB_COLUMN = 'SLCTN_REASON_ID'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0034" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_FIELD(ENTITY_NAME,FIELD_NAME,DB_COLUMN,CREATED_BY, CREATED_TS,SUBJECT_AREA) values('Selection Parameters','Selection Reason','SELECTION_REASON','C20225',getdate(),'UNKNOWN')	
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0037" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+		    delete from selection_parameters
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0038" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into selection_parameters (selection_reason,batches_allowed_ind,capacity_handling_rule, model_score_threshold, priority, processing_cycle, require_full_qatree_ind, select_review_type, sampling_method, sampling_percentage, created_by, created_ts) values('Conditional'                      ,'N','Ignore'   , 9999,7 ,'Manual' ,'N','Underwriting' ,' '     ,null,'C20225',getdate())
+			insert into selection_parameters (selection_reason,batches_allowed_ind,capacity_handling_rule, model_score_threshold, priority, processing_cycle, require_full_qatree_ind, select_review_type, sampling_method, sampling_percentage, created_by, created_ts) values('FHA Manual'                       ,'Y','Ignore'   , 9999,5 ,'Manual' ,'N','Specified'    ,' '     ,null,'C20225',getdate())
+			insert into selection_parameters (selection_reason,batches_allowed_ind,capacity_handling_rule, model_score_threshold, priority, processing_cycle, require_full_qatree_ind, select_review_type, sampling_method, sampling_percentage, created_by, created_ts) values('Lender Self Report'               ,'Y','Ignore'   , 9999,1 ,'Manual' ,'N','Specified'    ,' '     ,null,'C20225',getdate())
+			insert into selection_parameters (selection_reason,batches_allowed_ind,capacity_handling_rule, model_score_threshold, priority, processing_cycle, require_full_qatree_ind, select_review_type, sampling_method, sampling_percentage, created_by, created_ts) values('OIG Manual'                       ,'Y','Ignore'   , 9999,11,'Manual' ,'N','Specified'    ,' '     ,null,'C20225',getdate())
+			insert into selection_parameters (selection_reason,batches_allowed_ind,capacity_handling_rule, model_score_threshold, priority, processing_cycle, require_full_qatree_ind, select_review_type, sampling_method, sampling_percentage, created_by, created_ts) values('Risk Monthly (Remaining Capacity)','N','Remaining', 1   ,40,'Monthly','N','Underwriting' ,'Top'   ,null,'C20225',getdate())
+			insert into selection_parameters (selection_reason,batches_allowed_ind,capacity_handling_rule, model_score_threshold, priority, processing_cycle, require_full_qatree_ind, select_review_type, sampling_method, sampling_percentage, created_by, created_ts) values('Risk Monthly (Threshold)'         ,'N','Ignore'   , 90  ,4 ,'Monthly','N','Underwriting' ,'Top'   ,100 ,'C20225',getdate())
+			insert into selection_parameters (selection_reason,batches_allowed_ind,capacity_handling_rule, model_score_threshold, priority, processing_cycle, require_full_qatree_ind, select_review_type, sampling_method, sampling_percentage, created_by, created_ts) values('Lender Increased'                 ,'N','Ignore'   , 9999,8 ,'Monthly','N','Underwrtiting','Top'   ,100 ,'C20225',getdate())
+			insert into selection_parameters (selection_reason,batches_allowed_ind,capacity_handling_rule, model_score_threshold, priority, processing_cycle, require_full_qatree_ind, select_review_type, sampling_method, sampling_percentage, created_by, created_ts) values('Underwriter Increased'            ,'N','Ignore'   , 9999,9 ,'Monthly','N','Underwrtiting','Top'   ,100 ,'C20225',getdate())
+			insert into selection_parameters (selection_reason,batches_allowed_ind,capacity_handling_rule, model_score_threshold, priority, processing_cycle, require_full_qatree_ind, select_review_type, sampling_method, sampling_percentage, created_by, created_ts) values('Random Monthly'                   ,'N','Ignore'   , 9999,10,'Monthly','N','Underwrtiting','Random',null,'C20225',getdate())
+			insert into selection_parameters (selection_reason,batches_allowed_ind,capacity_handling_rule, model_score_threshold, priority, processing_cycle, require_full_qatree_ind, select_review_type, sampling_method, sampling_percentage, created_by, created_ts) values('Early Claims'                     ,'N','Ignore'   , 1   ,3 ,'Monthly','N','Underwrtiting','Top'   ,100, 'C20225',getdate())
+			insert into selection_parameters (selection_reason,batches_allowed_ind,capacity_handling_rule, model_score_threshold, priority, processing_cycle, require_full_qatree_ind, select_review_type, sampling_method, sampling_percentage, created_by, created_ts) values('Early Payment Default'            ,'N','Ignore'   , 9999,2 ,'Monthly','N','Underwrtiting','Top'   ,100, 'C20225',getdate())
+			insert into selection_parameters (selection_reason,batches_allowed_ind,capacity_handling_rule, model_score_threshold, priority, processing_cycle, require_full_qatree_ind, select_review_type, sampling_method, sampling_percentage, created_by, created_ts) values('National QC'                      ,'N','Ignore'   , 9999,30,'Nightly','N','Per Rule'     ,'Top'   ,5  , 'C20225',getdate())
+			insert into selection_parameters (selection_reason,batches_allowed_ind,capacity_handling_rule, model_score_threshold, priority, processing_cycle, require_full_qatree_ind, select_review_type, sampling_method, sampling_percentage, created_by, created_ts) values('Random Daily'                     ,'N','Ignore'   , 9999,21,'Nightly','N','Underwrtiting','Random',null,'C20225',getdate())
+			insert into selection_parameters (selection_reason,batches_allowed_ind,capacity_handling_rule, model_score_threshold, priority, processing_cycle, require_full_qatree_ind, select_review_type, sampling_method, sampling_percentage, created_by, created_ts) values('Lender Monitoring'                ,'Y','Ignore'   , 9999,6 ,'Nightly','N','Specified'    ,'Top'   ,100, 'C20225',getdate())
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1177_db_update_0039" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+		    update selection_parameters
+			set selection_reason = 'Test Case'
+			where selection_reason = 'Conditional'
+		]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>
+

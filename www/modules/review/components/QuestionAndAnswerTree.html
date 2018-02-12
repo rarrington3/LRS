@@ -1,0 +1,12 @@
+<div>
+    <span class="view-title" *ngIf="defectArea != null">{{defectArea?.title + " "}} <span class="view-title sub-title">({{defectArea?.defectAreaCode}})</span><span class="view-title" *ngIf=showWrapUp> - Defect Area Review</span></span>
+
+	<hr/>
+
+    <div [hidden]="showWrapUp" class="list-group" [class.loan-attributes-dirty]="loanAttributesEdited">
+        <question-node-view class="root-node" *ngFor="let node of questions; trackBy:trackByQuestionId" [isReadOnly]="isReadOnly" [node]="node"></question-node-view>
+        <div style="clear:both"></div>
+        <button *ngIf="!isReadOnly" class="btn btn-default main-content defect-area" (click)="showWrapUp=true">Defect Area Summary</button>
+    </div>
+    <defect-area-wrap-up [hidden]="!showWrapUp"></defect-area-wrap-up>
+</div>

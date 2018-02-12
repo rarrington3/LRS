@@ -1,0 +1,55 @@
+<div class="finding-overview-container">
+	<div class="title-header">
+		<h4 class="view-title">FINDINGS OVERVIEW</h4>
+		<div class="section-divider">
+			<hr/>
+		</div>
+	</div>
+
+	<div  *ngIf="lenderAuthorizedLevel"  class="severity-tier-label">SEVERITY TIER</div>
+	<table *ngIf="lenderAuthorizedLevel" class="table wrap-up-table">
+		<thead>
+		<tr>
+			<th class="col-md-12">Defect Area</th>
+			<th class="col-md-3">Rating</th>
+			<th class="col-md-3">Findings</th>
+			<th class="severity-tier">1</th>
+			<th class="severity-tier">2</th>
+			<th class="severity-tier">3</th>
+			<th class="severity-tier">4</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr *ngFor="let group of findingGroups" class="list-inline">
+			<td class="col-md-12" [class.bold-text]="group.status.toLowerCase() === 'unacceptable'">{{group.displayedName}} ({{group.name}})</td>
+			<td class="col-md-3" [class.bold-text]="group.status.toLowerCase() === 'unacceptable'">{{group.status.toUpperCase()}}</td>
+			<td class="col-md-3" [class.bold-text]="group.status.toLowerCase() === 'unacceptable'">{{group.findings.length}}</td>
+			<td *ngFor="let tier of group.severityFindings" [ngClass]="'tier-cell '+tier.color" class="severity-tier">{{tier.amount}}</td>
+		</tr>
+		</tbody>
+		<tbody class="totals">
+		<tr>
+			<td class="col-md-4 no-border"></td>
+			<td class="col-md-3 no-border">TOTALS:</td>
+			<td class="no-border bold-text">{{totalFindings}}</td>
+ 			<td *ngFor="let tier of severityTotals" [ngClass]="'tier-cell '+tier.color">{{tier.amount}}</td>
+		</tr>
+		</tbody>
+	</table>
+
+	 <div class="section-divider">
+		 <hr/>
+	 </div>
+	<div class="footer clearfix" *ngIf="lenderAuthorizedLevel">
+		<div class="pull-left review-rating-label">Rating: <span class="review-rating-status">{{getRatingForAllDefectAreas()}}</span></div>
+		<button class="btn btn-default btn-primary pull-right" [disabled]="isLenderReviewReadOnly" (click)='addressFindings()' type="button">Address Findings</button>
+	</div>
+
+	<div class="section-divider">
+		<hr/>
+	</div>
+	<div class="footer clearfix">
+		<button *ngIf="!isBatchedReview" class="btn btn-default btn-primary pull-right" (click)='completeWrapup()' [disabled]="isLenderReviewReadOnly || !allowCompleteWrapup" type="button">Complete Wrap-Up</button>
+	</div>
+</div>
+

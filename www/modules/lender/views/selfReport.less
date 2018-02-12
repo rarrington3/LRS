@@ -1,0 +1,310 @@
+@import '../../bootstrap/_variables';
+@import '../../shared/_mixins';
+:host-context {
+    /* styles should be scoped under host-context */
+    display: block;
+
+    .selection-body {
+        padding: 7px 0;
+    }
+    .selection-panel {
+        height: 100%;
+        padding: 30px 40px 20px 40px;
+        .container-fluid {
+            .inner-container {
+                padding: 0;
+            }
+        }
+    }
+    .section-head {
+        margin-right: 20px;
+        font-weight: 700;
+
+        &.inactive {
+            opacity: .5;
+        }
+
+        .case-count {
+            margin-left: 4px;
+            font-weight: 400;
+        }
+
+        a {
+            &.hide-anchor {
+                text-decoration: none;
+                color: @gray-dark;
+
+            }
+        }
+    }
+    .flex-container {
+        display: flex;
+        flex-direction: column;
+
+        .filter-select {
+            width: 200px;
+            margin-bottom: 20px;
+        }
+    }
+
+    hr {
+        margin-top: 15px;
+        margin-bottom: 14px;
+    }
+
+    .case-input {
+        display: block;
+        width: 100%;
+
+        .case-numbers {
+
+            label {
+                display: block;
+            }
+            textarea[name=cases] {
+                resize: horizontal;
+            }
+            .form-control {
+                display: block;
+                width: 300px;
+                height: 100px;
+            }
+
+            .msg-and-add {
+                width: 300px;
+                margin-top: 15px;
+                padding-bottom: 15px;
+                .msg {
+                    display: inline-block;
+                    vertical-align: top;
+                    color: @brand-danger;
+                    font-size: 12px;
+                }
+                .add {
+                    display: inline-block;
+                    vertical-align: top;
+                    float: right;
+                    button {
+                        height: 33px;
+                        line-height: 0px;
+                        padding: 10px;
+                    }
+                }
+            }
+        }
+
+        .case-panel {
+            min-height: 200px;
+            width: 100%;
+            position: relative;
+            margin-bottom: 20px;
+            &.with-border {
+                border: 1px solid @hr-border;
+                border-radius: 5px;
+            }
+            .workload-table {
+                border-collapse: separate;
+                border: none;
+                overflow: hidden;
+
+                thead > tr > th {
+                    font-size: 12px;
+                    font-weight: 700;
+                    border: none;
+                    text-align: left;
+                    font-weight: bold;
+                    a {
+                        color: @brand-secondary;
+                        text-decoration: underline;
+                    }
+                }
+                // top corners
+                tr:first-child {
+                    td:first-child {
+                        border-top-left-radius: @border-radius-base;
+                    }
+                    td:last-child {
+                        border-top-right-radius: @border-radius-base;
+                    }
+                }
+                // bottom corners
+                tr:last-child {
+                    td:first-child {
+                        border-bottom-left-radius: @border-radius-base;
+                    }
+                    td:last-child {
+                        border-bottom-right-radius: @border-radius-base;
+                    }
+                    td {
+                        border-bottom: 1px solid @brand-grey-border-color;
+                    }
+                }
+                // stripes
+                tr {
+                    td:first-child {
+                        border-left: 1px solid @brand-grey-border-color;
+                    }
+                    td:last-child {
+                        border-right: 1px solid @brand-grey-border-color;
+                    }
+                }
+                td {
+                    font-size: 12px;
+                    font-weight: 400;
+                    line-height: 10px;
+                    vertical-align: middle;
+                    &.case-id {
+                        width: 48px;
+                    }
+
+                    .status-icon {
+                        display: inline-block;
+                        margin: 0 5px 0 5px;
+                        color: @brand-warning;
+                    }
+
+                    span.warning {
+                        color: @brand-danger;
+                    }
+
+                    .btn-primary {
+                        height: 24px;
+                        line-height: 10px;
+                        font-size: 12px;
+                    }
+                }
+
+                tr {
+                    &.in-progress {
+                        background-color: @brand-review-past-due;
+                    }
+                }
+            }
+
+            .no-case-message {
+                position: absolute;
+                top: 40%;
+                left: 30%;
+                height: 25px;
+                font-size: 13px;
+                color: @gray-light;
+            }
+        }
+    }
+
+    .detail-input {
+        display: block;
+        width: 100%;
+        min-height: 200px;
+        border: 1px solid @hr-border;
+        border-radius: 5px;
+        margin-bottom: 20px;
+
+        .section-heading {
+            font-size: @font-size-base;
+            color: @brand-secondary;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .defects {
+            padding: 25px 25px 10px 25px;
+
+            .defect-block {
+                display: block;
+                padding-bottom: 20px;
+                .section-items {
+                    label {
+                        &.strong {
+                            font-weight: 700;
+                        }
+                    }
+                    input[type='radio'] {
+                        margin-left: 20px;
+                        margin-right: 4px;
+                    }
+                    input[type='checkbox'] {
+                        margin-left: 20px;
+                        margin-right: 4px;
+                        vertical-align: top;
+                    }
+                    .defect-area-label {
+                        width: 175px;
+                        margin-bottom: 5px;
+
+                    }
+                    .fraud-select {
+                        width: 385px;
+                        margin-top: 10px;
+                        margin-left: 20px;
+                        margin-right: 100px;
+
+                       .disabled-select {
+                           pointer-events: none;
+                        }
+
+                    }
+                    .inline-items {
+                        display: inline-block;
+                        vertical-align: top;
+                    }
+
+                    .under-review-list {
+                        margin-top: 10px;
+                        margin-left: 44px;
+                        font-size: @font-size-small;
+                        word-wrap: break-word;
+                    }
+                }
+            }
+        }
+
+        .ruler {
+            position: absolute;
+            width: 1px;
+            height: 83%;
+            top: 46px;
+            left: 50%;
+            margin-left: -50px;
+            background-color: @hr-border;
+        }
+
+        .findings {
+            padding: 25px 35px 10px 0;
+            .finding-input {
+                display: block;
+                margin-bottom: 20px;
+
+                textarea {
+                    width: 100%;
+                    height: 150px;
+                    border-radius: 5px;
+                    border-color: @hr-border;
+                    resize: none;
+                }
+
+                &.hud-cb {
+                    margin-top: 36px;
+                }
+            }
+        }
+
+    }
+
+    .actions {
+        padding-bottom: 25px;
+        margin-bottom: 20px;
+        .action-buttons {
+            float: right;
+
+            .btn {
+                display: inline-block;
+            }
+
+            .btn-primary{
+                margin-right: 12px;
+            }
+        }
+    }
+
+}

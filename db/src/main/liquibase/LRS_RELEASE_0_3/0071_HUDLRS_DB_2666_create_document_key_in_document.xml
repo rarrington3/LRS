@@ -1,0 +1,17 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2666_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table DOCUMENT add DOCUMENT_KEY varchar(16) null
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2666_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('LRS Documents','Document Key','DOCUMENT','C20225',getdate(),'Document Key')
+		]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>    

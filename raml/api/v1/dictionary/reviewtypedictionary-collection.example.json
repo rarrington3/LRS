@@ -1,0 +1,18 @@
+[
+    {
+        "code": "U",
+        "description": "Underwriting"
+    },
+    {
+        "code": "S",
+        "description": "Servicing"
+    },
+    {
+        "code": "O",
+        "description": "Operational"
+    },
+    {
+        "code": "C",
+        "description": "Comprehensive"
+    }
+]

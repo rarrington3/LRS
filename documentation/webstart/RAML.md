@@ -1,0 +1,129 @@
+## Using RAML to Structure your API
+
+Please be sure to follow the instructions for [setting up](./SETUP.md) this project.
+
+This document covers the basics for defining the API specification with RAML, generating API documentation
+and generating API implementation code. By default, all source RAML files are located at in the [api](../../api)
+directory, although than may be configured in [settings.json](../../settings.json).
+
+For more information about the RAML syntax and specification, please see [here](http://raml.org/docs.html).
+
+## Definition Guidelines
+
+### Traits
+
+Traits decorate service definitions with common attributes. For instance, we use traits to say that
+a service requires prior authorization using the `secured` trait which requires specific headers
+to be included in the request and defines standard response codes to be considered on authenticated 
+services response.
+
+For more examples on traits, see [here](http://raml.org/docs-200.html#traits).
+
+### Types
+
+Types are ways for a service to extend a types definition. For instance, we define a type called `collection-readonly`
+that uses the trait `paged` and expresses the default definition for any service endpoint that defines a collection
+that would return a list of objects that may be retrieved, but not written to. A type is like an abstract class of sorts
+that your service definition extends and fills in the missing pieces. We have types defined for collections and members
+and those types define all the boilerplate code you need to define a collection or member consistency across all
+services and you only heed to define your own: uri, displayName, example and schema. All the other parts will have the
+appropriate defaults placed for request body, response body, response codes, headers...even a default description. Any
+of these defaults can be overwritten in your service definition.
+
+For more examples on traits, see [here](http://raml.org/docs-200.html#resource-types).
+
+### Standards, Conventions and Assumptions
+
+This is a list of common standards and conventions mixed in with some assumptions that were made to ease in the 
+code generation by enforcing consistency in implementation. 
+
+* Service URI's should be defined using the plural name of the entity to represent the collection and the singular
+name of entity followed by the suffix "Id" to represent the member in the URI parameter (ie /users/{userId}). 
+* The displayName of both the collection and the member should be the same and be the singular form of the entity it
+represents (ie user). 
+* The schema for every entity should have an identifier field where the name of that field is the displayName (singular
+name of the entity) followed by the suffix "Id" (ie userId). The name of this identifier should then match the name of
+the member's URI parameter. This allows for easily mapping between entities and URI parameters (ie /users/{userId}/cars/{carId}).
+* All service definitions should extend one of the common types (ie collection, collection-writeonly, collection-readonly,
+member, member-readonly, member-writeonly). 
+* Any service definition which has not yet been implemented should use the trait `mock`. This is used during code generation
+to generate mocks based on the definitions example reference.
+
+## API Tasks
+
+### Creating new definitions
+
+There is a simple scaffold setup to assist you with creating new definitions and touching the appropriate files
+to add references to those new definitions:
+
+    grunt
+    [?] What task would you like to run? (Use arrow keys)
+    ❯ Run the Scaffolding Tools to Build Out Project
+      Run the Web Application
+      Run the Cordova Application
+      Run the Test Suite
+      Run the Documentation Generator
+      Publish the Application for Deployment
+
+Or simply run `grunt scaffold:raml` run the scaffold directly.
+
+For more information on this, please see the [scaffolding](./SCAFFOLDING.md) section.
+
+### Editing the definitions
+
+RAML is just an extension of the [YAML](http://www.yaml.org/) sytnax. You can associate the .raml extension with the YAML editor of your 
+IDE to edit the files if you so choose. There is also a RAML editor included in this project which offers some
+code assistance and preview mode.
+
+    grunt
+    [?] What task would you like to run? 
+      Run the Scaffolding Tools to Build Out Project 
+      Run the Web Application 
+      Run the Cordova Application 
+    ❯ Run the API Designer 
+      Run the Test Suite 
+      Run the Documentation Generator 
+      Publish the Application for Deployment 
+
+
+Or simply run `grunt server:apidesigner` to launch the editor.
+
+For more information on this, please see the [tasks](./TASKS.md) section.
+
+### Generating documentation
+
+API documentation is bundled with the applications documentation as part of the documentation task. You can run
+this task to preview the documentation while you make changes to the definitions.
+
+    grunt
+    [?] What task would you like to run? 
+      Run the Scaffolding Tools to Build Out Project 
+      Run the Web Application 
+      Run the Cordova Application 
+      Run the API Designer 
+      Run the Test Suite 
+    ❯ Run the Documentation Generator 
+      Publish the Application for Deployment 
+
+
+Or simply run `grunt docs` or `grunt server:docs` to launch the documentation and rebuild on changes.
+
+For more information on this, please see the [documentation](./DOCUMENTATION.md) section.
+
+### Generating code
+
+The RAML definitions are also used to generate client side code representing the implementation of the interface. This
+could also be used to potentially generate server side code as well. This task uses the same scaffolding engine used
+in the other scaffolding tasks with lodash templates found in the directory 
+[build/scaffolds/.api](../../build/scaffolds/.api). The grunt task that controls these templates and sets up the 
+templates context for bindings is in [build/tasks/apicodegen.js](../../build/tasks/apicodegen.js).
+
+You are free to add and/or modify the existing API code generation templates for your own project or platform use.
+
+This task is typically run as part of a standard build, but you can run it independently using `grunt apicodegen`.
+
+### Mock Services
+
+Services that are given the 'mock' trait in RAML will be intercepted by the javascript service wrapper.
+The example response provided in RAML will be automaticall returned for these API calls without going over the network.
+

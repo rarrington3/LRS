@@ -1,0 +1,152 @@
+[
+	{
+    	"properties": 
+        	{
+				"underwriterId": "ZFZP",
+         		"underwriterName": "Ann S. Steger",
+		        "houseNumber": "500",
+		        "streetName": "MAIN",
+		        "streetType": "ST",
+		        "city": "NEW BRIGHTON",
+		        "state": "MN",
+		        "zip": "55112",
+		       	"lender": "71955",
+		       	"status": "Active"
+     		}     
+	},
+	{
+    	"properties": 
+        	{
+		        "underwriterId": "Y955",
+		        "underwriterName": "Lindsey H. Marquez",
+		        "houseNumber": "500",
+		        "streetName": "MAIN",
+		        "streetType": "ST",
+		        "city": "NEW BRIGHTON",
+		        "state": "MN",
+		        "zip": "55112",
+		       	"lender": "71955",
+		       	"status": "Active"
+     		}     
+	},
+	{
+    	"properties": 
+        	{
+         		"underwriterId": "ZFWF",
+         		"underwriterName": "Delores D. Richardson",
+         		"houseNumber": "150",
+         		"streetName": "N COLLEGE",
+         		"streetType": "ST",
+         		"city": "CHARLOTTE",
+         		"state": "NC",
+         		"zip": "28202",
+		       	"lender": "13065",
+		       	"status": "Active"
+     		}     
+	},
+	{
+    	"properties": 
+        	{
+         		"underwriterId": "ZFML",
+         		"underwriterName": "Richard M. Scott",
+         		"houseNumber": "500",
+         		"streetName": "MAIN",
+         		"streetType": "ST",
+         		"city": "NEW BRIGHTON",
+         		"state": "MN",
+         		"zip": "55112",
+		       	"lender": "71955",
+		       	"status": "Active"
+     		}     
+	},
+	{
+    	"properties": 
+        	{
+         		"underwriterId": "ZFLS",
+         		"underwriterName": "Andre C. Reed",
+         		"houseNumber": "500",
+         		"streetName": "MAIN",
+         		"streetType": "ST",
+         		"city": "NEW BRIGHTON",
+         		"state": "MN",
+         		"zip": "55112",
+		       	"lender": "71955",
+		       	"status": "Active"
+     		}     
+	},
+	{
+    	"properties": 
+        	{
+         		"underwriterId": "ZFLP",
+         		"underwriterName": "Jeff A. Solis",
+         		"houseNumber": "150",
+         		"streetName": "N COLLEGE",
+         		"streetType": "ST",
+         		"city": "CHARLOTTE",
+         		"state": "NC",
+         		"zip": "28202",
+		       	"lender": "13065",
+		       	"status": "Active"
+     		}     
+	},
+	{
+    	"properties": 
+        	{
+         		"underwriterId": "ZFDU",
+         		"underwriterName": "Martin B. Bonds",
+         		"houseNumber": "500",
+         		"streetName": "MAIN",
+         		"streetType": "ST",
+         		"city": "NEW BRIGHTON",
+         		"state": "MN",
+         		"zip": "55112",
+		       	"lender": "71955",
+		       	"status": "Active"
+     		}     
+	},
+	{
+    	"properties": 
+        	{
+         		"underwriterId": "ZFBA",
+         		"underwriterName": "Julie K. Rodriquez",
+         		"houseNumber": "2701",
+         		"streetName": "WELLS FARGO",
+         		"streetType": "WAY",
+         		"city": "MINNEAPOLIS",
+         		"state": "MN",
+         		"zip": "55467",
+		       	"lender": "22995",
+		       	"status": "Active"
+     		}     
+	},
+	{
+    	"properties": 
+        	{
+         		"underwriterId": "Y991",
+         		"underwriterName": "Thomas J. Rolf",
+         		"houseNumber": "2701",
+         		"streetName": "WELLS FARGO",
+         		"streetType": "WAY",
+         		"city": "MINNEAPOLIS",
+         		"state": "MN",
+         		"zip": "55467",
+		       	"lender": "22995",
+		       	"status": "Active"
+     		}     
+	},
+	{
+    	"properties": 
+        	{
+         		"underwriterId": "Y966",
+         		"underwriterName": "Linda R. Hardwick",
+        		"houseNumber": "500",
+         		"streetName": "MAIN",
+         		"streetType": "ST",
+         		"city": "NEW BRIGHTON",
+         		"state": "MN",
+         		"zip": "55112",
+		       	"lender": "71955",
+		       	"status": "Active"
+     		}     
+	}
+]

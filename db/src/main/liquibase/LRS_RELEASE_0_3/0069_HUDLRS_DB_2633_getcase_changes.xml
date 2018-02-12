@@ -1,0 +1,12 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2649_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table LOAN_SELECTION_CASE_SUMMARY alter column ENDRSMNT_RVW_PRSNNL_ID varchar(32) null
+			alter table LOAN_SELECTION_CASE_SUMMARY add EXPECTED_RATE numeric(10,5) null			
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Case Summary for Selection','Expected Rate','EXPECTED_RATE','C20225',getdate(),'Expected Rate')
+		]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>    

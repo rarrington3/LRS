@@ -1,0 +1,154 @@
+#%RAML 0.8
+title: HUD Loan Review System Web Services
+version: 1
+baseUri: /api/v1
+mediaType: application/json
+protocols:
+    - HTTP
+    - HTTPS
+documentation:
+    -
+        title: Scope
+        content:
+            This file documents the web services which are used by the HUD LRS
+            web UI.  It does not include services used to communicate between
+            backend systems.
+schemas:
+    -
+        Binder: !include api/v1/binders/binder.schema.json
+        BinderCollection: !include api/v1/binders/binder-collection.schema.json
+        Config: !include api/v1/config/config.schema.json
+        Batch: !include api/v1/common/batch.schema.json
+        BatchCollection: !include api/v1/common/batch-collection.schema.json
+        CommonDetail: !include api/v1/common/commondetail.schema.json
+        CommonDetailCollection: !include api/v1/common/commondetail-collection.schema.json
+        OrderedItem: !include api/v1/common/orderedItem.schema.json
+        OptionsItem: !include api/v1/common/optionsItem.schema.json
+        Document: !include api/v1/common/document.schema.json
+        ReviewCollection: !include api/v1/common/review-collection.schema.json
+        SimpleSelection: !include api/v1/common/simpleselection.schema.json
+        LiteLender: !include api/v1/common/litelender.schema.json
+        DefectAreaCauseDictionary: !include api/v1/dictionary/defectareacausedictionary.schema.json
+        DefectAreaCauseDictionaryCollection: !include api/v1/dictionary/defectareacausedictionary-collection.schema.json
+        DefectAreaSeverityDictionary: !include api/v1/dictionary/defectareaseveritydictionary.schema.json
+        DefectAreaSeverityDictionaryCollection: !include api/v1/dictionary/defectareaseveritydictionary-collection.schema.json
+        DefectAreaSourceDictionary: !include api/v1/dictionary/defectareasourcedictionary.schema.json
+        DefectAreaSourceDictionaryCollection: !include api/v1/dictionary/defectareasourcedictionary-collection.schema.json
+        DefectAreaDictionary: !include api/v1/dictionary/defectareadictionary.schema.json
+        DefectAreaDictionaryCollection: !include api/v1/dictionary/defectareadictionary-collection.schema.json
+        SelectionReasonDictionary: !include api/v1/dictionary/selectionreasondictionary.schema.json
+        SelectionReasonDictionaryCollection: !include api/v1/dictionary/selectionreasondictionary-collection.schema.json
+        ConsolidatedSelectionReasonDictionary: !include api/v1/dictionary/consolidatedselectionreasondictionary.schema.json
+        ConsolidatedSelectionReasonDictionaryCollection: !include api/v1/dictionary/consolidatedselectionreasondictionary-collection.schema.json
+        ReassignmentReasonDictionaryCollection: !include api/v1/dictionary/reassignmentreasondictionary-collection.schema.json
+        ReviewCancelReasonsCollection: !include api/v1/dictionary/reviewcancelreasonsdictionary-collection.schema.json
+        RatingCodeDictionary: !include api/v1/dictionary/ratingcodedictionary.schema.json
+        RatingCodeDictionaryCollection: !include api/v1/dictionary/ratingcodedictionary-collection.schema.json
+        Error: !include api/v1/errors/error.schema.json
+        DevLogin: !include api/v1/devlogin/devlogin.schema.json
+        DevLoginDetails: !include api/v1/devlogin/devlogin-details.schema.json
+        DevLoginCollection: !include api/v1/devlogin/devlogin-collection.schema.json
+        ManualSelection: !include api/v1/manualselection/manualselection-schema.json
+        Review: !include api/v1/reviews/review.schema.json
+        ReviewLevel: !include api/v1/reviews/reviewlevel.schema.json
+        ReviewLevelInfo: !include api/v1/reviews/reviewlevelinfo.schema.json
+        ReviewNote: !include api/v1/reviews/reviewnote.schema.json
+        ReviewNoteCollection: !include api/v1/reviews/reviewnote-collection.schema.json
+        ReviewNotePost: !include api/v1/reviews/reviewnote-post.schema.json
+        ReviewQaTree: !include api/v1/reviews/reviewqatree.schema.json
+        ReviewField: !include api/v1/reviews/reviewfield.schema.json
+        ReviewFieldCollection: !include api/v1/reviews/reviewfield-collection.schema.json
+        ReviewQuestion: !include api/v1/reviews/reviewquestion.schema.json
+        ReviewQuestionCollection: !include api/v1/reviews/reviewquestion-collection.schema.json
+        ReviewCondition: !include api/v1/reviews/reviewcondition.schema.json
+        ReviewReferral: !include api/v1/reviews/reviewreferral.schema.json
+        Referral: !include api/v1/reviews/referral.schema.json
+        ReviewAnswer: !include api/v1/reviews/reviewanswer.schema.json
+        ReviewAnswerCollection: !include api/v1/reviews/reviewanswer-collection.schema.json
+        ReviewFinding: !include api/v1/reviews/reviewfinding.schema.json
+        ReviewFindingCollection: !include api/v1/reviews/reviewfinding-collection.schema.json
+        RemediationResponse: !include api/v1/reviews/remediationresponse.schema.json
+        LiteReview: !include api/v1/reviews/litereview.schema.json
+        Reviewers: !include api/v1/reviewers/reviewers-schema.json
+        Reviewer: !include api/v1/reviewers/reviewer-schema.json
+        ReviewersLite: !include api/v1/reviewers/reviewers-lite-schema.json
+        ReviewerLite: !include api/v1/reviewers/reviewer-lite-schema.json
+        ReviewerUnavailability: !include api/v1/reviewers/reviewerunavailability-schema.json
+        ReviewerAssignmentType: !include api/v1/reviewers/reviewerassignmenttype-schema.json
+        ReviewerCreation: !include api/v1/reviewers/reviewer-creation-schema.json
+        Locations: !include api/v1/locations/locations-schema.json
+        Location: !include api/v1/locations/location-schema.json
+        FHAConnectionReviewer: !include api/v1/fhaconnection/fhaconnectionreviewer.schema.json
+        ApiError: !include api/v1/common/apierror.schema.json
+        ApiErrorException: !include api/v1/common/apierrorexception.schema.json
+        CasesResponse: !include api/v1/cases/casesresponse-schema.json
+        Case: !include api/v1/cases/case-schema.json
+        CaseRequest: !include api/v1/cases/caserequest-schema.json
+        CaseActivity: !include api/v1/cases/caseactivity-schema.json
+        ReviewRequestByLender: !include api/v1/manualselection/reviewRequestByLender-schema.json
+        LenderMonitoring: !include api/v1/lendermonitoring/lendermonitoring-schema.json
+        LenderSelfReport: !include api/v1/lenderselfreport/lenderSelfReport-schema.json
+        Exceptions: !include api/v1/exceptions/exceptions-schema.json
+        Exception: !include api/v1/exceptions/exception-schema.json
+        CurrentUser: !include api/v1/currentuser/currentuser-schema.json
+        TimeLimit: !include api/v1/admin/timeLimit.schema.json
+        ReviewLevelTimeLimits: !include api/v1/admin/reviewLevelTimeLimits.schema.json
+        ReviewLevelTimeLimitsCollection: !include api/v1/admin/reviewLevelTimeLimits-collection.schema.json
+        Capacity: !include api/v1/capacity/capacity.schema.json
+        CapacityCollection: !include api/v1/capacity/capacity-collection.schema.json
+        Factor: !include api/v1/admin/factor.schema.json
+        FactorCollection: !include api/v1/admin/factorCollection.schema.json
+        SelectionModel: !include api/v1/admin/selectionModel.schema.json
+        SelectionModelCollection: !include api/v1/admin/selectionModelCollection.schema.json
+        AssignmentModel: !include api/v1/admin/assignmentModel.schema.json
+        AssignmentModelCollection: !include api/v1/admin/assignmentModelCollection.schema.json
+        DistributionModel: !include api/v1/admin/distributionModel.schema.json
+        DistributionModelCollection: !include api/v1/admin/distributionModelCollection.schema.json
+        LenderSelectionAdjustment: !include api/v1/admin/lenderSelectionAdjustment.schema.json
+        LenderSelectionAdjustmentCollection: !include api/v1/admin/lenderSelectionAdjustmentCollection.schema.json
+        Field: !include api/v1/admin/field.schema.json
+        FieldCollection: !include api/v1/admin/fieldCollection.schema.json
+        QaModel: !include api/v1/admin/qaModel.schema.json
+        QaModelCollection: !include api/v1/admin/qaModelCollection.schema.json
+        QaModelDetail: !include api/v1/admin/qaModelDetail.schema.json
+        QaModelCategory: !include api/v1/admin/qaModelCategory.schema.json
+        QaModelLoanAttribute: !include api/v1/admin/qaModelLoanAttribute.schema.json
+        QaModelDefectArea: !include api/v1/admin/qaModelDefectArea.schema.json
+        QaModelDefectAreaDetail: !include api/v1/admin/qaModelDefectAreaDetail.schema.json
+        QaModelDefectAreaThreshold: !include api/v1/admin/qaModelDefectAreaThreshold.schema.json
+        QaModelDefectAreaSeverity: !include api/v1/admin/qaModelDefectAreaSeverity.schema.json
+        QaModelDefectAreaPreQualify: !include api/v1/admin/qaModelDefectAreaPreQualify.schema.json
+        DateRange: !include api/v1/jobs/daterange.schema.json
+        Job: !include api/v1/jobs/job.schema.json
+        JobCollection: !include api/v1/jobs/job-collection.schema.json
+        JobParameter: !include api/v1/jobs/jobparameter.schema.json
+        JobExecution: !include api/v1/jobs/jobexecution.schema.json
+        ModelDuplicator: !include api/v1/admin/model-duplicator.schema.json
+        IndemAccept: !include api/v1/reviews/indemaccept.schema.json
+        NameValuePair: !include api/v1/common/name-value-pair.schema.json
+        EmailTemplateVersion: !include api/v1/admin/email-template-version.schema.json
+        EmailTemplateVersionLite: !include api/v1/admin/email-template-version-lite.schema.json
+        EmailTemplate: !include api/v1/admin/email-template.schema.json
+        EmailTemplateCollection: !include api/v1/admin/email-template-collection.schema.json
+
+traits: !include api/traits.raml
+securitySchemes: !include api/securitySchemes.raml
+resourceTypes: !include api/types.raml
+/binders: !include api/v1/binders/binders.raml
+/config: !include api/v1/config/config.raml
+/dictionary: !include api/v1/dictionary/dictionary.raml
+/errors: !include api/v1/errors/errors.raml
+/manualSelection: !include api/v1/manualselection/manualselection.raml
+/devLogin: !include api/v1/devlogin/devlogin.raml
+/reviews: !include api/v1/reviews/reviews.raml
+/reviewers: !include api/v1/reviewers/reviewers.raml
+/locations: !include api/v1/locations/locations.raml
+/fhaConnection: !include api/v1/fhaconnection/fhaconnection.raml
+/cases: !include api/v1/cases/cases.raml
+/lenderMonitoring: !include api/v1/lendermonitoring/lendermonitoring.raml
+/lenderSelfReport: !include api/v1/lenderselfreport/lenderselfreport.raml
+/exceptions: !include api/v1/exceptions/exceptions.raml
+/currentUser: !include api/v1/currentuser/currentuser.raml
+/admin: !include api/v1/admin/admin.raml
+/capacity: !include api/v1/capacity/capacity.raml
+/jobs: !include api/v1/jobs/jobs.raml

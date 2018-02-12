@@ -1,0 +1,70 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1733_create_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create table REMEDY_TYPE_REF 
+			(REMEDY_TYPE_ID UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID(),
+			REMEDY_TYPE_DESCRIPTION VARCHAR(30) NOT NULL)
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1733_alter_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table REMEDY_TYPE_REF add constraint REMEDY_TYPE_REF_PK primary key nonclustered (REMEDY_TYPE_ID)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1733_insert_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into remedy_type_ref(remedy_type_id,remedy_type_description) values('2CA531DE-1B8E-435D-BAE9-1675804491C2','Borrower Refund')
+			insert into remedy_type_ref(remedy_type_id,remedy_type_description) values('612CBBF4-F648-43A0-B980-51F971F89972','Principal Reduction')
+			insert into remedy_type_ref(remedy_type_id,remedy_type_description) values('723F9746-2684-44FD-B824-7C257F667F32','Reimburse FHA')
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1733_rename_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update rvw_lvl_finding
+			set REMEDY_TYPE = null
+			
+			EXEC sp_rename 'rvw_lvl_finding.REMEDY_TYPE', 'REMEDY_TYPE_ID', 'COLUMN'			
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1733_alter_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE rvw_lvl_finding ALTER column REMEDY_TYPE_ID uniqueidentifier null		
+            ALTER TABLE rvw_lvl_finding ADD CONSTRAINT RVWLVLFINDINGFKREMEDYTYPEREF FOREIGN KEY(REMEDY_TYPE_ID) REFERENCES REMEDY_TYPE_REF(REMEDY_TYPE_ID)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1733_insert_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update DICT_METADATA_FIELD
+			set DB_COLUMN = 'REMEDY_TYPE_ID'
+			where ENTITY_NAME= 'Review Level Finding'
+			  and DB_COLUMN = 'REMEDY_TYPE'			
+			  
+			insert into dict_metadata_entity(ENTITY_NAME, DB_VIEW_OR_TABLE,CREATED_BY,CREATED_TS) values('Remedy Type Reference','REMEDY_TYPE_REF','C20225',getdate())			  
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Remedy Type Reference','Remedy Type ID','REMEDY_TYPE_ID','C20225', getdate(),'STATIC','Remedy Type ID')
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Remedy Type Reference','Remedy Type Description','REMEDY_TYPE_DESCRIPTION','C20225', getdate(),'STATIC','Remedy Type Description')			
+		]]>
+        </sql>
+    </changeSet>	
+ </databaseChangeLog>
+
+
+
+
+
+
+
+
+
+

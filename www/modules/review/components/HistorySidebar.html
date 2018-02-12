@@ -1,0 +1,34 @@
+<div *ngFor="let level of allLevels">
+    <div class="level-title">{{getLevelTitle(level)}}</div>
+    <ul class="list-group">
+        <li class="list-group-item clearfix">
+            <div class="field-name pull-left">Reviewer</div> <div class="field-value pull-right">{{level.reviewerName}}</div>
+        </li>
+        <li class="list-group-item clearfix" *ngIf="level.status.toLowerCase() === PENDING_BATCH_REVIEW_REVIEW_LEVEL_STATUS">
+            <div class="field-name pull-left">Original Reviewer</div> <div class="field-value pull-right">{{level.originalReviewerName}}</div>
+        </li>
+        <li class="list-group-item clearfix">
+            <div class="field-name pull-left">Review Location</div> <div class="field-value pull-right">{{level.reviewLocationName}}</div>
+        </li>
+        <li class="list-group-item clearfix">
+            <div class="field-name pull-left">Assigned</div> <div class="field-value pull-right">{{level.reviewerDateAssigned | datePipe}}</div>
+        </li>
+        <li class="list-group-item clearfix" *ngIf="level.status.toLowerCase() === COMPLETED_REVIEW_LEVEL_STATUS">
+            <div class="field-name pull-left">Completed</div> <div class="field-value pull-right">{{level.reviewerCompletedDate | datePipe}}</div>
+        </li>
+        <li class="list-group-item clearfix">
+            <div class="field-name pull-left">Rating</div> <div class="field-value pull-right">{{getRatingDescription(level.ratingCode)}}</div>
+        </li>
+
+    </ul>
+
+    <ul class="list-group warning">
+        <li class="list-group-item clearfix" *ngIf="level._warning">
+            <div class="field-value pull-right">{{level._warning}}</div>
+        </li>
+    </ul>
+
+</div>
+
+
+

@@ -1,0 +1,18 @@
+[
+    {
+        "code": "RU",
+        "description": "Reviewer Unavailable"
+    },
+    {
+        "code": "WR",
+        "description": "Workload Reallocation"
+    },
+    {
+        "code": "RAE",
+        "description": "Reviewer Attribute Error"
+    },	
+    {
+        "code": "O",
+        "description": "Other"
+    }
+]

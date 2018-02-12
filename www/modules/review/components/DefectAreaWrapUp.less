@@ -1,0 +1,247 @@
+@import '../../../libs/bootstrap/less/mixins/opacity';
+@import '../../bootstrap/_variables.less';
+@import "../../shared/icons";
+:host-context {
+	/* styles should be scoped under host-context */
+	.findings-header {
+		padding-left: 15px;
+	}
+	.severity-header {
+		padding-left: 30px
+	}
+	.defect-container {
+		padding: 0;
+	}
+	.details {
+		float: right;
+	}
+	.glyphicon {
+		float: left;
+		color: @brand-warning;
+	}
+	.complete {
+		float: right;
+		margin-top: 10px;
+	}
+
+	.unnaceptable {
+		color: @brand-danger;
+	}
+
+	.icon-alert {
+		float: left;
+		margin-top: 5px;
+		margin-right: 5px;
+
+		&.unacceptable-icon {
+			.finding-red-icon;
+		}
+
+		&.deficient-icon {
+			.finding-orange-icon;
+		}
+
+		&.glyphicon-minus-sign {
+			width: 20px;
+			height: 19px;
+			color: @gray-darker;
+		}
+		span {
+			color: white;
+			padding-left: 8px;
+			font-size: 14px;
+			float: left;
+		}
+	}
+
+	.rating-text {
+		padding-left: 10px;
+		padding-right: 10px;
+		font-size: 14px;
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+
+	.rating-container {
+		float: left;
+		border-radius: @border-radius-large;
+		border: 1px sold @brand-grey-border-color;
+		box-shadow: none;
+
+		.rating {
+			color: #adadad;
+			font-size: 12px;
+
+			&.previous > span {
+				opacity: .6;
+			}
+
+			.unnaceptable {
+				color: @brand-danger;
+			}
+
+			.rating-text {
+				padding-left: 5px;
+				padding-right: 10px;
+				font-size: 14px;
+				font-weight: bold;
+				text-transform: uppercase;
+			}
+		}
+	}
+
+	.defect-wrapup-table {
+		border-collapse: separate;
+		border: none;
+		overflow: hidden;
+
+		thead > tr > th {
+			padding: 10px;
+			font-size: 12px;
+			font-weight: 700;
+			border: none;
+			text-align: left;
+			font-weight: bold;
+
+			&.center {
+				text-align: center;
+			}
+
+			a {
+				color: @brand-secondary;
+				text-decoration: underline;
+			}
+		}
+		button {
+			padding: 1px 8px;
+			float: right;
+		}
+		i {
+			padding-right: 15px;
+		}
+		th {
+			color: darken(@brand-secondary, 5%);
+		}
+
+		// top corners
+		tr:first-child {
+			td:first-child {
+				border-top-left-radius: @border-radius-base;
+			}
+			td:last-child {
+				border-top-right-radius: @border-radius-base;
+			}
+		}
+
+		// bottom corners
+		tr:last-child {
+			td:first-child {
+				border-bottom-left-radius: @border-radius-base;
+			}
+			td:last-child {
+				border-bottom-right-radius: @border-radius-base;
+			}
+			td {
+				border-bottom: 1px solid @brand-grey-border-color;
+			}
+		}
+		// stripes
+		tr {
+			td:first-child {
+				border-left: 1px solid @brand-grey-border-color;
+			}
+			td:last-child {
+				border-right: 1px solid @brand-grey-border-color;
+			}
+		}
+
+		td {
+			padding: 10px;
+			font-size: 12px;
+			font-weight: 400;
+			vertical-align: middle;
+
+			.list-name {
+				font-size: @font-size-h6;
+				font-weight: bold;
+				color: @column-header-color;
+			}
+
+			&.tier {
+				font-weight: bold;
+			}
+
+			&.tier-gray {
+				background-color: #f1f5f7;
+			}
+
+			&.unnaceptable.tier-strike-through, &.tier-strike-through {
+				color: @gray;
+				text-decoration: line-through;
+			}
+
+			&.tier-description-changed, &.tier-description-changed span{
+				color: @gray-darker;
+			}
+
+			&.unnaceptable.tier-italic, &.tier-italic  {
+				text-transform: uppercase;
+				font-weight: normal;
+				font-style: italic;
+				color: @gray;
+			}
+
+			&.alert {
+				color: @brand-danger;
+				border-radius: 0;
+			}
+
+			&.center {
+				text-align: center;
+				span {
+					float: none;
+				}
+			}
+
+		}
+
+		td:not(:first-child) {
+			padding-left: 16px;
+		}
+
+		tr.divider {
+			td, td:first-child, td:last-child{
+				border: none;
+			}
+		}
+
+		tr.group-end {
+			td {
+				border-bottom: 1px solid @brand-grey-border-color;
+			}
+
+			td:first-child {
+				border-bottom-left-radius: @border-radius-base;
+			}
+
+			td:last-child {
+				border-bottom-right-radius: @border-radius-base;
+			}
+		}
+
+		tr.tr-unchanged {
+		  	.opacity(.7);
+
+			td:first-child {
+				border-top-left-radius: @border-radius-base;
+			}
+			td:last-child {
+				border-top-right-radius: @border-radius-base;
+			}
+		}
+	}
+
+    .no-findings {
+        margin: 10px;
+    }
+}

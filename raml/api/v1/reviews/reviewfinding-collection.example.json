@@ -1,0 +1,152 @@
+[
+    {
+        "findingId": "A93C4BDE-71AF-4579-B6E6-C6D5515A2C51",
+        "reviewLevelId": "d2f957de-83e8-45a6-a384-458603727fc7",
+        "originalReviewLevelId": "d2f957de-83e8-45a6-a384-458603727fc7",
+        "defectAreaCode": "BA",
+        "questionIds": [
+            "8C90DC5F-9BA9-42CC-B601-9B7C1CE071A2",
+            "67717fc6-f7ec-4044-93aa-f9d3587a1315"
+        ],
+        "selectedSourceCode": "1",
+        "selectedCauseCode": "B",
+        "selectedTierCode": "1",
+        "commentToLender": "We found an issue with the loan. This is some notes to the lender.",
+        "ratingCode": "U",
+        "lenderResponseDate": "2016-08-01",
+        "lenderResponderName": "Banker, Fred",
+        "lenderResponseComment": "Sample response to FHA from the lender about this finding/defect and an explandation.",
+        "lenderResponseDocuments": [
+            { "documentId": "1AA38E66-75F2-4678-8AC3-52A005CF5745", "documentType": "RESP", "fileName": "borrower_w2.jpg" },
+            { "documentId": "1AA38E66-75F2-4678-8AC3-52A005CF5746", "documentType": "RESP", "fileName": "borrowerId.pdf" },
+            { "documentId": "1AA38E66-75F2-4678-8AC3-52A005CF5747", "documentType": "RESP", "fileName": "mortgage_papers.pdf" }
+        ],
+        "isAdhoc": true
+    },
+    {
+        "findingId": "311D367F-2C0B-4A4D-9493-306E8CF5CEBA",
+        "reviewLevelId": "228ce36cb-a8f1-481c-bb93-609fd0c553d6",
+        "originalReviewLevelId": "d2f957de-83e8-45a6-a384-458603727fc7",
+        "defectAreaCode": "BA",
+        "questionIds": [
+            "cb6a46bd-a6f0-46e8-b7ac-5d84b49fd8af",
+            "67717fc6-f7ec-4044-93aa-f9d3587a1315"
+        ],
+        "selectedSourceCode": "1",
+        "selectedCauseCode": "C",
+        "selectedTierCode": "1",
+        "commentToLender": "We found another issue with the loan. This is some more notes to the lender.",
+        "ratingCode": "U",
+        "lenderResponseDate": "2016-08-03",
+        "lenderResponderName": "Banker, Fred",
+        "lenderResponseComment": "Another sample response to FHA from the lender about this finding/defect and an explandation.",
+        "isAdhoc": false
+    },
+    {
+        "findingId": "B92CBD7F-B3F3-4853-A86E-C642CB58E633",
+        "reviewLevelId": "230ce36cb-a8f1-481c-bb93-609fd0c553d6",
+        "originalReviewLevelId": "230ce36cb-a8f1-481c-bb93-609fd0c553d6",
+        "defectAreaCode": "BA",
+        "questionIds": [
+            "6C90DC5F-9BA9-42CC-B601-9B7C1CE071A9"
+        ],
+        "selectedSourceCode": "1",
+        "selectedCauseCode": "B",
+        "selectedTierCode": "1",
+        "ratingCode": "U",
+        "lenderResponseDocuments": [
+          { "documentId": "1AA38E66-75F2-4678-8AC3-52A005CF5745", "documentType": "RESP", "fileName": "borrower_w2.jpg" },
+          { "documentId": "1AA38E66-75F2-4678-8AC3-52A005CF5746", "documentType": "RESP", "fileName": "borrowerId.pdf" },
+          { "documentId": "1AA38E66-75F2-4678-8AC3-52A005CF5747", "documentType": "RESP", "fileName": "mortgage_papers.pdf" }
+        ]
+    },
+    {
+        "findingId": "AAAE2CBD7F-B3F3-4853-A86E-C642CB58E633",
+        "reviewLevelId": "230ce36cb-a8f1-481c-bb93-609fd0c553d6",
+        "defectAreaCode": "PE",
+        "questionIds": [
+            "6C90DC5F-9BA9-42CC-B601-9B7C1CE071A9"
+        ],
+        "selectedSourceCode": "1",
+        "selectedCauseCode": "B",
+        "selectedTierCode": "1",
+        "ratingCode": "U",
+        "lenderResponseDocuments": [
+          { "documentId": "1AA38E66-75F2-4678-8AC3-52A005CF5745", "documentType": "RESP", "fileName": "borrower_w2.jpg" },
+          { "documentId": "1AA38E66-75F2-4678-8AC3-52A005CF5746", "documentType": "RESP", "fileName": "borrowerId.pdf" },
+          { "documentId": "1AA38E66-75F2-4678-8AC3-52A005CF5747", "documentType": "RESP", "fileName": "mortgage_papers.pdf" }
+        ],
+        "reviewerResponseAdjusted": "4"
+    },
+    {
+        "findingId": "FEFCBD7F-B3F3-4853-A86E-C642CB58E633",
+        "reviewLevelId": "230ce36cb-a8f1-481c-bb93-609fd0c553d6",
+        "defectAreaCode": "PA",
+        "questionIds": [
+            "6C90DC5F-9BA9-42CC-B601-9B7C1CE071A9"
+        ],
+        "selectedSourceCode": "1",
+        "selectedCauseCode": "B",
+        "selectedTierCode": "1",
+        "ratingCode": "U",
+        "lenderResponseDocuments": [
+          { "documentId": "1AA38E66-75F2-4678-8AC3-52A005CF5745", "documentType": "RESP", "fileName": "borrower_w2.jpg" },
+          { "documentId": "1AA38E66-75F2-4678-8AC3-52A005CF5746", "documentType": "RESP", "fileName": "borrowerId.pdf" },
+          { "documentId": "1AA38E66-75F2-4678-8AC3-52A005CF5747", "documentType": "RESP", "fileName": "mortgage_papers.pdf" }
+        ],
+        "reviewerResponseRemediated":  {
+            "remediationTypeCode": "BR",
+            "remediationAmount": 4500.00
+        }
+    },
+    {
+        "findingId": "CTFCBD7F-B3F3-4853-A86E-C642CB58E633",
+        "reviewLevelId": "230ce36cb-a8f1-481c-bb93-609fd0c553d6",
+        "defectAreaCode": "ME",
+        "questionIds": [
+            "6C90DC5F-9BA9-42CC-B601-9B7C1CE071A9"
+        ],
+        "selectedSourceCode": "1",
+        "selectedCauseCode": "B",
+        "selectedTierCode": "1",
+        "ratingCode": "U",
+        "lenderResponseDocuments": [
+          { "documentId": "1AA38E66-75F2-4678-8AC3-52A005CF5745", "documentType": "RESP", "fileName": "borrower_w2.jpg" },
+          { "documentId": "1AA38E66-75F2-4678-8AC3-52A005CF5746", "documentType": "RESP", "fileName": "borrowerId.pdf" },
+          { "documentId": "1AA38E66-75F2-4678-8AC3-52A005CF5747", "documentType": "RESP", "fileName": "mortgage_papers.pdf" }
+        ],
+        "reviewerResponseMitigated": true
+    },
+    {
+        "findingId": "0EFCBD7F-B3F3-4853-A86E-C642CB58E633",
+        "reviewLevelId": "230ce36cb-a8f1-481c-bb93-609fd0c553d6",
+        "defectAreaCode": "BA",
+        "questionIds": [
+            "6C90DC5F-9BA9-42CC-B601-9B7C1CE071A9"
+        ],
+        "selectedSourceCode": "1",
+        "selectedCauseCode": "B",
+        "selectedTierCode": "1",
+        "ratingCode": "U",
+        "lenderResponseDocuments": [
+          { "documentId": "1AA38E66-75F2-4678-8AC3-52A005CF5745", "documentType": "RESP", "fileName": "borrower_w2.jpg" },
+          { "documentId": "1AA38E66-75F2-4678-8AC3-52A005CF5746", "documentType": "RESP", "fileName": "borrowerId.pdf" },
+          { "documentId": "1AA38E66-75F2-4678-8AC3-52A005CF5747", "documentType": "RESP", "fileName": "mortgage_papers.pdf" }
+        ],
+        "reviewerResponseMitigated": true,
+        "isAdhoc": false
+    },
+    {
+        "findingId": "4E90639E-FC7A-415E-A011-59AD8E58D058",
+        "reviewLevelId": "228ce36cb-a8f1-481c-bb93-609fd0c553d6",
+        "originalReviewLevelId": "d2f957de-83e8-45a6-a384-458603727fc7",
+        "defectAreaCode": "BA",
+        "selectedSourceCode": "1",
+        "selectedCauseCode": "B",
+        "selectedTierCode": "1",
+        "commentToLender": "We found another issue with the loan. This is some more notes to the lender. This finding wasn't found because of a question, rather an adhoc.",
+        "ratingCode": "U",
+        "isAdhoc": true
+    }
+
+]

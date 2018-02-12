@@ -1,0 +1,80 @@
+<div class="defect-container">
+	<div>
+		<div class="no-findings" *ngIf="(!displayedFindings.length && !isVettedOrQC) || (!displayedFindings.length && !displayedUnchangedFindings.length)">No Findings</div>
+        <table class="table defect-wrapup-table" *ngIf="displayedFindings && displayedFindings.length || (isVettedOrQC && displayedUnchangedFindings.length)">
+			<thead>
+			<tr>
+				<th [class.col-md-8]="isVettedOrQC"  [class.col-md-10]="!isVettedOrQC">Findings</th>
+				<th class="center">{{ isVettedOrQC ?'Original Severity' : 'Severity'}}</th>
+				<th class="center" *ngIf="isVettedOrQC">Current Severity</th>
+				<th class="center" *ngIf="isVettedOrQC">{{(isVetted) ? 'Description Changed' : ''}}</th>
+				<th class="center"></th>
+			</tr>
+			</thead>
+			<tbody>
+
+			<!-- Displays normal findings or vetted findings with changes -->
+			<tr *ngFor="let finding of displayedFindings;let i = index" class="list-inline" [class.group-end]="isVettedOrQC && i===(displayedFindings.length -1)">
+				<td  class="col-md-8">
+					<span class="icon-alert unacceptable-icon" *ngIf="finding.ratingCode==='U' && !finding.removed" ><span>!</span></span>
+					<span class="icon-alert deficient-icon" *ngIf="finding.ratingCode!=='U' && !finding.removed" ><span>!</span></span>
+					<span class="icon-alert glyphicon glyphicon-minus-sign" *ngIf="isVettedOrQC && finding.removed"> </span>
+					<div><span class="list-name">Source:</span> {{finding.selectedSource.description}}</div>
+					<div><span class="list-name">Cause:</span> {{finding.selectedCause.description}}</div>
+				</td>
+				<!-- original severity -->
+				<td class="center tier" [class.unnaceptable]="finding.ratingCode==='U'" [class.tier-strike-through]="finding.removed" [class.tier-italic]="finding.added"> {{(finding.added) ? 'ADDED' : 'Tier ' + (finding.originalSelectedTierCode || finding.selectedTierCode)}}</td>
+
+				<!-- current severity -->
+				<td  *ngIf="isVettedOrQC" class="tier-gray center tier" [class.unnaceptable]="finding.ratingCode==='U'" [class.tier-italic]="finding.removed">{{(finding.removed) ? 'REMOVED' : 'Tier ' + finding.selectedTierCode}}</td>
+
+				<!-- description changed -->
+				<td  *ngIf="isVettedOrQC" class="tier-description-changed center" ><span *ngIf="finding.descriptionChanged && isVetted" class="glyphicon glyphicon-ok"></span></td>
+
+				<td class="center">
+					<button [disabled]="(isVettedOrQC && finding.changed && finding.removed)" class="btn btn-default btn-primary details" (click)="navigateToFinding(finding)">Details</button>
+				</td>
+			</tr>
+
+			<!-- Displays the unchanged vetted or qc findings-->
+			<tr class="divider" *ngIf="isVettedOrQC && displayedUnchangedFindings.length && displayedFindings.length">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+
+			<template ngFor let-unchangedFinding [ngForOf]="displayedUnchangedFindings">
+				<tr class="tr-unchanged list-inline">
+					<td  class="col-md-8">
+						<span class="icon-alert unacceptable-icon" *ngIf="unchangedFinding.ratingCode==='U' && !unchangedFindingremoved" ><span>!</span></span>
+						<span class="icon-alert deficient-icon" *ngIf="unchangedFinding.ratingCode!=='U' && !unchangedFinding.removed" ><span>!</span></span>
+						<div><span class="list-name">Source:</span> {{unchangedFinding.selectedSource.description}}</div>
+						<div><span class="list-name">Cause:</span> {{unchangedFinding.selectedCause.description}}</div>
+					</td>
+					<!-- original severity -->
+					<td class="center tier" [class.unnaceptable]="unchangedFinding.ratingCode==='U'"> {{'Tier ' + unchangedFinding.selectedTierCode}}</td>
+
+					<!-- current severity -->
+					<td class="tier-gray center tier" [class.unnaceptable]="unchangedFinding.ratingCode==='U'">{{'Tier ' + unchangedFinding.selectedTierCode}}</td>
+
+					<!-- description changed -->
+					<td class="tier-description-changed center"></td>
+
+					<td class="center"></td>
+				</tr>
+			</template>
+			</tbody>
+
+		</table>
+ </div>
+
+	<button class="btn btn-primary main-content complete" (click)="cancelDefect()">Return To QA Tree</button>
+	<ul class="list-group rating-container">
+		<li *ngIf="isVettedOrQC" class="list-group-item rating previous"><span>{{(isQC) ? 'ORIGINAL RATING:' : 'PREVIOUS RATING:'}} <span [class.unnaceptable]="originalReviewLevelRating?.ratingCode==='U'" class="rating-text">{{originalReviewLevelRating?.description}}</span></span></li>
+		<li   class="list-group-item rating">{{ (isVettedOrQC) ? 'UPDATED RATING:' : 'RATING:'}} <span [class.unnaceptable]="currentReviewLevelRating?.ratingCode==='U'" class="rating-text">{{currentReviewLevelRating?.description}}</span></li>
+	</ul>
+
+	<div style="clear:both"></div>
+</div>

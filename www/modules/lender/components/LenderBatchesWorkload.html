@@ -1,0 +1,71 @@
+<div class="workload-container panel-group">
+    <div class="batch-title">BATCH {{activeBatch?.batchNumber}} - {{activeBatch?.lenderName}} ({{activeBatch?.lenderId}})</div>
+    <div class="batch-header">
+        <ul class="list-inline">
+            <li class="list-inline-item sub-header">Selection Reason</li>
+            <li class="list-inline-item sub-header">Date Requested</li>
+            <li class="list-inline-item sub-header">Date Due</li>
+            <li *ngIf="activeBatch && activeBatch.operationalDocumentsDueDate && allowUploadDocuments" class="list-inline-item sub-header">Operational Documents Due</li>
+        </ul>
+        <ul class="list-inline batch-info">
+            <li class="list-inline-item">{{activeBatch?.selectionReason}}</li>
+            <li class="list-inline-item">{{getLenderDate(activeBatch, 'dateRequested') | datePipe}}</li>
+            <li class="list-inline-item">{{getLenderDate(activeBatch, 'dateDue') | datePipe}}</li>
+            <li *ngIf="activeBatch && activeBatch.operationalDocumentsDueDate && allowUploadDocuments" class="list-inline-item">{{activeBatch.operationalDocumentsDueDate | datePipe}}</li>
+        </ul>
+    </div>
+    <hr>
+    <div class="operational-review">
+        <sortable-defect-table *ngIf="operationalReview.length != 0" [title]="'OPERATIONAL REVIEW'" [items]="operationalReview" [categories]="categories"
+                               [reviewRoute]="'../review'" [findings]="operationalDefectAreas" [icon]="'edit'" [noTeamMember]="'true'" [lender]="'true'"
+                               [batchLevel]="activeBatch?.reviewLevel"  [batchStatus]="activeBatch?.status">
+        </sortable-defect-table>
+        <sortable-defect-table *ngIf="operationalReview.length===0" [title]="'OPERATIONAL REVIEW'" [items]="placeHolderReview" [categories]="categories"
+                               [reviewRoute]="''" [findings]="''" [placeHolder]="'true'" [noTeamMember]="'true'">
+        </sortable-defect-table>
+        <div *ngIf="showDocuments" class="batch-documents">
+            <div class="batch-title">OPERATIONAL REVIEW RESPONSE DOCUMENTS</div>
+            <div *ngIf="activeBatch">
+                <div *ngIf="activeBatch.requestOperationalDocuments && activeBatch.operationalReview && !operationalDocsUploaded">Operational document request expired ({{activeBatch.operationalDocumentsDueDate | datePipe}})</div>
+                <div *ngFor="let document of activeBatch?.operationalDocuments">
+                    <hr>
+                    <div class="document-area">
+                        <span class="glyphicon glyphicon-file pull-left" [class.success]="document.documentId" aria-label="Document" title="Document"></span>
+                        <a [href]="getResponseDocumentURL(document)" target="_blank"> {{document.fileName}}
+                            <span (click)="removeFile($event, document)" *ngIf="document.documentId && allowUploadDocuments" class="glyphicon glyphicon-trash done"></span>
+                            <span *ngIf="!document.documentId" class="glyphicon glyphicon-trash activity"></span>
+
+                            <span *ngIf="!document.documentId" class="glyphicon glyphicon-refresh activity pull-right" aria-label="loading" title="Loading"></span>
+                            <span *ngIf="document.documentId" class="glyphicon glyphicon-ok-sign pull-right success" aria-label="Document Uploaded" title="Document Uploaded"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="allowUploadDocuments" class="operational-file-upload-section">
+                <!-- NOTE: the file upload component has to be defined outside of the form-->
+                <lrs-file-upload class="file-upload" [dataURL]="postURL" (onFileAdd)="onFileUploadAdd($event)" (onFileDone)="onFileUploadDone($event)"
+                                 (onFileFail)="onFileUploadFail($event)">
+
+                    <!-- Provide a custom upload button and label with an optional icon here -->
+                    <button type="button" class="btn btn-primary clear-btn lrs-file-input-button">
+                        <!--<i class="glyphicon glyphicon-plus"></i>-->
+                        <span class="lrs-file-input-button-label">Choose File...</span>
+                    </button>
+
+                </lrs-file-upload>
+            </div>
+            <div *ngIf="allowUploadDocuments">
+                <button (click)="submitBatchDocuments()" type="button" class="btn btn-primary clear-btn submit-documents" [disabled]="!operationalDocsUploaded">Submit Documents</button>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="sortable-table">
+        <sortable-defect-table [title]="loanReviewTableHeader" [items]="activeReviews" [categories]="categories"
+                               [reviewRoute]="'../review'" [icon]="'harvey'" [findings]="defectAreas" [noTeamMember]="'true'" [lender]="'true'"
+                               [batchLevel]="activeBatch?.reviewLevel" [batchStatus]="activeBatch?.status">
+        </sortable-defect-table>
+    </div>
+    <button *ngIf="isPendingLenderResponse" class="btn btn-default submit-batch" (click)="submitBatchForReview()" [ngClass]="{'disabled': !canLenderSubmit()}">Submit Batch</button>
+    <div style="clear:both"></div>
+</div>

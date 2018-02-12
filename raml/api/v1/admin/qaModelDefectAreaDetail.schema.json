@@ -1,0 +1,88 @@
+{
+    "id": "http://LRS/QaModelDefectAreaDetail",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": [
+        "code"
+    ],
+    "properties": {
+        "defectAreaId": {
+            "description": "The id of the defect area.",
+            "type": "string"
+        },
+        "code": {
+            "description": "The unique code for the defect area.",
+            "type": "string"
+        },
+        "description": {
+            "description": "The description for the defect area.",
+            "type": "string"
+        },
+        "order": {
+            "description": "The order of the defect area.",
+            "type": "number"
+        },
+        "reviewTypeCodes": {
+            "description": "The codes of review types assigned to the defect area for the qa model.",
+            "type": "array",
+            "items": { "type": "string" }
+        },
+        "loanAttributes": {
+            "description": "Collection of qa model defect area loan attributes.",
+            "type": "array",
+            "items": {
+                "$ref": "QaModelLoanAttribute"
+            }
+        },
+        "remediationTypes": {
+            "description": "Collection of remediation types.  Note that the 'code' field of this DTO will not be used for this collection.",
+            "type": "array",
+            "items": {
+                "$ref": "OrderedItem"
+            }
+        },
+        "sources": {
+            "description": "Collection of qa model defect area sources.",
+            "type": "array",
+            "items": {
+                "$ref": "OrderedItem"
+            }
+        },
+        "causes": {
+            "description": "Collection of qa model defect area causes.",
+            "type": "array",
+            "items": {
+                "$ref": "OrderedItem"
+            }
+        },
+        "thresholds": {
+            "description": "Collection of qa model defect area thresholds.",
+            "type": "array",
+            "items": {
+                "$ref": "QaModelDefectAreaThreshold"
+            }
+        },
+        "severities": {
+            "description": "Collection of qa model defect area severities.",
+            "type": "array",
+            "items": {
+                "$ref": "QaModelDefectAreaSeverity"
+            }
+        },
+        "questions": {
+            "description": "Collection of qa model questions for the defect area.",
+            "type": "array",
+            "items": {
+                "$ref": "ReviewQuestion"
+            }
+        },
+        "enablePreQualifyQuestion": {
+            "description": "Whether the pre-qualification question is enabled.",
+            "type": "boolean"
+        },
+        "preQualifyQuestion": {
+            "description": "The qa model pre qualify question.",
+            "$ref": "QaModelDefectAreaPreQualify"
+        }
+    }
+}

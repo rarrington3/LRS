@@ -1,0 +1,262 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2683_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table RVW_LVL_RFRRL drop constraint RVW_LVL_RFRRL_FK_REVIEW_LEVEL_ID
+			alter table RVW_LVL_RFRRL drop constraint RVW_LVL_RFRRL_FK_RVW_LVL_RFRRL_SOURCE_REF_ID
+			alter table RVW_LVL_RFRRL drop constraint RVW_LVL_RFRRL_FK_RVW_LVL_RFRRL_TYPE_REF_ID		
+			alter table RVW_LVL_RFRRL drop constraint RVW_LVL_RFRRL_PK					
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2673_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			sp_rename 'RVW_LVL_RFRRL.RVW_LVL_RFRRL_ID', 'REVIEW_REFERRAL_ID', 'Column'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2673_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table RVW_LVL_RFRRL_SOURCE_REF drop constraint RVW_LVL_RFRRL_SOURCE_REF_PK		
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2673_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			sp_rename 'RVW_LVL_RFRRL_SOURCE_REF.RVW_LVL_RFRRL_SOURCE_REF_ID', 'REVIEW_REFERRAL_SOURCE_REF_ID', 'Column'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2673_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			sp_rename 'RVW_LVL_RFRRL_SOURCE_REF', 'REVIEW_REFERRAL_SOURCE_REF'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2673_0006" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table REVIEW_REFERRAL_SOURCE_REF add constraint REVIEW_REFERRAL_SOURCE_REF_PK primary key (REVIEW_REFERRAL_SOURCE_REF_ID)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2673_0007" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table RVW_LVL_RFRRL_TYPE_REF drop constraint RVW_LVL_RFRRL_TYPE_REF_PK		
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2673_0008" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			sp_rename 'RVW_LVL_RFRRL_TYPE_REF.RVW_LVL_RFRRL_TYPE_REF_ID', 'REVIEW_REFERRAL_TYPE_REF_ID', 'Column'
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2673_0009" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			sp_rename 'RVW_LVL_RFRRL_TYPE_REF', 'REVIEW_REFERRAL_TYPE_REF'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2673_0010" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table REVIEW_REFERRAL_TYPE_REF add constraint REVIEW_REFERRAL_TYPE_REF_PK primary key (REVIEW_REFERRAL_TYPE_REF_ID)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2673_0011" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			sp_rename 'RVW_LVL_RFRRL.REVIEW_LEVEL_ID', 'REVIEW_ID', 'Column'		
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2673_0013" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			sp_rename 'RVW_LVL_RFRRL.RVW_LVL_RFRRL_TYPE_REF_ID', 'REVIEW_REFERRAL_TYPE_REF_ID', 'Column'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2673_0014" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			sp_rename 'RVW_LVL_RFRRL.RVW_LVL_RFRRL_SOURCE_REF_ID', 'REVIEW_REFERRAL_SOURCE_REF_ID', 'Column'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2673_0015" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			sp_rename 'RVW_LVL_RFRRL.RFRRL_TMSTMP', 'REFERRAL_TMSTMP', 'Column'
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2673_0016" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			sp_rename 'RVW_LVL_RFRRL', 'REVIEW_REFERRAL'
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2673_0017" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table REVIEW_REFERRAL add constraint REVIEW_REFERRAL_PK primary key (REVIEW_REFERRAL_ID)
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2673_0018" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table REVIEW_REFERRAL add constraint REVIEW_REFERRAL_FK_REVIEW_REFERRAL_SOURCE_REF_ID foreign key (REVIEW_REFERRAL_SOURCE_REF_ID) references REVIEW_REFERRAL_SOURCE_REF(REVIEW_REFERRAL_SOURCE_REF_ID)
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2673_0019" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table REVIEW_REFERRAL add constraint REVIEW_REFERRAL_FK_REVIEW_REFERRAL_TYPE_REF_ID foreign key (REVIEW_REFERRAL_TYPE_REF_ID) references REVIEW_REFERRAL_TYPE_REF(REVIEW_REFERRAL_TYPE_REF_ID)
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2673_0020" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table REVIEW_REFERRAL add constraint REVIEW_REFERRAL_FK_REVIEW_ID foreign key (REVIEW_ID) references REVIEW(REVIEW_ID)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2673_0021" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table REVIEW_REFERRAL add constraint REVIEW_REFERRAL_UQ unique (REVIEW_ID,REVIEW_REFERRAL_TYPE_REF_ID)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2673_0022" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table RVW_LVL_RFRRL_AUD drop constraint RVWLVLREFERRALTORVWLEVEL
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2673_0023" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table RVW_LVL_RFRRL_AUD drop constraint RVW_LVL_RFRRL_AUD_PK
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2673_0024" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table RVW_LVL_RFRRL_AUD drop column REFERRAL_TYPE			
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2673_0025" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			sp_rename 'RVW_LVL_RFRRL_AUD.REVIEW_LVL_ID', 'REVIEW_REFERRAL_ID', 'Column'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2673_0026" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			sp_rename 'RVW_LVL_RFRRL_AUD', 'REVIEW_REFERRAL_AUD'
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2673_0027" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table REVIEW_REFERRAL_AUD add constraint REVIEW_REFERRAL_AUD_FK_REVIEW_REFERRAL_ID foreign key (REVIEW_REFERRAL_ID) references REVIEW_REFERRAL(REVIEW_REFERRAL_ID)
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2673_0028" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table REVIEW_REFERRAL_AUD add constraint REVIEW_REFERRAL_AUD_PK primary key (REVIEW_REFERRAL_ID, AUDIT_TMSTMP)
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2673_0029" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			sp_rename 'REVIEW_REFERRAL_AUD.RFRRL_TMSTMP', 'REFERRAL_TMSTMP', 'Column'
+		]]>
+        </sql>
+    </changeSet>			
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2673_0030" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_ENTITY(ENTITY_NAME, DB_VIEW_OR_TABLE, CREATED_BY,CREATED_TS) values('Review Referral', 'REVIEW_REFERRAL','C20225',getdate())		
+			
+			update DICT_METADATA_FIELD
+			set ENTITY_NAME = 'Review Referral'
+			where ENTITY_NAME = 'Review Level Referral'
+
+			delete from DICT_METADATA_ENTITY
+			where ENTITY_NAME = 'Review Level Referral'
+
+			update DICT_METADATA_FIELD
+			set DB_COLUMN = 'REVIEW_ID',
+				FIELD_NAME = 'Review ID',
+				DISPLAY_NAME = 'Review ID'
+			where ENTITY_NAME = 'Review Referral'
+			  and FIELD_NAME = 'Review Level ID'
+
+			update DICT_METADATA_FIELD
+			set DB_COLUMN = 'REVIEW_REFERRAL_TYPE_REF_ID',
+				FIELD_NAME = 'Review Referral Type Ref ID',
+				DISPLAY_NAME = 'Review Referral Type Ref ID'
+			where ENTITY_NAME = 'Review Referral'
+			  and FIELD_NAME = 'Referral Type'
+
+			update DICT_METADATA_FIELD
+			set DB_COLUMN = 'REFERRAL_TMSTMP'
+			where ENTITY_NAME = 'Review Referral'
+			  and FIELD_NAME = 'Referral Timestamp'
+
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Review Referral','Review Referral Source Reference ID','REVIEW_REFERRAL_SOURCE_REF_ID','C20225',getdate(),'Review Referral Source Reference ID')
+
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Review Referral','Review Referral ID','REVIEW_REFERRAL_ID','C20225',getdate(),'Review Referral ID')			
+
+			delete from DICT_METADATA_FIELD
+			where ENTITY_NAME = 'Review Level Referral Source Reference'
+			
+			delete from DICT_METADATA_FIELD
+			where ENTITY_NAME = 'Review Level Referral Type Reference'			
+
+			delete from DICT_METADATA_ENTITY
+			where ENTITY_NAME = 'Review Level Referral Source Reference'
+			
+			delete from DICT_METADATA_ENTITY
+			where ENTITY_NAME = 'Review Level Referral Type Reference'						
+			
+			insert into DICT_METADATA_ENTITY(ENTITY_NAME, DB_VIEW_OR_TABLE, CREATED_BY,CREATED_TS) values('Review Referral Source Reference', 'RVW_REFERRL_SOURCE_REF','C20225',getdate())		
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Review Referral Source Reference','Review Referral Source Reference ID','REVIEW_REFERRAL_SOURCE_REF_ID','C20225',getdate(),'Review Referral Source Reference ID')
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Review Referral Source Reference','Code','CODE','C20225',getdate(),'Code')
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Review Referral Source Reference','Description Cause ID','DESCRIPTION','C20225',getdate(),'Description')			
+			insert into DICT_METADATA_ENTITY(ENTITY_NAME, DB_VIEW_OR_TABLE, CREATED_BY,CREATED_TS) values('Review Referral Type Reference', 'RVW_REFERRL_TYPE_REF','C20225',getdate())		
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Review Referral Type Reference','Review Referral Type Reference ID','REVIEW_REFERRAL_TYPE_REF_ID','C20225',getdate(),'Review Referral Type Reference ID')
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Review Referral Type Reference','Code','CODE','C20225',getdate(),'Code')
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Review Referral Type Reference','Description Cause ID','DESCRIPTION','C20225',getdate(),'Description')							
+		]]>
+        </sql>
+    </changeSet>				
+</databaseChangeLog>    
+
+

@@ -1,0 +1,79 @@
+<div class="the-sub-header">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="row" *ngIf="currentReview">
+				<div class="col-xs-10 review-info" tabindex="0">
+					<div class="loan-overview back" [routerLink]="['../../../activeReviews']">
+						<span class="glyphicon glyphicon-chevron-left medium" aria-hidden="true"></span>
+						<div class="back-to-list">
+							<p>Back</p>
+							<p>to List</p>
+						</div>
+					</div>
+					<h3 *ngIf="!this.isOperationalReview" class="sub-title" aria-label="Loan Number">
+						<p>{{currentReview?.caseNumber}}</p>
+					</h3>
+					<div *ngIf="!this.isOperationalReview" class="loan-overview">
+						<p class="description">Borrower Name</p>
+						<p class="h5">{{currentReview?.borrowerName}}</p>
+					</div>
+					<div *ngIf="!this.isOperationalReview" class="loan-overview">
+						<p class="description">Property Address</p>
+						<p class="h5">{{currentReview?.propertyStreetAddress}}</p>
+					</div>
+					<div class="loan-overview">
+						<p class="description">Request Date</p>
+						<p class="h5">{{currentReview?.currentReviewLevel?.dateRequestSentToLender | datePipe}}</p>
+					</div>
+					<div class="loan-overview">
+						<p class="description">Response Due</p>
+						<p class="h5">{{currentReview?.currentReviewLevel?.dateResponseDueFromLender | datePipe}}</p>
+					</div>
+					<div class="loan-overview">
+						<p class="description">Review Level</p>
+						<p class="h5">{{currentReview?.currentReviewLevel?.type}}</p>
+					</div>
+				</div>
+				<div class="loan-overview pull-right" *ngIf="showIndemnification">
+					<button class="btn btn-default btn-primary pull-right" (click)="onIndemnificationClick()">Indemnification</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="review">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12">
+				<table class="lrs-layout-table">
+					<td class="lrs-layout-table-cell left-side-bar">
+						<div class="lrs-content-panel">
+							<ul class="nav nav-tabs" role="tablist">
+								<li role="presentation" class="active">
+									<button data-target="#review-data-sidebar" class="btn btn-link tab-btn" aria-controls="review-data-sidebar" role="tab" data-toggle="tab">Review Data</button>
+								</li>
+								<li role="presentation">
+									<button data-target="#findings-sidebar" class="btn btn-link tab-btn" aria-controls="findings-sidebar" role="tab" data-toggle="tab">Findings</button>
+								</li>
+							</ul>
+							<div class="tab-content">
+								<div role="tabpanel" class="tab-pane active fade in" id="review-data-sidebar">
+									<lender-review-data-sidebar></lender-review-data-sidebar>
+								</div>
+								<div role="tabpanel" class="tab-pane fade" id="findings-sidebar">
+									<lender-findings-sidebar></lender-findings-sidebar>
+								</div>
+							</div>
+						</div>
+					</td>
+					<td class="lrs-layout-table-cell content-area">
+						<div class="lrs-content-panel">
+							<router-outlet></router-outlet>
+						</div>
+					</td>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

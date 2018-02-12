@@ -1,0 +1,71 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2238_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table RVW_LVL_FINDING add DEFECT_ID uniqueidentifier NULL
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2238_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table RVW_LVL_FINDING add DEFECT_SOURCE_ID uniqueidentifier NULL
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2238_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table RVW_LVL_FINDING add DEFECT_CAUSE_ID uniqueidentifier NULL
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2238_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table RVW_LVL_FINDING add DEFECT_SEVERITY_ID uniqueidentifier NULL
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2238_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table RVW_LVL_FINDING add constraint RVW_LVL_FINDING_FK_DEFECT_ID foreign key(DEFECT_ID) references DEFECT(DEFECT_ID)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2238_0006" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table RVW_LVL_FINDING add constraint RVW_LVL_FINDING_FK_DEFECT_SOURCE_ID foreign key(DEFECT_SOURCE_ID) references DEFECT_SOURCE(DEFECT_SOURCE_ID)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2238_0007" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table RVW_LVL_FINDING add constraint RVW_LVL_FINDING_FK_DEFECT_CAUSE_ID foreign key(DEFECT_CAUSE_ID) references DEFECT_CAUSE(DEFECT_CAUSE_ID)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2238_0008" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table RVW_LVL_FINDING add constraint RVW_LVL_FINDING_FK_DEFECT_SEVERITY_ID foreign key(DEFECT_SEVERITY_ID) references DEFECT_SEVERITY(DEFECT_SEVERITY_ID)
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_2238_0009" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Review Level Finding','Defect ID','DEFECT_ID','C20225',getdate(),'Defect ID')
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Review Level Finding','Defect Source id','DEFECT_SOURCE_ID','C20225',getdate(),'Defect Source id')
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Review Level Finding','Defect Cause ID','DEFECT_CAUSE_ID','C20225',getdate(),'Defect Cause ID')			
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Review Level Finding','Defect Severity ID','DEFECT_SEVERITY_ID','C20225',getdate(),'Defect Severity ID')						
+			insert into LOAN_SELECTION_STATUS_REF(LOAN_SELECTION_STATUS_ID,CODE,DESCRIPTION) values('D47E692C-5D07-40FF-9A65-4C40E15295F6','PENDING_REQUEST','Pending Request')
+
+		]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>    

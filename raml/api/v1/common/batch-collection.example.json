@@ -1,0 +1,967 @@
+[
+    {
+        "batchId": "28F3DE4A-77D7-48D5-B6CB-B6681BE128B1",
+        "batchNumber": "754982",
+        "lenderId": "75271",
+        "lenderName": "First Commercial Bank",
+        "reviewType": "Underwriting",
+        "reviewLevel": "Initial",
+        "iteration": "1",
+        "creationDate": "2017-04-15",
+        "status": "Under Batch Review",
+        "selectionReason": "Lender Monitoring",
+        "batchOwner": "5CC07A7B-D2F8-4C4C-A355-87F1DADA2AFA",
+        "batchTeamMembers": [
+            "74DABF03-3621-4E6D-8E25-20CA85868F26",
+            "EFE7B467-385B-4548-833D-1BBF06FB6B80",
+            "B84514F2-45EA-423C-BFBE-DFE9ED4F62F6"
+        ],
+        "lenderDateReceived": "2016-08-01",
+        "lenderDateDue": "2016-08-15",
+        "operationalReview": {
+            "reviewId": "F7F2B500-A743-40DA-9400-F490F751B21E",
+            "loanId": "14e54129-ec1e-4cc6-b423-19f7ad1e70f1",
+            "caseNumber": "351-6092905",
+            "selectionReason": "Random",
+            "reviewType": "Operational",
+            "scope": "L",
+            "propertyStreetAddress": "3797 Haylee Camp",
+            "borrowerName": "Farrell, Pablo",
+            "lenderId": "75271",
+            "lenderName": "First Commercial Bank",
+            "currentReviewLevel": {
+                "reviewLevelId": "1722D21A-D282-4655-912D-C360185F2A05",
+                "type": "Initial",
+                "status": "Assigned",
+                "reviewerDateAssigned": "2016-07-20",
+                "reviewerDateDue": "2016-07-28",
+                "reviewLocationName": "Denver QAD",
+                "reviewerName": "Adams, Gregory",
+                "lastLenderName": "Harkey, Evita"
+            },
+            "status": "Under Review",
+            "defectAreaIds": [
+                "D7916C67-5501-4443-BF53-62BB482721C0",
+                "8D35ABE2-F8A2-4001-AE31-9B7BA9ECD1D7",
+                "8DFC254A-1BFE-41B2-963D-0A97C159BEE4",
+                "5A1575D1-CCD1-44C0-882C-1E28BE4B0EC6",
+                "BBF689FC-A866-42D6-96E7-DBE6F30B232D",
+                "DC8D705A-1808-4315-A120-DD6CD8904DCC",
+                "3FB1E297-557C-40B6-9D6C-417742316B76"
+            ],
+            "qaTrees": [
+                {
+                    "qaTreeId": "BEE76DDC-5907-435C-80D1-45F894F7BD3C",
+                    "defectAreaCode": "BA"
+                },
+                {
+                    "qaTreeId": "4C5DE892-30D6-4E67-8A5F-506E883D2329",
+                    "defectAreaCode": "LA"
+                },
+                {
+                    "qaTreeId": "208189ED-165E-4D94-B494-C3FD37EF38AD",
+                    "defectAreaCode": "ME"
+                }
+            ]
+        },
+        "reviews": [
+            {
+                "reviewId": "F7F2B500-A743-40DA-9400-F490F751B21E",
+                "loanId": "14e54129-ec1e-4cc6-b423-19f7ad1e70f1",
+                "caseNumber": "351-6092905",
+                "selectionReason": "Random",
+                "reviewType": "Servicing",
+                "scope": "L",
+                "propertyStreetAddress": "3797 Haylee Camp",
+                "borrowerName": "Farrell, Pablo",
+                "lenderId": "75271",
+                "lenderName": "First Commercial Bank",
+                "currentReviewLevel": {
+                    "reviewLevelId": "1722D21A-D282-4655-912D-C360185F2A05",
+                    "type": "Initial",
+                    "status": "Assigned",
+                    "reviewerDateAssigned": "2016-07-20",
+                    "reviewerDateDue": "2016-07-28",
+                    "reviewLocationName": "Denver QAD",
+                    "reviewerName": "Adams, Gregory",
+                    "lastLenderName": "Harkey, Evita"
+                },
+                "status": "Under Review",
+                "defectAreaIds": [
+                    "D7916C67-5501-4443-BF53-62BB482721C0",
+                    "8D35ABE2-F8A2-4001-AE31-9B7BA9ECD1D7",
+                    "8DFC254A-1BFE-41B2-963D-0A97C159BEE4",
+                    "5A1575D1-CCD1-44C0-882C-1E28BE4B0EC6",
+                    "BBF689FC-A866-42D6-96E7-DBE6F30B232D",
+                    "DC8D705A-1808-4315-A120-DD6CD8904DCC",
+                    "3FB1E297-557C-40B6-9D6C-417742316B76"
+                ],
+                "qaTrees": [
+                    {
+                        "qaTreeId": "BEE76DDC-5907-435C-80D1-45F894F7BD3C",
+                        "defectAreaCode": "BA"
+                    },
+                    {
+                        "qaTreeId": "4C5DE892-30D6-4E67-8A5F-506E883D2329",
+                        "defectAreaCode": "LA"
+                    },
+                    {
+                        "qaTreeId": "208189ED-165E-4D94-B494-C3FD37EF38AD",
+                        "defectAreaCode": "ME"
+                    },
+                    {
+                        "qaTreeId": "129BEB6E-B752-41C7-B195-4C7F8B222D9A",
+                        "defectAreaCode": "LP"
+                    },
+                    {
+                        "qaTreeId": "D94D8A17-6EAB-4A91-BB39-347F28507747",
+                        "defectAreaCode": "PE"
+                    },
+                    {
+                        "qaTreeId": "3F7570B8-C924-4A51-B8C0-DF5F481E67D1",
+                        "defectAreaCode": "PA"
+                    },
+                    {
+                        "qaTreeId": "1AA38E66-75F2-4678-8AC3-52A005CF5744",
+                        "defectAreaCode": "BE"
+                    }
+                ]
+            },
+            {
+                "reviewId": "408B1151-B47B-4B29-9CD2-089637426136",
+                "loanId": "0bf71d60-a78f-49cf-a95d-81175973bd3e",
+                "caseNumber": "351-6092906",
+                "selectionReason": "Lender Monitoring",
+                "reviewType": "Underwriting",
+                "scope": "F",
+                "propertyStreetAddress": "5869 Cassin Points",
+                "borrowerName": "Zemlak, Keyshawn",
+                "lenderId": "75271",
+                "lenderName": "First Commercial Bank",
+                "currentReviewLevel": {
+                    "reviewLevelId": "39a1e945-88e7-42d8-9b6a-4d53262c2d0e",
+                    "type": "Mitigation 1",
+                    "status": "Assigned",
+                    "reviewerDateAssigned": "2016-07-20",
+                    "reviewerDateDue": "2016-09-13",
+                    "reviewLocationName": "Denver QAD",
+                    "dateRequestSentToLender": "2016-07-20",
+                    "dateResponseDueFromLender": "2016-07-28",
+                    "reviewerName": "Smith, Jane",
+                    "lastLenderName": "Crowder, Odis"
+                },
+                "completedReviewLevels": [
+                    {
+                        "reviewLevelId": "28ce36cb-a8f1-481c-bb93-609fd0c553d6",
+                        "type": "Initial",
+                        "status": "Completed",
+                        "ratingCode": "U",
+                        "reviewerDateAssigned": "2016-07-18",
+                        "reviewerDateDue": "2016-09-15",
+                        "reviewLocationName": "Denver QAD",
+                        "reviewerName": "Smith, Jane",
+                        "lastLenderName": "Lender, James"
+                    }
+                ],
+                "status": "Under Review",
+                "batchId": "52b5257e-05fc-4a99-b090-0cf729f41ceb",
+                "batchReferenceId": "123456",
+                "defectAreaIds": [
+                    "D7916C67-5501-4443-BF53-62BB482721C0BA",
+                    "8D35ABE2-F8A2-4001-AE31-9B7BA9ECD1D7",
+                    "8DFC254A-1BFE-41B2-963D-0A97C159BEE4"
+                ],
+                "qaTrees": [
+                    {
+                        "qaTreeId": "BEE76DDC-5907-435C-80D1-45F894F7BD3C",
+                        "defectAreaCode": "BA"
+                    },
+                    {
+                        "qaTreeId": "4C5DE892-30D6-4E67-8A5F-506E883D2329",
+                        "defectAreaCode": "LA"
+                    },
+                    {
+                        "qaTreeId": "208189ED-165E-4D94-B494-C3FD37EF38AD",
+                        "defectAreaCode": "ME"
+                    }
+                ]
+            },
+            {
+                "reviewId": "AF1114A0-576A-4D1E-8808-64BBBAD57DDE",
+                "loanId": "0bf71d60-a78f-49cf-a95d-81175973bd3e",
+                "caseNumber": "351-6092907",
+                "selectionReason": "Random",
+                "reviewType": "Servicing",
+                "scope": "F",
+                "propertyStreetAddress": "100 Main St",
+                "borrowerName": "Zemlak, Keyshawn",
+                "lenderId": "75271",
+                "lenderName": "First Commercial Bank",
+                "currentReviewLevel": {
+                    "reviewLevelId": "39a1e945-88e7-42d8-9b6a-4d53262c2d0e",
+                    "type": "Mitigation 1",
+                    "status": "Assigned",
+                    "reviewerDateAssigned": "2016-07-20",
+                    "reviewerDateDue": "2016-09-07",
+                    "reviewLocationName": "Denver QAD",
+                    "dateRequestSentToLender": "2016-07-20",
+                    "dateResponseDueFromLender": "2016-07-28",
+                    "reviewerName": "Lee, Ken"
+                },
+                "completedReviewLevels": [
+                    {
+                        "reviewLevelId": "28ce36cb-a8f1-481c-bb93-609fd0c553d6",
+                        "type": "Initial",
+                        "status": "Completed",
+                        "ratingCode": "U",
+                        "reviewerDateAssigned": "2016-07-15",
+                        "reviewerDateDue": "2016-07-29",
+                        "reviewLocationName": "Denver QAD",
+                        "reviewerName": "Armen, Roger",
+                        "lastLenderName": "Banker, Amy"
+                    }
+                ],
+                "status": "Under Review",
+                "batchId": "52b5257e-05fc-4a99-b090-0cf729f41ceb",
+                "batchReferenceId": "123456",
+                "defectAreaIds": [
+                    "D7916C67-5501-4443-BF53-62BB482721C0",
+                    "8D35ABE2-F8A2-4001-AE31-9B7BA9ECD1D7",
+                    "8DFC254A-1BFE-41B2-963D-0A97C159BEE4"
+                ],
+                "qaTrees": [
+                    {
+                        "qaTreeId": "BEE76DDC-5907-435C-80D1-45F894F7BD3C",
+                        "defectAreaCode": "BA"
+                    },
+                    {
+                        "qaTreeId": "4C5DE892-30D6-4E67-8A5F-506E883D2329",
+                        "defectAreaCode": "LA"
+                    },
+                    {
+                        "qaTreeId": "208189ED-165E-4D94-B494-C3FD37EF38AD",
+                        "defectAreaCode": "ME"
+                    }
+                ]
+            }
+        ],
+        "outstandingBinderRequests": [
+            "048-8827643",
+            "431-6323931",
+            "422-3606324"
+        ]
+    },
+    {
+        "batchId": "28F3DE4A-77D7-48D5-B6CB-B6681BE128B3",
+        "batchNumber": "754982",
+        "lenderId": "75271",
+        "lenderName": "First Commercial Bank",
+        "reviewType": "Underwriting",
+        "reviewLevel": "Initial",
+        "iteration": "1",
+        "creationDate": "2017-04-15",
+        "status": "Under Batch Review",
+        "selectionReason": "Lender Monitoring",
+        "batchOwner": "5CC07A7B-D2F8-4C4C-A355-87F1DADA2AFA",
+        "batchTeamMembers": [
+            "74DABF03-3621-4E6D-8E25-20CA85868F26",
+            "EFE7B467-385B-4548-833D-1BBF06FB6B80",
+            "B84514F2-45EA-423C-BFBE-DFE9ED4F62F6"
+        ],
+        "lenderDateReceived": "2016-08-01",
+        "lenderDateDue": "2016-08-15",
+        "operationalReview": {
+            "reviewId": "F7F2B500-A743-40DA-9400-F490F751B21E",
+            "loanId": "14e54129-ec1e-4cc6-b423-19f7ad1e70f1",
+            "caseNumber": "351-6092905",
+            "selectionReason": "Random",
+            "reviewType": "Operational",
+            "scope": "L",
+            "propertyStreetAddress": "3797 Haylee Camp",
+            "borrowerName": "Farrell, Pablo",
+            "lenderId": "75271",
+            "lenderName": "First Commercial Bank",
+            "currentReviewLevel": {
+                "reviewLevelId": "1722D21A-D282-4655-912D-C360185F2A05",
+                "type": "Initial",
+                "status": "Assigned",
+                "reviewerDateAssigned": "2016-07-20",
+                "reviewerDateDue": "2016-07-28",
+                "reviewLocationName": "Denver QAD",
+                "reviewerName": "Adams, Gregory",
+                "lastLenderName": "Harkey, Evita"
+            },
+            "status": "Under Review",
+            "defectAreaIds": [
+                "D7916C67-5501-4443-BF53-62BB482721C0",
+                "8D35ABE2-F8A2-4001-AE31-9B7BA9ECD1D7",
+                "8DFC254A-1BFE-41B2-963D-0A97C159BEE4",
+                "5A1575D1-CCD1-44C0-882C-1E28BE4B0EC6",
+                "BBF689FC-A866-42D6-96E7-DBE6F30B232D",
+                "DC8D705A-1808-4315-A120-DD6CD8904DCC",
+                "3FB1E297-557C-40B6-9D6C-417742316B76"
+            ],
+            "qaTrees": [
+                {
+                    "qaTreeId": "BEE76DDC-5907-435C-80D1-45F894F7BD3C",
+                    "defectAreaCode": "BA"
+                },
+                {
+                    "qaTreeId": "4C5DE892-30D6-4E67-8A5F-506E883D2329",
+                    "defectAreaCode": "LA"
+                },
+                {
+                    "qaTreeId": "208189ED-165E-4D94-B494-C3FD37EF38AD",
+                    "defectAreaCode": "ME"
+                }
+            ]
+        },
+        "reviews": [
+            {
+                "reviewId": "F7F2B500-A743-40DA-9400-F490F751B21E",
+                "loanId": "14e54129-ec1e-4cc6-b423-19f7ad1e70f1",
+                "caseNumber": "351-6092905",
+                "selectionReason": "Random",
+                "reviewType": "Servicing",
+                "scope": "L",
+                "propertyStreetAddress": "3797 Haylee Camp",
+                "borrowerName": "Farrell, Pablo",
+                "lenderId": "75271",
+                "lenderName": "First Commercial Bank",
+                "currentReviewLevel": {
+                    "reviewLevelId": "1722D21A-D282-4655-912D-C360185F2A05",
+                    "type": "Initial",
+                    "status": "Assigned",
+                    "reviewerDateAssigned": "2016-07-20",
+                    "reviewerDateDue": "2016-07-28",
+                    "reviewLocationName": "Denver QAD",
+                    "reviewerName": "Adams, Gregory",
+                    "lastLenderName": "Harkey, Evita"
+                },
+                "status": "Under Review",
+                "defectAreaIds": [
+                    "D7916C67-5501-4443-BF53-62BB482721C0",
+                    "8D35ABE2-F8A2-4001-AE31-9B7BA9ECD1D7",
+                    "8DFC254A-1BFE-41B2-963D-0A97C159BEE4",
+                    "5A1575D1-CCD1-44C0-882C-1E28BE4B0EC6",
+                    "BBF689FC-A866-42D6-96E7-DBE6F30B232D",
+                    "DC8D705A-1808-4315-A120-DD6CD8904DCC",
+                    "3FB1E297-557C-40B6-9D6C-417742316B76"
+                ],
+                "qaTrees": [
+                    {
+                        "qaTreeId": "BEE76DDC-5907-435C-80D1-45F894F7BD3C",
+                        "defectAreaCode": "BA"
+                    },
+                    {
+                        "qaTreeId": "4C5DE892-30D6-4E67-8A5F-506E883D2329",
+                        "defectAreaCode": "LA"
+                    },
+                    {
+                        "qaTreeId": "208189ED-165E-4D94-B494-C3FD37EF38AD",
+                        "defectAreaCode": "ME"
+                    },
+                    {
+                        "qaTreeId": "129BEB6E-B752-41C7-B195-4C7F8B222D9A",
+                        "defectAreaCode": "LP"
+                    },
+                    {
+                        "qaTreeId": "D94D8A17-6EAB-4A91-BB39-347F28507747",
+                        "defectAreaCode": "PE"
+                    },
+                    {
+                        "qaTreeId": "3F7570B8-C924-4A51-B8C0-DF5F481E67D1",
+                        "defectAreaCode": "PA"
+                    },
+                    {
+                        "qaTreeId": "1AA38E66-75F2-4678-8AC3-52A005CF5744",
+                        "defectAreaCode": "BE"
+                    }
+                ]
+            },
+            {
+                "reviewId": "408B1151-B47B-4B29-9CD2-089637426136",
+                "loanId": "0bf71d60-a78f-49cf-a95d-81175973bd3e",
+                "caseNumber": "351-6092906",
+                "selectionReason": "Lender Monitoring",
+                "reviewType": "Underwriting",
+                "scope": "F",
+                "propertyStreetAddress": "5869 Cassin Points",
+                "borrowerName": "Zemlak, Keyshawn",
+                "lenderId": "75271",
+                "lenderName": "First Commercial Bank",
+                "currentReviewLevel": {
+                    "reviewLevelId": "39a1e945-88e7-42d8-9b6a-4d53262c2d0e",
+                    "type": "Mitigation 1",
+                    "status": "Assigned",
+                    "reviewerDateAssigned": "2016-07-20",
+                    "reviewerDateDue": "2016-09-13",
+                    "reviewLocationName": "Denver QAD",
+                    "dateRequestSentToLender": "2016-07-20",
+                    "dateResponseDueFromLender": "2016-07-28",
+                    "reviewerName": "Smith, Jane",
+                    "lastLenderName": "Crowder, Odis"
+                },
+                "completedReviewLevels": [
+                    {
+                        "reviewLevelId": "28ce36cb-a8f1-481c-bb93-609fd0c553d6",
+                        "type": "Initial",
+                        "status": "Completed",
+                        "ratingCode": "U",
+                        "reviewerDateAssigned": "2016-07-18",
+                        "reviewerDateDue": "2016-09-15",
+                        "reviewLocationName": "Denver QAD",
+                        "reviewerName": "Smith, Jane",
+                        "lastLenderName": "Lender, James"
+                    }
+                ],
+                "status": "Under Review",
+                "batchId": "52b5257e-05fc-4a99-b090-0cf729f41ceb",
+                "batchReferenceId": "123456",
+                "defectAreaIds": [
+                    "D7916C67-5501-4443-BF53-62BB482721C0BA",
+                    "8D35ABE2-F8A2-4001-AE31-9B7BA9ECD1D7",
+                    "8DFC254A-1BFE-41B2-963D-0A97C159BEE4"
+                ],
+                "qaTrees": [
+                    {
+                        "qaTreeId": "BEE76DDC-5907-435C-80D1-45F894F7BD3C",
+                        "defectAreaCode": "BA"
+                    },
+                    {
+                        "qaTreeId": "4C5DE892-30D6-4E67-8A5F-506E883D2329",
+                        "defectAreaCode": "LA"
+                    },
+                    {
+                        "qaTreeId": "208189ED-165E-4D94-B494-C3FD37EF38AD",
+                        "defectAreaCode": "ME"
+                    }
+                ]
+            },
+            {
+                "reviewId": "AF1114A0-576A-4D1E-8808-64BBBAD57DDE",
+                "loanId": "0bf71d60-a78f-49cf-a95d-81175973bd3e",
+                "caseNumber": "351-6092907",
+                "selectionReason": "Random",
+                "reviewType": "Servicing",
+                "scope": "F",
+                "propertyStreetAddress": "100 Main St",
+                "borrowerName": "Zemlak, Keyshawn",
+                "lenderId": "75271",
+                "lenderName": "First Commercial Bank",
+                "currentReviewLevel": {
+                    "reviewLevelId": "39a1e945-88e7-42d8-9b6a-4d53262c2d0e",
+                    "type": "Mitigation 1",
+                    "status": "Assigned",
+                    "reviewerDateAssigned": "2016-07-20",
+                    "reviewerDateDue": "2016-09-07",
+                    "reviewLocationName": "Denver QAD",
+                    "dateRequestSentToLender": "2016-07-20",
+                    "dateResponseDueFromLender": "2016-07-28",
+                    "reviewerName": "Lee, Ken"
+                },
+                "completedReviewLevels": [
+                    {
+                        "reviewLevelId": "28ce36cb-a8f1-481c-bb93-609fd0c553d6",
+                        "type": "Initial",
+                        "status": "Completed",
+                        "ratingCode": "U",
+                        "reviewerDateAssigned": "2016-07-15",
+                        "reviewerDateDue": "2016-07-29",
+                        "reviewLocationName": "Denver QAD",
+                        "reviewerName": "Armen, Roger",
+                        "lastLenderName": "Banker, Amy"
+                    }
+                ],
+                "status": "Under Review",
+                "batchId": "52b5257e-05fc-4a99-b090-0cf729f41ceb",
+                "batchReferenceId": "123456",
+                "defectAreaIds": [
+                    "D7916C67-5501-4443-BF53-62BB482721C0",
+                    "8D35ABE2-F8A2-4001-AE31-9B7BA9ECD1D7",
+                    "8DFC254A-1BFE-41B2-963D-0A97C159BEE4"
+                ],
+                "qaTrees": [
+                    {
+                        "qaTreeId": "BEE76DDC-5907-435C-80D1-45F894F7BD3C",
+                        "defectAreaCode": "BA"
+                    },
+                    {
+                        "qaTreeId": "4C5DE892-30D6-4E67-8A5F-506E883D2329",
+                        "defectAreaCode": "LA"
+                    },
+                    {
+                        "qaTreeId": "208189ED-165E-4D94-B494-C3FD37EF38AD",
+                        "defectAreaCode": "ME"
+                    }
+                ]
+            }
+        ],
+        "outstandingBinderRequests": [
+            "011-8262897"
+        ]
+    },
+    {
+        "batchId": "28F3DE4A-77D7-48D5-B6CB-B6681BE128B5",
+        "batchNumber": "754982",
+        "lenderId": "75271",
+        "iteration": "1",
+        "creationDate": "2017-04-15",
+        "status": "Under Batch Review",
+        "lenderName": "First Commercial Bank",
+        "reviewType": "Underwriting",
+        "reviewLevel": "Initial",
+        "selectionReason": "Lender Monitoring",
+        "batchOwner": "5CC07A7B-D2F8-4C4C-A355-87F1DADA2AFA",
+        "batchTeamMembers": [
+            "74DABF03-3621-4E6D-8E25-20CA85868F26",
+            "EFE7B467-385B-4548-833D-1BBF06FB6B80",
+            "B84514F2-45EA-423C-BFBE-DFE9ED4F62F6"
+        ],
+        "lenderDateReceived": "2016-08-01",
+        "lenderDateDue": "2016-08-15",
+        "reviews": [
+            {
+                "reviewId": "F7F2B500-A743-40DA-9400-F490F751B21E",
+                "loanId": "14e54129-ec1e-4cc6-b423-19f7ad1e70f1",
+                "caseNumber": "351-6092905",
+                "selectionReason": "Random",
+                "reviewType": "Operational",
+                "scope": "L",
+                "propertyStreetAddress": "3797 Haylee Camp",
+                "borrowerName": "Farrell, Pablo",
+                "lenderId": "75271",
+                "lenderName": "First Commercial Bank",
+                "currentReviewLevel": {
+                    "reviewLevelId": "1722D21A-D282-4655-912D-C360185F2A05",
+                    "type": "Initial",
+                    "status": "In Progress",
+                    "reviewerDateAssigned": "2016-07-20",
+                    "reviewerDateDue": "2016-07-28",
+                    "reviewLocationName": "Denver QAD",
+                    "reviewerName": "Adams, Gregory",
+                    "lastLenderName": "Harkey, Evita"
+                },
+                "status": "Under Review",
+                "defectAreaIds": [
+                    "D7916C67-5501-4443-BF53-62BB482721C0",
+                    "8D35ABE2-F8A2-4001-AE31-9B7BA9ECD1D7",
+                    "8DFC254A-1BFE-41B2-963D-0A97C159BEE4"
+                ],
+                "qaTrees": [
+                    {
+                        "qaTreeId": "BEE76DDC-5907-435C-80D1-45F894F7BD3C",
+                        "defectAreaCode": "BA"
+                    },
+                    {
+                        "qaTreeId": "4C5DE892-30D6-4E67-8A5F-506E883D2329",
+                        "defectAreaCode": "LA"
+                    },
+                    {
+                        "qaTreeId": "208189ED-165E-4D94-B494-C3FD37EF38AD",
+                        "defectAreaCode": "ME"
+                    }
+                ]
+            },
+            {
+                "reviewId": "408B1151-B47B-4B29-9CD2-089637426136",
+                "loanId": "0bf71d60-a78f-49cf-a95d-81175973bd3e",
+                "caseNumber": "351-6092906",
+                "selectionReason": "Lender Monitoring",
+                "reviewType": "Underwriting",
+                "scope": "F",
+                "propertyStreetAddress": "5869 Cassin Points",
+                "borrowerName": "Zemlak, Keyshawn",
+                "lenderId": "75271",
+                "lenderName": "First Commercial Bank",
+                "currentReviewLevel": {
+                    "reviewLevelId": "39a1e945-88e7-42d8-9b6a-4d53262c2d0e",
+                    "type": "Initial",
+                    "status": "Assigned",
+                    "reviewerDateAssigned": "2016-07-20",
+                    "reviewerDateDue": "2016-09-13",
+                    "reviewLocationName": "Denver QAD",
+                    "dateRequestSentToLender": "2016-07-20",
+                    "dateResponseDueFromLender": "2016-07-28",
+                    "reviewerName": "Smith, Jane",
+                    "lastLenderName": "Crowder, Odis"
+                },
+                "status": "Under Review",
+                "batchId": "52b5257e-05fc-4a99-b090-0cf729f41ceb",
+                "batchReferenceId": "123456",
+                "defectAreaIds": [
+                    "D7916C67-5501-4443-BF53-62BB482721C0",
+                    "8D35ABE2-F8A2-4001-AE31-9B7BA9ECD1D7",
+                    "8DFC254A-1BFE-41B2-963D-0A97C159BEE4"
+                ],
+                "qaTrees": [
+                    {
+                        "qaTreeId": "BEE76DDC-5907-435C-80D1-45F894F7BD3C",
+                        "defectAreaCode": "BA"
+                    },
+                    {
+                        "qaTreeId": "4C5DE892-30D6-4E67-8A5F-506E883D2329",
+                        "defectAreaCode": "LA"
+                    },
+                    {
+                        "qaTreeId": "208189ED-165E-4D94-B494-C3FD37EF38AD",
+                        "defectAreaCode": "ME"
+                    }
+                ]
+            },
+            {
+                "reviewId": "440781FF-C78D-4232-BF70-4C88613087C7",
+                "loanId": "14e54129-ec1e-4cc6-b423-19f7ad1e70f1",
+                "caseNumber": "351-6092911",
+                "selectionReason": "Random",
+                "reviewType": "Underwriting",
+                "scope": "F",
+                "propertyStreetAddress": "3797 Haylee Camp",
+                "borrowerName": "Farrell, Pablo",
+                "lenderId": "75271",
+                "lenderName": "First Commercial Bank",
+                "currentReviewLevel": {
+                    "reviewLevelId": "d2f957de-83e8-45a6-a384-458603727fc7",
+                    "type": "Initial",
+                    "status": "In Progress",
+                    "reviewerDateAssigned": "2016-07-20",
+                    "reviewerDateDue": "2016-08-28",
+                    "reviewLocationName": "Denver QAD",
+                    "reviewerName": "Adams, Mary"
+                },
+                "status": "Under Review",
+                "defectAreaIds": [
+                    "D7916C67-5501-4443-BF53-62BB482721C0",
+                    "8D35ABE2-F8A2-4001-AE31-9B7BA9ECD1D7",
+                    "8DFC254A-1BFE-41B2-963D-0A97C159BEE4"
+                ],
+                "qaTrees": [
+                    {
+                        "qaTreeId": "BEE76DDC-5907-435C-80D1-45F894F7BD3C",
+                        "defectAreaCode": "BA"
+                    },
+                    {
+                        "qaTreeId": "4C5DE892-30D6-4E67-8A5F-506E883D2329",
+                        "defectAreaCode": "LA"
+                    },
+                    {
+                        "qaTreeId": "208189ED-165E-4D94-B494-C3FD37EF38AD",
+                        "defectAreaCode": "ME"
+                    }
+                ]
+            }
+        ],
+        "operationalReview": {
+            "reviewId": "F7F2B500-A743-40DA-9400-F490F751B21E",
+            "loanId": "14e54129-ec1e-4cc6-b423-19f7ad1e70f1",
+            "caseNumber": "351-6092905",
+            "selectionReason": "Random",
+            "reviewType": "Operational",
+            "scope": "L",
+            "propertyStreetAddress": "3797 Haylee Camp",
+            "borrowerName": "Farrell, Pablo",
+            "lenderId": "75271",
+            "lenderName": "First Commercial Bank",
+            "currentReviewLevel": {
+                "reviewLevelId": "1722D21A-D282-4655-912D-C360185F2A05",
+                "type": "Initial",
+                "status": "Assigned",
+                "reviewerDateAssigned": "2016-07-20",
+                "reviewerDateDue": "2016-07-28",
+                "reviewLocationName": "Denver QAD",
+                "reviewerName": "Adams, Gregory",
+                "lastLenderName": "Harkey, Evita"
+            },
+            "status": "Under Review",
+            "defectAreaIds": [
+                "D7916C67-5501-4443-BF53-62BB482721C0",
+                "8D35ABE2-F8A2-4001-AE31-9B7BA9ECD1D7",
+                "8DFC254A-1BFE-41B2-963D-0A97C159BEE4",
+                "5A1575D1-CCD1-44C0-882C-1E28BE4B0EC6",
+                "BBF689FC-A866-42D6-96E7-DBE6F30B232D",
+                "DC8D705A-1808-4315-A120-DD6CD8904DCC",
+                "3FB1E297-557C-40B6-9D6C-417742316B76"
+            ],
+            "qaTrees": [
+                {
+                    "qaTreeId": "BEE76DDC-5907-435C-80D1-45F894F7BD3C",
+                    "defectAreaCode": "BA"
+                },
+                {
+                    "qaTreeId": "4C5DE892-30D6-4E67-8A5F-506E883D2329",
+                    "defectAreaCode": "LA"
+                },
+                {
+                    "qaTreeId": "208189ED-165E-4D94-B494-C3FD37EF38AD",
+                    "defectAreaCode": "ME"
+                }
+            ]
+        }
+    },
+    {
+        "batchId": "28F3DE4A-77D7-48D5-B6CB-B6681BE128B9",
+        "batchNumber": "754982",
+        "lenderId": "75271",
+        "lenderName": "First Commercial Bank",
+        "reviewType": "Underwriting",
+        "iteration": "1",
+        "creationDate": "2017-04-15",
+        "status": "Under Batch Review",
+        "reviewLevel": "Initial",
+        "selectionReason": "Lender Monitoring",
+        "batchOwner": "5CC07A7B-D2F8-4C4C-A355-87F1DADA2AFA",
+        "batchTeamMembers": [
+            "74DABF03-3621-4E6D-8E25-20CA85868F26",
+            "EFE7B467-385B-4548-833D-1BBF06FB6B80",
+            "B84514F2-45EA-423C-BFBE-DFE9ED4F62F6"
+        ],
+        "lenderDateReceived": "2016-08-01",
+        "lenderDateDue": "2016-08-15",
+        "operationalReview": {
+            "reviewId": "F7F2B500-A743-40DA-9400-F490F751B21E",
+            "loanId": "14e54129-ec1e-4cc6-b423-19f7ad1e70f1",
+            "caseNumber": "351-6092905",
+            "selectionReason": "Random",
+            "reviewType": "Operational",
+            "scope": "L",
+            "propertyStreetAddress": "3797 Haylee Camp",
+            "borrowerName": "Farrell, Pablo",
+            "lenderId": "75271",
+            "lenderName": "First Commercial Bank",
+            "currentReviewLevel": {
+                "reviewLevelId": "1722D21A-D282-4655-912D-C360185F2A05",
+                "type": "Initial",
+                "status": "Assigned",
+                "reviewerDateAssigned": "2016-07-20",
+                "reviewerDateDue": "2016-07-28",
+                "reviewLocationName": "Denver QAD",
+                "reviewerName": "Adams, Gregory",
+                "lastLenderName": "Harkey, Evita"
+            },
+            "status": "Under Review",
+            "defectAreaIds": [
+                "D7916C67-5501-4443-BF53-62BB482721C0",
+                "8D35ABE2-F8A2-4001-AE31-9B7BA9ECD1D7",
+                "8DFC254A-1BFE-41B2-963D-0A97C159BEE4",
+                "5A1575D1-CCD1-44C0-882C-1E28BE4B0EC6",
+                "BBF689FC-A866-42D6-96E7-DBE6F30B232D",
+                "DC8D705A-1808-4315-A120-DD6CD8904DCC",
+                "3FB1E297-557C-40B6-9D6C-417742316B76"
+            ],
+            "qaTrees": [
+                {
+                    "qaTreeId": "BEE76DDC-5907-435C-80D1-45F894F7BD3C",
+                    "defectAreaCode": "BA"
+                },
+                {
+                    "qaTreeId": "4C5DE892-30D6-4E67-8A5F-506E883D2329",
+                    "defectAreaCode": "LA"
+                },
+                {
+                    "qaTreeId": "208189ED-165E-4D94-B494-C3FD37EF38AD",
+                    "defectAreaCode": "ME"
+                },
+                {
+                    "qaTreeId": "129BEB6E-B752-41C7-B195-4C7F8B222D9A",
+                    "defectAreaCode": "LP"
+                },
+                {
+                    "qaTreeId": "D94D8A17-6EAB-4A91-BB39-347F28507747",
+                    "defectAreaCode": "PE"
+                },
+                {
+                    "qaTreeId": "3F7570B8-C924-4A51-B8C0-DF5F481E67D1",
+                    "defectAreaCode": "PA"
+                },
+                {
+                    "qaTreeId": "1AA38E66-75F2-4678-8AC3-52A005CF5744",
+                    "defectAreaCode": "BE"
+                }
+            ]
+        },
+        "reviews": [
+            {
+                "reviewId": "F7F2B500-A743-40DA-9400-F490F751B21E",
+                "loanId": "14e54129-ec1e-4cc6-b423-19f7ad1e70f1",
+                "caseNumber": "351-6092905",
+                "selectionReason": "Random",
+                "reviewType": "Servicing",
+                "scope": "L",
+                "propertyStreetAddress": "3797 Haylee Camp",
+                "borrowerName": "Farrell, Pablo",
+                "lenderId": "75271",
+                "lenderName": "First Commercial Bank",
+                "currentReviewLevel": {
+                    "reviewLevelId": "1722D21A-D282-4655-912D-C360185F2A05",
+                    "type": "Initial",
+                    "status": "Assigned",
+                    "reviewerDateAssigned": "2016-07-20",
+                    "reviewerDateDue": "2016-07-28",
+                    "reviewLocationName": "Denver QAD",
+                    "reviewerName": "Adams, Gregory",
+                    "lastLenderName": "Harkey, Evita"
+                },
+                "status": "Under Review",
+                "defectAreaIds": [
+                    "D7916C67-5501-4443-BF53-62BB482721C0",
+                    "8D35ABE2-F8A2-4001-AE31-9B7BA9ECD1D7",
+                    "8DFC254A-1BFE-41B2-963D-0A97C159BEE4",
+                    "5A1575D1-CCD1-44C0-882C-1E28BE4B0EC6",
+                    "BBF689FC-A866-42D6-96E7-DBE6F30B232D",
+                    "DC8D705A-1808-4315-A120-DD6CD8904DCC",
+                    "3FB1E297-557C-40B6-9D6C-417742316B76"
+                ],
+                "qaTrees": [
+                    {
+                        "qaTreeId": "BEE76DDC-5907-435C-80D1-45F894F7BD3C",
+                        "defectAreaCode": "BA"
+                    },
+                    {
+                        "qaTreeId": "4C5DE892-30D6-4E67-8A5F-506E883D2329",
+                        "defectAreaCode": "LA"
+                    },
+                    {
+                        "qaTreeId": "208189ED-165E-4D94-B494-C3FD37EF38AD",
+                        "defectAreaCode": "ME"
+                    },
+                    {
+                        "qaTreeId": "129BEB6E-B752-41C7-B195-4C7F8B222D9A",
+                        "defectAreaCode": "LP"
+                    },
+                    {
+                        "qaTreeId": "D94D8A17-6EAB-4A91-BB39-347F28507747",
+                        "defectAreaCode": "PE"
+                    },
+                    {
+                        "qaTreeId": "3F7570B8-C924-4A51-B8C0-DF5F481E67D1",
+                        "defectAreaCode": "PA"
+                    },
+                    {
+                        "qaTreeId": "1AA38E66-75F2-4678-8AC3-52A005CF5744",
+                        "defectAreaCode": "BE"
+                    }
+                ]
+            },
+            {
+                "reviewId": "408B1151-B47B-4B29-9CD2-089637426136",
+                "loanId": "0bf71d60-a78f-49cf-a95d-81175973bd3e",
+                "caseNumber": "351-6092906",
+                "selectionReason": "Lender Monitoring",
+                "reviewType": "Underwriting",
+                "scope": "F",
+                "propertyStreetAddress": "5869 Cassin Points",
+                "borrowerName": "Zemlak, Keyshawn",
+                "lenderId": "75271",
+                "lenderName": "First Commercial Bank",
+                "currentReviewLevel": {
+                    "reviewLevelId": "39a1e945-88e7-42d8-9b6a-4d53262c2d0e",
+                    "type": "Mitigation 1",
+                    "status": "Assigned",
+                    "reviewerDateAssigned": "2016-07-20",
+                    "reviewerDateDue": "2016-09-13",
+                    "reviewLocationName": "Denver QAD",
+                    "dateRequestSentToLender": "2016-07-20",
+                    "dateResponseDueFromLender": "2016-07-28",
+                    "reviewerName": "Smith, Jane",
+                    "lastLenderName": "Crowder, Odis"
+                },
+                "completedReviewLevels": [
+                    {
+                        "reviewLevelId": "28ce36cb-a8f1-481c-bb93-609fd0c553d6",
+                        "type": "Initial",
+                        "status": "Completed",
+                        "ratingCode": "U",
+                        "reviewerDateAssigned": "2016-07-18",
+                        "reviewerDateDue": "2016-09-15",
+                        "reviewLocationName": "Denver QAD",
+                        "reviewerName": "Smith, Jane",
+                        "lastLenderName": "Lender, James"
+                    }
+                ],
+                "status": "Under Review",
+                "batchId": "52b5257e-05fc-4a99-b090-0cf729f41ceb",
+                "batchReferenceId": "123456",
+                "defectAreaIds": [
+                    "D7916C67-5501-4443-BF53-62BB482721C0BA",
+                    "8D35ABE2-F8A2-4001-AE31-9B7BA9ECD1D7",
+                    "8DFC254A-1BFE-41B2-963D-0A97C159BEE4"
+                ],
+                "qaTrees": [
+                    {
+                        "qaTreeId": "BEE76DDC-5907-435C-80D1-45F894F7BD3C",
+                        "defectAreaCode": "BA"
+                    },
+                    {
+                        "qaTreeId": "4C5DE892-30D6-4E67-8A5F-506E883D2329",
+                        "defectAreaCode": "LA"
+                    },
+                    {
+                        "qaTreeId": "208189ED-165E-4D94-B494-C3FD37EF38AD",
+                        "defectAreaCode": "ME"
+                    }
+                ]
+            },
+            {
+                "reviewId": "AF1114A0-576A-4D1E-8808-64BBBAD57DDE",
+                "loanId": "0bf71d60-a78f-49cf-a95d-81175973bd3e",
+                "caseNumber": "351-6092907",
+                "selectionReason": "Random",
+                "reviewType": "Servicing",
+                "scope": "F",
+                "propertyStreetAddress": "100 Main St",
+                "borrowerName": "Zemlak, Keyshawn",
+                "lenderId": "75271",
+                "lenderName": "First Commercial Bank",
+                "currentReviewLevel": {
+                    "reviewLevelId": "39a1e945-88e7-42d8-9b6a-4d53262c2d0e",
+                    "type": "Mitigation 1",
+                    "status": "Assigned",
+                    "reviewerDateAssigned": "2016-07-20",
+                    "reviewerDateDue": "2016-09-07",
+                    "reviewLocationName": "Denver QAD",
+                    "dateRequestSentToLender": "2016-07-20",
+                    "dateResponseDueFromLender": "2016-07-28",
+                    "reviewerName": "Lee, Ken"
+                },
+                "completedReviewLevels": [
+                    {
+                        "reviewLevelId": "28ce36cb-a8f1-481c-bb93-609fd0c553d6",
+                        "type": "Initial",
+                        "status": "Completed",
+                        "ratingCode": "U",
+                        "reviewerDateAssigned": "2016-07-15",
+                        "reviewerDateDue": "2016-07-29",
+                        "reviewLocationName": "Denver QAD",
+                        "reviewerName": "Armen, Roger",
+                        "lastLenderName": "Banker, Amy"
+                    }
+                ],
+                "status": "Under Review",
+                "batchId": "52b5257e-05fc-4a99-b090-0cf729f41ceb",
+                "batchReferenceId": "123456",
+                "defectAreaIds": [
+                    "D7916C67-5501-4443-BF53-62BB482721C0",
+                    "8D35ABE2-F8A2-4001-AE31-9B7BA9ECD1D7",
+                    "8DFC254A-1BFE-41B2-963D-0A97C159BEE4"
+                ],
+                "qaTrees": [
+                    {
+                        "qaTreeId": "BEE76DDC-5907-435C-80D1-45F894F7BD3C",
+                        "defectAreaCode": "BA"
+                    },
+                    {
+                        "qaTreeId": "4C5DE892-30D6-4E67-8A5F-506E883D2329",
+                        "defectAreaCode": "LA"
+                    },
+                    {
+                        "qaTreeId": "208189ED-165E-4D94-B494-C3FD37EF38AD",
+                        "defectAreaCode": "ME"
+                    }
+                ]
+            }
+        ],
+        "outstandingBinderRequests": [
+            "011-8267728"
+        ]
+    }
+]

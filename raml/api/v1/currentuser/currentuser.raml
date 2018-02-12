@@ -1,0 +1,8 @@
+#https://github.com/raml-org/raml-spec/blob/master/raml-0.8.md
+displayName: currentuser
+#see traits.raml for more traits: secured, paged...
+type:
+  #see types.raml for more options: collection, collection-readonly, collection-writeonly...
+  member-readonly:
+    member-example: !include "currentuser-example.json"
+    member-schema: CurrentUser

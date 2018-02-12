@@ -1,0 +1,24 @@
+{
+    "personnelId": "current-user-id-asdf-1234",
+    "hudId": "HLRS02",
+    "authorities": [
+        "ROLE_REVIEWER",
+        "ROLE_PROGRAM_ASSISTANT",
+        "ROLE_REVIEW_LOCATION_ADMIN",
+        "ROLE_HQ_ADMIN",
+        "ROLE_INDEMNIFIER",
+        "ROLE_RESPONSE_COORDINATOR",
+        "ROLE_LRS_READ_ONLY"
+    ],
+    "firstName": "Francis",
+    "lastName": "Crozier",
+    "lender": {
+        "lenderId": "20063",
+        "name": "First Security National Bank"
+    },
+    "locationId": "C2844126-716F-449A-B152-C891948888FA",
+    "selectionReasonSkillCodes": ["TEST_CASE", "LENDER_MONITORING"],
+    "reviewTypeSkillCodes": ["C"],
+    "productTypeSkillCodes": [ "H"],
+    "reviewLevelSkillCodes": ["ESCL", "FRCE", "INIT", "HQES", "INDM", "MITG"]
+}

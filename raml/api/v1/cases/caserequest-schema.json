@@ -1,0 +1,25 @@
+{
+    "id": "http://LRS/CaseRequest",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": ["caseNumbers", "reviewType"],
+    "additionalProperties": false,
+    "properties": {
+        "reviewType": {
+            "description": "The ID of the type of review being performed.",
+            "type": "string"
+        },
+        "selectionReason": {
+            "description": "The ID of the reason these cases are being requested.",
+            "type": "string"
+        },
+        "caseNumbers": {
+            "description": "A collection of case numbers to retrieve.",
+            "type": "array",
+            "items": {
+                "description": "Case numbers",
+                "type": "string"
+            }
+        }
+    }
+}

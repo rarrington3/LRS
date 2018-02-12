@@ -1,0 +1,10 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="TEST"  author="jordanchavez@kpmg.com" id="HUDLRS_1989_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+INSERT INTO DICT_METADATA_FIELD(ENTITY_NAME, DB_COLUMN, FIELD_NAME, DISPLAY_NAME, DESCRIPTION, CREATED_BY, UPDATED_BY, CREATED_TS, UPDATED_TS) SELECT E.ENTITY_NAME, 'MODEL_VER_NUM', 'MODEL_VER_NUM', 'MODEL_VER_NUM', 'MODEL_VER_NUM', 'jchav', 'jchav', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP FROM DICT_METADATA_ENTITY E WHERE (E.DB_VIEW_OR_TABLE = 'MODEL_SCORE')
+		]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>

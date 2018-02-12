@@ -1,0 +1,181 @@
+<div class="panel panel-default lrs-panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Q&A Models</h3>
+    </div>
+    <div class="panel-body">
+        <div *ngIf="qaModelsLoading" class="lrs-loading">
+                <span class="glyphicon glyphicon-refresh"
+                      aria-label="loading" title="Loading">
+                </span>
+        </div>
+        <div *ngIf="!qaModelsLoading && !qaModels.length" class="lrs-no-results">
+            <span class="small" aria-label="no results">No results found</span>
+        </div>
+        <table *ngIf="!qaModelsLoading && qaModels.length"
+               class="table table-bordered outer-bordered header-less-bordered qa-model-table">
+            <thead>
+            <tr>
+                <th class="qa-model-status-col" scope="col">
+                    <a href="javascript:void(0);" aria-label="Status"
+                       (click)="sort('status')"></a>
+                </th>
+                <th class="qa-model-version-col" scope="col">
+                    <a href="javascript:void(0);" aria-label="Version"
+                       (click)="sort('version')">Version</a>
+                </th>
+                <th class="qa-model-description-col" scope="col">
+                    <a href="javascript:void(0);" aria-label="Description"
+                       (click)="sort('description')">Description</a>
+                </th>
+                <th class="qa-model-active-col" scope="col">
+                    <a href="javascript:void(0);" aria-label="Active Reviews"
+                       (click)="sort('activeReviews')">Active Reviews</a>
+                </th>
+                <th class="qa-model-completed-col" scope="col">
+                    <a href="javascript:void(0);" aria-label="Completed Reviews"
+                       (click)="sort('completedReviews')">Completed Reviews</a>
+                </th>
+                <th class="qa-model-modified-col" scope="col">
+                    <a href="javascript:void(0);" aria-label="Last Modified Date"
+                       (click)="sort('modifiedDate')">Last Modified Date</a>
+                </th>
+                <th class="qa-model-activated-col" scope="col">
+                    <a href="javascript:void(0);" aria-label="Activation Date"
+                       (click)="sort('activatedDate')">Activation Date</a>
+                </th>
+                <th class="qa-model-modified-by-col" scope="col">
+                    <a href="javascript:void(0);" aria-label="Last Modified By"
+                       (click)="sort('modifiedBy')">Last Modified By</a>
+                </th>
+                <th class="qa-model-action-col" scope="col">
+                </th>
+                <th class="qa-model-action-col" scope="col">
+                </th>
+                <th class="qa-model-action-col" scope="col">
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let qaModel of qaModels">
+                <td class="qa-model-status-col" scope="row">
+                    <span class="glyphicon glyphicon-lock"
+                          [class.glyphicon-check]="qaModel.statusCode === qaModelStatusCode.ACTIVE"
+                          [class.glyphicon-cog]="qaModel.statusCode === qaModelStatusCode.DRAFT"
+                          [class.glyphicon-lock]="qaModel.statusCode === qaModelStatusCode.ARCHIVED"
+                          [class.text-success]="qaModel.statusCode === qaModelStatusCode.ACTIVE"
+                          [attr.aria-label]="qaModel.status"
+                          [title]="qaModel.status">
+                    </span>
+                </td>
+                <td class="qa-model-version-col">
+                    <span aria-label="Version"
+                          [class.text-success]="qaModel.statusCode === qaModelStatusCode.ACTIVE"
+                          [class.strong]="qaModel.statusCode === qaModelStatusCode.ARCHIVED || qaModel.statusCode === qaModelStatusCode.ACTIVE">
+                        {{qaModel.version}}
+                    </span>
+                </td>
+                <td class="qa-model-description-col">
+                    <span aria-label="Description"
+                          [class.text-success]="qaModel.statusCode === qaModelStatusCode.ACTIVE"
+                          [class.strong]="qaModel.statusCode === qaModelStatusCode.ARCHIVED || qaModel.statusCode === qaModelStatusCode.ACTIVE">
+                        {{qaModel.description}}
+                    </span>
+                </td>
+                <td class="qa-model-active-col">
+                    <span aria-label="Active Reviews"
+                          [class.text-success]="qaModel.statusCode === qaModelStatusCode.ACTIVE"
+                          [class.strong]="qaModel.statusCode === qaModelStatusCode.ARCHIVED || qaModel.statusCode === qaModelStatusCode.ACTIVE">
+                        {{qaModel.activeReviews}}
+                    </span>
+                </td>
+                <td class="qa-model-completed-col">
+                    <span aria-label="Completed Reviews"
+                          [class.text-success]="qaModel.statusCode === qaModelStatusCode.ACTIVE"
+                          [class.strong]="qaModel.statusCode === qaModelStatusCode.ARCHIVED || qaModel.statusCode === qaModelStatusCode.ACTIVE">
+                        {{qaModel.completedReviews}}
+                    </span>
+                </td>
+                <td class="qa-model-modified-col">
+                    <span aria-label="Last Modified Date"
+                          [class.text-success]="qaModel.statusCode === qaModelStatusCode.ACTIVE"
+                          [class.strong]="qaModel.statusCode === qaModelStatusCode.ARCHIVED || qaModel.statusCode === qaModelStatusCode.ACTIVE">
+                        {{qaModel.modifiedDate | datePipe}}
+                    </span>
+                </td>
+                <td class="qa-model-activated-col">
+                    <span aria-label="Activation Date"
+                          [class.text-success]="qaModel.statusCode === qaModelStatusCode.ACTIVE"
+                          [class.strong]="qaModel.statusCode === qaModelStatusCode.ARCHIVED || qaModel.statusCode === qaModelStatusCode.ACTIVE">
+                        {{qaModel.activatedDate | datePipe}}
+                    </span>
+                </td>
+                <td class="qa-model-modified-by-col">
+                    <span aria-label="Last Modified By"
+                          [class.text-success]="qaModel.statusCode === qaModelStatusCode.ACTIVE"
+                          [class.strong]="qaModel.statusCode === qaModelStatusCode.ARCHIVED || qaModel.statusCode === qaModelStatusCode.ACTIVE">
+                        {{qaModel.modifiedBy}}
+                    </span>
+                </td>
+                <td class="qa-model-action-col">
+                    <a class="btn btn-primary"
+                       [routerLink]="['../qaModel/', qaModel.qaModelId]"
+                       *ngIf="qaModel.statusCode === qaModelStatusCode.ARCHIVED || qaModel.statusCode === qaModelStatusCode.ACTIVE">
+                        View
+                    </a>
+                    <a class="btn btn-primary"
+                       [routerLink]="['../editQaModel/', qaModel.qaModelId]"
+                       *ngIf="qaModel.statusCode === qaModelStatusCode.DRAFT">
+                        Edit
+                    </a>
+                </td>
+                <td class="qa-model-action-col">
+                    <button type="button"
+                            class="btn btn-primary"
+                            (click)="openDuplicate(qaModel)">
+                        <span aria-label="Duplicate">Duplicate</span>
+                    </button>
+                </td>
+                <td class="qa-model-action-col">
+                    <button type="button"
+                            class="btn btn-secondary"
+                            (click)="remove(qaModel)"
+                            *ngIf="qaModel.statusCode === qaModelStatusCode.DRAFT">
+                        <span aria-label="Delete">Delete</span>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<modal [(isOpen)]="duplicateData.isOpen"
+       confirmText="Save"
+       [closeOnSave]="false"
+       title="Duplicate Model"
+       (confirmChange)="duplicate(duplicateData.qaModel, duplicateData.duplicateQaModel)"
+       (isOpenChange)="!$event ? resetDuplicateData() : null">
+    <form class="modal-inner-body container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <h6 aria-hidden="true">Enter new name for duplicate of qa model.</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label class="control-label"
+                           for="qaModelDuplicateName">
+                        Model Name
+                    </label>
+                    <input id="qaModelDuplicateName"
+                           name="qaModelDuplicateName"
+                           type="text"
+                           class="form-control"
+                           [(ngModel)]="duplicateData.duplicateQaModel.name"
+                           required>
+                </div>
+            </div>
+        </div>
+    </form>
+</modal>

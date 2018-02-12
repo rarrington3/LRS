@@ -1,0 +1,42 @@
+{
+    "id": "http://LRS/Case",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": [
+        "caseNumber"
+    ],
+    "additionalProperties": true,
+    "properties": {
+        "caseNumber": {
+            "description": "A unique HUD identifier for this loan.",
+            "type": "string"
+        },
+        "borrower": {
+            "description": "The name of the person who borrowed this loan.",
+            "type": "string"
+        },
+        "propertyAddress": {
+            "description": "The geographical location of the home that's borrowed for.",
+            "type": "string"
+        },
+        "caseActivity": {
+            "description": "Information regarding  previous reviews, current reviews, or upcomming selection activity for this case.",
+            "type": "array",
+            "items": {
+                "$ref": "CaseActivity"
+            }
+        },
+        "lender": {
+            "description": "Information regarding the lender of this loan.",
+            "$ref": "LiteLender"
+        },
+        "underwritingReviewProhibited": {
+            "description": "A flag to alert us that underwriting reviews cannot be created for this case.",
+            "type": "boolean"
+        },
+        "servicingReviewProhibited": {
+            "description": "A flag to alert us that servicings reviews cannot be created for this case.",
+            "type": "boolean"
+        }
+    }
+}

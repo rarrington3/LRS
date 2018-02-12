@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "getUniverseResult": {
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "string"
+        },
+        "statusMessage": {
+          "type": "string"
+        },
+        "caseDetail": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "srvcr_mrtggee_id_inst": {
+                "type": "string"
+              },
+              "uwrtng_mrtggee_id_inst": {
+                "type": "string"
+              },
+              "erly_clm_ind": {
+                "type": "string"
+              },
+              "loan_type": {
+                "type": "string"
+              },
+              "case_number": {
+                "type": "string"
+              },
+              "erly_pmt_dflt_ind": {
+                "type": "string"
+              },
+              "orgntng_mrtggee_id_inst": {
+                "type": "string"
+              },
+              "endrs_dt": {
+                "type": "integer"
+              },
+              "hldng_mrtggee_inst": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "srvcr_mrtggee_id_inst",
+              "uwrtng_mrtggee_id_inst",
+              "erly_clm_ind",
+              "loan_type",
+              "case_number",
+              "erly_pmt_dflt_ind",
+              "orgntng_mrtggee_id_inst",
+              "endrs_dt",
+              "hldng_mrtggee_inst"
+            ]
+          }
+        }
+      },
+      "required": [
+        "statusCode",
+        "statusMessage",
+        "caseDetail"
+      ]
+    }
+  },
+  "required": [
+    "getUniverseResult"
+  ]
+}

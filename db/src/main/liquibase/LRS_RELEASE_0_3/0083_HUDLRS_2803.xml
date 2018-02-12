@@ -1,0 +1,43 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2803_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			if exists(
+			select *
+			from INFORMATION_SCHEMA.COLUMNS
+			where TABLE_NAME = 'RVW_LVL_FINDING'
+			  and COLUMN_NAME = 'ORIGINAL_REVIEW_LEVEL_ID')
+			begin
+				ALTER TABLE RVW_LVL_FINDING drop CONSTRAINT RVW_LVL_FINDING_FK_ORIGINAL_REVIEW_LEVEL_ID			
+				ALTER TABLE RVW_LVL_FINDING drop column ORIGINAL_REVIEW_LEVEL_ID
+			end
+			  
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2803_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE RVW_LVL_FINDING ADD ORIGINAL_REVIEW_LEVEL_ID UNIQUEIDENTIFIER NULL
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2803_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update RVW_LVL_FINDING
+			set ORIGINAL_REVIEW_LEVEL_ID = REVIEW_LEVEL_ID
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2803_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE RVW_LVL_FINDING alter column ORIGINAL_REVIEW_LEVEL_ID UNIQUEIDENTIFIER NOT NULL
+			ALTER TABLE RVW_LVL_FINDING ADD CONSTRAINT RVW_LVL_FINDING_FK_ORIGINAL_REVIEW_LEVEL_ID FOREIGN KEY(ORIGINAL_REVIEW_LEVEL_ID) REFERENCES REVIEW_LEVEL(REVIEW_LEVEL_ID)
+		]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>    
+

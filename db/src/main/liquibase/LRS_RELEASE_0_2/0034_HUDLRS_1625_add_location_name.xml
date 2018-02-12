@@ -1,0 +1,182 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1625_alter_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE REVIEW_LEVEL drop CONSTRAINT REVIEW_LEVEL_FK_RVW_LOCATION_ID
+			ALTER TABLE LOAN_SELECTION drop CONSTRAINT LOAN_SELECTION_FK_RVW_LOCATION_ID 		
+			ALTER TABLE PERSONNEL drop CONSTRAINT PERSONNEL_FK_REVIEW_LOCATION
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1625_alter_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table SELECT_REQUEST_MANUAL_FHA drop column rvw_location_id
+			alter table LOAN_SELECTION			  drop column rvw_location_id
+			alter table LOAN_SELECTION_PENDING	  drop column rvw_location_id
+			alter table REVIEW_LEVEL			  drop column rvw_location_id
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1625_alter_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table RVW_LOCATION_REASON	 drop constraint RVW_LOCATION_REASON_PK
+
+			alter table RVW_LOCATION_REASON	 drop column rvw_location_id
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1625_alter_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table SELECT_REQUEST_MANUAL_FHA add  RVW_LOCATION_ID uniqueidentifier null
+			alter table LOAN_SELECTION			  add  RVW_LOCATION_ID uniqueidentifier null
+			alter table LOAN_SELECTION_PENDING	  add  RVW_LOCATION_ID uniqueidentifier null
+			alter table REVIEW_LEVEL			  add  RVW_LOCATION_ID uniqueidentifier null
+			alter table RVW_LOCATION_REASON	      add  RVW_LOCATION_ID uniqueidentifier not null
+
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1625_alter_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table RVW_LOCATION_REASON add constraint RVW_LOCATION_REASON_PK primary key nonclustered (RVW_LOCATION_ID,SLCTN_REASON_ID)	
+
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1625_rename_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			EXEC sp_rename 'PERSONNEL.RVW_LOCATION_ID', 'LOCATION_NAME', 'COLUMN' 	
+
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1625_alter_0006" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table PERSONNEL add  RVW_LOCATION_ID uniqueidentifier null
+
+			alter table REVIEW_LOCATION drop constraint REVIEW_LOCATION_PK
+
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1625_rename_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			EXEC sp_rename 'REVIEW_LOCATION.RVW_LOCATION_ID', 'LOCATION_NAME', 'COLUMN'
+
+			alter table REVIEW_LOCATION	      add  RVW_LOCATION_ID uniqueidentifier not null default newid()
+
+			alter table REVIEW_LOCATION add constraint REVIEW_LOCATION_PK primary key nonclustered (RVW_LOCATION_ID)
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1625_delete_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from review_location
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1625_insert_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			INSERT dbo.REVIEW_LOCATION (LOCATION_NAME, CONTACT_NAME, CONTACT_PHONE_NUMBER, MAILING_ADDRESS, MAILING_CITY, MAILING_STATE, MAILING_ZIP, COMMITTED_MONTHLY_CAPACITY, OWNER_PRSNNL_ID, CREATED_BY, UPDATED_BY, CREATED_TS, UPDATED_TS, PHONE_EXTENSION, RVW_LOCATION_ID) VALUES (N'DEN-PUD', N'John Doe', N'303-555-0131', N'3664 Westwood Avenue, Suite PUD', N'Denver', N'Colorado', N'80123', 471, N'6037fdc9-5910-45f2-8059-8f0759b8dc58', N'H00001', N'H00001', CAST(N'2016-08-11T10:42:18.620' AS DateTime), CAST(N'2016-08-11T10:42:18.620' AS DateTime), NULL, N'56f8ff8e-a7ef-40be-b893-4d6fb57ce298')
+			INSERT dbo.REVIEW_LOCATION (LOCATION_NAME, CONTACT_NAME, CONTACT_PHONE_NUMBER, MAILING_ADDRESS, MAILING_CITY, MAILING_STATE, MAILING_ZIP, COMMITTED_MONTHLY_CAPACITY, OWNER_PRSNNL_ID, CREATED_BY, UPDATED_BY, CREATED_TS, UPDATED_TS, PHONE_EXTENSION, RVW_LOCATION_ID) VALUES (N'DEN-QAD', N'Charles Short', N'303-555-2167', N'3664 Westwood Avenue, Suite QAD', N'Denver', N'Colorado', N'80123', 502, N'a882841b-9afa-430a-94a6-b498b94447ef', N'H00001', N'H00001', CAST(N'2016-08-11T10:42:18.633' AS DateTime), CAST(N'2016-08-11T10:42:18.633' AS DateTime), NULL, N'79745834-f8f3-41e6-8e53-bde2353df177')
+			INSERT dbo.REVIEW_LOCATION (LOCATION_NAME, CONTACT_NAME, CONTACT_PHONE_NUMBER, MAILING_ADDRESS, MAILING_CITY, MAILING_STATE, MAILING_ZIP, COMMITTED_MONTHLY_CAPACITY, OWNER_PRSNNL_ID, CREATED_BY, UPDATED_BY, CREATED_TS, UPDATED_TS, PHONE_EXTENSION, RVW_LOCATION_ID) VALUES (N'ATL-PUD', N'Jeffrey Zane', N'404-263-0148', N'1625 Red Bull Lane, Suite PUD', N'Atlanta', N'Georgia', N'30301', 490, N'efe7b467-385b-4548-833d-1bbf06fb6b80', N'H00001', N'H00001', CAST(N'2016-08-11T10:42:18.633' AS DateTime), CAST(N'2016-08-11T10:42:18.633' AS DateTime), NULL, N'5896d396-8d64-4b45-82be-677561d7bf07')
+			INSERT dbo.REVIEW_LOCATION (LOCATION_NAME, CONTACT_NAME, CONTACT_PHONE_NUMBER, MAILING_ADDRESS, MAILING_CITY, MAILING_STATE, MAILING_ZIP, COMMITTED_MONTHLY_CAPACITY, OWNER_PRSNNL_ID, CREATED_BY, UPDATED_BY, CREATED_TS, UPDATED_TS, PHONE_EXTENSION, RVW_LOCATION_ID) VALUES (N'ATL-QAD', N'Evan Markham', N'404-983-4156', N'1625 Red Bull Lane, Suite QAD', N'Atlanta', N'Georgia', N'30301', 476, N'b03a568e-5557-496a-8591-6295b8422baf', N'H00001', N'H00001', CAST(N'2016-08-11T10:42:18.633' AS DateTime), CAST(N'2016-08-11T10:42:18.633' AS DateTime), NULL, N'bbf1b50e-7908-499e-af01-c828a1aa41fe')
+			INSERT dbo.REVIEW_LOCATION (LOCATION_NAME, CONTACT_NAME, CONTACT_PHONE_NUMBER, MAILING_ADDRESS, MAILING_CITY, MAILING_STATE, MAILING_ZIP, COMMITTED_MONTHLY_CAPACITY, OWNER_PRSNNL_ID, CREATED_BY, UPDATED_BY, CREATED_TS, UPDATED_TS, PHONE_EXTENSION, RVW_LOCATION_ID) VALUES (N'SNA-PUD', N'Jamie Russell', N'949-546-7012', N'2660 Robinson Lane, Suite PUD', N'Santa Ana', N'California', N'92701', 505, N'cc6bc19e-1b1a-43cf-9ff0-fa58e3ddca69', N'H00001', N'H00001', CAST(N'2016-08-11T10:44:03.173' AS DateTime), CAST(N'2016-08-11T10:44:03.173' AS DateTime), NULL, N'3354605d-7bcc-4de4-82fa-cf0ee44383df')
+			INSERT dbo.REVIEW_LOCATION (LOCATION_NAME, CONTACT_NAME, CONTACT_PHONE_NUMBER, MAILING_ADDRESS, MAILING_CITY, MAILING_STATE, MAILING_ZIP, COMMITTED_MONTHLY_CAPACITY, OWNER_PRSNNL_ID, CREATED_BY, UPDATED_BY, CREATED_TS, UPDATED_TS, PHONE_EXTENSION, RVW_LOCATION_ID) VALUES (N'SNA-QAD', N'Phyllis Lynch', N'714-967-8131', N'2660 Robinson Lane, Suite QAD', N'Santa Ana', N'California', N'92701', 548, N'614228b7-338e-40dd-97a0-f9c8934b311f', N'H00001', N'H00001', CAST(N'2016-08-11T10:44:03.177' AS DateTime), CAST(N'2016-08-11T10:44:03.177' AS DateTime), NULL, N'e94c30f3-9ca6-4309-be32-d836e641ac35')
+			INSERT dbo.REVIEW_LOCATION (LOCATION_NAME, CONTACT_NAME, CONTACT_PHONE_NUMBER, MAILING_ADDRESS, MAILING_CITY, MAILING_STATE, MAILING_ZIP, COMMITTED_MONTHLY_CAPACITY, OWNER_PRSNNL_ID, CREATED_BY, UPDATED_BY, CREATED_TS, UPDATED_TS, PHONE_EXTENSION, RVW_LOCATION_ID) VALUES (N'PHI-PUD', N'Estelle Ballard', N'215-294-2849', N'2495 Midway Road, Suite PUD', N'Philadelphia', N'Pennsylvania', N'19019', 497, N'fc55208a-5e89-41b6-93ab-db7d8cc6ab9d', N'H00001', N'H00001', CAST(N'2016-08-11T10:44:03.177' AS DateTime), CAST(N'2016-08-11T10:44:03.177' AS DateTime), NULL, N'90e796c0-2e7b-4fb1-a32d-f03d6b63b22a')
+			INSERT dbo.REVIEW_LOCATION (LOCATION_NAME, CONTACT_NAME, CONTACT_PHONE_NUMBER, MAILING_ADDRESS, MAILING_CITY, MAILING_STATE, MAILING_ZIP, COMMITTED_MONTHLY_CAPACITY, OWNER_PRSNNL_ID, CREATED_BY, UPDATED_BY, CREATED_TS, UPDATED_TS, PHONE_EXTENSION, RVW_LOCATION_ID) VALUES (N'PHI-QAD', N'Sonya Morton', N'267-038-4327', N'2495 Midway Road, Suite QAD', N'Philadelphia', N'Pennsylvania', N'19019', 462, N'c5e69571-efa9-49cc-9f11-a913e97e3dff', N'H00001', N'H00001', CAST(N'2016-08-11T10:44:03.177' AS DateTime), CAST(N'2016-08-11T10:44:03.177' AS DateTime), NULL, N'54840449-d7e4-4b1c-8390-f08ffeb6fc69')
+			INSERT dbo.REVIEW_LOCATION (LOCATION_NAME, CONTACT_NAME, CONTACT_PHONE_NUMBER, MAILING_ADDRESS, MAILING_CITY, MAILING_STATE, MAILING_ZIP, COMMITTED_MONTHLY_CAPACITY, OWNER_PRSNNL_ID, CREATED_BY, UPDATED_BY, CREATED_TS, UPDATED_TS, PHONE_EXTENSION, RVW_LOCATION_ID) VALUES (N'HQ', N'Miranda Sharp', N'202-384-1039', N'451 7th St NW, Suite HQ', N'Washington', N'DC', N'20410', 471, N'02a8d8c2-4c69-4c88-b2b9-821a199273e8', N'H00001', N'H00001', CAST(N'2016-08-11T10:44:40.200' AS DateTime), CAST(N'2016-08-11T10:44:40.200' AS DateTime), NULL, N'c2844126-716f-449a-b152-c891948888fa')
+
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1625_update_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update PERSONNEL 
+			set RVW_LOCATION_ID = b.RVW_LOCATION_ID
+			from  PERSONNEL a,
+				  REVIEW_LOCATION b
+			where a.LOCATION_NAME = b.LOCATION_NAME
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1625_alter_0007" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table PERSONNEL drop column LOCATION_NAME
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1625_alter_0008" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+                ALTER TABLE REVIEW_LEVEL ADD CONSTRAINT REVIEW_LEVEL_FK_RVW_LOCATION_ID FOREIGN KEY(RVW_LOCATION_ID) REFERENCES REVIEW_LOCATION(RVW_LOCATION_ID)
+                ALTER TABLE LOAN_SELECTION ADD CONSTRAINT LOAN_SELECTION_FK_RVW_LOCATION_ID FOREIGN KEY(RVW_LOCATION_ID) REFERENCES REVIEW_LOCATION(RVW_LOCATION_ID)
+                ALTER TABLE PERSONNEL ADD CONSTRAINT PERSONNEL_FK_REVIEW_LOCATION FOREIGN KEY(RVW_LOCATION_ID) REFERENCES REVIEW_LOCATION(RVW_LOCATION_ID)	
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1625_insert_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Review Location','Location Name','LOCATION_NAME','C20225', getdate(),'STATIC','Location Name')
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1625_rename_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			EXEC sp_rename 'LOAN_SELECTION.PREF_RVW_LOCATION', 'PREF_RVW_LOCATION_ID', 'COLUMN' 	
+			EXEC sp_rename 'SELECT_REQUEST_LENDER_MON.PREF_RVW_LOCATION', 'PREF_RVW_LOCATION_ID', 'COLUMN' 			
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1625_alter_0009" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update LOAN_SELECTION set PREF_RVW_LOCATION_ID = null
+			update SELECT_REQUEST_LENDER_MON set PREF_RVW_LOCATION_ID = null			
+			ALTER TABLE LOAN_SELECTION ALTER COLUMN  PREF_RVW_LOCATION_ID uniqueidentifier null	
+			ALTER TABLE SELECT_REQUEST_LENDER_MON ALTER COLUMN  PREF_RVW_LOCATION_ID uniqueidentifier null				
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1625_alter_0010" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE LOAN_SELECTION ADD CONSTRAINT LOAN_SELECT_FK_REVIEW_LOCATION FOREIGN KEY(PREF_RVW_LOCATION_ID) REFERENCES REVIEW_LOCATION(RVW_LOCATION_ID)	
+			ALTER TABLE SELECT_REQUEST_LENDER_MON ADD CONSTRAINT SELECT_MON_FK_REVIEW_LOCATION FOREIGN KEY(PREF_RVW_LOCATION_ID) REFERENCES REVIEW_LOCATION(RVW_LOCATION_ID)				
+		]]>
+        </sql>
+    </changeSet>			
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1625_update_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			UPDATE dict_metadata_field
+			set db_column = 'PREF_RVW_LOCATION_ID'
+			where db_column = 'PREF_RVW_LOCATION'
+		]]>
+        </sql>
+    </changeSet>	
+ </databaseChangeLog>
+
+
+
+
+
+
+
+
+
+

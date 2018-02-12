@@ -1,0 +1,101 @@
+@import '../../bootstrap/_variables';
+@import '../../shared/_mixins';
+
+:host-context {
+
+    .menu-heading {
+        color: @brand-primary;
+        font-weight: 600;
+        text-transform: uppercase;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        margin-left: 5px;
+    }
+
+    .main-menu {
+        border: 1px solid @hr-border;
+
+        .panel {
+            border-radius: 0;
+            border-top: 1px solid transparent;
+            border-left: 1px solid transparent;
+            border-right: 1px solid transparent;
+            border-bottom: 1px solid @gray-blue;
+            margin: -1px;
+            background: transparent;
+
+            &.selected-entry {
+                border: 1px solid @link-light-blue;
+                background-color: @gray-blue;
+            }
+        }
+
+        .panel-heading {
+            margin: 0;
+            padding: 0;
+            background: transparent;
+        }
+
+        .panel-title {
+
+            .glyphicon {
+                position: static;
+                transition: all 0.2s ease;
+                font-size: 8px;
+                margin-left: 4px;
+                margin-right: 5px;
+                &.selected {
+                    transform: rotate(90deg);
+                }
+            }
+
+            a {
+                display: block;
+                padding-left: 10px;
+                line-height: 32px;
+                color: @link-light-blue;
+
+                &:not([data-toggle=collapse]) {
+                    .glyphicon {
+                        color: transparent;
+                    }
+                }
+
+                &:active, &:visited {
+                    text-decoration: none;
+                }
+            }
+        }
+
+        .list-group {
+            margin: 0;
+            padding: 0;
+
+            .list-group-item {
+                border: none;
+                background: transparent;
+                padding: 0;
+
+                a {
+                    display: block;
+                    padding-left: 44px;
+                    line-height: 32px;
+                    color: @link-light-blue;
+
+                    &:active, &:visited {
+                        text-decoration: none;
+                    }
+                }
+
+                &.selected-item {
+                    color: #fff;
+                    background-color: @link-light-blue;
+
+                    > a {
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+}

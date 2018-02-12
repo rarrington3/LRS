@@ -1,0 +1,41 @@
+#https://github.com/raml-org/raml-spec/blob/master/raml-0.8.md
+displayName: capacity
+
+/locations:
+  securedBy:
+    - fhac:
+          roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN]
+  displayName: LocationsCapacities
+  get:
+    description: Retrieve a collection of all locations and their capacities.
+    responses:
+        200:
+            body:
+                example: !include "get-all-location-capacities.example.json"
+                schema: CapacityCollection
+
+/reviewers:
+  securedBy:
+    - fhac:
+          roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN]
+  displayName: ReviewersCapacities
+  get:
+    description: Retrieve a collection of available reviewers capacities by current user location.
+    responses:
+        200:
+            body:
+                example: !include "get-all-reviewer-capacities.example.json"
+                schema: CapacityCollection
+
+/locations/{locationId}/reviewers:
+  securedBy:
+    - fhac:
+          roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN]
+  displayName: ReviewersCapacities
+  get:
+    description: Retrieve a collection of all reviewers capacities at a specific location.
+    responses:
+        200:
+            body:
+                example: !include "get-all-reviewer-capacities.example.json"
+                schema: CapacityCollection

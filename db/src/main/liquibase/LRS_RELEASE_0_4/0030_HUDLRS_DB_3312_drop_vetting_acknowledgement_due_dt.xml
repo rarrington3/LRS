@@ -1,0 +1,165 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3312_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table review_level drop column VETTEE_ACKNOWLEDGEMENT_DUE_DT 
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3312_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table audit_review_level drop column VETTEE_ACKNOWLEDGEMENT_DUE_DT 
+		]]>
+        </sql>
+    </changeSet>	
+   <changeSet context="All"  author="astrauss" id="HUDLRS_3312_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			if exists (select * from sysobjects
+					   where type = 'TR'
+					     and name = 'tI_AUDIT_REVIEW_LEVEL')
+			    drop trigger tI_AUDIT_REVIEW_LEVEL
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3312_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+       <createProcedure>
+		<![CDATA[
+			CREATE TRIGGER tI_AUDIT_REVIEW_LEVEL ON REVIEW_LEVEL FOR insert AS
+			BEGIN
+				insert into AUDIT_REVIEW_LEVEL(
+				  REVIEW_LEVEL_ID,
+				  ASSIGN_DT,
+				  COMPLT_DT,
+				  INDEMNIFICATION_TYPE_ID,
+				  ITERATION_NUMBER,
+				  NOTES,
+				  ORIGINAL_REVIEWER_PERSONNEL_ID,
+				  REVIEW_ID,
+				  RVW_STARTED_DT_TM,
+				  REVIEWER_PERSONNEL_ID,
+				  CREATED_BY,
+				  UPDATED_BY,
+				  CREATED_TS,
+				  UPDATED_TS,
+				  DUE_DATE,
+				  REVIEW_LEVEL_TYPE_ID,
+				  REVIEW_LOCATION_ID,
+				  REVIEW_LEVEL_STATUS_ID,
+				  RATING_ID,
+				  VETTING_IND,
+				  VETTEE_ACKNOWLEDGEMENT_DT,
+				  REASSIGNMENT_REASON_ID,
+				  CANCELLATION_REASON_ID,
+				  AUDIT_CREATED_TS,
+				  AUDIT_ACTION_CODE)	
+				select 
+				  REVIEW_LEVEL_ID,
+				  ASSIGN_DT,
+				  COMPLT_DT,
+				  INDEMNIFICATION_TYPE_ID,
+				  ITERATION_NUMBER,
+				  NOTES,
+				  ORIGINAL_REVIEWER_PERSONNEL_ID,
+				  REVIEW_ID,
+				  RVW_STARTED_DT_TM,
+				  REVIEWER_PERSONNEL_ID,
+				  CREATED_BY,
+				  UPDATED_BY,
+				  CREATED_TS,
+				  UPDATED_TS,
+				  DUE_DATE,
+				  REVIEW_LEVEL_TYPE_ID,
+				  REVIEW_LOCATION_ID,
+				  REVIEW_LEVEL_STATUS_ID,
+				  RATING_ID,
+				  VETTING_IND,
+				  VETTEE_ACKNOWLEDGEMENT_DT,
+				  REASSIGNMENT_REASON_ID,
+				  CANCELLATION_REASON_ID,
+				  getdate(),				
+				  'C'				
+				 from inserted
+			END
+
+		]]>
+        </createProcedure>
+    </changeSet>			
+   <changeSet context="All"  author="astrauss" id="HUDLRS_3312_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			if exists (select * from sysobjects
+					   where type = 'TR'
+					     and name = 'tU_AUDIT_REVIEW_LEVEL')
+			    drop trigger tU_AUDIT_REVIEW_LEVEL
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3312_0006" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+       <createProcedure>
+		<![CDATA[
+			CREATE TRIGGER tU_AUDIT_REVIEW_LEVEL ON REVIEW_LEVEL FOR update AS
+			BEGIN
+				insert into AUDIT_REVIEW_LEVEL(
+				  REVIEW_LEVEL_ID,
+				  ASSIGN_DT,
+				  COMPLT_DT,
+				  INDEMNIFICATION_TYPE_ID,
+				  ITERATION_NUMBER,
+				  NOTES,
+				  ORIGINAL_REVIEWER_PERSONNEL_ID,
+				  REVIEW_ID,
+				  RVW_STARTED_DT_TM,
+				  REVIEWER_PERSONNEL_ID,
+				  CREATED_BY,
+				  UPDATED_BY,
+				  CREATED_TS,
+				  UPDATED_TS,
+				  DUE_DATE,
+				  REVIEW_LEVEL_TYPE_ID,
+				  REVIEW_LOCATION_ID,
+				  REVIEW_LEVEL_STATUS_ID,
+				  RATING_ID,
+				  VETTING_IND,
+				  VETTEE_ACKNOWLEDGEMENT_DT,
+				  REASSIGNMENT_REASON_ID,
+				  CANCELLATION_REASON_ID,
+				  AUDIT_CREATED_TS,
+				  AUDIT_ACTION_CODE)	
+				select 
+				  REVIEW_LEVEL_ID,
+				  ASSIGN_DT,
+				  COMPLT_DT,
+				  INDEMNIFICATION_TYPE_ID,
+				  ITERATION_NUMBER,
+				  NOTES,
+				  ORIGINAL_REVIEWER_PERSONNEL_ID,
+				  REVIEW_ID,
+				  RVW_STARTED_DT_TM,
+				  REVIEWER_PERSONNEL_ID,
+				  CREATED_BY,
+				  UPDATED_BY,
+				  CREATED_TS,
+				  UPDATED_TS,
+				  DUE_DATE,
+				  REVIEW_LEVEL_TYPE_ID,
+				  REVIEW_LOCATION_ID,
+				  REVIEW_LEVEL_STATUS_ID,
+				  RATING_ID,
+				  VETTING_IND,
+				  VETTEE_ACKNOWLEDGEMENT_DT,
+				  REASSIGNMENT_REASON_ID,
+				  CANCELLATION_REASON_ID,
+				  getdate(),				
+				  'U'				
+				 from inserted
+			END
+
+		]]>
+        </createProcedure>
+    </changeSet>			
+</databaseChangeLog>    
+
+

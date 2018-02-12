@@ -1,0 +1,247 @@
+displayName: jobs
+description: |
+  Management of workflow jobs
+get:
+  securedBy:
+    - fhac:
+        roles: [ROLE_HQ_ADMIN, ROLE_MONITOR_READ_ONLY]
+  description: |
+    Retrieve a list of all workflow jobs
+  responses:
+    200:
+      body:
+        schema: JobCollection
+        example: !include "job-collection.example.json"
+
+/pending:
+  get:
+    securedBy:
+      - fhac:
+          roles: [ROLE_HQ_ADMIN, ROLE_MONITOR_READ_ONLY]
+    description: |
+      Retrieve a list of all pending jobs
+    responses:
+      200:
+        body:
+          schema: JobCollection
+          example: !include "job-collection.example.json"
+
+/{jobId}:
+  get:
+    securedBy:
+      - fhac:
+          roles: [ROLE_HQ_ADMIN, ROLE_MONITOR_READ_ONLY]
+    description: |
+      Retrieve details for a specific job
+    responses:
+      200:
+        body:
+          schema: Job
+          example: !include "job.example.json"
+    
+/endorsementSelection:
+  post:
+    securedBy:
+      - fhac:
+          roles: [ROLE_HQ_ADMIN]
+    description: |
+      Start the distribution job
+    body:
+      schema: DateRange
+      example: !include "daterange.example.json"
+    responses:
+      200:
+        body:
+          schema: Job
+          example: !include "job.example.json"
+/earlyClaimSelection:
+  post:
+    securedBy:
+      - fhac:
+          roles: [ROLE_HQ_ADMIN]
+    description: |
+      Start the distribution job
+    body:
+      schema: DateRange
+      example: !include "daterange.example.json"
+    responses:
+      200:
+        body:
+          schema: Job
+          example: !include "job.example.json"
+/earlyPaymentDefaultSelection:
+  post:
+    securedBy:
+      - fhac:
+          roles: [ROLE_HQ_ADMIN]
+    description: |
+      Start the distribution job
+    body:
+      schema: DateRange
+      example: !include "daterange.example.json"
+    responses:
+      200:
+        body:
+          schema: Job
+          example: !include "job.example.json"
+/nationalQcSelection:
+  post:
+    securedBy:
+      - fhac:
+          roles: [ROLE_HQ_ADMIN]
+    description: |
+      Start the NationalQcSelection job
+    body:
+      schema: DateRange
+      example: !include "daterange.example.json"
+    responses:
+      200:
+        body:
+          schema: Job
+          example: !include "job.example.json"
+/aggregation:
+  post:
+    securedBy:
+      - fhac:
+          roles: [ROLE_HQ_ADMIN]
+    description: |
+      Start the aggregation job
+    responses:
+      200:
+        body:
+          schema: Job
+          example: !include "job.example.json"
+
+/distribution:
+  post:
+    securedBy:
+      - fhac:
+          roles: [ROLE_HQ_ADMIN]
+    description: |
+      Start the distribution job
+    responses:
+      200:
+        body:
+          schema: Job
+          example: !include "job.example.json"
+
+/binderRequest:
+  post:
+    securedBy:
+      - fhac:
+          roles: [ROLE_HQ_ADMIN]
+    description: |
+      Start the distribution job
+    responses:
+      200:
+        body:
+          schema: Job
+          example: !include "job.example.json"
+
+/binderRequest/throttled:
+  post:
+    securedBy:
+      - fhac:
+          roles: [ROLE_HQ_ADMIN]
+    description: |
+      Start the distribution job
+    responses:
+      200:
+        body:
+          schema: Job
+          example: !include "job.example.json"
+
+/binderReceipt:
+  post:
+    securedBy:
+      - fhac:
+          roles: [ROLE_HQ_ADMIN]
+    description: |
+      Start the distribution job
+    responses:
+      200:
+        body:
+          schema: Job
+          example: !include "job.example.json"
+
+/lateBinders:
+  post:
+    securedBy:
+      - fhac:
+          roles: [ROLE_HQ_ADMIN]
+    description: |
+      Start the late binders job
+    responses:
+      200:
+        body:
+          schema: Job
+          example: !include "job.example.json"
+
+/lateLenderRequests:
+  post:
+    securedBy:
+      - fhac:
+          roles: [ROLE_HQ_ADMIN]
+    description: |
+      Start the late binders job
+    responses:
+      200:
+        body:
+          schema: Job
+          example: !include "job.example.json"
+
+/lenderMonitoringEmail:
+  post:
+    securedBy:
+      - fhac:
+          roles: [ROLE_HQ_ADMIN]
+    description: |
+      Start the lender monitoring email job
+    responses:
+      200:
+        body:
+          schema: Job
+          example: !include "job.example.json"
+
+/dailyCombinedLenderEmail:
+  post:
+    securedBy:
+      - fhac:
+          roles: [ROLE_HQ_ADMIN]
+    description: |
+      Start the daily combined lender email job
+    responses:
+      200:
+        body:
+          schema: Job
+          example: !include "job.example.json"
+
+/sendEmail:
+  post:
+    securedBy:
+      - fhac:
+          roles: [ROLE_HQ_ADMIN]
+    description: |
+      Start the send email job
+    responses:
+      200:
+
+/refreshLenders:
+  post:
+    securedBy:
+      - fhac:
+          roles: [ROLE_HQ_ADMIN]
+    description: |
+      Start the send email job
+    responses:
+      200:
+
+/runPending:
+  post:
+    securedBy:
+      - fhac:
+          roles: [ROLE_HQ_ADMIN]
+    description: |
+      Run all pending jobs
+    responses:
+      200:

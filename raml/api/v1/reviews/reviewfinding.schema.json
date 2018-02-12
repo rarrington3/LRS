@@ -1,0 +1,109 @@
+{
+    "id": "http://LRS/ReviewFinding",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": [
+        "findingId",
+        "reviewLevelId"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "findingId": {
+            "description": "The finding ID.",
+            "type": "string"
+        },
+        "reviewLevelId": {
+            "description": "The review level ID.",
+            "type": "string"
+        },
+        "originalReviewLevelId": {
+            "description": "The review level ID when the finding was created.",
+            "type": "string"
+        },
+        "defectAreaCode": {
+            "description": "Defect code that is involved in this review (based on the review type).  The display text of this code can be retrieved from the 'defectAreaDictionary' service.",
+            "type": "string"
+        },
+        "questionIds": {
+            "description": "A collection of question IDs that this finding is related to.",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "selectedSourceCode": {
+            "description": "The source code that was selected for this finding. The source code will relate to a source dictionary ojbect (e.g. 'Standard Employment', 'Maximum Mortgage Amount', etc.)",
+            "type": "string"
+        },
+        "selectedCauseCode": {
+            "description": "The cause code that was selected for this finding. The cause code will relate to a cause dictionary ojbect (e.g. 'Amount not supported by documentation', 'Amounts cannot be confirmed', etc.)",
+            "type": "string"
+        },
+        "selectedTierCode": {
+            "description": "The tier (severity) that was selected for this finding.",
+            "type": "string"
+        },
+        "commentToLender": {
+            "description": "A note to the lender for this finding.",
+            "type": "string"
+        },
+        "ratingCode": {
+            "description": "The rating given to this finding which is based on defect area, source, cause, and severity tier. Known codes: 'C' = Conforming, 'D' = Deficient, 'M' = Mitigated, 'R' = Remediated, 'U' = Unacceptable. Use the ratingcodedictionary API to translate code to description.",
+            "type": "string"
+        },
+        "lenderResponseDate": {
+            "description": "The date when the lender responded to this finding",
+            "type": "string",
+            "format": "date"
+        },
+        "lenderResponderName": {
+            "description": "The name of the user (lender) that responded to this finding. (e.g. 'John Franklin')",
+            "type": "string"
+        },
+        "lenderResponseComment": {
+            "description": "The lender's response to this finding.",
+            "type": "string"
+        },
+        "lenderResponseDocuments": {
+            "description": "A collection of files that were uploaded as response documents",
+            "type": "array",
+            "items": {
+                "$ref": "Document"
+            }
+        },
+        "lenderResponseExpiredDate": {
+            "description": "The date if the lender request response was expired",
+            "type": "string",
+            "format": "date"
+        },
+        "reviewerResponseMitigated": {
+            "description": "The reviewer is satisfied with the lender response. When this is set to true, the services will update the ratingCode to 'M'",
+            "type": "boolean"
+        },
+        "reviewerResponseRemediated": {
+            "description": "the reviewer has decided that the lenders response is an acceptable remediation to the finding and can capture an amount. When this is set, the services will update the ratingCode to 'R'",
+            "$ref": "RemediationResponse"
+        },
+        "reviewerResponseAdjusted": {
+            "description": "The reviewer is making an adjustment to the fining. Possible values will be 'C', '1', '2', '3', '4'. The numbers here represent a new selectedTierCode where as the 'C' represents 'Conforming' no matter the current severity tier. The services will use the suggestion and update the ratingCode and selectedTierCode",
+            "type": "string"
+        },
+        "isAdhoc": {
+            "description": "If this finding was created as an adhoc finding, this flag will be set to true.",
+            "type": "boolean"
+        },
+        "nameFirst": {
+            "description": "The forename of the reviewer.",
+            "type": "string"
+        },
+        "nameLast": {
+            "description": "The family name of the reviewer.",
+            "type": "string"
+        },
+        "lastUpdated": {
+            "description": "Date and time when the note was last updated (or created if no updates).",
+            "type": "string",
+            "format": "date-time"
+        }
+    }
+}

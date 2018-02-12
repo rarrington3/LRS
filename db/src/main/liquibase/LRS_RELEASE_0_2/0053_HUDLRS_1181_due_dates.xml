@@ -1,0 +1,95 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="jordanchavez@kpmg.com" id="HUDLRS_1181_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql><![CDATA[
+            -- making this consistent
+            EXEC SP_RENAME 'REVIEW_LEVEL.ITERATION_NUM', 'ITERATION_NUMBER'
+
+            -- i"N"teration -> iteration
+            EXEC SP_RENAME 'RVW_LEVEL_ITERATION_TIMEFRAME.REVIEW_DAYS_INTERATION_1', 'REVIEW_DAYS_ITERATION_1'
+            EXEC SP_RENAME 'RVW_LEVEL_ITERATION_TIMEFRAME.REVIEW_DAYS_INTERATION_2', 'REVIEW_DAYS_ITERATION_2'
+            EXEC SP_RENAME 'RVW_LEVEL_ITERATION_TIMEFRAME.REVIEW_DAYS_INTERATION_3', 'REVIEW_DAYS_ITERATION_3'
+            EXEC SP_RENAME 'RVW_LEVEL_ITERATION_TIMEFRAME.REVIEW_DAYS_INTERATION_4', 'REVIEW_DAYS_ITERATION_4'
+            EXEC SP_RENAME 'RVW_LEVEL_ITERATION_TIMEFRAME.REVIEW_DAYS_INTERATION_5', 'REVIEW_DAYS_ITERATION_5'
+            EXEC SP_RENAME 'RVW_LEVEL_ITERATION_TIMEFRAME.RESPONSE_DAYS_INTERATION_1', 'RESPONSE_DAYS_ITERATION_1'
+            EXEC SP_RENAME 'RVW_LEVEL_ITERATION_TIMEFRAME.RESPONSE_DAYS_INTERATION_2', 'RESPONSE_DAYS_ITERATION_2'
+            EXEC SP_RENAME 'RVW_LEVEL_ITERATION_TIMEFRAME.RESPONSE_DAYS_INTERATION_3', 'RESPONSE_DAYS_ITERATION_3'
+            EXEC SP_RENAME 'RVW_LEVEL_ITERATION_TIMEFRAME.RESPONSE_DAYS_INTERATION_4', 'RESPONSE_DAYS_ITERATION_4'
+            EXEC SP_RENAME 'RVW_LEVEL_ITERATION_TIMEFRAME.RESPONSE_DAYS_INTERATION_5', 'RESPONSE_DAYS_ITERATION_5'
+
+            -- +1 to all iteration_numbers: max # of review levels is actually one higher
+            ALTER TABLE RVW_LEVEL_ITERATION_TIMEFRAME ADD REVIEW_DAYS_ITERATION_6 INT NULL
+		]]></sql>
+    </changeSet>
+    <changeSet context="ALL"  author="jordanchavez@kpmg.com" id="HUDLRS_1181_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql><![CDATA[
+            UPDATE RVW_LEVEL_ITERATION_TIMEFRAME SET REVIEW_DAYS_ITERATION_6 = REVIEW_DAYS_ITERATION_5
+
+            UPDATE RVW_LEVEL_ITERATION_TIMEFRAME SET ITERATION_NUMBER = ITERATION_NUMBER + 1 WHERE REVIEW_LEVEL_ID IN (SELECT REVIEW_LEVEL_ID FROM REVIEW_LEVEL_REF WHERE REVIEW_LEVEL_CD NOT IN ('INIT', 'INDM', 'BNDR', 'FRCE'))
+
+            -- update rl's to reflect this change
+            UPDATE REVIEW_LEVEL SET ITERATION_NUMBER = ITERATION_NUMBER + 1 WHERE REVIEW_LEVEL_ID IN (SELECT REVIEW_LEVEL_ID FROM REVIEW_LEVEL_REF WHERE REVIEW_LEVEL_CD NOT IN ('INIT', 'INDM', 'BNDR', 'FRCE'))
+
+            -- pretty sure we still do this (incorrectly) upon dev rl creation
+            UPDATE REVIEW_LEVEL SET ITERATION_NUMBER = 1 WHERE ITERATION_NUMBER = 0
+
+            -- update all review levels to have DUE_DATE values
+            UPDATE RL
+            SET DUE_DATE = DATEADD(DAY, TF.REVIEW_DAYS_ITERATION_1, COALESCE(RL.CREATED_TS, CURRENT_TIMESTAMP))
+            FROM REVIEW_LEVEL RL
+            INNER JOIN REVIEW R ON R.REVIEW_ID = RL.REVIEW_ID
+            INNER JOIN LOAN_SELECTION LS ON LS.SELECTION_ID = R.SELECTION_ID
+            INNER JOIN RVW_LEVEL_ITERATION_TIMEFRAME TF ON TF.REVIEW_LEVEL_ID = RL.REVIEW_LEVEL_ID AND TF.SLCTN_REASON_ID =  LS.SLCTN_REASON_ID
+            WHERE RL.DUE_DATE IS NULL AND RL.ITERATION_NUMBER = 1
+
+            -- update all review levels to have DUE_DATE values
+            UPDATE RL
+            SET DUE_DATE = DATEADD(DAY, TF.REVIEW_DAYS_ITERATION_2, COALESCE(RL.CREATED_TS, CURRENT_TIMESTAMP))
+            FROM REVIEW_LEVEL RL
+            INNER JOIN REVIEW R ON R.REVIEW_ID = RL.REVIEW_ID
+            INNER JOIN LOAN_SELECTION LS ON LS.SELECTION_ID = R.SELECTION_ID
+            INNER JOIN RVW_LEVEL_ITERATION_TIMEFRAME TF ON TF.REVIEW_LEVEL_ID = RL.REVIEW_LEVEL_ID AND TF.SLCTN_REASON_ID =  LS.SLCTN_REASON_ID
+            WHERE RL.DUE_DATE IS NULL AND RL.ITERATION_NUMBER = 2
+
+            -- update all review levels to have DUE_DATE values
+            UPDATE RL
+            SET DUE_DATE = DATEADD(DAY, TF.REVIEW_DAYS_ITERATION_3, COALESCE(RL.CREATED_TS, CURRENT_TIMESTAMP))
+            FROM REVIEW_LEVEL RL
+            INNER JOIN REVIEW R ON R.REVIEW_ID = RL.REVIEW_ID
+            INNER JOIN LOAN_SELECTION LS ON LS.SELECTION_ID = R.SELECTION_ID
+            INNER JOIN RVW_LEVEL_ITERATION_TIMEFRAME TF ON TF.REVIEW_LEVEL_ID = RL.REVIEW_LEVEL_ID AND TF.SLCTN_REASON_ID =  LS.SLCTN_REASON_ID
+            WHERE RL.DUE_DATE IS NULL AND RL.ITERATION_NUMBER = 3
+
+            -- update all review levels to have DUE_DATE values
+            UPDATE RL
+            SET DUE_DATE = DATEADD(DAY, TF.REVIEW_DAYS_ITERATION_4, COALESCE(RL.CREATED_TS, CURRENT_TIMESTAMP))
+            FROM REVIEW_LEVEL RL
+            INNER JOIN REVIEW R ON R.REVIEW_ID = RL.REVIEW_ID
+            INNER JOIN LOAN_SELECTION LS ON LS.SELECTION_ID = R.SELECTION_ID
+            INNER JOIN RVW_LEVEL_ITERATION_TIMEFRAME TF ON TF.REVIEW_LEVEL_ID = RL.REVIEW_LEVEL_ID AND TF.SLCTN_REASON_ID =  LS.SLCTN_REASON_ID
+            WHERE RL.DUE_DATE IS NULL AND RL.ITERATION_NUMBER = 4
+
+            -- update all review levels to have DUE_DATE values
+            UPDATE RL
+            SET DUE_DATE = DATEADD(DAY, TF.REVIEW_DAYS_ITERATION_5, COALESCE(RL.CREATED_TS, CURRENT_TIMESTAMP))
+            FROM REVIEW_LEVEL RL
+            INNER JOIN REVIEW R ON R.REVIEW_ID = RL.REVIEW_ID
+            INNER JOIN LOAN_SELECTION LS ON LS.SELECTION_ID = R.SELECTION_ID
+            INNER JOIN RVW_LEVEL_ITERATION_TIMEFRAME TF ON TF.REVIEW_LEVEL_ID = RL.REVIEW_LEVEL_ID AND TF.SLCTN_REASON_ID =  LS.SLCTN_REASON_ID
+            WHERE RL.DUE_DATE IS NULL AND RL.ITERATION_NUMBER = 5
+
+            -- we should be okay with just making this NOT NULL without having to update the rows, ; at the time of writing the code always populates this field.
+            -- this is just a sanity check thing for test data
+                UPDATE RQST_FROM_LENDER SET DUE_DATE = DATEADD(DAY, 6, COALESCE(CREATED_TS, CURRENT_TIMESTAMP))
+		]]></sql>
+    </changeSet>
+    <changeSet context="ALL"  author="jordanchavez@kpmg.com" id="HUDLRS_1181_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql><![CDATA[
+            ALTER TABLE REVIEW_LEVEL ALTER COLUMN DUE_DATE DATETIME NOT NULL
+            ALTER TABLE RQST_FROM_LENDER ALTER COLUMN DUE_DATE DATETIME NOT NULL
+
+            -- this column is never used and has no meaning in the code...please yell at Jordan if we're using this for reports or something else and it needs to be kept
+            ALTER TABLE RQST_FROM_LENDER DROP COLUMN REQUEST_TYPE
+		]]></sql>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,370 @@
+spring:
+  profiles:
+    active: default
+  application:
+    name: LrsWorkflow
+  mail:
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          from: FHA.LoanReview@hud.gov
+          auth: false
+          starttls:
+            enable: false
+          ssl:
+            enable: false
+server:
+  contextPath: /LrsWorkflow
+  servlet-path: "/*"
+lrs:
+  mail:
+    retryCount: 3
+  siteMinderUserIdHeader: SM_USER
+  fhacUserCacheMinutes: 30 
+  lenderCacheMinutes: 1
+  mule:
+    oauth:
+      clientID: LrsOAuth2Client
+      redirectUri: http://localhost:8000
+      scope: urn:hud:esb:api:portfolio:get:universe,urn:hud:esb:api:portfolio:get:loan:case,urn:hud:esb:api:partner:get:lender:profile,urn:hud:esb:api:dms:create:document,urn:hud:esb:api:dms:update:document,urn:hud:esb:api:dms:get:document,urn:hud:esb:api:propertyassessment:get:appraisal,urn:hud:esb:api:sfunderwriting:get:binder:request,urn:hud:esb:api:sfunderwriting:get:indemnification,urn:hud:esb:api:sfunderwriting:cancel:binder:request,urn:hud:esb:api:sfunderwriting:create:binder:request,urn:hud:esb:api:partner:get:underwriter:profile,urn:hud:esb:api:security:get:authorizations,urn:hud:esb:api:sfunderwriting:create:indemnification
+      audit:
+        sourceSystem: LRS
+        tenantId: LRS
+        locale: English
+    authorizations:
+      uri: /security/api/v1.0/authorizations
+      useOAuth: true
+    lenders:
+      uri: /api/v1.1/lenders
+      useOAuth: true
+    monthly:
+      uri: /edw/api/v1.0/universe/monthly
+      useOAuth: true
+    ec:
+      uri: /edw/api/v1.0/universe/ec
+      useOAuth: true
+    epd:
+      uri: /edw/api/v1.0/universe/epd
+      useOAuth: true
+    lenderMonitoring:
+      uri: /edw/api/v1.0/universe/lenderMonitoring
+      useOAuth: true
+    case:
+      uri: /edw/api/v1.0/case
+      useOAuth: true
+    batchCase:
+      uri: /edw/api/v1.0/batchCase
+      useOAuth: true
+      batchSize: 100
+    underwriter:
+      uri: /partner/api/v1.0/underwriter
+      useOAuth: true
+    binderRequest:
+      uri: /sfo/api/v1.0/binderRequest
+      useOAuth: true
+      userid: LRSSYS      
+    binderReceipt:
+      uri: /sfo/api/v1.0/binderReceipt
+      useOAuth: true
+      batchSize: 500
+    document:
+      uri: /dms/api/v1.0/document
+      useOAuth: true
+    indemnification:
+      uri: /sfo/api/v1.0/indemnification    
+      useOAuth: true
+  batchSize: 100
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    inital-size: 5
+    max-active: 100
+    min-idle: 10
+    max-idle: 25
+    time-between-eviction-runs-millis: 10000
+    min-evictable-idle-time-millis: 60000
+    test-on-borrow: true
+    test-on-connect: false
+    test-on-return: false
+    test-while-idle: true
+    validation-query: SELECT 1
+    validation-interval: 30000
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServer2012Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  ext:
+    datasource:
+      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+      inital-size: 5
+      max-active: 100
+      min-idle: 10
+      max-idle: 25
+      time-between-eviction-runs-millis: 10000
+      min-evictable-idle-time-millis: 60000
+      test-on-borrow: true
+      test-on-connect: false
+      test-on-return: false
+      test-while-idle: true
+      validation-query: SELECT 1
+      validation-interval: 30000
+    jpa:
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.SQLServer2012Dialect
+      show-sql: true
+      hibernate:
+        ddl-auto: none
+  template:
+    link:
+      lenderActiveReviewsSummary: "/#/lender/activeReviews/summary"
+      lenderActiveReviewsBatches: "/#/lender/activeReviews/batches"
+      internalActiveReviewsSummary: "/#/workload/summary"
+      internalActiveReviewsBatches: "/#/workload/batches"
+  jobs:
+    spawner:
+      cron: "0 0/10 0-4 * * *"  # every ten minutes from 12:00 AM to 4:00 AM daily
+    runner:
+      cron: "0 0/10 * * * MON-FRI" # every ten minutes on weekdays 
+    monthlyEndorsement:
+      dayOfMonth: 1
+    earlyClaim:
+      dayOfMonth: 1
+    earlyPaymentDefault:
+      dayOfMonth: 1
+    nationalQC:
+      dayOfMonth: 1
+    remainingMonthlyCapacity:
+      dayOfMonth: 1
+      numberOfMonthsData: 2
+    mail:
+      cron: "0 0/5 * * * *" # every five minutes
+    workflowheartbeat:
+      cron: "0 0/1 * * * *" # every one minutes
+    workflowServer:
+      accepatableUnavailability: 120 # In minutes
+    binderDowntimeStartHour: 21 # 9 PM, really starts at 10, but give an extra hour
+    binderDowntimeEndHour: 8  # really ends at 7, but we give an extra hour
+    batchSize: 100
+    email:
+      recordCreatedByHour: 6
+      recordCreatedByMinute: 0
+    lenderRefresh:
+      cron: "0 0/30 * * * *" # every thirty minutes
+      batchSize: 500
+  log:
+    directory:
+      workflow: lrs/workflow
+logging:
+  #file: lrs.log
+  pattern.console: "[%d{HH:mm:ss} %.-1le][%t][%c] %m%n"
+  level:
+    com:
+      microsoft:
+        sqlserver:
+          jdbc:
+            internals:
+              #SQLServerStatement: DEBUG
+    gov:
+      hud:
+        lrs: DEBUG
+    org:
+      hibernate:
+        SQL: ERROR
+        #type: TRACE
+---
+spring:
+  profiles: sts
+server:
+  port: 8445
+logging:
+  pattern.console: "[%d{HH:mm:ss} %.-1le] %m%n"
+  level:
+    gov:
+      hud:
+        lrs: DEBUG
+    org:
+      hibernate:
+        SQL: DEBUG
+        #type: TRACE
+---
+spring:
+  profiles: localDb
+lrs:
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;database=LRSDB;
+    username: sa
+    password: "lrs#12345"
+  ext:
+    datasource:
+      url: jdbc:sqlserver://localhost:1433;database=LRSEXTDB;
+      username: sa
+      password: "lrs#12345"
+---
+spring:
+  profiles: devDb
+lrs:
+  datasource:
+    url: jdbc:sqlserver://10.215.14.52:1433;database=LRSDB;
+    username: sa
+    password: "lrs#12345"
+---
+spring:
+  profiles: testDb
+lrs:
+  datasource:
+    url: jdbc:sqlserver://10.215.14.20:1433;database=LRSDB;
+    username: sa
+    password: "lrs#12345"
+---
+spring:
+  profiles: localMule
+lrs:
+  ext:
+    datasource:
+      url: jdbc:sqlserver://localhost:1433;database=LRSEXTDB;
+      username: sa
+      password: "lrs#12345"
+  mule:
+    rootUri: &muleRootUri http://localhost:8000/LrsServices/api/v1/devMule
+    authorizations:
+      rootUri: *muleRootUri
+      useOAuth: false
+    lenders:
+      rootUri: *muleRootUri
+      useOAuth: false
+    monthly:
+      rootUri: *muleRootUri
+      useOAuth: false
+    ec:
+      rootUri: *muleRootUri
+      useOAuth: false
+    epd:
+      rootUri: *muleRootUri
+      useOAuth: false
+    lenderMonitoring:
+      rootUri: *muleRootUri
+      useOAuth: false
+    case:
+      rootUri: *muleRootUri
+      useOAuth: false
+    batchCase:
+      rootUri: *muleRootUri
+      useOAuth: false
+    underwriter:
+      rootUri: *muleRootUri
+      useOAuth: false
+    binderRequest:
+      rootUri: *muleRootUri
+      useOAuth: false
+    binderReceipt:
+      rootUri: *muleRootUri
+      useOAuth: false
+    document:
+      rootUri: *muleRootUri
+      useOAuth: false
+    indemnification:
+      rootUri: *muleRootUri
+      useOAuth: false
+---
+spring:
+  profiles: devMule
+lrs:
+  mule:
+    rootUri: &muleRootUri https://esbapi-dev.hhq.hud.dev/hud-esb
+    authorizations:
+      rootUri: *muleRootUri
+    lenders:
+      rootUri: *muleRootUri
+    monthly:
+      rootUri: *muleRootUri
+    ec:
+      rootUri: *muleRootUri
+    epd:
+      rootUri: *muleRootUri
+    lenderMonitoring:
+      rootUri: *muleRootUri
+    case:
+      rootUri: *muleRootUri
+    batchCase:
+      rootUri: *muleRootUri
+    underwriter:
+      rootUri: *muleRootUri
+    binderRequest:
+      rootUri: *muleRootUri
+    binderReceipt:
+      rootUri: *muleRootUri
+    document:
+      rootUri: *muleRootUri
+    indemnification:
+      rootUri: *muleRootUri
+---
+spring:
+  profiles: testMule
+lrs:
+  mule:
+    rootUri: &muleRootUri https://esbapi-test.testcntr.nonprod.hud.gov/hud-esb
+    oauth:
+      authUri: https://esboam-test.testcntr.nonprod.hud.gov/openam/oauth2/authorize?realm=/
+      cookieUri: https://esboam-test.testcntr.nonprod.hud.gov/openam/json/authenticate?realm=/
+    authorizations:
+      rootUri: *muleRootUri
+    lenders:
+      rootUri: *muleRootUri
+    monthly:
+      rootUri: *muleRootUri
+    ec:
+      rootUri: *muleRootUri
+    epd:
+      rootUri: *muleRootUri
+    lenderMonitoring:
+      rootUri: *muleRootUri
+    case:
+      rootUri: *muleRootUri
+    batchCase:
+      rootUri: *muleRootUri
+    underwriter:
+      rootUri: *muleRootUri
+    binderRequest:
+      rootUri: *muleRootUri
+    binderReceipt:
+      rootUri: *muleRootUri
+    document:
+      rootUri: *muleRootUri
+    indemnification:
+      rootUri: *muleRootUri
+---
+spring:
+  profiles: integrationtest
+lrs:
+  h2:
+    console:
+      enabled: true
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:../../db/integrationdb/LRSDB;IGNORECASE=TRUE
+    username: sa
+    password: "lrs#12345"
+    platform: h2
+  jpa:
+    properties: 
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        ddl-auto: none
+    database: H2
+    show-sql: true
+server:
+  port: 8445
+logging:
+  pattern.console: "[%d{HH:mm:ss} %.-1le] %m%n"
+  level:
+    gov:
+      hud:
+        lrs: DEBUG
+    org:
+      hibernate:
+        SQL: DEBUG
+        #type: TRACE

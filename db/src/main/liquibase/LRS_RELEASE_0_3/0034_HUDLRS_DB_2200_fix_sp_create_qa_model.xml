@@ -1,0 +1,532 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2194_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER procedure [dbo].[sp_create_qa_model]
+							(@from_model_id uniqueidentifier,
+							@new_model_name varchar(30),
+							@description varchar(255),
+							@login_credential char(6))
+							as
+
+							declare
+								@to_model_id uniqueidentifier
+
+							insert into qa_model
+							(model_name,
+							version_num,
+							description,
+							created_by,
+							created_ts)
+							values
+							(@new_model_name,
+							(select max(version_num) + 1 from qa_model),
+							@description,
+							@login_credential,
+							getdate())
+
+							select @to_model_id = model_id
+							from qa_model
+							where version_num =
+							(select max(version_num) from qa_model)
+
+							insert into DICT_METADATA_FIELD_MODEL
+							(ENTITY_NAME, 
+								FIELD_NAME, 
+								MODEL_ID, 
+								CREATED_BY, 
+								CREATED_TS,
+								ORDER_NUMBER)
+							select 
+								ENTITY_NAME, 
+								FIELD_NAME,
+								@to_model_id,
+								@login_credential, 
+								getdate() ,
+								ORDER_NUMBER
+							from DICT_METADATA_FIELD_MODEL 
+							where MODEL_ID = @from_model_id
+
+							create table #t_defect(
+									defect_cd varchar(16) null,
+									description varchar(150) null,
+									review_category varchar(16) null,
+									relative_order int null,
+									old_defect_id uniqueidentifier null,
+									new_defect_id uniqueidentifier null default newid())
+
+
+							insert into #t_defect
+							(defect_cd,
+							description,
+							review_category,
+							relative_order,
+							old_defect_id)
+							select
+							defect_cd,
+							description,
+							review_category,
+							relative_order,
+							defect_id
+							from defect
+							where model_id = @from_model_id
+
+							insert into defect
+							(defect_cd,
+							description,
+							review_category,
+							relative_order,
+							defect_id,
+							model_id,
+							created_by,
+							created_ts)
+							select 
+							defect_cd,
+							description,
+							review_category,
+							relative_order,
+							new_defect_id,
+							@to_model_id,
+							@login_credential,
+							getdate()
+							from #t_defect
+
+							insert into DICT_METADATA_FIELD_DEFECT
+							(ENTITY_NAME, 
+								FIELD_NAME, 
+								DEFECT_CD, 
+								CREATED_BY, 
+								CREATED_TS, 
+								DEFECT_ID,
+								ORDER_NUMBER)
+							select 
+								a.ENTITY_NAME, 
+								a.FIELD_NAME, 
+								a.DEFECT_CD, 
+								@login_credential, 
+								getdate(), 
+								b.new_DEFECT_ID,
+								ORDER_NUMBER
+							from DICT_METADATA_FIELD_DEFECT a,
+									#t_defect b
+							where a.DEFECT_ID = b.old_defect_id
+
+							insert into REVIEW_TYPE_DEFECT
+							(CREATED_BY, 
+								CREATED_TS,
+								ORDER_NUMBER, 
+								REVIEW_TYPE_ID, 
+								DEFECT_ID)
+							select 
+								@login_credential, 
+								getdate(), 
+								ORDER_NUMBER, 
+								REVIEW_TYPE_ID,
+								b.new_DEFECT_ID
+							from REVIEW_TYPE_DEFECT a,
+									#t_defect b
+							where a.DEFECT_ID = b.old_defect_id	
+
+							insert into defect_remedy_type
+							(defect_id,
+							remedy_type_id,
+							created_by,
+							created_ts)
+							select
+							b.new_defect_id,
+							remedy_type_id,
+							@login_credential,
+							getdate()
+							from defect_remedy_type a,
+									#t_defect b
+							where a.DEFECT_ID = b.old_defect_id							
+												
+							create table #t_defect_cause(
+									old_defect_cause_id uniqueidentifier null,
+									defect_cause_cd varchar(16) null,
+									defect_cd varchar(16) not null,
+									description varchar(150) null,
+									new_defect_id uniqueidentifier null,
+									new_defect_cause_id uniqueidentifier null default newid(),
+									relative_order int)
+													   
+							insert into #t_defect_cause
+							(old_defect_cause_id ,
+							defect_cause_cd ,
+							defect_cd ,
+							description, 
+								new_defect_id ,
+								relative_order)
+							select 
+							defect_cause_id ,
+							defect_cause_cd ,
+							a.defect_cd ,      
+							a.description,     
+							b.new_defect_id,
+							a.relative_order
+							from defect_cause a,
+									#t_defect b
+							where a.defect_id = b.old_defect_id
+
+							insert into defect_cause
+							(defect_cause_id ,
+							defect_cause_cd ,
+							defect_cd ,
+							description, 
+								defect_id,
+							created_by,
+							created_ts,
+							relative_order)
+							select  
+								new_defect_cause_id ,
+							defect_cause_cd ,
+							defect_cd ,
+							description, 
+								new_defect_id,
+							@login_credential,
+							getdate(),
+							relative_order
+							from #t_defect_cause 
+
+							create table #t_defect_source(
+									old_defect_source_id uniqueidentifier null,
+									dfct_source_cd varchar(16) null,
+									defect_cd varchar(16) not null,
+									description varchar(150) null,
+									new_defect_id uniqueidentifier null,
+									new_defect_source_id uniqueidentifier null default newid(),
+									relative_order int)
+													   
+							insert into #t_defect_source
+							(old_defect_source_id,
+							dfct_source_cd,
+							defect_cd,
+							description,
+							new_defect_id,
+							relative_order)
+							select 
+								defect_source_id,
+							dfct_source_cd,
+							a.defect_cd,
+							a.description,
+							new_defect_id ,
+							a.relative_order      
+							from defect_source a,
+									#t_defect b
+							where a.defect_id = b.old_defect_id
+
+							insert into defect_source
+							(defect_source_id,
+							dfct_source_cd,
+							defect_cd,
+							description,
+							defect_id ,
+							created_by,
+							created_ts,
+							relative_order)
+							select 
+								new_defect_source_id,
+							dfct_source_cd,
+							defect_cd,
+							description,
+							new_defect_id ,     
+								@login_credential,
+							getdate(),
+							relative_order
+							from #t_defect_source 
+
+							create table #t_defect_severity(
+									old_defect_severity_id uniqueidentifier null,
+									severity_tier_cd varchar(16) null,
+									defect_cd varchar(16) not null,
+									description varchar(1024) null,
+									new_defect_id uniqueidentifier null,
+									new_defect_severity_id uniqueidentifier null default newid(),
+									relative_order int null,
+									example_text varchar(1024) null)
+													   
+							insert into #t_defect_severity
+							(old_defect_severity_id,
+							severity_tier_cd,
+							defect_cd,
+							description,
+							new_defect_id,
+							relative_order,
+							example_text)
+							select 
+								defect_severity_id,
+							severity_tier_cd,
+							a.defect_cd,
+							a.description,
+							new_defect_id,
+							a.relative_order,
+							example_text
+							from defect_severity a,
+									#t_defect b
+							where a.defect_id = b.old_defect_id
+
+							insert into defect_severity
+							(defect_severity_id,
+							severity_tier_cd,
+							defect_cd,
+							description,
+							defect_id ,
+							created_by,
+							created_ts,
+							relative_order,
+							example_text)
+							select 
+								new_defect_severity_id,
+							severity_tier_cd,
+							defect_cd,
+							description,
+							new_defect_id ,     
+								@login_credential,
+							getdate(),
+							relative_order,
+							example_text
+							from #t_defect_severity 
+
+							insert into finding_rating_rules_admin (defect_id, defect_cause_id, defect_source_id,unacceptable_rating_threshold,defect_cd,defect_cause_cd,dfct_source_cd)
+							select c.new_defect_id, c.new_defect_cause_id, s.new_defect_source_id, o.unacceptable_rating_threshold,c.defect_cd,c.defect_cause_cd,s.dfct_source_cd
+								from #t_defect_cause c, 
+								#t_defect_source s, 
+								finding_rating_rules_admin o
+								where o.defect_cause_id = c.old_defect_cause_id 
+								and o.defect_source_id = s.old_defect_source_id 
+												   
+							create table #t_qatree(
+									new_qatree_id uniqueidentifier null default newid(),
+									old_qatree_id uniqueidentifier null,
+									new_model_id uniqueidentifier not null,
+									new_defect_id uniqueidentifier null,
+									defect_cd varchar(16) null,
+									enable_pre_qual_question_ind char(1) null)
+
+													   
+							insert into #t_qatree
+							(old_qatree_id, 
+								new_model_id,
+							new_defect_id,
+							defect_cd,
+							enable_pre_qual_question_ind)
+							select
+							q.qatree_id, 
+								@to_model_id,
+							t.new_defect_id,
+							t.defect_cd,
+							enable_pre_qual_question_ind
+							from #t_defect t, qatree q
+							where t.old_defect_id = q.defect_id
+
+							insert into qatree
+							(qatree_id, 
+								created_by, 
+								created_ts, 
+								model_id, 
+								defect_id, 
+							enable_pre_qual_question_ind)  
+							select 
+								new_qatree_id,
+							@login_credential,
+							getdate(),
+							new_model_id, 
+							new_defect_id, 
+							enable_pre_qual_question_ind
+							from #t_qatree 
+
+
+							create table #t_outcome (
+									new_qatree_outcome_id uniqueidentifier null default newid(),
+									old_qatree_outcome_id uniqueidentifier null,
+									new_defect_id uniqueidentifier null)
+
+							insert into #t_outcome (
+								old_qatree_outcome_id, 
+								new_defect_id
+								)
+								select o.qatree_outcome_id, 
+										t.new_defect_id
+								from #t_defect t, 
+									qatree_outcome o
+								where t.old_defect_id = o.defect_id
+
+							insert into qatree_outcome 
+							(qatree_outcome_id, 
+								defect_id, 
+								created_by,  
+								created_ts,  
+								source_filter_question_id)
+							select new_qatree_outcome_id, 
+									new_defect_id, 
+									@login_credential, 
+									getdate(), 
+									q.source_filter_question_id
+							from #t_outcome t, 
+									qatree_outcome q
+							where t.old_qatree_outcome_id = q.qatree_outcome_id
+
+
+
+							insert into qatree_outcome_defect_cause
+							(defect_cause_id, 
+								qatree_outcome_id, 
+								created_by, 
+								created_ts)
+							select tc.new_defect_cause_id, 
+									t.new_qatree_outcome_id, 
+									@login_credential, 
+									getdate()
+							from #t_outcome t, 
+									#t_defect_cause tc, 
+									qatree_outcome_defect_cause c
+							where t.old_qatree_outcome_id = c.qatree_outcome_id 
+								and c.defect_cause_id = tc.old_defect_cause_id
+
+
+
+							insert into qatree_outcome_defect_source 
+							(defect_source_id, 
+								qatree_outcome_id, 
+								created_by, 
+								created_ts)
+							select tc.new_defect_source_id, 
+									t.new_qatree_outcome_id, 
+									@login_credential, 
+									getdate()
+							from #t_outcome t, 
+									#t_defect_source tc, 
+									qatree_outcome_defect_source c
+							where t.old_qatree_outcome_id = c.qatree_outcome_id 
+								and c.defect_source_id = tc.old_defect_source_id
+
+							insert into qatree_outcome_defect_severity 
+							(defect_severity_id, 
+								qatree_outcome_id, 
+								created_by, 
+								created_ts)
+							select tc.new_defect_severity_id, 
+									t.new_qatree_outcome_id, 
+									@login_credential, 
+									getdate()
+							from #t_outcome t, 
+									#t_defect_severity tc, 
+									qatree_outcome_defect_severity c
+							where t.old_qatree_outcome_id = c.qatree_outcome_id 
+								and c.defect_severity_id = tc.old_defect_severity_id
+
+							create table #t_question (
+									new_question_id uniqueidentifier null default newid(),
+									old_question_id uniqueidentifier null,
+									new_qatree_id uniqueidentifier null
+									)
+
+							insert into #t_question 
+							(old_question_id, 
+								new_qatree_id)
+							select qu.question_id, 
+									qa.new_qatree_id 
+							from qatree_question qu, 
+									#t_qatree qa
+							where qu.qatree_id = qa.old_qatree_id
+
+							insert into QUESTION_REFERENCE
+							(QUESTION_ID, 
+								QUESTION_DESCRIPTION, 
+								VALUE_TO_TRIGGER_ACTION, 
+								RESPONSE_TYPE, 
+								ANSWER_VALUES, 
+								created_by,
+								created_ts)
+							select   
+								a.new_QUESTION_ID, 
+								QUESTION_DESCRIPTION, 
+								VALUE_TO_TRIGGER_ACTION, 
+								RESPONSE_TYPE, 
+								ANSWER_VALUES, 
+								@login_credential,
+								getdate()
+							from #t_question a,
+									QUESTION_REFERENCE b
+							where a.old_question_id = b.QUESTION_ID
+
+
+							insert into qatree_question 
+							(question_id, 
+								qatree_id, 
+								question_number, 
+								question_reference, 
+								qatree_outcome_id, 
+								--parent_question_id, 
+								created_by,  
+								created_ts,  
+								order_number)
+							select t.new_question_id, 
+									t.new_qatree_id, 
+									q.question_number, 
+									q.question_reference, 
+									o.new_qatree_outcome_id, 
+									--q.parent_question_id, 
+									@login_credential, 
+									getdate(),  
+									q.order_number
+							from #t_question t
+							join qatree_question q
+							on t.old_question_id = q.question_id 
+							left outer join #t_outcome o
+							on q.qatree_outcome_id = o.old_qatree_outcome_id
+
+							insert into QA_MODEL_PREQUAL
+							(QUESTION_ID,
+								PRE_QUAL_POTENTIAL_ANSWER_CD, 
+								QUESTION_REF_ID_CSV,
+								description
+							)
+							select 
+								a.new_QUESTION_ID,
+								PRE_QUAL_POTENTIAL_ANSWER_CD, 
+								QUESTION_REF_ID_CSV,
+								b.description
+							from #t_question a,
+									QA_MODEL_PREQUAL b
+							where a.old_question_id = b.QUESTION_ID
+												
+							update QATREE_QUESTION
+							set PARENT_QUESTION_ID = b.new_question_id
+							from QATREE_QUESTION a,
+									#t_question b
+							where a.PARENT_QUESTION_ID = b.old_question_id
+
+							update QATREE_OUTCOME
+							set SOURCE_FILTER_QUESTION_ID = b.new_question_id
+							from QATREE_OUTCOME a,
+									#t_question b
+							where a.SOURCE_FILTER_QUESTION_ID = b.old_question_id
+
+							insert into QATREE_QSTN_CONDITION
+							(entity_name, 
+								field_name, 
+								question_id, 
+								qatree_id, 
+								comparison_values, 
+								condition_operator, 
+								created_by, 
+								created_ts)
+							select
+							entity_name, 
+								field_name, 
+								new_question_id, 
+								new_qatree_id, 
+								comparison_values, 
+								condition_operator, 
+								@login_credential,
+								getdate()
+							from #t_question tq,
+									QATREE_QSTN_CONDITION qqc
+							where tq.old_question_id = qqc.QUESTION_ID
+		]]>
+        </sql>
+    </changeSet>
+	
+</databaseChangeLog>    

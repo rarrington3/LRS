@@ -1,0 +1,76 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2683_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update personnel
+			set PERSONNEL_STATUS_ID = (select PERSONNEL_STATUS_ID from PERSONNEL_STATUS_REF where DESCRIPTION = 'Inactive')
+			where LOGIN_CREDENTIAL in
+			(
+			 'HLRS01',
+			 'HLRS02',
+			 'HLRS03',
+			 'HLRS04',
+			 'HLRS05',
+			 'HLRS06',
+			 'HLRS07',
+			 'HLRS08',
+			 'HLRS09',
+			 'HLRS10',
+			 'HLRS81',
+			 'HLRS82',
+			 'HLRS83',
+			 'HLRS84',
+			 'HLRS91',
+			 'HLRS92',
+			 'HLRS93',
+			 'HLRS94',
+			 'HLRS95',
+			 'HLRS96',
+			 'HLRS97',
+			 'HLRS98',
+			 'HLRS99',
+			 'HLR100',
+			 'HLR101',
+			 'HLR102',
+			 'HLR103',
+			 'HLR104',
+			 'HLR105',
+			 'HLR106',
+			 'HLR107',
+			 'HLR108',
+			 'HLR109',
+			 'HLR110',
+			 'HLR111',
+			 'HLR112',
+			 'HLR113',
+			 'HLR114',
+			 'HLR115',
+			 'HLR116',
+			 'HLR117',
+			 'HLR118',
+			 'HLR119',
+			 'HLR120',
+			 'HLR121',
+			 'HLR122',
+			 'HLR123',
+			 'HLR124',
+			 'HLR125',
+			 'HLR126',
+			 'HLR127',
+			 'HLR128',
+			 'HLR129',
+			 'HLR130',
+			 'HLR131',
+			 'HLR132',
+			 'HLR133',
+			 'HLR134',
+			 'HLR135',
+			 'HLR136'			
+			)
+		]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>    
+
+

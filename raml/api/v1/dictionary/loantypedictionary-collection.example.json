@@ -1,0 +1,18 @@
+[
+    {
+        "code": "PRCHS",
+        "description": "Purchase"
+    },
+    {
+        "code": "REFI",
+        "description": "Refinance"
+    },
+    {
+        "code": "REHAB",
+        "description": "Rehabilitation"
+    },
+    {
+        "code": "HECM",
+        "description": "Reverse (HECM)"
+    }
+]

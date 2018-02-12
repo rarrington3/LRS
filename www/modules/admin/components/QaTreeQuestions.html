@@ -1,0 +1,181 @@
+<div *ngIf="!questions.length" class="lrs-no-results">
+    <span class="small" aria-label="no results">No results found</span>
+</div>
+<div *ngIf="questions.length" class="pull-right">
+    <a href="javascript:void(0);" [collapsePanel]="false" [collapsePanelParentSelector]="'.qa-tree-panel-nested-'+nest">Expand All</a> |
+    <a href="javascript:void(0);" [collapsePanel]="true" [collapsePanelParentSelector]="'.qa-tree-panel-nested-'+nest">Collapse All</a>
+</div>
+<table class="table table-bordered outer-bordered header-less-bordered qa-tree-questions-table qa-tree-questions-table-nested-{{nest}}">
+    <tbody>
+    <tr *ngFor="let question of questions; let i=index">
+        <td class="questions-col">
+            <div class="panel qa-tree-panel qa-tree-panel-nested-{{nest}}">
+                <div class="panel-heading" role="tab" [id]="'questionHeadingOne_'+nest+'_'+i">
+                    <table class="qa-tree-title-table">
+                        <tr>
+                            <td class="title-col">
+                                <h4 class="panel-title">
+                                    <a class="lrs-arrow" role="button" data-toggle="collapse"
+                                       [href]="'#questionCollapseOne_'+nest+'_'+i"
+                                       aria-expanded="true" [attr.aria-controls]="'questionCollapseOne_'+nest+'_'+i">
+                                        <span class="caret" aria-hidden="true"></span>
+                                        <strong>{{code}}.{{question.questionNumber}}</strong> - {{question.questionText}}
+                                    </a>
+                                </h4>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div [id]="'questionCollapseOne_'+nest+'_'+i" class="panel-collapse collapse in" role="tabpanel"
+                     [attr.aria-labelledby]="'questionHeadingOne_'+nest+'_'+i">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label class="control-label">
+                                        Question Code
+                                    </label>
+                                    <p>
+                                        {{question.questionNumber}}
+                                    </p>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label small">
+                                        Question Description
+                                    </label>
+                                    <p>
+                                        {{question.questionNumber}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 hr-wrapper">
+                                <hr/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <table class="qa-tree-conditions-table">
+                                    <thead>
+                                    <tr>
+                                        <th class="field-condition-col">Field Visibility Condition</th>
+                                        <th class="operator-col">Operator</th>
+                                        <th class="value-col">Value</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let condition of question.conditionsToDisplay">
+                                        <td class="field-condition-col">
+                                            {{condition.fieldName}}
+                                        </td>
+                                        <td class="operator-col">
+                                            {{condition._operatorText}}
+                                        </td>
+                                        <td class="value-col">
+                                            <span>
+                                                {{condition._comparisonValuesText}}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 hr-wrapper">
+                                <hr/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <table class="qa-tree-answers-table">
+                                    <thead>
+                                    <tr>
+                                        <th class="answer-col" scope="col">Answer</th>
+                                        <th class="outcome-col" scope="col">Outcome</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let answer of question.potentialAnswers">
+                                        <th scope="row" class="answer-col">
+                                            {{answer.description}}
+                                        </th>
+                                        <td class="outcome-col">
+                                            <div class="qa-model-answer-select-wrapper">
+                                                <span>{{answer._outcomeCode}}</span>
+                                            </div>
+                                            <div class="qa-model-finding-wrapper"
+                                                 *ngIf="answer._outcomeCode === qaTreeOutcome.FINDING.code">
+                                                <div class="row">
+                                                    <div class="col-xs-6">
+                                                        <table class="qa-tree-findings-table">
+                                                            <thead>
+                                                            <tr>
+                                                                <th class="source-col">Source</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr *ngFor="let allowableSource of question._allowableSources">
+                                                                <td class="source-col">
+                                                                    [{{allowableSource.code}}} + {{allowableSource.description}}
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                        <table class="qa-tree-findings-table">
+                                                            <thead>
+                                                            <tr>
+                                                                <th class="cause-col">Cause</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr *ngFor="let allowableCause of question._allowableCauses">
+                                                                <td class="cause-col">
+                                                                    [{{allowableCause.code}}] + {{allowableCause.description}}
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="question._answerToExpand">
+                            <div class="col-xs-12 hr-wrapper">
+                                <hr/>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="question._answerToExpand">
+                            <div class="col-xs-12">
+                                <p class="strong h4">Child Questions for "{{question._answerToExpandText}}"</p>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="question._answerToExpand">
+                            <div class="col-xs-12">
+                                <qa-tree-questions
+                                    [code]="code"
+                                    [questions]="question.questions"
+                                    [parentQuestion]="question"
+                                    [loanAttributes]="loanAttributes"
+                                    [sources]="sources"
+                                    [causes]="causes"
+                                    [nest]="nest + 1"
+                                    [indexes]="indexes + ',' + i">
+                                </qa-tree-questions>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>

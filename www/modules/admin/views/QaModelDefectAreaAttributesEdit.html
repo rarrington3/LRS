@@ -1,0 +1,65 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <div *ngIf="defectAreaLoading" class="lrs-loading">
+            <span class="glyphicon glyphicon-refresh"
+                  aria-label="loading" title="Loading">
+            </span>
+            </div>
+            <div *ngIf="!defectAreaLoading && !defectArea.loanAttributes.length" class="lrs-no-results">
+                <span class="small" aria-label="no results">No results found</span>
+            </div>
+            <div>
+                <h6 aria-hidden="true">Displayed Defect Area Loan Attributes</h6>
+            </div>
+            <table *ngIf="!defectAreaLoading && defectArea.loanAttributes.length"
+                   class="table table-bordered lrs-sortable-table attributes-table">
+                <tbody>
+                <tr *ngFor="let loanAttribute of defectArea.loanAttributes">
+                    <td class="lrs-order-col">
+                        <button type="button" class="btn btn-xs btn-default lrs-sort-up"
+                                aria-pressed="false"
+                                (click)="sortUp(defectArea.loanAttributes, loanAttribute)">
+                            <span class="glyphicon glyphicon-chevron-up small" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-xs btn-default lrs-sort-down"
+                                aria-pressed="false"
+                                (click)="sortDown(defectArea.loanAttributes, loanAttribute)">
+                            <span class="glyphicon glyphicon-chevron-down small" aria-hidden="true"></span>
+                        </button>
+                    </td>
+                    <td class="attributes-desc-col">
+                        <span aria-label="Description">{{loanAttribute.fieldName}}</span>
+                    </td>
+                    <td>
+                        <button type="button"
+                                class="btn btn-default"
+                                (click)="remove(defectArea.loanAttributes, loanAttribute)">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <select class="form-control select-sm"
+                    [(ngModel)]="selectedFieldCode"
+                    [dataTriggered]="true">
+                <option value="">Select</option>
+                <option *ngFor="let field of fields" [value]="field.code">
+                    {{field.fieldName}}
+                </option>
+            </select>
+        </div>
+        <div class="col-xs-1">
+            <button class="btn btn-primary"
+                    [disabled]="!selectedFieldCode"
+                    (click)="add()">
+                + Add Loan Attribute
+            </button>
+        </div>
+    </div>
+</div>

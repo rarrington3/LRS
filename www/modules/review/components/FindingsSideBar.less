@@ -1,0 +1,149 @@
+@import '../../bootstrap/_variables';
+@import '../../../libs/bootstrap/less/mixins/buttons';
+@import '../../shared/_mixins';
+@import "../../shared/icons";
+:host-context {
+	/* styles should be scoped under host-context */
+	:focus{
+	 	outline: none;
+	}
+
+	.panel {
+		margin: 5px 0;
+	}
+
+	.panel-heading {
+		padding: 5px;
+		background-color: @btn-primary-bg;
+	}
+
+	.panel-heading .btn {
+		width: 100%;
+		text-align: left;
+
+		&:focus, &:hover {
+		 	text-decoration: none;
+		}
+
+		&.collapsed {
+
+			span.caret {
+				transform: rotate(-90deg);
+			}
+		}
+	}
+
+	.panel-title {
+		position: relative;
+
+		span.badge {
+			position: absolute;
+			right: 0;
+			top: 0;
+			color: @brand-secondary;
+			background-color: @btn-primary-color;
+		}
+
+		span.caret {
+			color: @btn-primary-color;
+			margin-right: 5px;
+		}
+
+		span.heading-title {
+			text-align: left;
+			color: @btn-primary-color;
+			font-size: @font-size-small;
+		}
+	}
+
+	.row div {
+		padding: 0;
+	}
+
+	.row:last-child .finding-item {
+		border: none;
+	}
+
+	.finding-item {
+		width: 100%;
+		border: none;
+		border-bottom: 1px solid @btn-secondary-border;
+
+		> a.btn.active {
+			text-align: left;
+			border: 1px solid @brand-secondary;
+			background-color: @btn-primary-color;
+			width: 100%;
+		}
+
+		.icon-text, .finding-status-icon, .reviewer-response-label {
+			display: block;
+			position: absolute;
+			text-align: center;
+			right: 5px;
+			top: 6px;
+			width: 20px;
+			height: 20px;
+			border-radius: @border-radius-base;
+			font-size: @font-size-smaller;
+			color: @btn-primary-color;
+			padding-top: 4px;
+		}
+
+		.reviewer-response-label {
+			color: @gray-dark;
+			font-size: @font-size-small;
+			right: 90px;
+		}
+
+		.icon-text {
+			width: initial;
+			color: @gray-dark;
+		}
+		.danger {
+			.finding-red-icon;
+		}
+
+		.warning {
+			.finding-orange-icon;
+		}
+
+		.conforming {
+			.finding-green-icon;
+		}
+	}
+
+	.panel-body {
+		padding-top: 0;
+		padding-bottom: 0;
+		border: none;
+	}
+
+	.finding-title, .glyphicon-warning-sign {
+		display: inline-block;
+		font-weight: @headings-font-weight;
+		color: @brand-secondary;
+	}
+
+    .list-group-item.wrap-up {
+        padding: 6px 15px;
+        cursor: pointer;
+        a {
+            display: block;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        a, a:active, a:hover, a:visited {
+            text-decoration: none;
+        }
+        &.selected {
+            background-color: @brand-secondary;
+            a {
+                color: #fff;
+                text-decoration: none;
+            }
+        }
+
+    }
+}

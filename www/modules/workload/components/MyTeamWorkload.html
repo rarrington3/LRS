@@ -1,0 +1,133 @@
+<div class="myteam-container panel-group">
+	<div class="panel-title-no-cursor active-title">
+		<div class="lrs-arrow">
+			TEAM MEMBER REVIEW ASSIGNMENTS
+		</div>
+		<button type="button" (click)="showReassignAllCasesModal(reviewerCounts)" class="btn btn-default btn-primary reassign-all-cases-btn"
+			[disabled]="!reviewerCounts || reviewerCounts.length > 1 || totalActiveReviews === 0">Reassign All Cases</button>
+	</div>
+	<div>
+		<hr>
+        <div *ngIf="reviewerCountsLoading" class="lrs-loading">
+            <span class="glyphicon glyphicon-refresh"
+                  aria-label="loading" title="Loading">
+            </span>
+        </div>
+        <div *ngIf="!reviewerCountsLoading && !reviewerCounts.length" class="lrs-no-results">
+            <span class="small" aria-label="no results">No results found</span>
+        </div>
+		<div *ngFor="let reviewer of reviewerCounts" class="reviewer-cases">
+			<sortable-table [title]=reviewer.name [items]=reviewer._reviews [categories]="categories"  [reviewRoute]="'../../review'" [icon]="'edit'" (onEditReviewClick)="showEditReviewModal($event)"></sortable-table>
+            <div class="no-results" *ngIf="!reviewer._reviews.length">No results found for this reviewer</div>
+		</div>
+	</div>
+</div>
+
+<!-- Reassign a case -->
+<modal [(isOpen)]="reassignCaseModal.isOpen"
+	   confirmText="Submit"
+	   [closeOnSave]="false"
+	   title="REASSIGN CASE #{{reassignCaseModal.review?.caseNumber}}"
+	   (confirmChange)="onReassign(reassignCaseModal.review)"
+	   [hasCancelButton]="false">
+	<form class="modal-inner-body container-fluid">
+		<div class="row">
+			<div class="col-xs-7">
+				<div class="form-group">
+					<label class="small" for="selectedTeamMemberId">Team Member</label>
+					<select id="selectedTeamMemberId" name="selectedTeamMemberId"  [alwaysTriggerSelectChange]="true" [dataTriggered]="true" [(ngModel)]="reassignCaseModal.selectedTeamMemberId" class="form-control input-sm">
+						<option *ngFor="let reviewer of reviewersByLocation" [value]="reviewer.reviewerId">
+							{{reviewer.nameLast}}, {{reviewer.nameFirst}} ({{reviewer.remainingCapacity}})
+						</option>
+					</select>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-7">
+				<div class="form-group">
+					<label class="small" for="reassigmentReasonId">Reassignment Reason</label>
+					<select id="reassigmentReasonId" name="reassigmentReasonId" [(ngModel)]="reassignCaseModal.reassigmentReasonId" class="form-control input-sm">
+						<option *ngFor="let reason of reassignmentReasons" [value]="reason.code">
+							{{reason.description}}
+						</option>
+					</select>
+				</div>
+			</div>
+		</div>
+
+	</form>
+
+	<div class="modal-inner-footer my-team-workload">
+		<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+		<button type="button" class="btn btn-default btn-danger" (click)="onConfirmCancelReview(reassignCaseModal.review)">Cancel Review</button>
+	</div>
+
+</modal>
+
+<!-- Cancel a case -->
+<modal [(isOpen)]="cancelCaseModal.isOpen"
+	   confirmText="Cancel Review"
+	   [closeOnSave]="false"
+	   title="CONFIRM CANCELATION"
+	   (confirmChange)="onCancelReview(cancelCaseModal.review)"
+	   [hasCancelButton]="true">
+	<form class="modal-inner-body container-fluid">
+
+		<div class="row modal-inner-body-info">
+			<div class="col-xs-12">
+				<p>Please provide a reason for canceling this review.</p>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-7">
+				<div class="form-group">
+					<label class="small" for="cancellationReasonId">Cancellation Reason</label>
+					<select id="cancellationReasonId" name="cancellationReasonId" [(ngModel)]="cancelCaseModal.cancellationReasonId" class="form-control input-sm">
+						<option *ngFor="let reason of cancellationReasons" [value]="reason.code">
+							{{reason.description}}
+						</option>
+					</select>
+				</div>
+			</div>
+		</div>
+
+	</form>
+</modal>
+
+<!-- Reassign all cases -->
+<modal [(isOpen)]="reassignAllCasesModal.isOpen"
+	   confirmText="Submit"
+	   [closeOnSave]="false"
+	   title="REASSIGN ALL CASES"
+	   (confirmChange)="onReassignAllCases(reassignAllCasesModal.reviewers)"
+	   [hasCancelButton]="true">
+
+	<form class="modal-inner-body container-fluid">
+		<div class="row modal-inner-body-info">
+			<div class="col-xs-12">
+				<p *ngFor="let reviewer of reassignAllCasesModal.reviewers">
+					<span *ngIf="reviewer._reviews.length">This will automatically reassign all {{reviewer._reviews.length}} of {{reviewer.name}}'s active cases.</span>
+				</p>
+				<p>This action cannot be undone.</p>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-7">
+				<div class="form-group">
+					<label class="small" for="allCasesReassignmentReasonId">Reassignment Reason</label>
+					<select id="allCasesReassignmentReasonId" name="allCasesReassignmentReasonId" [(ngModel)]="reassignAllCasesModal.allCasesReassignmentReasonId" class="form-control input-sm">
+						<option *ngFor="let reason of reassignmentReasons" [value]="reason.code">
+							{{reason.description}}
+						</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</form>
+
+
+</modal>

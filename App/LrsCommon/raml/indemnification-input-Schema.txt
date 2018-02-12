@@ -1,0 +1,83 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Input Message",
+  "type": "object",
+  "required":["user","caseNumber","documents","mortgagee","billTo","agreementDate","term","expirationDate","startDate","lenderEndorsed","lenderExecutedAgreement","indemnificationAgreementTransferable","qadLrsFileNumber","docketNumber"],
+  "additionalProperties": false,
+  "properties": {
+    "user": {
+      "type": "string"
+    },
+    "caseNumber": {
+      "type": "string"
+    },
+    "documents": {
+      "type": "object",
+      "items": {
+      	"type": "object",
+      	"properties": {
+      		"file": {
+      			"type": "array",
+      			"items": {
+      				"type": "object",
+      				"properties": {
+      					"name": {"type": "string"},
+      					"document": {"type": "string"},
+      					"mimeType": {
+      						"type": "string",
+      						"enum": ["PDF","JPG","TIF"]
+      					}
+      				},
+      				"required": ["name","document","mimeType"]
+      			}
+      		}
+      	}
+      }
+     },
+    "mortgagee": {
+      "type": "string"
+    },
+    "billTo": {
+      "type": "string",
+      "properties": {
+        "billTo":{
+          "type": "string",
+          "enum": ["Originator","Servicer","Sponsor","Holder"]
+        }
+      }
+    },
+    "agreementDate": {
+      "type": "string"
+    },
+    "term": {
+      "type": "integer"
+    },
+    "expirationDate": {
+      "type": "string"
+    },
+    "startDate": {
+      "type": "string",
+      "properties": {
+        "startDate": { 
+          "type": "string",
+          "enum": ["Agreement","Endorsement"]
+        }
+      }
+    },
+    "lenderEndorsed": {
+      "type": "boolean"
+    },
+    "lenderExecutedAgreement": {
+       "type": "boolean"
+    },
+    "indemnificationAgreementTransferable": {
+      "type": "boolean"
+    },
+    "qadLrsFileNumber": {
+      "type": "string"
+    },
+    "docketNumber": {
+      "type": "string"
+    }
+  }
+}

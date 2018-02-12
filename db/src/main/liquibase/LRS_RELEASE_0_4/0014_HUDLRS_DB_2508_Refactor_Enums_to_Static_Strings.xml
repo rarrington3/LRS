@@ -1,0 +1,19 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="jordanchavez" id="HUDLRS_2508_001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+			<![CDATA[
+ALTER TABLE DEFECT_TYPE_REF ADD CODE VARCHAR(50) NULL
+GO
+UPDATE DEFECT_TYPE_REF SET CODE = 'SERVICING' WHERE DEFECT_TYPE_DESCRIPTION = 'Servicing'
+UPDATE DEFECT_TYPE_REF SET CODE = 'UNDERWRITING' WHERE DEFECT_TYPE_DESCRIPTION = 'Underwriting'
+GO
+ALTER TABLE DEFECT_TYPE_REF ALTER COLUMN CODE VARCHAR(50) NOT NULL
+GO
+ALTER TABLE DEFECT_TYPE_REF ADD CONSTRAINT DEFECT_TYPE_REF_UQ_CODE UNIQUE(CODE)
+GO
+EXEC SP_RENAME 'DEFECT_TYPE_REF.DEFECT_TYPE_DESCRIPTION', 'DESCRIPTION'
+			]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>

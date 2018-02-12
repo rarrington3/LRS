@@ -1,0 +1,85 @@
+<div class="indem-container">
+	<div class="title-header">
+		<h4 class="view-title">{{(isForcedIndem())? 'FORCED ': ''}}INDEMNIFICATION - {{(isReadOnly) ? '' : 'CONFIRM'}} DATA</h4>
+		<div class="small" *ngIf="!isReadOnly">You can update any editable fields that require adjustments.</div>
+		<div class="section-divider">
+			<hr/>
+		</div>
+	</div>
+	<form  #indemConfirmForm="ngForm">
+		<table class="table case-table">
+			<thead>
+			<tr>
+				<th scope="col">Field Name</th>
+				<th scope="col">File Data</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td class="field-label">FHA Case Number</td>
+				<td class="value">{{review?.caseNumber}}</td>
+			</tr>
+			<tr>
+				<td class="field-label">Endorsement Date</td>
+				<td class="value">{{review?.endorsementDate | datePipe}}</td>
+			</tr>
+			<tr>
+				<td class="field-label">Lender ID</td>
+				<td class="value">{{review?.lenderId}}</td>
+			</tr>
+			<tr>
+				<td class="field-label">Lender Name</td>
+				<td class="value">{{review?.lenderName}}</td>
+			</tr>
+			<tr>
+				<td class="field-label">Agreement Date</td>
+				<td class="value">{{review?.currentReviewLevel.indemnificationAgreementDate | datePipe}}</td>
+			</tr>
+			<tr>
+				<td class="field-label">Term of Agreement</td>
+				<td class="value">{{review?.currentReviewLevel.termOfAgreement}}</td>
+			</tr>
+			<tr>
+				<td class="field-label">Indemnification Start</td>
+				<td class="value">{{review?.currentReviewLevel.indemnificationStart}}</td>
+			</tr>
+			<tr>
+				<td class="field-label">Expiration Date</td>
+				<td class="value">{{review?.currentReviewLevel.indemnificationExpirationDate | datePipe}}</td>
+			</tr>
+			<tr>
+				<td class="field-label">LRS Review ID</td>
+				<td class="value">{{review?.reviewReferenceId}}</td>
+			</tr>
+			<tr>
+				<td class="field-label">Review Location</td>
+				<td class="value">
+					<select id="uploadedDocuments" name="reviewLocations"  class="form-control input-sm" [(ngModel)]="selectedReviewLocationId" [disabled]="!allowReviewLocationSelection || isReadOnly">
+						<option value="">Select a review location</option>
+						<option *ngFor="let location of reviewLocations" [value]="location.locationId">{{location.name}}</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td class="field-label">Indemnification Agreement Transferrable</td>
+				<td class="value">
+					<label class="radio-inline">
+						<input type="radio" id="yes" [disabled]="isReadOnly" name="indemTransferrable" [value]="true" [(ngModel)]="selectedIndemTransferrable"  [attr.aria-labelledby]="yes">Yes
+					</label>
+
+					<label class="radio-inline">
+						<input type="radio" id="no" [disabled]="isReadOnly" name="indemTransferrable" [value]="false"  [(ngModel)]="selectedIndemTransferrable"  [attr.aria-labelledby]="no">No
+					</label></td>
+			</tr>
+			</tbody>
+		</table>
+
+		<div class="footer clearfix">
+			<button type="button" (click)="onNext(indemConfirmForm)" *ngIf="selectedReviewLocationId && !isReadOnly" class="btn btn-primary pull-right">Next Step</button>
+			<button type="button" (click)="onCancel()" *ngIf="!isReadOnly" class="btn pull-right cancel-btn">Cancel</button>
+            <button type="button" (click)="onViewIndem()" *ngIf="isReadOnly" class="btn btn-primary pull-right">View Indemnification</button>
+
+		</div>
+	</form>
+
+</div>

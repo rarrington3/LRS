@@ -1,0 +1,26 @@
+<!-- HQ Admin and Review Location Admin location dropdown -->
+<div *ngIf="_batchSvc.isHqAdmin || _batchSvc.isReviewLocationAdmin">
+    <div class="filterTitle">LOCATION</div>
+
+    <div class="form-group">
+        <select [disabled]="!_batchSvc.isHqAdmin" class="form-control select-sm" id="teamLocationsSelect" name="teamLocationsSelect" [(ngModel)]="selectedLocation">
+            <option *ngFor="let loc of _batchSvc.allLocations" [value]="loc.locationId">{{loc.name}}</option>
+        </select>
+    </div>
+</div>
+
+<div *ngIf="activeBatch">
+    <!-- Custom Batches List -->
+    <div class="filterTitle">BATCHES</div>
+
+    <ul class="list-group">
+        <li class="list-group-item category" *ngFor="let batch of batches" [class.activeFilter]="batch.batchId===activeBatch?.batchId"
+            (click)="getBatchInfo(batch, false)">
+            <a href="javascript:void(0);">{{batch.batchNumber}} - {{batch.lenderName}} ({{batch.lenderId}})</a>
+            <div class="badge">{{batchedReviewsLength(batch)}}</div>
+        </li>
+    </ul>
+
+    <cross-filter-view [dimensions]="reviewDimensions" [dataSource]="activeBatchReviewsObservable"></cross-filter-view>
+
+</div>

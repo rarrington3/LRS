@@ -1,0 +1,27 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_917_DATA_SCORING_MODEL_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			INSERT [dbo].[SCORING_MODEL] ([MODEL_ID], [DESCRIPTION], [CREATED_BY], [UPDATED_BY], [CREATED_TS], [UPDATED_TS]) VALUES (N'e1da534e-f26a-494e-8109-b40fda18aadf', N'Assignment Scoring', N'C20225', NULL, CAST(N'2016-08-30T09:30:00.967' AS DateTime), NULL)
+			INSERT [dbo].[SCORING_MODEL] ([MODEL_ID], [DESCRIPTION], [CREATED_BY], [UPDATED_BY], [CREATED_TS], [UPDATED_TS]) VALUES (N'490fc583-86c5-418b-b5c6-3979c9692edb', N'Distribution Scoring', N'C20225', NULL, CAST(N'2016-08-30T09:30:00.967' AS DateTime), NULL)
+			INSERT [dbo].[SCORING_MODEL] ([MODEL_ID], [DESCRIPTION], [CREATED_BY], [UPDATED_BY], [CREATED_TS], [UPDATED_TS]) VALUES (N'3aec0413-91db-49c0-b229-6ef7f5d2a579', N'Lender Monitoring Forward Servicing', N'C20225', NULL, CAST(N'2016-08-30T09:30:00.970' AS DateTime), NULL)
+			INSERT [dbo].[SCORING_MODEL] ([MODEL_ID], [DESCRIPTION], [CREATED_BY], [UPDATED_BY], [CREATED_TS], [UPDATED_TS]) VALUES (N'0068c8d1-b029-4eff-b335-ef29e543f0de', N'Lender Monitoring Reverse Servicing', N'C20225', NULL, CAST(N'2016-08-30T09:30:00.970' AS DateTime), NULL)
+			INSERT [dbo].[SCORING_MODEL] ([MODEL_ID], [DESCRIPTION], [CREATED_BY], [UPDATED_BY], [CREATED_TS], [UPDATED_TS]) VALUES (N'd7b5159d-f035-4e07-8945-a9cc5f372294', N'Lender Monitoring Reverse Comprehensive', N'C20225', NULL, CAST(N'2016-08-30T09:30:00.970' AS DateTime), NULL)
+			INSERT [dbo].[SCORING_MODEL] ([MODEL_ID], [DESCRIPTION], [CREATED_BY], [UPDATED_BY], [CREATED_TS], [UPDATED_TS]) VALUES (N'25ac4e2e-7082-461b-90d9-36d20643cfa9', N'Lender Monitoring Forward Comprehensive', N'C20225', NULL, CAST(N'2016-08-30T09:30:00.973' AS DateTime), NULL)
+			INSERT [dbo].[SCORING_MODEL] ([MODEL_ID], [DESCRIPTION], [CREATED_BY], [UPDATED_BY], [CREATED_TS], [UPDATED_TS]) VALUES (N'45b70aa2-e602-4b56-b9b5-7fcdf2b87ee6', N'Lender Monitoring Forward Underwriting', N'C20225', NULL, CAST(N'2016-08-30T09:30:00.973' AS DateTime), NULL)
+			INSERT [dbo].[SCORING_MODEL] ([MODEL_ID], [DESCRIPTION], [CREATED_BY], [UPDATED_BY], [CREATED_TS], [UPDATED_TS]) VALUES (N'f7f9e9f6-bbff-4a1c-9964-6898a16e0db1', N'Lender Monitoring Reverse Underwriting', N'C20225', NULL, CAST(N'2016-08-30T09:30:00.973' AS DateTime), NULL)
+			INSERT [dbo].[SCORING_MODEL] ([MODEL_ID], [DESCRIPTION], [CREATED_BY], [UPDATED_BY], [CREATED_TS], [UPDATED_TS]) VALUES (N'3bfa8e82-5f4c-4133-ad55-19b53b4264d7', N'Post Mortem', N'C20225', NULL, CAST(N'2016-08-30T09:30:00.977' AS DateTime), NULL)
+			INSERT [dbo].[SCORING_MODEL] ([MODEL_ID], [DESCRIPTION], [CREATED_BY], [UPDATED_BY], [CREATED_TS], [UPDATED_TS]) VALUES (N'0fb1d82f-a8da-4c71-9a6e-e21d438c64a1', N'Defect Probability Reverse', N'C20225', NULL, CAST(N'2016-08-30T09:30:00.977' AS DateTime), NULL)
+			INSERT [dbo].[SCORING_MODEL] ([MODEL_ID], [DESCRIPTION], [CREATED_BY], [UPDATED_BY], [CREATED_TS], [UPDATED_TS]) VALUES (N'20f785be-1836-4aec-8d11-e2fb45ea66fa', N'Early Claim', N'C20225', NULL, CAST(N'2016-08-30T09:30:00.977' AS DateTime), NULL)
+			INSERT [dbo].[SCORING_MODEL] ([MODEL_ID], [DESCRIPTION], [CREATED_BY], [UPDATED_BY], [CREATED_TS], [UPDATED_TS]) VALUES (N'fcb4565f-4246-4656-9c9a-28f5eac62b87', N'Early Payment Default', N'C20225', NULL, CAST(N'2016-08-30T09:30:00.977' AS DateTime), NULL)
+			INSERT [dbo].[SCORING_MODEL] ([MODEL_ID], [DESCRIPTION], [CREATED_BY], [UPDATED_BY], [CREATED_TS], [UPDATED_TS]) VALUES (N'62b077cb-24f7-45b0-8ce3-b8b98417ccea', N'Defect Probability Forward', N'C20225', NULL, CAST(N'2016-08-30T09:30:00.980' AS DateTime), NULL)
+			INSERT [dbo].[SCORING_MODEL] ([MODEL_ID], [DESCRIPTION], [CREATED_BY], [UPDATED_BY], [CREATED_TS], [UPDATED_TS]) VALUES (N'afb673a4-2afb-46ee-8af0-804b5c831ea3', N'Lender Increased', N'C20225', NULL, CAST(N'2016-08-30T09:30:00.980' AS DateTime), NULL)
+			INSERT [dbo].[SCORING_MODEL] ([MODEL_ID], [DESCRIPTION], [CREATED_BY], [UPDATED_BY], [CREATED_TS], [UPDATED_TS]) VALUES (N'd5aabf82-045b-46d8-9478-27ce1abb5413', N'Daily Risk Reverse', N'C20225', NULL, CAST(N'2016-08-30T09:30:00.980' AS DateTime), NULL)
+			INSERT [dbo].[SCORING_MODEL] ([MODEL_ID], [DESCRIPTION], [CREATED_BY], [UPDATED_BY], [CREATED_TS], [UPDATED_TS]) VALUES (N'0232a4de-92a5-4043-acad-dcf5bb6f5c36', N'Daily Risk Forward', N'C20225', NULL, CAST(N'2016-08-30T09:30:00.980' AS DateTime), NULL)
+			INSERT [dbo].[SCORING_MODEL] ([MODEL_ID], [DESCRIPTION], [CREATED_BY], [UPDATED_BY], [CREATED_TS], [UPDATED_TS]) VALUES (N'514dfa14-7227-4b80-9e57-69d887d44fdb', N'Non-Performing', N'C20225', NULL, CAST(N'2016-08-30T09:30:00.983' AS DateTime), NULL)
+			INSERT [dbo].[SCORING_MODEL] ([MODEL_ID], [DESCRIPTION], [CREATED_BY], [UPDATED_BY], [CREATED_TS], [UPDATED_TS]) VALUES (N'750fe77a-6262-470a-bc65-2bf15e099c90', N'Random', N'C20225', NULL, CAST(N'2016-08-30T09:30:00.983' AS DateTime), NULL)
+		]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>    

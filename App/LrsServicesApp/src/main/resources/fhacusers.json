@@ -1,0 +1,583 @@
+[
+    {
+         "userId": "test",
+         "firstName": "test",
+         "lastName": "",
+         "roles": ["Review Location", "HQ Admin"]
+    },
+    {
+         "userId": "HTH009",
+         "firstName": "Jack",
+         "lastName": "Higgins",
+         "roles": ["HQ Admin"]
+    },
+    {
+         "userId": "HTA001",
+         "firstName": "ATLANTA",
+         "lastName": "LRS TEST 1",
+         "roles": ["Review Location"]
+    },
+    {
+         "userId": "HTA002",
+         "firstName": "ATLANTA",
+         "lastName": "LRS TEST 2",
+         "roles": ["Reviewer"]
+    },
+    {
+         "userId": "HTA003",
+         "firstName": "ATLANTA",
+         "lastName": "LRS TEST 3",
+         "roles": ["Reviewer"]
+    },
+    {
+         "userId": "HTA004",
+         "firstName": "ATLANTA",
+         "lastName": "LRS TEST 4",
+         "roles": ["Program Assistant"]
+    },
+    {
+         "userId": "HTA005",
+         "firstName": "ATLANTA",
+         "lastName": "LRS TEST 5",
+         "roles": ["Review Location"]
+    },
+    {
+         "userId": "HTA006",
+         "firstName": "ATLANTA",
+         "lastName": "LRS TEST 6",
+         "roles": ["Reviewer"]
+    },
+    {
+         "userId": "HTA007",
+         "firstName": "ATLANTA",
+         "lastName": "LRS TEST 7",
+         "roles": ["Reviewer"]
+    },
+    {
+         "userId": "HTA008",
+         "firstName": "ATLANTA",
+         "lastName": "LRS TEST 8",
+         "roles": ["Program Assistant"]
+    },
+    {
+         "userId": "HTD001",
+         "firstName": "DENVER",
+         "lastName": "LRS TEST 1",
+         "roles": ["Review Location"]
+    },
+    {
+         "userId": "HTD002",
+         "firstName": "DENVER",
+         "lastName": "LRS TEST 2",
+         "roles": ["Reviewer"]
+    },
+    {
+         "userId": "HTD003",
+         "firstName": "DENVER",
+         "lastName": "LRS TEST 3",
+         "roles": ["Reviewer"]
+    },
+    {
+         "userId": "HTD004",
+         "firstName": "DENVER",
+         "lastName": "LRS TEST 4",
+         "roles": ["Program Assistant"]
+    },
+    {
+         "userId": "HTD005",
+         "firstName": "DENVER",
+         "lastName": "LRS TEST 5",
+         "roles": ["Review Location"]
+    },
+    {
+         "userId": "HTD006",
+         "firstName": "DENVER",
+         "lastName": "LRS TEST 6",
+         "roles": ["Reviewer"]
+    },
+    {
+         "userId": "HTD007",
+         "firstName": "DENVER",
+         "lastName": "LRS TEST 7",
+         "roles": ["Reviewer"]
+    },
+    {
+         "userId": "HTD008",
+         "firstName": "DENVER",
+         "lastName": "LRS TEST 8",
+         "roles": ["Program Assistant"]
+    },
+    {
+         "userId": "HTH001",
+         "firstName": "HDQTR",
+         "lastName": "LRS TEST 1",
+         "roles": ["Review Location"]
+    },
+    {
+         "userId": "HTH002",
+         "firstName": "HDQTR",
+         "lastName": "LRS TEST 2",
+         "roles": ["Reviewer"]
+    },
+    {
+         "userId": "HTH003",
+         "firstName": "HDQTR",
+         "lastName": "LRS TEST 3",
+         "roles": ["Reviewer"]
+    },
+    {
+         "userId": "HTH004",
+         "firstName": "HDQTR",
+         "lastName": "LRS TEST 4",
+         "roles": ["Program Assistant"]
+    },
+    {
+         "userId": "HTH005",
+         "firstName": "HDQTR",
+         "lastName": "LRS TEST 5",
+         "roles": ["HQ Admin"]
+    },
+    {
+         "userId": "HTH006",
+         "firstName": "HDQTR",
+         "lastName": "LRS TEST 6",
+         "roles": ["HQ Admin"]
+    },
+    {
+         "userId": "HTH007",
+         "firstName": "HDQTR",
+         "lastName": "LRS TEST 7",
+         "roles": ["HQ Admin"]
+    },
+    {
+         "userId": "HTH008",
+         "firstName": "HDQTR",
+         "lastName": "LRS TEST 8",
+         "roles": ["HQ Admin"]
+    },
+    {
+         "userId": "HTP001",
+         "firstName": "PHILADELPHIA",
+         "lastName": "LRS TEST 1",
+         "roles": ["Review Location"]
+    },
+    {
+         "userId": "HTP002",
+         "firstName": "PHILADELPHIA",
+         "lastName": "LRS TEST 2",
+         "roles": ["Reviewer"]
+    },
+    {
+         "userId": "HTP003",
+         "firstName": "PHILADELPHIA",
+         "lastName": "LRS TEST 3",
+         "roles": ["Reviewer"]
+    },
+    {
+         "userId": "HTP004",
+         "firstName": "PHILADELPHIA",
+         "lastName": "LRS TEST 4",
+         "roles": ["Program Assistant"]
+    },
+    {
+         "userId": "HTP005",
+         "firstName": "PHILADELPHIA",
+         "lastName": "LRS TEST 5",
+         "roles": ["Review Location"]
+    },
+    {
+         "userId": "HTP006",
+         "firstName": "PHILADELPHIA",
+         "lastName": "LRS TEST 6",
+         "roles": ["Reviewer"]
+    },
+    {
+         "userId": "HTP007",
+         "firstName": "PHILADELPHIA",
+         "lastName": "LRS TEST 7",
+         "roles": ["Reviewer"]
+    },
+    {
+         "userId": "HTP008",
+         "firstName": "PHILADELPHIA",
+         "lastName": "LRS TEST 8",
+         "roles": ["Program Assistant"]
+    },
+    {
+         "userId": "HTS001",
+         "firstName": "SANTA ANA",
+         "lastName": "LRS TEST 1",
+         "roles": ["Review Location"]
+    },
+    {
+         "userId": "HTS002",
+         "firstName": "SANTA ANA",
+         "lastName": "LRS TEST 2",
+         "roles": ["Reviewer"]
+    },
+    {
+         "userId": "HTS003",
+         "firstName": "SANTA ANA",
+         "lastName": "LRS TEST 3",
+         "roles": ["Reviewer"]
+    },
+    {
+         "userId": "HTS004",
+         "firstName": "SANTA ANA",
+         "lastName": "LRS TEST 4",
+         "roles": ["Program Assistant"]
+    },
+    {
+         "userId": "HTS005",
+         "firstName": "SANTA ANA",
+         "lastName": "LRS TEST 5",
+         "roles": ["Review Location"]
+    },
+    {
+         "userId": "HTS006",
+         "firstName": "SANTA ANA",
+         "lastName": "LRS TEST 6",
+         "roles": ["Reviewer"]
+    },
+    {
+         "userId": "HTS007",
+         "firstName": "SANTA ANA",
+         "lastName": "LRS TEST 7",
+         "roles": ["Reviewer"]
+    },
+    {
+         "userId": "HTS008",
+         "firstName": "SANTA ANA",
+         "lastName": "LRS TEST 8",
+         "roles": ["Program Assistant"]
+    },
+    {
+         "userId": "MFA004",
+         "firstName": "LENDER 1",
+         "lastName": "LRS TEST 1",
+         "roles": ["Response Submission"],
+         "lenderId": "22995"
+    },
+    {
+         "userId": "MFA005",
+         "firstName": "LENDER 1",
+         "lastName": "LRS TEST 2",
+         "roles": ["Response Submission"],
+         "lenderId": "22995"
+    },
+    {
+         "userId": "MFA006",
+         "firstName": "LENDER 1",
+         "lastName": "LRS TEST 3",
+         "roles": ["Indemnification Submission"],
+         "lenderId": "22995"
+    },
+    {
+         "userId": "MFA007",
+         "firstName": "LENDER 1",
+         "lastName": "LRS TEST 4",
+         "roles": ["Indemnification Submission"],
+         "lenderId": "22995"
+    },
+    {
+         "userId": "MFA008",
+         "firstName": "LENDER 1",
+         "lastName": "LRS TEST 5",
+         "roles": ["Read Only"],
+         "lenderId": "22995"
+    },
+    {
+         "userId": "MFA009",
+         "firstName": "LENDER 2",
+         "lastName": "LRS TEST 6",
+         "roles": ["Response Submission"],
+         "lenderId": "13065"
+    },
+    {
+         "userId": "MFA010",
+         "firstName": "LENDER 2",
+         "lastName": "LRS TEST 7",
+         "roles": ["Response Submission"],
+         "lenderId": "13065"
+    },
+    {
+         "userId": "MFA011",
+         "firstName": "LENDER 2",
+         "lastName": "LRS TEST 8",
+         "roles": ["Indemnification Submission"],
+         "lenderId": "13065"
+    },
+    {
+         "userId": "MFA012",
+         "firstName": "LENDER 2",
+         "lastName": "LRS TEST 9",
+         "roles": ["Indemnification Submission"],
+         "lenderId": "13065"
+    },
+    {
+         "userId": "MFA013",
+         "firstName": "LENDER 2",
+         "lastName": "LRS TEST 10",
+         "roles": ["Read Only"],
+         "lenderId": "13065"
+    },
+    {
+         "userId": "MFA014",
+         "firstName": "LENDER 3",
+         "lastName": "LRS TEST 11",
+         "roles": ["Response Submission"],
+         "lenderId": "71955"
+    },
+    {
+         "userId": "MFA015",
+         "firstName": "LENDER 3",
+         "lastName": "LRS TEST 12",
+         "roles": ["Response Submission"],
+         "lenderId": "71955"
+    },
+    {
+         "userId": "MFA016",
+         "firstName": "LENDER 3",
+         "lastName": "LRS TEST 13",
+         "roles": ["Indemnification Submission"],
+         "lenderId": "71955"
+    },
+    {
+         "userId": "MFA017",
+         "firstName": "LENDER 3",
+         "lastName": "LRS TEST 14",
+         "roles": ["Indemnification Submission"],
+         "lenderId": "71955"
+    },
+    {
+         "userId": "MFA018",
+         "firstName": "LENDER 3",
+         "lastName": "LRS TEST 15",
+         "roles": ["Read Only"],
+         "lenderId": "71955"
+    },
+    {
+         "userId": "MFA019",
+         "firstName": "LENDER 4",
+         "lastName": "LRS TEST 16",
+         "roles": ["Response Submission"],
+         "lenderId": "75159"
+    },
+    {
+         "userId": "MFA020",
+         "firstName": "LENDER 4",
+         "lastName": "LRS TEST 17",
+         "roles": ["Response Submission"],
+         "lenderId": "75159"
+    },
+    {
+         "userId": "MFA021",
+         "firstName": "LENDER 4",
+         "lastName": "LRS TEST 18",
+         "roles": ["Indemnification Submission"],
+         "lenderId": "75159"
+    },
+    {
+         "userId": "MFA022",
+         "firstName": "LENDER 4",
+         "lastName": "LRS TEST 19",
+         "roles": ["Indemnification Submission"],
+         "lenderId": "75159"
+    },
+    {
+         "userId": "MFA023",
+         "firstName": "LENDER 4",
+         "lastName": "LRS TEST 20",
+         "roles": ["Read Only"],
+         "lenderId": "75159"
+    },
+    {
+         "userId": "MFA024",
+         "firstName": "LENDER 5",
+         "lastName": "LRS TEST 21",
+         "roles": ["Response Submission"],
+         "lenderId": "71970"
+    },
+    {
+         "userId": "MFA025",
+         "firstName": "LENDER 5",
+         "lastName": "LRS TEST 22",
+         "roles": ["Response Submission"],
+         "lenderId": "71970"
+    },
+    {
+         "userId": "MFA026",
+         "firstName": "LENDER 5",
+         "lastName": "LRS TEST 23",
+         "roles": ["Indemnification Submission"],
+         "lenderId": "71970"
+    },
+    {
+         "userId": "MFA027",
+         "firstName": "LENDER 5",
+         "lastName": "LRS TEST 24",
+         "roles": ["Indemnification Submission"],
+         "lenderId": "71970"
+    },
+    {
+         "userId": "MFA028",
+         "firstName": "LENDER 5",
+         "lastName": "LRS TEST 25",
+         "roles": ["Read Only"],
+         "lenderId": "71970"
+	},
+    {
+         "userId": "MFA029",
+         "firstName": "LENDER 6",
+         "lastName": "LRS TEST 26",
+         "roles": ["Response Submission"],
+         "lenderId": "78113"
+    },
+    {
+         "userId": "MFA030",
+         "firstName": "LENDER 6",
+         "lastName": "LRS TEST 27",
+         "roles": ["Response Submission"],
+         "lenderId": "78113"
+    },
+    {
+         "userId": "MFA031",
+         "firstName": "LENDER 6",
+         "lastName": "LRS TEST 28",
+         "roles": ["Indemnification Submission"],
+         "lenderId": "78113"
+    },
+    {
+         "userId": "MFA032",
+         "firstName": "LENDER 6",
+         "lastName": "LRS TEST 29",
+         "roles": ["Indemnification Submission"],
+         "lenderId": "78113"
+    },
+    {
+         "userId": "MFA033",
+         "firstName": "LENDER 6",
+         "lastName": "LRS TEST 30",
+         "roles": ["Read Only"],
+         "lenderId": "78113"
+    },
+    {
+         "userId": "MFA034",
+         "firstName": "LENDER 7",
+         "lastName": "LRS TEST 31",
+         "roles": ["Response Submission"],
+         "lenderId": "13586"
+    },
+    {
+         "userId": "MFA035",
+         "firstName": "LENDER 7",
+         "lastName": "LRS TEST 32",
+         "roles": ["Response Submission"],
+         "lenderId": "13586"
+    },
+    {
+         "userId": "MFA036",
+         "firstName": "LENDER 7",
+         "lastName": "LRS TEST 33",
+         "roles": ["Indemnification Submission"],
+         "lenderId": "13586"
+    },
+    {
+         "userId": "MFA037",
+         "firstName": "LENDER 7",
+         "lastName": "LRS TEST 34",
+         "roles": ["Indemnification Submission"],
+         "lenderId": "13586"
+    },
+    {
+         "userId": "MFA038",
+         "firstName": "LENDER 7",
+         "lastName": "LRS TEST 35",
+         "roles": ["Read Only"],
+         "lenderId": "13586"
+    },
+    {
+         "userId": "MFA039",
+         "firstName": "LENDER 8",
+         "lastName": "LRS TEST 36",
+         "roles": ["Response Submission"],
+         "lenderId": "21490"
+    },
+    {
+         "userId": "MFA040",
+         "firstName": "LENDER 8",
+         "lastName": "LRS TEST 37",
+         "roles": ["Response Submission"],
+         "lenderId": "21490"
+    },
+    {
+         "userId": "MFA041",
+         "firstName": "LENDER 8",
+         "lastName": "LRS TEST 38",
+         "roles": ["Indemnification Submission"],
+         "lenderId": "21490"
+    },
+    {
+         "userId": "MFA042",
+         "firstName": "LENDER 8",
+         "lastName": "LRS TEST 39",
+         "roles": ["Indemnification Submission"],
+         "lenderId": "21490"
+    },
+    {
+         "userId": "MFA043",
+         "firstName": "LENDER 8",
+         "lastName": "LRS TEST 40",
+         "roles": ["Read Only"],
+         "lenderId": "21490"
+    },
+    {
+         "userId": "MFA044",
+         "firstName": "LENDER 9",
+         "lastName": "LRS TEST 41",
+         "roles": ["Response Submission"],
+         "lenderId": "22823"
+    },
+    {
+         "userId": "MFA045",
+         "firstName": "LENDER 9",
+         "lastName": "LRS TEST 42",
+         "roles": ["Response Submission"],
+         "lenderId": "22823"
+    },
+    {
+         "userId": "MFA046",
+         "firstName": "LENDER 9",
+         "lastName": "LRS TEST 43",
+         "roles": ["Indemnification Submission"],
+         "lenderId": "22823"
+    },
+    {
+         "userId": "MFA047",
+         "firstName": "LENDER 9",
+         "lastName": "LRS TEST 44",
+         "roles": ["Indemnification Submission"],
+         "lenderId": "22823"
+    },
+    {
+         "userId": "MFA048",
+         "firstName": "LENDER 9",
+         "lastName": "LRS TEST 45",
+         "roles": ["Read Only"],
+         "lenderId": "22823"
+    },
+    {
+         "userId": "X01643",
+         "firstName": "LRS",
+         "lastName": "Monitor 1",
+         "roles": ["Monitor"],
+         "lenderId": "9999909990"
+    },
+    {
+         "userId": "X01244",
+         "firstName": "LRS",
+         "lastName": "Monitor 2",
+         "roles": ["Monitor"],
+         "lenderId": "9999909990"
+    }
+]

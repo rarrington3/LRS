@@ -1,0 +1,91 @@
+<div class="lrs-content-panel model-admin-body container-fluid">
+
+    <div class="row">
+        <div class="section-heading">{{adminModelType}} Models</div>
+
+        <hr/>
+
+        <div *ngFor="let model of modelItems">
+
+            <div class="sub-section-heading">{{model.label}}</div>
+
+            <table class="table workload-table">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th scope="col">Version</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Selection Threshold</th>
+                    <th *ngIf="adminModelType !== MODEL_TYPES.ASSIGNMENT" scope="col">Allocation Percentage</th>
+                    <th scope="col">Scope</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of model.active">
+                    <td scope="row">
+                        <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+                    </td>
+                    <td>{{item.version}}</td>
+                    <td scope="row" class="active-status">{{item.label}}</td>
+                    <td *ngIf="adminModelType !== MODEL_TYPES.ASSIGNMENT"  class="active-status">{{item.selectionThreshold}}</td>
+                    <td class="active-status">{{item.allocationPercentage}}%</td>
+                    <td class="active-status">{{item.scope}}</td>
+                    <td><button class="btn btn-primary" [routerLink]="['../../modelManagement/editModel', {modelType: adminModelType, modelId:item.id}]" [attr.aria-label]="'View ' + item.label">View</button></td>
+                    <td><button class="btn btn-primary" (click)="displayCopyModal(item)" [attr.aria-label]="'Duplicate ' + item.label">Duplicate</button></td>
+                    <td></td>
+                </tr>
+                <tr *ngFor="let item of model.drafts">
+                    <td scope="row">
+                        <span *ngIf="item.status == 'draft'" class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                    </td>
+                    <td>{{item.version}}</td>
+                    <td scope="row">{{item.label}}</td>
+                    <td>{{item.selectionThreshold}}</td>
+                    <td *ngIf="adminModelType !== MODEL_TYPES.ASSIGNMENT">{{item.allocationPercentage}}%</td>
+                    <td>{{item.scope}}</td>
+                    <td><button class="btn btn-primary" [routerLink]="['../../modelManagement/editModel', {modelType: adminModelType, modelId:item.id}]" [attr.aria-label]="'Edit ' + item.label">Edit</button></td>
+                    <td><button class="btn btn-primary" (click)="displayCopyModal(item)" [attr.aria-label]="'Duplicate ' + item.label">Duplicate</button></td>
+                    <td><button class="btn btn-secondary" (click)="deleteModel(item)" [attr.aria-label]="'Delete ' + item.label">Delete</button></td>
+                </tr>
+                <tr *ngFor="let item of model.archived">
+                    <td scope="row">
+                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                    </td>
+                    <td>{{item.version}}</td>
+                    <td scope="row" class="status-archived">{{item.label}}</td>
+                    <td class="status-archived">{{item.selectionThreshold}}</td>
+                    <td *ngIf="adminModelType !== MODEL_TYPES.ASSIGNMENT" class="status-archived">{{item.allocationPercentage}}%</td>
+                    <td class="status-archived">{{item.scope}}</td>
+                    <td><button class="btn btn-primary" [routerLink]="['../../modelManagement/editModel', {modelType: adminModelType, modelId:item.id}]" [attr.aria-label]="'View ' + item.label">View</button></td>
+                    <td><button class="btn btn-primary" (click)="displayCopyModal(item)" [attr.aria-label]="'Duplicate ' + item.label">Duplicate</button></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+    <modal [(isOpen)]="copyModelOpen"
+           confirmText="Save"
+           [closeOnSave]="false"
+           title="DUPLICATE MODEL"
+           (confirmChange)="duplicateModel()">
+        <div class="modal-inner-body container-fluid">
+            <div class="row">
+                <p class="small modal-msg" role="region">Enter new version name for duplicate of model.</p>
+            </div>
+            <div class="row tall" tabindex="0">
+                <div class="form-item">
+                    <label for="model_name" class="small">Model Version Name</label>
+                    <input type="text" id="model_name" name="model_name" [(ngModel)]="modelToDuplicate.name" placeholder="{{placeholderName}}">
+                </div>
+            </div>
+        </div>
+    </modal>
+
+</div>

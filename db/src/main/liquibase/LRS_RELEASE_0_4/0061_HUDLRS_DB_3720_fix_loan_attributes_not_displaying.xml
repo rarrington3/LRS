@@ -1,0 +1,172 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3720_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_FIELD
+			 (
+			ENTITY_NAME, 
+			FIELD_NAME, 
+			DB_COLUMN, 
+			DESCRIPTION, 
+			CREATED_BY, 
+			UPDATED_BY, 
+			CREATED_TS, 
+			UPDATED_TS, 
+			USER_EDITABLE_IND, 
+			UI_CONTROL_TYPE, 
+			FIELD_MIN_VALUE, 
+			FIELD_MAX_VALUE, 
+			DISPLAY_ORDER, 
+			DISPLAY_NAME
+			 )
+			 select 
+			 'Case Summary for Selection', 
+			FIELD_NAME, 
+			DB_COLUMN, 
+			DESCRIPTION, 
+			CREATED_BY, 
+			UPDATED_BY, 
+			CREATED_TS, 
+			UPDATED_TS, 
+			'N', 
+			null, 
+			null, 
+			null, 
+			DISPLAY_ORDER, 
+			DISPLAY_NAME
+			from DICT_METADATA_FIELD
+			where ENTITY_NAME = 'Case Summary for Review Level'
+			  and FIELD_NAME in ('Year Built', 'Living Units','Date of Application','Gift Letter Source - Second')
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3720_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update DICT_METADATA_FIELD
+			set FIELD_NAME = 'Gift Letter Amount'
+			where ENTITY_NAME = 'Case Summary for Selection'
+			  and FIELD_NAME = 'Gift Letter 1 Amount'
+
+			update DICT_METADATA_FIELD
+			set FIELD_NAME = 'Gift Letter Source'
+			where ENTITY_NAME = 'Case Summary for Selection'
+			  and FIELD_NAME = 'Gift Letter 1 Source'
+
+			update DICT_METADATA_FIELD
+			set FIELD_NAME = 'Gift Letter Amount - Second'
+			where ENTITY_NAME = 'Case Summary for Selection'
+			  and FIELD_NAME = 'Gift Letter 2 Amount'
+
+			update DICT_METADATA_FIELD
+			set FIELD_NAME = 'Bankruptcy Code'
+			where ENTITY_NAME = 'Case Summary for Selection'
+			  and FIELD_NAME = 'Bnkrptcy Cd'
+
+			/*update DICT_METADATA_FIELD
+			set FIELD_NAME = 'Borrower 1 Birth Date'
+			where ENTITY_NAME = 'Case Summary for Selection'
+			  and FIELD_NAME = 'Borrower Birth Date'*/
+
+			update DICT_METADATA_FIELD
+			set FIELD_NAME = 'Factory Fabricated Indicator'
+			where ENTITY_NAME = 'Case Summary for Selection'
+			  and FIELD_NAME = 'Factory Fabrication'
+
+			update DICT_METADATA_FIELD
+			set FIELD_NAME = 'FHA Case Number'
+			where ENTITY_NAME = 'Case Summary for Selection'
+			  and FIELD_NAME = 'Case Number'
+
+			update DICT_METADATA_FIELD
+			set FIELD_NAME = 'First Time In Episode Three Month Delinquent Date'
+			where ENTITY_NAME = 'Case Summary for Selection'
+			  and FIELD_NAME = 'Ft In Eps 3Mnth Delq Dt'
+
+			update DICT_METADATA_FIELD
+			set FIELD_NAME = 'Foreclosure Indicator'
+			where ENTITY_NAME = 'Case Summary for Selection'
+			  and FIELD_NAME = 'Frclsr Ind'
+
+			update DICT_METADATA_FIELD
+			set FIELD_NAME = 'Loan to Value Ratio - New'
+			where ENTITY_NAME = 'Case Summary for Selection'
+			  and FIELD_NAME = 'Loan to Value Ratio New'
+
+			update DICT_METADATA_FIELD
+			set FIELD_NAME = 'loss mitigation code'
+			where ENTITY_NAME = 'Case Summary for Selection'
+			  and FIELD_NAME = 'Lossmit Cd'
+
+			update DICT_METADATA_FIELD
+			set FIELD_NAME = 'Mandatory Obligations Cash from Lender'
+			where ENTITY_NAME = 'Case Summary for Selection'
+			  and FIELD_NAME = 'Mandatory Oblig Lender Amount'
+
+			update DICT_METADATA_FIELD
+			set FIELD_NAME = 'Maximum Claim Amount (MCA)'
+			where ENTITY_NAME = 'Case Summary for Selection'
+			  and FIELD_NAME = 'Maximum Claim Amount'
+
+			update DICT_METADATA_FIELD
+			set FIELD_NAME = 'Non-Occupying Borrower on Loan'
+			where ENTITY_NAME = 'Case Summary for Selection'
+			  and FIELD_NAME = 'NonOccupying Borrower on Loan'
+
+			update DICT_METADATA_FIELD
+			set FIELD_NAME = 'occupancy status'
+			where ENTITY_NAME = 'Case Summary for Selection'
+			  and FIELD_NAME = 'Ocpncy Sts Cd'
+
+			update DICT_METADATA_FIELD
+			set FIELD_NAME = 'Oldest Unpaid Installment'
+			where ENTITY_NAME = 'Case Summary for Selection'
+			  and FIELD_NAME = 'Oldst Unpd Dt'
+
+			update DICT_METADATA_FIELD
+			set FIELD_NAME = 'Sales Prices Greater than Acquisition Cost'
+			where ENTITY_NAME = 'Case Summary for Selection'
+			  and FIELD_NAME = 'Sales Price Total Adjustment Positive Indicator'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3720_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from DICT_METADATA_FIELD_CONDITION
+			where ENTITY_NAME = 'Case Summary for Review Level'
+			and field_name = 'Borrower 1 Birth Date'
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3720_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from DICT_METADATA_FIELD_RELATIVES
+			where ENTITY_NAME = 'Case Summary for Review Level'
+			and field_name = 'Borrower 1 Birth Date'
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3720_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from DICT_METADATA_FIELD_MODEL
+			where ENTITY_NAME = 'Case Summary for Review Level'
+			and field_name = 'Borrower 1 Birth Date'
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3720_0006" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from DICT_METADATA_FIELD
+			where ENTITY_NAME = 'Case Summary for Review Level'
+			and field_name = 'Borrower 1 Birth Date'
+		]]>
+        </sql>
+    </changeSet>			
+</databaseChangeLog>    
+
+

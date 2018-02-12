@@ -1,0 +1,17 @@
+displayName: manualSelection
+description: |
+  Service to facilitate the manual selection of loans for review
+post:
+  securedBy: 
+      - fhac:
+          roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+      - requestGeography
+      - batchOwnerGeographyAndSkill
+      - batchParticipantsGeography
+  description: |
+    Manually selects a loan to be reviewed.  A review will be created for this loan and assigned to a reviewer based on business rules.
+  body:
+    schema: ManualSelection
+    example: !include "manualselection-example.json"
+  responses:
+    204:

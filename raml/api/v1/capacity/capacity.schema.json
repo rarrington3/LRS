@@ -1,0 +1,25 @@
+{
+    "id": "http://LRS/Capacity",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": ["id", "totalCapacity", "availableCapacity"],
+    "additionalProperties": false,
+    "properties": {
+        "id": {
+            "description": "The ID of the associated Reviewer or Location",
+            "type": "string"
+        },
+        "display": {
+            "description": "A human readable and meaningful name or description.",
+            "type": "string"
+        },
+        "totalCapacity": {
+            "description": "The total capacity limit of this Reviewer or Location.",
+            "type": "number"
+        },
+        "availableCapacity": {
+            "description": "The totalCapacity minus the actual monthly assignments thus far.",
+            "type": "number"
+        }
+    }
+}

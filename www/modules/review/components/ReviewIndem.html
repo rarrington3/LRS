@@ -1,0 +1,15 @@
+<review-indem-sign *ngIf="indemState === STATE.LENDER_SIGNED || indemState === STATE.REVIEWER_SIGN || indemState === STATE.REVIEWER_SIGNED"
+				   [indemState]="indemState"
+				   [readOnly]="readOnly"
+				   [review]="review"
+                   [reviewIsCompleted]="reviewIsCompleted"
+				   [indemAcceptData]="indemAcceptData"
+				   (indemStateChanged)="onStateChanged($event)">
+
+</review-indem-sign>
+
+<review-indem-confirm *ngIf="indemState === STATE.REVIEWER_CONFIRM"
+					  [review]="review"
+                      [isReadOnly]="readOnly"
+					  (confirmChanged)="onIndemConfirmChanged($event)"
+					  (indemStateChanged)="onStateChanged($event)"></review-indem-confirm>

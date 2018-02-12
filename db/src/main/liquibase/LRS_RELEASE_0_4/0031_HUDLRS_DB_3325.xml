@@ -1,0 +1,59 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3325_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update qr
+			set VALUE_TO_TRIGGER_ACTION = 'YES'
+			from QUESTION_REFERENCE qr,
+				 QATREE_QUESTION a,
+				 QATREE b,
+				QA_MODEL c
+			where a.QUESTION_REFERENCE = 'PE.008'  
+			  and qr.QUESTION_ID = a.QUESTION_ID
+			  and a.QATREE_ID = b.QATREE_ID
+			  and b.QA_MODEL_ID = c.QA_MODEL_ID
+			  and c.MODEL_NAME = 'LRS Initial QA Model V3'		
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3325_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update qqc
+			set COMPARISON_VALUES = 'Unknown'
+			from QATREE_QSTN_CONDITION qqc,
+			     QUESTION_REFERENCE qr,
+				 QATREE_QUESTION a,
+				 QATREE b,
+				QA_MODEL c
+			where a.QUESTION_REFERENCE = 'BE.013'  
+			  and qr.QUESTION_ID = a.QUESTION_ID
+			  and a.QATREE_ID = b.QATREE_ID
+			  and b.QA_MODEL_ID = c.QA_MODEL_ID
+			  and c.MODEL_NAME = 'LRS Initial QA Model V3'
+			  and qqc.QUESTION_ID = a.QUESTION_ID
+			  and qqc.FIELD_NAME = 'Underwriting Method'	
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3325_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update ds
+			set DESCRIPTION = case when SEVERITY_TIER_CD = '1' then 'Tier 1: Unacceptable (Highest)'
+								   when SEVERITY_TIER_CD = '2' then 'Tier 2: Unacceptable'
+								   when SEVERITY_TIER_CD = '3' then 'Tier 3: Deficient'
+								   when SEVERITY_TIER_CD = '4' then 'Tier 4: Deficient (Lowest)' end
+			from DEFECT_SEVERITY ds,
+				 DEFECT d,
+				 QA_MODEL qm
+			where ds.DEFECT_ID = d.DEFECT_ID
+			  and d.QA_MODEL_ID = qm.QA_MODEL_ID
+			  and MODEL_NAME = 'LRS Initial QA Model V3'   
+		]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>    
+
+

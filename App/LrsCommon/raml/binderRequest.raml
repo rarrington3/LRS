@@ -1,0 +1,85 @@
+#%RAML 0.8
+title: HUD-ESB Request Case Binder
+version: v1.0
+##protocols: [ HTTP ]
+baseUri: http://esb-d-lnx-srv/hud-esb/sfo/api/v1.0/
+#baseUri: http://localhost:8101/hud-esb/sfo/api/v1.0
+mediaType: application/json
+documentation:
+    - title: HUD-ESB Request Case Binder
+      content: |
+        HUD ESB Request Case Binder API - This service provides an interface to request a case binder for an insured FHA case.
+securedBy: [oauth_2_0: { scopes: [ "urn:hud:esb:api:sfunderwriting:create:binder:request" ] } ]
+securitySchemes:
+  - oauth_2_0: !include securitySchemes/oauth_2_0.raml
+
+/binderRequest:
+  displayName: Request case binder
+  post:
+    headers:
+    body:
+      application/json:
+        example: !include examples/inputJSON.json
+        schema: !include schemas/f17binderRequestInputMessage.json
+    responses:
+      200:
+        headers:
+          application/json:
+            type: string
+            example: !include examples/standardHeader.json
+        body:
+          application/json:
+            example: !include examples/output200JSON.json
+            schema: !include schemas/f17binderRequestOutputMessage.json
+      400:
+        headers:
+          application/json:
+            type: string
+            example: !include examples/standardHeader.json
+        body:
+          application/json:
+            example: !include examples/output400JSON.json
+            schema: !include schemas/f17binderRequestOutputMessage.json
+      500:
+        headers:
+          application/json:
+            type: string
+            example: !include examples/standardHeader.json
+        body:
+          application/json:
+            example: !include examples/output500JSON.json
+            schema: !include schemas/f17binderRequestOutputMessage.json
+  delete:
+    headers:
+    body:
+      application/json:
+        example: !include examples/inputJSON.json
+        schema: !include schemas/f17binderRequestInputMessage.json
+    responses:
+      200:
+        headers:
+          application/json:
+            type: string
+            example: !include examples/standardHeader.json
+        body:
+          application/json:
+            example: !include examples/output200JSON.json
+            schema: !include schemas/f17binderRequestOutputMessage.json
+      400:
+        headers:
+          application/json:
+            type: string
+            example: !include examples/standardHeader.json
+        body:
+          application/json:
+            example: !include examples/output400JSON.json
+            schema: !include schemas/f17binderRequestOutputMessage.json
+      500:
+        headers:
+          application/json:
+            type: string
+            example: !include examples/standardHeader.json
+        body:
+          application/json:
+            example: !include examples/output500JSON.json
+            schema: !include schemas/f17binderRequestOutputMessage.json

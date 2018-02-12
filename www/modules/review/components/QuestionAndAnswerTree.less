@@ -1,0 +1,55 @@
+@import "../../bootstrap/_variables";
+
+:host-context {
+	/* styles should be scoped under host-context */
+	.view-title {
+		font-size: @font-size-medium-large;
+		font-weight: bold;
+		color: @brand-secondary;
+		text-transform: uppercase;
+		&.sub-title {
+			font-weight: normal;
+		}
+	}
+	.main-content{
+		background-color: @brand-secondary;
+		color: white;
+		float: right;
+		margin-top: 10px;
+	}
+	.list-group {
+		overflow: hidden;
+		box-shadow: none;
+	}
+
+	.loan-attributes-dirty {
+		.question-button-wrapper .btn{
+			opacity: 0.5;
+			transition-property: opacity;
+			cursor: not-allowed;
+			outline: none;
+		}
+	}
+
+	hr {
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+
+	question-node-view {
+		display: inline-block;
+		margin-bottom: 4px;
+		border-radius: @border-radius-base;
+		width: 100%;
+		padding-bottom: 5px;
+
+		&.root-node {
+			border: 1px solid @hr-border;
+		}
+
+		&.child-node {
+			border-radius: 0;
+			border: none;
+		}
+	}
+}

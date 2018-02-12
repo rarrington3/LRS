@@ -1,0 +1,16 @@
+{
+    "exception": {
+        "message": "Something has gone wrong under the hood, near the whatch-a-ma-call-it.",
+        "class": "LrsClassFileJavaService",
+        "stackTrace": [
+            "Exception caused a null pointer at that place in the code that never seems to work.",
+            "at frank.and.beans.A1Kethchup.Service.method (line 12)",
+            "at com.org.net.us.gov.hud (line 11)",
+            "at another.spot.in.the.code.where.is.this.really (line 1)"
+        ]
+    },
+    "errorMessages": [
+        "This is a production friendly error message from the services.",
+        "This is another very friendly message."
+    ]
+}

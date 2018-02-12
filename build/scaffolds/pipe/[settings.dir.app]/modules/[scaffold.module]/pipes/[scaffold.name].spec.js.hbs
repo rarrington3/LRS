@@ -1,0 +1,17 @@
+{{> jsFileHeader }}
+
+import {{camelCase scaffold.name}} from './{{camelCase scaffold.name}}';
+
+describe('{{scaffold.module}}/{{scaffold.name}}.js', () => {
+
+    let {{headlessCamelCase scaffold.name}}:{{camelCase scaffold.name}};
+
+    beforeEach(() => {
+        {{headlessCamelCase scaffold.name}} = new {{camelCase scaffold.name}}();
+    });
+
+    it('should return formatted value', () => {
+        expect({{headlessCamelCase scaffold.name}}.transform('foo')).toBe('foo');
+    });
+
+});

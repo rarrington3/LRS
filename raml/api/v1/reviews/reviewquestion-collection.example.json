@@ -1,0 +1,500 @@
+[
+    {
+        "questionId": "5b3386a4-3e48-473d-9df2-5cd83a549834",
+        "questionNumber": "147",
+        "questionReference": "BA.147",
+        "order": 1,
+        "questionText": "Was an acceptable Gift Letter provided and consistent with other documents in the file?",
+        "answerType": "Single",
+        "potentialAnswers": [
+            {
+                "code": "Yes",
+                "description": "Yes"
+            },
+            {
+                "code": "No",
+                "description": "No"
+            }
+        ],
+        "answerToTriggerFinding": "No",
+        "conditionsToDisplay": [
+            {
+                "conditionId": "14770ac1-f88d-4b23-bf4f-0206b9c737ff",
+                "entityName": "123",
+                "fieldName": "GIFT_LTR_AMT",
+                "operator": ">",
+                "comparisonValues": [
+                    "0"
+                ]
+            }
+        ],
+        "allowableSourceCodes": [
+            "1",
+            "3"
+        ],
+        "allowableCauseCodes": [
+            "A",
+            "B"
+        ],
+        "allowedSeverityCodes": [
+            "1",
+            "3",
+            "4"
+        ]
+    },
+    {
+        "questionId": "1cb871a9-1c80-4064-81f9-6168df284bba",
+        "questionNumber": "148",
+        "questionReference": "BA.148",
+        "order": 2,
+        "questionText": "Were the Reserves Acceptable and not from a Gift??",
+        "answerType": "Single",
+        "potentialAnswers": [
+            {
+                "code": "Yes",
+                "description": "Yes"
+            },
+            {
+                "code": "No",
+                "description": "No"
+            }
+        ],
+        "answerToTriggerFinding": "No",
+        "conditionsToDisplay": [
+            {
+                "conditionId": "14770ac1-f88d-4b23-bf4f-0206b9c737ff",
+                "entityName": "123",
+                "fieldName": "GIFT_LTR_AMT",
+                "operator": ">",
+                "comparisonValues": [
+                    "0"
+                ]
+            },
+            {
+                "conditionId": "ca6faf57-a62a-42ea-8c2b-1f9bc56b547f",
+                "entityName": "123",
+                "fieldName": "LIV_UNITS",
+                "operator": "<",
+                "comparisonValues": [
+                    "2"
+                ]
+            },
+            {
+                "conditionId": "4a7f0526-78f8-4f18-b31d-8d1a5ad141c2",
+                "entityName": "123",
+                "fieldName": "SOA_CD",
+                "operator": "!=",
+                "comparisonValues": [
+                    "255"
+                ]
+            }
+        ],
+        "allowableSourceCodes": [
+            "1",
+            "3"
+        ],
+        "allowableCauseCodes": [
+            "A",
+            "B"
+        ],
+        "allowedSeverityCodes": [
+            "1",
+            "3",
+            "4"
+        ]
+    },
+    {
+        "questionId": "3d7d4199-bc47-4968-aca0-7ec345947d38",
+        "questionNumber": "149",
+        "questionReference": "BA.149",
+        "order": 3,
+        "questionText": "Was real estate sold?",
+        "answerType": "Single",
+        "potentialAnswers": [
+            {
+                "code": "Yes",
+                "description": "Yes"
+            },
+            {
+                "code": "No",
+                "description": "No"
+            }
+        ]
+    },
+    {
+        "questionId": "929b529f-af29-4804-9f68-d98ceb727ef5",
+        "questionNumber": "150",
+        "questionReference": "BA.150",
+        "parentQuestionId": "3d7d4199-bc47-4968-aca0-7ec345947d38",
+        "parentQuestionConditionAnswers": [
+            "Yes"
+        ],
+        "order": 4,
+        "questionText": "Was the Closing Disclosure acceptable and provided?",
+        "answerType": "Single",
+        "potentialAnswers": [
+            {
+                "code": "Yes",
+                "description": "Yes"
+            },
+            {
+                "code": "No",
+                "description": "No"
+            }
+        ],
+        "answerToTriggerFinding": "No",
+        "conditionsToDisplay": [
+            {
+                "conditionId": "0ac4e5da-65af-4053-9a52-5cb7400b30d9",
+                "entityName": "123",
+                "fieldName": "RFNC_CD",
+                "operator": "!=",
+                "comparisonValues": [
+                    "S",
+                    "H"
+                ]
+            }
+        ],
+        "allowableSourceCodes": [
+            "1",
+            "3"
+        ],
+        "allowableCauseCodes": [
+            "A",
+            "B"
+        ],
+        "allowedSeverityCodes": [
+            "1",
+            "3",
+            "4"
+        ]
+    },
+    {
+        "questionId": "67717fc6-f7ec-4044-93aa-f9d3587a1315",
+        "questionNumber": "151",
+        "questionReference": "BA.151",
+        "order": 5,
+        "questionText": "Does a Depository account exist?",
+        "answerType": "Single",
+        "potentialAnswers": [
+            {
+                "code": "Yes",
+                "description": "Yes"
+            },
+            {
+                "code": "No",
+                "description": "No"
+            }
+        ],
+        "answerToTriggerFinding": "No",
+        "allowableSourceCodes": [
+          "1",
+          "2",
+          "3"
+        ],
+        "allowableCauseCodes": [
+          "A",
+          "B",
+          "C"
+        ],
+        "allowedSeverityCodes": [
+          "1",
+          "3",
+          "4"
+      ]
+    },
+    {
+        "questionId": "b2b83aac-6415-4334-97bb-90a89549d60f",
+        "questionNumber": "152",
+        "questionReference": "BA.152",
+        "parentQuestionId": "67717fc6-f7ec-4044-93aa-f9d3587a1315",
+        "parentQuestionConditionAnswers": [
+            "Yes"
+        ],
+        "order": 6,
+        "questionText": "Was a two month Average balance in the Depository Account provided?",
+        "answerType": "Single",
+        "potentialAnswers": [
+            {
+                "code": "Yes",
+                "description": "Yes"
+            },
+            {
+                "code": "No",
+                "description": "No"
+            }
+        ],
+        "answerToTriggerFinding": "No",
+        "conditionsToDisplay": [
+            {
+                "conditionId": "14770ac1-f88d-4b23-bf4f-0206b9c737ff",
+                "entityName": "123",
+                "fieldName": "GIFT_LTR_AMT",
+                "operator": ">",
+                "comparisonValues": [
+                    "0"
+                ]
+            }
+        ],
+        "allowableSourceCodes": [
+            "1",
+            "3"
+        ],
+        "allowableCauseCodes": [
+            "A",
+            "B"
+        ],
+        "allowedSeverityCodes": [
+            "1",
+            "3",
+            "4"
+        ]
+    },
+    {
+        "questionId": "cb6a46bd-a6f0-46e8-b7ac-5d84b49fd8af",
+        "questionNumber": "153",
+        "questionReference": "BA.153",
+        "parentQuestionId": "67717fc6-f7ec-4044-93aa-f9d3587a1315",
+        "parentQuestionConditionAnswers": [
+            "Yes"
+        ],
+        "order": 7,
+        "questionText": "Another question that should only show up if the depository account existed?",
+        "answerType": "Single",
+        "potentialAnswers": [
+            {
+                "code": "Yes",
+                "description": "Yes"
+            },
+            {
+                "code": "No",
+                "description": "No"
+            }
+        ],
+        "answerToTriggerFinding": "No",
+        "conditionsToDisplay": [
+            {
+                "conditionId": "14770ac1-f88d-4b23-bf4f-0206b9c737ff",
+                "entityName": "123",
+                "fieldName": "GIFT_LTR_AMT",
+                "operator": ">",
+                "comparisonValues": [
+                    "0"
+                ]
+            }
+        ],
+        "allowableSourceCodes": [
+            "1",
+            "2"
+        ],
+        "allowableCauseCodes": [
+            "A",
+            "B"
+        ],
+        "allowedSeverityCodes": [
+            "1",
+            "3",
+            "4"
+        ]
+    },
+    {
+        "questionId": "dca9ce1d-407e-424e-968d-a9cae8974cb8",
+        "questionNumber": "154",
+        "questionReference": "BA.154",
+        "parentQuestionId": "67717fc6-f7ec-4044-93aa-f9d3587a1315",
+        "parentQuestionConditionAnswers": [
+            "No"
+        ],
+        "order": 8,
+        "questionText": "Yet another question that should only show up if the depository didn't exist?",
+        "answerType": "Single",
+        "potentialAnswers": [
+            {
+                "code": "Yes",
+                "description": "Yes"
+            },
+            {
+                "code": "No",
+                "description": "No"
+            }
+        ],
+        "answerToTriggerFinding": "Yes",
+        "conditionsToDisplay": [
+            {
+                "conditionId": "14770ac1-f88d-4b23-bf4f-0206b9c737ff",
+                "entityName": "123",
+                "fieldName": "GIFT_LTR_AMT",
+                "operator": ">",
+                "comparisonValues": [
+                    "0"
+                ]
+            }
+        ],
+        "allowableSourceCodes": [
+            "1"
+        ],
+        "allowableCauseCodes": [
+            "A",
+            "B"
+        ],
+        "allowedSeverityCodes": [
+            "1",
+            "2"
+        ]
+    },
+    {
+        "questionId": "dxe9ce1d-407e-424e-968d-a9cae8974cb8",
+        "questionNumber": "155",
+        "questionReference": "BA.155",
+        "parentQuestionId": "dca9ce1d-407e-424e-968d-a9cae8974cb8",
+        "parentQuestionConditionAnswers": [
+            "No"
+        ],
+        "order": 9,
+        "questionText": "Here is another question that should only show up if BA.154 is answered No?",
+        "answerType": "Single",
+        "potentialAnswers": [
+            {
+                "code": "Yes",
+                "description": "Yes"
+            },
+            {
+                "code": "No",
+                "description": "No"
+            }
+        ],
+        "answerToTriggerFinding": "Yes",
+        "allowableSourceCodes": [
+            "1"
+        ],
+        "allowableCauseCodes": [
+            "A",
+            "B"
+        ],
+        "allowedSeverityCodes": [
+            "1",
+            "3",
+            "4"
+        ]
+    },
+    {
+        "questionId": "dzze9ce1d-407e-424e-968d-a9cae8974cb8",
+        "questionNumber": "156",
+        "questionReference": "BA.156",
+        "parentQuestionId": "dxe9ce1d-407e-424e-968d-a9cae8974cb8",
+        "parentQuestionConditionAnswers": [
+            "Yes"
+        ],
+        "order": 9,
+        "questionText": "Here is another question that should only show up if BA.155 is answered Yes?",
+        "answerType": "Single",
+        "potentialAnswers": [
+            {
+                "code": "Yes",
+                "description": "Yes"
+            },
+            {
+                "code": "No",
+                "description": "No"
+            }
+        ],
+        "answerToTriggerFinding": "Yes",
+        "allowableSourceCodes": [
+            "1"
+        ],
+        "allowableCauseCodes": [
+            "A",
+            "B"
+        ],
+        "allowedSeverityCodes": [
+            "1",
+            "3",
+            "4"
+        ]
+    },
+    {
+        "questionId": "73c1769e-7dc7-411b-8e3f-de5f2ba2025c",
+        "questionNumber": "157",
+        "questionReference": "BA.157",
+        "order": 10,
+        "questionText": "This is a test question to test out the = operator?",
+        "answerType": "Single",
+        "potentialAnswers": [
+            {
+                "code": "Yes",
+                "description": "Yes"
+            },
+            {
+                "code": "No",
+                "description": "No"
+            }
+        ],
+        "answerToTriggerFinding": "No",
+        "conditionsToDisplay": [
+            {
+                "conditionId": "44527956-43b6-4658-a77e-c2cf3378d582",
+                "entityName": "123",
+                "fieldName": "RFNC_CD",
+                "operator": "=",
+                "comparisonValues": [
+                    "A"
+                ]
+            }
+        ],
+        "allowableSourceCodes": [
+            "1",
+            "2",
+            "3"
+        ],
+        "allowableCauseCodes": [
+            "A",
+            "B"
+        ],
+        "allowedSeverityCodes": [
+            "1",
+            "3",
+            "4"
+        ]
+    },
+    {
+        "questionId": "bbb9e5a0-0e56-4450-b35b-12977f047dec",
+        "questionNumber": "158",
+        "questionReference": "BA.158",
+        "order": 11,
+        "questionText": "This is a test question to test out the 'isPresent' operator?",
+        "answerType": "Single",
+        "potentialAnswers": [
+            {
+                "code": "Yes",
+                "description": "Yes"
+            },
+            {
+                "code": "No",
+                "description": "No"
+            }
+        ],
+        "answerToTriggerFinding": "No",
+        "conditionsToDisplay": [
+            {
+                "conditionId": "b2ebfac9-6844-495f-b82c-e79aa1d9545c",
+                "entityName": "123",
+                "fieldName": "RATIO_LOAN_TO_VL_NEW",
+                "operator": "isPresent"
+            }
+        ],
+        "allowableSourceCodes": [
+            "1",
+            "2",
+            "3"
+        ],
+        "allowableCauseCodes": [
+            "A",
+            "B"
+        ],
+        "allowedSeverityCodes": [
+            "1",
+            "3",
+            "4"
+        ]
+    }
+]

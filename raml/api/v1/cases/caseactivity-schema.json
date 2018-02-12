@@ -1,0 +1,48 @@
+{
+    "id": "http://LRS/CaseActivity",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "additionalProperties": true,
+    "properties": {
+        "reviewId": {
+            "description": "The Review ID of a canceled, active, or completed review related to the case.",
+            "type": "string"
+        },
+        "reviewReferenceId": {
+            "description": "The Review reference ID of a canceled, active, or completed review related to the case.",
+            "type": "string"
+        },
+        "reviewStatus": {
+            "description": "The status description of the canceled, active, or completed review related to the case.",
+            "type": "string"
+        },
+        "distributionDate": {
+            "description": "The date if this selection was distributed.",
+            "type": "string",
+            "format": "date"
+        },
+        "receivedDate": {
+            "description": "The date if the binder has been recieved for this selection.",
+            "type": "string",
+            "format": "date"
+        },
+        "requestedDate": {
+            "description": "The date if the binder has been requested for this selection.",
+            "type": "string",
+            "format": "date"
+        },
+        "selectionDate": {
+            "description": "The date that this selection was created.",
+            "type": "string",
+            "format": "date"
+        },
+        "selectionStatus": {
+            "description": "The status of this selection. (e.g. Selected, Requested, Received, Distributed, Exception, Cancelled)",
+            "type": "string"
+        },
+        "caseNumber": {
+            "description": "The case number for the loan selection",
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,105 @@
+<div class="panel panel-default lrs-panel-primary">
+    <div class="panel-heading">
+        <span class="panel-title">Review Locations</span>
+        <span class="location-to-edit" *ngIf="locationToEdit"> - {{locationToEdit.name}}</span>
+    </div>
+    <div class="panel-body">
+        <form class="row">
+            <div class="col-xs-6">
+                <div class="form-item">
+                    <label for="loc_name" class="small">Location Name</label>
+                    <input type="text" id="loc_name" name="loc_name" class="form-control input-sm" [(ngModel)]="locationToEdit.name">
+                </div>
+                <div class="form-item">
+                    <label for="loc_address" class="small">Street Address</label>
+                    <input type="text" id="loc_address" name="loc_address" class="form-control input-sm" [(ngModel)]="locationToEdit.address">
+                    <input type="text" id="loc_address2" name="loc_address2" class="form-control input-sm address-ext" [(ngModel)]="locationToEdit.address2">
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-item">
+                            <label for="loc_city" class="small">City</label>
+                            <input type="text" id="loc_city" name="loc_city" class="form-control input-sm" [(ngModel)]="locationToEdit.city">
+                        </div>
+                    </div>
+                    <div class="col-xs-2 no-left-pad">
+                        <div class="form-item">
+                            <label class="x-small" for="loc_state">State</label>
+                            <input type="text" id="loc_state" name="loc_state" class="form-control input-sm state" [(ngModel)]="locationToEdit.state">
+                        </div>
+                    </div>
+                    <div class="col-xs-4 no-left-pad">
+                        <div class="form-item">
+                            <label for="loc_zip" class="small">Zip Code</label>
+                            <input type="text" id="loc_zip" name="loc_zip" class="form-control input-sm" [(ngModel)]="locationToEdit.zipCode">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-item">
+                            <label for="loc_contact" class="small">Contact Name</label>
+                            <input type="text" id="loc_contact" name="loc_contact" class="form-control input-sm" [(ngModel)]="locationToEdit.contactName">
+                        </div>
+                    </div>
+                    <div class="col-xs-4 no-left-pad">
+                        <div class="form-item">
+                            <label for="loc_contactPhone" class="small">Contact Phone</label>
+                            <input type="text" id="loc_contactPhone" name="loc_contactPhone" class="form-control input-sm" [(ngModel)]="locationToEdit.contactPhone">
+                        </div>
+                    </div>
+                    <div class="col-xs-2 no-left-pad">
+                        <div class="form-item">
+                            <label for="loc_contactExt" class="small">Extension</label>
+                            <input type="text" id="loc_contactExt" name="loc_contactExt" class="form-control input-sm" [(ngModel)]="locationToEdit.contactPhoneExtension">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-item review-cap-top-margin">
+                    <label for="loc_capacity" class="small">Monthly Review Capacity</label>
+                    <input type="text" id="loc_capacity" name="loc_capacity" class="form-control input-sm cap" [(ngModel)]="locationToEdit.capacity">
+                </div>
+                <div class="form-item">
+                    <label class="x-small" for="loc_reasons">Allowed Selection Reasons</label>
+                    <select id="loc_reasons"
+                            name="loc_reasons"
+                            class="form-control input-sm"
+                            multiple="multiple"
+                            [(ngModel)]="locationToEdit.allowedSelectionReasons">
+                        //@formatter:off
+                        <option *ngFor="let reason of selectionReasons" [value]="reason.code">{{reason.description}}</option>
+                        //@formatter:on
+                    </select>
+                </div>
+                <div class="form-item">
+                    <label class="x-small" for="loc_reviewTypes">Allowed Review Types</label>
+                    <select id="loc_reviewTypes"
+                            name="loc_reviewTypes"
+                            class="form-control input-sm"
+                            multiple="multiple"
+                            [(ngModel)]="locationToEdit.allowedReviewTypes">
+                        //@formatter:off
+                        <option *ngFor="let type of reviewTypes" [value]="type.code">{{type.description}}</option>
+                        //@formatter:on
+                    </select>
+                </div>
+                <div class="form-item">
+                    <label class="x-small" for="loc_productTypes">Allowed Product Types</label>
+                    <select id="loc_productTypes"
+                            name="loc_productTypes"
+                            class="form-control input-sm"
+                            multiple="multiple"
+                            [(ngModel)]="locationToEdit.allowedProductTypes">
+                        //@formatter:off
+                        <option *ngFor="let type of productTypes" [value]="type.code">{{type.description}}</option>
+                        //@formatter:on
+                    </select>
+                </div>
+            </div>
+        </form>
+        <hr/>
+        <button class="btn btn-primary" (click)="saveLocation()">Save Changes</button>
+    </div>
+</div>

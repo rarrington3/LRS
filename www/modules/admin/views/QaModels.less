@@ -1,0 +1,26 @@
+@import '../../bootstrap/_variables';
+
+:host-context {
+    /* styles should be scoped under host-context */
+
+    .text-success {
+        color: @brand-success;
+    }
+
+    table.qa-model-table {
+
+        .qa-model-version-col {
+            min-width: 60px;
+            max-width: 60px;
+        }
+
+        .qa-model-action-col {
+            min-width: 90px;
+            max-width: 900px;
+
+            a, button {
+                width: 100%;
+            }
+        }
+    }
+}

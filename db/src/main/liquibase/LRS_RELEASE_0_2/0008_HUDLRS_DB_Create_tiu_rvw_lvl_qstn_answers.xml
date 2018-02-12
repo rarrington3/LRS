@@ -1,0 +1,38 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_Create_tiu_rvw_lvl_qstn_answers_001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createProcedure>
+		<![CDATA[
+            create TRIGGER [dbo].[tiu_rvw_lvl_qstn_answers] ON [dbo].[RVW_LVL_QSTN_ANSWERS] FOR insert, update AS
+            
+            BEGIN
+              DECLARE  @question_id uniqueidentifier,
+                       @summary_field_to_update varchar(50),
+                       @sql nvarchar (1000),
+                       @answer varchar(16),
+                       @review_lvl_id uniqueidentifier
+            
+            
+            select @question_id = question_id,
+                   @answer = answer,
+                   @review_lvl_id = review_lvl_id
+            from inserted
+            
+            if (@answer = 'Yes') set @answer = 'Y';
+            if (@answer = 'No') set @answer = 'N';
+            
+            select @summary_field_to_update = summary_field_to_update
+            from question_reference
+            where question_id = @question_id
+            
+            if @summary_field_to_update is not null
+                set @sql = 'update RVW_LVL_CASE_SUMMARY set ' + @summary_field_to_update + ' = ''' + @answer + ''' where review_lvl_id =  ''' +  convert(CHAR(36),@review_lvl_id) + ''''
+            
+            --print @sql
+            exec sp_executesql @sql
+            
+            end                     
+		]]>
+        </createProcedure>
+    </changeSet>
+</databaseChangeLog>    

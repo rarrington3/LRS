@@ -1,0 +1,21 @@
+<div class="indem-container">
+	<div class="title-header">
+		<h4 class="view-title">INDEMNIFICATION - CASE # {{caseNumber}}</h4>
+		<div class="section-divider">
+			<hr/>
+		</div>
+	</div>
+	<lrs-pdf-viewer [source]="document"></lrs-pdf-viewer>
+	<div class="footer clearfix">
+		<a type="button" class="btn btn-primary pull-left" target="_blank" [href]="document.url">Download PDF</a>
+		<button *ngIf="!isReadOnly" type="button" (click)="onSign()" class="btn btn-primary pull-right" [disabled]="indemSigned">e-Sign Indemnification</button>
+	</div>
+	<div *ngIf="!isReadOnly" class="section-divider">
+		<hr/>
+	</div>
+	<div *ngIf="!isReadOnly" class="footer clearfix">
+		<button type="button" (click)="onSubmit()" class="btn btn-primary pull-right" [disabled]="!indemSigned">Save Response</button>
+		<button type="button"  (click)="onCancel()" class="btn pull-right cancel-btn">Cancel</button>
+	</div>
+
+</div>

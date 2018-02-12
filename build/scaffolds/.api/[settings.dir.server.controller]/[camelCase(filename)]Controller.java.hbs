@@ -1,0 +1,39 @@
+// THIS FILE IS AUTO-GENERATED. DO NOT MODIFY.  RUN 'grunt server:apidesigner' TO EDIT THE SPECIFICATION
+package gov.hud.lrs.services.controller;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod; 
+import org.springframework.security.access.prepost.PreAuthorize;
+
+import gov.hud.lrs.common.dto.LrsApiV1DTOs; // The code-gen'd DTOs based on the same RAML as this file
+
+import gov.hud.lrs.services.security.PolicyImpl; // Implementations of security policies associated with options defined in /raml/api/securitySchemes.raml
+
+@SuppressWarnings("unused")
+@Controller
+public class LrsApiV1Controller {
+	@Autowired
+	private PolicyImpl policyImpl;
+
+{{#each api.controllers as |controller|}}
+    @Autowired
+    private {{camelCase controller}}ControllerImpl {{headlessCamelCase controller}}ControllerImpl;
+{{/each}}
+
+{{#each api.resources as |res|}}
+    {{>javaMethodsForResources res}}
+{{/each}}
+}

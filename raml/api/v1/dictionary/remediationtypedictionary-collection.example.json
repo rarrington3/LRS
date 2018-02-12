@@ -1,0 +1,14 @@
+[
+    {
+        "code": "BR",
+        "description": "Borrower Refund"
+    },
+    {
+        "code": "PR",
+        "description": "Principal Reduction"
+    },
+    {
+        "code": "RF",
+        "description": "Reimburse FHA"
+    }
+]

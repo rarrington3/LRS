@@ -1,0 +1,38 @@
+[
+    {
+        "id": "6037FDC9-5910-45F2-8059-8F0759B8DC58",
+        "display": "Gregory Adams",
+        "totalCapacity": 25,
+        "availableCapacity": 6
+    },
+    {
+        "id": "84807699-C805-4C76-9A89-76A026ADEE93",
+        "display": "Bueno Bianca",
+        "totalCapacity": 30,
+        "availableCapacity": 21
+    },
+    {
+        "id": "B84514F2-45EA-423C-BFBE-DFE9ED4F62F6",
+        "display": "Amanda Davis",
+        "totalCapacity": 23,
+        "availableCapacity": -4
+    },
+    {
+        "id": "EFE7B467-385B-4548-833D-1BBF06FB6B80",
+        "display": "Stephanie Jacobson",
+        "totalCapacity": 22,
+        "availableCapacity": 18
+    },
+    {
+        "id": "5CC07A7B-D2F8-4C4C-A355-87F1DADA2AFA",
+        "display": "Sarah McKensie",
+        "totalCapacity": 29,
+        "availableCapacity": 10
+    },
+    {
+        "id": "74DABF03-3621-4E6D-8E25-20CA85868F26",
+        "display": "Tyler Smith",
+        "totalCapacity": 22,
+        "availableCapacity": 0
+    }
+]

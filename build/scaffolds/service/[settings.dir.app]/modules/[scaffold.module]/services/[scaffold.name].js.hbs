@@ -1,0 +1,26 @@
+{{> jsFileHeader }}
+
+import {Injectable} from '@angular/core';
+
+/**
+ * @example
+ * let injector = Injector.resolveAndCreate([{{camelCase scaffold.name}}]);
+ * let {{headlessCamelCase scaffold.name}} = new injector.get({{camelCase scaffold.name}});
+ * @example
+ * class Component {
+ * 		constructor({{headlessCamelCase scaffold.name}}:{{camelCase scaffold.name}}, {{headlessCamelCase scaffold.name}}2:{{camelCase scaffold.name}}) {
+ *			//injected via angular, a singleton by default in same injector context
+ *			console.log({{headlessCamelCase scaffold.name}} === {{headlessCamelCase scaffold.name}}2);
+ *		}
+ * }
+ */
+@Injectable()
+export default class {{camelCase scaffold.name}} {
+	constructor() {
+
+	}
+
+	getName():string {
+		return '{{scaffold.name}}';
+	}
+}

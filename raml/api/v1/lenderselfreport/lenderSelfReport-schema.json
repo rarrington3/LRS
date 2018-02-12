@@ -1,0 +1,48 @@
+{
+    "id": "http://LRS/LenderSelfReport",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "additionalProperties": false,
+    "properties": {
+        "reviewType": {
+            "description": "The ID of the Review Type these loans have been selected for.",
+            "type": "string"
+        },
+        "defectAreas": {
+            "description": "A collection of IDs for applicable Defect Areas. Eg. 72CD9424-41C9-4C5D-996C-55241214EC26",
+            "type": "array",
+            "items": { "type": "string" }
+        },
+        "cases": {
+            "description": "A collection of case numbers that need to be reviewed.",
+            "type": "array",
+            "items": { "type": "string" }
+        },
+        "isFraudDetected": {
+            "decription": "A flag to signal that fraud has been detected on the submitted cases.",
+            "type": "boolean"
+        },
+        "typesOfFraud": {
+            "description": "A collection of IDs for applicable Fraud Types.",
+            "type": "array",
+            "items": { "type": "string" }
+        },
+        "fraudParticipants": {
+            "description": "A collection of IDs for applicable Fraud Participants.",
+            "type": "array",
+            "items": { "type": "string" }
+        },
+        "descriptionOfFindings": {
+            "description": "A short description of the findings which causes this case to need review.",
+            "type": "string"
+        },
+        "descriptionOfCorrectiveActions": {
+            "description": "A short description of the corrective actions being taken in this case.",
+            "type": "string"
+        },
+        "isCoveredUnderSettlement": {
+            "description": "A flag to signal that the given cases/loans are covered under settlement with HUD.",
+            "type": "boolean"
+        }
+    }
+}

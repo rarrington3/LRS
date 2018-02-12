@@ -1,0 +1,23 @@
+{{> jsFileHeader }}
+
+import {Pipe} from '@angular/core';
+
+@Pipe({
+    name: '{{headlessCamelCase scaffold.name}}',
+    pure: true
+})
+/**
+ * @see https://angular.io/docs/ts/latest/guide/pipes.html
+ * @example
+ * <div>{{leftBrace}}{{leftBrace}}inputExpression | {{headlessCamelCase scaffold.name}}{{rightBrace}}{{rightBrace}}</div>
+ */
+export default class {{camelCase scaffold.name}} {
+    constructor() {
+		//TODO: inject any required dependencies
+	}
+
+    transform(input:any, args:Array) {
+        //TODO: filter or format your input to provide a new output
+        return input;
+    }
+}

@@ -1,0 +1,32 @@
+[
+    {
+        "code": "123",
+        "description": "Living Units",
+        "entityName": "123",
+        "fieldName": "LIV_UNITS"
+    },
+    {
+        "code": "124",
+        "description": "Loan to Value Ratio - New",
+        "entityName": "123",
+        "fieldName": "RATIO_LOAN_TO_VL_NEW"
+    },
+    {
+        "code": "125",
+        "description": "Gift Letter Amount",
+        "entityName": "123",
+        "fieldName": "GIFT_LTR_AMT"
+    },
+    {
+        "code": "126",
+        "description": "SOA Code - Display if LOAN_TYPE has Purchase",
+        "entityName": "123",
+        "fieldName": "SOA_CD"
+    },
+    {
+        "code": "127",
+        "description": "Refinance Code",
+        "entityName": "123",
+        "fieldName": "RFNC_CD"
+    }
+]

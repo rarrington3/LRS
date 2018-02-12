@@ -1,0 +1,307 @@
+[
+    {
+        "fieldId": "Living Units",
+        "order": 0,
+        "conditionsToDisplay": [
+            {
+                "conditionId": "9b1c1905-ce56-456e-a3cc-1e1f671fd058",
+                "entityName": "123",
+                "fieldName": "LOAN_TYPE",
+                "operator": "in",
+                "comparisonValues": [
+                    "HECM",
+                    "Refinance",
+                    "Purchase"
+                ]
+            }
+        ],
+        "name": "Living Units",
+        "value": "1",
+        "valuesAtUnderwriting": [
+            "1"
+        ],
+        "valuesAtEndorsement": [
+            "2"
+        ],
+        "type": "integer",
+        "loanAttributeGroup": "Property",
+        "isEditable": false
+    },
+    {
+        "fieldId": "Loan to Value Ratio - New",
+        "order": 1,
+        "isEditable": false,
+        "conditionsToDisplay": [
+            {
+                "conditionId": "9b1c1905-ce56-456e-a3cc-1e1f671fd058",
+                "entityName": "123",
+                "fieldName": "LOAN_TYPE",
+                "operator": "in",
+                "comparisonValues": [
+                    "HECM",
+                    "Refinance",
+                    "Purchase"
+                ]
+            }
+        ],
+        "name": "Loan to Value Ratio - New",
+        "value": "90.01",
+        "valuesAtUnderwriting": [
+            "90.01"
+        ],
+        "valuesAtEndorsement": [
+            "90.01"
+        ],
+        "type": "number",
+        "loanAttributeGroup": "Property",
+        "displayInDefectAreas": [
+            "LA"
+        ]
+    },
+    {
+        "fieldId": "Gift Letter Amount",
+        "order": 2,
+        "isEditable": false,
+        "conditionsToDisplay": [
+            {
+                "conditionId": "9b1c1905-ce56-456e-a3cc-1e1f671fd058",
+                "entityName": "123",
+                "fieldName": "LOAN_TYPE",
+                "operator": "in",
+                "comparisonValues": [
+                    "HECM",
+                    "Refinance",
+                    "Purchase"
+                ]
+            }
+        ],
+        "name": "Gift Letter Amount",
+        "value": "150",
+        "valuesAtUnderwriting": [
+            "150"
+        ],
+        "valuesAtEndorsement": [
+            "150"
+        ],
+        "type": "currency",
+        "loanAttributeGroup": "Borrower",
+        "displayInDefectAreas": [
+            "LA",
+            "PE"
+        ]
+    },
+    {
+        "fieldId": "SOA_CD",
+        "order": 3,
+        "isEditable": false,
+        "conditionsToDisplay": [
+            {
+                "conditionId": "9b1c1905-ce56-456e-a3cc-1e1f671fd058",
+                "entityName": "123",
+                "fieldName": "LOAN_TYPE",
+                "operator": "in",
+                "comparisonValues": [
+                    "Purchase"
+                ]
+            }
+        ],
+        "name": "SOA Code - Display if LOAN_TYPE has Purchase",
+        "value": "211",
+        "valuesAtUnderwriting": [
+            "2016-07-16T19:20+01:00"
+        ],
+        "valuesAtEndorsement": [
+            "2016-07-16T19:20+01:00"
+        ],
+        "type": "date",
+        "loanAttributeGroup": "Loan",
+        "displayInDefectAreas": [
+            "BE"
+        ]
+    },
+    {
+        "fieldId": "LOAN_TYPE",
+        "order": 7,
+        "isEditable": false,
+        "name": "LOAN_TYPE Multiselect",
+        "value": "Refinance,Purchase,HECM",
+        "valuesAtUnderwriting": [
+            "HECM"
+        ],
+        "valuesAtEndorsement": [
+            "HECM"
+        ],
+        "type": "multiselect",
+        "selectChoices": [
+            {
+                "code": "HECM",
+                "description": "HECM"
+            },
+            {
+                "code": "Refinance",
+                "description": "Refinance"
+            },
+            {
+                "code": "Purchase",
+                "description": "Purchase"
+            }
+        ],
+        "loanAttributeGroup": "Loan",
+        "displayInDefectAreas": [
+            "LA",
+            "BE"
+        ]
+    },
+    {
+        "fieldId": "Refinance Code",
+        "order": 4,
+        "isEditable": false,
+        "conditionsToDisplay": [
+            {
+                "conditionId": "9b1c1905-ce56-456e-a3cc-1e1f671fd058",
+                "entityName": "123",
+                "fieldName": "RFNC_CDRADIO",
+                "operator": "=",
+                "comparisonValues": [
+                    "Yes"
+                ]
+            }
+        ],
+        "name": "Refinance Code",
+        "value": "A",
+        "valuesAtUnderwriting": [
+            "A"
+        ],
+        "valuesAtEndorsement": [
+            "A"
+        ],
+        "type": "select",
+        "selectChoices": [
+            {
+                "code": "A",
+                "description": "A"
+            },
+            {
+                "code": "B",
+                "description": "B"
+            },
+            {
+                "code": "C",
+                "description": "C"
+            }
+        ],
+        "loanAttributeGroup": "Loan",
+        "displayInDefectAreas": [
+            "LA",
+            "BE"
+        ]
+    },
+    {
+        "fieldId": "Refinance Code Radio",
+        "order": 5,
+        "isEditable": false,
+        "name": "Refinance Code Radio",
+        "value": "No",
+        "valuesAtUnderwriting": [
+            "A"
+        ],
+        "valuesAtEndorsement": [
+            "A"
+        ],
+        "type": "boolean",
+        "selectChoices": [],
+        "loanAttributeGroup": "Loan",
+        "displayInDefectAreas": [
+            "LA",
+            "BE"
+        ]
+    },
+    {
+        "fieldId": "RFNC_CDRADIO_2",
+        "order": 5,
+        "isEditable": false,
+        "name": "RFNC_CDRADIO Radio 2",
+        "value": "No",
+        "valuesAtUnderwriting": [
+            "A"
+        ],
+        "valuesAtEndorsement": [
+            "A"
+        ],
+        "type": "boolean",
+        "selectChoices": [],
+        "loanAttributeGroup": "Loan",
+        "displayInDefectAreas": [
+            "LA",
+            "BE"
+        ]
+    },
+    {
+        "fieldId": "Refinance Code Multi",
+        "order": 6,
+        "isEditable": false,
+        "name": "Refinance Code Multiselect",
+        "value": "B",
+        "valuesAtUnderwriting": [
+            "A"
+        ],
+        "valuesAtEndorsement": [
+            "A"
+        ],
+        "type": "multiselect",
+        "selectChoices": [
+            {
+                "code": "A",
+                "description": "A"
+            },
+            {
+                "code": "B",
+                "description": "B"
+            },
+            {
+                "code": "C",
+                "description": "C"
+            }
+        ],
+        "loanAttributeGroup": "Loan",
+        "displayInDefectAreas": [
+            "LA",
+            "BE"
+        ]
+    },
+    {
+        "order": 7,
+        "isEditable": false,
+        "fieldId": "Refinance Code",
+        "name": "Refinance Code Static",
+        "value": "82323",
+        "valuesAtUnderwriting": [
+            "A"
+        ],
+        "valuesAtEndorsement": [
+            "A"
+        ],
+        "type": "static",
+        "selectChoices": [],
+        "displayInDefectAreas": [
+            "LA"
+        ]
+    },
+    {
+        "fieldId": "SOA_CDD",
+        "order": 8,
+        "name": "SOA Code",
+        "value": "213",
+        "isEditable": false,
+        "valuesAtUnderwriting": [
+            "3211"
+        ],
+        "valuesAtEndorsement": [
+            "1211"
+        ],
+        "type": "integer",
+        "displayInDefectAreas": [
+            "BE"
+        ]
+    }
+]

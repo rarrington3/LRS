@@ -1,0 +1,67 @@
+{
+    "id": "http://LRS/CurrentUser",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "additionalProperties": false,
+    "properties": {
+        "personnelId": {
+            "description": "LRS-specific unique identifier for the current user if they are HUD personnel",
+            "type": "string"
+        },
+        "hudId": {
+            "description": "The login identifier of the user; the user's HID.",
+            "type": "string"
+        },
+        "authorities": {
+            "description": "A collection of this user's access rights.",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "firstName": {
+            "description": "The first name of the current user.",
+            "type": "string"
+        },
+        "lastName": {
+            "description": "The last name of the current user.",
+            "type": "string"
+        },
+        "lender": {
+            "description": "An object containing information about the lender this user is associated with.",
+            "$ref": "LiteLender"
+        },
+        "locationId": {
+            "description": "Default location of user.",
+            "type": "string"
+        },
+        "selectionReasonSkillCodes": {
+            "description": "Collection of selection reason skill codes",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }            
+        },
+        "reviewTypeSkillCodes": {
+            "description": "Collection of selection review type skill codes",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "productTypeSkillCodes": {
+            "description": "Collection of product type skill codes",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }            
+        },
+        "reviewLevelSkillCodes": {
+            "description": "Collection of selection review level skill codes",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    }
+}

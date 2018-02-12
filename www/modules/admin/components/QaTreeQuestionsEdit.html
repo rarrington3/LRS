@@ -1,0 +1,299 @@
+<div *ngIf="!questions.length" class="lrs-no-results">
+    <span class="small" aria-label="no results">No results found</span>
+</div>
+<div *ngIf="questions.length" class="pull-right">
+    <a href="javascript:void(0);" [collapsePanel]="false" [collapsePanelParentSelector]="'.qa-tree-panel-nested-'+nest">Expand All</a> |
+    <a href="javascript:void(0);" [collapsePanel]="true" [collapsePanelParentSelector]="'.qa-tree-panel-nested-'+nest">Collapse All</a>
+</div>
+<table class="table table-bordered lrs-sortable-table qa-tree-questions-table qa-tree-questions-table-nested-{{nest}}">
+    <tbody>
+    <tr *ngFor="let question of questions; let i=index; trackBy: trackBy">
+        <td class="lrs-order-col">
+            <button type="button" class="btn btn-xs btn-default lrs-sort-up"
+                    aria-pressed="false"
+                    (click)="sortUp(questions, question)">
+                <span class="glyphicon glyphicon-chevron-up small" aria-hidden="true"></span>
+            </button>
+            <button type="button" class="btn btn-xs btn-default lrs-sort-down"
+                    aria-pressed="false"
+                    (click)="sortDown(questions, question)">
+                <span class="glyphicon glyphicon-chevron-down small" aria-hidden="true"></span>
+            </button>
+        </td>
+        <td class="questions-col">
+            <div class="panel qa-tree-panel qa-tree-panel-nested-{{nest}}">
+                <div class="panel-heading" role="tab" [id]="'questionHeadingOne_'+nest+'_'+i">
+                    <table class="qa-tree-title-table">
+                        <tr>
+                            <td class="title-col">
+                                <h4 class="panel-title">
+                                    <a class="lrs-arrow" role="button" data-toggle="collapse"
+                                       [href]="'#questionCollapseOne_'+nest+'_'+i"
+                                       aria-expanded="true" [attr.aria-controls]="'questionCollapseOne_'+nest+'_'+i">
+                                        <span class="caret" aria-hidden="true"></span>
+                                        <strong>{{code}}.{{question.questionNumber}}</strong> - {{question.questionText}}
+                                    </a>
+                                </h4>
+                            </td>
+                            <td>
+                                <button class="btn btn-default pull-right qa-model-delete-question-button"
+                                        (click)="remove(questions, question)">
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div [id]="'questionCollapseOne_'+nest+'_'+i" class="panel-collapse collapse in" role="tabpanel"
+                     [attr.aria-labelledby]="'questionHeadingOne_'+nest+'_'+i">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label class="control-label"
+                                           [attr.for]="'qaModelQuestionCode_'+nest+'_'+i">
+                                        Question Code
+                                    </label>
+                                    <input [id]="'qaModelQuestionCode_'+nest+'_'+i"
+                                           [name]="'qaModelQuestionCode_'+nest+'_'+i"
+                                           type="number"
+                                           class="form-control qa-model-question-code"
+                                           min="0"
+                                           [ngModel]="question.questionNumber"
+                                           (ngModelChange)="changeQuestionNumber(question, $event)"
+                                           required>
+                                </div>
+                                <div class="form-group">
+                                    <label [id]="'qaModelQuestionDescLabel_'+nest+'_'+i"
+                                           class="control-label small"
+                                           [attr.for]="'qaModelQuestionDesc_'+nest+'_'+i">
+                                        Question Description
+                                    </label>
+                                    <textarea [id]="'qaModelQuestionDesc_'+nest+'_'+i"
+                                              [name]="'qaModelQuestionDesc_'+nest+'_'+i"
+                                              class="form-control"
+                                              [(ngModel)]="question.questionText"
+                                              (ngModelChange)="change()"
+                                              [attr.aria-labelledby]="'qaModelQuestionDescLabel_'+nest+'_'+i"
+                                              rows="3">
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 hr-wrapper">
+                                <hr/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <table class="qa-tree-conditions-table">
+                                    <thead>
+                                    <tr>
+                                        <th class="action-col"></th>
+                                        <th class="field-condition-col">Field Visibility Condition</th>
+                                        <th class="operator-col">Operator</th>
+                                        <th class="value-col">Value</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let condition of question.conditionsToDisplay">
+                                        <td class="action-col">
+                                            <button class="btn btn-default"
+                                                    (click)="remove(question.conditionsToDisplay, condition)">
+                                                <span class="glyphicon glyphicon-trash"
+                                                      aria-hidden="true"></span>
+                                            </button>
+                                        </td>
+                                        <td class="field-condition-col">
+                                            <select class="form-control input-sm"
+                                                    [(ngModel)]="condition.attributeId"
+                                                    (ngModelChange)="changeAttribute(condition)">
+                                                <option *ngFor="let attribute of loanAttributes"
+                                                        [value]="attribute.id">
+                                                    {{attribute.fieldName}}
+                                                </option>
+                                            </select>
+                                        </td>
+                                        <td class="operator-col">
+                                            <select class="form-control input-sm"
+                                                    [(ngModel)]="condition.operator"
+                                                    (ngModelChange)="change()">
+                                                <option *ngFor="let operator of operators"
+                                                        [value]="operator.code">
+                                                    {{operator.text}}
+                                                </option>
+                                            </select>
+                                        </td>
+                                        <td class="value-col">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   [(ngModel)]="condition._comparisonValuesText"
+                                                   (ngModelChange)="changeComparisonValue(condition)"
+                                                   required>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <button class="btn btn-default qa-model-add-conditional-button"
+                                        (click)="add(question.conditionsToDisplay, newCondition)">
+                                    + Add Conditional Visibility Field
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 hr-wrapper">
+                                <hr/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <table class="qa-tree-answers-table">
+                                    <thead>
+                                    <tr>
+                                        <th class="answer-col" scope="col">Answer</th>
+                                        <th class="outcome-col" scope="col">Outcome</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let answer of question.potentialAnswers">
+                                        <th scope="row" class="answer-col">
+                                            {{answer.description}}
+                                        </th>
+                                        <td class="outcome-col">
+                                            <div class="qa-model-answer-select-wrapper">
+                                                <select class="form-control input-sm"
+                                                        [(ngModel)]="answer._outcomeCode"
+                                                        (ngModelChange)="changeAnswer(question, answer, $event)">
+                                                    <option *ngFor="let outcome of outcomes"
+                                                            [value]="outcome.code">
+                                                        {{outcome.text}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="qa-model-finding-wrapper"
+                                                 *ngIf="answer._outcomeCode === qaTreeOutcome.FINDING.code">
+                                                <div class="row">
+                                                    <div class="col-xs-6">
+                                                        <table class="qa-tree-findings-table">
+                                                            <thead>
+                                                            <tr>
+                                                                <th class="action-col"></th>
+                                                                <th class="source-col">Source</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr *ngFor="let allowableSource of question.allowableSourceCodes; let i=index;">
+                                                                <td class="action-col">
+                                                                    <button class="btn btn-default"
+                                                                            (click)="remove(question.allowableSourceCodes, allowableSource)">
+                                                                    <span class="glyphicon glyphicon-trash"
+                                                                          aria-hidden="true"></span>
+                                                                    </button>
+                                                                </td>
+                                                                <td class="source-col">
+                                                                    <select class="form-control input-sm"
+                                                                            [(ngModel)]="question.allowableSourceCodes[i]"
+                                                                            (ngModelChange)="change()">
+                                                                        <option *ngFor="let source of sources"
+                                                                                [value]="source.code">
+                                                                            [{{source.code}}] + {{source.description}}
+                                                                        </option>
+                                                                    </select>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <!-- Adding the first source by default, to prevent sending empty causes when auto saving -->
+                                                        <button class="btn btn-default"
+                                                                (click)="add(question.allowableSourceCodes, sources[0].code)"
+                                                                *ngIf="sources.length">
+                                                            + Add Source
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                        <table class="qa-tree-findings-table">
+                                                            <thead>
+                                                            <tr>
+                                                                <th class="action-col"></th>
+                                                                <th class="cause-col">Cause</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr *ngFor="let allowableCause of question.allowableCauseCodes; let i=index;">
+                                                                <td class="action-col">
+                                                                    <button class="btn btn-default"
+                                                                            (click)="remove(question.allowableCauseCodes, allowableCause)">
+                                                                            <span class="glyphicon glyphicon-trash"
+                                                                                  aria-hidden="true"></span>
+                                                                    </button>
+                                                                </td>
+                                                                <td class="cause-col">
+                                                                    <select class="form-control input-sm"
+                                                                            [(ngModel)]="question.allowableCauseCodes[i]"
+                                                                            (ngModelChange)="change()">
+                                                                        <option *ngFor="let cause of causes"
+                                                                                [value]="cause.code">
+                                                                            [{{cause.code}}] + {{cause.description}}
+                                                                        </option>
+                                                                    </select>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <div>
+                                                            <!-- Adding the first cause by default, to prevent sending empty causes when auto saving -->
+                                                            <button class="btn btn-default"
+                                                                    (click)="add(question.allowableCauseCodes, causes[0].code)"
+                                                                    *ngIf="causes.length">
+                                                                + Add Cause
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="question._answerToExpand">
+                            <div class="col-xs-12 hr-wrapper">
+                                <hr/>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="question._answerToExpand">
+                            <div class="col-xs-12">
+                                <p class="strong h4">Child Questions for "{{question._answerToExpandText}}"</p>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="question._answerToExpand">
+                            <div class="col-xs-12">
+                                <qa-tree-questions-edit
+                                    [code]="code"
+                                    [questions]="question.questions"
+                                    [parentQuestion]="question"
+                                    [loanAttributes]="loanAttributes"
+                                    [sources]="sources"
+                                    [causes]="causes"
+                                    [nest]="nest + 1"
+                                    [indexes]="indexes + ',' + i"
+                                    (changed)="change($event)">
+                                </qa-tree-questions-edit>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <button class="btn btn-primary pull-right qa-model-add-question-button"
+            (click)="addQuestion()">
+        <span *ngIf="nest === 0">+ Add Question</span>
+        <span *ngIf="nest > 0">+ Add Child Question</span>
+    </button>
+</div>

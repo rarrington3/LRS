@@ -1,0 +1,738 @@
+[
+    {
+        "id": "cc31-erty-4t36-w2r4",
+        "selectionModelCategory": "1823c968-7e66-494d-a8a3-f1573ac02259",
+        "version": 4,
+        "name": "",
+        "description": "",
+        "factors": [
+            {
+                "id": "1234-5678-qwer-asdf",
+                "name": "Loan Type Forward Multiplier",
+                "description": "Lorem ipsum dolor sit amet consectitur",
+                "weight": -1000
+            },
+            {
+                "id": "2234-5678-qwer-asdf",
+                "name": "HECM for Purchase Multiplier",
+                "description": "Lorem ipsum",
+                "weight": 1
+            },
+            {
+                "id": "3234-5678-qwer-asdf",
+                "name": "HECM for Purchase Multiplier",
+                "description": "Proin porttitor accumsan est nec lobortis. Donec hendrerit dolor est, quis aliquam augue pellentesque non. Duis maximus ullamcorper massa, quis porta nisi. Praesent at ex pellentesque, malesuada diam non, fringilla arcu. Fusce mollis aliquam massa vel finibus. Vivamus purus velit, congue at tincidunt in, ultricies vitae leo. Cras commodo consectetur blandit.",
+                "weight": 0
+            },
+            {
+                "id": "4234-5678-qwer-asdf",
+                "name": "HECM Condo Multiplier",
+                "description": "Vivamus rhoncus lacus in orci lobortis ornare et sagittis ipsum. Cras tincidunt diam a urna placerat varius.",
+                "weight": 10
+            },
+            {
+                "id": "5234-5678-qwer-asdf",
+                "name": "HECM Refi Claim Amount Multiplier",
+                "description": "Pellentesque rhoncus tincidunt risus, in ultricies mauris vehicula eget. Nulla facilisi. Donec eget leo fermentum leo sagittis faucibus at vitae augue. Phasellus rutrum sapien eget viverra aliquam. Mauris ac quam quis turpis viverra imperdiet sed nec sapien. Cras viverra sem ut est efficitur, sed congue risus interdum.",
+                "weight": 2.2
+            }
+        ],
+        "selectionThreshold": 11,
+        "allocationPercentage": 100,
+        "status": "active",
+        "scope": "limited",
+        "scopeCode": "l",
+        "defaultReviewType": "Underwriting",
+        "defaultReviewTypeCode": "U"
+    },
+    {
+        "id": "dc31-erty-4t36-w2r4",
+        "selectionModelCategory": "1823c968-7e66-494d-a8a3-f1573ac02259",
+        "version": 3,
+        "name": "Test Model",
+        "description": "",
+        "factors": [
+            {
+                "id": "1234-5678-qwer-asdf",
+                "name": "Loan Type Forward Multiplier",
+                "description": "Lorem ipsum dolor sit amet consectitur",
+                "weight": -1000
+            },
+            {
+                "id": "2234-5678-qwer-asdf",
+                "name": "HECM for Purchase Multiplier",
+                "description": "Lorem ipsum",
+                "weight": 1
+            },
+            {
+                "id": "3234-5678-qwer-asdf",
+                "name": "HECM for Purchase Multiplier",
+                "description": "Proin porttitor accumsan est nec lobortis. Donec hendrerit dolor est, quis aliquam augue pellentesque non. Duis maximus ullamcorper massa, quis porta nisi. Praesent at ex pellentesque, malesuada diam non, fringilla arcu. Fusce mollis aliquam massa vel finibus. Vivamus purus velit, congue at tincidunt in, ultricies vitae leo. Cras commodo consectetur blandit.",
+                "weight": 0
+            },
+            {
+                "id": "4234-5678-qwer-asdf",
+                "name": "HECM Condo Multiplier",
+                "description": "Vivamus rhoncus lacus in orci lobortis ornare et sagittis ipsum. Cras tincidunt diam a urna placerat varius.",
+                "weight": 10
+            },
+            {
+                "id": "5234-5678-qwer-asdf",
+                "name": "HECM Refi Claim Amount Multiplier",
+                "description": "Pellentesque rhoncus tincidunt risus, in ultricies mauris vehicula eget. Nulla facilisi. Donec eget leo fermentum leo sagittis faucibus at vitae augue. Phasellus rutrum sapien eget viverra aliquam. Mauris ac quam quis turpis viverra imperdiet sed nec sapien. Cras viverra sem ut est efficitur, sed congue risus interdum.",
+                "weight": 2.2
+            }
+        ],
+        "selectionThreshold": 11,
+        "allocationPercentage": 100,
+        "status": "draft",
+        "scope": "limited",
+        "scopeCode": "l",
+        "defaultReviewType": "Underwriting",
+        "defaultReviewTypeCode": "U"
+    },
+    {
+        "id": "ec31-erty-4t36-w2r4",
+        "selectionModelCategory": "1823c968-7e66-494d-a8a3-f1573ac02259",
+        "version": 2,
+        "name": "Risk Daily (REV) Experiment 1",
+        "description": "",
+        "factors": [
+            {
+                "id": "1234-5678-qwer-asdf",
+                "name": "Loan Type Forward Multiplier",
+                "description": "Lorem ipsum dolor sit amet consectitur",
+                "weight": -1000
+            },
+            {
+                "id": "2234-5678-qwer-asdf",
+                "name": "HECM for Purchase Multiplier",
+                "description": "Lorem ipsum",
+                "weight": 1
+            },
+            {
+                "id": "3234-5678-qwer-asdf",
+                "name": "HECM for Purchase Multiplier",
+                "description": "Proin porttitor accumsan est nec lobortis. Donec hendrerit dolor est, quis aliquam augue pellentesque non. Duis maximus ullamcorper massa, quis porta nisi. Praesent at ex pellentesque, malesuada diam non, fringilla arcu. Fusce mollis aliquam massa vel finibus. Vivamus purus velit, congue at tincidunt in, ultricies vitae leo. Cras commodo consectetur blandit.",
+                "weight": 0
+            },
+            {
+                "id": "4234-5678-qwer-asdf",
+                "name": "HECM Condo Multiplier",
+                "description": "Vivamus rhoncus lacus in orci lobortis ornare et sagittis ipsum. Cras tincidunt diam a urna placerat varius.",
+                "weight": 10
+            },
+            {
+                "id": "5234-5678-qwer-asdf",
+                "name": "HECM Refi Claim Amount Multiplier",
+                "description": "Pellentesque rhoncus tincidunt risus, in ultricies mauris vehicula eget. Nulla facilisi. Donec eget leo fermentum leo sagittis faucibus at vitae augue. Phasellus rutrum sapien eget viverra aliquam. Mauris ac quam quis turpis viverra imperdiet sed nec sapien. Cras viverra sem ut est efficitur, sed congue risus interdum.",
+                "weight": 2.2
+            }
+        ],
+        "selectionThreshold": 11,
+        "allocationPercentage": 100,
+        "status": "draft",
+        "scope": "full",
+        "scopeCode": "f",
+        "defaultReviewType": "Underwriting",
+        "defaultReviewTypeCode": "U"
+    },
+    {
+        "id": "fc31-erty-4t36-w2r4",
+        "selectionModelCategory": "1823c968-7e66-494d-a8a3-f1573ac02259",
+        "version": 1,
+        "name": "",
+        "description": "",
+        "factors": [
+            {
+                "id": "1234-5678-qwer-asdf",
+                "name": "Loan Type Forward Multiplier",
+                "description": "Lorem ipsum dolor sit amet consectitur",
+                "weight": -1000
+            },
+            {
+                "id": "2234-5678-qwer-asdf",
+                "name": "HECM for Purchase Multiplier",
+                "description": "Lorem ipsum",
+                "weight": 1
+            },
+            {
+                "id": "3234-5678-qwer-asdf",
+                "name": "HECM for Purchase Multiplier",
+                "description": "Proin porttitor accumsan est nec lobortis. Donec hendrerit dolor est, quis aliquam augue pellentesque non. Duis maximus ullamcorper massa, quis porta nisi. Praesent at ex pellentesque, malesuada diam non, fringilla arcu. Fusce mollis aliquam massa vel finibus. Vivamus purus velit, congue at tincidunt in, ultricies vitae leo. Cras commodo consectetur blandit.",
+                "weight": 0
+            },
+            {
+                "id": "4234-5678-qwer-asdf",
+                "name": "HECM Condo Multiplier",
+                "description": "Vivamus rhoncus lacus in orci lobortis ornare et sagittis ipsum. Cras tincidunt diam a urna placerat varius.",
+                "weight": 10
+            },
+            {
+                "id": "5234-5678-qwer-asdf",
+                "name": "HECM Refi Claim Amount Multiplier",
+                "description": "Pellentesque rhoncus tincidunt risus, in ultricies mauris vehicula eget. Nulla facilisi. Donec eget leo fermentum leo sagittis faucibus at vitae augue. Phasellus rutrum sapien eget viverra aliquam. Mauris ac quam quis turpis viverra imperdiet sed nec sapien. Cras viverra sem ut est efficitur, sed congue risus interdum.",
+                "weight": 2.2
+            }
+        ],
+        "selectionThreshold": 11,
+        "allocationPercentage": 100,
+        "status": "archived",
+        "scope": "full",
+        "scopeCode": "f",
+        "defaultReviewType": "Underwriting",
+        "defaultReviewTypeCode": "U"
+    },
+    {
+        "id": "ca31-erty-4t36-w2r4",
+        "selectionModelCategory": "886b0d16-cb45-4a71-8a02-5c8bc0429b76",
+        "version": 4,
+        "name": "",
+        "description": "",
+        "factors": [
+            {
+                "id": "1234-5678-qwer-asdf",
+                "name": "Loan Type Forward Multiplier",
+                "description": "Lorem ipsum dolor sit amet consectitur",
+                "weight": -1000
+            },
+            {
+                "id": "2234-5678-qwer-asdf",
+                "name": "HECM for Purchase Multiplier",
+                "description": "Lorem ipsum",
+                "weight": 1
+            },
+            {
+                "id": "3234-5678-qwer-asdf",
+                "name": "HECM for Purchase Multiplier",
+                "description": "Proin porttitor accumsan est nec lobortis. Donec hendrerit dolor est, quis aliquam augue pellentesque non. Duis maximus ullamcorper massa, quis porta nisi. Praesent at ex pellentesque, malesuada diam non, fringilla arcu. Fusce mollis aliquam massa vel finibus. Vivamus purus velit, congue at tincidunt in, ultricies vitae leo. Cras commodo consectetur blandit.",
+                "weight": 0
+            },
+            {
+                "id": "4234-5678-qwer-asdf",
+                "name": "HECM Condo Multiplier",
+                "description": "Vivamus rhoncus lacus in orci lobortis ornare et sagittis ipsum. Cras tincidunt diam a urna placerat varius.",
+                "weight": 10
+            },
+            {
+                "id": "5234-5678-qwer-asdf",
+                "name": "HECM Refi Claim Amount Multiplier",
+                "description": "Pellentesque rhoncus tincidunt risus, in ultricies mauris vehicula eget. Nulla facilisi. Donec eget leo fermentum leo sagittis faucibus at vitae augue. Phasellus rutrum sapien eget viverra aliquam. Mauris ac quam quis turpis viverra imperdiet sed nec sapien. Cras viverra sem ut est efficitur, sed congue risus interdum.",
+                "weight": 2.2
+            }
+        ],
+        "selectionThreshold": 11,
+        "allocationPercentage": 100,
+        "status": "active",
+        "scope": "limited",
+        "scopeCode": "l",
+        "defaultReviewType": "Underwriting",
+        "defaultReviewTypeCode": "U"
+    },
+    {
+        "id": "da31-erty-4t36-w2r4",
+        "selectionModelCategory": "886b0d16-cb45-4a71-8a02-5c8bc0429b76",
+        "version": 3,
+        "name": "Test Model",
+        "description": "",
+        "factors": [
+            {
+                "id": "1234-5678-qwer-asdf",
+                "name": "Loan Type Forward Multiplier",
+                "description": "Lorem ipsum dolor sit amet consectitur",
+                "weight": -1000
+            },
+            {
+                "id": "2234-5678-qwer-asdf",
+                "name": "HECM for Purchase Multiplier",
+                "description": "Lorem ipsum",
+                "weight": 1
+            },
+            {
+                "id": "3234-5678-qwer-asdf",
+                "name": "HECM for Purchase Multiplier",
+                "description": "Proin porttitor accumsan est nec lobortis. Donec hendrerit dolor est, quis aliquam augue pellentesque non. Duis maximus ullamcorper massa, quis porta nisi. Praesent at ex pellentesque, malesuada diam non, fringilla arcu. Fusce mollis aliquam massa vel finibus. Vivamus purus velit, congue at tincidunt in, ultricies vitae leo. Cras commodo consectetur blandit.",
+                "weight": 0
+            },
+            {
+                "id": "4234-5678-qwer-asdf",
+                "name": "HECM Condo Multiplier",
+                "description": "Vivamus rhoncus lacus in orci lobortis ornare et sagittis ipsum. Cras tincidunt diam a urna placerat varius.",
+                "weight": 10
+            },
+            {
+                "id": "5234-5678-qwer-asdf",
+                "name": "HECM Refi Claim Amount Multiplier",
+                "description": "Pellentesque rhoncus tincidunt risus, in ultricies mauris vehicula eget. Nulla facilisi. Donec eget leo fermentum leo sagittis faucibus at vitae augue. Phasellus rutrum sapien eget viverra aliquam. Mauris ac quam quis turpis viverra imperdiet sed nec sapien. Cras viverra sem ut est efficitur, sed congue risus interdum.",
+                "weight": 2.2
+            }
+        ],
+        "selectionThreshold": 11,
+        "allocationPercentage": 100,
+        "status": "draft",
+        "scope": "limited",
+        "scopeCode": "l",
+        "defaultReviewType": "Underwriting",
+        "defaultReviewTypeCode": "U"
+    },
+    {
+        "id": "ea31-erty-4t36-w2r4",
+        "selectionModelCategory": "886b0d16-cb45-4a71-8a02-5c8bc0429b76",
+        "version": 2,
+        "name": "Defect Probabilty (Fwd) Experiment 1",
+        "description": "",
+        "factors": [
+            {
+                "id": "1234-5678-qwer-asdf",
+                "name": "Loan Type Forward Multiplier",
+                "description": "Lorem ipsum dolor sit amet consectitur",
+                "weight": -1000
+            },
+            {
+                "id": "2234-5678-qwer-asdf",
+                "name": "HECM for Purchase Multiplier",
+                "description": "Lorem ipsum",
+                "weight": 1
+            },
+            {
+                "id": "3234-5678-qwer-asdf",
+                "name": "HECM for Purchase Multiplier",
+                "description": "Proin porttitor accumsan est nec lobortis. Donec hendrerit dolor est, quis aliquam augue pellentesque non. Duis maximus ullamcorper massa, quis porta nisi. Praesent at ex pellentesque, malesuada diam non, fringilla arcu. Fusce mollis aliquam massa vel finibus. Vivamus purus velit, congue at tincidunt in, ultricies vitae leo. Cras commodo consectetur blandit.",
+                "weight": 0
+            },
+            {
+                "id": "4234-5678-qwer-asdf",
+                "name": "HECM Condo Multiplier",
+                "description": "Vivamus rhoncus lacus in orci lobortis ornare et sagittis ipsum. Cras tincidunt diam a urna placerat varius.",
+                "weight": 10
+            },
+            {
+                "id": "5234-5678-qwer-asdf",
+                "name": "HECM Refi Claim Amount Multiplier",
+                "description": "Pellentesque rhoncus tincidunt risus, in ultricies mauris vehicula eget. Nulla facilisi. Donec eget leo fermentum leo sagittis faucibus at vitae augue. Phasellus rutrum sapien eget viverra aliquam. Mauris ac quam quis turpis viverra imperdiet sed nec sapien. Cras viverra sem ut est efficitur, sed congue risus interdum.",
+                "weight": 2.2
+            }
+        ],
+        "selectionThreshold": 11,
+        "allocationPercentage": 100,
+        "status": "draft",
+        "scope": "full",
+        "scopeCode": "f",
+        "defaultReviewType": "Underwriting",
+        "defaultReviewTypeCode": "U"
+    },
+    {
+        "id": "fa31-erty-4t36-w2r4",
+        "selectionModelCategory": "886b0d16-cb45-4a71-8a02-5c8bc0429b76",
+        "version": 1,
+        "name": "",
+        "description": "",
+        "factors": [
+            {
+                "id": "1234-5678-qwer-asdf",
+                "name": "Loan Type Forward Multiplier",
+                "description": "Lorem ipsum dolor sit amet consectitur",
+                "weight": -1000
+            },
+            {
+                "id": "2234-5678-qwer-asdf",
+                "name": "HECM for Purchase Multiplier",
+                "description": "Lorem ipsum",
+                "weight": 1
+            },
+            {
+                "id": "3234-5678-qwer-asdf",
+                "name": "HECM for Purchase Multiplier",
+                "description": "Proin porttitor accumsan est nec lobortis. Donec hendrerit dolor est, quis aliquam augue pellentesque non. Duis maximus ullamcorper massa, quis porta nisi. Praesent at ex pellentesque, malesuada diam non, fringilla arcu. Fusce mollis aliquam massa vel finibus. Vivamus purus velit, congue at tincidunt in, ultricies vitae leo. Cras commodo consectetur blandit.",
+                "weight": 0
+            },
+            {
+                "id": "4234-5678-qwer-asdf",
+                "name": "HECM Condo Multiplier",
+                "description": "Vivamus rhoncus lacus in orci lobortis ornare et sagittis ipsum. Cras tincidunt diam a urna placerat varius.",
+                "weight": 10
+            },
+            {
+                "id": "5234-5678-qwer-asdf",
+                "name": "HECM Refi Claim Amount Multiplier",
+                "description": "Pellentesque rhoncus tincidunt risus, in ultricies mauris vehicula eget. Nulla facilisi. Donec eget leo fermentum leo sagittis faucibus at vitae augue. Phasellus rutrum sapien eget viverra aliquam. Mauris ac quam quis turpis viverra imperdiet sed nec sapien. Cras viverra sem ut est efficitur, sed congue risus interdum.",
+                "weight": 2.2
+            }
+        ],
+        "selectionThreshold": 11,
+        "allocationPercentage": 100,
+        "status": "archived",
+        "scope": "full",
+        "scopeCode": "f",
+        "defaultReviewType": "Underwriting",
+        "defaultReviewTypeCode": "U"
+    },
+    {
+        "id": "cb31-erty-4t36-w2r4",
+        "selectionModelCategory": "f91f4d7f-6b74-4d2d-8e58-44848ba7e4f2",
+        "version": 4,
+        "name": "",
+        "description": "",
+        "factors": [
+            {
+                "id": "1234-5678-qwer-asdf",
+                "name": "Loan Type Forward Multiplier",
+                "description": "Lorem ipsum dolor sit amet consectitur",
+                "weight": -1000
+            },
+            {
+                "id": "2234-5678-qwer-asdf",
+                "name": "HECM for Purchase Multiplier",
+                "description": "Lorem ipsum",
+                "weight": 1
+            },
+            {
+                "id": "3234-5678-qwer-asdf",
+                "name": "HECM for Purchase Multiplier",
+                "description": "Proin porttitor accumsan est nec lobortis. Donec hendrerit dolor est, quis aliquam augue pellentesque non. Duis maximus ullamcorper massa, quis porta nisi. Praesent at ex pellentesque, malesuada diam non, fringilla arcu. Fusce mollis aliquam massa vel finibus. Vivamus purus velit, congue at tincidunt in, ultricies vitae leo. Cras commodo consectetur blandit.",
+                "weight": 0
+            },
+            {
+                "id": "4234-5678-qwer-asdf",
+                "name": "HECM Condo Multiplier",
+                "description": "Vivamus rhoncus lacus in orci lobortis ornare et sagittis ipsum. Cras tincidunt diam a urna placerat varius.",
+                "weight": 10
+            },
+            {
+                "id": "5234-5678-qwer-asdf",
+                "name": "HECM Refi Claim Amount Multiplier",
+                "description": "Pellentesque rhoncus tincidunt risus, in ultricies mauris vehicula eget. Nulla facilisi. Donec eget leo fermentum leo sagittis faucibus at vitae augue. Phasellus rutrum sapien eget viverra aliquam. Mauris ac quam quis turpis viverra imperdiet sed nec sapien. Cras viverra sem ut est efficitur, sed congue risus interdum.",
+                "weight": 2.2
+            }
+        ],
+        "selectionThreshold": 11,
+        "allocationPercentage": 100,
+        "status": "active",
+        "scope": "limited",
+        "scopeCode": "l",
+        "defaultReviewType": "Underwriting",
+        "defaultReviewTypeCode": "U"
+    },
+    {
+        "id": "db31-erty-4t36-w2r4",
+        "selectionModelCategory": "f91f4d7f-6b74-4d2d-8e58-44848ba7e4f2",
+        "version": 3,
+        "name": "Test Model",
+        "description": "",
+        "factors": [
+            {
+                "id": "1234-5678-qwer-asdf",
+                "name": "Loan Type Forward Multiplier",
+                "description": "Lorem ipsum dolor sit amet consectitur",
+                "weight": -1000
+            },
+            {
+                "id": "2234-5678-qwer-asdf",
+                "name": "HECM for Purchase Multiplier",
+                "description": "Lorem ipsum",
+                "weight": 1
+            },
+            {
+                "id": "3234-5678-qwer-asdf",
+                "name": "HECM for Purchase Multiplier",
+                "description": "Proin porttitor accumsan est nec lobortis. Donec hendrerit dolor est, quis aliquam augue pellentesque non. Duis maximus ullamcorper massa, quis porta nisi. Praesent at ex pellentesque, malesuada diam non, fringilla arcu. Fusce mollis aliquam massa vel finibus. Vivamus purus velit, congue at tincidunt in, ultricies vitae leo. Cras commodo consectetur blandit.",
+                "weight": 0
+            },
+            {
+                "id": "4234-5678-qwer-asdf",
+                "name": "HECM Condo Multiplier",
+                "description": "Vivamus rhoncus lacus in orci lobortis ornare et sagittis ipsum. Cras tincidunt diam a urna placerat varius.",
+                "weight": 10
+            },
+            {
+                "id": "5234-5678-qwer-asdf",
+                "name": "HECM Refi Claim Amount Multiplier",
+                "description": "Pellentesque rhoncus tincidunt risus, in ultricies mauris vehicula eget. Nulla facilisi. Donec eget leo fermentum leo sagittis faucibus at vitae augue. Phasellus rutrum sapien eget viverra aliquam. Mauris ac quam quis turpis viverra imperdiet sed nec sapien. Cras viverra sem ut est efficitur, sed congue risus interdum.",
+                "weight": 2.2
+            }
+        ],
+        "selectionThreshold": 11,
+        "allocationPercentage": 100,
+        "status": "draft",
+        "scope": "limited",
+        "scopeCode": "l",
+        "defaultReviewType": "Underwriting",
+        "defaultReviewTypeCode": "U"
+    },
+    {
+        "id": "eb31-erty-4t36-w2r4",
+        "selectionModelCategory": "f91f4d7f-6b74-4d2d-8e58-44848ba7e4f2",
+        "version": 2,
+        "name": "Defect Probabilty (Rev) Experiment 1",
+        "description": "",
+        "factors": [
+            {
+                "id": "1234-5678-qwer-asdf",
+                "name": "Loan Type Forward Multiplier",
+                "description": "Lorem ipsum dolor sit amet consectitur",
+                "weight": -1000
+            },
+            {
+                "id": "2234-5678-qwer-asdf",
+                "name": "HECM for Purchase Multiplier",
+                "description": "Lorem ipsum",
+                "weight": 1
+            },
+            {
+                "id": "3234-5678-qwer-asdf",
+                "name": "HECM for Purchase Multiplier",
+                "description": "Proin porttitor accumsan est nec lobortis. Donec hendrerit dolor est, quis aliquam augue pellentesque non. Duis maximus ullamcorper massa, quis porta nisi. Praesent at ex pellentesque, malesuada diam non, fringilla arcu. Fusce mollis aliquam massa vel finibus. Vivamus purus velit, congue at tincidunt in, ultricies vitae leo. Cras commodo consectetur blandit.",
+                "weight": 0
+            },
+            {
+                "id": "4234-5678-qwer-asdf",
+                "name": "HECM Condo Multiplier",
+                "description": "Vivamus rhoncus lacus in orci lobortis ornare et sagittis ipsum. Cras tincidunt diam a urna placerat varius.",
+                "weight": 10
+            },
+            {
+                "id": "5234-5678-qwer-asdf",
+                "name": "HECM Refi Claim Amount Multiplier",
+                "description": "Pellentesque rhoncus tincidunt risus, in ultricies mauris vehicula eget. Nulla facilisi. Donec eget leo fermentum leo sagittis faucibus at vitae augue. Phasellus rutrum sapien eget viverra aliquam. Mauris ac quam quis turpis viverra imperdiet sed nec sapien. Cras viverra sem ut est efficitur, sed congue risus interdum.",
+                "weight": 2.2
+            }
+        ],
+        "selectionThreshold": 11,
+        "allocationPercentage": 100,
+        "status": "draft",
+        "scope": "full",
+        "scopeCode": "f",
+        "defaultReviewType": "Underwriting",
+        "defaultReviewTypeCode": "U"
+    },
+    {
+        "id": "fb31-erty-4t36-w2r4",
+        "selectionModelCategory": "f91f4d7f-6b74-4d2d-8e58-44848ba7e4f2",
+        "version": 1,
+        "name": "",
+        "description": "",
+        "factors": [
+            {
+                "id": "1234-5678-qwer-asdf",
+                "name": "Loan Type Forward Multiplier",
+                "description": "Lorem ipsum dolor sit amet consectitur",
+                "weight": -1000
+            },
+            {
+                "id": "2234-5678-qwer-asdf",
+                "name": "HECM for Purchase Multiplier",
+                "description": "Lorem ipsum",
+                "weight": 1
+            },
+            {
+                "id": "3234-5678-qwer-asdf",
+                "name": "HECM for Purchase Multiplier",
+                "description": "Proin porttitor accumsan est nec lobortis. Donec hendrerit dolor est, quis aliquam augue pellentesque non. Duis maximus ullamcorper massa, quis porta nisi. Praesent at ex pellentesque, malesuada diam non, fringilla arcu. Fusce mollis aliquam massa vel finibus. Vivamus purus velit, congue at tincidunt in, ultricies vitae leo. Cras commodo consectetur blandit.",
+                "weight": 0
+            },
+            {
+                "id": "4234-5678-qwer-asdf",
+                "name": "HECM Condo Multiplier",
+                "description": "Vivamus rhoncus lacus in orci lobortis ornare et sagittis ipsum. Cras tincidunt diam a urna placerat varius.",
+                "weight": 10
+            },
+            {
+                "id": "5234-5678-qwer-asdf",
+                "name": "HECM Refi Claim Amount Multiplier",
+                "description": "Pellentesque rhoncus tincidunt risus, in ultricies mauris vehicula eget. Nulla facilisi. Donec eget leo fermentum leo sagittis faucibus at vitae augue. Phasellus rutrum sapien eget viverra aliquam. Mauris ac quam quis turpis viverra imperdiet sed nec sapien. Cras viverra sem ut est efficitur, sed congue risus interdum.",
+                "weight": 2.2
+            }
+        ],
+        "selectionThreshold": 11,
+        "allocationPercentage": 100,
+        "status": "archived",
+        "scope": "full",
+        "scopeCode": "f",
+        "defaultReviewType": "Underwriting",
+        "defaultReviewTypeCode": "U"
+    },
+    {
+        "id": "cc31-erty-4t36-w2r4",
+        "selectionModelCategory": "75c1c935-6578-441c-88e8-a7f61b6236ad",
+        "version": 4,
+        "name": "",
+        "description": "",
+        "factors": [
+            {
+                "id": "1234-5678-qwer-asdf",
+                "name": "Loan Type Forward Multiplier",
+                "description": "Lorem ipsum dolor sit amet consectitur",
+                "weight": -1000
+            },
+            {
+                "id": "2234-5678-qwer-asdf",
+                "name": "HECM for Purchase Multiplier",
+                "description": "Lorem ipsum",
+                "weight": 1
+            },
+            {
+                "id": "3234-5678-qwer-asdf",
+                "name": "HECM for Purchase Multiplier",
+                "description": "Proin porttitor accumsan est nec lobortis. Donec hendrerit dolor est, quis aliquam augue pellentesque non. Duis maximus ullamcorper massa, quis porta nisi. Praesent at ex pellentesque, malesuada diam non, fringilla arcu. Fusce mollis aliquam massa vel finibus. Vivamus purus velit, congue at tincidunt in, ultricies vitae leo. Cras commodo consectetur blandit.",
+                "weight": 0
+            },
+            {
+                "id": "4234-5678-qwer-asdf",
+                "name": "HECM Condo Multiplier",
+                "description": "Vivamus rhoncus lacus in orci lobortis ornare et sagittis ipsum. Cras tincidunt diam a urna placerat varius.",
+                "weight": 10
+            },
+            {
+                "id": "5234-5678-qwer-asdf",
+                "name": "HECM Refi Claim Amount Multiplier",
+                "description": "Pellentesque rhoncus tincidunt risus, in ultricies mauris vehicula eget. Nulla facilisi. Donec eget leo fermentum leo sagittis faucibus at vitae augue. Phasellus rutrum sapien eget viverra aliquam. Mauris ac quam quis turpis viverra imperdiet sed nec sapien. Cras viverra sem ut est efficitur, sed congue risus interdum.",
+                "weight": 2.2
+            }
+        ],
+        "selectionThreshold": 11,
+        "allocationPercentage": 100,
+        "status": "active",
+        "scope": "limited",
+        "scopeCode": "l",
+        "defaultReviewType": "Underwriting",
+        "defaultReviewTypeCode": "U"
+    },
+    {
+        "id": "dc31-erty-4t36-w2r4",
+        "selectionModelCategory": "75c1c935-6578-441c-88e8-a7f61b6236ad",
+        "version": 3,
+        "name": "Heavy Non-Performer",
+        "description": "",
+        "factors": [
+            {
+                "id": "1234-5678-qwer-asdf",
+                "name": "Loan Type Forward Multiplier",
+                "description": "Lorem ipsum dolor sit amet consectitur",
+                "weight": -1000
+            },
+            {
+                "id": "2234-5678-qwer-asdf",
+                "name": "HECM for Purchase Multiplier",
+                "description": "Lorem ipsum",
+                "weight": 1
+            },
+            {
+                "id": "3234-5678-qwer-asdf",
+                "name": "HECM for Purchase Multiplier",
+                "description": "Proin porttitor accumsan est nec lobortis. Donec hendrerit dolor est, quis aliquam augue pellentesque non. Duis maximus ullamcorper massa, quis porta nisi. Praesent at ex pellentesque, malesuada diam non, fringilla arcu. Fusce mollis aliquam massa vel finibus. Vivamus purus velit, congue at tincidunt in, ultricies vitae leo. Cras commodo consectetur blandit.",
+                "weight": 0
+            },
+            {
+                "id": "4234-5678-qwer-asdf",
+                "name": "HECM Condo Multiplier",
+                "description": "Vivamus rhoncus lacus in orci lobortis ornare et sagittis ipsum. Cras tincidunt diam a urna placerat varius.",
+                "weight": 10
+            },
+            {
+                "id": "5234-5678-qwer-asdf",
+                "name": "HECM Refi Claim Amount Multiplier",
+                "description": "Pellentesque rhoncus tincidunt risus, in ultricies mauris vehicula eget. Nulla facilisi. Donec eget leo fermentum leo sagittis faucibus at vitae augue. Phasellus rutrum sapien eget viverra aliquam. Mauris ac quam quis turpis viverra imperdiet sed nec sapien. Cras viverra sem ut est efficitur, sed congue risus interdum.",
+                "weight": 2.2
+            }
+        ],
+        "selectionThreshold": 11,
+        "allocationPercentage": 100,
+        "status": "draft",
+        "scope": "limited",
+        "scopeCode": "l",
+        "defaultReviewType": "Underwriting",
+        "defaultReviewTypeCode": "U"
+    },
+    {
+        "id": "ec31-erty-4t36-w2r4",
+        "selectionModelCategory": "75c1c935-6578-441c-88e8-a7f61b6236ad",
+        "version": 2,
+        "name": "Non-Performing Loan Experiment 1",
+        "description": "",
+        "factors": [
+            {
+                "id": "1234-5678-qwer-asdf",
+                "name": "Loan Type Forward Multiplier",
+                "description": "Lorem ipsum dolor sit amet consectitur",
+                "weight": -1000
+            },
+            {
+                "id": "2234-5678-qwer-asdf",
+                "name": "HECM for Purchase Multiplier",
+                "description": "Lorem ipsum",
+                "weight": 1
+            },
+            {
+                "id": "3234-5678-qwer-asdf",
+                "name": "HECM for Purchase Multiplier",
+                "description": "Proin porttitor accumsan est nec lobortis. Donec hendrerit dolor est, quis aliquam augue pellentesque non. Duis maximus ullamcorper massa, quis porta nisi. Praesent at ex pellentesque, malesuada diam non, fringilla arcu. Fusce mollis aliquam massa vel finibus. Vivamus purus velit, congue at tincidunt in, ultricies vitae leo. Cras commodo consectetur blandit.",
+                "weight": 0
+            },
+            {
+                "id": "4234-5678-qwer-asdf",
+                "name": "HECM Condo Multiplier",
+                "description": "Vivamus rhoncus lacus in orci lobortis ornare et sagittis ipsum. Cras tincidunt diam a urna placerat varius.",
+                "weight": 10
+            },
+            {
+                "id": "5234-5678-qwer-asdf",
+                "name": "HECM Refi Claim Amount Multiplier",
+                "description": "Pellentesque rhoncus tincidunt risus, in ultricies mauris vehicula eget. Nulla facilisi. Donec eget leo fermentum leo sagittis faucibus at vitae augue. Phasellus rutrum sapien eget viverra aliquam. Mauris ac quam quis turpis viverra imperdiet sed nec sapien. Cras viverra sem ut est efficitur, sed congue risus interdum.",
+                "weight": 2.2
+            }
+        ],
+        "selectionThreshold": 11,
+        "allocationPercentage": 100,
+        "status": "draft",
+        "scope": "full",
+        "scopeCode": "f",
+        "defaultReviewType": "Underwriting",
+        "defaultReviewTypeCode": "U"
+    },
+    {
+        "id": "fc31-erty-4t36-w2r4",
+        "selectionModelCategory": "75c1c935-6578-441c-88e8-a7f61b6236ad",
+        "version": 1,
+        "name": "",
+        "description": "",
+        "factors": [
+            {
+                "id": "1234-5678-qwer-asdf",
+                "name": "Loan Type Forward Multiplier",
+                "description": "Lorem ipsum dolor sit amet consectitur",
+                "weight": -1000
+            },
+            {
+                "id": "2234-5678-qwer-asdf",
+                "name": "HECM for Purchase Multiplier",
+                "description": "Lorem ipsum",
+                "weight": 1
+            },
+            {
+                "id": "3234-5678-qwer-asdf",
+                "name": "HECM for Purchase Multiplier",
+                "description": "Proin porttitor accumsan est nec lobortis. Donec hendrerit dolor est, quis aliquam augue pellentesque non. Duis maximus ullamcorper massa, quis porta nisi. Praesent at ex pellentesque, malesuada diam non, fringilla arcu. Fusce mollis aliquam massa vel finibus. Vivamus purus velit, congue at tincidunt in, ultricies vitae leo. Cras commodo consectetur blandit.",
+                "weight": 0
+            },
+            {
+                "id": "4234-5678-qwer-asdf",
+                "name": "HECM Condo Multiplier",
+                "description": "Vivamus rhoncus lacus in orci lobortis ornare et sagittis ipsum. Cras tincidunt diam a urna placerat varius.",
+                "weight": 10
+            },
+            {
+                "id": "5234-5678-qwer-asdf",
+                "name": "HECM Refi Claim Amount Multiplier",
+                "description": "Pellentesque rhoncus tincidunt risus, in ultricies mauris vehicula eget. Nulla facilisi. Donec eget leo fermentum leo sagittis faucibus at vitae augue. Phasellus rutrum sapien eget viverra aliquam. Mauris ac quam quis turpis viverra imperdiet sed nec sapien. Cras viverra sem ut est efficitur, sed congue risus interdum.",
+                "weight": 2.2
+            }
+        ],
+        "selectionThreshold": 11,
+        "allocationPercentage": 100,
+        "status": "archived",
+        "scope": "full",
+        "scopeCode": "f",
+        "defaultReviewType": "Underwriting",
+        "defaultReviewTypeCode": "U"
+    }
+]

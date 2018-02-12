@@ -1,0 +1,14 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_917_DATA_DICT_METADATA_ENTITY_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[		
+			INSERT [dbo].[RATING] ([RATING_CD], [DESCRIPTION], [CREATED_BY], [UPDATED_BY], [CREATED_TS], [UPDATED_TS], [RANK_ORDER]) VALUES (N'C', N'Conforming', N'C20225', NULL, CAST(N'2016-08-31T06:54:36.973' AS DateTime), NULL, 5)
+			INSERT [dbo].[RATING] ([RATING_CD], [DESCRIPTION], [CREATED_BY], [UPDATED_BY], [CREATED_TS], [UPDATED_TS], [RANK_ORDER]) VALUES (N'D', N'Deficient', N'C20225', NULL, CAST(N'2016-08-31T06:54:36.973' AS DateTime), NULL, 4)
+			INSERT [dbo].[RATING] ([RATING_CD], [DESCRIPTION], [CREATED_BY], [UPDATED_BY], [CREATED_TS], [UPDATED_TS], [RANK_ORDER]) VALUES (N'M', N'Mitigated', N'C20225', NULL, CAST(N'2016-08-31T06:54:36.977' AS DateTime), NULL, 3)
+			INSERT [dbo].[RATING] ([RATING_CD], [DESCRIPTION], [CREATED_BY], [UPDATED_BY], [CREATED_TS], [UPDATED_TS], [RANK_ORDER]) VALUES (N'R', N'Remediated', N'C20225', NULL, CAST(N'2016-08-31T06:54:36.977' AS DateTime), NULL, 2)
+			INSERT [dbo].[RATING] ([RATING_CD], [DESCRIPTION], [CREATED_BY], [UPDATED_BY], [CREATED_TS], [UPDATED_TS], [RANK_ORDER]) VALUES (N'U', N'Unacceptable', N'C20225', NULL, CAST(N'2016-08-31T06:54:36.977' AS DateTime), NULL, 1)
+		]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>    

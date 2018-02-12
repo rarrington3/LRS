@@ -1,0 +1,24 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3455_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from LRS_GEN_LOOKUP
+			where LOOKUP_FIELD = 'Decision Code at Underwriting'
+			  and LOOKUP_ENTITY = 'Case Summary for Review Level'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3455_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update LRS_GEN_LOOKUP
+			set LOOKUP_FIELD = 'Decision Code'
+			  where LOOKUP_FIELD = 'Decision Code at Endorsement'
+				and LOOKUP_ENTITY = 'Case Summary for Review Level'
+		]]>
+        </sql>
+    </changeSet>		
+</databaseChangeLog>    
+
+

@@ -1,0 +1,87 @@
+@import '../../bootstrap/_variables.less';
+@import '../../shared/icons';
+:host-context {
+
+    /* styles should be scoped under host-context */
+    .workload-container {
+        padding-left: 39px;
+        padding-right: 39px;
+    }
+
+    .batch-title {
+        font-size: 16px;
+        color: @brand-secondary;
+        padding-right: 10px;
+        font-weight: bold;
+        padding-top: 35px;
+    }
+
+	.batch-documents{
+		hr{
+			width: 50%;
+    		float: left;
+			margin-top: 10px;
+			margin-bottom: 5px;
+		}
+		.document-area{
+			width: 50%;
+		}
+		.glyphicon{
+			float: right;
+		}
+	}
+
+	.submit-batch {
+		float: right;
+	}
+
+	.batch-header {
+		padding-top: 10px;
+		ul {
+			margin-bottom: 0;
+			display: table-row;
+		}
+		li:last-child {
+			border-right: none;
+		}
+		.list-inline li{
+			display: table-cell; 
+		}
+		.list-inline-item{
+			border-right: 1px solid black;
+		}
+		.sub-header {
+			font-size: 10px;
+		}
+		 .batch-info {
+			font-weight: bold;
+		}
+	}
+
+	.operational-file-upload-section {
+		position: relative;
+		display: inline-block;
+		margin-top: 20px;
+    	margin-bottom: 15px;
+	}
+
+	.glyphicon {
+		padding-right: 5px;
+		&.success {
+			color: @brand-success;
+		}
+
+		&.activity {
+			color: @gray-dark;
+		}
+		&.done {
+			color: @brand-secondary;
+		}
+	}
+
+	.lrs-file-input-button {
+		overflow: hidden;
+    	position: relative;
+	}
+}	
+

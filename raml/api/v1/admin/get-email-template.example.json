@@ -1,0 +1,31 @@
+{
+    "emailName": "Initial version",
+    "emailCategory": "Mitigation Email",
+    "version": 1,
+    "description": "This is the initial version that can be used for mitigation email. By the way this is a description only to be seen when editing the email template version. Thanks!",
+    "lastModifiedDate": "2016-07-28",
+    "activationDate": "2016-07-28",
+    "lastModifiedBy": "Justin Burch",
+    "id": "a1a48fdd-ee56-4a93-938f-08f17f1ad417",
+    "subject": "Re: Loan Defects for %LoanNumber%",
+    "copy": "asdf \nasdf \n\nasdf\nasdf",
+    "isActive": false,
+    "documentVariables": [
+        {
+            "name": "Recipient",
+            "value": "John Doe"
+        },
+        {
+            "name": "Sender",
+            "value": "Jane Doe"
+        },
+        {
+            "name": "Greeting",
+            "value": "Hello!"
+        },
+        {
+            "name": "Signature",
+            "value": "Thanks so much!"
+        }
+    ]
+}

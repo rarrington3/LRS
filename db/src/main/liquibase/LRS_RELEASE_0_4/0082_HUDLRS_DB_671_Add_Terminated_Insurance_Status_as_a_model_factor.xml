@@ -1,0 +1,131 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+	<changeSet context="All"  author="nnalluri" id="HUDLRS_671_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<sql>
+			<![CDATA[
+				  INSERT INTO SCORING_FACTOR (FACTOR_ATTRIBUTE_NAME, DESCRIPTION) VALUES('Terminated Insurance – Paid in full', 'Terminated Insurance – Paid in full')
+
+				  INSERT INTO SCORING_MODEL_VERSION_FACTOR
+							(SCORING_FACTOR_ID, 
+							 WEIGHT, 
+							 CREATED_BY, 
+							 CREATED_TS, 
+							 SCORING_MODEL_VERSION_ID)
+							VALUES
+							((SELECT SF.SCORING_FACTOR_ID from SCORING_FACTOR SF where SF.FACTOR_ATTRIBUTE_NAME IN ('Terminated Insurance – Paid in full')),
+							 -1000.00,
+							 'C20225',
+							 getdate(),	 
+							 (SELECT SMV.SCORING_MODEL_VERSION_ID FROM SCORING_MODEL_VERSION SMV WHERE 
+									SMV.SCORING_MODEL_VERSION_STATUS_ID IN 
+									(
+										SELECT SMVSRF.SCORING_MODEL_VERSION_STATUS_ID FROM SCORING_MODEL_VERSION_STATUS_REF SMVSRF WHERE SMVSRF.CODE='ACTIVE'
+									) 
+								AND  
+									SCORING_MODEL_ID IN 
+									(
+										SELECT SM.SCORING_MODEL_ID FROM SCORING_MODEL SM WHERE SM.CODE IN (
+											'EARLY_PAYMENT_DEFAULT')
+									)
+						))
+						
+						INSERT INTO SCORING_MODEL_VERSION_FACTOR
+							(SCORING_FACTOR_ID, 
+							 WEIGHT, 
+							 CREATED_BY, 
+							 CREATED_TS, 
+							 SCORING_MODEL_VERSION_ID)
+							VALUES
+							((SELECT SF.SCORING_FACTOR_ID from SCORING_FACTOR SF where SF.FACTOR_ATTRIBUTE_NAME IN ('Terminated Insurance – Paid in full')),
+							 -1000.00,
+							 'C20225',
+							 getdate(),	 
+							 (SELECT SMV.SCORING_MODEL_VERSION_ID FROM SCORING_MODEL_VERSION SMV WHERE 
+									SMV.SCORING_MODEL_VERSION_STATUS_ID IN 
+									(
+										SELECT SMVSRF.SCORING_MODEL_VERSION_STATUS_ID FROM SCORING_MODEL_VERSION_STATUS_REF SMVSRF WHERE SMVSRF.CODE='ACTIVE'
+									) 
+								AND  
+									SCORING_MODEL_ID IN 
+									(
+										SELECT SM.SCORING_MODEL_ID FROM SCORING_MODEL SM WHERE SM.CODE IN (
+											'DEFECT_PROBABILITY_FWD')
+									)
+						))
+						
+						INSERT INTO SCORING_MODEL_VERSION_FACTOR
+							(SCORING_FACTOR_ID, 
+							 WEIGHT, 
+							 CREATED_BY, 
+							 CREATED_TS, 
+							 SCORING_MODEL_VERSION_ID)
+							VALUES
+							((SELECT SF.SCORING_FACTOR_ID from SCORING_FACTOR SF where SF.FACTOR_ATTRIBUTE_NAME IN ('Terminated Insurance – Paid in full')),
+							 -1000.00,
+							 'C20225',
+							 getdate(),	 
+							 (SELECT SMV.SCORING_MODEL_VERSION_ID FROM SCORING_MODEL_VERSION SMV WHERE 
+									SMV.SCORING_MODEL_VERSION_STATUS_ID IN 
+									(
+										SELECT SMVSRF.SCORING_MODEL_VERSION_STATUS_ID FROM SCORING_MODEL_VERSION_STATUS_REF SMVSRF WHERE SMVSRF.CODE='ACTIVE'
+									) 
+								AND  
+									SCORING_MODEL_ID IN 
+									(
+										SELECT SM.SCORING_MODEL_ID FROM SCORING_MODEL SM WHERE SM.CODE IN (
+											'LENDER_INCREASED')
+									)
+						))
+						
+						INSERT INTO SCORING_MODEL_VERSION_FACTOR
+							(SCORING_FACTOR_ID, 
+							 WEIGHT, 
+							 CREATED_BY, 
+							 CREATED_TS, 
+							 SCORING_MODEL_VERSION_ID)
+							VALUES
+							((SELECT SF.SCORING_FACTOR_ID from SCORING_FACTOR SF where SF.FACTOR_ATTRIBUTE_NAME IN ('Terminated Insurance – Paid in full')),
+							 -1000.00,
+							 'C20225',
+							 getdate(),	 
+							 (SELECT SMV.SCORING_MODEL_VERSION_ID FROM SCORING_MODEL_VERSION SMV WHERE 
+									SMV.SCORING_MODEL_VERSION_STATUS_ID IN 
+									(
+										SELECT SMVSRF.SCORING_MODEL_VERSION_STATUS_ID FROM SCORING_MODEL_VERSION_STATUS_REF SMVSRF WHERE SMVSRF.CODE='ACTIVE'
+									) 
+								AND  
+									SCORING_MODEL_ID IN 
+									(
+										SELECT SM.SCORING_MODEL_ID FROM SCORING_MODEL SM WHERE SM.CODE IN (
+											'UNDERWRITER_INCREASED')
+									)
+						))
+						
+						INSERT INTO SCORING_MODEL_VERSION_FACTOR
+							(SCORING_FACTOR_ID, 
+							 WEIGHT, 
+							 CREATED_BY, 
+							 CREATED_TS, 
+							 SCORING_MODEL_VERSION_ID)
+							VALUES
+							((SELECT SF.SCORING_FACTOR_ID from SCORING_FACTOR SF where SF.FACTOR_ATTRIBUTE_NAME IN ('Terminated Insurance – Paid in full')),
+							 -1000.00,
+							 'C20225',
+							 getdate(),	 
+							 (SELECT SMV.SCORING_MODEL_VERSION_ID FROM SCORING_MODEL_VERSION SMV WHERE 
+									SMV.SCORING_MODEL_VERSION_STATUS_ID IN 
+									(
+										SELECT SMVSRF.SCORING_MODEL_VERSION_STATUS_ID FROM SCORING_MODEL_VERSION_STATUS_REF SMVSRF WHERE SMVSRF.CODE='ACTIVE'
+									) 
+								AND  
+									SCORING_MODEL_ID IN 
+									(
+										SELECT SM.SCORING_MODEL_ID FROM SCORING_MODEL SM WHERE SM.CODE IN (
+											'RANDOM')
+									)
+						))
+		
+			]]>
+		</sql>
+	</changeSet>
+</databaseChangeLog>

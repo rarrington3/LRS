@@ -1,0 +1,50 @@
+[
+    {
+        "qaModelId": "QM12",
+        "name": "Upgrade 2017 copy",
+        "description": "This is a change to address the specific issues surrounding the shortcomings found in the previous version of the model.",
+        "version": 12,
+        "activeReviews": 625,
+        "completedReviews": 345,
+        "isActive": true,
+        "isReadonly": true,
+        "createdDate": "2016-10-20",
+        "modifiedDate": "2016-10-21",
+        "activatedDate": "2016-10-21",
+        "modifiedBy": "Justin Burch",
+        "statusCode": "A",
+        "status": "Active"
+    },
+    {
+        "qaModelId": "QM11",
+        "name": "Upgrade 2017",
+        "description": "This is a change to address the specific issues surrounding the shortcomings found in the previous version of the model.",
+        "version": 11,
+        "activeReviews": 0,
+        "completedReviews": 0,
+        "isActive": false,
+        "isReadonly": true,
+        "createdDate": "2016-10-20",
+        "modifiedDate": "2016-10-21",
+        "activatedDate": "2016-10-21",
+        "modifiedBy": "Justin Burch",
+        "statusCode": "R",
+        "status": "Archived"
+    },
+    {
+        "qaModelId": "QM10",
+        "name": "Live LRS Re-Launch",
+        "description": "This is a change to address the specific issues surrounding the shortcomings found in the previous version of the model.",
+        "version": 10,
+        "activeReviews": 625,
+        "completedReviews": 345,
+        "isActive": false,
+        "isReadonly": false,
+        "createdDate": "2016-10-20",
+        "modifiedDate": "2016-10-21",
+        "activatedDate": "2016-10-21",
+        "modifiedBy": "Justin Burch",
+        "statusCode": "D",
+        "status": "Draft"
+    }
+]

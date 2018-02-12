@@ -1,0 +1,23 @@
+{
+    "id": "http://LRS/ReviewLevelTimeLimits",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": ["reviewLevelDescription", "reviewLevelCode", "selectionReasons"],
+    "properties": {
+        "reviewLevelDescription": {
+            "description": "The human readable name of this review level.",
+            "type": "string"
+        },
+        "reviewLevelCode": {
+            "description": "The code of this review level.",
+            "type": "string"
+        },
+        "selectionReasons": {
+            "description": "A collection of time limits per selection reason.",
+            "type": "array",
+            "items": {
+                "$ref": "TimeLimit"
+            }
+        }
+    }
+}

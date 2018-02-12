@@ -1,0 +1,89 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1270_add_review_column_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table review add CANCELLATION_REASON_CD char(2) null
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1270_add_review_column_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table review add QC_OUTCOME_CD char(2) null
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1270_add_metadata_field_data_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into dict_metadata_field (entity_name, field_name, db_column, created_by, created_ts, subject_area, ui_control_type) values('Review', 'Review Cancellation Reason', 'CANCELLATION_REASON_CD','C20225', getdate(),'UNKNOWN','STATIC')
+			insert into dict_metadata_field (entity_name, field_name, db_column, created_by, created_ts, subject_area, ui_control_type) values('Review', 'QC Review Outcome', 'QC_OUTCOME_CD','C20225', getdate(),'UNKNOWN','STATIC')			
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1270_gen_lookup_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update LRS_GEN_LOOKUP
+			set LOOKUP_ENTITY = 'Case Summary for Review Level',
+				LOOKUP_FIELD = 'Applicable Income Sources'
+			where LOOKUP_ENTITY = 'RVW_LVL_CASE_SUMMARY'
+			  and LOOKUP_FIELD = 'APPL_INCOME_SOURCES'
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1270_gen_lookup_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update LRS_GEN_LOOKUP
+			set LOOKUP_ENTITY = 'Case Summary for Selection',
+				LOOKUP_FIELD = 'Default History Status Code'
+			where LOOKUP_ENTITY = 'LOAN_SELECTION_CASE_SUMMARY'
+			  and LOOKUP_FIELD = 'DFLT_STS_CD'
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1270_gen_lookup_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update LRS_GEN_LOOKUP
+			set LOOKUP_ENTITY = 'Case Summary for Selection',
+				LOOKUP_FIELD = 'Default History Status Summary Code'
+			where LOOKUP_ENTITY = 'LOAN_SELECTION_CASE_SUMMARY'
+			  and LOOKUP_FIELD = 'DFLT_STS_SUMMARY_CD'
+		]]>
+        </sql>
+    </changeSet>			
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1270_gen_lookup_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update LRS_GEN_LOOKUP
+			set CREATED_BY = 'C20225',
+				UPDATED_BY = null,
+				UPDATED_TS = null
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1270_gen_lookup_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into lrs_gen_lookup (lookup_entity,lookup_field,lookup_code,lookup_description,created_by, created_ts) values('Manual Loan Selection Request','Selection SubReason','10','Internal – Appraisal'  ,'C20225',getdate())
+			insert into lrs_gen_lookup (lookup_entity,lookup_field,lookup_code,lookup_description,created_by, created_ts) values('Manual Loan Selection Request','Selection SubReason','20','Internal – Endorsement','C20225',getdate())
+			insert into lrs_gen_lookup (lookup_entity,lookup_field,lookup_code,lookup_description,created_by, created_ts) values('Manual Loan Selection Request','Selection SubReason','30','Internal – Other'      ,'C20225',getdate())
+			insert into lrs_gen_lookup (lookup_entity,lookup_field,lookup_code,lookup_description,created_by, created_ts) values('Manual Loan Selection Request','Selection SubReason','40','External – Borrower'   ,'C20225',getdate())
+			insert into lrs_gen_lookup (lookup_entity,lookup_field,lookup_code,lookup_description,created_by, created_ts) values('Manual Loan Selection Request','Selection SubReason','50','External – Industry'   ,'C20225',getdate())
+			insert into lrs_gen_lookup (lookup_entity,lookup_field,lookup_code,lookup_description,created_by, created_ts) values('Manual Loan Selection Request','Selection SubReason','60','External – Other'      ,'C20225',getdate())
+			insert into lrs_gen_lookup (lookup_entity,lookup_field,lookup_code,lookup_description,created_by, created_ts) values('Review','Review Cancellation Reason','10','Lender Out of Business' ,'C20225',getdate())
+			insert into lrs_gen_lookup (lookup_entity,lookup_field,lookup_code,lookup_description,created_by, created_ts) values('Review','Review Cancellation Reason','20','Litigation'             ,'C20225',getdate())
+			insert into lrs_gen_lookup (lookup_entity,lookup_field,lookup_code,lookup_description,created_by, created_ts) values('Review','Review Cancellation Reason','30','Settlement'             ,'C20225',getdate())
+			insert into lrs_gen_lookup (lookup_entity,lookup_field,lookup_code,lookup_description,created_by, created_ts) values('Review','Review Cancellation Reason','40','Selection Error'        ,'C20225',getdate())
+			insert into lrs_gen_lookup (lookup_entity,lookup_field,lookup_code,lookup_description,created_by, created_ts) values('Review','Review Cancellation Reason','50','Other'                  ,'C20225',getdate())
+			insert into lrs_gen_lookup (lookup_entity,lookup_field,lookup_code,lookup_description,created_by, created_ts) values('Review','QC Review Outcome','10','Acceptable' ,'C20225',getdate())
+			insert into lrs_gen_lookup (lookup_entity,lookup_field,lookup_code,lookup_description,created_by, created_ts) values('Review','QC Review Outcome','20','Moderate'   ,'C20225',getdate())
+			insert into lrs_gen_lookup (lookup_entity,lookup_field,lookup_code,lookup_description,created_by, created_ts) values('Review','QC Review Outcome','30','Material'   ,'C20225',getdate())			
+		]]>
+        </sql>
+    </changeSet>		
+</databaseChangeLog>
+

@@ -1,0 +1,75 @@
+@import '../../bootstrap/_variables';
+:host-context {
+    /* styles should be scoped under host-context */
+    .the-sub-header{
+        background-color: @brand-secondary;
+        color: white;
+
+        .sub-title, .loan-overview {
+            float: left;
+            padding: 10px 12px;
+            border-right: 1px solid @brand-blue-border-color;
+        }
+
+        .sub-title {
+			font-size: @font-size-title;
+			font-weight: 400;
+            margin: 0;
+            padding-top: 16px;
+            padding-bottom: 3px;
+            border-left: 1px solid @brand-blue-border-color;
+        }
+
+
+        .loan-overview{
+            p{
+                margin: 0px;
+                overflow: initial;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            .description {
+				font-size: @font-size-small-title;
+                font-weight: 200;
+            }
+
+            .h5{
+				font-size: @font-size-medium-title;
+                font-weight: 400;
+            }
+			.back-to-list{
+				display: inline-block;
+			}
+			.glyphicon-chevron-left{
+				top: -7px
+			}
+        }
+
+		.back{
+			cursor: pointer
+		}
+
+        .back-to-list{
+            p{
+                font-size: @font-size-small-title;
+            }
+        }
+
+
+        .btn-primary{
+            background-color: white;
+            color: @brand-primary;
+			margin-left: 10px;
+            font-size: @font-size-small-title;
+        }
+
+        .btn-secondary{
+            font-size: @font-size-small-title;
+            background-color: darken(@brand-secondary, 5%);
+            opacity: .75;
+            &:hover{
+                color: white;
+            }
+        }
+    }
+}

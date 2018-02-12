@@ -1,0 +1,51 @@
+#%RAML 0.8
+title: HUD-ESB Create Indemnification
+version: v1.0
+##protocols: [ HTTP ]
+###baseUri: https://esb-t-lnx-api.hud.dev/hud-esb/fhac/api/
+baseUri: http://localhost:8100/hud-esb/sfo/api/v1.0
+mediaType: application/json
+documentation:
+    - title: HUD-ESB Create Indemnification
+      content: |
+        HUD ESB Create Indemnification API - This service provides an interface to upload relevant documentation and create an indemnification for an insured FHA case.
+securedBy: [oauth_2_0: { scopes: [ "urn:hud:esb:api:sfunderwriting:create:indemnification" ] } ]
+securitySchemes:
+  - oauth_2_0: !include securitySchemes/oauth_2_0.raml
+
+/indemnification:
+  displayName: Create indemnification and store documents
+  post:
+    headers: 
+    body:
+      application/json:
+        example: !include inputJSON.json
+        schema: !include f17IndemnificationInputMessage.json
+    responses:
+      200:
+        headers: 
+          application/json:
+            type: string
+            example: !include standardHeader.json
+        body:
+          application/json:
+            example: !include output200JSON.json
+            schema: !include f17IndemnificationOutputMessage.json
+      400:
+        headers:
+          application/json: 
+            type: string
+            example: !include standardHeader.json
+        body:
+          application/json:
+            example: !include output400JSON.json
+            schema: !include f17IndemnificationOutputMessage.json
+      500:
+        headers:
+          application/json: 
+            type: string
+            example: !include standardHeader.json
+        body:
+          application/json:
+            example: !include output500JSON.json
+            schema: !include f17IndemnificationOutputMessage.json

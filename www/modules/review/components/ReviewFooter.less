@@ -1,0 +1,88 @@
+@import '../../bootstrap/_variables';
+@import '../../../libs/bootstrap/less/mixins/buttons';
+@import '../../shared/_mixins';
+
+:host-context {
+	/* styles should be scoped under host-context */
+    .lrs-layout-table {
+        padding: 0;
+        margin: 0;
+        background: none;
+        position: relative;
+    }
+
+    .footer-slider.content-area {
+        padding: 0;
+        background: none;
+		pointer-events: auto;
+    }
+
+    .left-side-bar.footer-slider-placeholder {
+        width: 343px;
+    }
+
+	.review-footer-slider {
+		position: fixed;
+		left: 0;
+		right: 0;
+		bottom: -261px;
+		background: none;
+		transition: all 1s ease 0s;
+		pointer-events: none;
+		z-index: 2000;
+
+		&.expanded {
+			bottom: 0;
+		}
+	}
+	.nav.nav-tabs {
+		padding: 5px;
+		border: 1px solid @hr-border;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        background-color: @panel-bg;
+	}
+	.tab-nav-container {
+		position: relative;
+        margin: 0;
+        background: none;
+
+		.tab-btn {
+			border: none;
+			font-weight: @badge-font-weight;
+			font-size: @font-size-small;
+			background-color: inherit;
+			padding-right: 10px;
+		}
+	}
+
+	.tab-content {
+        position: relative;
+        margin: 0;
+		padding: 0 10px 0 10px;
+		height: 260px;
+        border-left: 1px solid @hr-border;
+        border-right: 1px solid @hr-border;
+        background-color: @panel-bg;
+	}
+
+    .tab-pane {
+
+    }
+
+	a.lrs-arrow {
+		position: absolute;
+		bottom: 10px;
+		right: 10px;
+	}
+
+	.nav-tabs {
+		>li.active a, >li.active button {
+			color: @brand-secondary;
+		}
+
+		>li a, >li button {
+			color: @gray-light;
+		}
+	}
+}

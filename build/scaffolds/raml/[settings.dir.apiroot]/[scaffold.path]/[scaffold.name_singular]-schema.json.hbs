@@ -1,0 +1,13 @@
+{
+    "id": "http://LRS/{{camelCase scaffold.name_singular}}",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": ["{{headlessCamelCase scaffold.name_singular}}Id"],
+    "additionalProperties": false,
+    "properties": {
+        "{{headlessCamelCase scaffold.name_singular}}Id": {
+            "description": "The identifier of the object",
+            "type": "string"
+        }
+    }
+}

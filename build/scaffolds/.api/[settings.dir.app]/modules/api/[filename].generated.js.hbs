@@ -1,0 +1,91 @@
+{{> jsFileHeader }}
+
+import {Http, RequestOptions, URLSearchParams, Response, ResponseOptions, BaseResponseOptions} from '@angular/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import ClientBase from '{{filename}}';
+import config from 'config';
+
+@Injectable()
+/**
+ * Wraps the base generated client implementation from RAML for use with
+ * @angular/http services.
+ * @see https://github.com/mulesoft/raml-client-generator/blob/master/IMPLEMENTATION.md
+ * @example
+ * import Client from 'api/{{filename}}.generated';
+ * export class Component {
+ *	constructor(client:{{camelCase filename}}) {
+ *		this.client = client;
+ *		this.getUser(123);
+ *	}
+ *	async getUser(id) {
+ *		//where resource URI is defined as /users/{userId}
+ *		this.user = await this.client.resources.users.userId(id).get();
+ *	}
+ * }
+ */
+export default class {{camelCase filename}} extends ClientBase {
+	/**
+	 * User assignable function to handle deserialization
+	 * of an incoming response object before it makes it
+	 * back to the default responders.
+	 *
+	 * The default is to deserialize the response body from
+	 * JSON.
+	 * @type {function}
+	 */
+    static deserialize = (r:Response) => {
+        if(r.text()) {
+            return r.json();
+        }
+        return '';
+    }
+
+    /**
+	 * User assignable function to handle serialization
+	 * of an outgoing request body before it makes it
+	 * back to the server.
+	 *
+	 * The default is to serialize the request body to
+	 * JSON.
+	 * @type {function}
+	 */
+    static serialize = (r:Request) => r;
+
+    // based on/Users /node_modules/@angular/http/src/enums.d.ts
+    constructor(http:Http) {
+        super();
+        const METHOD_ENUM = ['get', 'post', 'put', 'delete', 'options', 'head', 'patch'];
+        const DEFAULT_RESPONSE_OPTIONS = new BaseResponseOptions();
+
+        this.request = (r) => {
+
+            let options:RequestOptions = new RequestOptions(r);
+            let httpMethodName = METHOD_ENUM[options.method];
+
+            {{#each api.resources as |res|}}
+            {{>jsMockInterceptorForResources res}}
+            {{/each}}         
+
+			options.withCredentials = true;
+			
+            options.url = (config.server || '') + options.url;
+            if (typeof r.query === 'object') {
+                options.search = new URLSearchParams();
+                Object.keys(r.query).forEach(p => {
+                    options.search.set(p, r.query[p]);
+                });
+            }
+            options = {{camelCase filename}}.serialize(options);
+            if (options.body && typeof options.body === 'object') {
+            	options.body = JSON.stringify(options.body);
+                if (!options.headers) {
+                    options.headers = {};
+                }
+                options.headers['Content-Type'] = 'application/json';
+            }
+            return http.request(options.url, options).map({{camelCase filename}}.deserialize);
+        }
+    }
+
+}

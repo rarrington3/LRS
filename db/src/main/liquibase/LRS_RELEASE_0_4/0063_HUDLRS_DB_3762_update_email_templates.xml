@@ -1,0 +1,46 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="mtross" id="HUDLRS_3762_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			UPDATE EMAIL_TEMPLATE_VERSION SET 
+			SUBJECT = 'LRS Response Request Summary – [Lender Name]',
+			BODY = 'FHA has conducted a quality control review of loans underwritten or serviced by [Lender Name], FHA ID [Lender ID].  ' +
+				'FHA has identified material compliance issue(s) which require a response.  ' + 
+				'Please note that all responses must be submitted through the Loan Review System (LRS).' + CHAR(13) + CHAR(10) + CHAR(13) + CHAR(10) +
+				'You must log into LRS for a complete list of outstanding requests and loans under review by FHA:  [Lender Active Reviews Link]' + CHAR(13) + CHAR(10) + CHAR(13) + CHAR(10) +
+				'Please do not reply to this email.  If you have questions or need more information, please contact the FHA Resource Center at 1-800-CALL-FHA.' 
+			WHERE NAME = 'DAILY COMBINED LENDER EMAIL';
+			
+			UPDATE EMAIL_TEMPLATE_VERSION SET 
+			SUBJECT = 'FHA Lender Monitoring Notification – [Lender Name]',
+			BODY = 'This email is a notification of an upcoming FHA lender monitoring review of [Lender Name], FHA ID [Lender ID].  ' + 
+				'The purpose of the review is to evaluate compliance with FHA Single Family program requirements, ' + 
+				'including loan-level compliance, overall quality control program effectiveness, and other operational procedures.' + CHAR(13) + CHAR(10) + CHAR(13) + CHAR(10) +
+				'Summary review data and instructions for submitting required documents are provided below.  ' + 
+				'For more information, please access the Loan Review System (LRS) using the Batch ID link below.  ' + 
+				'A member of the review team will contact you to discuss additional details.' + CHAR(13) + CHAR(10) + CHAR(13) + CHAR(10) +
+				'Please do not reply to this email.  If you have questions or need more information, please contact the review location by calling 1-800-CALL-FHA.' + CHAR(13) + CHAR(10) + CHAR(13) + CHAR(10) +
+				'Review Location: [Review Location]' + CHAR(13) + CHAR(10) + 
+				'Review Type: [Review Type]' + CHAR(13) + CHAR(10) +
+				'Count of Selected Cases: [Case Count]' + CHAR(13) + CHAR(10) +
+				'Date of Site Visit: [Date Of Site Visit]' + CHAR(13) + CHAR(10) +
+				'[Lender Batch Summary Screen Link]' + CHAR(13) + CHAR(10) + CHAR(13) + CHAR(10) +
+				'<u>Submitting Case Binders for Underwriting Reviews</u>' + CHAR(13) + CHAR(10) + CHAR(13) + CHAR(10) +
+				'If your institution has lender insurance (LI) authority, the selected case binders were requested through FHA Connection and have been added to your Binder Selection list.  ' +
+				'Please follow normal procedures for case binder submission.  Requested binders must be submitted within 10 business days of this notice.' + CHAR(13) + CHAR(10) + CHAR(13) + CHAR(10) +
+				'If your institution does not have LI authority, FHA will review the binders already submitted for endorsement.  ' +
+				'No further action regarding case binders is required at this time.' + CHAR(13) + CHAR(10) + CHAR(13) + CHAR(10) +
+				'<u>Submitting Files for Servicing Reviews</u>' + CHAR(13) + CHAR(10) + CHAR(13) + CHAR(10) +
+				'A member of the review team will provide a list of required documentation to be included for each servicing file, as well as details about delivery method and location.' + CHAR(13) + CHAR(10) + CHAR(13) + CHAR(10) +
+				'<u>Submitting Operational Documents</u>' + CHAR(13) + CHAR(10) + CHAR(13) + CHAR(10) +
+				'If operational documents are required, a list is provided below.  These documents must be uploaded on the Batch Summary screen in LRS.  ' +
+				'If you have questions or need more information, please contact the review location by calling 1-800-CALL-FHA.' + CHAR(13) + CHAR(10) + CHAR(13) + CHAR(10) +
+				'[Operational Review Guidance]'
+			WHERE NAME = 'LENDER MONITORING EMAIL';
+		]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>    
+
+

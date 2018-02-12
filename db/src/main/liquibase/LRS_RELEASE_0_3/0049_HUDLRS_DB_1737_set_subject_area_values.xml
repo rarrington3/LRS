@@ -1,0 +1,102 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_1737_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update DICT_METADATA_FIELD
+			set SUBJECT_AREA = 'Basic'
+			where ENTITY_NAME = 'Case Summary For Review Level'
+			  and DB_COLUMN in 
+			  ('REVIEW_LEVEL_ID',
+			   'APPLICATION_DATE',
+			   'REVIEW_TYPE_ID',
+			   'EXPECTED_RATE',
+			   'HECM_COUNSEL_CERT_NO',
+			   'INIT_DISBURSEMENT_LIMIT',
+			   'HECM_PRNCPL_LMT',
+			   'MAX_RATE',
+			   'ORIGINATION_FEE',
+			   'PAYMENT_PLAN',
+			   'TAXES_INSRNC_FRST_YR_AMT',
+			   'REPAIR_COMPLETION_DATE',
+			   'QUALIFIED_MRTG_POINTS_AND_FEES',
+			   'INT_RT',
+			   'SALES_PRICE',
+			   'SPECIAL_PROGRAM',
+			   'TOT_MNTHLY_EFF_INCM',
+			   'DATE_OF_PRIOR_SALE',
+			   'PRICE_OF_PRIOR_SALE',
+			   'FLIPPING_CATEGORY_2_IND',
+			   'MNDTRY_OBLGTNS_AMT',
+			   'SECONDARY_FINANCE_AMT',
+			   'CLAIM_TYPE',
+			   'GIFT_LTR_TIN',
+			   'ORIG_MRTG_AMT',
+			   'PD_STRMLN_FLG',
+			   'PRODUCT_TYPE_ID',
+			   'RATIO_LOAN_TO_VL_NEW',
+			   'UNDERWRITING_METHOD',
+			   'SALE_PRICE_GTR_ACQ_COST_IND',
+			   'COMBINED_LOAN_TO_VALUE_PCT',
+			   'ESCROW_AMOUNT',
+			   'TOTAL_REQUIRED_FUNDS_TO_CLOSE',
+			   'HUD_REO_REPAIR_AMT',
+			   'MORT_EXCLD_FNCD_MIP',
+			   'SELLER_CNTRBTN',
+			   'SELLER_CNTRBTN_PCNT',
+			   'OCPNCY_STS_CD',
+			   'OLDST_UNPD_DT',
+			   'TERM_TYP_CD',
+			   'ENDRSMNT_DT',
+			   'REFINANCE_IND',
+			   'FRCLSR_IND',
+			   'GIFT_LTR_2_TIN',
+			   'MISC_AUS_DCSN_CD',
+			   'FRCLSR_STRT_DT',
+			   'FT_IN_EPS_3MNTH_DELQ_DT',
+			   'GIFT_LTR_2_AMT',
+			   'GIFT_LTR_2_SOURCE',
+			   'GIFT_LTR_AMT',
+			   'GIFT_LTR_SRC',
+			   'TOT_CLSNG_CSTS_UW',
+			   'TOT_FIXED_PYMT_ENDRS',
+			   'LOAN_TYPE',
+			   'MAX_CLAIM_AMT',
+			   'TOT_FIXED_PYMT_UW',
+			   'TOT_MNTHLY_MTG_PYMT_ENDRS',
+			   'TOT_MNTHLY_MTG_PYMT_UW',
+			   'ASSETS_AFTER_CLOSING_UW',
+			   'DCSN_CD_ENDRS',
+			   'DCSN_CD_UW',
+			   'FICO_DECISION_SCORE_ENDRS',
+			   'FICO_DECISION_SCORE_UW',
+			   'RATIO_FIX_TEI_ENDRS',
+			   'RATIO_FIX_TEI_UW',
+			   'RATIO_TOT_PMT_TO_TOT_INC_ENDRS',
+			   'RATIO_TOT_PMT_TO_TOT_INC_UW',
+			   'TOT_ASSETS_ENDRS',
+			   'TOT_ASSETS_UW',
+			   'TOT_CLSNG_CSTS_ENDRS')
+
+			update DICT_METADATA_FIELD
+			set SUBJECT_AREA = 'Borrower'
+			where ENTITY_NAME = 'Case Summary For Review Level'
+			  and DB_COLUMN in 
+			  ('BORR_BRTH_DT',
+			   'BORR_HSNG_EXP_ENDRS',
+			   'BORR_HSNG_EXP_UW',
+			   'BORR_PAID_CLOSING_COSTS',
+			   'BORR_REQD_INVEST_TO_CLOSE',
+			   'MANDATORY_OBLIG_BORR_AMT',   
+			   'MANDATORY_OBLIG_LEND_AMT')
+
+			update DICT_METADATA_FIELD
+			set SUBJECT_AREA = 'Property'
+			where ENTITY_NAME = 'Case Summary For Review Level'
+			  and DB_COLUMN in 
+			  ('FCTRY_FBRCT')
+
+		]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>    

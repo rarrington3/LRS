@@ -1,0 +1,5 @@
+"C:\Program Files (x86)\MicroStrategy\Command Manager\CMDMGR.exe" -connlessMSTR -f "C:\LrsMstrPackagesStaging\Create_Undo_Package.scp" -o "C:\LrsMstrPackagesStaging\Create_Undo_Package.log"
+"C:\Program Files (x86)\MicroStrategy\Command Manager\CMDMGR.exe" -connlessMSTR -f "C:\LrsMstrPackagesStaging\LRS_PROJECT_CREATION.scp" -o "C:\LrsMstrPackagesStaging\LRS_PROJECT_CREATION.log"
+"C:\Program Files (x86)\MicroStrategy\Command Manager\CMDMGR.exe" -connlessMSTR -f "C:\LrsMstrPackagesStaging\LRSUsers.scp" -o "C:\LrsMstrPackagesStaging\LRSUsers.log"
+"C:\Program Files (x86)\MicroStrategy\Command Manager\CMDMGR.exe" -connlessMSTR -f "C:\LrsMstrPackagesStaging\Load_Full_Reports.scp" -o "C:\LrsMstrPackagesStaging\Load_Full_Reports.log"
+"C:\Program Files (x86)\MicroStrategy\Command Manager\CMDMGR.exe" -connlessMSTR -f "C:\LrsMstrPackagesStaging\LRS_ACLs.scp" -o "C:\LrsMstrPackagesStaging\LRS_ACLs.log"

@@ -1,0 +1,32 @@
+[
+    {
+        "reviewerId": "6037FDC9-5910-45F2-8059-8F0759B8DC58",
+        "hudId": "HTH006",
+        "nameFirst": "HDQTR",
+        "nameLast": "LRS TEST 6",
+        "remainingCapacity": 20,
+        "locationId": "C2844126-716F-449A-B152-C891948888FA",
+        "reportsTo": "",
+        "statusCode": "A"
+    },
+    {
+        "reviewerId": "6037FDC9-5910-45F2-8059-8F0759B8DC58",
+        "hudId": "HTH007",
+        "nameFirst": "HDQTR",
+        "nameLast": "LRS TEST 7",
+        "remainingCapacity": 20,
+        "locationId": "C2844126-716F-449A-B152-C891948888FA",
+        "reportsTo": "6037FDC9-5910-45F2-8059-8F0759B8DC58",
+        "statusCode": "A"
+    },
+    {
+        "reviewerId": "6037FDC9-5910-45F2-8059-8F0759B8DC58",
+        "hudId": "HTH008",
+        "nameFirst": "HDQTR",
+        "nameLast": "LRS TEST 8",
+        "remainingCapacity": 20,
+        "locationId": "C2844126-716F-449A-B152-C891948888FA",
+        "reportsTo": "6037FDC9-5910-45F2-8059-8F0759B8DC58",
+        "statusCode": "A"
+    }
+]

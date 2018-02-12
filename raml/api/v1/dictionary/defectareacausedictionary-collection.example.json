@@ -1,0 +1,197 @@
+[
+  {
+    "defectAreaCode": "BI",
+    "defectCauseCode": "A",
+    "description": "A. Amount not supported by documentation"
+  },
+  {
+    "defectAreaCode": "PE",
+    "defectCauseCode": "B",
+    "description": "B. Stability not supported"
+  },
+  {
+    "defectAreaCode": "BI",
+    "defectCauseCode": "C",
+    "description": "C. Source is ineligible"
+  },
+  {
+    "defectAreaCode": "BI",
+    "defectCauseCode": "F",
+    "description": "F. Possible misrepresentation or fraud– lender knew or should have known"
+  },
+  {
+    "defectAreaCode": "BI",
+    "defectCauseCode": "G",
+    "description": "G. Possible misrepresentation or fraud – lender  did not know or could not have known"
+  },
+  {
+    "defectAreaCode": "BC",
+    "defectCauseCode": "A",
+    "description": "A. Insufficient or unverified data or information"
+  },
+  {
+    "defectAreaCode": "BC",
+    "defectCauseCode": "B",
+    "description": "B. Credit documentation sufficient, but incorrect conclusion drawn"
+  },
+  {
+    "defectAreaCode": "BC",
+    "defectCauseCode": "F",
+    "description": "F. Possible misrepresentation /fraud– lender knew or should have known "
+  },
+  {
+    "defectAreaCode": "BC",
+    "defectCauseCode": "G",
+    "description": "G. Possible misrepresentation/fraud – lender did not know or could not have known"
+  },
+  {
+    "defectAreaCode": "LM",
+    "defectCauseCode": "A",
+    "description": "A. Amounts provided cannot be confirmed due to inconsistent or incomplete data"
+  },
+  {
+    "defectAreaCode": "LM",
+    "defectCauseCode": "B",
+    "description": "B. Issues related to identity of interest"
+  },
+  {
+    "defectAreaCode": "LM",
+    "defectCauseCode": "C",
+    "description": "C. Issues related to inducements to purchase"
+  },
+  {
+    "defectAreaCode": "LM",
+    "defectCauseCode": "D",
+    "description": "D. Other incorrect application of policy"
+  },
+  {
+    "defectAreaCode": "LM",
+    "defectCauseCode": "F",
+    "description": "F. Possible misrepresentation /fraud– lender knew or should have known"
+  },
+  {
+    "defectAreaCode": "LM",
+    "defectCauseCode": "G",
+    "description": "G. Possible misrepresentation/fraud – lender did not know or could not have known"
+  },
+  {
+    "defectAreaCode": "BA",
+    "defectCauseCode": "A",
+    "description": "A. Amount not supported by documentation (e.g., amount presented in bank statement doesn’t match amount used)"
+  },
+  {
+    "defectAreaCode": "BA",
+    "defectCauseCode": "B",
+    "description": "B. Gift funds are not documented in accordance with policy"
+  },
+  {
+    "defectAreaCode": "BA",
+    "defectCauseCode": "C",
+    "description": "C. Secondary financing is documented, but not in accordance with policy"
+  },
+  {
+    "defectAreaCode": "BA",
+    "defectCauseCode": "D",
+    "description": "D. Other breach of policy (e.g., includes assets from unacceptable sources)"
+  },
+  {
+    "defectAreaCode": "BA",
+    "defectCauseCode": "F",
+    "description": "F. Possible misrepresentation /fraud– lender knew or should have known "
+  },
+  {
+    "defectAreaCode": "BA",
+    "defectCauseCode": "G",
+    "description": "G. Possible misrepresentation/fraud – lender did not know or could not have known"
+  },
+  {
+    "defectAreaCode": "PE",
+    "defectCauseCode": "A",
+    "description": "A. Determinations are not supported by documents provided"
+  },
+  {
+    "defectAreaCode": "PE",
+    "defectCauseCode": "B",
+    "description": "B. Determinations supported by documentation, but FHA policy is improperly applied"
+  },
+  {
+    "defectAreaCode": "PE",
+    "defectCauseCode": "F",
+    "description": "F. Possible misrepresentation /fraud– lender knew or should have known"
+  },
+  {
+    "defectAreaCode": "PE",
+    "defectCauseCode": "G",
+    "description": "G. Possible misrepresentation/fraud – lender did not know or could not have known"
+  },
+  {
+    "defectAreaCode": "PA",
+    "defectCauseCode": "A",
+    "description": "A. Determinations are not supported by documents provided"
+  },
+  {
+    "defectAreaCode": "PA",
+    "defectCauseCode": "B",
+    "description": "B. Determinations supported by documentation,  but FHA policy is improperly applied"
+  },
+  {
+    "defectAreaCode": "PA",
+    "defectCauseCode": "F",
+    "description": "F. Possible misrepresentation /fraud– lender knew or should have known"
+  },
+  {
+    "defectAreaCode": "PA",
+    "defectCauseCode": "G",
+    "description": "G. Possible misrepresentation/fraud – lender did not know or could not have known"
+  },
+  {
+    "defectAreaCode": "BE",
+    "defectCauseCode": "A",
+    "description": "A. Eligibility/qualification  not supported by documentation"
+  },
+  {
+    "defectAreaCode": "BE",
+    "defectCauseCode": "F",
+    "description": "F. Possible misrepresentation /fraud– lender knew or should have known"
+  },
+  {
+    "defectAreaCode": "BE",
+    "defectCauseCode": "G",
+    "description": "G. Possible misrepresentation/fraud – lender did not know or could not have known"
+  },
+  {
+    "defectAreaCode": "ME",
+    "defectCauseCode": "A",
+    "description": "A. Eligibility/qualification  not supported by documentation"
+  },
+  {
+    "defectAreaCode": "ME",
+    "defectCauseCode": "B",
+    "description": "B. Determinations supported by documentation, but FHA policy is improperly applied"
+  },
+  {
+    "defectAreaCode": "ME",
+    "defectCauseCode": "F",
+    "description": "F. Possible misrepresentation /fraud– lender knew or should have known "
+  },
+  {
+    "defectAreaCode": "ME",
+    "defectCauseCode": "G",
+    "description": "G. Possible misrepresentation/fraud – lender did not know or could not have known"
+  },
+  {
+    "defectAreaCode": "LO",
+    "defectCauseCode": "A",
+    "description": "A. Violation of FHA policy "
+  },
+  {
+    "defectAreaCode": "LO",
+    "defectCauseCode": "F",
+    "description": "F. Possible misrepresentation /fraud– lender knew or should have known"
+  },
+  {
+    "defectAreaCode": "LO",
+    "defectCauseCode": "G",
+    "description": "G. Possible misrepresentation/fraud – lender did not know or could not have known"
+  }
+]

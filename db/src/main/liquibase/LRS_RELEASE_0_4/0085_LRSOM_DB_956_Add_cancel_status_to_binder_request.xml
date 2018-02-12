@@ -1,0 +1,10 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+	<changeSet context="All"  author="pdonnet" id="LRSOM_956_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<sql>
+			<![CDATA[
+                insert into BINDER_REQUEST_STATUS_REF(BINDER_REQUEST_STATUS_ID, CODE, DESCRIPTION) values(newid(), 'CANCELLED', 'Cancelled')
+			]]>
+		</sql>
+	</changeSet>
+</databaseChangeLog>

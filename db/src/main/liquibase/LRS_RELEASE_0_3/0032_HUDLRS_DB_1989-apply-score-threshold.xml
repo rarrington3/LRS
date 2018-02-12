@@ -1,0 +1,13 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="TEST"  author="jordanchavez@kpmg.com" id="HUDLRS_1989_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+ALTER TABLE MODEL_SCORE ADD MODEL_VER_NUM [numeric](3, 0) NOT NULL
+ALTER TABLE MODEL_SCORE DROP CONSTRAINT MODEL_SCORE_PK
+ALTER TABLE MODEL_SCORE ADD CONSTRAINT MODEL_SCORE_PK PRIMARY KEY NONCLUSTERED(SELECTION_ID, MODEL_ID, MODEL_VER_NUM)
+ALTER TABLE MODEL_SCORE ADD CONSTRAINT MODEL_SCORE_FK_MODEL_ID_MODEL_VER_NUM FOREIGN KEY(MODEL_ID, MODEL_VER_NUM) REFERENCES SCORING_MODEL_VERSION(MODEL_ID, MODEL_VER_NUM)
+		]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>

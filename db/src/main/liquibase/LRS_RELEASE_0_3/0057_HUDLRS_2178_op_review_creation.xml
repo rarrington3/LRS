@@ -1,0 +1,17 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="TEST"  author="jordanchavez@kpmg.com" id="HUDLRS_2178_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+			<![CDATA[
+ALTER TABLE REVIEW ADD REVIEW_SCOPE_ID UNIQUEIDENTIFIER NULL
+ALTER TABLE REVIEW ADD CONSTRAINT REVIEW_FK_REVIEW_SCOPE_ID FOREIGN KEY(REVIEW_SCOPE_ID) REFERENCES REVIEW_SCOPE_REF(REVIEW_SCOPE_ID)
+GO
+UPDATE R SET REVIEW_SCOPE_ID = (SELECT RS.REVIEW_SCOPE_ID FROM REVIEW_SCOPE_REF RS WHERE RS.CODE = R.REVIEW_SCOPE) FROM REVIEW R 
+UPDATE R SET REVIEW_SCOPE_ID = (SELECT RS.REVIEW_SCOPE_ID FROM REVIEW_SCOPE_REF RS WHERE RS.CODE = 'F') FROM REVIEW R 
+GO
+ALTER TABLE REVIEW ALTER COLUMN REVIEW_SCOPE_ID UNIQUEIDENTIFIER NOT NULL
+ALTER TABLE REVIEW DROP COLUMN REVIEW_SCOPE
+			]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>

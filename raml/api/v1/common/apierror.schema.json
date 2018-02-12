@@ -1,0 +1,20 @@
+{
+    "id": "http://LRS/ApiError",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": ["errorMessages"],
+    "additionalProperties": false,
+    "properties": {
+        "exception": {
+            "description": "The exception object passed back in a dev or test envinroment only.",
+            "$ref": "ApiErrorException"
+        },
+        "errorMessages": {
+            "description": "A collection of production friendly messages describing what went wrong at a high level.",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    }
+}

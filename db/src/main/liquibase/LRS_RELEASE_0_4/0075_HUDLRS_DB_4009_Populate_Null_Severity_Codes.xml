@@ -1,0 +1,19 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+	<changeSet context="All"  author="Wes McAfee" id="HUDLRS_4009_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<sql>
+			<![CDATA[
+		update F
+			set F.DEFECT_SEVERITY_ID = S.DEFECT_SEVERITY_ID, 
+				F.SEVERITY_TIER_CD = S.SEVERITY_TIER_CD, 
+				UPDATED_TS = CURRENT_TIMESTAMP, 
+				UPDATED_BY = 'PR4009'
+			FROM RVW_LVL_FINDING F, DEFECT D, DEFECT_SEVERITY S 
+			where F.DEFECT_SEVERITY_ID is null
+			and F.DEFECT_ID = D.DEFECT_ID 
+			and D.DEFECT_ID = S.DEFECT_ID 
+			and S.SEVERITY_TIER_CD = 4;
+			]]>
+		</sql>
+	</changeSet>
+</databaseChangeLog>

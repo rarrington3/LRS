@@ -1,0 +1,112 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3118_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QUESTION_REFERENCE
+			(QUESTION_ID, QUESTION_DESCRIPTION, VALUE_TO_TRIGGER_ACTION, RESPONSE_TYPE, ANSWER_VALUES, CREATED_BY, CREATED_TS)
+			values
+			('32C44151-7781-4A12-8F98-1B30DF911598','Are there any concerns related to Borrower Income that require a finding but are not already captured in other questions?','YES','Single','YESNO','C20225',getdate())
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3118_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update QA_MODEL_PREQUAL
+			set PRE_QUAL_POTENTIAL_ANSWER_CD = '9'
+			where QUESTION_ID = '806C7FF0-A609-414D-9019-FE38A7BE2B3E'
+			  and PRE_QUAL_POTENTIAL_ANSWER_CD = '8'
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3118_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QA_MODEL_PREQUAL
+			(QUESTION_ID, PRE_QUAL_POTENTIAL_ANSWER_CD, QUESTION_REF_ID_CSV, DESCRIPTION)
+			values('806C7FF0-A609-414D-9019-FE38A7BE2B3E','8','BI.011','N/A (Non-Credit Qualifying Streamline)')
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3118_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+		insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('101FE9B0-2873-42CD-B694-CC381D826F89','C20225',getdate(),(select defect_id from defect where defect_cd = 'BI'))
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3118_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+		insert into QATREE_QUESTION(QUESTION_ID,QATREE_ID,QUESTION_NUMBER,QATREE_OUTCOME_ID,PARENT_QUESTION_ID,CREATED_BY,CREATED_TS,ORDER_NUMBER,PARENT_QUESTION_CONDITION_ANSWER) values('32C44151-7781-4A12-8F98-1B30DF911598','DC855FB1-2AF0-41A1-B84F-322C48592E44','11', '101FE9B0-2873-42CD-B694-CC381D826F89','806C7FF0-A609-414D-9019-FE38A7BE2B3E','C20225',getdate(),11,'8')			
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3118_0006" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '101FE9B0-2873-42CD-B694-CC381D826F89','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'BI'
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3118_0007" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '101FE9B0-2873-42CD-B694-CC381D826F89','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'BI'
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3118_0008" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '101FE9B0-2873-42CD-B694-CC381D826F89','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'BI'
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3118_0009" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table qatree_question alter column PARENT_QUESTION_CONDITION_ANSWER varchar(30) null
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3118_0010" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = '1,2,3,4,5,6,7,9'
+			where QUESTION_ID in
+			(
+			'DE3DF951-44D7-4915-95B4-3DB549ACC068',
+			'E381BE35-E10E-443C-A17D-24EB210D2DDB',
+			'3618B8E5-0F5F-4016-A5DA-CDD72508569C',
+			'D052239E-7BEB-48A9-AA88-4F35BA79DD08',
+			'3636D84F-463F-40F0-B23E-6C1F963CC583'			
+			)
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3118_0011" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update QUESTION_REFERENCE
+			set QUESTION_DESCRIPTION = 'Are there any concerns related to Property Eligibility that require a finding but are not already captured in other questions?'
+			where QUESTION_ID = '789B4C77-166C-492E-A1D9-1B69A2268D20'			
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3118_0012" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = '9'
+			where QUESTION_ID in
+			(
+			'0F66A98D-0D07-4CBF-A881-06D0C27F6553')
+		]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>    
+
+

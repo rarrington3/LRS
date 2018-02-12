@@ -1,0 +1,17 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+	<changeSet context="All"  author="mtross" id="HUDLRS_4001_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<sql>
+			<![CDATA[
+UPDATE REVIEW_LEVEL_ITERATION_TIMEFRAME SET REVIEW_DAYS_ITERATION_1=5
+WHERE REVIEW_LEVEL_ITERATION_TIMEFRAME_ID IN
+(
+	SELECT RLIT.REVIEW_LEVEL_ITERATION_TIMEFRAME_ID
+	FROM REVIEW_LEVEL_ITERATION_TIMEFRAME RLIT
+	INNER JOIN REVIEW_LEVEL_TYPE_REF RLT ON (RLT.REVIEW_LEVEL_TYPE_ID=RLIT.REVIEW_LEVEL_TYPE_ID)
+	WHERE RLT.REVIEW_LEVEL_CD IN ('INDM','FRCE')
+)
+			]]>
+		</sql>
+	</changeSet>
+</databaseChangeLog>

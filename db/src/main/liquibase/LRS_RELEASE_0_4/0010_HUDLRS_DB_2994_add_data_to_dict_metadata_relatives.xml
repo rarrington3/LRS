@@ -1,0 +1,28 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_2994_001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			  truncate table DICT_METADATA_FIELD_RELATIVES
+
+			  insert into DICT_METADATA_FIELD_RELATIVES
+			  (ENTITY_NAME, 
+			   FIELD_NAME, 
+			   RELATIONSHIP_TYPE, 
+			   CREATED_BY, 
+			   CREATED_TS, 
+			   RELATED_DB_COLUMN)
+			  select
+			   ENTITY_NAME, 
+			   FIELD_NAME,
+			   case when FIELD_NAME like '%Underwriting' then 'At Underwriting'
+					else 'At Endorsement' end as RELATIONSHIP_TYPE,
+			   'C20225',
+			   getdate(),
+			   DB_COLUMN
+			   from DICT_METADATA_FIELD
+			   where ENTITY_NAME = 'Case Summary for Review Level'
+		]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>    

@@ -1,0 +1,26 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1211_create_ti_loan_selection_case_summary_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createProcedure>
+		<![CDATA[
+            CREATE TRIGGER tI_LOAN_SELECTION_CASE_SUMMARY ON loan_selection_case_summary FOR insert AS
+            
+            BEGIN
+              DECLARE @pd_strmln_flg  CHAR(1),
+			          @selection_id uniqueidentifier
+
+            
+            select @pd_strmln_flg = pd_strmln_flg,
+			       @selection_id = selection_id
+            from inserted
+            
+            update loan_selection_case_summary
+            set refinance_ind = case when @pd_strmln_flg in ('R','C','D') then 'Y'
+			                         when @pd_strmln_flg in ('P','N') then 'Y' end 
+            where selection_id = @selection_id
+            
+            end           
+		]]>
+        </createProcedure>
+    </changeSet>
+</databaseChangeLog>    

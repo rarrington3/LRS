@@ -1,0 +1,282 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1969_create_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create table LOCATION_ASSIGNMENT_TYPE
+			(RVW_LOCATION_ID uniqueidentifier not null,
+			 ASSIGNMENT_TYPE_CD varchar(16) not null,
+			 CREATED_BY CHAR(6) NULL,
+			 CREATED_TS DATETIME NULL,
+			 UPDATE_BY CHAR(6) NULL,
+			 UPDATE_TS DATETIME NULL)
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1969_alter_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table location_assignment_type add constraint LOCATION_ASSIGNMENT_TYPE_PK primary key (RVW_LOCATION_ID, ASSIGNMENT_TYPE_CD)
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1969_alter_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table location_assignment_type add constraint LOCASSIGNMENTTYPTORVWLOC foreign key (RVW_LOCATION_ID) references review_location(RVW_LOCATION_ID)
+		]]>
+        </sql>
+    </changeSet>	 
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1969_alter_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table location_assignment_type add constraint LOCASSIGNMENTTYPTOASGNTYPADM foreign key (ASSIGNMENT_TYPE_CD) references assignment_type_admin(ASSIGNMENT_TYPE_CD)
+		]]>
+        </sql>
+    </changeSet>	 
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1969_insert_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into dict_metadata_entity(ENTITY_NAME, DB_VIEW_OR_TABLE,CREATED_BY,CREATED_TS) values('Location Assignment Type','LOCATION_ASSIGNMENT_TYPE','C20225',getdate())			  
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Location Assignment Type','Review Location ID','RVW_LOCATION_ID','C20225', getdate(),'STATIC','Review Location ID')
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Location Assignment Type','Assignment Type Code','ASSIGNMENT_TYPE_CD','C20225', getdate(),'STATIC','Assignment Type Code')			
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1969_insert_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into ASSIGNMENT_TYPE_ADMIN(ASSIGNMENT_TYPE_CD, ASSIGNMENT_TYPE_CATEGORY, CREATED_BY,  CREATED_TS, ASSIGNMENT_TYPE_REF_ID)values('L150','Review Level','C20225',getdate(),'F9059505-7D38-4623-BB0F-3EF5E7BB17C7')			
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('C2844126-716F-449A-B152-C891948888FA','S100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('C2844126-716F-449A-B152-C891948888FA','S110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('C2844126-716F-449A-B152-C891948888FA','S120','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('C2844126-716F-449A-B152-C891948888FA','S130','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('C2844126-716F-449A-B152-C891948888FA','S140','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('C2844126-716F-449A-B152-C891948888FA','S150','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('C2844126-716F-449A-B152-C891948888FA','S160','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('C2844126-716F-449A-B152-C891948888FA','S190','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('C2844126-716F-449A-B152-C891948888FA','S200','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('C2844126-716F-449A-B152-C891948888FA','S210','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('C2844126-716F-449A-B152-C891948888FA','S220','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('C2844126-716F-449A-B152-C891948888FA','S230','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('C2844126-716F-449A-B152-C891948888FA','S240','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('C2844126-716F-449A-B152-C891948888FA','R100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('C2844126-716F-449A-B152-C891948888FA','R110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('C2844126-716F-449A-B152-C891948888FA','R120','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('C2844126-716F-449A-B152-C891948888FA','R130','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('C2844126-716F-449A-B152-C891948888FA','P100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('C2844126-716F-449A-B152-C891948888FA','P110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('C2844126-716F-449A-B152-C891948888FA','P120','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('C2844126-716F-449A-B152-C891948888FA','P130','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('C2844126-716F-449A-B152-C891948888FA','L100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('C2844126-716F-449A-B152-C891948888FA','L110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('C2844126-716F-449A-B152-C891948888FA','L120','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('C2844126-716F-449A-B152-C891948888FA','L130','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('C2844126-716F-449A-B152-C891948888FA','L140','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('C2844126-716F-449A-B152-C891948888FA','L150','C20225',getdate())			
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('56F8FF8E-A7EF-40BE-B893-4D6FB57CE298','L100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('56F8FF8E-A7EF-40BE-B893-4D6FB57CE298','L110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('56F8FF8E-A7EF-40BE-B893-4D6FB57CE298','L150','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('56F8FF8E-A7EF-40BE-B893-4D6FB57CE298','P100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('56F8FF8E-A7EF-40BE-B893-4D6FB57CE298','P110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('56F8FF8E-A7EF-40BE-B893-4D6FB57CE298','P120','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('56F8FF8E-A7EF-40BE-B893-4D6FB57CE298','P130','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('56F8FF8E-A7EF-40BE-B893-4D6FB57CE298','R100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('56F8FF8E-A7EF-40BE-B893-4D6FB57CE298','R110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('56F8FF8E-A7EF-40BE-B893-4D6FB57CE298','R120','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('56F8FF8E-A7EF-40BE-B893-4D6FB57CE298','R130','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('56F8FF8E-A7EF-40BE-B893-4D6FB57CE298','S100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('56F8FF8E-A7EF-40BE-B893-4D6FB57CE298','S110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('56F8FF8E-A7EF-40BE-B893-4D6FB57CE298','S120','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('56F8FF8E-A7EF-40BE-B893-4D6FB57CE298','S130','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('56F8FF8E-A7EF-40BE-B893-4D6FB57CE298','S140','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('56F8FF8E-A7EF-40BE-B893-4D6FB57CE298','S150','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('56F8FF8E-A7EF-40BE-B893-4D6FB57CE298','S160','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('56F8FF8E-A7EF-40BE-B893-4D6FB57CE298','S190','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('56F8FF8E-A7EF-40BE-B893-4D6FB57CE298','S200','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('56F8FF8E-A7EF-40BE-B893-4D6FB57CE298','S210','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('56F8FF8E-A7EF-40BE-B893-4D6FB57CE298','S220','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('56F8FF8E-A7EF-40BE-B893-4D6FB57CE298','S230','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('56F8FF8E-A7EF-40BE-B893-4D6FB57CE298','S240','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('5896D396-8D64-4B45-82BE-677561D7BF07','L100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('5896D396-8D64-4B45-82BE-677561D7BF07','L110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('5896D396-8D64-4B45-82BE-677561D7BF07','L150','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('5896D396-8D64-4B45-82BE-677561D7BF07','P100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('5896D396-8D64-4B45-82BE-677561D7BF07','P110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('5896D396-8D64-4B45-82BE-677561D7BF07','P120','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('5896D396-8D64-4B45-82BE-677561D7BF07','P130','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('5896D396-8D64-4B45-82BE-677561D7BF07','R100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('5896D396-8D64-4B45-82BE-677561D7BF07','R110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('5896D396-8D64-4B45-82BE-677561D7BF07','R120','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('5896D396-8D64-4B45-82BE-677561D7BF07','R130','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('5896D396-8D64-4B45-82BE-677561D7BF07','S100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('5896D396-8D64-4B45-82BE-677561D7BF07','S110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('5896D396-8D64-4B45-82BE-677561D7BF07','S120','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('5896D396-8D64-4B45-82BE-677561D7BF07','S130','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('5896D396-8D64-4B45-82BE-677561D7BF07','S140','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('5896D396-8D64-4B45-82BE-677561D7BF07','S150','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('5896D396-8D64-4B45-82BE-677561D7BF07','S160','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('5896D396-8D64-4B45-82BE-677561D7BF07','S190','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('5896D396-8D64-4B45-82BE-677561D7BF07','S200','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('5896D396-8D64-4B45-82BE-677561D7BF07','S210','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('5896D396-8D64-4B45-82BE-677561D7BF07','S220','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('5896D396-8D64-4B45-82BE-677561D7BF07','S230','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('5896D396-8D64-4B45-82BE-677561D7BF07','S240','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('79745834-F8F3-41E6-8E53-BDE2353DF177','L100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('79745834-F8F3-41E6-8E53-BDE2353DF177','L110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('79745834-F8F3-41E6-8E53-BDE2353DF177','L150','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('79745834-F8F3-41E6-8E53-BDE2353DF177','P100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('79745834-F8F3-41E6-8E53-BDE2353DF177','P110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('79745834-F8F3-41E6-8E53-BDE2353DF177','P120','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('79745834-F8F3-41E6-8E53-BDE2353DF177','P130','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('79745834-F8F3-41E6-8E53-BDE2353DF177','R100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('79745834-F8F3-41E6-8E53-BDE2353DF177','R110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('79745834-F8F3-41E6-8E53-BDE2353DF177','R120','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('79745834-F8F3-41E6-8E53-BDE2353DF177','R130','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('79745834-F8F3-41E6-8E53-BDE2353DF177','S100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('79745834-F8F3-41E6-8E53-BDE2353DF177','S110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('79745834-F8F3-41E6-8E53-BDE2353DF177','S120','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('79745834-F8F3-41E6-8E53-BDE2353DF177','S130','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('79745834-F8F3-41E6-8E53-BDE2353DF177','S140','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('79745834-F8F3-41E6-8E53-BDE2353DF177','S150','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('79745834-F8F3-41E6-8E53-BDE2353DF177','S160','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('79745834-F8F3-41E6-8E53-BDE2353DF177','S190','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('79745834-F8F3-41E6-8E53-BDE2353DF177','S200','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('79745834-F8F3-41E6-8E53-BDE2353DF177','S210','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('79745834-F8F3-41E6-8E53-BDE2353DF177','S220','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('79745834-F8F3-41E6-8E53-BDE2353DF177','S230','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('79745834-F8F3-41E6-8E53-BDE2353DF177','S240','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('BBF1B50E-7908-499E-AF01-C828A1AA41FE','L100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('BBF1B50E-7908-499E-AF01-C828A1AA41FE','L110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('BBF1B50E-7908-499E-AF01-C828A1AA41FE','L150','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('BBF1B50E-7908-499E-AF01-C828A1AA41FE','P100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('BBF1B50E-7908-499E-AF01-C828A1AA41FE','P110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('BBF1B50E-7908-499E-AF01-C828A1AA41FE','P120','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('BBF1B50E-7908-499E-AF01-C828A1AA41FE','P130','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('BBF1B50E-7908-499E-AF01-C828A1AA41FE','R100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('BBF1B50E-7908-499E-AF01-C828A1AA41FE','R110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('BBF1B50E-7908-499E-AF01-C828A1AA41FE','R120','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('BBF1B50E-7908-499E-AF01-C828A1AA41FE','R130','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('BBF1B50E-7908-499E-AF01-C828A1AA41FE','S100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('BBF1B50E-7908-499E-AF01-C828A1AA41FE','S110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('BBF1B50E-7908-499E-AF01-C828A1AA41FE','S120','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('BBF1B50E-7908-499E-AF01-C828A1AA41FE','S130','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('BBF1B50E-7908-499E-AF01-C828A1AA41FE','S140','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('BBF1B50E-7908-499E-AF01-C828A1AA41FE','S150','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('BBF1B50E-7908-499E-AF01-C828A1AA41FE','S160','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('BBF1B50E-7908-499E-AF01-C828A1AA41FE','S190','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('BBF1B50E-7908-499E-AF01-C828A1AA41FE','S200','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('BBF1B50E-7908-499E-AF01-C828A1AA41FE','S210','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('BBF1B50E-7908-499E-AF01-C828A1AA41FE','S220','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('BBF1B50E-7908-499E-AF01-C828A1AA41FE','S230','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('BBF1B50E-7908-499E-AF01-C828A1AA41FE','S240','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('3354605D-7BCC-4DE4-82FA-CF0EE44383DF','L100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('3354605D-7BCC-4DE4-82FA-CF0EE44383DF','L110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('3354605D-7BCC-4DE4-82FA-CF0EE44383DF','L150','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('3354605D-7BCC-4DE4-82FA-CF0EE44383DF','P100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('3354605D-7BCC-4DE4-82FA-CF0EE44383DF','P110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('3354605D-7BCC-4DE4-82FA-CF0EE44383DF','P120','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('3354605D-7BCC-4DE4-82FA-CF0EE44383DF','P130','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('3354605D-7BCC-4DE4-82FA-CF0EE44383DF','R100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('3354605D-7BCC-4DE4-82FA-CF0EE44383DF','R110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('3354605D-7BCC-4DE4-82FA-CF0EE44383DF','R120','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('3354605D-7BCC-4DE4-82FA-CF0EE44383DF','R130','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('3354605D-7BCC-4DE4-82FA-CF0EE44383DF','S100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('3354605D-7BCC-4DE4-82FA-CF0EE44383DF','S110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('3354605D-7BCC-4DE4-82FA-CF0EE44383DF','S120','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('3354605D-7BCC-4DE4-82FA-CF0EE44383DF','S130','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('3354605D-7BCC-4DE4-82FA-CF0EE44383DF','S140','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('3354605D-7BCC-4DE4-82FA-CF0EE44383DF','S150','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('3354605D-7BCC-4DE4-82FA-CF0EE44383DF','S160','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('3354605D-7BCC-4DE4-82FA-CF0EE44383DF','S190','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('3354605D-7BCC-4DE4-82FA-CF0EE44383DF','S200','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('3354605D-7BCC-4DE4-82FA-CF0EE44383DF','S210','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('3354605D-7BCC-4DE4-82FA-CF0EE44383DF','S220','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('3354605D-7BCC-4DE4-82FA-CF0EE44383DF','S230','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('3354605D-7BCC-4DE4-82FA-CF0EE44383DF','S240','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('E94C30F3-9CA6-4309-BE32-D836E641AC35','L100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('E94C30F3-9CA6-4309-BE32-D836E641AC35','L110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('E94C30F3-9CA6-4309-BE32-D836E641AC35','L150','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('E94C30F3-9CA6-4309-BE32-D836E641AC35','P100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('E94C30F3-9CA6-4309-BE32-D836E641AC35','P110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('E94C30F3-9CA6-4309-BE32-D836E641AC35','P120','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('E94C30F3-9CA6-4309-BE32-D836E641AC35','P130','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('E94C30F3-9CA6-4309-BE32-D836E641AC35','R100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('E94C30F3-9CA6-4309-BE32-D836E641AC35','R110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('E94C30F3-9CA6-4309-BE32-D836E641AC35','R120','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('E94C30F3-9CA6-4309-BE32-D836E641AC35','R130','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('E94C30F3-9CA6-4309-BE32-D836E641AC35','S100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('E94C30F3-9CA6-4309-BE32-D836E641AC35','S110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('E94C30F3-9CA6-4309-BE32-D836E641AC35','S120','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('E94C30F3-9CA6-4309-BE32-D836E641AC35','S130','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('E94C30F3-9CA6-4309-BE32-D836E641AC35','S140','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('E94C30F3-9CA6-4309-BE32-D836E641AC35','S150','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('E94C30F3-9CA6-4309-BE32-D836E641AC35','S160','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('E94C30F3-9CA6-4309-BE32-D836E641AC35','S190','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('E94C30F3-9CA6-4309-BE32-D836E641AC35','S200','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('E94C30F3-9CA6-4309-BE32-D836E641AC35','S210','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('E94C30F3-9CA6-4309-BE32-D836E641AC35','S220','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('E94C30F3-9CA6-4309-BE32-D836E641AC35','S230','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('E94C30F3-9CA6-4309-BE32-D836E641AC35','S240','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('90E796C0-2E7B-4FB1-A32D-F03D6B63B22A','L100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('90E796C0-2E7B-4FB1-A32D-F03D6B63B22A','L110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('90E796C0-2E7B-4FB1-A32D-F03D6B63B22A','L150','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('90E796C0-2E7B-4FB1-A32D-F03D6B63B22A','P100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('90E796C0-2E7B-4FB1-A32D-F03D6B63B22A','P110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('90E796C0-2E7B-4FB1-A32D-F03D6B63B22A','P120','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('90E796C0-2E7B-4FB1-A32D-F03D6B63B22A','P130','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('90E796C0-2E7B-4FB1-A32D-F03D6B63B22A','R100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('90E796C0-2E7B-4FB1-A32D-F03D6B63B22A','R110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('90E796C0-2E7B-4FB1-A32D-F03D6B63B22A','R120','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('90E796C0-2E7B-4FB1-A32D-F03D6B63B22A','R130','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('90E796C0-2E7B-4FB1-A32D-F03D6B63B22A','S100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('90E796C0-2E7B-4FB1-A32D-F03D6B63B22A','S110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('90E796C0-2E7B-4FB1-A32D-F03D6B63B22A','S120','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('90E796C0-2E7B-4FB1-A32D-F03D6B63B22A','S130','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('90E796C0-2E7B-4FB1-A32D-F03D6B63B22A','S140','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('90E796C0-2E7B-4FB1-A32D-F03D6B63B22A','S150','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('90E796C0-2E7B-4FB1-A32D-F03D6B63B22A','S160','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('90E796C0-2E7B-4FB1-A32D-F03D6B63B22A','S190','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('90E796C0-2E7B-4FB1-A32D-F03D6B63B22A','S200','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('90E796C0-2E7B-4FB1-A32D-F03D6B63B22A','S210','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('90E796C0-2E7B-4FB1-A32D-F03D6B63B22A','S220','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('90E796C0-2E7B-4FB1-A32D-F03D6B63B22A','S230','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('90E796C0-2E7B-4FB1-A32D-F03D6B63B22A','S240','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('54840449-D7E4-4B1C-8390-F08FFEB6FC69','L100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('54840449-D7E4-4B1C-8390-F08FFEB6FC69','L110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('54840449-D7E4-4B1C-8390-F08FFEB6FC69','L150','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('54840449-D7E4-4B1C-8390-F08FFEB6FC69','P100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('54840449-D7E4-4B1C-8390-F08FFEB6FC69','P110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('54840449-D7E4-4B1C-8390-F08FFEB6FC69','P120','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('54840449-D7E4-4B1C-8390-F08FFEB6FC69','P130','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('54840449-D7E4-4B1C-8390-F08FFEB6FC69','R100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('54840449-D7E4-4B1C-8390-F08FFEB6FC69','R110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('54840449-D7E4-4B1C-8390-F08FFEB6FC69','R120','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('54840449-D7E4-4B1C-8390-F08FFEB6FC69','R130','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('54840449-D7E4-4B1C-8390-F08FFEB6FC69','S100','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('54840449-D7E4-4B1C-8390-F08FFEB6FC69','S110','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('54840449-D7E4-4B1C-8390-F08FFEB6FC69','S120','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('54840449-D7E4-4B1C-8390-F08FFEB6FC69','S130','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('54840449-D7E4-4B1C-8390-F08FFEB6FC69','S140','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('54840449-D7E4-4B1C-8390-F08FFEB6FC69','S150','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('54840449-D7E4-4B1C-8390-F08FFEB6FC69','S160','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('54840449-D7E4-4B1C-8390-F08FFEB6FC69','S190','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('54840449-D7E4-4B1C-8390-F08FFEB6FC69','S200','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('54840449-D7E4-4B1C-8390-F08FFEB6FC69','S210','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('54840449-D7E4-4B1C-8390-F08FFEB6FC69','S220','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('54840449-D7E4-4B1C-8390-F08FFEB6FC69','S230','C20225',getdate())
+			insert into location_assignment_type(rvw_location_id,assignment_type_cd,created_by,created_ts) values('54840449-D7E4-4B1C-8390-F08FFEB6FC69','S240','C20225',getdate())
+		]]>
+        </sql>
+    </changeSet>	 		
+ </databaseChangeLog>
+
+
+
+
+
+
+
+
+
+

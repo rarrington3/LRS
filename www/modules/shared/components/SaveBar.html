@@ -1,0 +1,22 @@
+<div class="save-bar-wrapper alert alert-success" [display]="isOpen">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="pull-right">
+                    <span>Changes have been made to this screen. </span>
+                    <button type="button"
+                            class="btn btn-default"
+                            (click)="cancel()">
+                        Cancel
+                    </button>
+                    <button type="button"
+                            class="btn btn-primary"
+                            [class.disabled]="!canSave"
+                            (click)="save()">
+                        Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

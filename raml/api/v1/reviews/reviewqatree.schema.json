@@ -1,0 +1,17 @@
+{
+    "id": "http://LRS/ReviewQaTree",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": ["qaTreeId", "defectAreaCode"],
+    "additionalProperties": false,
+    "properties": {
+        "qaTreeId": {
+            "description": "The id of this qa tree",
+            "type": "string"
+        },
+        "defectAreaCode": {
+            "description": "The unique 2 char identifier of this defect area. This code is related to a specific qa tree ID which was configured by an Admin and will be used throughout this review.",
+            "type": "string"
+        }
+    }
+}

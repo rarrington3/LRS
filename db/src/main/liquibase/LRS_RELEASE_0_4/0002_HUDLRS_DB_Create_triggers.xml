@@ -1,0 +1,177 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createProcedure>
+		<![CDATA[
+				create TRIGGER tI_REVIEW ON REVIEW FOR insert AS
+						
+						BEGIN
+						  DECLARE @MTGEE5  CHAR(5),
+								  @counter int,
+								  @char_counter char(6),
+								  @review_id uniqueidentifier,
+								  @case_number char(11),
+								  @year    char(4)
+						
+						select @review_id = review_id,
+							   @case_number = case_number
+						from inserted
+						
+						select @year = convert(char(4), year(CURRENT_TIMESTAMP) )
+						
+						select @MTGEE5 = MTGEE5
+						from loan_selection
+						where case_number = @case_number
+						
+						select @counter = 0
+						
+						select @counter = max(substring(review_reference_id, 12, 17))
+						from review
+						where substring(review_reference_id, 1, 10) = @MTGEE5 + '-' + @year
+						
+						
+						if @counter is null
+						begin
+							select @counter = 1
+						end
+						else    
+						begin
+							select @counter = @counter + 1
+						end
+						
+						select @char_counter = REPLICATE('0', 6 - datalength(convert(varchar(6),@counter)) ) + convert(varchar(6),@counter)
+						
+						update review
+						set review_reference_id = @MTGEE5 + '-' + @year + '-' + @char_counter
+						where review_id = @review_id
+						
+						end
+		]]>
+        </createProcedure>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createProcedure>
+		<![CDATA[
+				create TRIGGER tI_LOAN_SELECTION_CASE_SUMMARY ON LOAN_SELECTION_CASE_SUMMARY FOR insert AS
+						
+						BEGIN
+						  DECLARE @pd_strmln_flg  CHAR(1),
+								  @selection_id uniqueidentifier
+
+						
+						select @pd_strmln_flg = pd_strmln_flg,
+							   @selection_id = selection_id
+						from inserted
+						
+						update loan_selection_case_summary
+						set refinance_ind = case when @pd_strmln_flg in ('R','C','D') then 'Y'
+												 when @pd_strmln_flg in ('P','N') then 'Y' end 
+						where selection_id = @selection_id
+						
+						end
+		]]>
+        </createProcedure>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createProcedure>
+		<![CDATA[
+			create TRIGGER ti_BATCH ON BATCH FOR insert AS BEGIN
+				DECLARE 
+					@MTGEE5 CHAR(5),
+					@COUNTER INT,
+					@CHAR_COUNTER CHAR(3),
+					@YEAR CHAR(4),
+					@BATCH_ID UNIQUEIDENTIFIER
+									
+				SELECT @MTGEE5 = MTGEE5, @BATCH_ID = BATCH_ID FROM INSERTED
+									
+				SELECT @YEAR = CONVERT(CHAR(4), YEAR(CURRENT_TIMESTAMP) )
+									
+									
+				SELECT @COUNTER = MAX(SUBSTRING(BATCH_REFERENCE_ID, 12, 14))
+				FROM BATCH
+				WHERE SUBSTRING(BATCH_REFERENCE_ID, 1, 10) = @MTGEE5 + '-' + @YEAR
+									
+				IF @COUNTER IS NULL
+				BEGIN
+					SELECT @COUNTER = 1
+				END
+				ELSE    
+				BEGIN
+					SELECT @COUNTER = @COUNTER + 1
+				END
+
+				SELECT @CHAR_COUNTER = REPLICATE('0', 3 - DATALENGTH(CONVERT(VARCHAR(3),@COUNTER)) ) + CONVERT(VARCHAR(3),@COUNTER)
+
+				UPDATE BATCH
+				SET BATCH_REFERENCE_ID = @MTGEE5 + '-' + @YEAR + '-' + @CHAR_COUNTER
+				WHERE BATCH_ID = @BATCH_ID
+			END
+		]]>
+        </createProcedure>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createProcedure>
+		<![CDATA[
+				create TRIGGER tI_QATREE_QUESTION ON QATREE_QUESTION FOR insert AS
+
+				  DECLARE @defect_cd  varchar(16),
+						  @question_number varchar(10),
+						  @out_question_number varchar(10),
+						  @from int,
+						  @to int,
+						  @length int,
+						  @question_id uniqueidentifier,
+						  @qatree_id uniqueidentifier,
+						  @found int,
+						  @debug varchar(10)
+
+				select @question_number = rtrim(a.QUESTION_NUMBER),
+					   @defect_cd = rtrim(c.DEFECT_CD),
+					   @question_id = a.QUESTION_ID,
+					   @qatree_id = a.QATREE_ID
+				from inserted a,
+					 QATREE b,
+					 DEFECT c
+				where a.QATREE_ID = b.QATREE_ID
+				  and b.DEFECT_ID = c.DEFECT_ID
+
+				select @found = CHARINDEX('.', @question_number)
+
+				if @found != 0 
+				begin
+					if @found = 2
+					   select @length = 1
+					else if @found = 3
+						select @length = 2
+					else 
+						select @length = 3
+				end
+				else
+				begin
+					select @length = LEN(@question_number)
+				end
+
+				if @length = 1
+				begin
+					select @out_question_number = @defect_cd + '.00' + @question_number
+				end
+				else if @length = 2
+				begin
+					select @out_question_number = @defect_cd + '.0' + @question_number
+				end
+				else
+				begin
+
+					select @out_question_number = @defect_cd + '.' + @question_number	  
+				end
+
+
+				update QATREE_QUESTION
+				set QUESTION_REFERENCE = @out_question_number
+				where QUESTION_ID = @question_id
+				  and QATREE_ID = @qatree_id
+		]]>
+        </createProcedure>
+    </changeSet>		
+</databaseChangeLog>    

@@ -1,0 +1,54 @@
+<div>
+    <div class="panel-title active-title">
+        {{title}}
+        <span *ngIf="!isPlaceHolder()">({{reviewCount()}})</span>
+        <span class="filter" *ngIf="dateFilter"> - {{dateFilter}}</span>
+        <span class="filter" *ngIf="activeFilter"> - {{activeFilter}}</span>
+    </div>
+    <hr>
+
+    <pagination-controls [id]="paginatorId" autoHide="true" (pageChange)="pageNumber = $event"></pagination-controls>
+
+    <table class="table workload-table">
+        <thead>
+            <tr>
+                <th (click)="sortActiveByCategory('caseNumber', false)">
+                    <a href="javascript:void(0);" [attr.aria-label]="CaseNumber">Case Number</a>
+                </th>
+                <th *ngIf="!noTeamMember" (click)="sortActiveByCategory('currentReviewLevel.reviewerName')">
+                    <a href="javascript:void(0);" [attr.aria-label]="team-member">Team Member</a>
+                </th>
+                <th *ngFor="let category of categories" (click)="sortActiveByCategory(category.value)">
+                    <a href="javascript:void(0);" [attr.aria-label]="category.name">{{category.name}}</a>
+                </th>
+                <th *ngFor="let finding of findings" class="defect-header">{{finding}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let review of items | paginate: { itemsPerPage: 10, currentPage: pageNumber, id: paginatorId }" class="list-inline">
+                <td class="case-id" *ngIf="!placeHolder">
+                    <span *ngIf="review.rating==='conforming' && icon ==='check'" class="icon glyphicon glyphicon-ok"></span>
+                    <div *ngIf="icon==='harvey'" [ngClass]="addHarvey(review)"></div>
+                    <!--Operational Review with no case number but link-->
+                    <a *ngIf="!review.caseNumber && (!lender || (lender && !isInitialLender(review)))"
+                        class="case-id" [routerLink]="[reviewRoute, review.reviewId]">View/Edit</a>
+                    <!--Non Lender review link -->
+                    <a *ngIf="!lender && review.caseNumber && !outstandingBinder(review)" [routerLink]="[reviewRoute, review.reviewId]">{{review.caseNumber}}</a>
+                    <!--Lender Read only case number -->
+                    <span *ngIf="lender && review.caseNumber && isInitialLender(review) || outstandingBinder(review)">{{review.caseNumber}}</span>
+                    <!--Lender Case Number Link -->
+                    <a *ngIf="lender && !isInitialLender(review) && review.caseNumber" [routerLink]="[reviewRoute, review.reviewId]">{{review.caseNumber}}</a>
+                </td>
+                <td class="case-id" *ngIf="placeHolder">
+                    <div>---</div>
+                </td>
+                <td class="team-member" *ngIf="!noTeamMember" class="edit">
+                    <span *ngIf="!isPlaceHolder() && allowReassignment(review)" class="icon edit glyphicon glyphicon-edit" (click)="onEditClick(review)"></span>{{review.currentReviewLevel.reviewerName}}</td>
+                <td class="review-text" *ngFor="let category of categories" [ngClass]="boldRating(review, category.value)">{{getVal(review, category.value)}}</td>
+                <td *ngFor="let defectArea of review.findingsData" [ngClass]="totalsColor(defectArea, review )">{{getDefectVal(defectArea.count, review)}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <pagination-controls [id]="paginatorId" autoHide="true" (pageChange)="pageNumber = $event"></pagination-controls>
+</div>

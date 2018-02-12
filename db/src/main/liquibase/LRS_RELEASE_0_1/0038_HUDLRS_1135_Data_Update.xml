@@ -1,0 +1,31 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1135_DATA_UPDATE_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[		
+			alter table RVW_LVL_CASE_SUMMARY add PROP_ADDR_1 VARCHAR(100) NULL
+			alter table RVW_LVL_CASE_SUMMARY add PROP_ADDR_2 VARCHAR(100) NULL  
+			alter table RVW_LVL_CASE_SUMMARY add PROP_ADDR_CITY VARCHAR(100) NULL
+			alter table RVW_LVL_CASE_SUMMARY add PROP_ADDR_ZIP CHAR(5) NULL
+			alter table RVW_LVL_CASE_SUMMARY add PROP_ADDR_ST CHAR(2) NULL
+
+			alter table LOAN_SELECTION_CASE_SUMMARY add PROP_ADDR_1 VARCHAR(100) NULL
+			alter table LOAN_SELECTION_CASE_SUMMARY add PROP_ADDR_2 VARCHAR(100) NULL  
+			alter table LOAN_SELECTION_CASE_SUMMARY add PROP_ADDR_CITY VARCHAR(100) NULL
+			alter table LOAN_SELECTION_CASE_SUMMARY add PROP_ADDR_ZIP CHAR(5) NULL
+
+
+			insert into dict_metadata_field (entity_name, field_name, db_column, created_by, created_ts) values('Case Summary for Review Level','Property Address 1'        , 'PROP_ADDR_1',    'C20225', getdate())
+			insert into dict_metadata_field (entity_name, field_name, db_column, created_by, created_ts) values('Case Summary for Review Level','Property Address 2'        , 'PROP_ADDR_2',    'C20225', getdate())
+			insert into dict_metadata_field (entity_name, field_name, db_column, created_by, created_ts) values('Case Summary for Review Level','Property Address City'     , 'PROP_ADDR_CITY', 'C20225', getdate())
+			insert into dict_metadata_field (entity_name, field_name, db_column, created_by, created_ts) values('Case Summary for Review Level','Property Address Zip Code' , 'PROP_ADDR_ZIP' , 'C20225', getdate())
+			insert into dict_metadata_field (entity_name, field_name, db_column, created_by, created_ts) values('Case Summary for Review Level','Property Address State'    , 'PROP_ADDR_ST'  , 'C20225', getdate())
+
+			insert into dict_metadata_field (entity_name, field_name, db_column, created_by, created_ts) values('Case Summary for Selection','Property Address 1'        , 'PROP_ADDR_1',    'C20225', getdate())
+			insert into dict_metadata_field (entity_name, field_name, db_column, created_by, created_ts) values('Case Summary for Selection','Property Address 2'        , 'PROP_ADDR_2',    'C20225', getdate())
+			insert into dict_metadata_field (entity_name, field_name, db_column, created_by, created_ts) values('Case Summary for Selection','Property Address City'     , 'PROP_ADDR_CITY', 'C20225', getdate())
+			insert into dict_metadata_field (entity_name, field_name, db_column, created_by, created_ts) values('Case Summary for Selection','Property Address Zip Code' , 'PROP_ADDR_ZIP' , 'C20225', getdate())
+		]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>

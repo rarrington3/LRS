@@ -1,0 +1,66 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1770_create_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create table INDEMNIFICATION_TYPE_REF 
+			(INDEMNIFICATION_TYPE_ID UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID(),
+			INDEMNIFICATION_TYPE_DESCRIPTION VARCHAR(30) NOT NULL)
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1770_alter_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update review_level
+			set indem_type = null
+			
+			EXEC sp_rename 'review_level.INDEM_TYPE', 'INDEMNIFICATION_TYPE_ID', 'COLUMN'		
+			
+			alter table review_level alter column INDEMNIFICATION_TYPE_ID UNIQUEIDENTIFIER null
+
+            ALTER TABLE INDEMNIFICATION_TYPE_REF ADD CONSTRAINT INDEMNIFICATION_TYPE_REF_PK primary KEY(INDEMNIFICATION_TYPE_ID) 
+			
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1770_alter_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+            ALTER TABLE review_level ADD CONSTRAINT REVIEWLEVELFKINDEMTYPEREF FOREIGN KEY(INDEMNIFICATION_TYPE_ID) REFERENCES INDEMNIFICATION_TYPE_REF(INDEMNIFICATION_TYPE_ID)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1770_update_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update DICT_METADATA_FIELD
+			set DB_COLUMN = 'INDEMNIFICATION_TYPE_ID'
+			where ENTITY_NAME= 'Review Level'
+			  and DB_COLUMN = 'INDEM_TYPE'			
+			  
+			insert into dict_metadata_entity(ENTITY_NAME, DB_VIEW_OR_TABLE,CREATED_BY,CREATED_TS) values('Indemnification Type Reference','INDEMNIFICATION_TYPE_REF','C20225',getdate())			  
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Indemnification Type Reference','Indemnification Type ID','INDEMNIFICATION_TYPE_ID','C20225', getdate(),'STATIC','Indemnification Type ID')
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Indemnification Type Reference','Indemnification Type Description','INDEMNIFICATION_TYPE_DESCRIPTION','C20225', getdate(),'STATIC','Indemnification Type Description')			
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1770_insert_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+            insert into INDEMNIFICATION_TYPE_REF(INDEMNIFICATION_TYPE_ID,INDEMNIFICATION_TYPE_DESCRIPTION)values('4B33BF3F-47BB-4AF6-A3A9-8B6FDAF16C4C','5 Year')
+            insert into INDEMNIFICATION_TYPE_REF(INDEMNIFICATION_TYPE_ID,INDEMNIFICATION_TYPE_DESCRIPTION)values('429A10FD-6D2B-4795-9C4B-F685F1689DC4','Life Of Loan')			
+		]]>
+        </sql>
+    </changeSet>	
+ </databaseChangeLog>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,157 @@
+{
+    "id": "http://LRS/Review",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": [
+        "reviewId",
+        "caseNumber",
+        "reviewType",
+        "scope",
+        "propertyStreetAddress",
+        "borrowerName",
+        "lenderId",
+        "lenderName",
+        "selectionReason",
+        "currentReviewLevel",
+        "status",
+        "defectAreaIds",
+        "qaTrees"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "reviewId": {
+            "description": "The identifier of this review",
+            "type": "string"
+        },
+        "caseNumber": {
+            "description": "The case number for the loan being reviewed",
+            "type": "string"
+        },
+        "batchId": {
+            "description": "The ID of the batch this review is a part of.  Null if it is not part of a batch.",
+            "type": "string"
+        },
+        "batchReferenceId": {
+            "description": "The human readable reference of the batch this review is a part of.  Null if it is not part of a batch.",
+            "type": "string"
+        },
+        "reviewType": {
+            "description": "The type of review being performed.  For example: 'Underwriting', 'Servicing', or 'Operational'",
+            "type": "string"
+        },
+        "selectionReason": {
+            "description": "Short name of the business rule that triggered the need to review this loan.  For example: 'Lender Monitoring', 'Random', 'Lender Self'",
+            "type": "string"
+        },
+        "scope": {
+            "description": "The scope of this review (example: 'Full')",
+            "type": "string"
+        },
+        "propertyStreetAddress": {
+            "description": "The street address for the property associated with this loan",
+            "type": "string"
+        },
+        "borrowerName": {
+            "description": "The Last, First name of the borrower",
+            "type": "string"
+        },
+        "lenderId": {
+            "description": "The ID of the lender associated with this review",
+            "type": "string"
+        },
+        "lenderName": {
+            "description": "The name of the lender associated with this review",
+            "type": "string"
+        },
+        "currentReviewLevel": {
+            "description": "The current review level object for this loan review. Each Review will have multiple review levels (i.e. 'passes') throughout it's life. Once this review level is completed, a new review level will be created and this one will be archived in the completedReviewLevels collectoin.",
+            "$ref": "ReviewLevel"
+        },
+        "reviewReferenceId": {
+            "description": "The Review reference ID",
+            "type": "string"
+        },
+        "completedReviewLevels": {
+            "description": "All completed review level objects for this loan review.",
+            "type": "array",
+            "items": {
+                "$ref": "ReviewLevel"
+            }
+        },
+        "status": {
+            "description": "Short name of current review level status.  For example: 'Assigned', 'In Progress', or 'Awaiting Lender Response'",
+            "type": "string"
+        },
+        "defectAreaIds": {
+            "description": "Defect ids of the defect areas that are involved in this review (based on the review type).  The display text of these codes can be retrieved from the 'defectAreaDictionary' service.",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "qaTrees": {
+            "description": "A collection of qaTree objects that represent the currently configured QA tree for each defect area at the time that the review was created.",
+            "type": "array",
+            "items": {
+                "$ref": "ReviewQaTree"
+            }
+        },
+        "documents": {
+            "description": "All documents associated with this review.",
+            "type": "array",
+            "items": {
+                "$ref": "Document"
+            }
+        },
+        "qaModelId": {
+            "description": "The qa model id this review is using",
+            "type": "string"
+        },
+        "endorsementDate": {
+            "description": "The endorsement date of the loan",
+            "type": "string",
+            "format": "date"
+        },
+        "caseEstablishmentDate": {
+            "description": "The establishment date of the case",
+            "type": "string",
+            "format": "date"
+        },
+        "originalQcReviewId": {
+            "description": "The original reveiw ID of the review being QC'ed",
+            "type": "string"
+        },
+        "originalQcFinalReviewLevelId": {
+            "description": "The final review level ID of the original reveiw of the review being QC'ed",
+            "type": "string"
+        },
+        "selectionRequestId": {
+            "description": "The ID of the selection request that created this review. Used to gather Lender Self Report info when needed",
+            "type": "string"
+        },
+        "lastLenderName": {
+            "description": "The name of the last lender who submitted responses. The first and last names will be retrieved from FHAC. The string will be concatinated as last, first: (e.g. 'Smith, John')",
+            "type": "string"
+        },
+        "rvwCompltdDt": {
+            "description": "The completed Date",
+            "type": "string",
+            "format": "date"
+        },
+        "selectedDate": {
+            "description": "Date the case number was selected for review within LRS",
+            "type": "string",
+            "format": "date"
+        },
+        "binderRequestDate": {
+            "description": "Date the binder request was created in LRS",
+            "type": "string",
+            "format": "date"
+        },
+        "binderReceivedDate": {
+            "description": "Date that the user clicked the 'Recieve' button within LRS for  paper binder request or Date that the eCase binder was received automatically within LRS",
+            "type": "string",
+            "format": "date"
+        }
+    }
+}

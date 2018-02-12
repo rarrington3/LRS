@@ -1,0 +1,21 @@
+{
+    "lenderId": "37483",
+    "locationId": "43e54129-ec1e-4cc6-b423-19f7ad1e70f1",
+    "reviewTypeId": "RT123",
+    "requestFromId": "DCL0",
+    "dateOfSiteVisit": "2017-07-21",
+    "loanTypeId": "LTtyui",
+    "caseCount": 8,
+    "endorsementStartDate": "2007-02-01",
+    "endorsementEndDate": "2009-02-01",
+    "operationalReview": true,
+    "secondaryId": "1234-qwer-asdf",
+    "requestOperationalDocuments": true,
+    "operationalReviewGuidance": "Please contact John Doe when you arrive on site.",
+    "batchOwner": "84807699-C805-4C76-9A89-76A026ADEE93",
+    "batchTeamMembers": [
+        "B84514F2-45EA-423C-BFBE-DFE9ED4F62F6",
+        "EFE7B467-385B-4548-833D-1BBF06FB6B80",
+        "5CC07A7B-D2F8-4C4C-A355-87F1DADA2AFA"
+    ]
+}

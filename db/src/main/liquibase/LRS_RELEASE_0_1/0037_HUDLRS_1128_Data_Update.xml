@@ -1,0 +1,19 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1128_DATA_UPDATE_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table SELECT_REQUEST_MANUAL_FHA add RQST_OPR_DOCS_SOURCE_CD varchar(16) null
+			alter table SELECT_REQUEST_MANUAL_FHA add REQUEST_OPS_DOCS_IND char(1) null
+
+			alter table SELECT_REQUEST_MANUAL_FHA add OPERATIONAL_RVW_GUIDANCE_TXT text null
+			alter table SELECT_REQUEST_LENDER_MON add OPERATIONAL_RVW_GUIDANCE_TXT text null
+
+			insert into dict_metadata_field (entity_name, field_name, db_column, created_by, created_ts) values('Manual Loan Selection Request', 'Request Initial Operational Documents From', 'RQST_OPR_DOCS_SOURCE_CD', 'C20225', getdate())
+			insert into dict_metadata_field (entity_name, field_name, db_column, created_by, created_ts) values('Manual Loan Selection Request', 'Request Operational Documents', 'REQUEST_OPS_DOCS_IND', 'C20225', getdate())
+			insert into dict_metadata_field (entity_name, field_name, db_column, created_by, created_ts) values('Manual Loan Selection Request', 'Operational Review Guidance Text', 'OPERATIONAL_RVW_GUIDANCE_TXT', 'C20225', getdate())
+			insert into dict_metadata_field (entity_name, field_name, db_column, created_by, created_ts) values('Lender Monitoring Selection Request', 'Operational Review Guidance Text', 'OPERATIONAL_RVW_GUIDANCE_TXT', 'C20225', getdate())
+		]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>    

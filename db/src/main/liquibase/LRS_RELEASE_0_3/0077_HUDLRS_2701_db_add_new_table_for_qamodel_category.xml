@@ -1,0 +1,959 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2701_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create table DICT_METADATA_FIELD_SUBJECT_AREA
+			(DICT_METADATA_FIELD_SUBJECT_AREA_ID uniqueidentifier not null default newid(),
+			 QA_MODEL_ID uniqueidentifier not null,
+			 SUBJECT_AREA varchar(16) not null,
+			 DISPLAY_ORDER int not null,
+			 CREATED_BY char(6) null,
+			 UPDATED_BY CHAR(6) NULL,
+			 CREATED_TS DATETIME NULL,
+			 UPDATED_TS DATETIME NULL
+			 )
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2701_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table DICT_METADATA_FIELD_SUBJECT_AREA add constraint DICT_METADATA_FIELD_SUBJECT_AREA_PK primary key (DICT_METADATA_FIELD_SUBJECT_AREA_ID)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2701_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table DICT_METADATA_FIELD_SUBJECT_AREA add constraint DICT_METADATA_FIELD_SUBJECT_AREA_FK_QA_MODEL_ID foreign key (QA_MODEL_ID) references QA_MODEL(QA_MODEL_ID)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2701_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table DICT_METADATA_FIELD_MODEL add DICT_METADATA_FIELD_SUBJECT_AREA_ID uniqueidentifier null
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2701_0006" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table DICT_METADATA_FIELD_MODEL add constraint DICT_METADATA_FIELD_MODEL_FK_DICT_METADATA_FIELD_SUBJECT_AREA_ID foreign key (DICT_METADATA_FIELD_SUBJECT_AREA_ID) references DICT_METADATA_FIELD_SUBJECT_AREA(DICT_METADATA_FIELD_SUBJECT_AREA_ID)			
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2701_0007" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_FIELD_SUBJECT_AREA ( DICT_METADATA_FIELD_SUBJECT_AREA_ID,QA_MODEL_ID,SUBJECT_AREA,DISPLAY_ORDER,CREATED_BY,CREATED_TS)values('4B3D862A-750D-4905-9392-C23D92087107','20477262-40F9-420F-93B7-EC25CF6FBAE4','Basic Loan' ,1,'C20225',getdate())
+			insert into DICT_METADATA_FIELD_SUBJECT_AREA ( DICT_METADATA_FIELD_SUBJECT_AREA_ID,QA_MODEL_ID,SUBJECT_AREA,DISPLAY_ORDER,CREATED_BY,CREATED_TS)values('1201957A-9AD4-409E-919B-7BD821F5E89B','20477262-40F9-420F-93B7-EC25CF6FBAE4','Mortgagee'  ,2,'C20225',getdate())
+			insert into DICT_METADATA_FIELD_SUBJECT_AREA ( DICT_METADATA_FIELD_SUBJECT_AREA_ID,QA_MODEL_ID,SUBJECT_AREA,DISPLAY_ORDER,CREATED_BY,CREATED_TS)values('8AFC6D10-FF66-4462-819B-62EB41ABB836','20477262-40F9-420F-93B7-EC25CF6FBAE4','Appraisal'  ,3,'C20225',getdate())
+			insert into DICT_METADATA_FIELD_SUBJECT_AREA ( DICT_METADATA_FIELD_SUBJECT_AREA_ID,QA_MODEL_ID,SUBJECT_AREA,DISPLAY_ORDER,CREATED_BY,CREATED_TS)values('4A7454F8-3EF2-4202-8EC7-6B57CBC0F91F','20477262-40F9-420F-93B7-EC25CF6FBAE4','Borrower'   ,4,'C20225',getdate())
+			insert into DICT_METADATA_FIELD_SUBJECT_AREA ( DICT_METADATA_FIELD_SUBJECT_AREA_ID,QA_MODEL_ID,SUBJECT_AREA,DISPLAY_ORDER,CREATED_BY,CREATED_TS)values('7B5E7680-0431-4D6E-8E63-4F7657B64503','20477262-40F9-420F-93B7-EC25CF6FBAE4','Servicing'  ,5,'C20225',getdate())
+			insert into DICT_METADATA_FIELD_SUBJECT_AREA ( DICT_METADATA_FIELD_SUBJECT_AREA_ID,QA_MODEL_ID,SUBJECT_AREA,DISPLAY_ORDER,CREATED_BY,CREATED_TS)values('BB8415EB-E34F-4649-AEF9-27833305454C','20477262-40F9-420F-93B7-EC25CF6FBAE4','Basic'	     ,6,'C20225',getdate())
+			insert into DICT_METADATA_FIELD_SUBJECT_AREA ( DICT_METADATA_FIELD_SUBJECT_AREA_ID,QA_MODEL_ID,SUBJECT_AREA,DISPLAY_ORDER,CREATED_BY,CREATED_TS)values('55EFD7CF-2B1C-452A-92D6-B8711D985B5B','20477262-40F9-420F-93B7-EC25CF6FBAE4','Property'   ,7,'C20225',getdate())
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2701_0008" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update DICT_METADATA_FIELD_MODEL
+			set DICT_METADATA_FIELD_SUBJECT_AREA_ID = c.DICT_METADATA_FIELD_SUBJECT_AREA_ID
+			from
+			DICT_METADATA_FIELD_MODEL a,
+			DICT_METADATA_FIELD b,
+			DICT_METADATA_FIELD_SUBJECT_AREA c
+			where a.ENTITY_NAME = b.ENTITY_NAME
+			  and a.FIELD_NAME = b.FIELD_NAME
+			  and b.SUBJECT_AREA = c.SUBJECT_AREA
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2701_0009" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Effective Date of Appraisal'                    ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'8AFC6D10-FF66-4462-819B-62EB41ABB836')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Disaster Indicator'                             ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'8AFC6D10-FF66-4462-819B-62EB41ABB836')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Endorses beyond 60 days from closing'           ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Insurance Application In Time'                  ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Is Investment/Secondary Residence'              ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Loan Type'                                      ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Total Fixed Payment at Underwriting'            ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Total Monthly Mortgage Payment at Endorsement'  ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Total Monthly Mortgage Payment at Underwriting' ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Total Closing Costs at Underwriting'            ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Total Fixed Payment at Endorsement'             ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Product Type Code'                              ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Sales Contract Date'                            ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Assumed Loan Indicator'                         ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Mortgage Current at Endorsement'                ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Sales Prices Greater than Acquisition Cost'     ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Flipping Category 2 Indicator'                  ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Chapter 13 Bankruptcy Exists Indicator'         ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Chapter 7 Bankruptcy Exists Indicator'          ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Gift Letter TIN'                                ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Claim Type'                                     ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Review Type'                                    ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','ARM Indicator'                                  ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Gift Letter 2 TIN'                              ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Miscellaneous AUS Decision Code'                ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','occupancy status'                               ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Refinance Indicator'                            ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Foreclosure Indicator'                          ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Decision Code at Endorsement'                   ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Decision Code at Underwriting'                  ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','FICO Decision Score at Endorsement'             ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','FICO Decision Score at Underwriting'            ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Back End Ratio at Endorsement'                  ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Back End Ratio at Underwriting'                 ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Front End Ratio at Endorsement'                 ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Front End Ratio at Underwriting'                ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Total Assets at Endorsement'                    ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Total Assets at Underwriting'                   ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Total Closing Costs at Endorsement'             ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Review Level ID'                                ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Assets after Closing at Underwriting'           ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'BB8415EB-E34F-4649-AEF9-27833305454C')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Bankruptcy Date'                                ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'4B3D862A-750D-4905-9392-C23D92087107')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Borrower Housing Expenses at Endorsement'       ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'4A7454F8-3EF2-4202-8EC7-6B57CBC0F91F')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Borrower Housing Expenses at Underwriting'      ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'4A7454F8-3EF2-4202-8EC7-6B57CBC0F91F')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Borrower 1 Renting Indicator'                   ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'4A7454F8-3EF2-4202-8EC7-6B57CBC0F91F')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Borrower 1 Birth Date'                          ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'4A7454F8-3EF2-4202-8EC7-6B57CBC0F91F')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Factory Fabricated Indicator'                   ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'55EFD7CF-2B1C-452A-92D6-B8711D985B5B')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','FHA Case Number'                                ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'55EFD7CF-2B1C-452A-92D6-B8711D985B5B')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Property Address 1'                             ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'55EFD7CF-2B1C-452A-92D6-B8711D985B5B')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Property Address 2'                             ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'55EFD7CF-2B1C-452A-92D6-B8711D985B5B')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Property Address City'                          ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'55EFD7CF-2B1C-452A-92D6-B8711D985B5B')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Property Address Zip Code'                      ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'55EFD7CF-2B1C-452A-92D6-B8711D985B5B')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Property Address State'                         ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'55EFD7CF-2B1C-452A-92D6-B8711D985B5B')
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME, QA_MODEL_ID, CREATED_BY, CREATED_TS, DICT_METADATA_FIELD_SUBJECT_AREA_ID) values('Case Summary for Review Level','Default Episode Exists'                         ,'20477262-40F9-420F-93B7-EC25CF6FBAE4','C20225',getdate(),'7B5E7680-0431-4D6E-8E63-4F7657B64503')
+		]]>
+        </sql>		
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2701_0010" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update dict_metadata_field_model set order_number = 1   where field_name ='100 REO Down Payment Program Indicator'
+			update dict_metadata_field_model set order_number = 2   where field_name ='Additional 10 Pct of IPL Usage Indicator'
+			update dict_metadata_field_model set order_number = 3   where field_name ='ADP Code'
+			update dict_metadata_field_model set order_number = 4   where field_name ='Amortization Type Code'
+			update dict_metadata_field_model set order_number = 5   where field_name ='Appraiser Name'
+			update dict_metadata_field_model set order_number = 6   where field_name ='ARM Index Expected Rate'
+			update dict_metadata_field_model set order_number = 7   where field_name ='ARM Indicator'
+			update dict_metadata_field_model set order_number = 8   where field_name ='Assets after Closing at Underwriting'
+			update dict_metadata_field_model set order_number = 9   where field_name ='Assumed Loan Indicator'
+			update dict_metadata_field_model set order_number = 10  where field_name ='Back End Ratio at Endorsement'
+			update dict_metadata_field_model set order_number = 11  where field_name ='Back End Ratio at Underwriting'
+			update dict_metadata_field_model set order_number = 12  where field_name ='Back to Work Indicator'
+			update dict_metadata_field_model set order_number = 13  where field_name ='Bankruptcy Code'
+			update dict_metadata_field_model set order_number = 14  where field_name ='Bankruptcy Date'
+			update dict_metadata_field_model set order_number = 15  where field_name ='Bankruptcy Indicator'
+			update dict_metadata_field_model set order_number = 16  where field_name ='Borrower 1 Birth Date'
+			update dict_metadata_field_model set order_number = 17  where field_name ='Borrower 1 First Time Homebuyer Indicator'
+			update dict_metadata_field_model set order_number = 18  where field_name ='Borrower 1 Name'
+			update dict_metadata_field_model set order_number = 19  where field_name ='Borrower 1 Renting Indicator'
+			update dict_metadata_field_model set order_number = 20  where field_name ='Borrower 1 Self Employed Indicator'
+			update dict_metadata_field_model set order_number = 21  where field_name ='Borrower 1 SSN'
+			update dict_metadata_field_model set order_number = 22  where field_name ='Borrower 2 Name'
+			update dict_metadata_field_model set order_number = 23  where field_name ='Borrower 2 SSN'
+			update dict_metadata_field_model set order_number = 24  where field_name ='Borrower Birth Date'
+			update dict_metadata_field_model set order_number = 25  where field_name ='Borrower Funds To Close Required Investment'
+			update dict_metadata_field_model set order_number = 26  where field_name ='Borrower Housing Expenses at Endorsement'
+			update dict_metadata_field_model set order_number = 27  where field_name ='Borrower Housing Expenses at Underwriting'
+			update dict_metadata_field_model set order_number = 28  where field_name ='Borrower Paid Closing Costs'
+			update dict_metadata_field_model set order_number = 29  where field_name ='Borrower Type (Occupancy)'
+			update dict_metadata_field_model set order_number = 30  where field_name ='Building on Own Land Indicator'
+			update dict_metadata_field_model set order_number = 31  where field_name ='Building Type'
+			update dict_metadata_field_model set order_number = 32  where field_name ='Cash Out Refinance Indicator'
+			update dict_metadata_field_model set order_number = 33  where field_name ='Chapter 13 Bankruptcy Exists Indicator'
+			update dict_metadata_field_model set order_number = 34  where field_name ='Chapter 7 Bankruptcy Exists Indicator'
+			update dict_metadata_field_model set order_number = 35  where field_name ='Claim Type'
+			update dict_metadata_field_model set order_number = 36  where field_name ='Closing Date of the Mortgage'
+			update dict_metadata_field_model set order_number = 37  where field_name ='CLTV'
+			update dict_metadata_field_model set order_number = 38  where field_name ='Construction Code'
+			update dict_metadata_field_model set order_number = 39  where field_name ='Date of Application'
+			update dict_metadata_field_model set order_number = 40  where field_name ='Date of Prior Sale or Transfer'
+			update dict_metadata_field_model set order_number = 41  where field_name ='Decision Code at Endorsement'
+			update dict_metadata_field_model set order_number = 42  where field_name ='Decision Code at Underwriting'
+			update dict_metadata_field_model set order_number = 43  where field_name ='Default Episode Exists'
+			update dict_metadata_field_model set order_number = 44  where field_name ='Disaster Indicator'
+			update dict_metadata_field_model set order_number = 45  where field_name ='Effective Date of Appraisal'
+			update dict_metadata_field_model set order_number = 46  where field_name ='Effective date of Appraisal Update'
+			update dict_metadata_field_model set order_number = 47  where field_name ='Endorsement Date'
+			update dict_metadata_field_model set order_number = 48  where field_name ='Endorses beyond 60 days from closing'
+			update dict_metadata_field_model set order_number = 49  where field_name ='Escrow Amount'
+			update dict_metadata_field_model set order_number = 50  where field_name ='Expected Rate'
+			update dict_metadata_field_model set order_number = 51  where field_name ='Factory Fabricated Indicator'
+			update dict_metadata_field_model set order_number = 52  where field_name ='FHA Case Number'
+			update dict_metadata_field_model set order_number = 53  where field_name ='FICO Decision Score at Endorsement'
+			update dict_metadata_field_model set order_number = 54  where field_name ='FICO Decision Score at Underwriting'
+			update dict_metadata_field_model set order_number = 55  where field_name ='First Time In Episode Three Month Delinquent Date'
+			update dict_metadata_field_model set order_number = 56  where field_name ='Flipping Category 2 Indicator'
+			update dict_metadata_field_model set order_number = 57  where field_name ='Foreclosure Indicator'
+			update dict_metadata_field_model set order_number = 58  where field_name ='Foreclosure Start Date'
+			update dict_metadata_field_model set order_number = 59  where field_name ='Front End Ratio at Endorsement'
+			update dict_metadata_field_model set order_number = 60  where field_name ='Front End Ratio at Underwriting'
+			update dict_metadata_field_model set order_number = 61  where field_name ='Gift Letter 2 TIN'
+			update dict_metadata_field_model set order_number = 62  where field_name ='Gift Letter Amount'
+			update dict_metadata_field_model set order_number = 63  where field_name ='Gift Letter Amount - Second'
+			update dict_metadata_field_model set order_number = 64  where field_name ='Gift Letter Source'
+			update dict_metadata_field_model set order_number = 65  where field_name ='Gift Letter Source - Second'
+			update dict_metadata_field_model set order_number = 66  where field_name ='Gift Letter TIN'
+			update dict_metadata_field_model set order_number = 67  where field_name ='HECM Counseling Certificate Number'
+			update dict_metadata_field_model set order_number = 68  where field_name ='HECM Counseling Date'
+			update dict_metadata_field_model set order_number = 69  where field_name ='HUD REO Repair Amount'
+			update dict_metadata_field_model set order_number = 70  where field_name ='Initial Disbursement Limit'
+			update dict_metadata_field_model set order_number = 71  where field_name ='Initial Principal Limit'
+			update dict_metadata_field_model set order_number = 72  where field_name ='Insurance Application In Time'
+			update dict_metadata_field_model set order_number = 73  where field_name ='Interest Rate'
+			update dict_metadata_field_model set order_number = 74  where field_name ='Is Investment/Secondary Residence'
+			update dict_metadata_field_model set order_number = 75  where field_name ='Last Servicing Mortgagee Transfer Date'
+			update dict_metadata_field_model set order_number = 76  where field_name ='Living Units'
+			update dict_metadata_field_model set order_number = 77  where field_name ='Loan Officer Name'
+			update dict_metadata_field_model set order_number = 78  where field_name ='Loan Officer NMLS ID'
+			update dict_metadata_field_model set order_number = 79  where field_name ='Loan Purpose'
+			update dict_metadata_field_model set order_number = 80  where field_name ='Loan to Value Ratio - New'
+			update dict_metadata_field_model set order_number = 81  where field_name ='Loan Type'
+			update dict_metadata_field_model set order_number = 82  where field_name ='loss mitigation code'
+			update dict_metadata_field_model set order_number = 83  where field_name ='Mandatory Obligations Amt'
+			update dict_metadata_field_model set order_number = 84  where field_name ='Mandatory Obligations Cash from Borrower'
+			update dict_metadata_field_model set order_number = 85  where field_name ='Mandatory Obligations Cash from Lender'
+			update dict_metadata_field_model set order_number = 86  where field_name ='Manual Underwrite Stretch Ratios Indicator'
+			update dict_metadata_field_model set order_number = 87  where field_name ='Manufactured Housing Indicator'
+			update dict_metadata_field_model set order_number = 88  where field_name ='Married to NBS Indicator'
+			update dict_metadata_field_model set order_number = 89  where field_name ='Maximum Claim Amount (MCA)'
+			update dict_metadata_field_model set order_number = 90  where field_name ='Maximum Rate'
+			update dict_metadata_field_model set order_number = 91  where field_name ='Miscellaneous AUS Decision Code'
+			update dict_metadata_field_model set order_number = 92  where field_name ='Mortgage Current at Endorsement'
+			update dict_metadata_field_model set order_number = 93  where field_name ='Mortgage Excluding Financed MIP'
+			update dict_metadata_field_model set order_number = 94  where field_name ='Non-Occupying Borrower on Loan'
+			update dict_metadata_field_model set order_number = 95  where field_name ='occupancy status'
+			update dict_metadata_field_model set order_number = 96  where field_name ='Oldest Unpaid Installment'
+			update dict_metadata_field_model set order_number = 97  where field_name ='Original Mortgage Amount'
+			update dict_metadata_field_model set order_number = 98  where field_name ='Originating Mortgagee NMLS ID'
+			update dict_metadata_field_model set order_number = 99  where field_name ='Origination Fee'
+			update dict_metadata_field_model set order_number = 100 where field_name ='Payment Plan'
+			update dict_metadata_field_model set order_number = 101 where field_name ='Price of Prior Sale'
+			update dict_metadata_field_model set order_number = 102 where field_name ='Prior sale or transfer within last 3 years'
+			update dict_metadata_field_model set order_number = 103 where field_name ='Product Type'
+			update dict_metadata_field_model set order_number = 104 where field_name ='Product Type Code'
+			update dict_metadata_field_model set order_number = 105 where field_name ='Property Address 1'
+			update dict_metadata_field_model set order_number = 106 where field_name ='Property Address 2'
+			update dict_metadata_field_model set order_number = 107 where field_name ='Property Address City'
+			update dict_metadata_field_model set order_number = 108 where field_name ='Property Address State'
+			update dict_metadata_field_model set order_number = 109 where field_name ='Property Address Zip Code'
+			update dict_metadata_field_model set order_number = 110 where field_name ='Property Appraisal Estimate'
+			update dict_metadata_field_model set order_number = 111 where field_name ='Property Disposition Streamline Refinance Flag'
+			update dict_metadata_field_model set order_number = 112 where field_name ='QM Points and Fees'
+			update dict_metadata_field_model set order_number = 113 where field_name ='Refinance Code'
+			update dict_metadata_field_model set order_number = 114 where field_name ='Refinance Indicator'
+			update dict_metadata_field_model set order_number = 115 where field_name ='Repair Complete Date'
+			update dict_metadata_field_model set order_number = 116 where field_name ='Review Level ID'
+			update dict_metadata_field_model set order_number = 117 where field_name ='Review Type'
+			update dict_metadata_field_model set order_number = 118 where field_name ='Sales Contract Date'
+			update dict_metadata_field_model set order_number = 119 where field_name ='Sales Price'
+			update dict_metadata_field_model set order_number = 120 where field_name ='Sales Prices Greater than Acquisition Cost'
+			update dict_metadata_field_model set order_number = 121 where field_name ='Secondary Financing Amount'
+			update dict_metadata_field_model set order_number = 122 where field_name ='Secondary Financing Exists Indicator'
+			update dict_metadata_field_model set order_number = 123 where field_name ='Seller Contribution Amount'
+			update dict_metadata_field_model set order_number = 124 where field_name ='Seller Contribution Percent'
+			update dict_metadata_field_model set order_number = 125 where field_name ='Site Type'
+			update dict_metadata_field_model set order_number = 126 where field_name ='SOA Code'
+			update dict_metadata_field_model set order_number = 127 where field_name ='Special Program'
+			update dict_metadata_field_model set order_number = 128 where field_name ='Taxes Insurance First Year Amount HECM'
+			update dict_metadata_field_model set order_number = 129 where field_name ='Ten Year Rate Lock Indicator'
+			update dict_metadata_field_model set order_number = 130 where field_name ='Termination type code'
+			update dict_metadata_field_model set order_number = 131 where field_name ='Total Assets at Endorsement'
+			update dict_metadata_field_model set order_number = 132 where field_name ='Total Assets at Underwriting'
+			update dict_metadata_field_model set order_number = 133 where field_name ='Total Closing Costs at Endorsement'
+			update dict_metadata_field_model set order_number = 134 where field_name ='Total Closing Costs at Underwriting'
+			update dict_metadata_field_model set order_number = 135 where field_name ='Total Fixed Payment at Endorsement'
+			update dict_metadata_field_model set order_number = 136 where field_name ='Total Fixed Payment at Underwriting'
+			update dict_metadata_field_model set order_number = 137 where field_name ='Total Monthly Effective Income'
+			update dict_metadata_field_model set order_number = 138 where field_name ='Total Monthly Mortgage Payment at Endorsement'
+			update dict_metadata_field_model set order_number = 139 where field_name ='Total Monthly Mortgage Payment at Underwriting'
+			update dict_metadata_field_model set order_number = 140 where field_name ='Total Requirements To Close'
+			update dict_metadata_field_model set order_number = 141 where field_name ='Underwriting Method'
+			update dict_metadata_field_model set order_number = 142 where field_name ='Year Built'
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2701_0011" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table dict_metadata_field drop column subject_area
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2701_0012" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table DICT_METADATA_FIELD_MODEL alter column DICT_METADATA_FIELD_SUBJECT_AREA_ID uniqueidentifier not null
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2701_0013" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER procedure sp_create_qa_model(
+				@from_qa_model_id uniqueidentifier,
+				@new_model_name varchar(30),
+				@description varchar(255),
+				@login_credential char(6)
+			) as
+				declare @to_qa_model_id uniqueidentifier
+
+				insert into qa_model(
+					model_name,
+					version_num,
+					description,
+					created_by,
+					created_ts,
+					updated_by,
+					updated_ts,				
+					qa_model_status_id
+				)
+				values (
+					@new_model_name,
+					(select max(version_num) + 1 from qa_model),
+					@description,
+					@login_credential,
+					getdate(),
+					@login_credential,
+					getdate(),				
+					(select qa_model_status_id from qa_model_status_ref where code = 'D')
+				)
+
+				select @to_qa_model_id = qa_model_id
+				from qa_model
+				where version_num = (select max(version_num) from qa_model)
+
+				create table #subject_area
+				(OLD_DICT_METADATA_FIELD_SUBJECT_AREA_ID uniqueidentifier null, 
+				 NEW_DICT_METADATA_FIELD_SUBJECT_AREA_ID uniqueidentifier null default newid(), 
+				 QA_MODEL_ID  uniqueidentifier null, 
+				 SUBJECT_AREA varchar(16) null, 
+				 DISPLAY_ORDER int null, 
+				 CREATED_BY char(6) null, 
+				 CREATED_TS datetime null)
+
+				insert into #subject_area
+				 (OLD_DICT_METADATA_FIELD_SUBJECT_AREA_ID, 
+				  QA_MODEL_ID, 
+				  SUBJECT_AREA, 
+				  DISPLAY_ORDER, 
+				  CREATED_BY, 
+				  CREATED_TS)
+				select DICT_METADATA_FIELD_SUBJECT_AREA_ID, 
+					   @to_qa_model_id, 
+					   SUBJECT_AREA, 
+					   DISPLAY_ORDER, 
+					   @login_credential, 
+					   getdate()
+				 from DICT_METADATA_FIELD_SUBJECT_AREA
+				 where QA_MODEL_ID = @from_qa_model_id
+
+				 insert into DICT_METADATA_FIELD_SUBJECT_AREA
+				 (DICT_METADATA_FIELD_SUBJECT_AREA_ID, 
+				  QA_MODEL_ID, 
+				  SUBJECT_AREA, 
+				  DISPLAY_ORDER, 
+				  CREATED_BY,
+				  CREATED_TS
+				 )
+				 select 
+				  NEW_DICT_METADATA_FIELD_SUBJECT_AREA_ID, 
+				  QA_MODEL_ID, 
+				  SUBJECT_AREA, 
+				  DISPLAY_ORDER, 
+				  CREATED_BY,
+				  CREATED_TS
+				 from #subject_area
+
+				insert into DICT_METADATA_FIELD_MODEL(
+					ENTITY_NAME,
+					FIELD_NAME,
+					QA_MODEL_ID,
+					CREATED_BY,
+					CREATED_TS,
+					ORDER_NUMBER,
+					DICT_METADATA_FIELD_SUBJECT_AREA_ID
+				)
+				select 
+					ENTITY_NAME,
+					FIELD_NAME,
+					@to_qa_model_id,
+					@login_credential,
+					getdate(),
+					ORDER_NUMBER,
+					(select NEW_DICT_METADATA_FIELD_SUBJECT_AREA_ID 
+					 from #subject_area b where a.DICT_METADATA_FIELD_SUBJECT_AREA_ID = b.OLD_DICT_METADATA_FIELD_SUBJECT_AREA_ID)
+				from DICT_METADATA_FIELD_MODEL a 
+				where QA_MODEL_ID = @from_qa_model_id
+
+				create table #t_defect(
+					new_defect_id uniqueidentifier null default newid(),
+					old_defect_id uniqueidentifier null,
+					defect_cd varchar(16) null,
+					description varchar(150) null,
+					relative_order int null
+				)
+
+				insert into #t_defect(
+					old_defect_id,
+					defect_cd,
+					description,
+					relative_order
+				)
+				select
+					defect_id,
+					defect_cd,
+					description,
+					relative_order
+				from defect
+				where qa_model_id = @from_qa_model_id
+
+				insert into defect(
+					defect_id,
+					defect_cd,
+					description,
+					relative_order,
+					qa_model_id,
+					created_by,
+					created_ts
+				)
+				select 
+					new_defect_id,
+					defect_cd,
+					description,
+					relative_order,
+					@to_qa_model_id,
+					@login_credential,
+					getdate()
+				from #t_defect
+
+				insert into DICT_METADATA_FIELD_DEFECT(
+					ENTITY_NAME,
+					FIELD_NAME,
+					DEFECT_ID,
+					DEFECT_CD,
+					ORDER_NUMBER,
+					CREATED_BY,
+					CREATED_TS
+				)
+				select 
+					m.ENTITY_NAME,
+					m.FIELD_NAME,
+					d.new_DEFECT_ID,
+					m.DEFECT_CD,
+					m.ORDER_NUMBER,
+					@login_credential,
+					getdate()
+				from DICT_METADATA_FIELD_DEFECT m, #t_defect d
+				where m.DEFECT_ID = d.old_defect_id
+
+				insert into REVIEW_TYPE_DEFECT(
+					REVIEW_TYPE_ID,
+					DEFECT_ID,
+					ORDER_NUMBER,
+					CREATED_BY,
+					CREATED_TS
+				)
+				select 
+					r.REVIEW_TYPE_ID,
+					d.new_DEFECT_ID,
+					ORDER_NUMBER,
+					@login_credential,
+					getdate()
+				from REVIEW_TYPE_DEFECT r, #t_defect d
+				where r.DEFECT_ID = d.old_defect_id	
+
+				insert into defect_remedy_type(
+					defect_id,
+					remedy_type_id,
+					created_by,
+					created_ts
+				)
+				select
+					d.new_defect_id,
+					dr.remedy_type_id,
+					@login_credential,
+					getdate()
+				from defect_remedy_type dr, #t_defect d
+				where dr.DEFECT_ID = d.old_defect_id							
+
+				create table #t_defect_cause(
+					new_defect_cause_id uniqueidentifier null default newid(),
+					old_defect_cause_id uniqueidentifier null,
+					defect_cause_cd varchar(16) null,
+					new_defect_id uniqueidentifier null,
+					defect_cd varchar(16) null,
+					description varchar(150) null,
+					relative_order int
+				)
+													   
+				insert into #t_defect_cause(
+					old_defect_cause_id,
+					defect_cause_cd,
+					new_defect_id,
+					defect_cd,
+					description,
+					relative_order
+				)
+				select 
+					dc.defect_cause_id,
+					dc.defect_cause_cd,
+					d.new_defect_id,
+					d.defect_cd,
+					dc.description, 
+					dc.relative_order
+				from defect_cause dc, #t_defect d
+				where dc.defect_id = d.old_defect_id
+
+				insert into defect_cause(
+					defect_cause_id,
+					defect_cause_cd,
+					description,
+					defect_id,
+					defect_cd,
+					relative_order,
+					created_by,
+					created_ts
+				)
+				select  
+					new_defect_cause_id,
+					defect_cause_cd,
+					description,
+					new_defect_id,
+					defect_cd,
+					relative_order,
+					@login_credential,
+					getdate()
+				from #t_defect_cause 
+
+				create table #t_defect_source(
+					new_defect_source_id uniqueidentifier null default newid(),
+					old_defect_source_id uniqueidentifier null,
+					defect_source_cd varchar(16) null,
+					new_defect_id uniqueidentifier null,
+					defect_cd varchar(16) null,
+					description varchar(150) null,
+					relative_order int
+				)
+													   
+				insert into #t_defect_source(
+					old_defect_source_id,
+					defect_source_cd,
+					new_defect_id,
+					defect_cd,
+					description,
+					relative_order
+				)
+				select 
+					ds.defect_source_id,
+					ds.defect_source_cd,
+					d.new_defect_id,
+					d.defect_cd,
+					ds.description,
+					ds.relative_order      
+				from defect_source ds, #t_defect d
+				where ds.defect_id = d.old_defect_id
+
+				insert into defect_source(
+					defect_source_id,
+					defect_source_cd,
+					description,
+					defect_id,
+					defect_cd,
+					created_by,
+					created_ts,
+					relative_order
+				)
+				select 
+					new_defect_source_id,
+					defect_source_cd,
+					description,
+					new_defect_id, 
+					defect_cd,
+					@login_credential,
+					getdate(),
+					relative_order
+				from #t_defect_source 
+
+				create table #t_defect_severity(
+					new_defect_severity_id uniqueidentifier null default newid(),
+					old_defect_severity_id uniqueidentifier null,
+					severity_tier_cd varchar(16) null,
+					description varchar(1024) null,
+					new_defect_id uniqueidentifier null,
+					defect_cd varchar(16) null,
+					relative_order int null,
+					example_text varchar(1024) null
+				)
+													   
+				insert into #t_defect_severity(
+					old_defect_severity_id,
+					severity_tier_cd,
+					description,
+					new_defect_id,
+					defect_cd,
+					relative_order,
+					example_text
+				)
+				select 
+					ds.defect_severity_id,
+					ds.severity_tier_cd,
+					ds.description,
+					d.new_defect_id,
+					d.defect_cd,
+					ds.relative_order,
+					ds.example_text
+				from defect_severity ds, #t_defect d
+				where ds.defect_id = d.old_defect_id
+
+				insert into defect_severity(
+					defect_severity_id,
+					severity_tier_cd,
+					description,
+					defect_id,
+					defect_cd,
+					created_by,
+					created_ts,
+					relative_order,
+					example_text
+				)
+				select 
+					new_defect_severity_id,
+					severity_tier_cd,
+					description,
+					new_defect_id, 
+					defect_cd,
+					@login_credential,
+					getdate(),
+					relative_order,
+					example_text
+				from #t_defect_severity 
+
+				insert into finding_rating_rule(
+					defect_id,
+					defect_cause_id,
+					defect_source_id,
+					unacceptable_rating_threshold
+				)
+				select
+					c.new_defect_id,
+					c.new_defect_cause_id,
+					s.new_defect_source_id,
+					fr.unacceptable_rating_threshold
+				from
+					#t_defect_cause c,
+					#t_defect_source s,
+					finding_rating_rule fr
+				where fr.defect_cause_id = c.old_defect_cause_id and fr.defect_source_id = s.old_defect_source_id 
+
+				create table #t_qatree(
+					new_qatree_id uniqueidentifier null default newid(),
+					old_qatree_id uniqueidentifier null,
+					new_qa_model_id uniqueidentifier not null,
+					new_defect_id uniqueidentifier null,
+					enable_pre_qual_question_ind char(1) null
+				)
+									   
+				insert into #t_qatree(
+					old_qatree_id,
+					new_qa_model_id,
+					new_defect_id,
+					enable_pre_qual_question_ind)
+				select
+					q.qatree_id,
+					@to_qa_model_id,
+					t.new_defect_id,
+					enable_pre_qual_question_ind
+				from #t_defect t,qatree q
+				where t.old_defect_id = q.defect_id
+
+				insert into qatree(
+					qatree_id,
+					created_by,
+					created_ts,
+					qa_model_id,
+					defect_id,
+					enable_pre_qual_question_ind)  
+				select 
+					new_qatree_id,
+					@login_credential,
+					getdate(),
+					new_qa_model_id,
+					new_defect_id,
+					enable_pre_qual_question_ind
+				from #t_qatree 
+
+				create table #t_outcome(
+					new_qatree_outcome_id uniqueidentifier null default newid(),
+					old_qatree_outcome_id uniqueidentifier null,
+					new_defect_id uniqueidentifier null
+				)
+
+				insert into #t_outcome(
+					old_qatree_outcome_id,
+					new_defect_id
+				)
+				select
+					o.qatree_outcome_id,
+					t.new_defect_id
+				from #t_defect t,qatree_outcome o
+				where t.old_defect_id = o.defect_id
+
+				insert into qatree_outcome(
+					qatree_outcome_id,
+					defect_id,
+					created_by,
+					created_ts,
+					source_filter_question_id
+				)
+				select
+					new_qatree_outcome_id,
+					new_defect_id,
+					@login_credential,
+					getdate(),
+					q.source_filter_question_id
+				from #t_outcome t,qatree_outcome q
+				where t.old_qatree_outcome_id = q.qatree_outcome_id
+
+				insert into qatree_outcome_defect_cause(
+					defect_cause_id,
+					qatree_outcome_id,
+					created_by,
+					created_ts
+				)
+				select
+					tc.new_defect_cause_id,
+					t.new_qatree_outcome_id,
+					@login_credential,
+					getdate()
+				from
+					#t_outcome t,
+					#t_defect_cause tc,
+					qatree_outcome_defect_cause c
+				where
+					t.old_qatree_outcome_id = c.qatree_outcome_id
+					and c.defect_cause_id = tc.old_defect_cause_id
+
+				insert into qatree_outcome_defect_source(
+					defect_source_id,
+					qatree_outcome_id,
+					created_by,
+					created_ts
+				)
+				select
+					tc.new_defect_source_id,
+					t.new_qatree_outcome_id,
+					@login_credential,
+					getdate()
+				from
+					#t_outcome t,
+					#t_defect_source tc,
+					qatree_outcome_defect_source c
+				where
+					t.old_qatree_outcome_id = c.qatree_outcome_id 
+					and c.defect_source_id = tc.old_defect_source_id
+
+				insert into qatree_outcome_defect_severity(
+					defect_severity_id,
+					qatree_outcome_id,
+					created_by,
+					created_ts
+				)
+				select
+					tc.new_defect_severity_id,
+					t.new_qatree_outcome_id,
+					@login_credential,
+					getdate()
+				from
+					#t_outcome t,
+					#t_defect_severity tc,
+					qatree_outcome_defect_severity c
+				where
+					t.old_qatree_outcome_id = c.qatree_outcome_id 
+					and c.defect_severity_id = tc.old_defect_severity_id
+
+				create table #t_question(
+					new_question_id uniqueidentifier null default newid(),
+					old_question_id uniqueidentifier null,
+					new_qatree_id uniqueidentifier null
+				)
+
+				insert into #t_question(
+					old_question_id,
+					new_qatree_id
+				)
+				select
+					qu.question_id,
+					qa.new_qatree_id 
+				from
+					qatree_question qu,
+					#t_qatree qa
+				where qu.qatree_id = qa.old_qatree_id
+
+				insert into QUESTION_REFERENCE(
+					QUESTION_ID,
+					QUESTION_DESCRIPTION,
+					VALUE_TO_TRIGGER_ACTION,
+					RESPONSE_TYPE,
+					ANSWER_VALUES,
+					created_by,
+					created_ts
+				)
+				select   
+					a.new_QUESTION_ID,
+					QUESTION_DESCRIPTION,
+					VALUE_TO_TRIGGER_ACTION,
+					RESPONSE_TYPE,
+					ANSWER_VALUES,
+					@login_credential,
+					getdate()
+				from
+					#t_question a,
+					QUESTION_REFERENCE b
+				where a.old_question_id = b.QUESTION_ID
+
+				insert into qatree_question(
+					question_id,
+					qatree_id,
+					question_number,
+					question_reference,
+					qatree_outcome_id,
+					--parent_question_id,
+					created_by,
+					created_ts,
+					order_number
+				)
+				select
+					t.new_question_id,
+					t.new_qatree_id,
+					q.question_number,
+					q.question_reference,
+					o.new_qatree_outcome_id,
+					--q.parent_question_id,
+					@login_credential,
+					getdate(),
+					q.order_number
+				from #t_question t
+				inner join qatree_question q
+					on t.old_question_id = q.question_id 
+				left outer join #t_outcome o
+					on q.qatree_outcome_id = o.old_qatree_outcome_id
+
+				insert into QA_MODEL_PREQUAL(
+					QUESTION_ID,
+					PRE_QUAL_POTENTIAL_ANSWER_CD,
+					QUESTION_REF_ID_CSV,
+					description
+				)
+				select 
+					a.new_QUESTION_ID,
+					PRE_QUAL_POTENTIAL_ANSWER_CD,
+					QUESTION_REF_ID_CSV,
+					b.description
+				from
+					#t_question a,
+					QA_MODEL_PREQUAL b
+				where a.old_question_id = b.QUESTION_ID
+												
+				update QATREE_QUESTION
+				set PARENT_QUESTION_ID = b.new_question_id
+				from
+					QATREE_QUESTION a,
+					#t_question b
+				where a.PARENT_QUESTION_ID = b.old_question_id
+
+				update QATREE_OUTCOME
+				set SOURCE_FILTER_QUESTION_ID = b.new_question_id
+				from
+					QATREE_OUTCOME a,
+					#t_question b
+				where a.SOURCE_FILTER_QUESTION_ID = b.old_question_id
+
+				insert into QATREE_QSTN_CONDITION(
+					entity_name,
+					field_name,
+					question_id,
+					qatree_id,
+					comparison_values,
+					condition_operator,
+					created_by,
+					created_ts
+				)
+				select
+					entity_name,
+					field_name,
+					new_question_id,
+					new_qatree_id,
+					comparison_values,
+					condition_operator,
+					@login_credential,
+					getdate()
+				from
+					#t_question tq,
+					QATREE_QSTN_CONDITION qqc
+				where tq.old_question_id = qqc.QUESTION_ID
+		]]>
+        </sql>
+    </changeSet>		
+</databaseChangeLog>    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

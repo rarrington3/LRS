@@ -1,0 +1,77 @@
+@import '../../bootstrap/_variables.less';
+@import '../../shared/_mixins.less';
+:host-context {
+    /* styles should be scoped under host-context */
+    .placeholder {
+        padding-top: 10px;
+    }
+    .the-sub-header {
+        background-color: @brand-secondary;
+        color: white;
+        .sub-title,
+        .loan-overview {
+            float: left;
+            padding: 10px 12px;
+            border-right: 1px solid @brand-blue-border-color;
+        }
+        .sub-title {
+            margin: 0;
+            padding-top: 16px;
+            padding-bottom: 3px;
+            border-left: 1px solid @brand-blue-border-color;
+        }
+        .loan-overview {
+            p {
+                margin: 0px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            .description {
+                font-weight: 100;
+            }
+            .h5 {
+                font-weight: 600;
+            }
+        }
+        .sub-buttons {
+            text-align: right;
+            padding-top: 10px;
+            .btn {
+                display: inline-block;
+                text-align: center;
+            }
+        }
+        .btn-primary {
+            background-color: white;
+            color: @brand-primary;
+        }
+
+    }
+
+    .num-findings {
+        border-radius: 100px;
+        width: 200px;
+        height: 200px;
+        background-color: @brand-secondary;
+        padding-left: 4px;
+        padding-right: 4px;
+        padding-top: 1px;
+        color: white;
+        padding-bottom: 1px;
+    }
+
+    /* Disabling clicks when active so a clearFilter() method call is not invoked which destroys grouping. Could do this globally later. */
+    li.active {
+        pointer-events: none;
+    }
+
+    .filterTitle {
+        font-weight: bold;
+        color: #00295A;
+        padding-top: 15px;
+        padding-bottom: 6px;
+        font-size: 10pt;
+        margin-left: 1px;
+    }
+}

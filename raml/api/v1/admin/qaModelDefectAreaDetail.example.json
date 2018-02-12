@@ -1,0 +1,1102 @@
+{
+    "defectAreaId": "1",
+    "code": "BI",
+    "description": "Borrower Income",
+    "order": 1,
+    "reviewTypeCodes": [],
+    "loanAttributes": [
+        {
+            "id": "1",
+            "entityName": "Case Summary for Review Level",
+            "fieldName": "Product Type",
+            "order": 1
+        },
+        {
+            "id": "2",
+            "entityName": "Case Summary for Selection",
+            "fieldName": "Borrower Birthday",
+            "order": 2
+        },
+        {
+            "id": "3",
+            "entityName": "Case Summary for Review Level",
+            "fieldName": "Borrower SSN",
+            "order": 3
+        }
+    ],
+    "remediationTypes": [
+        {
+            "id": "1",
+            "description": "Borrower Refund",
+            "order": 1
+        },
+        {
+            "id": "2",
+            "description": "Principal Reduction",
+            "order": 2
+        }
+    ],
+    "sources": [
+        {
+            "id": "1",
+            "code": "1",
+            "description": "Issues With Standard employment",
+            "order": 1
+        },
+        {
+            "id": "2",
+            "code": "2",
+            "description": "Issues With Part-time and seasonal employment",
+            "order": 2
+        },
+        {
+            "id": "3",
+            "code": "3",
+            "description": "Issues With Overtime, bonus, and commission income",
+            "order": 3
+        },
+        {
+            "id": "4",
+            "code": "4",
+            "description": "Issues With Self-Employment income",
+            "order": 4
+        },
+        {
+            "id": "5",
+            "code": "5",
+            "description": "Issues With Pension and retirement income",
+            "order": 5
+        },
+        {
+            "id": "6",
+            "code": "6",
+            "description": "Issues With Rental income",
+            "order": 6
+        }
+    ],
+    "causes": [
+        {
+            "id": "1",
+            "code": "A",
+            "description": "A. Amount not supported by documentation",
+            "order": 1
+        },
+        {
+            "id": "2",
+            "code": "B",
+            "description": "B. Stability not supported",
+            "order": 2
+        },
+        {
+            "id": "3",
+            "code": "C",
+            "description": "C. Source is ineligible",
+            "order": 3
+        },
+        {
+            "id": "4",
+            "code": "F",
+            "description": "F. Possible misrepresentation or fraud– lender knew or should have known",
+            "order": 4
+        },
+        {
+            "id": "5",
+            "code": "G",
+            "description": "G. Possible misrepresentation or fraud – lender  did not know or could not have known",
+            "order": 5
+        }
+    ],
+    "thresholds": [
+        {
+            "id": "1",
+            "sourceCode": "1",
+            "causeCode": "A",
+            "severityCode": "2"
+        }
+    ],
+    "severities": [
+        {
+            "id": "2",
+            "code": "2",
+            "description": "Tier 2: Lender/Loan Officer/Sponsored Third Party is not registered or has improper relationship with borrower, OR\r\nMisuse of escrow, OR \r\nLate endorsement certification is false based upon information from the file, OR\r\nLender never submitted loan binder or submitted loan binder that has “significant” data discrepancies with what the lender entered into FHAC, OR\r\nFailure to follow TOTAL Mortgage Scorecard User Guide and loan is not insurable when loan is rescored through TOTAL, OR\r\nBinder Illegible – Quality of imaged documentation insufficient for review.\r\n",
+            "order": 2
+        },
+        {
+            "id": "4",
+            "code": "4",
+            "description": "Tier 4: Errors are made with regards to the Lender/Loan Officer/Sponsored Third Party information in the loan documentation or FHA Connection system, but the Lender/Loan Officer/Sponsored Third Party  has proper registration status, OR\r\nMinor late endorsement issues that cannot be categorized as false certification, OR\r\nLender submitted loan binder that has minor data discrepancies with what the lender entered into FHAC.\r\n",
+            "order": 4
+        },
+        {
+            "id": "1",
+            "code": "1",
+            "description": "Tier 1: Error(s) are present in the loan or loan file or in the input of loan file data into TOTAL that represent misrepresentation on the part of the borrower or the lender, which the underwriter knew or should have known, OR\r\nError(s)are present in the loan or loan file or in the input of loan file data into TOTAL that are misrepresented on the part of the borrower or the lender, which the lender did not know or could not have known at the time of underwriting, OR\r\nAsset information provided in the loan file or in the input of  loan file data in TOTAL is significantly inconsistent and cannot be trusted, or is completely missing, and MRI cannot be calculated, OR\r\nError(s) are present in the loan or loan file or in the input of loan file data into TOTAL and lead to MRI being too low by 5% or more than $500, whichever is less.\r\n",
+            "order": 1
+        },
+        {
+            "id": "3",
+            "code": "3",
+            "description": "Tier 3: Error(s) are present in the loan or loan file or in the input of loan file data into TOTAL that, once corrected:\r\nlead to statutory Minimum Required Investment being too low in proportion to the loan amount  AND the lender pays down the principal sufficiently, OR\r\nshow sufficient funds for MRI but not closing costs, and the loan reviewer does not have confidence that borrower has sufficient funds to cover shortage through paycheck or other means.\r\n",
+            "order": 3
+        },
+        {
+            "id": "5",
+            "code": "5",
+            "description": "Tier 5: Error(s) are present in the loan or loan file or in the input of loan file data into TOTAL, that, once corrected, show sufficient funds for MRI but not closing costs, however loan reviewer has confidence that borrower has sufficient funds to cover shortage through an acceptable source.\r\n",
+            "order": 5
+        }
+    ],
+    "questions": [
+        {
+            "questionId": "699D4E94-066E-40B6-99C9-FFEDCDD8EB41",
+            "questionNumber": "41",
+            "questionReference": "BI.041",
+            "parentQuestionId": "",
+            "parentQuestionConditionAnswers": [],
+            "order": 1,
+            "questionText": "Were paystubs provided covering at least 30 consecutive days?",
+            "answerType": "Single",
+            "potentialAnswers": [
+                {
+                    "description": "YES",
+                    "code": "YES"
+                },
+                {
+                    "description": "NO",
+                    "code": "NO"
+                }
+            ],
+            "answerToTriggerFinding": "No",
+            "conditionsToDisplay": [
+                {
+                    "conditionId": "EE6A675F-7E16-46D4-94CC-D3BA4A7B8C88",
+                    "attributeId": "1",
+                    "entityName": "Case Summary for Review Level",
+                    "fieldName": "Product Type",
+                    "operator": "in",
+                    "comparisonValues": [
+                        "P",
+                        "RT",
+                        "CO",
+                        "S",
+                        "SLC"
+                    ]
+                }
+            ],
+            "allowableSourceCodes": [
+                "2",
+                "3",
+                "4",
+                "1",
+                "5"
+            ],
+            "allowableCauseCodes": [
+                "F",
+                "G",
+                "B",
+                "A",
+                "C"
+            ],
+            "allowedSeverityCodes": [
+                "3",
+                "2",
+                "1",
+                "4"
+            ],
+            "questions": [
+                {
+                    "questionId": "3A4B48F2-160B-4C34-99E0-69BBC5B228BF",
+                    "questionNumber": "42",
+                    "questionReference": "BI.042",
+                    "parentQuestionId": "699D4E94-066E-40B6-99C9-FFEDCDD8EB41",
+                    "parentQuestionConditionAnswers": [
+                        "YES"
+                    ],
+                    "order": 4,
+                    "questionText": "Are the paystubs consistent with loan file data, were all deductions accounted for?",
+                    "answerType": "Single",
+                    "potentialAnswers": [
+                        {
+                            "description": "YES",
+                            "code": "YES"
+                        },
+                        {
+                            "description": "NO",
+                            "code": "NO"
+                        }
+                    ],
+                    "answerToTriggerFinding": "No",
+                    "conditionsToDisplay": [
+                        {
+                            "conditionId": "7B44064D-F68F-40D8-8B24-8E2310B9B45C",
+                            "attributeId": "1",
+                            "entityName": "Case Summary for Review Level",
+                            "fieldName": "Product Type",
+                            "operator": "in",
+                            "comparisonValues": [
+                                "P",
+                                "RT",
+                                "CO",
+                                "S",
+                                "SLC"
+                            ]
+                        }
+                    ],
+                    "allowableSourceCodes": [
+                        "1",
+                        "8",
+                        "3",
+                        "2",
+                        "4"
+                    ],
+                    "allowableCauseCodes": [
+                        "C",
+                        "B",
+                        "A",
+                        "F",
+                        "G"
+                    ],
+                    "allowedSeverityCodes": [
+                        "1",
+                        "2",
+                        "3",
+                        "4"
+                    ],
+                    "questions": []
+                }
+            ]
+        },
+        {
+            "questionId": "1cb871a9-1c80-4064-81f9-6168df284bbc",
+            "questionNumber": "123",
+            "questionReference": "BI.123",
+            "order": 2,
+            "questionText": "Was all qualifying income derived from acceptable, non-prohibited sources?",
+            "answerType": "Single",
+            "potentialAnswers": [
+                {
+                    "code": "Yes",
+                    "description": "Yes"
+                },
+                {
+                    "code": "No",
+                    "description": "No"
+                }
+            ],
+            "answerToTriggerFinding": "No",
+            "allowableSourceCodes": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8"
+            ],
+            "allowableCauseCodes": [
+                "A",
+                "B",
+                "C",
+                "F",
+                "G"
+            ],
+            "allowedSeverityCodes": [
+                "1",
+                "2",
+                "3",
+                "4"
+            ]
+        },
+        {
+            "questionId": "3d7d4199-bc47-4968-aca0-7ec345947d39",
+            "questionNumber": "124",
+            "questionReference": "BI.124",
+            "order": 3,
+            "questionText": "Was stability of earnings supported?",
+            "answerType": "Single",
+            "potentialAnswers": [
+                {
+                    "code": "Yes",
+                    "description": "Yes"
+                },
+                {
+                    "code": "No",
+                    "description": "No"
+                }
+            ],
+            "answerToTriggerFinding": "No",
+            "allowableSourceCodes": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8"
+            ],
+            "allowableCauseCodes": [
+                "A",
+                "B",
+                "C",
+                "F",
+                "G"
+            ],
+            "allowedSeverityCodes": [
+                "1",
+                "2",
+                "3",
+                "4"
+            ]
+        },
+        {
+            "questionId": "929b529f-af29-4804-9f68-d98ceb727ef5",
+            "questionNumber": "125",
+            "questionReference": "BI.125",
+            "order": 4,
+            "questionText": "Was the qualifying income amount from each source calculated in accordance with FHA guidelines?",
+            "answerType": "Single",
+            "potentialAnswers": [
+                {
+                    "code": "Yes",
+                    "description": "Yes"
+                },
+                {
+                    "code": "No",
+                    "description": "No"
+                }
+            ],
+            "answerToTriggerFinding": "No",
+            "allowableSourceCodes": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8"
+            ],
+            "allowableCauseCodes": [
+                "A",
+                "B",
+                "C",
+                "F",
+                "G"
+            ],
+            "allowedSeverityCodes": [
+                "1",
+                "2",
+                "3",
+                "4"
+            ]
+        },
+        {
+            "questionId": "67717fc6-f7ec-4044-93aa-f9d3587a1320",
+            "questionNumber": "126",
+            "questionReference": "BI.126",
+            "order": 5,
+            "questionText": "Was all qualifying income properly verified and documented?",
+            "answerType": "Single",
+            "potentialAnswers": [
+                {
+                    "code": "Yes",
+                    "description": "Yes"
+                },
+                {
+                    "code": "No",
+                    "description": "No"
+                }
+            ],
+            "answerToTriggerFinding": "No",
+            "allowableSourceCodes": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8"
+            ],
+            "allowableCauseCodes": [
+                "A",
+                "B",
+                "C",
+                "F",
+                "G"
+            ],
+            "allowedSeverityCodes": [
+                "1",
+                "2",
+                "3",
+                "4"
+            ]
+        },
+        {
+            "questionId": "b2b83aac-6415-4334-97bb-90a89549d60ab",
+            "questionNumber": "127",
+            "questionReference": "BI.127",
+            "order": 6,
+            "questionText": "Were there any additional concerns related to the borrower's employment or income from any source which require a finding?",
+            "answerType": "Single",
+            "potentialAnswers": [
+                {
+                    "code": "Yes",
+                    "description": "Yes"
+                },
+                {
+                    "code": "No",
+                    "description": "No"
+                }
+            ],
+            "answerToTriggerFinding": "No",
+            "allowableSourceCodes": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8"
+            ],
+            "allowableCauseCodes": [
+                "A",
+                "B",
+                "C",
+                "F",
+                "G"
+            ],
+            "allowedSeverityCodes": [
+                "1",
+                "2",
+                "3",
+                "4"
+            ]
+        },
+        {
+            "questionId": "b2b83aac-6415-4334-97bb-90a89549d60ef",
+            "questionNumber": "128",
+            "questionReference": "BI.128",
+            "order": 7,
+            "questionText": "Were there any additional concerns related to the borrower’s self-employment which require a finding?",
+            "answerType": "Single",
+            "potentialAnswers": [
+                {
+                    "code": "Yes",
+                    "description": "Yes"
+                },
+                {
+                    "code": "No",
+                    "description": "No"
+                }
+            ],
+            "answerToTriggerFinding": "No",
+            "allowableSourceCodes": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8"
+            ],
+            "allowableCauseCodes": [
+                "A",
+                "B",
+                "C",
+                "F",
+                "G"
+            ],
+            "allowedSeverityCodes": [
+                "1",
+                "2",
+                "3",
+                "4"
+            ]
+        },
+        {
+            "questionId": "b2b83aac-6415-4334-97bb-90a89549d60ef",
+            "questionNumber": "129",
+            "questionReference": "BI.129",
+            "order": 8,
+            "questionText": "Were there any additional concerns related to the borrower’s non-employment income which require a finding?",
+            "answerType": "Single",
+            "potentialAnswers": [
+                {
+                    "code": "Yes",
+                    "description": "Yes"
+                },
+                {
+                    "code": "No",
+                    "description": "No"
+                }
+            ],
+            "answerToTriggerFinding": "No",
+            "allowableSourceCodes": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8"
+            ],
+            "allowableCauseCodes": [
+                "A",
+                "B",
+                "C",
+                "F",
+                "G"
+            ],
+            "allowedSeverityCodes": [
+                "1",
+                "2",
+                "3",
+                "4"
+            ]
+        },
+        {
+            "questionId": "b2b83aac-6415-4334-97bb-90a89549d61fg",
+            "questionNumber": "130",
+            "questionReference": "BI.130",
+            "order": 9,
+            "questionText": "Were there any additional concerns related to the borrower’s other income which require a finding?",
+            "answerType": "Single",
+            "potentialAnswers": [
+                {
+                    "code": "Yes",
+                    "description": "Yes"
+                },
+                {
+                    "code": "No",
+                    "description": "No"
+                }
+            ],
+            "answerToTriggerFinding": "No",
+            "allowableSourceCodes": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8"
+            ],
+            "allowableCauseCodes": [
+                "A",
+                "B",
+                "C",
+                "F",
+                "G"
+            ],
+            "allowedSeverityCodes": [
+                "1",
+                "2",
+                "3",
+                "4"
+            ]
+        },
+        {
+            "questionId": "b2b83aac-6415-4334-97bb-90a89549d61hj",
+            "questionNumber": "131",
+            "questionReference": "BI.131",
+            "order": 10,
+            "questionText": "Were all required application and underwriting forms provided and properly executed in accordance with FHA guidelines? ",
+            "answerType": "Single",
+            "potentialAnswers": [
+                {
+                    "code": "Yes",
+                    "description": "Yes"
+                },
+                {
+                    "code": "No",
+                    "description": "No"
+                }
+            ],
+            "answerToTriggerFinding": "No",
+            "allowableSourceCodes": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8"
+            ],
+            "allowableCauseCodes": [
+                "A",
+                "F",
+                "G"
+            ],
+            "allowedSeverityCodes": [
+                "1",
+                "2",
+                "3",
+                "4"
+            ]
+        },
+        {
+            "questionId": "b2b83aac-6415-4334-97bb-90a89549d61ij",
+            "questionNumber": "132",
+            "questionReference": "BI.132",
+            "order": 11,
+            "questionText": "Were all product and program eligibility requirements met in accordance with FHA guidelines? ",
+            "answerType": "Single",
+            "potentialAnswers": [
+                {
+                    "code": "Yes",
+                    "description": "Yes"
+                },
+                {
+                    "code": "No",
+                    "description": "No"
+                }
+            ],
+            "answerToTriggerFinding": "No",
+            "allowableSourceCodes": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8"
+            ],
+            "allowableCauseCodes": [
+                "A",
+                "F",
+                "G"
+            ],
+            "allowedSeverityCodes": [
+                "1",
+                "2",
+                "3",
+                "4"
+            ]
+        },
+        {
+            "questionId": "b2b83aac-6415-4334-97bb-90a89549d61jk",
+            "questionNumber": "133",
+            "questionReference": "BI.133",
+            "order": 12,
+            "questionText": "Were any non-allowable title conditions and/or covenant restrictions revealed during loan review? ",
+            "answerType": "Single",
+            "potentialAnswers": [
+                {
+                    "code": "Yes",
+                    "description": "Yes"
+                },
+                {
+                    "code": "No",
+                    "description": "No"
+                }
+            ],
+            "answerToTriggerFinding": "No",
+            "allowableSourceCodes": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8"
+            ],
+            "allowableCauseCodes": [
+                "A",
+                "F",
+                "G"
+            ],
+            "allowedSeverityCodes": [
+                "1",
+                "2",
+                "3",
+                "4"
+            ]
+        },
+        {
+            "questionId": "b2b83aac-6415-4334-97bb-90a89549d61lm",
+            "questionNumber": "134",
+            "questionReference": "BI.134",
+            "order": 13,
+            "questionText": "Were all required legal closing documents provided and properly executed in accordance with FHA guidelines?",
+            "answerType": "Single",
+            "potentialAnswers": [
+                {
+                    "code": "Yes",
+                    "description": "Yes"
+                },
+                {
+                    "code": "No",
+                    "description": "No"
+                }
+            ],
+            "answerToTriggerFinding": "No",
+            "allowableSourceCodes": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8"
+            ],
+            "allowableCauseCodes": [
+                "A",
+                "F",
+                "G"
+            ],
+            "allowedSeverityCodes": [
+                "1",
+                "2",
+                "3",
+                "4"
+            ]
+        },
+        {
+            "questionId": "b2b83aac-6415-4334-97bb-90a89549d61no",
+            "questionNumber": "135",
+            "questionReference": "BI.135",
+            "order": 14,
+            "questionText": "Are there any concerns related to Mortgage Eligibility that require a finding but are not already captured in the questions? ",
+            "answerType": "Single",
+            "potentialAnswers": [
+                {
+                    "code": "Yes",
+                    "description": "Yes"
+                },
+                {
+                    "code": "No",
+                    "description": "No"
+                }
+            ],
+            "answerToTriggerFinding": "No",
+            "allowableSourceCodes": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8"
+            ],
+            "allowableCauseCodes": [
+                "A",
+                "F",
+                "G"
+            ],
+            "allowedSeverityCodes": [
+                "1",
+                "2",
+                "3",
+                "4"
+            ]
+        },
+        {
+            "questionId": "b2b83aac-6415-4334-97bb-90a89549d61pq",
+            "questionNumber": "136",
+            "questionReference": "BI.136",
+            "order": 15,
+            "questionText": "Was the maximum mortgage amount calculated in accordance with FHA guidelines and within statutory loan limits? ",
+            "answerType": "Single",
+            "potentialAnswers": [
+                {
+                    "code": "Yes",
+                    "description": "Yes"
+                },
+                {
+                    "code": "No",
+                    "description": "No"
+                }
+            ],
+            "answerToTriggerFinding": "No",
+            "conditionsToDisplay": [
+                {
+                    "conditionId": "14770ac1-f88d-4b23-bf4f-0206b9c737ffii",
+                    "attributeId": "1",
+                    "entityName": "Case Summary for Selection",
+                    "fieldName": "Borrower Birthday",
+                    "operator": "!=",
+                    "comparisonValues": [
+                        "H",
+                        "HP",
+                        "HR"
+                    ]
+                }
+            ],
+            "allowableSourceCodes": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5"
+            ],
+            "allowableCauseCodes": [
+                "A",
+                "B",
+                "C",
+                "D",
+                "F",
+                "G"
+            ],
+            "allowedSeverityCodes": [
+                "1",
+                "2",
+                "3",
+                "4"
+            ]
+        },
+        {
+            "questionId": "b2b83aac-6415-4334-97bb-90a89549d61qrs",
+            "questionNumber": "137",
+            "questionReference": "BI.137",
+            "order": 16,
+            "questionText": "Was the Loan-to-Value in accordance with FHA guidelines?",
+            "answerType": "Single",
+            "potentialAnswers": [
+                {
+                    "code": "Yes",
+                    "description": "Yes"
+                },
+                {
+                    "code": "No",
+                    "description": "No"
+                }
+            ],
+            "answerToTriggerFinding": "No",
+            "conditionsToDisplay": [
+                {
+                    "conditionId": "14770ac1-f88d-4b23-bf4f-0206b9c737ffiq",
+                    "attributeId": "1",
+                    "entityName": "Case Summary for Selection",
+                    "fieldName": "Borrower Birthday",
+                    "operator": "!=",
+                    "comparisonValues": [
+                        "H",
+                        "HP",
+                        "HR"
+                    ]
+                }
+            ],
+            "allowableSourceCodes": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5"
+            ],
+            "allowableCauseCodes": [
+                "A",
+                "B",
+                "C",
+                "D",
+                "F",
+                "G"
+            ],
+            "allowedSeverityCodes": [
+                "1",
+                "2",
+                "3",
+                "4"
+            ]
+        },
+        {
+            "questionId": "b2b83aac-6415-4334-97bb-90a89549d61qrtu",
+            "questionNumber": "138",
+            "questionReference": "BI.138",
+            "order": 17,
+            "questionText": "Was the Combined Loan to Value acceptable?",
+            "answerType": "Single",
+            "potentialAnswers": [
+                {
+                    "code": "Yes",
+                    "description": "Yes"
+                },
+                {
+                    "code": "No",
+                    "description": "No"
+                }
+            ],
+            "answerToTriggerFinding": "No",
+            "conditionsToDisplay": [
+                {
+                    "conditionId": "14770ac1-f88d-4b23-bf4f-0206b9c737ffik",
+                    "attributeId": "1",
+                    "entityName": "Case Summary for Selection",
+                    "fieldName": "Borrower Birthday",
+                    "operator": "isPresent"
+                }
+            ],
+            "allowableSourceCodes": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5"
+            ],
+            "allowableCauseCodes": [
+                "A",
+                "B",
+                "C",
+                "D",
+                "F",
+                "G"
+            ],
+            "allowedSeverityCodes": [
+                "1",
+                "2",
+                "3",
+                "4"
+            ]
+        },
+        {
+            "questionId": "b2b83aac-6415-4334-97bb-90a89549d61qru",
+            "questionNumber": "139",
+            "questionReference": "BI.139",
+            "order": 18,
+            "questionText": "Were there any issues specific to the HECM program concerning the Maximum Claim Amount or Principal Limit?",
+            "answerType": "Single",
+            "potentialAnswers": [
+                {
+                    "code": "Yes",
+                    "description": "Yes"
+                },
+                {
+                    "code": "No",
+                    "description": "No"
+                }
+            ],
+            "answerToTriggerFinding": "Yes",
+            "conditionsToDisplay": [
+                {
+                    "conditionId": "14770ac1-f88d-4b23-bf4f-0206b9c737ffiy",
+                    "attributeId": "1",
+                    "entityName": "Case Summary for Selection",
+                    "fieldName": "Borrower Birthday",
+                    "operator": "Includesoneof"
+                }
+            ],
+            "allowableSourceCodes": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5"
+            ],
+            "allowableCauseCodes": [
+                "A",
+                "B",
+                "C",
+                "D",
+                "F",
+                "G"
+            ],
+            "allowedSeverityCodes": [
+                "1",
+                "2",
+                "3",
+                "4"
+            ]
+        },
+        {
+            "questionId": "b2b83aac-6415-4334-97bb-90a89549d61qri",
+            "questionNumber": "140",
+            "questionReference": "BI.140",
+            "order": 19,
+            "questionText": "Are there any concerns that require a finding related to the Loan to Value and/or Maximum Mortgage Amount not already captured in the other questions?",
+            "answerType": "Single",
+            "potentialAnswers": [
+                {
+                    "code": "Yes",
+                    "description": "Yes"
+                },
+                {
+                    "code": "No",
+                    "description": "No"
+                }
+            ],
+            "answerToTriggerFinding": "Yes",
+            "allowableSourceCodes": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5"
+            ],
+            "allowableCauseCodes": [
+                "A",
+                "B",
+                "C",
+                "D",
+                "F",
+                "G"
+            ],
+            "allowedSeverityCodes": [
+                "1",
+                "2",
+                "3",
+                "4"
+            ]
+        }
+    ],
+    "enablePreQualifyQuestion": true,
+    "preQualifyQuestion": {
+        "id": "1",
+        "code": "01",
+        "description": "What income sources apply?",
+        "optionsQuestions": [
+            {
+                "code": "1",
+                "description": "Standard Employment",
+                "options": [
+                    "BI.123"
+                ]
+            },
+            {
+                "code": "2",
+                "description": "Part-time seasonal employment",
+                "options": []
+            },
+            {
+                "code": "3",
+                "description": "Overtime, bonus and commission income",
+                "options": []
+            },
+            {
+                "code": "4",
+                "description": "Self-employment income",
+                "options": []
+            },
+            {
+                "code": "5",
+                "description": "Pension and retirement income",
+                "options": []
+            },
+            {
+                "code": "6",
+                "description": "Rental income",
+                "options": []
+            },
+            {
+                "code": "7",
+                "description": "Social security",
+                "options": []
+            },
+            {
+                "code": "8",
+                "description": "Other",
+                "options": []
+            }
+        ]
+    }
+}

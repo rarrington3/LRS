@@ -1,0 +1,11 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="nnalluri" id="HUDLRS_3934_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+            <![CDATA[
+    UPDATE REVIEW_LEVEL SET COMPLT_DT = UPDATED_TS WHERE REVIEW_LEVEL_STATUS_ID IN (SELECT RLSR.REVIEW_LEVEL_STATUS_ID FROM REVIEW_LEVEL_STATUS_REF RLSR WHERE RLSR.CODE='CANCELLED');
+	UPDATE REVIEW SET RVW_COMPLTD_DT = UPDATED_TS WHERE REVIEW_STATUS_ID IN (SELECT RLSR.REVIEW_STATUS_ID FROM REVIEW_STATUS_REF RLSR WHERE RLSR.CODE='CANCELLED')
+            ]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>

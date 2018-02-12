@@ -1,0 +1,118 @@
+@import '../../bootstrap/_variables';
+@import '../../shared/_mixins';
+:host-context {
+    /* styles should be scoped under host-context */
+
+    .admin-model-body {
+        padding: 30px;
+        font-size: @font-size-base;
+        font-weight: 400;
+        color: @gray;
+    }
+    .header-row {
+        width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .section-heading {
+        font-size: @font-size-large;
+        color: @link-light-blue;
+        font-weight: 600;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+
+        .glyphicon {
+            margin-left: 10px;
+        }
+
+        .glyphicon-check {
+            color: @brand-success;
+        }
+
+        .status-label {
+            text-transform: capitalize;
+            font-size: @font-size-base;
+            color: @gray;
+            margin-left: 6px;
+            &.status-active {
+                color: @brand-success;
+            }
+        }
+    }
+
+    .sub-section-heading {
+        font-size: @font-size-large;
+        color: @brand-primary;
+        font-weight: 600;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+    }
+    .top-padded {
+        margin-top: 36px;
+    }
+
+
+    label {
+        display: block;
+        font-size: @font-size-base;
+    }
+
+    .small-bold {
+        display: block;
+        font-size: @font-size-base;
+        font-weight: 700;
+    }
+
+    input[type='text'] {
+        display: block;
+        border: 1px solid @hr-border;
+        border-radius: 5px;
+        font-size: @font-size-base;
+        padding: 4px 8px;
+        width: 100%;
+
+        &.factor-weight {
+            width: 80px;
+            color: @link-light-blue;
+        }
+    }
+
+    textarea {
+        display: block;
+        border: 1px solid @hr-border;
+        border-radius: 5px;
+        font-size: @font-size-base;
+        resize: none;
+        height: 60px;
+        width: 100%;
+    }
+
+    input[type='number'] {
+        display: block;
+        border: 1px solid @hr-border;
+        border-radius: 5px;
+        font-size: @font-size-base;
+        padding: 4px 8px;
+        width: 65px;
+
+        &.factor-weight {
+            width: 80px;
+            color: @link-light-blue;
+        }
+    }
+
+    .form-item {
+        margin-top: 10px;
+        padding-left: 0;
+
+        &.left-padded {
+            padding-left: 18px;
+        }
+    }
+
+    .strong {
+        font-weight: 700;
+    }
+
+
+}

@@ -1,0 +1,168 @@
+<!-- Wait until data is loaded, otherwise ui will flash -->
+<div class="review-wrap-container">
+    <div class="title-header">
+        <h4 class="view-title">{{viewTitle}}</h4>
+        <div class="section-divider">
+            <hr/>
+        </div>
+    </div>
+    <table class="table wrap-up-table">
+        <thead>
+
+            <tr>
+                <th class="col-md-6">Defect Area</th>
+
+                <!-- QC Original Rating column header -->
+                <th *ngIf="isQC" class="col-md-2">Original Rating</th>
+
+                <th class="col-md-2">{{(isQC) ? 'QC Rating' : 'Rating'}}</th>
+
+                <th class="col-md-1">Findings</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4
+                    <div class="severity-tier group-headers">SEVERITY TIER</div>
+                </th>
+
+                <!-- Finding Outcomes mitigation+-->
+                <th *ngIf="displayFindingOutcomes">U
+                    <div class="finding-outcomes group-headers">FINDING OUTCOMES</div>
+                </th>
+                <th *ngIf="displayFindingOutcomes">M</th>
+                <th *ngIf="displayFindingOutcomes">R</th>
+                <th *ngIf="displayFindingOutcomes">A</th>
+
+                <!-- Vetting changes column header-->
+                <th *ngIf="isVetted" class="col-md-1">Vetting Changes</th>
+
+                <!-- QC changes column header-->
+                <th *ngIf="isQC" class="col-md-1">Changes</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let finding of findingsInfo" class="list-inline">
+                <td class="col-md-6" [class.bold-text]="finding.rating==='Unacceptable'"><i [ngClass]="addIcon(finding.rating)"></i>{{finding.title}} ({{finding.defectAreaCode}})</td>
+
+                <!-- QC Original QC Rating Column -->
+                <td class="col-md-2" [class.bold-text]="finding.rating==='Unacceptable'" *ngIf="isQC">{{finding.originalRating}}</td>
+
+                <td class="col-md-2" [class.bold-text]="finding.rating==='Unacceptable'">{{finding.rating}}</td>
+                <td class="col-md-1 finding-total-cell" [class.bold-text]="finding.totalFindings" [class.unacceptable-text]="finding.rating==='Unacceptable'">{{finding.totalFindings}}</td>
+                <td *ngFor="let rank of finding.severityFindings" [ngClass]="ratingColor(rank)">{{rank.amount}}</td>
+
+                <!-- Finding Outcomes mitigation+-->
+                <td *ngIf="displayFindingOutcomes" class="gray-col" [class.bold-text]="finding?.unaceptableFindings">{{finding?.unaceptableFindings}}</td>
+                <td *ngIf="displayFindingOutcomes" class="gray-col" [class.bold-text]="finding?.mitigatedFindings">{{finding?.mitigatedFindings}}</td>
+                <td *ngIf="displayFindingOutcomes" class="gray-col" [class.bold-text]="finding?.remediatedFindings">{{finding?.remediatedFindings}}</td>
+                <td *ngIf="displayFindingOutcomes" class="gray-col" [class.bold-text]="finding?.adjustedFindings">{{finding?.adjustedFindings}}</td>
+
+                <!-- Vetting change-->
+                <td *ngIf="isVetted" class="col-md-1 finding-total-cell">{{finding.vettingChange}}</td>
+
+                <!-- QC change-->
+                <td *ngIf="isQC" class="col-md-1 finding-total-cell">{{finding.qcChange || 0}}</td>
+
+                <td>
+                    <button class="btn btn-default btn-primary" type="button" (click)="showWrapUp()" [routerLink]="['../tree',finding.defectAreaCode]">Details</button>
+                </td>
+
+            </tr>
+        </tbody>
+        <tbody class="totals">
+            <tr>
+                <td class="col-md-4 no-border" *ngIf="isQC"></td>
+                <td class="col-md-4 no-border"></td>
+                <td class="col-md-3 no-border">TOTALS:</td>
+                <td class="no-border bold-text finding-total">{{findingsTotal}}</td>
+                <td *ngFor="let total of severityTotals" [ngClass]="totalsColor(total)">{{total.amount}}</td>
+
+                <!-- Total Finding Outcomes mitigation+-->
+                <td *ngIf="displayFindingOutcomes" class="bold-text no-border">{{responseTypeTotals.uTotal}}</td>
+                <td *ngIf="displayFindingOutcomes" class="bold-text no-border">{{responseTypeTotals.mTotal}}</td>
+                <td *ngIf="displayFindingOutcomes" class="bold-text no-border">{{responseTypeTotals.rTotal}}</td>
+                <td *ngIf="displayFindingOutcomes" class="bold-text no-border">{{responseTypeTotals.aTotal}}</td>
+
+                <!-- Vetting total-->
+                <td *ngIf="isVetted" class="no-border bold-text finding-total">{{vettingChangesTotal}}</td>
+
+                <!-- QC total-->
+                <td *ngIf="isQC" class="no-border bold-text finding-total">{{totalQCchanges}}</td>
+
+            </tr>
+        </tbody>
+    </table>
+    <div class="footer clearfix">
+        <div class="row">
+            <div class="col-md-5 rating-column">
+                <ul class="list-group rating-container">
+                    <li *ngIf="!isVetted && !isQC" class="list-group-item rating">RATING: <span [class.unnaceptable]="currentReviewLevelRating?.ratingCode==='U'" class="rating-text">{{currentReviewLevelRating?.description}}</span></li>
+                    <li *ngIf="isVetted || isQC" class="list-group-item rating previous"><span>{{previousRatingLabel}}: <span [class.unnaceptable]="originalReviewLevelRating?.ratingCode==='U'" class="rating-text">{{originalReviewLevelRating?.description}}</span></span>
+                    </li>
+                    <li *ngIf="isVetted || isQC" class="list-group-item rating">{{updatedRatingLabel}}: <span [class.unnaceptable]="currentReviewLevelRating?.ratingCode==='U'" class="rating-text">{{currentReviewLevelRating?.description}}</span></li>
+                </ul>
+            </div>
+
+            <div class="col-md-3">
+
+                <form id="indemForm" #indemForm="ngForm" *ngIf="(allowIndemTermSelection || isVetted)">
+                    <label class="list-name required" for="indemTerms">Indem Terms:</label>
+                    <select id="indemTerms" name="indemTerms" #indemTerms="ngModel" class="form-control input-sm" [(ngModel)]="selectedIndemTerm" required [disabled]="isVetted">
+                        <option value="">Select</option>
+                        <option *ngFor="let type of indemnificationTypes" [value]="type.code">
+                            {{type.description}}
+                        </option>
+                    </select>
+                    <div class="alert alert-danger lrs-alert" [display]="indemTerms.errors && (indemTerms.dirty || indemTerms.touched)">
+                        <div class="small" [hidden]="!(indemTerms.errors && indemTerms.errors.required)">
+                            Indem Terms is required
+                        </div>
+                    </div>
+                </form>
+
+                <!-- QC Outcomes. -->
+                <form #qcForm="ngForm" *ngIf="showQCoutcome">
+                    <label class="list-name" for="#qcForm">QC Outcomes:</label>
+                    <select id="qcOutcome" class="form-control input-sm" name="qcOutcome" #qcOutcome="ngModel"  required [(ngModel)]="selectedQCoutcome">
+                        <option value="">Select</option>
+                        <option [value]="'ACCEPTABLE'">Acceptable</option>
+                        <option [value]="'MODERATE'">Moderate</option>
+                        <option [value]="'MATERIAL'">Material</option>
+                    </select>
+                    <div class="alert alert-danger lrs-alert" [display]="qcOutcome.errors && (qcOutcome.dirty || qcOutcome.touched)">
+                        <div class="small" [hidden]="!(qcOutcome.errors && qcOutcome.errors.required)">
+                            QC outcomes is required
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+            <div class="col-md-4">
+                <button class="btn btn-default btn-primary pull-left" type="button" *ngIf="showAddAdHocFinding" (click)='addAdHocFinding()'> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Finding</button>
+                <button *ngIf="pendingBatchReview && allowIndemTermSelection" class="btn btn-default btn-primary pull-right" type="button" [class.disabled]="!selectedIndemTerm" (click)='saveIndemType()'>Update Indem Term</button>
+                <button *ngIf="!pendingBatchReview" class="btn btn-default btn-primary pull-right" type="button" [class.disabled]="!completeWrapUp || (allowIndemTermSelection && !selectedIndemTerm) || (showQCoutcome && !selectedQCoutcome)" (click)='submitWrapUp()'>{{submitTitle}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<modal [(isOpen)]="addAdhocFindingModal.isOpen" confirmText="OK" [closeOnSave]="true" [title]="'Select a Defect Area'" (confirmChange)="navigateToAddAdhocFinding()">
+
+    <div class="modal-inner-body container-fluid">
+        <div class="row">
+            <div class="form-group">
+                <label class="control-label small" for="addFindingDefectArea">Please select a Defect Area:
+				</label>
+                <select id="addFindingDefectArea" name="addFindingDefectArea" class="form-control input-sm" [(ngModel)]="addAdhocFindingModal.selectedDefectAreaId">
+					<option *ngFor="let da of addAdhocFindingModal.defectAreas"
+							[value]="da.defectAreaId">
+						{{da.title}}
+					</option>
+				</select>
+            </div>
+        </div>
+    </div>
+
+</modal>

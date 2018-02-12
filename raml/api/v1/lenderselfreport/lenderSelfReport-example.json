@@ -1,0 +1,24 @@
+{
+    "reviewType": "U",
+    "defectAreas": [
+        "72CD9424-41C9-4C5D-996C-55241214EC26",
+        "81B55A27-C56E-4787-B152-604B80F44755",
+        "9D7BBED9-0A67-4EDF-A79B-7A1C48B16C69",
+        "BBF689FC-A866-42D6-96E7-DBE6F30B232D"
+    ],
+    "cases": [
+        "063-7127265"
+    ],
+    "isFraudDetected": true,
+    "typesOfFraud": [
+        "FTwqer",
+        "FTasdf"
+    ],
+    "fraudParticipants": [
+        "FPqwer",
+        "FPasdf"
+    ],
+    "descriptionOfFindings": "Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution.",
+    "descriptionOfCorrectiveActions": "Corrective actions that have been takin",
+    "isCoveredUnderSettlement": true
+}

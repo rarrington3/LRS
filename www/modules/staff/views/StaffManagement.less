@@ -1,0 +1,165 @@
+@import '../../bootstrap/_variables';
+@import '../../../libs/bootstrap/less/mixins/buttons';
+@import '../../shared/_mixins';
+
+:host-context {
+
+    display: block;
+
+    .staff-col-filters {
+        padding-right: 5px;
+    }
+
+    .panel.staff-panel-filters {
+
+        padding-top: 10px;
+        padding-bottom: 20px;
+
+        label {
+            display: block;
+        }
+
+        .panel-heading {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+        .panel-body {
+            border: 1px solid @panel-default-border;
+            margin: 5px 10px;
+            padding: 10px 10px 70px;
+        }
+
+        .staff-search {
+            padding-bottom: 20px;
+        }
+
+        .staff-panel-title-container {
+            display: table;
+
+            > h3 {
+                display: table-cell;
+                width: 100%;
+            }
+
+            > .staff-reset {
+                display: table-cell;
+                white-space: nowrap;
+                color: @gray-light;
+                font-style: italic;
+            }
+        }
+
+        drop-down {
+            display: block;
+            padding-bottom: 15px;
+        }
+    }
+
+    .staff-col-content {
+        padding-left: 0;
+    }
+
+    .panel.staff-panel-content {
+
+        .staff-mngt-type-selection {
+            width: 180px;
+            padding-bottom: 10px;
+        }
+    }
+
+    .panel.staff-panel-reviewers {
+
+        form.staff-form-reviewers {
+            padding: 30px 90px 0 0;
+        }
+    }
+
+    table.staff-table-reviewers {
+
+        .staff-capacity-col {
+            width: 80px;
+        }
+
+        .staff-reports-col, .staff-vetted-col {
+            width: 25%;
+            .header-title {
+                left: 60px;
+            }
+        }
+
+        .staff-check-col {
+            width: 70px;
+            vertical-align: middle;
+        }
+
+        .staff-menu {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        a.glyphicon-calendar {
+            font-size: @font-size-large;
+            margin-right: 5px;
+        }
+
+        .staff-reviewer-available {
+            display: inline-block;
+            margin-right: 10px;
+            margin-left: 10px;
+            background: @brand-success;
+            .round-container(10px);
+        }
+
+        .staff-reviewer-unavailable {
+            display: inline-block;
+            margin-right: 10px;
+            margin-left: 10px;
+            width: 10px;
+            height: 10px;
+            color: @brand-danger;
+        }
+
+        .staff-hud-id {
+            margin-left: 60px;
+        }
+
+        &.selection_reasons {
+            .staff-check-col .header-title {
+                left: -17px;
+            }
+        }
+    }
+
+    table.staff-table-inactive-reviewers {
+
+        .staff-menu {
+            margin-left: 30px;
+        }
+
+        .staff-hud-id {
+            margin-left: 30px;
+        }
+
+        .staff-btn-group-col {
+            width: 30%;
+            text-align: right;
+            padding: 10px 20px;
+
+            button {
+                padding: 6px 24px;
+            }
+        }
+
+    }
+
+    button.staff-add-member-btn {
+        padding: 6px 24px;
+
+        .glyphicon {
+            vertical-align: top;
+            padding: 2px 2px;
+            font-size: 9px;
+        }
+    }
+}

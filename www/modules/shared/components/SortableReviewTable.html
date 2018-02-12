@@ -1,0 +1,48 @@
+<div>
+    <div class="panel-title active-title">
+        <a #elem href=#{{id}} class="lrs-arrow" data-toggle="collapse">
+            <span *ngIf="id" class="caret"></span>{{title}}<span>({{reviewCount()}})</span><span class="filter" *ngIf="dateFilter"> - {{dateFilter}}</span>            <span class="filter" *ngIf="activeFilter"> - {{activeFilter}}</span>
+        </a>
+    </div>
+    <div #elem id={{id}} class="collapse in">
+        <hr>
+
+        <pagination-controls [id]="paginatorId" autoHide="true" (pageChange)="pageNumber = $event"></pagination-controls>
+
+        <!--<div *ngIf="pageCount > 1">
+            <a href="javascript:void(0)" class="btn" [ngClass]="{'disabled': (pageNumber <= 1)}" (click)="pageNumber = pageNumber - 1">Previous</a>
+            Page {{pageNumber}} of {{pageCount}}
+            <a href="javascript:void(0)" class="btn" [ngClass]="{'disabled': (pageNumber >= pageCount)}" (click)="pageNumber = pageNumber + 1">Next</a>
+        </div>-->
+        <table class="table workload-table">
+            <thead>
+            <tr>
+                <th (click)="sortActiveByCategory('caseNumber', false)"><a href="javascript:void(0);" [attr.aria-label]="CaseNumber">Case Number</a></th>
+                <th *ngFor="let category of categories" (click)="sortActiveByCategory(category)"><a href="javascript:void(0);" [attr.aria-label]="category.name">{{category.name}}</a></th>
+                <div *ngIf="findings">
+                    <th *ngFor="let finding of findings" class="defect-header">{{finding}}</th>
+                </div>
+            </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let review of items | paginate: { itemsPerPage: 10, currentPage: pageNumber, id: paginatorId }" [ngClass]="addColor(review)">
+                    <td class="case-id">
+                        <!-- HUDLRS-3689. Temporarily disable the harvey balls and then in post-release we will re-engineer them for better performance. 4/26 -->
+                        <!--<div *ngIf="title==='RESPONSE REQUESTS'" [ngClass]="addHarvey(review)"></div>-->
+                        <button *ngIf="icon==='edit' && allowReassignment(review)" type="button" class="icon edit" (click)="onEditClick(review)" aria-label="Edit">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                        </button>
+                        <a [routerLink]="getRouterLink(review)">{{routerLinkText(review)}}</a></td>
+                    <td *ngFor="let category of categories">
+                        <a *ngIf="category.createLink" [routerLink]="category.createLink(review)">{{getVal(review, category.value, category.isDate)}}</a>
+                        <span *ngIf="!category.createLink">{{getVal(review, category.value, category.isDate)}}</span>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <pagination-controls [id]="paginatorId" autoHide="true" (pageChange)="pageNumber = $event"></pagination-controls>
+
+    </div>
+</div>

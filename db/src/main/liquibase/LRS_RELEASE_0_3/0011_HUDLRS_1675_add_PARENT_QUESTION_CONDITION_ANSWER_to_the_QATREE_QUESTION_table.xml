@@ -1,0 +1,276 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1675_alter_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table qatree_question	add PARENT_QUESTION_CONDITION_ANSWER VARCHAR(16) NULL
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1675_update_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'Y'
+			where question_reference = 'BA.003'
+
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'Y'
+			where question_reference = 'BA.012'		
+
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'Y'
+			where question_reference = 'BC.022'	
+
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = '1,2,3,4,6,8'
+			where question_reference = 'BI.040'	
+
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = '1,2,3,4,8'
+			where question_reference = 'BI.041'				
+			
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'Y'
+			where question_reference = 'BI.042'						
+
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = '1,2,3,4,5,7'
+			where question_reference = 'BI.043'									
+			
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = '4,6,7,8'
+			where question_reference = 'BI.044'
+			
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = '1,2,3,8'
+			where question_reference = 'BI.045'												
+			
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = '4,8'
+			where question_reference = 'BI.046'
+
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = '4,8'
+			where question_reference = 'BI.047'
+			
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = '5,8'
+			where question_reference = 'BI.048'			
+			
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = '5,8'
+			where question_reference = 'BI.049'
+
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = '7,8'
+			where question_reference = 'BI.050'
+			
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = '5,8'
+			where question_reference = 'BI.051'			
+			
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = '5,8'
+			where question_reference = 'BI.052'			
+
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = '5,7,8'
+			where question_reference = 'BI.053'			
+
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = '8'
+			where question_reference = 'BI.054'			
+			
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = '1,2,3,4,5,6,7,8'
+			where question_reference = 'BI.055'			
+			
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = '1,2,3,4,5,6,7,8'
+			where question_reference = 'BI.056'
+
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = '1,2,3,4,5,6,7,8'
+			where question_reference = 'BI.057'
+			
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'Y'
+			where question_reference = 'LA.058'					
+
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'Y'
+			where question_reference = 'LA.060'			
+			
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'Y'
+			where question_reference = 'LA.071'
+			
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'Y'
+			where question_reference = 'LA.New1'
+
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'Y'
+			where question_reference = 'LA.069'	
+
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'Y'
+			where question_reference = 'LP.115'
+			
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'Y'
+			where question_reference = 'LP.115'
+
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'Y'
+			where question_reference = 'ME.086'
+			
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'N'
+			where question_reference = 'ME.088'
+
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'Y'
+			where question_reference = 'ME.254'
+			
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'N'
+			where question_reference = 'PA.164'
+			
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'Y'
+			where question_reference = 'PA.165'
+			
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'N'
+			where question_reference = 'PA.169'
+
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'N'
+			where question_reference = 'PA.172'
+
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'N'
+			where question_reference = 'PA.179'
+			
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'N'
+			where question_reference = 'PA.185'
+			
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'N'
+			where question_reference = 'PA.189'	
+			
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'N'
+			where question_reference = 'PA.192'	
+
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'Y'
+			where question_reference = 'PA.197'		
+
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'Y'
+			where question_reference = 'PA.198'			
+			
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'Y'
+			where question_reference = 'PA.199'
+
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'Y'
+			where question_reference = 'PA.206'
+			
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'Y'
+			where question_reference = 'PA.208'
+			
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'Y'
+			where question_reference = 'PA.211'
+			
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'Y'
+			where question_reference = 'PA.212'
+
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'Y'
+			where question_reference = 'PA.213'	
+
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'Y'
+			where question_reference = 'PE.129'	
+			
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'Y'
+			where question_reference = 'PE.149'			
+			
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'Y'
+			where question_reference = 'PE.149'			
+			
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'Y'
+			where question_reference = 'OL.058'
+			
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'Y'
+			where question_reference = 'OL.059'
+			
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'N'
+			where question_reference = 'OO.060'		
+
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'N'
+			where question_reference = 'OO.014'
+			
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'Y'
+			where question_reference = 'OQ.062'
+			
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'Y'
+			where question_reference = 'OQ.065'
+			
+			update qatree_question
+			set PARENT_QUESTION_CONDITION_ANSWER = 'Y'
+			where question_reference = 'OQ.066'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1675_ALTER_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table dict_metadata_field alter column DB_COLUMN VARCHAR(32)NULL
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1675_insert_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Question Answer Tree Question','Parent Question Condition Answer','PARENT_QUESTION_CONDITION_ANSWER','C20225', getdate(),'STATIC','Parent Question Condition Answer')      
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1675_update_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update qatree_question
+			set parent_question_id = null
+			where question_reference = 'BI.New1'
+		]]>
+        </sql>
+    </changeSet>	
+ </databaseChangeLog>
+
+
+
+
+
+
+
+
+
+

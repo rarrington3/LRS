@@ -1,0 +1,38 @@
+{
+    "id": "http://LRS/ManualSelection",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": [
+        "selectionReason",
+        "selectionSubReason",
+        "reviewType",
+        "reviewLocation",
+        "casesForReviewByLender"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "selectionReason": {
+            "description": "The ID of the Reason these loans have been selected for review.",
+            "type": "string"
+        },
+        "selectionSubReason": {
+            "description": "The ID of the SubReason these loans have been selected for review.",
+            "type": "string"
+        },
+        "reviewType": {
+            "description": "The ID of the Review Type these loans have been selected for.",
+            "type": "string"
+        },
+        "reviewLocation": {
+            "description": "The ID of the Review Location these loans have been selected to be reviewed at.",
+            "type": "string"
+        },
+        "casesForReviewByLender": {
+            "description": "A collection of objects requesting reviews, grouped by lender.",
+            "type": "array",
+            "items": {
+                "$ref": "ReviewRequestByLender"
+            }
+        }
+    }
+}

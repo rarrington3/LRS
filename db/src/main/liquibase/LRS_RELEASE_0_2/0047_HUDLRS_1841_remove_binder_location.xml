@@ -1,0 +1,23 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1841_delete_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from SCORING_MODEL_FACTORS
+			where model_id = '490FC583-86C5-418B-B5C6-3979C9692EDB'
+			and FACTOR_ID = '918F182C-2DFC-4103-AD16-874ED909B0ED'
+		]]>
+        </sql>
+    </changeSet>	
+	
+ </databaseChangeLog>
+
+
+
+
+
+
+
+
+
+

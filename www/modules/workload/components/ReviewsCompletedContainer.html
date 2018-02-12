@@ -1,0 +1,46 @@
+<div class="the-sub-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-9 placeholder">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="review">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="lrs-layout-table">
+                    <td class="lrs-layout-table-cell workload-sidebar left-side-bar">
+                        <div class="lrs-content-panel workload-sidebar-inner">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" [routerLink]="['./myreviews']" routerLinkActive="active" [ngClass]="isActive('/reviews/complete/myreviews')"><a aria-label="Workload">My Reviews</a></li>
+                                <li role="presentation" [routerLink]="['./team']" routerLinkActive="active" [ngClass]="isActive('/reviews/complete/team')"><a aria-label="Team">Team</a></li>
+                                <li role="presentation" [routerLink]="['./batches']" routerLinkActive="active" [ngClass]="isActive('/reviews/complete/batches')"><a aria-label="Team Completed Batches">Batches</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade in" [ngClass]="isActive('/reviews/complete/myreviews')" id="mine-sidebar">
+                                    <cross-filter-view [dimensions]="myReviewDimensions" [dataSource]="workloadProvider.completedReviewsObservable"></cross-filter-view>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade in" [ngClass]="isActive('/reviews/complete/team')" id="team-sidebar">
+                                    <reviews-completed-team-sidebar></reviews-completed-team-sidebar>
+                                </div>
+
+                                <div role="tabpanel" class="tab-pane fade in" [ngClass]="isActive('/reviews/complete/batches')" id="team-completed-batches-sidebar">
+                                    <workload-completed-batches-sidebar></workload-completed-batches-sidebar>
+                                </div>
+
+                            </div>
+                            <disclaimer></disclaimer>
+                        </div>
+                    </td>
+                    <td class="lrs-layout-table-cell content-area">
+                        <div class="lrs-content-panel">
+                            <router-outlet></router-outlet>
+                        </div>
+                    </td>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

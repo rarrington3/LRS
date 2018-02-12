@@ -1,0 +1,124 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2792_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+			<![CDATA[
+			alter table rvw_lvl_case_summary drop constraint RVWLVLCASESUMTORVWTYPREF
+			]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2792_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+			<![CDATA[
+			alter table rvw_lvl_case_summary add REVIEW_TYPE_CD CHAR(1) NULL
+			]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2792_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+			<![CDATA[
+			update a
+			set REVIEW_TYPE_CD = b.REVIEW_TYPE_CD
+			from rvw_lvl_case_summary a,
+			     review_type_ref b
+			where a.review_type_id = b.review_type_id
+			]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2792_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+			<![CDATA[
+			alter table rvw_lvl_case_summary drop column REVIEW_TYPE_ID
+			]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2792_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+			<![CDATA[
+			insert into DICT_METADATA_FIELD
+			(ENTITY_NAME, 
+			FIELD_NAME, 
+			DB_COLUMN, 
+			CREATED_BY, 
+			CREATED_TS,
+			USER_EDITABLE_IND, 
+			UI_CONTROL_TYPE,
+			DISPLAY_ORDER, 
+			DISPLAY_NAME)
+			select ENTITY_NAME, 
+			'Review Type Code', 
+			'REVIEW_TYPE_CD', 
+			'C20225', 
+			getdate(),
+			USER_EDITABLE_IND, 
+			UI_CONTROL_TYPE,
+			DISPLAY_ORDER, 
+			'Review Type Code'
+			from DICT_METADATA_FIELD
+			where ENTITY_NAME = 'Case Summary for Review Level'
+			  and DB_COLUMN = 'REVIEW_TYPE_ID'
+			]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2792_0006" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+			<![CDATA[
+			update dict_metadata_field_condition
+			set comparison_values = 'S,C'
+			where condition_field_name = 'Review Type'
+			]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2792_0007" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+			<![CDATA[
+			ALTER TABLE DICT_METADATA_FIELD_CONDITION NOCHECK CONSTRAINT ALL
+			]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2792_0008" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+			<![CDATA[
+			delete from DICT_METADATA_FIELD_MODEL 
+			where ENTITY_NAME = 'Case Summary for Review Level'
+			and FIELD_NAME = 'Review Type'
+			]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2792_0009" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+			<![CDATA[
+			delete from DICT_METADATA_FIELD
+			where ENTITY_NAME = 'Case Summary for Review Level'
+			and DB_COLUMN = 'REVIEW_TYPE_ID'
+			]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2792_0010" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+			<![CDATA[
+			update DICT_METADATA_FIELD_MODEL 
+			set FIELD_NAME = 'Review Type'
+			where ENTITY_NAME = 'Case Summary for Review Level'
+			and FIELD_NAME = 'Review Type'
+			]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2792_0011" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+			<![CDATA[
+			update DICT_METADATA_FIELD
+			set FIELD_NAME = 'Review Type'
+			where ENTITY_NAME = 'Case Summary for Review Level'
+			and DB_COLUMN = 'REVIEW_TYPE_CD'
+			]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2792_0012" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+			<![CDATA[
+			ALTER TABLE DICT_METADATA_FIELD_CONDITION WITH CHECK CHECK CONSTRAINT ALL
+			]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>

@@ -1,0 +1,65 @@
+#%RAML 0.8
+title: Underwriter Profile API
+version: v1.0
+baseUri: http://localhost:8102/hud-esb/partner/api/v1.0
+securedBy: [oauth_2_0: { scopes: [ "urn:hud:esb:api:partner:get:underwriter:profile" ] } ]
+securitySchemes:
+ - oauth_2_0: !include securitySchemes/oauth_2_0.raml
+mediaType: application/json
+documentation:
+    - title: HUD ESB Underwriter Profile API
+      content: |
+        HUD ESB Underwriter Profile API - Query to get underwriter information using the underwriter ID.
+      
+schemas:
+    - underwriterResults: !include ./schemas/underwriter-results-schema.json
+    - esbException: !include http://nexus2.hhq.hud.dev/content/repositories/releases/gov/hud/ciem/esb-core/schemas/esb-exception-schema/1.0/esb-exception-schema-1.0.json
+    - serviceConsumerData: !include http://nexus2.hhq.hud.dev/content/repositories/releases/gov/hud/ciem/esb-core/schemas/service-consumer-data-schema/1.0/service-consumer-data-schema-1.0.json    
+    #- esbException:  !include ./examples/esb-exception-example.json
+    #- esbException: !include http://nexus/service/local/repositories/releases/content/gov/hud/ciem/esb-core/schemas/esb-exception-schema/1.0/esb-exception-schema-1.0.json
+    #- serviceConsumerData: !include http://nexus/service/local/repositories/releases/content/gov/hud/ciem/esb-core/schemas/service-consumer-data-schema/1.0/service-consumer-data-schema-1.0.json
+
+/underwriter:
+  #/{id}:
+  #    displayName: Query for a specific underwriter by using the underwriter ID
+  #    uriParameters:
+  #      id:
+  #        description: The ID of the specific underwriter
+  #        type: string
+  #        example: 3669
+      get:
+#        securedBy: [oauth_2_0]
+        description: Query for specific underwriter by using the underwriter ID passed in as a query parameter
+        queryParameters:
+          id: 
+            type: string
+            example: 3669
+        responses:
+          200:
+            body:
+              application/json:
+                  schema: underwriterResults
+                  # example: !include ./schemas/underwriter-results-schema.json
+            headers:
+              application/json:
+                  displayName: Audit Header
+                  description: Audit header that should be submitted with each HUD ESB API call
+                  type: string
+                  required: true  # require it by changing this to true
+                  example:  !include http://nexus2.hhq.hud.dev/content/repositories/releases/gov/hud/ciem/esb-core/schemas/service-consumer-data-schema/1.0/service-consumer-data-schema-1.0.json
+                  #example: !include http://nexus/service/local/repositories/releases/content/gov/hud/ciem/esb-core/examples/service-consumer-data-example/1.0/service-consumer-data-example-1.0.json
+                  
+          400:
+            description: Internal Server Error.  Return esbException
+            body:
+              application/json:
+                  schema: esbException
+
+            headers:
+              application/json:
+                  displayName: Audit Header
+                  description: Audit header that should be submitted with each HUD ESB API call
+                  type: string
+                  required: true  # require it by changing this to true
+                  example:  !include http://nexus2.hhq.hud.dev/content/repositories/releases/gov/hud/ciem/esb-core/schemas/service-consumer-data-schema/1.0/service-consumer-data-schema-1.0.json
+                  #example: !include http://nexus/service/local/repositories/releases/content/gov/hud/ciem/esb-core/examples/service-consumer-data-example/1.0/service-consumer-data-example-1.0.json

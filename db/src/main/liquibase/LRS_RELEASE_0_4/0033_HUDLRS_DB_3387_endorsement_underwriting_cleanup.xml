@@ -1,0 +1,867 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3387_001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE dict_metadata_field_condition NOCHECK CONSTRAINT ALL
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3387_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update dict_metadata_field_condition set field_name = 'Assets after Closing' where field_name = 'Assets after Closing at Underwriting'
+			update dict_metadata_field_condition set field_name = 'Back End Ratio' where field_name = 'Back End Ratio at Endorsement'
+			update dict_metadata_field_condition set field_name = 'Back End Ratio' where field_name = 'Back End Ratio at Underwriting'
+			update dict_metadata_field_condition set field_name = 'Borrower Housing Expenses' where field_name = 'Borrower Housing Expenses at Endorsement'
+			update dict_metadata_field_condition set field_name = 'Borrower Housing Expenses' where field_name = 'Borrower Housing Expenses at Underwriting'
+			update dict_metadata_field_condition set field_name = 'Decision Code' where field_name = 'Decision Code at Endorsement'
+			update dict_metadata_field_condition set field_name = 'Decision Code' where field_name = 'Decision Code at Underwriting'
+			update dict_metadata_field_condition set field_name = 'FICO Decision Score' where field_name = 'FICO Decision Score at Endorsement'
+			update dict_metadata_field_condition set field_name = 'FICO Decision Score' where field_name = 'FICO Decision Score at Underwriting'
+			update dict_metadata_field_condition set field_name = 'Front End Ratio' where field_name = 'Front End Ratio at Endorsement'
+			update dict_metadata_field_condition set field_name = 'Front End Ratio' where field_name = 'Front End Ratio at Underwriting'
+			update dict_metadata_field_condition set field_name = 'Total Assets' where field_name = 'Total Assets at Endorsement'
+			update dict_metadata_field_condition set field_name = 'Total Assets' where field_name = 'Total Assets at Underwriting'
+			update dict_metadata_field_condition set field_name = 'Total Closing Costs' where field_name = 'Total Closing Costs at Endorsement'
+			update dict_metadata_field_condition set field_name = 'Total Closing Costs' where field_name = 'Total Closing Costs at Underwriting'
+			update dict_metadata_field_condition set field_name = 'Total Fixed Payment' where field_name = 'Total Fixed Payment at Endorsement'
+			update dict_metadata_field_condition set field_name = 'Total Fixed Payment' where field_name = 'Total Fixed Payment at Underwriting'
+			update dict_metadata_field_condition set field_name = 'Total Monthly Mortgage Payment' where field_name = 'Total Monthly Mortgage Payment at Endorsement'
+			update dict_metadata_field_condition set field_name = 'Total Monthly Mortgage Payment' where field_name = 'Total Monthly Mortgage Payment at Underwriting'	
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3387_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE dict_metadata_field_condition CHECK CONSTRAINT ALL
+		]]>
+        </sql>
+    </changeSet>	
+   <changeSet context="All"  author="astrauss" id="HUDLRS_3387_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE DICT_METADATA_FIELD_DEFECT NOCHECK CONSTRAINT ALL
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3387_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update DICT_METADATA_FIELD_DEFECT set field_name = 'Assets after Closing'             where field_name = 'Assets after Closing at Underwriting'
+			update DICT_METADATA_FIELD_DEFECT set field_name = 'Back End Ratio'                   where field_name = 'Back End Ratio at Endorsement'
+			update DICT_METADATA_FIELD_DEFECT set field_name = 'Borrower Housing Expenses'        where field_name = 'Borrower Housing Expenses at Endorsement'
+			update DICT_METADATA_FIELD_DEFECT set field_name = 'Decision Code'                    where field_name = 'Decision Code at Endorsement'
+			update DICT_METADATA_FIELD_DEFECT set field_name = 'FICO Decision Score'              where field_name = 'FICO Decision Score at Endorsement'
+			update DICT_METADATA_FIELD_DEFECT set field_name = 'Front End Ratio'                  where field_name = 'Front End Ratio at Endorsement'
+			update DICT_METADATA_FIELD_DEFECT set field_name = 'Total Assets'                     where field_name = 'Total Assets at Endorsement'	
+			update DICT_METADATA_FIELD_DEFECT set field_name = 'Total Closing Costs'              where field_name = 'Total Closing Costs at Endorsement'
+			update DICT_METADATA_FIELD_DEFECT set field_name = 'Total Fixed Payment'              where field_name = 'Total Fixed Payment at Endorsement'
+			update DICT_METADATA_FIELD_DEFECT set field_name = 'Total Monthly Mortgage Payment'   where field_name = 'Total Monthly Mortgage Payment at Endorsement'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3387_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from DICT_METADATA_FIELD_DEFECT 
+			where field_name like '% at Underwriting' 
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3387_0006" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE DICT_METADATA_FIELD_DEFECT CHECK CONSTRAINT ALL
+		]]>
+        </sql>
+    </changeSet>		
+   <changeSet context="All"  author="astrauss" id="HUDLRS_3387_0007" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE DICT_METADATA_FIELD_MODEL NOCHECK CONSTRAINT ALL
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3387_0008" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update DICT_METADATA_FIELD_MODEL set field_name = 'Assets after Closing'             where field_name = 'Assets after Closing at Underwriting'
+			update DICT_METADATA_FIELD_MODEL set field_name = 'Back End Ratio'                   where field_name = 'Back End Ratio at Endorsement'
+			update DICT_METADATA_FIELD_MODEL set field_name = 'Borrower Housing Expenses'        where field_name = 'Borrower Housing Expenses at Endorsement'
+			update DICT_METADATA_FIELD_MODEL set field_name = 'Decision Code'                    where field_name = 'Decision Code at Endorsement'
+			update DICT_METADATA_FIELD_MODEL set field_name = 'FICO Decision Score'              where field_name = 'FICO Decision Score at Endorsement'
+			update DICT_METADATA_FIELD_MODEL set field_name = 'Front End Ratio'                  where field_name = 'Front End Ratio at Endorsement'
+			update DICT_METADATA_FIELD_MODEL set field_name = 'Total Assets'                     where field_name = 'Total Assets at Endorsement'	
+			update DICT_METADATA_FIELD_MODEL set field_name = 'Total Closing Costs'              where field_name = 'Total Closing Costs at Endorsement'
+			update DICT_METADATA_FIELD_MODEL set field_name = 'Total Fixed Payment'              where field_name = 'Total Fixed Payment at Endorsement'
+			update DICT_METADATA_FIELD_MODEL set field_name = 'Total Monthly Mortgage Payment'   where field_name = 'Total Monthly Mortgage Payment at Endorsement'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3387_0009" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from DICT_METADATA_FIELD_MODEL 
+			where field_name like '% at Underwriting' 
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3387_0010" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE DICT_METADATA_FIELD_MODEL CHECK CONSTRAINT ALL
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3387_0011" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE DICT_METADATA_FIELD_RELATIVES NOCHECK CONSTRAINT ALL
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3387_0012" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update DICT_METADATA_FIELD_RELATIVES set field_name = 'Assets after Closing' where field_name = 'Assets after Closing at Underwriting'
+			update DICT_METADATA_FIELD_RELATIVES set field_name = 'Back End Ratio' where field_name = 'Back End Ratio at Endorsement'
+			update DICT_METADATA_FIELD_RELATIVES set field_name = 'Back End Ratio' where field_name = 'Back End Ratio at Underwriting'
+			update DICT_METADATA_FIELD_RELATIVES set field_name = 'Borrower Housing Expenses' where field_name = 'Borrower Housing Expenses at Endorsement'
+			update DICT_METADATA_FIELD_RELATIVES set field_name = 'Borrower Housing Expenses' where field_name = 'Borrower Housing Expenses at Underwriting'
+			update DICT_METADATA_FIELD_RELATIVES set field_name = 'Decision Code' where field_name = 'Decision Code at Endorsement'
+			update DICT_METADATA_FIELD_RELATIVES set field_name = 'Decision Code' where field_name = 'Decision Code at Underwriting'
+			update DICT_METADATA_FIELD_RELATIVES set field_name = 'FICO Decision Score' where field_name = 'FICO Decision Score at Endorsement'
+			update DICT_METADATA_FIELD_RELATIVES set field_name = 'FICO Decision Score' where field_name = 'FICO Decision Score at Underwriting'
+			update DICT_METADATA_FIELD_RELATIVES set field_name = 'Front End Ratio' where field_name = 'Front End Ratio at Endorsement'
+			update DICT_METADATA_FIELD_RELATIVES set field_name = 'Front End Ratio' where field_name = 'Front End Ratio at Underwriting'
+			update DICT_METADATA_FIELD_RELATIVES set field_name = 'Total Assets' where field_name = 'Total Assets at Endorsement'
+			update DICT_METADATA_FIELD_RELATIVES set field_name = 'Total Assets' where field_name = 'Total Assets at Underwriting'
+			update DICT_METADATA_FIELD_RELATIVES set field_name = 'Total Closing Costs' where field_name = 'Total Closing Costs at Endorsement'
+			update DICT_METADATA_FIELD_RELATIVES set field_name = 'Total Closing Costs' where field_name = 'Total Closing Costs at Underwriting'
+			update DICT_METADATA_FIELD_RELATIVES set field_name = 'Total Fixed Payment' where field_name = 'Total Fixed Payment at Endorsement'
+			update DICT_METADATA_FIELD_RELATIVES set field_name = 'Total Fixed Payment' where field_name = 'Total Fixed Payment at Underwriting'
+			update DICT_METADATA_FIELD_RELATIVES set field_name = 'Total Monthly Mortgage Payment' where field_name = 'Total Monthly Mortgage Payment at Endorsement'
+			update DICT_METADATA_FIELD_RELATIVES set field_name = 'Total Monthly Mortgage Payment' where field_name = 'Total Monthly Mortgage Payment at Underwriting'	
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3387_0013" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE DICT_METADATA_FIELD_RELATIVES CHECK CONSTRAINT ALL
+		]]>
+        </sql>
+    </changeSet>		
+   <changeSet context="All"  author="astrauss" id="HUDLRS_3387_0014" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE QATREE_QSTN_CAPTURE NOCHECK CONSTRAINT ALL
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3387_0015" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update QATREE_QSTN_CAPTURE set field_name = 'Assets after Closing'             where field_name = 'Assets after Closing at Underwriting'
+			update QATREE_QSTN_CAPTURE set field_name = 'Back End Ratio'                   where field_name = 'Back End Ratio at Endorsement'
+			update QATREE_QSTN_CAPTURE set field_name = 'Borrower Housing Expenses'        where field_name = 'Borrower Housing Expenses at Endorsement'
+			update QATREE_QSTN_CAPTURE set field_name = 'Decision Code'                    where field_name = 'Decision Code at Endorsement'
+			update QATREE_QSTN_CAPTURE set field_name = 'FICO Decision Score'              where field_name = 'FICO Decision Score at Endorsement'
+			update QATREE_QSTN_CAPTURE set field_name = 'Front End Ratio'                  where field_name = 'Front End Ratio at Endorsement'
+			update QATREE_QSTN_CAPTURE set field_name = 'Total Assets'                     where field_name = 'Total Assets at Endorsement'	
+			update QATREE_QSTN_CAPTURE set field_name = 'Total Closing Costs'              where field_name = 'Total Closing Costs at Endorsement'
+			update QATREE_QSTN_CAPTURE set field_name = 'Total Fixed Payment'              where field_name = 'Total Fixed Payment at Endorsement'
+			update QATREE_QSTN_CAPTURE set field_name = 'Total Monthly Mortgage Payment'   where field_name = 'Total Monthly Mortgage Payment at Endorsement'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3387_0016" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from QATREE_QSTN_CAPTURE 
+			where field_name like '% at Underwriting' 
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3387_0017" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE QATREE_QSTN_CAPTURE CHECK CONSTRAINT ALL
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3387_0018" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from dict_metadata_field where entity_name = 'Case Summary for Review Level' and field_name = 'Assets after Closing at Underwriting'
+			delete from dict_metadata_field where entity_name = 'Case Summary for Review Level' and field_name = 'Back End Ratio at Underwriting'
+			delete from dict_metadata_field where entity_name = 'Case Summary for Review Level' and field_name = 'Borrower Housing Expenses at Underwriting'
+			delete from dict_metadata_field where entity_name = 'Case Summary for Review Level' and field_name = 'Decision Code at Underwriting'
+			delete from dict_metadata_field where entity_name = 'Case Summary for Review Level' and field_name = 'FICO Decision Score at Underwriting'
+			delete from dict_metadata_field where entity_name = 'Case Summary for Review Level' and field_name = 'Front End Ratio at Underwriting'
+			delete from dict_metadata_field where entity_name = 'Case Summary for Review Level' and field_name = 'Total Assets at Underwriting'
+			delete from dict_metadata_field where entity_name = 'Case Summary for Review Level' and field_name = 'Total Closing Costs at Underwriting'
+			delete from dict_metadata_field where entity_name = 'Case Summary for Review Level' and field_name = 'Total Fixed Payment at Underwriting'
+			delete from dict_metadata_field where entity_name = 'Case Summary for Review Level' and field_name = 'Total Monthly Mortgage Payment at Underwriting'
+			delete from dict_metadata_field where entity_name = 'Case Summary For Selection'    and field_name = 'Assets After Closing at Underwriting'
+			delete from dict_metadata_field where entity_name = 'Case Summary For Selection'    and field_name = 'Back End Ratio at Underwriting'
+			delete from dict_metadata_field where entity_name = 'Case Summary For Selection'    and field_name = 'Borrower Housing Expenses at Underwriting'
+			delete from dict_metadata_field where entity_name = 'Case Summary For Selection'    and field_name = 'Decision Code at Underwriting'
+			delete from dict_metadata_field where entity_name = 'Case Summary for Selection'    and field_name = 'FICO Decision Score at Underwriting'
+			delete from dict_metadata_field where entity_name = 'Case Summary For Selection'    and field_name = 'Front End Ratio at Underwriting'
+			delete from dict_metadata_field where entity_name = 'Case Summary For Selection'    and field_name = 'Total Assets at Underwriting'
+			delete from dict_metadata_field where entity_name = 'Case Summary For Selection'    and field_name = 'Total Closing Costs at Underwriting'
+			delete from dict_metadata_field where entity_name = 'Case Summary For Selection'    and field_name = 'Total Fixed Payment at Underwriting'
+			delete from dict_metadata_field where entity_name = 'Case Summary For Selection'    and field_name = 'Total Monthly Mortgage Payment at Underwriting'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3387_0019" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[		
+			update dict_metadata_field set field_name = 'Assets after Closing'           where entity_name = 'Case Summary for Review Level' and field_name = 'Assets after Closing at Endorsement'
+			update dict_metadata_field set field_name = 'Back End Ratio'                 where entity_name = 'Case Summary for Review Level' and field_name = 'Back End Ratio at Endorsement'
+			update dict_metadata_field set field_name = 'Borrower Housing Expenses'      where entity_name = 'Case Summary for Review Level' and field_name = 'Borrower Housing Expenses at Endorsement'
+			update dict_metadata_field set field_name = 'Decision Code'                  where entity_name = 'Case Summary for Review Level' and field_name = 'Decision Code at Endorsement'
+			update dict_metadata_field set field_name = 'FICO Decision Score'            where entity_name = 'Case Summary for Review Level' and field_name = 'FICO Decision Score at Endorsement'
+			update dict_metadata_field set field_name = 'Front End Ratio'                where entity_name = 'Case Summary for Review Level' and field_name = 'Front End Ratio at Endorsement'
+			update dict_metadata_field set field_name = 'Total Assets'                   where entity_name = 'Case Summary for Review Level' and field_name = 'Total Assets at Endorsement'
+			update dict_metadata_field set field_name = 'Total Closing Costs'            where entity_name = 'Case Summary for Review Level' and field_name = 'Total Closing Costs at Endorsement'
+			update dict_metadata_field set field_name = 'Total Fixed Payment'            where entity_name = 'Case Summary for Review Level' and field_name = 'Total Fixed Payment at Endorsement'
+			update dict_metadata_field set field_name = 'Total Monthly Mortgage Payment' where entity_name = 'Case Summary for Review Level' and field_name = 'Total Monthly Mortgage Payment at Endorsement'
+			update dict_metadata_field set field_name = 'Assets After Closing'           where entity_name = 'Case Summary For Selection'    and field_name = 'Assets After Closing at Endorsement'
+			update dict_metadata_field set field_name = 'Back End Ratio'                 where entity_name = 'Case Summary For Selection'    and field_name = 'Back End Ratio at Endorsement'
+			update dict_metadata_field set field_name = 'Borrower Housing Expenses'      where entity_name = 'Case Summary For Selection'    and field_name = 'Borrower Housing Expenses at Endorsement'
+			update dict_metadata_field set field_name = 'Decision Code'                  where entity_name = 'Case Summary For Selection'    and field_name = 'Decision Code at Endorsement'
+			update dict_metadata_field set field_name = 'FICO Decision Score'            where entity_name = 'Case Summary for Selection'    and field_name = 'FICO Decision Score at Endorsement'
+			update dict_metadata_field set field_name = 'Front End Ratio'                where entity_name = 'Case Summary For Selection'    and field_name = 'Front End Ratio at Endorsement'
+			update dict_metadata_field set field_name = 'Total Assets'                   where entity_name = 'Case Summary For Selection'    and field_name = 'Total Assets at Endorsement'
+			update dict_metadata_field set field_name = 'Total Closing Costs'            where entity_name = 'Case Summary For Selection'    and field_name = 'Total Closing Costs at Endorsement'
+			update dict_metadata_field set field_name = 'Total Fixed Payment'            where entity_name = 'Case Summary For Selection'    and field_name = 'Total Fixed Payment at Endorsement'
+			update dict_metadata_field set field_name = 'Total Monthly Mortgage Payment' where entity_name = 'Case Summary For Selection'    and field_name = 'Total Monthly Mortgage Payment at Endorsement'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3387_0020" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[		
+			alter table RVW_LVL_CASE_SUMMARY  drop column ASSETS_AFTER_CLOSING_UW
+			alter table RVW_LVL_CASE_SUMMARY  drop column BORR_HSNG_EXP_UW
+			alter table RVW_LVL_CASE_SUMMARY  drop column DCSN_CD_UW
+			alter table RVW_LVL_CASE_SUMMARY  drop column FICO_DECISION_SCORE_UW
+			alter table RVW_LVL_CASE_SUMMARY  drop column RATIO_FIX_TEI_UW
+			alter table RVW_LVL_CASE_SUMMARY  drop column RATIO_TOT_PMT_TO_TOT_INC_UW
+			alter table RVW_LVL_CASE_SUMMARY  drop column TOT_ASSETS_UW
+			alter table RVW_LVL_CASE_SUMMARY  drop column TOT_CLSNG_CSTS_UW
+			alter table RVW_LVL_CASE_SUMMARY  drop column TOT_FIXED_PYMT_UW
+			alter table RVW_LVL_CASE_SUMMARY  drop column TOT_MNTHLY_MTG_PYMT_UW
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3387_0021" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[		
+			alter table AUDIT_RVW_LVL_CASE_SUMMARY  drop column ASSETS_AFTER_CLOSING_UW
+			alter table AUDIT_RVW_LVL_CASE_SUMMARY  drop column BORR_HSNG_EXP_UW
+			alter table AUDIT_RVW_LVL_CASE_SUMMARY  drop column DCSN_CD_UW
+			alter table AUDIT_RVW_LVL_CASE_SUMMARY  drop column FICO_DECISION_SCORE_UW
+			alter table AUDIT_RVW_LVL_CASE_SUMMARY  drop column RATIO_FIX_TEI_UW
+			alter table AUDIT_RVW_LVL_CASE_SUMMARY  drop column RATIO_TOT_PMT_TO_TOT_INC_UW
+			alter table AUDIT_RVW_LVL_CASE_SUMMARY  drop column TOT_ASSETS_UW
+			alter table AUDIT_RVW_LVL_CASE_SUMMARY  drop column TOT_CLSNG_CSTS_UW
+			alter table AUDIT_RVW_LVL_CASE_SUMMARY  drop column TOT_FIXED_PYMT_UW
+			alter table AUDIT_RVW_LVL_CASE_SUMMARY  drop column TOT_MNTHLY_MTG_PYMT_UW
+		]]>
+        </sql>
+    </changeSet>	
+   <changeSet context="All"  author="astrauss" id="HUDLRS_664_0062" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			if exists (select * from sysobjects
+					   where type = 'TR'
+					     and name = 'tI_AUDIT_RVW_LVL_CASE_SUMMARY')
+			    drop trigger tI_AUDIT_RVW_LVL_CASE_SUMMARY
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0063" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+       <createProcedure>
+		<![CDATA[
+			CREATE TRIGGER tI_AUDIT_RVW_LVL_CASE_SUMMARY ON RVW_LVL_CASE_SUMMARY FOR insert AS
+			BEGIN
+				insert into AUDIT_RVW_LVL_CASE_SUMMARY(
+			      REVIEW_LEVEL_ID                          ,
+                  ASSUMED_LOAN_IND                        ,
+                  CASHOUT_REFI_IND                        ,
+                  DISASTER_IND                            ,
+                  GIFT_LTR_AMT                            ,
+                  GIFT_LTR_2_AMT                          ,
+                  GIFT_LTR_SRC                            ,
+                  GIFT_LTR_2_SOURCE                       ,
+                  INVEST_2ND_RESID_IND                    ,
+                  NUM_LIVING_UNITS                        ,
+                  LOAN_PRPS                               ,
+                  RATIO_LOAN_TO_VL_NEW                    ,
+                  LOAN_TYPE                               ,
+                  FCTRY_FBRCT                             ,
+                  MAX_CLAIM_AMT                           ,
+                  CURRENT_AT_ENDORSE_IND                  ,
+                  PD_STRMLN_FLG                           ,
+                  RFNC_CD                                 ,
+                  SOA_CD                                  ,
+                  UNDERWRITING_METHOD                     ,
+                  ENDRS_BYND_60_DAYS_CLOSE_IND            ,
+                  NON_OCCUPYING_BORR_IND                  ,
+                  SALE_PRICE_GTR_ACQ_COST_IND             ,
+                  INSUR_APP_IN_TIME_IND                   ,
+                  CREATED_BY                              ,
+                  UPDATED_BY                              ,
+                  CREATED_TS                              ,
+                  UPDATED_TS                              ,
+                  TOT_ASSETS_ENDRS                        ,
+                  RATIO_FIX_TEI_ENDRS                     ,
+                  BORR_HSNG_EXP_ENDRS                     ,
+                  FICO_DECISION_SCORE_ENDRS               ,
+                  RATIO_TOT_PMT_TO_TOT_INC_ENDRS          ,
+                  TOT_MNTHLY_MTG_PYMT_ENDRS               ,
+                  TOT_CLSNG_CSTS_ENDRS                    ,
+                  DCSN_CD_ENDRS                           ,
+                  TOT_FIXED_PYMT_ENDRS                    ,
+                  MNDTRY_OBLGTNS_AMT                      ,
+                  BNKRPTCY_CHPTR13_IND                    ,
+                  BNKRPTCY_CHPTR7_IND                     ,
+                  GIFT_LTR_TIN                            ,
+                  ORIG_MRTG_AMT                           ,
+                  PRPRTY_APRSL_VL                         ,
+                  SECONDARY_FINANCE_AMT                   ,
+                  CLAIM_TYPE                              ,
+                  MARRIED_TO_NBS_IND                      ,
+                  BORR_1_NAME                             ,
+                  BORR_2_NAME                             ,
+                  BORR_1_SSN                              ,
+                  BORR_2_SSN                              ,
+                  CLSNG_DT                                ,
+                  CONST_CD                                ,
+                  BNKRPTCY_ANY_IND                        ,
+                  SECONDARY_FINANCE_EXISTS_IND            ,
+                  BORR_TYP                                ,
+                  REO_100_DOWN_PMT_PROG_IND               ,
+                  AMORT_TYP_CD                            ,
+                  LOAN_OFFICER                            ,
+                  LOAN_OFFICER_NMLS                       ,
+                  SELLER_CNTRBTN                          ,
+                  SELLER_CNTRBTN_PCNT                     ,
+                  BORR_PAID_CLOSING_COSTS                 ,
+                  BORR_REQD_INVEST_TO_CLOSE               ,
+                  BACK_TO_WORK_IND                        ,
+                  COMBINED_LOAN_TO_VALUE_PCT              ,
+                  ESCROW_AMOUNT                           ,
+                  TOTAL_REQUIRED_FUNDS_TO_CLOSE           ,
+                  HUD_REO_REPAIR_AMT                      ,
+                  MORT_EXCLD_FNCD_MIP                     ,
+                  MAN_UW_STRETCH_RATIO_IND                ,
+                  ORGNTNG_MTGEE_NMLS_ID                   ,
+                  QUALIFIED_MRTG_POINTS_AND_FEES          ,
+                  INT_RT                                  ,
+                  SALES_PRICE                             ,
+                  SPECIAL_PROGRAM                         ,
+                  TOT_MNTHLY_EFF_INCM                     ,
+                  YEAR_BUILT                              ,
+                  EFF_DATE_APRSL_UPDATE                   ,
+                  APPRAISER_NAME                          ,
+                  SITE_TYPE                               ,
+                  PRIOR_SALE_WITHIN_LAST_3YR_IND          ,
+                  DATE_OF_PRIOR_SALE                      ,
+                  PRICE_OF_PRIOR_SALE                     ,
+                  RCV_SALE_DT                             ,
+                  LAST_SERVICING_MRTG_XFER_DT             ,
+                  ARM_INDX_EXPCTD_RT                      ,
+                  TEN_YR_RATE_LOCK_IND                    ,
+                  ADDTNL_10PCT_IPL_USAGE_IND              ,
+                  MANDATORY_OBLIG_BORR_AMT                ,
+                  MANDATORY_OBLIG_LEND_AMT                ,
+                  HECM_COUNSEL_DT                         ,
+                  APPLICATION_DATE                        ,
+                  BORR_BRTH_DT                            ,
+                  EXPECTED_RATE                           ,
+                  HECM_COUNSEL_CERT_NO                    ,
+                  INIT_DISBURSEMENT_LIMIT                 ,
+                  HECM_PRNCPL_LMT                         ,
+                  MAX_RATE                                ,
+                  ORIGINATION_FEE                         ,
+                  PAYMENT_PLAN                            ,
+                  TAXES_INSRNC_FRST_YR_AMT                ,
+                  REPAIR_COMPLETION_DATE                  ,
+                  BORR_1_RENTING_IND                      ,
+                  BORR_1_SELF_EMPL_IND                    ,
+                  BORR_1_FIRST_TIME_BUYER_IND             ,
+                  ARM_IND                                 ,
+                  BLDG_TYP                                ,
+                  BUILDING_ON_OWN_LAND_IND                ,
+                  FLIPPING_CATEGORY_2_IND                 ,
+                  FRCLSR_IND                              ,
+                  DEFAULT_EPISODE_EXISTS_IND              ,
+                  ADP_CODE                                ,
+                  GIFT_LTR_2_TIN                          ,
+                  MISC_AUS_DCSN_CD                        ,
+                  BNKRPTCY_CD                             ,
+                  FRCLSR_STRT_DT                          ,
+                  FT_IN_EPS_3MNTH_DELQ_DT                 ,
+                  LOSSMIT_CD                              ,
+                  OCPNCY_STS_CD                           ,
+                  OLDST_UNPD_DT                           ,
+                  TERM_TYP_CD                             ,
+                  ENDRSMNT_DT                             ,
+                  REFINANCE_IND                           ,
+                  CASE_NUMBER                             ,
+                  PROP_ADDR_1                             ,
+                  PROP_ADDR_2                             ,
+                  PROP_ADDR_CITY                          ,
+                  PROP_ADDR_ZIP                           ,
+                  PROP_ADDR_ST                            ,
+                  BNKRPTCY_DT                             ,
+                  MNFCTRD_HUSNG_IND                       ,
+                  PRODUCT_TYPE_CD                         ,
+                  REVIEW_TYPE_CD                          ,
+                  AUDIT_CREATED_TS                        ,
+                  AUDIT_ACTION_CODE)	
+				select 
+			      REVIEW_LEVEL_ID                          ,
+                  ASSUMED_LOAN_IND                        ,
+                  CASHOUT_REFI_IND                        ,
+                  DISASTER_IND                            ,
+                  GIFT_LTR_AMT                            ,
+                  GIFT_LTR_2_AMT                          ,
+                  GIFT_LTR_SRC                            ,
+                  GIFT_LTR_2_SOURCE                       ,
+                  INVEST_2ND_RESID_IND                    ,
+                  NUM_LIVING_UNITS                        ,
+                  LOAN_PRPS                               ,
+                  RATIO_LOAN_TO_VL_NEW                    ,
+                  LOAN_TYPE                               ,
+                  FCTRY_FBRCT                             ,
+                  MAX_CLAIM_AMT                           ,
+                  CURRENT_AT_ENDORSE_IND                  ,
+                  PD_STRMLN_FLG                           ,
+                  RFNC_CD                                 ,
+                  SOA_CD                                  ,
+                  UNDERWRITING_METHOD                     ,
+                  ENDRS_BYND_60_DAYS_CLOSE_IND            ,
+                  NON_OCCUPYING_BORR_IND                  ,
+                  SALE_PRICE_GTR_ACQ_COST_IND             ,
+                  INSUR_APP_IN_TIME_IND                   ,
+                  CREATED_BY                              ,
+                  UPDATED_BY                              ,
+                  CREATED_TS                              ,
+                  UPDATED_TS                              ,
+                  TOT_ASSETS_ENDRS                        ,
+                  RATIO_FIX_TEI_ENDRS                     ,
+                  BORR_HSNG_EXP_ENDRS                     ,
+                  FICO_DECISION_SCORE_ENDRS               ,
+                  RATIO_TOT_PMT_TO_TOT_INC_ENDRS          ,
+                  TOT_MNTHLY_MTG_PYMT_ENDRS               ,
+                  TOT_CLSNG_CSTS_ENDRS                    ,
+                  DCSN_CD_ENDRS                           ,
+                  TOT_FIXED_PYMT_ENDRS                    ,
+                  MNDTRY_OBLGTNS_AMT                      ,
+                  BNKRPTCY_CHPTR13_IND                    ,
+                  BNKRPTCY_CHPTR7_IND                     ,
+                  GIFT_LTR_TIN                            ,
+                  ORIG_MRTG_AMT                           ,
+                  PRPRTY_APRSL_VL                         ,
+                  SECONDARY_FINANCE_AMT                   ,
+                  CLAIM_TYPE                              ,
+                  MARRIED_TO_NBS_IND                      ,
+                  BORR_1_NAME                             ,
+                  BORR_2_NAME                             ,
+                  BORR_1_SSN                              ,
+                  BORR_2_SSN                              ,
+                  CLSNG_DT                                ,
+                  CONST_CD                                ,
+                  BNKRPTCY_ANY_IND                        ,
+                  SECONDARY_FINANCE_EXISTS_IND            ,
+                  BORR_TYP                                ,
+                  REO_100_DOWN_PMT_PROG_IND               ,
+                  AMORT_TYP_CD                            ,
+                  LOAN_OFFICER                            ,
+                  LOAN_OFFICER_NMLS                       ,
+                  SELLER_CNTRBTN                          ,
+                  SELLER_CNTRBTN_PCNT                     ,
+                  BORR_PAID_CLOSING_COSTS                 ,
+                  BORR_REQD_INVEST_TO_CLOSE               ,
+                  BACK_TO_WORK_IND                        ,
+                  COMBINED_LOAN_TO_VALUE_PCT              ,
+                  ESCROW_AMOUNT                           ,
+                  TOTAL_REQUIRED_FUNDS_TO_CLOSE           ,
+                  HUD_REO_REPAIR_AMT                      ,
+                  MORT_EXCLD_FNCD_MIP                     ,
+                  MAN_UW_STRETCH_RATIO_IND                ,
+                  ORGNTNG_MTGEE_NMLS_ID                   ,
+                  QUALIFIED_MRTG_POINTS_AND_FEES          ,
+                  INT_RT                                  ,
+                  SALES_PRICE                             ,
+                  SPECIAL_PROGRAM                         ,
+                  TOT_MNTHLY_EFF_INCM                     ,
+                  YEAR_BUILT                              ,
+                  EFF_DATE_APRSL_UPDATE                   ,
+                  APPRAISER_NAME                          ,
+                  SITE_TYPE                               ,
+                  PRIOR_SALE_WITHIN_LAST_3YR_IND          ,
+                  DATE_OF_PRIOR_SALE                      ,
+                  PRICE_OF_PRIOR_SALE                     ,
+                  RCV_SALE_DT                             ,
+                  LAST_SERVICING_MRTG_XFER_DT             ,
+                  ARM_INDX_EXPCTD_RT                      ,
+                  TEN_YR_RATE_LOCK_IND                    ,
+                  ADDTNL_10PCT_IPL_USAGE_IND              ,
+                  MANDATORY_OBLIG_BORR_AMT                ,
+                  MANDATORY_OBLIG_LEND_AMT                ,
+                  HECM_COUNSEL_DT                         ,
+                  APPLICATION_DATE                        ,
+                  BORR_BRTH_DT                            ,
+                  EXPECTED_RATE                           ,
+                  HECM_COUNSEL_CERT_NO                    ,
+                  INIT_DISBURSEMENT_LIMIT                 ,
+                  HECM_PRNCPL_LMT                         ,
+                  MAX_RATE                                ,
+                  ORIGINATION_FEE                         ,
+                  PAYMENT_PLAN                            ,
+                  TAXES_INSRNC_FRST_YR_AMT                ,
+                  REPAIR_COMPLETION_DATE                  ,
+                  BORR_1_RENTING_IND                      ,
+                  BORR_1_SELF_EMPL_IND                    ,
+                  BORR_1_FIRST_TIME_BUYER_IND             ,
+                  ARM_IND                                 ,
+                  BLDG_TYP                                ,
+                  BUILDING_ON_OWN_LAND_IND                ,
+                  FLIPPING_CATEGORY_2_IND                 ,
+                  FRCLSR_IND                              ,
+                  DEFAULT_EPISODE_EXISTS_IND              ,
+                  ADP_CODE                                ,
+                  GIFT_LTR_2_TIN                          ,
+                  MISC_AUS_DCSN_CD                        ,
+                  BNKRPTCY_CD                             ,
+                  FRCLSR_STRT_DT                          ,
+                  FT_IN_EPS_3MNTH_DELQ_DT                 ,
+                  LOSSMIT_CD                              ,
+                  OCPNCY_STS_CD                           ,
+                  OLDST_UNPD_DT                           ,
+                  TERM_TYP_CD                             ,
+                  ENDRSMNT_DT                             ,
+                  REFINANCE_IND                           ,
+                  CASE_NUMBER                             ,
+                  PROP_ADDR_1                             ,
+                  PROP_ADDR_2                             ,
+                  PROP_ADDR_CITY                          ,
+                  PROP_ADDR_ZIP                           ,
+                  PROP_ADDR_ST                            ,
+                  BNKRPTCY_DT                             ,
+                  MNFCTRD_HUSNG_IND                       ,
+                  PRODUCT_TYPE_CD                         ,
+                  REVIEW_TYPE_CD                          ,
+				  getdate(),				
+				  'C'				
+				 from inserted
+			END
+
+		]]>
+        </createProcedure>
+    </changeSet>	
+   <changeSet context="All"  author="astrauss" id="HUDLRS_664_0064" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			if exists (select * from sysobjects
+					   where type = 'TR'
+					     and name = 'tU_AUDIT_RVW_LVL_CASE_SUMMARY')
+			    drop trigger tU_AUDIT_RVW_LVL_CASE_SUMMARY
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0065" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+       <createProcedure>
+		<![CDATA[
+			CREATE TRIGGER tU_AUDIT_RVW_LVL_CASE_SUMMARY ON RVW_LVL_CASE_SUMMARY FOR update AS
+			BEGIN
+				insert into AUDIT_RVW_LVL_CASE_SUMMARY(
+			      REVIEW_LEVEL_ID                          ,
+                  ASSUMED_LOAN_IND                        ,
+                  CASHOUT_REFI_IND                        ,
+                  DISASTER_IND                            ,
+                  GIFT_LTR_AMT                            ,
+                  GIFT_LTR_2_AMT                          ,
+                  GIFT_LTR_SRC                            ,
+                  GIFT_LTR_2_SOURCE                       ,
+                  INVEST_2ND_RESID_IND                    ,
+                  NUM_LIVING_UNITS                        ,
+                  LOAN_PRPS                               ,
+                  RATIO_LOAN_TO_VL_NEW                    ,
+                  LOAN_TYPE                               ,
+                  FCTRY_FBRCT                             ,
+                  MAX_CLAIM_AMT                           ,
+                  CURRENT_AT_ENDORSE_IND                  ,
+                  PD_STRMLN_FLG                           ,
+                  RFNC_CD                                 ,
+                  SOA_CD                                  ,
+                  UNDERWRITING_METHOD                     ,
+                  ENDRS_BYND_60_DAYS_CLOSE_IND            ,
+                  NON_OCCUPYING_BORR_IND                  ,
+                  SALE_PRICE_GTR_ACQ_COST_IND             ,
+                  INSUR_APP_IN_TIME_IND                   ,
+                  CREATED_BY                              ,
+                  UPDATED_BY                              ,
+                  CREATED_TS                              ,
+                  UPDATED_TS                              ,
+                  TOT_ASSETS_ENDRS                        ,
+                  RATIO_FIX_TEI_ENDRS                     ,
+                  BORR_HSNG_EXP_ENDRS                     ,
+                  FICO_DECISION_SCORE_ENDRS               ,
+                  RATIO_TOT_PMT_TO_TOT_INC_ENDRS          ,
+                  TOT_MNTHLY_MTG_PYMT_ENDRS               ,
+                  TOT_CLSNG_CSTS_ENDRS                    ,
+                  DCSN_CD_ENDRS                           ,
+                  TOT_FIXED_PYMT_ENDRS                    ,
+                  MNDTRY_OBLGTNS_AMT                      ,
+                  BNKRPTCY_CHPTR13_IND                    ,
+                  BNKRPTCY_CHPTR7_IND                     ,
+                  GIFT_LTR_TIN                            ,
+                  ORIG_MRTG_AMT                           ,
+                  PRPRTY_APRSL_VL                         ,
+                  SECONDARY_FINANCE_AMT                   ,
+                  CLAIM_TYPE                              ,
+                  MARRIED_TO_NBS_IND                      ,
+                  BORR_1_NAME                             ,
+                  BORR_2_NAME                             ,
+                  BORR_1_SSN                              ,
+                  BORR_2_SSN                              ,
+                  CLSNG_DT                                ,
+                  CONST_CD                                ,
+                  BNKRPTCY_ANY_IND                        ,
+                  SECONDARY_FINANCE_EXISTS_IND            ,
+                  BORR_TYP                                ,
+                  REO_100_DOWN_PMT_PROG_IND               ,
+                  AMORT_TYP_CD                            ,
+                  LOAN_OFFICER                            ,
+                  LOAN_OFFICER_NMLS                       ,
+                  SELLER_CNTRBTN                          ,
+                  SELLER_CNTRBTN_PCNT                     ,
+                  BORR_PAID_CLOSING_COSTS                 ,
+                  BORR_REQD_INVEST_TO_CLOSE               ,
+                  BACK_TO_WORK_IND                        ,
+                  COMBINED_LOAN_TO_VALUE_PCT              ,
+                  ESCROW_AMOUNT                           ,
+                  TOTAL_REQUIRED_FUNDS_TO_CLOSE           ,
+                  HUD_REO_REPAIR_AMT                      ,
+                  MORT_EXCLD_FNCD_MIP                     ,
+                  MAN_UW_STRETCH_RATIO_IND                ,
+                  ORGNTNG_MTGEE_NMLS_ID                   ,
+                  QUALIFIED_MRTG_POINTS_AND_FEES          ,
+                  INT_RT                                  ,
+                  SALES_PRICE                             ,
+                  SPECIAL_PROGRAM                         ,
+                  TOT_MNTHLY_EFF_INCM                     ,
+                  YEAR_BUILT                              ,
+                  EFF_DATE_APRSL_UPDATE                   ,
+                  APPRAISER_NAME                          ,
+                  SITE_TYPE                               ,
+                  PRIOR_SALE_WITHIN_LAST_3YR_IND          ,
+                  DATE_OF_PRIOR_SALE                      ,
+                  PRICE_OF_PRIOR_SALE                     ,
+                  RCV_SALE_DT                             ,
+                  LAST_SERVICING_MRTG_XFER_DT             ,
+                  ARM_INDX_EXPCTD_RT                      ,
+                  TEN_YR_RATE_LOCK_IND                    ,
+                  ADDTNL_10PCT_IPL_USAGE_IND              ,
+                  MANDATORY_OBLIG_BORR_AMT                ,
+                  MANDATORY_OBLIG_LEND_AMT                ,
+                  HECM_COUNSEL_DT                         ,
+                  APPLICATION_DATE                        ,
+                  BORR_BRTH_DT                            ,
+                  EXPECTED_RATE                           ,
+                  HECM_COUNSEL_CERT_NO                    ,
+                  INIT_DISBURSEMENT_LIMIT                 ,
+                  HECM_PRNCPL_LMT                         ,
+                  MAX_RATE                                ,
+                  ORIGINATION_FEE                         ,
+                  PAYMENT_PLAN                            ,
+                  TAXES_INSRNC_FRST_YR_AMT                ,
+                  REPAIR_COMPLETION_DATE                  ,
+                  BORR_1_RENTING_IND                      ,
+                  BORR_1_SELF_EMPL_IND                    ,
+                  BORR_1_FIRST_TIME_BUYER_IND             ,
+                  ARM_IND                                 ,
+                  BLDG_TYP                                ,
+                  BUILDING_ON_OWN_LAND_IND                ,
+                  FLIPPING_CATEGORY_2_IND                 ,
+                  FRCLSR_IND                              ,
+                  DEFAULT_EPISODE_EXISTS_IND              ,
+                  ADP_CODE                                ,
+                  GIFT_LTR_2_TIN                          ,
+                  MISC_AUS_DCSN_CD                        ,
+                  BNKRPTCY_CD                             ,
+                  FRCLSR_STRT_DT                          ,
+                  FT_IN_EPS_3MNTH_DELQ_DT                 ,
+                  LOSSMIT_CD                              ,
+                  OCPNCY_STS_CD                           ,
+                  OLDST_UNPD_DT                           ,
+                  TERM_TYP_CD                             ,
+                  ENDRSMNT_DT                             ,
+                  REFINANCE_IND                           ,
+                  CASE_NUMBER                             ,
+                  PROP_ADDR_1                             ,
+                  PROP_ADDR_2                             ,
+                  PROP_ADDR_CITY                          ,
+                  PROP_ADDR_ZIP                           ,
+                  PROP_ADDR_ST                            ,
+                  BNKRPTCY_DT                             ,
+                  MNFCTRD_HUSNG_IND                       ,
+                  PRODUCT_TYPE_CD                         ,
+                  REVIEW_TYPE_CD                          ,
+                  AUDIT_CREATED_TS                        ,
+                  AUDIT_ACTION_CODE)	
+				select 
+			      REVIEW_LEVEL_ID                          ,
+                  ASSUMED_LOAN_IND                        ,
+                  CASHOUT_REFI_IND                        ,
+                  DISASTER_IND                            ,
+                  GIFT_LTR_AMT                            ,
+                  GIFT_LTR_2_AMT                          ,
+                  GIFT_LTR_SRC                            ,
+                  GIFT_LTR_2_SOURCE                       ,
+                  INVEST_2ND_RESID_IND                    ,
+                  NUM_LIVING_UNITS                        ,
+                  LOAN_PRPS                               ,
+                  RATIO_LOAN_TO_VL_NEW                    ,
+                  LOAN_TYPE                               ,
+                  FCTRY_FBRCT                             ,
+                  MAX_CLAIM_AMT                           ,
+                  CURRENT_AT_ENDORSE_IND                  ,
+                  PD_STRMLN_FLG                           ,
+                  RFNC_CD                                 ,
+                  SOA_CD                                  ,
+                  UNDERWRITING_METHOD                     ,
+                  ENDRS_BYND_60_DAYS_CLOSE_IND            ,
+                  NON_OCCUPYING_BORR_IND                  ,
+                  SALE_PRICE_GTR_ACQ_COST_IND             ,
+                  INSUR_APP_IN_TIME_IND                   ,
+                  CREATED_BY                              ,
+                  UPDATED_BY                              ,
+                  CREATED_TS                              ,
+                  UPDATED_TS                              ,
+                  TOT_ASSETS_ENDRS                        ,
+                  RATIO_FIX_TEI_ENDRS                     ,
+                  BORR_HSNG_EXP_ENDRS                     ,
+                  FICO_DECISION_SCORE_ENDRS               ,
+                  RATIO_TOT_PMT_TO_TOT_INC_ENDRS          ,
+                  TOT_MNTHLY_MTG_PYMT_ENDRS               ,
+                  TOT_CLSNG_CSTS_ENDRS                    ,
+                  DCSN_CD_ENDRS                           ,
+                  TOT_FIXED_PYMT_ENDRS                    ,
+                  MNDTRY_OBLGTNS_AMT                      ,
+                  BNKRPTCY_CHPTR13_IND                    ,
+                  BNKRPTCY_CHPTR7_IND                     ,
+                  GIFT_LTR_TIN                            ,
+                  ORIG_MRTG_AMT                           ,
+                  PRPRTY_APRSL_VL                         ,
+                  SECONDARY_FINANCE_AMT                   ,
+                  CLAIM_TYPE                              ,
+                  MARRIED_TO_NBS_IND                      ,
+                  BORR_1_NAME                             ,
+                  BORR_2_NAME                             ,
+                  BORR_1_SSN                              ,
+                  BORR_2_SSN                              ,
+                  CLSNG_DT                                ,
+                  CONST_CD                                ,
+                  BNKRPTCY_ANY_IND                        ,
+                  SECONDARY_FINANCE_EXISTS_IND            ,
+                  BORR_TYP                                ,
+                  REO_100_DOWN_PMT_PROG_IND               ,
+                  AMORT_TYP_CD                            ,
+                  LOAN_OFFICER                            ,
+                  LOAN_OFFICER_NMLS                       ,
+                  SELLER_CNTRBTN                          ,
+                  SELLER_CNTRBTN_PCNT                     ,
+                  BORR_PAID_CLOSING_COSTS                 ,
+                  BORR_REQD_INVEST_TO_CLOSE               ,
+                  BACK_TO_WORK_IND                        ,
+                  COMBINED_LOAN_TO_VALUE_PCT              ,
+                  ESCROW_AMOUNT                           ,
+                  TOTAL_REQUIRED_FUNDS_TO_CLOSE           ,
+                  HUD_REO_REPAIR_AMT                      ,
+                  MORT_EXCLD_FNCD_MIP                     ,
+                  MAN_UW_STRETCH_RATIO_IND                ,
+                  ORGNTNG_MTGEE_NMLS_ID                   ,
+                  QUALIFIED_MRTG_POINTS_AND_FEES          ,
+                  INT_RT                                  ,
+                  SALES_PRICE                             ,
+                  SPECIAL_PROGRAM                         ,
+                  TOT_MNTHLY_EFF_INCM                     ,
+                  YEAR_BUILT                              ,
+                  EFF_DATE_APRSL_UPDATE                   ,
+                  APPRAISER_NAME                          ,
+                  SITE_TYPE                               ,
+                  PRIOR_SALE_WITHIN_LAST_3YR_IND          ,
+                  DATE_OF_PRIOR_SALE                      ,
+                  PRICE_OF_PRIOR_SALE                     ,
+                  RCV_SALE_DT                             ,
+                  LAST_SERVICING_MRTG_XFER_DT             ,
+                  ARM_INDX_EXPCTD_RT                      ,
+                  TEN_YR_RATE_LOCK_IND                    ,
+                  ADDTNL_10PCT_IPL_USAGE_IND              ,
+                  MANDATORY_OBLIG_BORR_AMT                ,
+                  MANDATORY_OBLIG_LEND_AMT                ,
+                  HECM_COUNSEL_DT                         ,
+                  APPLICATION_DATE                        ,
+                  BORR_BRTH_DT                            ,
+                  EXPECTED_RATE                           ,
+                  HECM_COUNSEL_CERT_NO                    ,
+                  INIT_DISBURSEMENT_LIMIT                 ,
+                  HECM_PRNCPL_LMT                         ,
+                  MAX_RATE                                ,
+                  ORIGINATION_FEE                         ,
+                  PAYMENT_PLAN                            ,
+                  TAXES_INSRNC_FRST_YR_AMT                ,
+                  REPAIR_COMPLETION_DATE                  ,
+                  BORR_1_RENTING_IND                      ,
+                  BORR_1_SELF_EMPL_IND                    ,
+                  BORR_1_FIRST_TIME_BUYER_IND             ,
+                  ARM_IND                                 ,
+                  BLDG_TYP                                ,
+                  BUILDING_ON_OWN_LAND_IND                ,
+                  FLIPPING_CATEGORY_2_IND                 ,
+                  FRCLSR_IND                              ,
+                  DEFAULT_EPISODE_EXISTS_IND              ,
+                  ADP_CODE                                ,
+                  GIFT_LTR_2_TIN                          ,
+                  MISC_AUS_DCSN_CD                        ,
+                  BNKRPTCY_CD                             ,
+                  FRCLSR_STRT_DT                          ,
+                  FT_IN_EPS_3MNTH_DELQ_DT                 ,
+                  LOSSMIT_CD                              ,
+                  OCPNCY_STS_CD                           ,
+                  OLDST_UNPD_DT                           ,
+                  TERM_TYP_CD                             ,
+                  ENDRSMNT_DT                             ,
+                  REFINANCE_IND                           ,
+                  CASE_NUMBER                             ,
+                  PROP_ADDR_1                             ,
+                  PROP_ADDR_2                             ,
+                  PROP_ADDR_CITY                          ,
+                  PROP_ADDR_ZIP                           ,
+                  PROP_ADDR_ST                            ,
+                  BNKRPTCY_DT                             ,
+                  MNFCTRD_HUSNG_IND                       ,
+                  PRODUCT_TYPE_CD                         ,
+                  REVIEW_TYPE_CD                          ,
+				  getdate(),				
+				  'U'				
+				 from inserted
+			END
+
+		]]>
+        </createProcedure>
+    </changeSet>		
+</databaseChangeLog>    
+
+

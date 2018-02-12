@@ -1,0 +1,72 @@
+[
+    {
+        "code": "TEST_CASE",
+        "description": "Test Case",
+        "processingCycle": "Manual"
+    },
+    {
+        "code": "FHA_MANUAL",
+        "description": "FHA Manual",
+        "processingCycle": "Manual"
+    },
+    {
+        "code": "LENDER_SELF_REPORT",
+        "description": "Lender Self-Report",
+        "processingCycle": "Manual"
+    },
+    {
+        "code": "OIG_AUDIT",
+        "description": "OIG Audit",
+        "processingCycle": "Manual"
+    },
+    {
+        "code": "OTHER_NON_PERFORMING",
+        "description": "Other Non-Performing (to fill capacity)",
+        "processingCycle": "Monthly"
+    },
+    {
+        "code": "MONTHLY_RISK_THRESHOLD",
+        "description": "Monthly Risk Threshold",
+        "processingCycle": "Monthly"
+    },
+    {
+        "code": "LENDER_INCREASED_SAMPLING",
+        "description": "Lender Increased Sampling",
+        "processingCycle": "Monthly"
+    },
+    {
+        "code": "UNDERWRITER_DECREASED_SAMPLING",
+        "description": "Underwriter Increased Sampling",
+        "processingCycle": "Monthly"
+    },
+    {
+        "code": "MONTHLY_RANDOM",
+        "description": "Monthly Random",
+        "processingCycle": "Monthly"
+    },
+    {
+        "code": "EARLY_CLAIM",
+        "description": "Early Claims",
+        "processingCycle": "Monthly"
+    },
+    {
+        "code": "EARLY_PAYMENT_DEFAULT",
+        "description": "Early Payment Defaults",
+        "processingCycle": "Monthly"
+    },
+    {
+        "code": "NATIONAL_QC",
+        "description": "National QC",
+        "processingCycle": "Nightly"
+    },
+    {
+        "code": "REVIEW_LOCATION_QC",
+        "description": "Review Location QC",
+        "processingCycle": "Nightly"
+    },
+    {
+        "code": "LENDER_MONITORING",
+        "description": "Lender Monitoring",
+        "processingCycle": "Nightly"
+    }
+]

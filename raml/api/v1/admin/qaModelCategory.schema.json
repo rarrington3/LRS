@@ -1,0 +1,22 @@
+{
+    "id": "http://LRS/QaModelCategory",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "properties": {
+        "name": {
+            "description": "The category name.",
+            "type": "string"
+        },
+        "order": {
+            "description": "The order of the category",
+            "type": "number"
+        },
+        "loanAttributes": {
+            "description": "Collection of qa model category loan attributes.",
+            "type": "array",
+            "items": {
+                "$ref": "QaModelLoanAttribute"
+            }
+        }
+    }
+}

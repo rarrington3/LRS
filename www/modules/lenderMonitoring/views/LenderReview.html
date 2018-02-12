@@ -1,0 +1,453 @@
+<div class="lrs-sub-header empty">
+</div>
+<div class="lrs-body container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <form #reviewForm="ngForm" (ngSubmit)="submit()" class="panel panel-default lrs-panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Initiate Lender Monitoring Review</h3>
+                    <span class="small">Create a selection of case reviews based on a particular lender.</span>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <div class="panel panel-default lrs-panel-secondary">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">Review Information</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-group"
+                                         [class.has-error]="reviewLenderId.errors && (reviewLenderId.dirty || reviewLenderId.touched)">
+                                        <label class="control-label small required"
+                                               for="reviewLenderId">
+                                            Requester Lender Id
+                                        </label>
+                                        <input id="reviewLenderId"
+                                               name="reviewLenderId"
+                                               #reviewLenderId="ngModel"
+                                               type="text"
+                                               class="form-control input-sm"
+                                               [(ngModel)]="review.lenderId"
+                                               required>
+                                        <div class="alert alert-danger lrs-alert"
+                                             [display]="reviewLenderId.errors && (reviewLenderId.dirty || reviewLenderId.touched)">
+                                            <div class="small"
+                                                 [hidden]="!(reviewLenderId.errors && reviewLenderId.errors.required)">
+                                                Requester Lender Id is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label small required"
+                                               for="reviewLocation">
+                                            Review Location
+                                        </label>
+                                        <select id="reviewLocation"
+                                                name="reviewLocation"
+                                                #reviewLocationId="ngModel"
+                                                class="form-control input-sm"
+                                                [(ngModel)]="review.locationId"
+                                                (ngModelChange)="loadBatchReviewers()"
+                                                [disabled]="!userIsAdmin"
+                                                required>
+                                            <option value="">Not Assigned</option>
+                                            <option *ngFor="let location of locations" [value]="location.locationId">
+                                                {{location.name}}
+                                            </option>
+                                        </select>
+                                        <div class="alert alert-danger lrs-alert"
+                                             [display]="reviewLocationId.errors && (reviewLocationId.dirty || reviewLocationId.touched)">
+                                            <div class="small"
+                                                 [hidden]="!(reviewLocationId.errors && reviewLocationId.errors.required)">
+                                                Review Location is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label small required"
+                                               for="reviewReviewType">
+                                            Review Type
+                                        </label>
+                                        <select id="reviewReviewType"
+                                                name="reviewReviewType"
+                                                #reviewTypeId="ngModel"
+                                                class="form-control input-sm"
+                                                [(ngModel)]="review.reviewTypeId"
+                                                required>
+                                            <option value="">Not Assigned</option>
+                                            <option *ngFor="let reviewType of reviewTypes"
+                                                    [value]="reviewType.code">
+                                                {{reviewType.description}}
+                                            </option>
+                                        </select>
+                                        <div class="alert alert-danger lrs-alert"
+                                             [display]="reviewTypeId.errors && (reviewTypeId.dirty || reviewTypeId.touched)">
+                                            <div class="small"
+                                                 [hidden]="!(reviewTypeId.errors && reviewTypeId.errors.required)">
+                                                Review Type is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label small required"
+                                               for="reviewLoanDoc">
+                                            File Delivery Location
+                                        </label>
+                                        <select id="reviewLoanDoc"
+                                                name="reviewLoanDoc"
+                                                #requestFromId="ngModel"
+                                                class="form-control input-sm"
+                                                [(ngModel)]="review.requestFromId"
+                                                required>
+                                            <option value="">Not Assigned</option>
+                                            <option *ngFor="let documentLocation of documentLocations"
+                                                    [value]="documentLocation.code">
+                                                {{documentLocation.description}}
+                                            </option>
+                                        </select>
+                                        <div class="alert alert-danger lrs-alert"
+                                             [display]="requestFromId.errors && (requestFromId.dirty || requestFromId.touched)">
+                                            <div class="small"
+                                                 [hidden]="!(requestFromId.errors && requestFromId.errors.required)">
+                                                File Delivery Location is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label small"
+                                               for="reviewVisit">
+                                            Date of Site Visit (optional)
+                                        </label>
+                                        <div class="input-group input-group-sm">
+                                            <input id="reviewVisit"
+                                                   name="reviewVisit"
+                                                   class="form-control input-sm"
+                                                   placeholder="mm-dd-yyyy"
+                                                   data-provide="datepicker"
+                                                   data-date-format="mm-dd-yyyy"
+                                                   data-date-autoclose="true"
+                                                   [(ngModel)]="review.dateOfSiteVisit"
+                                                   [(isOpen)]="review._visitIsOpen">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default btn-sm" type="button"
+                                                        (click)="review._visitIsOpen = true">
+                                                    <span class="glyphicon glyphicon-calendar"
+                                                          aria-hidden="true"></span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <div class="panel panel-default lrs-panel-secondary">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">Sample Request Details</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label class="control-label small required"
+                                               for="reviewLoanType">
+                                            Requested Loan Type
+                                        </label>
+                                        <select id="reviewLoanType"
+                                                name="reviewLoanType"
+                                                #requestLoanTypeId="ngModel"
+                                                class="form-control input-sm"
+                                                [(ngModel)]="review.loanTypeId"
+                                                required>
+                                            <option value="">Not assigned</option>
+                                            <option *ngFor="let loanType of loanTypes" [value]="loanType.code">
+                                                {{loanType.description}}
+                                            </option>
+                                        </select>
+                                        <div class="alert alert-danger lrs-alert"
+                                             [display]="requestLoanTypeId.errors && (requestLoanTypeId.dirty || requestLoanTypeId.touched)">
+                                            <div class="small"
+                                                 [hidden]="!(requestLoanTypeId.errors && requestLoanTypeId.errors.required)">
+                                                Requested Loan Type is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label small required"
+                                               for="reviewCaseCount">
+                                            Desired Case Count
+                                        </label>
+                                        <input id="reviewCaseCount"
+                                               name="reviewCaseCount"
+                                               #requestedCaseCount="ngModel"
+                                               type="number"
+                                               class="form-control input-sm"
+                                               min="0"
+                                               [(ngModel)]="review.caseCount"
+                                               required>
+                                        <div class="alert alert-danger lrs-alert"
+                                             [display]="requestedCaseCount.errors && (requestedCaseCount.dirty || requestedCaseCount.touched)">
+                                            <div class="small"
+                                                 [hidden]="!(requestedCaseCount.errors && requestedCaseCount.errors.required)">
+                                                Desired Case Count is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label small required"
+                                               for="reviewEndorsementStart">
+                                            Requested Endorsement Range Start
+                                        </label>
+                                        <div class="input-group input-group-sm">
+                                            <input id="reviewEndorsementStart"
+                                                   name="reviewEndorsementStart"
+                                                   #reviewStartDate="ngModel"
+                                                   class="form-control input-sm"
+                                                   placeholder="mm-dd-yyyy"
+                                                   data-provide="datepicker"
+                                                   data-date-format="mm-dd-yyyy"
+                                                   data-date-autoclose="true"
+                                                   [(ngModel)]="review.endorsementStartDate"
+                                                   (ngModelChange)="addToRangeEnd()"
+                                                   [(isOpen)]="review._endorsementStartIsOpen"
+                                                   required>
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default btn-sm" type="button"
+                                                        (click)="review._endorsementStartIsOpen = true" [attr.aria-invalid]="reviewStartDate.errors && (reviewStartDate.dirty || reviewStartDate.touched)">
+                                                    <span class="glyphicon glyphicon-calendar"
+                                                          aria-hidden="true"></span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                        <div class="alert alert-danger lrs-alert"
+                                             [display]="reviewStartDate.errors && (reviewStartDate.dirty || reviewStartDate.touched)">
+                                            <div class="small"
+                                                 [hidden]="!(reviewStartDate.errors && reviewStartDate.errors.required)">
+                                                Requested Range Start is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label small required"
+                                               for="reviewEndorsementEnd">
+                                            Requested Endorsement Range End
+                                        </label>
+                                        <div class="input-group input-group-sm">
+                                            <input id="reviewEndorsementEnd"
+                                                   name="reviewEndorsementEnd"
+                                                   #reviewStartDate="ngModel"
+                                                   class="form-control input-sm"
+                                                   placeholder="mm-dd-yyyy"
+                                                   data-provide="datepicker"
+                                                   data-date-format="mm-dd-yyyy"
+                                                   data-date-autoclose="true"
+                                                   [(ngModel)]="review.endorsementEndDate"
+                                                   [(isOpen)]="review._endorsementEndIsOpen"
+                                                   required>
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default btn-sm" type="button"
+                                                        (click)="review._endorsementEndIsOpen = true" [attr.aria-invalid]="reviewStartDate.errors && (reviewStartDate.dirty || reviewStartDate.touched)">
+                                                    <span class="glyphicon glyphicon-calendar"
+                                                          aria-hidden="true"></span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                        <div class="alert alert-danger lrs-alert"
+                                             [display]="reviewStartDate.errors && (reviewStartDate.dirty || reviewStartDate.touched)">
+                                            <div class="small"
+                                                 [hidden]="!(reviewStartDate.errors && reviewStartDate.errors.required)">
+                                                Requested Range End is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="panel panel-default lrs-panel-secondary">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">Batch Information</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <div class="form-group">
+                                                <label class="control-label small"
+                                                       for="reviewSecondaryId">
+                                                    Secondary ID (optional)
+                                                </label>
+                                                <input id="reviewSecondaryId"
+                                                       name="reviewSecondaryId"
+                                                       type="number"
+                                                       class="form-control input-sm"
+                                                       min="0"
+                                                       [(ngModel)]="review.secondaryId">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label small required"
+                                                       for="reviewOpReviewYes">
+                                                    Operational Review
+                                                </label>
+                                                <div>
+                                                    <label class="radio-inline">
+                                                        <input id="reviewOpReviewYes"
+                                                               name="reviewOpReviewYes"
+                                                               type="radio"
+                                                               [value]="true"
+                                                               [(ngModel)]="review.operationalReview">Yes
+                                                    </label>
+                                                    <label class="radio-inline">
+                                                        <input id="reviewOpReviewNo"
+                                                               name="reviewOpReviewNo"
+                                                               type="radio"
+                                                               [value]="false"
+                                                               [(ngModel)]="review.operationalReview">No
+                                                    </label>
+                                                </div>
+                                                <div class="alert alert-danger lrs-alert"
+                                                     [display]="review.operationalReview == null">
+                                                    <div class="small"
+                                                         [hidden]="review.operationalReview !== null">
+                                                        Operational Review is required
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label small"
+                                                       for="reviewOpDocsYes">
+                                                    Request Operational Documents
+                                                </label>
+                                                <div>
+                                                    <label class="radio-inline">
+                                                        <input id="reviewOpDocsYes"
+                                                               name="reviewOpDocsYes"
+                                                               type="radio"
+                                                               [value]="true"
+                                                               [(ngModel)]="review.requestOperationalDocuments"
+                                                               [disabled]="!review.operationalReview">Yes
+                                                    </label>
+                                                    <label class="radio-inline">
+                                                        <input id="reviewOpDocsNo"
+                                                               name="reviewOpDocsNo"
+                                                               type="radio"
+                                                               [value]="false"
+                                                               [(ngModel)]="review.requestOperationalDocuments"
+                                                               [disabled]="!review.operationalReview">No
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label id="reviewGuidanceLabel"
+                                                       class="control-label small"
+                                                       for="reviewGuidance">
+                                                    Operational Review Guidance
+                                                </label>
+                                                <textarea id="reviewGuidance"
+                                                          name="reviewGuidance"
+                                                          class="form-control input-sm"
+                                                          [(ngModel)]="review.operationalReviewGuidance"
+                                                          aria-labelledby="reviewGuidanceLabel"
+                                                          rows="3"
+                                                          [disabled]="!review.operationalReview">
+                                                </textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="form-group">
+                                                <label class="control-label small required"
+                                                       for="reviewBatchOwner">
+                                                    Batch Owner
+                                                </label>
+                                                <select id="reviewBatchOwner"
+                                                        name="reviewBatchOwner"
+                                                        #batchOwner="ngModel"
+                                                        class="form-control input-sm"
+                                                        [(ngModel)]="review.batchOwner"
+                                                        required>
+                                                    <option value="">Not Assigned</option>
+                                                    <option *ngFor="let reviewer of batchOwners"
+                                                            [value]="reviewer.reviewerId">
+                                                        {{reviewer.name}}
+                                                    </option>
+                                                </select>
+                                                <div class="alert alert-danger lrs-alert"
+                                                     [display]="batchOwner.errors && (batchOwner.dirty || batchOwner.touched)">
+                                                    <div class="small"
+                                                         [hidden]="!(batchOwner.errors && batchOwner.errors.required)">
+                                                        Batch Owner is required
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label small required"
+                                                       for="reviewPeopleIds">
+                                                    Batch Team Members
+                                                </label>
+                                                <select id="reviewPeopleIds"
+                                                        name="reviewPeopleIds"
+                                                        #reviewPeople="ngModel"
+                                                        class="form-control input-sm"
+                                                        multiple="multiple"
+                                                        [(ngModel)]="review.batchTeamMembers" required>
+                                                    //@formatter:off
+                                                    <option *ngFor="let reviewer of batchTeamMembers" [value]="reviewer.reviewerId">{{reviewer.name}}</option>
+                                                    //@formatter:on
+                                                </select>
+                                                <div class="alert alert-danger lrs-alert"
+                                                     [display]="reviewPeople.errors && (reviewPeople.dirty || reviewPeople.touched)">
+                                                    <div class="small"
+                                                         [hidden]="!(reviewPeople.errors && reviewPeople.errors.required)">
+                                                        At least one batch team member is required
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <button type="button"
+                            class="btn btn-default"
+                            (click)="cancel()">
+                        Cancel
+                    </button>
+                    <button type="submit"
+                            class="btn btn-primary"
+                            [disabled]="!reviewForm.form.valid">
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<modal [(isOpen)]="lenderReviewConfirmData.isOpen"
+       confirmText="Confirm"
+       [closeOnSave]="false"
+       title="Confirm Submission"
+       (confirmChange)="confirm()"
+       (isOpenChange)="!$event ? resetLenderReviewConfirmData() : null">
+    <div class="modal-inner-body container-fluid">
+        <div class="row review-confirm-info">
+            <div class="col-xs-12">
+                <span class="small">Please review and confirm your selection parameters.</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">
+                <label class="small">Lender ID</label>
+                <p class="small">{{lenderReviewConfirmData.review.lenderId}}</p>
+            </div>
+            <div class="col-xs-4">
+                <label class="small">Requested Loan Type</label>
+                <p class="small">{{lenderReviewConfirmData.loanTypeName}}</p>
+            </div>
+            <div class="col-xs-5">
+                <label class="small">Desired Case Count</label>
+                <p class="small">{{lenderReviewConfirmData.review.caseCount}}</p>
+            </div>
+        </div>
+    </div>
+</modal>

@@ -1,0 +1,54 @@
+@import '../../bootstrap/_variables';
+
+:host-context {
+    /* styles should be scoped under host-context */
+
+    .lrs-panel-primary {
+
+        .panel-body {
+            padding-top: 10px;
+        }
+    }
+
+    .qa-model-title {
+        display: inline;
+    }
+
+    .qa-model-subtitle {
+        display: inline;
+        color: @brand-thirdary;
+        text-transform: uppercase;
+    }
+
+    .defect-area-title {
+        padding-bottom: 10px;
+        text-transform: uppercase;
+    }
+
+    .tab-content {
+        border-left: 1px solid @table-border-color;
+        border-right: 1px solid @table-border-color;
+        border-bottom: 1px solid @table-border-color;
+        padding-top: 20px;
+        padding-bottom: 30px;
+        margin-bottom: 15px;
+    }
+
+    .qa-model-header-table {
+
+        margin-top: -10px;
+
+        th, td {
+            padding-left: 10px;
+        }
+
+        th {
+            font-weight: normal;
+        }
+
+        td {
+            padding-top: 5px;
+            font-weight: bold;
+        }
+    }
+}

@@ -1,0 +1,22 @@
+[
+    {
+        "code": "OOB",
+        "description": "Lender Out of Business"
+    },
+    {
+        "code": "L",
+        "description": "Litigation"
+    },
+    {
+        "code": "S",
+        "description": "Settlement"
+    },
+    {
+        "code": "SE",
+        "description": "Selection Error"
+    },
+    {
+        "code": "O",
+        "description": "Other"
+    }
+]

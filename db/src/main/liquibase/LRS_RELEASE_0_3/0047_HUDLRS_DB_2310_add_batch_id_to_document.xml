@@ -1,0 +1,38 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2310_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table DOCUMENT add BATCH_ID uniqueidentifier null
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2299_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table DOCUMENT alter column REVIEW_ID uniqueidentifier null
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2299_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table DOCUMENT add constraint DOCUMENT_FK_BATCH_ID foreign key (BATCH_ID) references BATCH(BATCH_ID)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_2299_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('LRS Documents','Batch ID','BATCH_ID','C20225',getdate(),'Batch ID')
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="jordanchavez@kpmg.com" id="HUDLRS_2299_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+            ALTER TABLE DOCUMENT ADD CONSTRAINT DOCUMENT_FK_REVIEW_ID FOREIGN KEY(REVIEW_ID) REFERENCES REVIEW(REVIEW_ID)
+		]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>    

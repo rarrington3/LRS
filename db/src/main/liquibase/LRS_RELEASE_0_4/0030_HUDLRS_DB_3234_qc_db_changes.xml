@@ -1,0 +1,13 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="jordanchavez" id="HUDLRS_3234_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+			<![CDATA[
+ALTER TABLE REVIEW ADD QC_OUTCOME_ID UNIQUEIDENTIFIER NULL
+GO
+ALTER TABLE REVIEW ADD CONSTRAINT REVIEW_FK_QC_OUTCOME_ID FOREIGN KEY(QC_OUTCOME_ID) REFERENCES QC_OUTCOME_REF(QC_OUTCOME_ID)
+GO
+			]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,28 @@
+displayName: devlogin
+description: |
+  Enabled only in development builds, this service allows developers and testers to choose from a list of fake users to log in as.  Fake users will have different roles/permissions so that various scenarios can be tested.
+
+get:
+  securedBy: [devMode]
+  description: |
+    Retrieve a list of available user accounts that developers and testers can simulate logging in as
+  responses:
+    200:
+      body:
+        schema: DevLoginCollection
+        example: !include "devlogin-collection.example.json"
+
+post:
+  securedBy: [devMode]
+  description: |
+    Simulate logging in as a specific user
+  body:
+    schema: DevLogin
+    example: !include "devlogin.example.json"
+  responses:
+    201:
+      description: |
+        Simulated login successful.  Response includes a session cookie.  After receiving this response, the user can be navigated to the real LRS UI
+    401:
+      description: |
+        Invalid user

@@ -1,0 +1,97 @@
+<div class="header clearfix">
+	<span class="finding-status-icon" aria-hidden="true" [class.danger]="requireLenderResponse" [class.warning]="(status === 'deficient')">{{finding.selectedTierCode}}</span>
+	<span class="icon-text sr-only" >{{status}}</span>
+	<span class="finding-title">{{finding.defectAreaCode}}.{{finding.selectedSourceCode}}.{{finding.selectedCauseCode}} </span>
+	<span class="finding-title status" *ngIf="status !== 'normal'"> - {{status.toUpperCase()}}</span>
+	<button type="button" class="btn btn-link  btn-sm go-to-response pull-right" (click)="onGotoResponse($event, 'reviewResponse')"><span class="glyphicon glyphicon-play-circle"></span><span class="label">Go to Current Response</span></button>
+</div>
+<ul class="list-group source-cause">
+	<li class="list-group-item"><span class="list-name">Source: </span><span class="list-description">{{findingSourceDescription}}</span></li>
+	<li class="list-group-item"><span class="list-name">Cause: </span><span class="list-description">{{findingCauseDescription}}</span></li>
+</ul>
+
+
+<div class="section-divider"><hr/></div>
+
+<!-- Completed Review Level -->
+<review-level-finding-renderer  *ngFor="let completedLevelData of completedReviewLevelsData" [data]="completedLevelData"></review-level-finding-renderer>
+
+<!-- Current Review Level -->
+<a  name="reviewResponse"></a>
+<div *ngIf="!isReadOnly" class="panel panel-default">
+	<div class="panel-body">
+		<form  #findingForm="ngForm" *ngIf="formActive">
+			<div class="finding-title level-type">{{reviewLevelType}}</div>
+			<ul class="list-group source-cause">
+				<li class="list-group-item"><span class="list-name">Severity: </span><span class="list-description danger">{{selectedTierDescription}}</span></li>
+				<li class="list-group-item"><span class="list-name">Finding Description: </span><span class="list-description comment">{{finding.commentToLender}}</span></li>
+			</ul>
+			<div class="section-divider" *ngIf="requireLenderResponse"><hr/></div>
+			<div *ngIf="requireLenderResponse">
+				<div class="sub-title">LENDER RESPONSE TO FHA</div>
+				<textarea *ngIf="requireLenderResponse" id="#lenderResponse" [attr.disabled]="isReadOnly || null" class="form-control comment" rows="3"  name="lenderResponseComment" [(ngModel)]="finding.lenderResponseComment"></textarea>
+				<div *ngIf="!requireLenderResponse">{{finding.lenderResponseComment}}</div>
+			</div>
+
+            <div class="section-divider" *ngIf="isPostInitial && (finding.ratingCode === 'M' || finding.ratingCode === 'R' || finding.ratingCode === 'C')"><hr/></div>
+
+            <!-- Remediated info in post initial -->
+            <div class="list-description" *ngIf="isPostInitial && (finding.ratingCode === 'R' && finding.reviewerResponseRemediated)">
+				<div class="comment">This finding was marked as remediated by the Reviewer.</div>
+                <div class="comment"><span class="list-name">Remediation Code:</span> <span class="comment">{{finding.reviewerResponseRemediated.remediationTypeCode}}</span></div>
+                <div class="comment"><span class="list-name">Remediation Amount:</span> <span class="comment">{{finding.reviewerResponseRemediated.remediationAmount}}</span></div>
+            </div>
+
+            <!-- Mitigated info in post initial -->
+            <div class="list-description comment" *ngIf="isPostInitial && finding.ratingCode === 'M'">This finding was marked as mitigated by the Reviewer.</div>
+
+			<!-- Conforming finding in post initial -->
+            <div class="list-description comment" *ngIf="isPostInitial && finding.ratingCode === 'C'">This finding was adjusted to conforming by the Reviewer.</div>
+
+			<div *ngIf="requireLenderResponse" class="row">
+				<div class="section-divider"><hr/></div>
+				<div class="col-xs-7">
+					<div class="sub-title">RESPONSE DOCUMENTS</div>
+					<ul class="list-group documents">
+						<li class="list-group-item clearfix"  *ngFor="let document of finding.lenderResponseDocuments">
+							<span class="glyphicon glyphicon-file pull-left" [class.success]="document.documentId" aria-label="Document" title="Document"></span>
+							<span class="list-name document-name pull-left">{{document.fileName}}</span>
+							<button type="button" class="glyphicon glyphicon-trash pull-right trash-btn" [disabled]="!document.documentId" (click)="removeDocument(document)" aria-label="Delete Document" title="Delete Document"></button>
+							<span *ngIf="!document.documentId" class="glyphicon glyphicon-refresh activity pull-right" aria-label="loading" title="Loading"></span>
+							<span *ngIf="document.documentId" class="glyphicon glyphicon-ok-sign pull-right success" aria-label="Document Uploaded" title="Document Uploaded"></span>
+
+						</li>
+					</ul>
+				</div>
+
+				<div class="col-xs-5">
+					<div class="sub-title">SELECT PREVIOUSLY UPLOADED DOCUMENTS</div>
+					<select id="uploadedDocuments" name="uploadedDocuments" [disabled]="isReadOnly" class="form-control input-sm" (ngModelChange)="onSelectChange($event)" [(ngModel)]="selectedUploadedDocumentId">
+						<option value="">None</option>
+						<option *ngFor="let document of reviewDocuments" [value]="document.documentId">{{document.documentType}} - {{document.fileName}}</option>
+					</select>
+				</div>
+			</div>
+			<div class="section-divider"><hr/></div>
+			<div class="footer clearfix">
+				<button *ngIf="requireLenderResponse" type="button" (click)="onSubmit(findingForm)" [disabled]="disableSaveResponse(finding)" class="btn btn-primary pull-right">Save Response</button>
+				<button type="button" (click)="gotoFindingsOverview()" class="btn btn-primary pull-right findings-overview">Findings Overview</button>
+			</div>
+		</form>
+
+		<!-- NOTE: the file upload component has to be defined outside of the form-->
+		<lrs-file-upload *ngIf="formActive && requireLenderResponse" class="file-upload" [dataURL]="postURL"
+						 (onFileAdd)="onFileUploadAdd($event)"
+						 (onFileDone)="onFileUploadDone($event)"
+						 (onFileFail)="onFileUploadFail($event)">
+
+			<!-- Provide a custom upload button and label with an optional icon here -->
+			<button type="button" [disabled]="fileUploadStatus === 'fileuploadadd' || isReadOnly" class="btn btn-primary clear-btn lrs-file-input-button" name="finding-documents">
+				<!--<i class="glyphicon glyphicon-plus"></i>-->
+				<span class="lrs-file-input-button-label">Choose File...</span>
+			</button>
+
+		</lrs-file-upload>
+
+	</div>
+</div>

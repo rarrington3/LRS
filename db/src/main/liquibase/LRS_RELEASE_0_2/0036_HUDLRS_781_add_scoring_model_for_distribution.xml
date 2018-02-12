@@ -1,0 +1,53 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_781_insert_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into SCORING_FACTORS (FACTOR_ID, FACTOR_ATTRIBUTE_NAME, DESCRIPTION) values('5B0A7A9D-1146-4492-98E1-C5F94BD26244','Post Mortem At Different Location Multiplier','Post Mortem At Different Location Multiplier')
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_781_update_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update SCORING_MODEL
+			set DESCRIPTION = 'Case Distribution',
+				ORDER_NUMBER = 16
+			where DESCRIPTION = 'Distribution Scoring'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_781_insert_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into scoring_model_factors(FACTOR_ID, MODEL_ID, MODEL_VER_NUM, weight, CREATED_BY, CREATED_TS) values('918F182C-2DFC-4103-AD16-874ED909B0ED','490FC583-86C5-418B-B5C6-3979C9692EDB',1,750	  ,'C20225',getdate())
+			insert into scoring_model_factors(FACTOR_ID, MODEL_ID, MODEL_VER_NUM, weight, CREATED_BY, CREATED_TS) values('9093DD28-70F4-4449-AB7E-B5C9A1004EEE','490FC583-86C5-418B-B5C6-3979C9692EDB',1,1000  ,'C20225',getdate())
+			insert into scoring_model_factors(FACTOR_ID, MODEL_ID, MODEL_VER_NUM, weight, CREATED_BY, CREATED_TS) values('50E63881-EB58-4A52-93D6-7049435CEB7E','490FC583-86C5-418B-B5C6-3979C9692EDB',1,1000  ,'C20225',getdate())
+			insert into scoring_model_factors(FACTOR_ID, MODEL_ID, MODEL_VER_NUM, weight, CREATED_BY, CREATED_TS) values('D1A42D71-7339-4AA9-9D2A-F4BE9206F16F','490FC583-86C5-418B-B5C6-3979C9692EDB',1,1000  ,'C20225',getdate())
+			insert into scoring_model_factors(FACTOR_ID, MODEL_ID, MODEL_VER_NUM, weight, CREATED_BY, CREATED_TS) values('B88B9282-41E1-4FB1-8B4A-6716D66E9694','490FC583-86C5-418B-B5C6-3979C9692EDB',1,1	  ,'C20225',getdate())
+			insert into scoring_model_factors(FACTOR_ID, MODEL_ID, MODEL_VER_NUM, weight, CREATED_BY, CREATED_TS) values('5B0A7A9D-1146-4492-98E1-C5F94BD26244','490FC583-86C5-418B-B5C6-3979C9692EDB',1,-1000 ,'C20225',getdate())
+			insert into scoring_model_factors(FACTOR_ID, MODEL_ID, MODEL_VER_NUM, weight, CREATED_BY, CREATED_TS) values('0D82D410-CF02-4E06-9775-8A1C3B5BA107','490FC583-86C5-418B-B5C6-3979C9692EDB',1,1000  ,'C20225',getdate())
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_781_update_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update scoring_model_factors
+			set weight = 0
+			where model_id = '490FC583-86C5-418B-B5C6-3979C9692EDB'
+			  and factor_id = '918F182C-2DFC-4103-AD16-874ED909B0ED'
+		]]>
+        </sql>
+    </changeSet>	
+ </databaseChangeLog>
+
+
+
+
+
+
+
+
+
+

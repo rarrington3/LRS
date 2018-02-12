@@ -1,0 +1,26 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="jordanchavez@kpmg.com" id="HUDLRS_2627_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+ALTER TABLE LOAN_SELECTION_CASE_SUMMARY DROP CONSTRAINT LOANSELCASESUMTOPRODTYP
+ALTER TABLE LOAN_SELECTION_CASE_SUMMARY DROP COLUMN PRODUCT_TYPE_ID
+ALTER TABLE RVW_LVL_CASE_SUMMARY DROP CONSTRAINT RVWLVLCASESUMTOPRODTYP
+ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN PRODUCT_TYPE_ID
+GO
+IF (COL_LENGTH('LRSEXTDB..LRS_CASE_RECORD','PROD_TYPE') IS NULL) ALTER TABLE LRSEXTDB..LRS_CASE_RECORD ADD PROD_TYPE VARCHAR(3) NULL
+GO
+UPDATE LRSEXTDB..LRS_CASE_RECORD SET PROD_TYPE = (
+	SELECT CASE WHEN (ABS(CHECKSUM(NEWID())) % 100) <= 75 THEN 'P'
+		ELSE CASE WHEN (ABS(CHECKSUM(NEWID())) % 100) <= 40 THEN 'R'
+			ELSE CASE WHEN (ABS(CHECKSUM(NEWID())) % 100) <= 66 THEN 'RH'
+				ELSE 'H'
+			END
+		END
+	END
+)
+WHERE PROD_TYPE IS NULL
+		]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>    

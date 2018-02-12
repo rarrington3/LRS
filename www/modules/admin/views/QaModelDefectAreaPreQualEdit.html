@@ -1,0 +1,116 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 hr-wrapper">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"
+                           [(ngModel)]="defectArea.enablePreQualifyQuestion"
+                           (ngModelChange)="askForSave()">
+                    Enable Pre-Qualification Question
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="defectArea.enablePreQualifyQuestion">
+        <div class="col-xs-12 hr-wrapper">
+            <hr/>
+        </div>
+    </div>
+    <div class="row" *ngIf="defectArea.enablePreQualifyQuestion">
+        <div class="col-xs-12">
+            <div class="qa-model-title">
+                <h6 aria-hidden="true"><strong>{{defectArea.code}}.{{defectArea.preQualifyQuestion.code}}</strong> - {{defectArea.preQualifyQuestion.description}}</h6>
+            </div>
+            <div class="form-group">
+                <label class="control-label"
+                       for="qaModelPreQualQuestionCode">
+                    Question Code
+                </label>
+                <input id="qaModelPreQualQuestionCode"
+                       name="qaModelPreQualQuestionCode"
+                       type="number"
+                       class="form-control qa-model-question-code"
+                       min="0"
+                       [(ngModel)]="defectArea.preQualifyQuestion.code"
+                       (ngModelChange)="askForSave()"
+                       required>
+            </div>
+            <div class="form-group">
+                <label id="qaModelPreQualQuestionDescLabel"
+                       class="control-label"
+                       for="qaModelPreQualQuestionDesc">
+                    Question Description
+                </label>
+                <textarea id="qaModelPreQualQuestionDesc"
+                          name="qaModelPreQualQuestionDesc"
+                          class="form-control"
+                          [(ngModel)]="defectArea.preQualifyQuestion.description"
+                          (ngModelChange)="askForSave()"
+                          aria-labelledby="qaModelPreQualQuestionDescLabel"
+                          rows="3">
+                </textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="defectArea.enablePreQualifyQuestion">
+        <div class="col-xs-12 hr-wrapper">
+            <hr/>
+        </div>
+    </div>
+    <div class="row" *ngIf="defectArea.enablePreQualifyQuestion">
+        <div class="col-xs-12">
+            <div *ngIf="defectAreaLoading" class="lrs-loading">
+                <span class="glyphicon glyphicon-refresh"
+                      aria-label="loading" title="Loading">
+                </span>
+            </div>
+            <div *ngIf="!defectAreaLoading && !defectArea.preQualifyQuestion.optionsQuestions.length" class="lrs-no-results">
+                <span class="small" aria-label="no results">No results found</span>
+            </div>
+            <table *ngIf="!defectAreaLoading && defectArea.preQualifyQuestion.optionsQuestions.length" class="qa-tree-pre-qual-table">
+                <thead>
+                <tr>
+                    <th class="action-col"></th>
+                    <th class="choice-col">Multiple Choice Options</th>
+                    <th class="questions-col">Included Questions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let optionsQuestion of defectArea.preQualifyQuestion.optionsQuestions">
+                    <td class="action-col">
+                        <button class="btn btn-default"
+                                (click)="remove(defectArea.preQualifyQuestion.optionsQuestions, optionsQuestion)">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        </button>
+                    </td>
+                    <td class="choice-col">
+                        <input type="text"
+                               class="form-control"
+                               [(ngModel)]="optionsQuestion.description"
+                               (ngModelChange)="askForSave()"
+                               required>
+                    </td>
+                    <td class="questions-col">
+                        <select class="form-control input-sm"
+                                multiple="multiple"
+                                [(ngModel)]="optionsQuestion.options"
+                                (ngModelChange)="askForSave()">
+                            //@formatter:off
+                            <option *ngFor="let question of defectArea.questions" [value]="question.questionReference">{{question.questionReference}}</option>
+                            //@formatter:on
+                        </select>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <button class="btn btn-primary qa-model-add-conditional-button"
+                    (click)="add(defectArea.preQualifyQuestion.optionsQuestions, newOptionsQuestion, 'code')">
+                + Add Option
+            </button>
+        </div>
+    </div>
+</div>

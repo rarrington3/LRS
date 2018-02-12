@@ -1,0 +1,4 @@
+<div class="workload-container panel-group">
+     <sortable-table [sortTableIndex]="'0'" [title]="'ACTIVE REVIEWS'" [items]="activeReviews" [categories]="categories"  [id]="'Active'" [reviewRoute]="'../../review'" [postInitialReviewRouteSegment]="{mitigation: 'wrapup', indemnification: 'reviewIndemnification', forcedindemnification: 'reviewIndemnification'}"></sortable-table>
+     <sortable-table [sortTableIndex]="'1'" [title]="'PENDING LENDER RESPONSE'" [items]="pendingReviews" [categories]="lenderCategories" [id]="'Pending'"  [reviewRoute]="'../../review'" [postInitialReviewRouteSegment]="{mitigation: 'wrapup', indemnification: 'reviewIndemnification', forcedindemnification: 'reviewIndemnification'}"></sortable-table>
+</div>

@@ -1,0 +1,34 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2304_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table QA_MODEL_STATUS_REF add MODEL_STATUS_CODE char(1) NULL
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2304_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update QA_MODEL_STATUS_REF
+			set MODEL_STATUS_CODE = 'D'
+			where DESCRIPTION = 'DRAFT'
+
+			update QA_MODEL_STATUS_REF
+			set MODEL_STATUS_CODE = 'R'
+			where DESCRIPTION = 'ARCHIVED'			
+			
+			update QA_MODEL_STATUS_REF
+			set MODEL_STATUS_CODE = 'A'
+			where DESCRIPTION = 'ACTIVE'			
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2304_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table QA_MODEL_STATUS_REF alter column MODEL_STATUS_CODE char(1) NOT NULL
+		]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>    

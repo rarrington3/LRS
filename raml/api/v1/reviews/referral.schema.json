@@ -1,0 +1,20 @@
+{
+  "id": "http://LRS/Referral",
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-03/schema#",
+  "additionalProperties": false,
+  "properties": {
+    "type": {
+      "description": "A type",
+      "type": "string"
+    },
+    "source": {
+      "description": "Source",
+      "type": "string"
+    },
+    "notes": {
+      "description": "Notes",
+      "type": "string"
+    }
+  }
+}

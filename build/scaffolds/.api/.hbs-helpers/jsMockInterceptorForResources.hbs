@@ -1,0 +1,17 @@
+{{#each methods}}
+    {{#if (isMockEnabled this @root) }}
+if( httpMethodName === '{{method}}' && ({{regexpUrl this}}).test(options.url)) {
+    console.log(`[MOCK] ${httpMethodName} ${options.url} has been intercepted`);
+    let response = {{safe (mockResponseForMethod this)}};
+    console.dir([options, Object.keys(response).length ? response : '[Empty response]' ]);
+    let obs = Observable.of(response);
+    if(!window.jasmine) {
+        obs = obs.delay(500);
+    }
+    return obs;
+}
+    {{/if}}
+{{/each}}
+{{#each resources as |res|}}
+{{>jsMockInterceptorForResources res}}
+{{/each}}

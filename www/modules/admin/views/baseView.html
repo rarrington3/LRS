@@ -1,0 +1,62 @@
+<div class="lrs-sub-header empty">
+</div>
+<div id="AdminView">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="lrs-layout-table">
+                    <td class="lrs-layout-table-cell left-side-bar">
+                        <div class="lrs-content-panel">
+                            <div class="menu-heading">Admin Categories</div>
+                            <div id="mainMenu" class="main-menu panel-group" role="tablist" aria-multiselectable="true">
+                                <div *ngFor="let entry of menuItems; let i = index" role="tabpanel"
+                                     class="panel panel-default"
+                                     [class.selected-entry]="activeRoute === entry.route">
+                                    <div class="panel-heading" *ngIf="entry.display">
+                                        <div class="panel-title">
+                                            <a *ngIf="entry.items"
+                                               [attr.data-target]="'#panel' + i"
+                                               [attr.expanded]="i === 0 ? 'true' : 'false'"
+                                               data-toggle="collapse"
+                                               class="small" role="menuitem" data-parent="#mainMenu"
+                                               href="javascript:void(0);">
+                                                 <span class="glyphicon glyphicon-play"
+                                                       [class.selected]="activeRoute === entry.route && entry.items"></span>
+                                                {{entry.label}}
+                                            </a>
+                                            <a *ngIf="!entry.items"
+                                               [routerLink]="entry.route"
+                                               class="small" role="menuitem" data-parent="#mainMenu"
+                                               (click)="select(entry.route)" aria-haspopup="true">
+                                                <span class="glyphicon glyphicon-play"
+                                                      [class.selected]="activeRoute === entry.route && entry.items"></span>
+                                                {{entry.label}}
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="entry.items && entry.display" [id]="'panel' + i" class="panel-collapse collapse"
+                                         [class.in]="i===0"
+                                         role="menu" aria-hidden="true">
+                                        <ul [id]="'panel' + i" class="list-group">
+                                            <li *ngFor="let item of entry.items" class="list-group-item"
+                                                [class.selected-item]="activeRoute === item.route">
+                                                <a [routerLink]="item.route"
+                                                   routerLinkActive="isOpen"
+                                                   role="menuitem"
+                                                   (click)="select(entry.route)">{{item.label}}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <disclaimer></disclaimer>
+                        </div>
+                    </td>
+                    <td class="lrs-layout-table-cell content-area">
+                        <router-outlet></router-outlet>
+                    </td>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

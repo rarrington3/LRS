@@ -1,0 +1,25 @@
+[
+    {
+        "hudId": "H08323",
+        "nameFirst": "Robert",
+        "nameLast": "Levy",
+        "lastUpdated": "2016-07-01T16:20:00Z",
+        "defectAreaCode": "LA",
+        "text": "This is a sample internal note that can be attributed to a defect area, or the review level itself. The lender will NOT see any of these comments and is meant for internal dialog and conversations."
+    },
+    {
+        "hudId": "H01234",
+        "nameFirst": "Joe",
+        "nameLast": "Smith",
+        "lastUpdated": "2016-06-30T08:40:05Z",
+        "defectAreaCode": "BI",
+        "text": "This is another sample of an internal note that was taken when the Borrower Income defect filter was selected. If no filter was selceted, this note would not have been associated with the BI defect."
+    },
+    {
+        "hudId": "H01111",
+        "nameFirst": "Joy",
+        "nameLast": "Hadley",
+        "lastUpdated": "2016-07-11T20:12:11Z",
+        "text": "This is a note that was taken to be associated with the overall review level. Notice no defect area listed. This note was created when the 'All Defect Areas' filter was selected."
+    }
+]

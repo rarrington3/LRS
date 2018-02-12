@@ -1,0 +1,39 @@
+<div *ngIf="field.isEditable" [ngSwitch]="field.type.toLowerCase()">
+    <!--string-->
+    <textarea *ngSwitchCase="'string'" class="form-control input-sm" rows="3" [attr.aria-label]="field.name" [formControl]="form.controls[field.fieldId]"></textarea>
+    <!-- integer-->
+    <input *ngSwitchCase="'integer'" type="number" step="1" class="form-control input-sm" [attr.aria-label]="field.name" [min]="field.minValue"
+        [max]="field.maxValue" [formControl]="form.controls[field.fieldId]">
+    <!-- number-->
+    <input *ngSwitchCase="'number'" type="number" step=".01" class="form-control input-sm" [attr.aria-label]="field.name" [formControl]="form.controls[field.fieldId]">
+    <!-- currency-->
+    <div class="input-group input-sm" *ngSwitchCase="'currency'">
+        <div class="input-group-addon">$</div>
+        <input type="number" class="form-control" step="0.01" [attr.aria-label]="field.name" [min]="field.minValue" [max]="field.maxValue"
+            [formControl]="form.controls[field.fieldId]">
+    </div>
+    <!-- boolean. Radio input-->
+    <div class="input-group input-sm" *ngSwitchCase="'boolean'">
+        <label class="radio-inline">
+            <input type="radio" [name]="field.fieldId" value="Y" [formControl]="form.controls[field.fieldId]">Yes
+        </label>
+
+        <label class="radio-inline">
+            <input type="radio" [name]="field.fieldId" value="N" [formControl]="form.controls[field.fieldId]">No
+        </label>
+    </div>
+    <!-- select-->
+    <select *ngSwitchCase="'select'" class="form-control input-sm" [disabled]="form.controls[field.fieldId].disabled" [formControl]="form.controls[field.fieldId]">
+        <option *ngFor="let value of field.selectChoices"  [value]="value.code">{{value.description}} ({{value.code}})</option>
+    </select>
+    <!-- multiselect-->
+    <select *ngSwitchCase="'multiselect'" multiple="multiple" [disabled]="form.controls[field.fieldId].disabled" class="form-control input-sm"
+        [attr.aria-label]="field.name" [formControl]="form.controls[field.fieldId]">
+        <option *ngFor="let value of field.selectChoices"   [value]="value.code">{{value.description}} ({{value.code}})</option>
+    </select>
+    <!-- date -->
+    <div *ngSwitchCase="'date'" type="text" class="form-control input-sm">
+        <input class="loan-input" placeholder="{{field.value}}" data-provide="datepicker" data-date-format="mm/dd/yyyy" [formControl]="form.controls[field.fieldId]">
+    </div>
+</div>
+<div *ngIf="!field.isEditable" type="text" class="form-control input-sm static">{{field.value}} </div>

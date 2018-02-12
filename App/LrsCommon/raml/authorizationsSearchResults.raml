@@ -1,0 +1,113 @@
+#%RAML 0.8
+title:  HUD-ESB Authorizations Microservice API
+version: v1.0
+#baseUri: http://localhost:8103
+baseUri: http://localhost:8103/hud-esb/security/api/v1.0
+#baseUri: http://localhost:${http.port}/hud-esb/security/api/v1.0
+#baseUri: https://esb-t-lnx-api.hud.dev/hud-esb/security/api/v1.0
+securedBy: [oauth_2_0: { scopes: [ "urn:hud:esb:api:security:get:authorizations" ] } ]
+securitySchemes:
+  - oauth_2_0: !include securitySchemes/oauth_2_0.raml
+
+protocols: [ HTTP ]
+mediaType: application/json
+documentation:
+    - title: HUD-ESB Authorizations Microservice API
+      content: |
+        HUD ESB Authorizations Microservice API - This is a micro-service used to retrieve user authorizations 
+        
+schemas:
+    - authorizationsSearchResults: !include ./schemas/exchange/authorizationsSearchResults.json
+    #- outputExample: !include ./examples/outputExample.json
+    #- esbException: !include http://dvops-d-lnx-git1.eastus2.cloudapp.azure.com/hud-ocio/hud-ciem/raw/master/esb-core/1.0/schemas/esb-exception-schema.json
+    #- serviceConsumerData: !include http://dvops-d-lnx-git1.eastus2.cloudapp.azure.com/hud-ocio/hud-ciem/raw/master/esb-core/1.0/schemas/service-consumer-data-schema.json
+    - esbException: !include http://nexus2.hhq.hud.dev/content/repositories/releases/gov/hud/ciem/esb-core/schemas/esb-exception-schema/1.0/esb-exception-schema-1.0.json
+    - serviceConsumerData: !include http://nexus2.hhq.hud.dev/content/repositories/releases/gov/hud/ciem/esb-core/schemas/service-consumer-data-schema/1.0/service-consumer-data-schema-1.0.json 
+    
+
+/authorizations/{userId}:
+      displayName: Query for a specific user ID
+      uriParameters:
+        userId:
+          description: The ID of the specific user
+          type: string
+          example: M99999
+      get:
+        description: Query for specific user
+        responses:
+          200:
+            description: Success.
+            body:
+              application/json:
+                  schema: authorizationsSearchResults
+                  #example: !include ./schemas/authorizationsSearchResults.json
+            headers:
+              application/json:
+                  displayName: serviceConsumerData
+                  description: Audit header that should be submitted with each HUD ESB API call
+                  type: string
+                  required: true  # require it by changing this to true
+                  #example: !include http://nexus/service/local/repositories/releases/content/gov/hud/ciem/esb-core/examples/service-consumer-data-example/1.0/service-consumer-data-example-1.0.json
+                  #example: serviceConsumerData
+                  example:  !include http://nexus2.hhq.hud.dev/content/repositories/releases/gov/hud/ciem/esb-core/schemas/service-consumer-data-schema/1.0/service-consumer-data-schema-1.0.json
+                 
+          400:
+            description: Bad request - invalid input.
+            body:
+              application/json:
+                  schema: esbException
+          500:
+            description: Internal Server Error.  Return esbException
+            body:
+              application/json:
+                  schema: esbException
+
+
+/authorizations:
+  displayName: query authorizations for a specific user
+  get:
+    description: query user based on application name
+    queryParameters:
+      userId: 
+          type: string
+      applicationName:
+          type: string
+    responses:
+      200:
+        description: Success.
+        body:
+          application/json:
+            schema: authorizationsSearchResults
+            #example: !include ./schemas/authorizationsSearchResults.json
+            #example: !include ./examples/outputExample.json
+            #example: outputExample
+        headers:
+              application/json:
+                  displayName: serviceConsumerData
+                  description: Audit header that should be submitted with each HUD ESB API call
+                  type: string
+                  required: true  # require it by changing this to true
+                  #example: !include http://nexus/service/local/repositories/releases/content/gov/hud/ciem/esb-core/examples/service-consumer-data-example/1.0/service-consumer-data-example-1.0.json
+                  #example: serviceConsumerData
+                  example:  !include http://nexus2.hhq.hud.dev/content/repositories/releases/gov/hud/ciem/esb-core/schemas/service-consumer-data-schema/1.0/service-consumer-data-schema-1.0.json
+ 
+      400:
+            description: Bad request - invalid input.
+            body:
+              application/json:
+                  schema: esbException
+            headers:
+              application/json:
+                  displayName: serviceConsumerData
+                  description: Audit header that should be submitted with each HUD ESB API call
+                  type: string
+                  required: true  # require it by changing this to true
+                  #example: !include http://nexus/service/local/repositories/releases/content/gov/hud/ciem/esb-core/examples/service-consumer-data-example/1.0/service-consumer-data-example-1.0.json
+                  #example: serviceConsumerData
+                  example:  !include http://nexus2.hhq.hud.dev/content/repositories/releases/gov/hud/ciem/esb-core/schemas/service-consumer-data-schema/1.0/service-consumer-data-schema-1.0.json
+                  
+      500:
+            description: Internal Server Error.  Return esbException
+            body:
+              application/json:
+                  schema: esbException

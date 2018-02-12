@@ -1,0 +1,13 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_1816_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update QATREE_QUESTION set PARENT_QUESTION_CONDITION_ANSWER = 'YES' where PARENT_QUESTION_CONDITION_ANSWER = 'Y' or PARENT_QUESTION_CONDITION_ANSWER = 'Yes'
+			update QATREE_QUESTION set PARENT_QUESTION_CONDITION_ANSWER = 'NO' where PARENT_QUESTION_CONDITION_ANSWER = 'N' or PARENT_QUESTION_CONDITION_ANSWER = 'No'
+			update QUESTION_REFERENCE set VALUE_TO_TRIGGER_ACTION = 'YES' where VALUE_TO_TRIGGER_ACTION = 'Yes'
+			update QUESTION_REFERENCE set VALUE_TO_TRIGGER_ACTION = 'NO' where VALUE_TO_TRIGGER_ACTION = 'No'
+		]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>    

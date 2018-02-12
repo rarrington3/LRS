@@ -1,0 +1,64 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_779_insert_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into scoring_factors (factor_id,factor_attribute_name,description) values('72CDA9F8-32A4-4A08-BAA8-DF3287D7D819','Current Review Workload'                     ,'Current Review Workload'                     )
+			insert into scoring_factors (factor_id,factor_attribute_name,description) values('15B02EDB-3A32-4279-99B6-33FCAC4884A9','Is Not Previous Location Multiplier'         ,'Is Not Previous Location Multiplier'         )
+			insert into scoring_factors (factor_id,factor_attribute_name,description) values('D76B5B8D-C02D-43B7-9D24-468BD73EC7C8','Is Not Previous Reviewer Multiplier' 		 , 'Is Not Previous Reviewer Multiplier' 		)
+			insert into scoring_factors (factor_id,factor_attribute_name,description) values('C762B00D-D486-4F61-BEFC-BFAF25A82BE4','Share Community With Previous Multiplier'    ,'Share Community With Previous Multiplier'    )
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_779_update_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update SCORING_FACTORS
+			set FACTOR_ATTRIBUTE_NAME = 'HQ Escalation Multiplier',
+				description = 'HQ Escalation Multiplier'
+			where FACTOR_ID = '90345A25-25E7-492E-89A2-ABD93246C707'
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_779_insert_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into scoring_factors(factor_id,factor_attribute_name,description) values('50C45D08-B61B-4140-9FAF-E583DDE0ABA1','Mitigation 1 Consistency Multiplier','Mitigation 1 Consistency Multiplier')
+			insert into scoring_factors(factor_id,factor_attribute_name,description) values('F0FEED67-5147-4D0D-A237-89BA85F1081B','On Batch Team Multiplier'           ,'On Batch Team Multiplier'           )
+			insert into scoring_factors(factor_id,factor_attribute_name,description) values('97DB58B4-5AA4-44AF-8843-EA1141E2F1CC','QC Reviewer Multiplier'             ,'QC Reviewer Multiplier'             )
+			insert into scoring_factors(factor_id,factor_attribute_name,description) values('27A0C803-4B0B-4929-A2B4-12971C4D5012','Current Workload Multiplier' ,'Current Workload Multiplier' )			
+
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_779_insert_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into scoring_model_factors(FACTOR_ID, MODEL_ID, MODEL_VER_NUM, weight, CREATED_BY, CREATED_TS) values('BE421A55-2D35-432E-B8C6-F0BF768D5FA6','E1DA534E-F26A-494E-8109-B40FDA18AADF',1, 1000  ,'C20225',getdate())
+			insert into scoring_model_factors(FACTOR_ID, MODEL_ID, MODEL_VER_NUM, weight, CREATED_BY, CREATED_TS) values('C265B9D2-D479-41D1-8069-D1FF2A3D84E3','E1DA534E-F26A-494E-8109-B40FDA18AADF',1, 1000  ,'C20225',getdate())
+			insert into scoring_model_factors(FACTOR_ID, MODEL_ID, MODEL_VER_NUM, weight, CREATED_BY, CREATED_TS) values('895D983D-2D71-4695-920F-F967641FD3E6','E1DA534E-F26A-494E-8109-B40FDA18AADF',1, 1000  ,'C20225',getdate())
+			insert into scoring_model_factors(FACTOR_ID, MODEL_ID, MODEL_VER_NUM, weight, CREATED_BY, CREATED_TS) values('7D537411-4A6D-444B-A436-D02536840131','E1DA534E-F26A-494E-8109-B40FDA18AADF',1, 1000  ,'C20225',getdate())
+			insert into scoring_model_factors(FACTOR_ID, MODEL_ID, MODEL_VER_NUM, weight, CREATED_BY, CREATED_TS) values('FCDCB392-AD75-4D19-A089-38E7D4F12D2A','E1DA534E-F26A-494E-8109-B40FDA18AADF',1, 1000  ,'C20225',getdate())
+			insert into scoring_model_factors(FACTOR_ID, MODEL_ID, MODEL_VER_NUM, weight, CREATED_BY, CREATED_TS) values('F9ED8A07-0AC5-477F-8131-06873FE9D658','E1DA534E-F26A-494E-8109-B40FDA18AADF',1, 1000  ,'C20225',getdate())
+			insert into scoring_model_factors(FACTOR_ID, MODEL_ID, MODEL_VER_NUM, weight, CREATED_BY, CREATED_TS) values('27A0C803-4B0B-4929-A2B4-12971C4D5012','E1DA534E-F26A-494E-8109-B40FDA18AADF',1, 1      ,'C20225',getdate())
+			insert into scoring_model_factors(FACTOR_ID, MODEL_ID, MODEL_VER_NUM, weight, CREATED_BY, CREATED_TS) values('90345A25-25E7-492E-89A2-ABD93246C707','E1DA534E-F26A-494E-8109-B40FDA18AADF',1, 1000  ,'C20225',getdate())
+			insert into scoring_model_factors(FACTOR_ID, MODEL_ID, MODEL_VER_NUM, weight, CREATED_BY, CREATED_TS) values('13D80A9E-1694-4B84-AE0A-4DB7ED9DAD58','E1DA534E-F26A-494E-8109-B40FDA18AADF',1, 200    ,'C20225',getdate())
+			insert into scoring_model_factors(FACTOR_ID, MODEL_ID, MODEL_VER_NUM, weight, CREATED_BY, CREATED_TS) values('50C45D08-B61B-4140-9FAF-E583DDE0ABA1','E1DA534E-F26A-494E-8109-B40FDA18AADF',1, 1000  ,'C20225',getdate())
+			insert into scoring_model_factors(FACTOR_ID, MODEL_ID, MODEL_VER_NUM, weight, CREATED_BY, CREATED_TS) values('F0FEED67-5147-4D0D-A237-89BA85F1081B','E1DA534E-F26A-494E-8109-B40FDA18AADF',1, -5000,'C20225',getdate())
+			insert into scoring_model_factors(FACTOR_ID, MODEL_ID, MODEL_VER_NUM, weight, CREATED_BY, CREATED_TS) values('97DB58B4-5AA4-44AF-8843-EA1141E2F1CC','E1DA534E-F26A-494E-8109-B40FDA18AADF',1, -5000,'C20225',getdate())
+			insert into scoring_model_factors(FACTOR_ID, MODEL_ID, MODEL_VER_NUM, weight, CREATED_BY, CREATED_TS) values('CE9DE941-14FF-440E-B369-8FF7470F4252','E1DA534E-F26A-494E-8109-B40FDA18AADF',1, 200    ,'C20225',getdate())
+		]]>
+        </sql>
+    </changeSet>		
+	
+ </databaseChangeLog>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,50 @@
+[
+    {
+        "lender": {
+            "lenderId": "4581160",
+            "name": "BB&T"
+        },
+        "startDate": "2012-11-22",
+        "percentToReview": 10
+    },
+    {
+        "lender": {
+            "lenderId": "20063",
+            "name": "Wells Fargo Bank"
+        },
+        "startDate": "2013-11-01",
+        "percentToReview": 20
+    },
+    {
+        "lender": {
+            "lenderId": "20064",
+            "name": "M&T Bank"
+        },
+        "startDate": "2013-11-03",
+        "percentToReview": 12
+    },
+    {
+        "lender": {
+            "lenderId": "20065",
+            "name": "SunTrust Bank"
+        },
+        "startDate": "2014-01-22",
+        "percentToReview": 30
+    },
+    {
+        "lender": {
+            "lenderId": "20066",
+            "name": "Bank of America, N.A."
+        },
+        "startDate": "2014-03-20",
+        "percentToReview": 25
+    },
+    {
+        "lender": {
+            "lenderId": "20067",
+            "name": "United Bank"
+        },
+        "startDate": "2015-06-19",
+        "percentToReview": 10
+    }
+]

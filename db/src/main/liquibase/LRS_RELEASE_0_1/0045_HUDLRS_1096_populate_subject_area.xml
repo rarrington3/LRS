@@ -1,0 +1,95 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1096_populate_subject_area_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update dict_metadata_field
+			set subject_area = 'Property'
+			where ENTITY_NAME = 'Case Summary for Review Level'
+			and field_name in
+			(
+			'Living Units',
+			'Utilities On At Time of Inspection',
+			'Well Septic Distance Indicator',
+			'Non-FHA Property Owned Less 12 Months',
+			'Year Built',
+			'Site Type',
+			'Borrower Housing Expense',
+			'Manufactured Housing Indicator',
+			'Property Address 1',
+			'Property Address 2',
+			'Property Address City',
+			'Property Address Zip Code',
+			'Property Address State'
+			)
+
+			update dict_metadata_field
+			set subject_area = 'Borrower'
+			where ENTITY_NAME = 'Case Summary for Review Level'
+			and field_name in
+			(
+			'Married to NBS Indicator',
+			'Bankruptcy Indicator',
+			'Borrower Birth Date',
+			'Borrower 1 Renting Indicator',
+			'Borrower 2 Renting Indicator',
+			'Borrower 1 Self Employed Indicator',
+			'Borrower 2 Self Employed Indicator',
+			'Borrower 1 First Time Homebuyer Indicator',
+			'Borrower 2 First Time Homebuyer Indicator',
+			'Borrower 1 Years at Current Job',
+			'Borrower 2 Years at Current Job',
+			'Bankruptcy Code',
+			'Renting',
+			'Total Children',
+			'Total Number of Applicants',
+			'Applicable Income Sources',
+			'Guardian or Conservator')
+
+			update dict_metadata_field
+			set subject_area = 'Mortgagee'
+			where ENTITY_NAME = 'Case Summary for Review Level'
+			and field_name = 'Loan Officer Name'
+
+			update dict_metadata_field
+			set subject_area = 'Appraisal'
+			where ENTITY_NAME = 'Case Summary for Review Level'
+			and field_name in
+			(
+			'Effective Date of Appraisal' ,
+			'Effective Date of Appraisal Update'
+			)
+
+			update dict_metadata_field
+			set subject_area = 'Lender'
+			where ENTITY_NAME = 'Case Summary for Review Level'
+			and field_name in
+			(
+			'Holder Transfer Indicator' ,
+			'Lender Performs Origination'
+			)
+
+			update dict_metadata_field
+			set subject_area = 'Servicing'
+			where ENTITY_NAME = 'Case Summary for Review Level'
+			and field_name in
+			(
+			'Default Reason Code',
+			'Default Status Code',
+			'Default 90 Day Indicator',
+			'loss mitigation code',
+			'Default status code at end of episode',
+			'Delinquent Status',
+			'Last Servicing Mortgagee Transfer Date',
+			'Default Episode Exists',
+			'Servicer Transfer Indicator')
+
+			update DICT_METADATA_FIELD
+			set SUBJECT_AREA = 'Basic Loan'
+			where ENTITY_NAME = 'Case Summary for Review Level'
+			  and SUBJECT_AREA = 'UNKNOWN'
+		]]>
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

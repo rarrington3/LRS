@@ -1,0 +1,100 @@
+{
+    "id": "http://LRS/Reviewer",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": [
+        "reviewerId",
+        "hudId",
+        "nameFirst",
+        "nameLast",
+        "totalCapacity",
+        "remainingCapacity",
+        "locationId",
+        "reportsTo",
+        "vettedBy",
+        "statusCode",
+        "unavailabilities",
+        "reviewLevels",
+        "reviewTypes",
+        "productTypes",
+        "selectionReasons"
+    ],
+    "additionalProperties": true,
+    "properties": {
+        "reviewerId": {
+            "description": "The identifier of the object",
+            "type": "string"
+        },
+        "hudId": {
+            "description": "The login identifier of the reviewer; the user's HID.",
+            "type": "string"
+        },
+        "nameFirst": {
+            "description": "The forename of the reviewer.",
+            "type": "string"
+        },
+        "nameLast": {
+            "description": "The family name of the reviewer.",
+            "type": "string"
+        },
+        "totalCapacity": {
+            "description": "The total number of reviews the reviewer can have assigned to them.",
+            "type": "integer"
+        },
+        "remainingCapacity": {
+            "description": "The remaining number of reviews the reviewer can have assigned to them.",
+            "type": "integer"
+        },
+        "locationId": {
+            "description": "The ID of the geographical location where the reviewer does the review.",
+            "type": "string"
+        },
+        "reportsTo": {
+            "description": "The ID of the person who the reviewer reports to.",
+            "type": "string"
+        },
+        "vettedBy": {
+            "description": "The ID of the person who the reviewer's reviews are vetted by.",
+            "type": "string"
+        },
+        "statusCode": {
+            "description": "Status of the user; whether they are active (A), inactive (I), or terminated (T).",
+            "type": "string"
+        },
+        "unavailabilities": {
+            "description": "An array of date ranges when the reviewer is giong to be unavailable.",
+            "type": "array",
+            "items": {
+                "$ref": "ReviewerUnavailability"
+            }
+        },
+        "reviewLevels": {
+            "description": "An array of IDs for different review levels this reviewer can review.",
+            "type": "array",
+            "items": {
+                "$ref": "ReviewerAssignmentType"
+            }
+        },
+        "reviewTypes": {
+            "description": "An array of IDs for different review types this reviewer can review.",
+            "type": "array",
+            "items": {
+                "$ref": "ReviewerAssignmentType"
+            }
+        },
+        "productTypes": {
+            "description": "An array of IDs for different product types this reviewer can review.",
+            "type": "array",
+            "items": {
+                "$ref": "ReviewerAssignmentType"
+            }
+        },
+        "selectionReasons": {
+            "description": "An array of IDs for different selection reasons this reviewer can review.",
+            "type": "array",
+            "items": {
+                "$ref": "ReviewerAssignmentType"
+            }
+        }
+    }
+}

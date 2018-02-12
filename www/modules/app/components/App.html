@@ -1,0 +1,21 @@
+<header id="GlobalHeader">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-1 title h4" (click)="showVersionInfo()"><span class="glyphicon glyphicon-star"></span>LRS</div>
+            <div class="col-xs-8">
+                <nav id="GlobalHeaderNav">
+                    <a *ngFor="let item of mainLinks" class="header-nav aut-{{_.kebabCase(item.name)}}" [routerLink]="item.link" [routerLinkActive]="['currentTab']"> {{item.name}} </a>
+                </nav>
+            </div>
+            <div class="col-xs-3 user-info" *ngIf="userSvc && userSvc.firstName">
+                <span class="glyphicon glyphicon-user"></span>
+                <span>Signed in as <span class="name">{{userSvc.firstName}} {{userSvc.lastName}}</span></span>
+            </div>
+        </div>
+    </div>
+</header>
+<main>
+    <router-outlet></router-outlet>
+</main>
+<modal-outlet></modal-outlet>
+<save-bar-outlet></save-bar-outlet>

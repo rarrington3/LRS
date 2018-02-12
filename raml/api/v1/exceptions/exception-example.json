@@ -1,0 +1,25 @@
+{
+    "exceptionId": "123",
+    "caseNumber": "351-3576307",
+    "borrowerName": "Robinson, Lawrence",
+    "lenderName": "American Federal Savings",
+    "selectionReasonCode": "SRasdf",
+    "selectionReason": "Risk/Random",
+    "riskScore": 67,
+    "exceptionTypeCode": "ASSIGNMENT",
+    "exceptionType": "Assignment",
+    "daysOnList": 3,
+    "reviewId": "F7F2B500-A743-40DA-9400-F490F751B21E",
+    "currentReviewLevel": {
+        "reviewLevelId": "d2f957de-83e8-45a6-a384-458603727fc7",
+        "type": "Initial",
+        "status": "Initial",
+        "reviewerDateAssigned": "2016-07-20",
+        "reviewerDateDue": "2016-07-28",
+        "reviewLocationName": "Denver QAD",
+        "dateRequestSentToLender": "2016-07-20",
+        "dateResponseDueFromLender": "2016-07-28"
+    },
+    "loanType": "Reverse (HECM)",
+    "reviewLocationId": "33e54129-ec1e-4cc6-b423-19f7ad1e70f1"
+}

@@ -1,0 +1,81 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2299_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create table BINDER_DELIVERY_LOCATION_REF
+			(BINDER_DELIVERY_LOCATION_ID uniqueidentifier not null default newid(),
+			 CODE varchar(16) not null,
+			 DESCRIPTION varchar(50) not null)
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2299_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table BINDER_DELIVERY_LOCATION_REF add constraint BINDER_DELIVERY_LOCATION_REF_PK primary key (BINDER_DELIVERY_LOCATION_ID)
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2299_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table REVIEW_LOCATION add BINDER_DELIVERY_LOCATION_ID uniqueidentifier NULL
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2299_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table REVIEW_LOCATION add constraint REVIEW_LOCATION_FK_BINDER_DELIVERY_LOCATION_ID foreign key (BINDER_DELIVERY_LOCATION_ID) references BINDER_DELIVERY_LOCATION_REF(BINDER_DELIVERY_LOCATION_ID)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_2299_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_ENTITY(ENTITY_NAME, DB_VIEW_OR_TABLE, CREATED_BY,CREATED_TS) values('Binder Delivery Location Reference', 'BINDER_DELIVERY_LOCATION_REF','C20225',getdate())		
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Binder Delivery Location Reference','Binder Delivery Location ID','BINDER_DELIVERY_LOCATION_ID','C20225',getdate(),'Binder Delivery Location ID')
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Binder Delivery Location Reference','Code','CODE','C20225',getdate(),'Code')
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Binder Delivery Location Reference','Description Cause ID','DESCRIPTION','C20225',getdate(),'Description')			
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Review Location','Binder Delivery Location ID','BINDER_DELIVERY_LOCATION_ID','C20225',getdate(),'Binder Delivery Location ID')
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2299_0006" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into BINDER_DELIVERY_LOCATION_REF(BINDER_DELIVERY_LOCATION_ID,CODE,DESCRIPTION) values('00D15B73-3A98-46E0-AF35-31C2752F88A1','9901', 'Headquarters')
+			insert into BINDER_DELIVERY_LOCATION_REF(BINDER_DELIVERY_LOCATION_ID,CODE,DESCRIPTION) values('451A142D-AFB3-4962-8B14-D4C5D116EDFA','0406', 'Atlanta')
+			insert into BINDER_DELIVERY_LOCATION_REF(BINDER_DELIVERY_LOCATION_ID,CODE,DESCRIPTION) values('5F5F30DF-70B8-487E-9231-BE8DE13EB0C0','0326', 'Philadelphia')
+			insert into BINDER_DELIVERY_LOCATION_REF(BINDER_DELIVERY_LOCATION_ID,CODE,DESCRIPTION) values('38AE36D3-CFF1-47FF-8FC5-CFBFBE9AD03F','0806', 'Denver')			
+			insert into BINDER_DELIVERY_LOCATION_REF(BINDER_DELIVERY_LOCATION_ID,CODE,DESCRIPTION) values('B554BCBA-DCFD-4A7D-9B40-3C1F8B8BF61A','0943', 'Santa Ana')						
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2299_0007" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update review_location
+			set BINDER_DELIVERY_LOCATION_ID = '00D15B73-3A98-46E0-AF35-31C2752F88A1'
+			where location_name = 'HQ'
+
+			update review_location
+			set BINDER_DELIVERY_LOCATION_ID = '38AE36D3-CFF1-47FF-8FC5-CFBFBE9AD03F'
+			where location_name in ('DEN-PUD','DEN-QAD')
+			
+			update review_location
+			set BINDER_DELIVERY_LOCATION_ID = '451A142D-AFB3-4962-8B14-D4C5D116EDFA'
+			where location_name in ('ATL-PUD','ATL-QAD')			
+			
+			update review_location
+			set BINDER_DELIVERY_LOCATION_ID = 'B554BCBA-DCFD-4A7D-9B40-3C1F8B8BF61A'
+			where location_name in ('SNA-PUD','SNA-QAD')						
+
+			update review_location
+			set BINDER_DELIVERY_LOCATION_ID = '5F5F30DF-70B8-487E-9231-BE8DE13EB0C0'
+			where location_name in ('PHI-PUD','PHI-QAD')									
+		]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>    

@@ -1,0 +1,26 @@
+[
+    {
+        "code": "SSRqwer",
+        "description": "Internal – Appraisal"
+    },
+    {
+        "code": "SSRasdf",
+        "description": "Internal – Endorsement"
+    },
+    {
+        "code": "SSRzxcv",
+        "description": "Internal – Other"
+    },
+    {
+        "code": "SSRtyui",
+        "description": "External – Borrower"
+    },
+    {
+        "code": "SSRwert",
+        "description": "External – Industry"
+    },
+    {
+        "code": "SSRsdfg",
+        "description": "External – Other"
+    }
+]

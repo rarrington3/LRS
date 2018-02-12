@@ -1,0 +1,11 @@
+<suite name="LRS suite">
+  <listeners>
+       <listener class-name="gov.hud.lrs.LRSAutomation.listener.ExtentReporterNG" />
+  </listeners>
+  <test name = "Demo Test" allow-return-values="true">
+      <classes>
+          <class name="gov.hud.lrs.LRSAutomation.TestCase1"></class>
+          <class name="gov.hud.lrs.LRSAutomation.TestCase2"></class>
+      </classes>
+  </test>    
+</suite>

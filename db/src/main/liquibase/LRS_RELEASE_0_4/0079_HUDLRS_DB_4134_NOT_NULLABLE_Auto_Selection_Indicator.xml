@@ -1,0 +1,21 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+	<changeSet context="All"  author="Wes McAfee" id="HUDLRS_4134_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<sql>
+			<![CDATA[
+			alter table job alter column AUTO_SELECTION_INDICATOR char(1)  not null
+
+			alter table model_score alter column AUTO_SELECTION_INDICATOR char(1)  not null
+
+			alter table loan_selection alter column AUTO_SELECTION_INDICATOR char(1) not null
+
+			alter table loan_selection_pending alter column AUTO_SELECTION_INDICATOR char(1)  not null
+
+			UPDATE LOAN_SELECTION SET DISTRIBUTION_DT = DATEADD(DD, -3, CREATED_TS) 
+				WHERE DISTRIBUTION_DT IS NULL AND LOAN_SELECTION_STATUS_ID IN (
+					SELECT LSR.LOAN_SELECTION_STATUS_ID FROM LOAN_SELECTION_STATUS_REF LSR 
+						WHERE LSR.CODE IN ('DISTRIBUTED','REQUESTED', 'RECEIVED'))
+			]]>
+		</sql>
+	</changeSet>	
+</databaseChangeLog>

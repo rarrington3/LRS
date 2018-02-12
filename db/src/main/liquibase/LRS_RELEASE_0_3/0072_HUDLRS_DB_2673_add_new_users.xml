@@ -1,0 +1,31 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2673_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('8D8228C9-7B07-47A3-9EA2-EF15AC43E76E','A1716E15-DE1B-4731-807F-B135AAAD5C17','HDQTR.LRS_TEST_7@huddev.gov'       ,'HDQTR'       ,'LRS TEST 7' ,'C20225',getdate(),'HTH007','Y',20,(select review_location_id from review_location where location_name = 'HQ'     ),(select personnel_status_id from personnel_status_ref where code = 'A'))
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('71D65A2A-8402-41C9-A925-B8CBA390C4C8','A1716E15-DE1B-4731-807F-B135AAAD5C17','HDQTR.LRS_TEST_8@huddev.gov'       ,'HDQTR'       ,'LRS TEST 8' ,'C20225',getdate(),'HTH008','Y',20,(select review_location_id from review_location where location_name = 'HQ'     ),(select personnel_status_id from personnel_status_ref where code = 'A'))		
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2673_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into PERSONNEL_ASSIGNMENT_TYPE
+			(PERSONNEL_ID, ASSIGNMENT_TYPE_CD, CREATED_BY, CREATED_TS, ACTIVE_IND)
+			select a.PERSONNEL_ID,
+				   b.ASSIGNMENT_TYPE_CD,
+				   'C20225',
+				   getdate(),
+				   'Y'
+			from PERSONNEL a,
+				 ASSIGNMENT_TYPE_ADMIN b
+			where a.LOGIN_CREDENTIAL in
+			('HTH007',
+			 'HTH008')
+		]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>    
+
+

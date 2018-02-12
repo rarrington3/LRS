@@ -1,0 +1,143 @@
+@import '../../bootstrap/_variables';
+@import '../../../libs/bootstrap/less/mixins/buttons';
+@import '../../shared/_mixins';
+
+:host-context {
+	/* styles should be scoped under host-context */
+
+	.status {
+		text-transform: uppercase;
+	}
+
+	.finding-title {
+		display: inline-block;
+		font-weight: @headings-font-weight;
+		color: @brand-secondary;
+
+		&.level-type {
+			text-transform: uppercase;
+		}
+	}
+
+	.list-description, .list-name {
+		font-size: @font-size-small;
+		color: @text-muted;
+	}
+
+	.clear-btn {
+		margin-right: 5px;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.sub-title {
+		font-size: @font-size-h5;
+		font-weight: @headings-font-weight;
+		color: @brand-primary;
+	}
+
+	.header {
+		margin-bottom: 5px;
+		.icon-text, .finding-status-icon {
+			display: inline-block;
+			width: 20px;
+			height: 20px;
+			text-align: center;
+			border-radius: @border-radius-base;
+			font-size: @font-size-small;
+			color: @btn-primary-color;
+		}
+
+		.icon-text {
+			width: initial;
+			color: @gray-dark;
+		}
+		.danger {
+			background-color: @btn-danger-bg;
+		}
+
+		.warning {
+			background-color: @btn-warning-bg;
+		}
+	}
+
+	.list-group.source-cause  {
+		box-shadow: none;
+
+		li {
+			border: none;
+			padding: 2px 15px 2px 15px;
+		}
+	}
+
+	.panel-body {
+		position: relative;
+		padding-left: 40px;
+	}
+
+	.form-control.ng-invalid {
+		border: 1px solid @brand-danger;
+	}
+
+	.list-description.danger {
+		color: @brand-danger;
+	}
+
+	.list-description.comment, textarea.comment {
+		font-size: @font-size-small;
+		color: @gray-darker;
+		&.warning {
+			margin: 0 0 15px 40px;
+			font-weight: bold;
+		}
+
+	}
+
+	.list-description {
+		font-weight: normal;
+		color: @column-header-color;
+	}
+
+	.list-group.documents {
+		box-shadow: none;
+
+		.document-name{
+			display: inline-block;
+			max-width: 250px;
+			.text-ellipsis();
+		}
+
+		li {
+			border-right: none;
+			border-left: none;
+
+			&:first-child {
+				border-top: none;
+			}
+			padding: 5px;
+			color: @gray-darker;
+		}
+
+		.glyphicon {
+			display: inline-block;
+			margin-right: 2px;
+			color: @gray-light;
+			&.trash-btn {
+				border: none;
+				background: none;
+			}
+
+			&.success {
+				color: @brand-success;
+			}
+
+			&.activity {
+				color: @gray-dark;
+			}
+		}
+	}
+
+	.row {
+		margin-top: 5px;
+	}
+}

@@ -1,0 +1,83 @@
+{
+    "id": "http://LRS/QaModelDetail",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": [
+        "name"
+    ],
+    "properties": {
+        "qaModelId": {
+            "description": "The id of the qa model.",
+            "type": "string"
+        },
+        "name": {
+            "description": "The name of the qa model.",
+            "type": "string"
+        },
+        "description": {
+            "description": "The description of the qa model.",
+            "type": "string"
+        },
+        "version": {
+            "description": "The version of the qa model.",
+            "type": "integer"
+        },
+        "activeReviews": {
+            "description": "The amount of active reviews for the qa model.",
+            "type": "integer"
+        },
+        "completedReviews": {
+            "description": "The amount of completed reviews for the qa model.",
+            "type": "integer"
+        },
+        "isActive": {
+            "description": "Whether the qa model is active.",
+            "type": "boolean"
+        },
+        "isReadonly": {
+            "description": "Whether the qa model is readonly.",
+            "type": "boolean"
+        },
+        "createdDate": {
+            "description": "The date to which the qa model was created.",
+            "type": "string",
+            "format": "date"
+        },
+        "modifiedDate": {
+            "description": "The date to which the qa model was last modified.",
+            "type": "string",
+            "format": "date"
+        },
+        "activatedDate": {
+            "description": "The date to which the qa model was activated.",
+            "type": "string",
+            "format": "date"
+        },
+        "modifiedBy": {
+            "description": "The person to which the qa model was last modified.",
+            "type": "string"
+        },
+        "statusCode": {
+            "description": "Code for an enumerated condition. Either 'active', 'draft', or 'archived'.",
+            "type": "string"
+        },
+        "status": {
+            "description": "Description for an enumerated condition. Either 'active', 'draft', or 'archived'.",
+            "type": "string"
+        },
+        "defectAreas": {
+            "description": "A collection of qa model defect area objects.",
+            "type": "array",
+            "items": {
+                "$ref": "QaModelDefectArea"
+            }
+        },
+        "categories" : {
+            "description": "A collection of qa model categories of loan attributes",
+            "type": "array",
+            "items": {
+                "$ref": "QaModelCategory"
+            }
+        }
+    }
+}

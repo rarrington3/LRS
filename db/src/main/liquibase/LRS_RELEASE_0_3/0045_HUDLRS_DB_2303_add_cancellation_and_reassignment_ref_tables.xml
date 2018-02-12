@@ -1,0 +1,151 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2303_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create table REVIEW_LEVEL_REASSIGNMENT_REASON_REF
+			(REASSIGNMENT_REASON_ID uniqueidentifier not null default newid(),
+             CODE varchar(16) not null,
+             DESCRIPTION varchar(50) not null)
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2303_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table REVIEW_LEVEL_REASSIGNMENT_REASON_REF add constraint REVIEW_LEVEL_REASSIGNMENT_REASON_REF_PK primary key (REASSIGNMENT_REASON_ID)
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2303_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create table REVIEW_LEVEL_CANCELLATION_REASON_REF
+			(CANCELLATION_REASON_ID  uniqueidentifier not null default newid(),
+             CODE varchar(16) not null,
+             DESCRIPTION varchar(50) not null)
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2303_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table REVIEW_LEVEL_CANCELLATION_REASON_REF add constraint REVIEW_LEVEL_CANCELLATION_REASON_REF_PK primary key (CANCELLATION_REASON_ID)
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2303_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table REVIEW_LEVEL add REASSIGNMENT_REASON_ID uniqueidentifier null
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2303_0006" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table REVIEW_LEVEL add CANCELLATION_REASON_ID uniqueidentifier null
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2303_0007" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table REVIEW_LEVEL add constraint REVIEW_LEVEL_FK_CANCELLATION_REASON_ID foreign key (CANCELLATION_REASON_ID) references REVIEW_LEVEL_CANCELLATION_REASON_REF (CANCELLATION_REASON_ID)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2303_0008" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table REVIEW_LEVEL add constraint REVIEW_LEVEL_FK_REASSIGNMENT_REASON_ID foreign key (REASSIGNMENT_REASON_ID) references REVIEW_LEVEL_REASSIGNMENT_REASON_REF (REASSIGNMENT_REASON_ID)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2303_0009" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into REVIEW_LEVEL_CANCELLATION_REASON_REF (CANCELLATION_REASON_ID,CODE,DESCRIPTION) values('A02DE1F6-75AA-4FAC-8AAD-F83F5E10AE08','OOB','Lender Out of Business')
+			insert into REVIEW_LEVEL_CANCELLATION_REASON_REF (CANCELLATION_REASON_ID,CODE,DESCRIPTION) values('49D54BA6-DDE1-4580-840F-CB1C12B9FD79','LIT','Litigation')
+			insert into REVIEW_LEVEL_CANCELLATION_REASON_REF (CANCELLATION_REASON_ID,CODE,DESCRIPTION) values('8727234B-7866-45D1-BFC6-84F3F1403FC6','SET','Settlement')
+			insert into REVIEW_LEVEL_CANCELLATION_REASON_REF (CANCELLATION_REASON_ID,CODE,DESCRIPTION) values('0C2BF621-9B7D-44B9-BD68-035403551333','SEL','Selection Error')
+			insert into REVIEW_LEVEL_CANCELLATION_REASON_REF (CANCELLATION_REASON_ID,CODE,DESCRIPTION) values('04988DF3-44EB-4EFE-8216-6ADB831CCD1B','OTH','Other')		
+			insert into REVIEW_LEVEL_REASSIGNMENT_REASON_REF (REASSIGNMENT_REASON_ID,CODE,DESCRIPTION) values('2BEB014E-A44E-4D18-99D4-56552C98D941','NLA','Reviewer No Longer Available')
+			insert into REVIEW_LEVEL_REASSIGNMENT_REASON_REF (REASSIGNMENT_REASON_ID,CODE,DESCRIPTION) values('EF622B14-2826-4460-8605-A24AD98F06AC','OOB','Lender Out of Business')			
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_2303_0010" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_ENTITY(ENTITY_NAME, DB_VIEW_OR_TABLE, CREATED_BY,CREATED_TS) values('Review Level Cancellation Reason Reference', 'REVIEW_LEVEL_CANCELLATION_REASON_REF','C20225',getdate())		
+			insert into DICT_METADATA_ENTITY(ENTITY_NAME, DB_VIEW_OR_TABLE, CREATED_BY,CREATED_TS) values('Review Level Reassignment Reason Reference', 'REVIEW_LEVEL_REASSIGNMENT_REASON_REF','C20225',getdate())					
+		
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Review Level Cancellation Reason Reference','Cancellation Reason ID','CANCELLATION_REASON_ID','C20225',getdate(),'Cancellation Reason ID')
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Review Level Cancellation Reason Reference','Code','CODE','C20225',getdate(),'Code')
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Review Level Cancellation Reason Reference','Description','DESCRIPTION','C20225',getdate(),'Description')			
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Review Level Reassignment Reason Reference','Reassignment Reason ID','CANCELLATION_REASON_ID','C20225',getdate(),'Reassignment Reason ID')
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Review Level Reassignment Reason Reference','Code','CODE','C20225',getdate(),'Code')
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Review Level Reassignment Reason Reference','Description','DESCRIPTION','C20225',getdate(),'Description')						
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Review Level','Cancellation Reason ID','CANCELLATION_REASON_ID','C20225',getdate(),'Cancellation Reason ID')						
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Review Level','Reassignment Reason ID','CANCELLATION_REASON_ID','C20225',getdate(),'Reassignment Reason ID')									
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2303_0011" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update review
+			set cancellation_reason_cd = null
+		]]>
+        </sql>
+    </changeSet>	
+   <changeSet context="All"  author="astrauss" id="HUDLRS_2303_0012" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			sp_rename 'REVIEW.CANCELLATION_REASON_CD', 'CANCELLATION_REASON_ID', 'COLUMN'
+		]]>
+        </sql>
+    </changeSet>		
+   <changeSet context="All"  author="astrauss" id="HUDLRS_2303_0013" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table review alter column CANCELLATION_REASON_ID uniqueidentifier null
+			
+			alter table review add constraint REVIEW_FK_CANCELLATION_REASON_ID foreign key (CANCELLATION_REASON_ID) references REVIEW_LEVEL_CANCELLATION_REASON_REF(CANCELLATION_REASON_ID)
+		]]>
+        </sql>
+    </changeSet>		
+   <changeSet context="All"  author="astrauss" id="HUDLRS_2303_0014" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update REVIEW_LEVEL_REASSIGNMENT_REASON_REF
+			set description = 'Reviewer is no longer available.'
+			where code = 'NLA'
+			
+			update REVIEW_LEVEL_REASSIGNMENT_REASON_REF
+			set description = 'Reviewer is taking leave of absence.',
+			    code = 'LA'
+			where code = 'OOB'
+			
+			insert into REVIEW_LEVEL_REASSIGNMENT_REASON_REF (REASSIGNMENT_REASON_ID,CODE,DESCRIPTION) values('795537F2-F992-426F-ABD7-C565427E92CF','O','Other')	
+
+			update REVIEW_LEVEL_CANCELLATION_REASON_REF
+			set code = 'L'
+			where code = 'LIT'
+			
+			update REVIEW_LEVEL_CANCELLATION_REASON_REF
+			set code = 'S'
+			where code = 'SET'
+			
+			update REVIEW_LEVEL_CANCELLATION_REASON_REF
+			set code = 'SE'
+			where code = 'SEL'	
+
+			update REVIEW_LEVEL_CANCELLATION_REASON_REF
+			set code = 'O'
+			where code = 'OTH'			
+		]]>
+        </sql>
+    </changeSet>		
+</databaseChangeLog>    

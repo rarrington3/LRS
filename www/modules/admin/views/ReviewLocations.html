@@ -1,0 +1,36 @@
+<div class="lrs-content-panel selection-body container-fluid">
+
+    <div class="row">
+        <div class="section-heading">Review Locations</div>
+
+        <hr/>
+
+        <table class="table locations-table">
+            <thead>
+            <tr>
+                <th></th>
+                <th scope="col">Location Name</th>
+                <th scope="col">Location Address</th>
+                <th scope="col">Capacity</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let reviewLoc of reviewLocations">
+                <td class="location-icon" scope="row">
+                    <span *ngIf="!reviewLoc.deActivationDate" class="glyphicon glyphicon-check"></span>
+                    <span *ngIf="reviewLoc.deActivationDate" class="glyphicon glyphicon-lock"></span>
+                </td>
+                <td>{{reviewLoc.name}}</td>
+                <td>
+                    <span *ngIf="reviewLoc.address">{{reviewLoc.address}}, {{reviewLoc.city}} {{reviewLoc.state}} {{reviewLoc.zipCode}}</span>
+                </td>
+                <td>{{reviewLoc.capacity}}</td>
+                <td><button class="btn btn-primary" [routerLink]="['../editReviewLocation/', reviewLoc.locationId]">Edit <span class="sr-only">Click to edit {{reviewLoc.name}}</span></button></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>

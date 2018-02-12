@@ -1,0 +1,22 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2935_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update QUESTION_REFERENCE
+			set RESPONSE_TYPE = 'Multiple'
+			where ANSWER_VALUES = 'QA_MODEL_PREQUAL'
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="mtross" id="HUDLRS_2940_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update QUESTION_REFERENCE
+			set VALUE_TO_TRIGGER_ACTION = 'YES'
+			where QUESTION_ID = '31182DA6-CF2C-441B-8FE4-53A821B461A7'
+		]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>    
+

@@ -1,0 +1,16 @@
+{
+  "notes": [
+    "Install tsify via npm to activate typescript compilation in build",
+    "Optionally install specific typescript version via npm to override bundled version in tsify",
+    "Typescript should target es6 and get compiled to es5 via Babel"
+  ],
+  "compilerOptions": {
+    "allowJs": true,
+    "target": "es6",
+    "jsx": true,
+    "noImplicitAny": false,
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "sourceMap": true
+  }
+}

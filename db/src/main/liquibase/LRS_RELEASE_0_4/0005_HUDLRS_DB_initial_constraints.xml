@@ -1,0 +1,1093 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="C20225 (generated)" id="1488285079993-128" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="ASSIGNMENT_TYPE_CD" constraintName="ASSIGNMENT_TYPE_ADMIN_PK" tableName="ASSIGNMENT_TYPE_ADMIN"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-129" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="BATCH_ID, PERSONNEL_ID" constraintName="BATCH_PERSONNEL_PK" tableName="BATCH_PERSONNEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-130" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="BATCH_ID" constraintName="BATCH_PK" tableName="BATCH"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-131" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="BATCH_STATUS_ID" constraintName="BATCH_STATUS_REF_PK" tableName="BATCH_STATUS_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-132" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="BINDER_DELIVERY_LOCATION_ID" constraintName="BINDER_DELIVERY_LOCATION_REF_PK" tableName="BINDER_DELIVERY_LOCATION_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-133" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="BINDER_REQUEST_ID" constraintName="BINDER_REQUEST_PK" tableName="BINDER_REQUEST"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-134" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="BINDER_REQUEST_SOURCE_ID" constraintName="BINDER_REQUEST_SOURCE_REF_PK" tableName="BINDER_REQUEST_SOURCE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-135" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="BINDER_REQUEST_STATUS_ID" constraintName="BINDER_REQUEST_STATUS_REF_PK" tableName="BINDER_REQUEST_STATUS_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-136" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="COMMUNICATION_ID" constraintName="COMM_ACTIVITY_PK" tableName="COMM_ACTIVITY"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-137" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="AUDIT_TMSTMP, TEMPLATE_ID" constraintName="COMM_TEMPLATE_AUDIT_PK" tableName="COMM_TEMPLATE_AUDIT"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-138" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="TEMPLATE_ID" constraintName="COMM_TEMPLATE_PK" tableName="COMM_TEMPLATE"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-139" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="DEFECT_CAUSE_ID" constraintName="DEFECT_CAUSE_PK" tableName="DEFECT_CAUSE"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-140" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="DEFECT_ID" constraintName="DEFECT_PK" tableName="DEFECT"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-141" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="DEFECT_REMEDY_TYPE_ID" constraintName="DEFECT_REMEDY_TYPE_PK" tableName="DEFECT_REMEDY_TYPE"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-142" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="DEFECT_SEVERITY_ID" constraintName="DEFECT_SEVERITY_PK" tableName="DEFECT_SEVERITY"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-143" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="DEFECT_SOURCE_ID" constraintName="DEFECT_SOURCE_PK" tableName="DEFECT_SOURCE"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-144" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="DEFECT_TYPE_ID" constraintName="DEFECT_TYPE_REF_PK" tableName="DEFECT_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-145" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="RQST_DOCS_SOURCE_CD" constraintName="DELIV_PARMS_BINDER_PK" tableName="DELIV_PARMS_BINDER"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-146" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_LEVEL_ID, SLCTN_REASON_ID" constraintName="DELIV_PARMS_ITERATION_PK" tableName="DELIV_PARMS_ITERATION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-147" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="INTERATION_NUM, REVIEW_LEVEL_ID, SLCTN_REASON_ID" constraintName="DELIV_PARMS_REQUEST_PK" tableName="DELIV_PARMS_REQUEST"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-148" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="ENTITY_NAME, FIELD_NAME, QA_MODEL_ID" constraintName="DICT_METADATA_FIELD_MODEL_PK" tableName="DICT_METADATA_FIELD_MODEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-149" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="DICT_METADATA_FIELD_SUBJECT_AREA_ID" constraintName="DICT_METADATA_FIELD_SUBJECT_AREA_PK" tableName="DICT_METADATA_FIELD_SUBJECT_AREA"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-150" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="ENTITY_NAME" constraintName="DICT_META_ENTITY_PK" tableName="DICT_METADATA_ENTITY"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-151" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="METADATA_FIELD_COND_ID" constraintName="DICT_META_FIELD_COND_PK" tableName="DICT_METADATA_FIELD_CONDITION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-152" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="ENTITY_NAME, FIELD_NAME, DEFECT_ID" constraintName="DICT_META_FIELD_DEF_PK" tableName="DICT_METADATA_FIELD_DEFECT"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-153" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="ENTITY_NAME, FIELD_NAME" constraintName="DICT_META_FIELD_PK" tableName="DICT_METADATA_FIELD"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-154" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="ENTITY_NAME, FIELD_NAME, RELATIONSHIP_TYPE" constraintName="DICT_META_FIELD_REL_PK" tableName="DICT_METADATA_FIELD_RELATIVES"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-155" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="DOCUMENT_ID" constraintName="DOCUMENTS_PK" tableName="DOCUMENT"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-156" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="DOCUMENT_FILE_ID" constraintName="DOCUMENT_FILE_PK" tableName="DOCUMENT_FILE"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-157" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_PROCESS_EXCEPTION_ID" constraintName="EXCEPTION_PK" tableName="REVIEW_PROCESS_EXCEPTION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-158" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="FILE_DELIVERY_LOCATION_ID" constraintName="FILE_DELIVERY_LOCATION_REF_PK" tableName="FILE_DELIVERY_LOCATION_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-159" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="FINDING_DOCUMENT_ID" constraintName="FINDING_DOCUMENT_PK" tableName="FINDING_DOCUMENT"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-160" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="FINDING_RATING_RULE_ID" constraintName="FINDING_RATING_RULE_PK" tableName="FINDING_RATING_RULE"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-161" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="FRAUD_PARTICIPANT_ID" constraintName="FRAUD_PARTICIPANT_REF_PK" tableName="FRAUD_PARTICIPANT_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-162" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="FRAUD_TYPE_ID" constraintName="FRAUD_TYPE_REF_PK" tableName="FRAUD_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-163" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="INDEMNIFICATION_ID" constraintName="INDEMNIFICATION_PK" tableName="INDEMNIFICATION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-164" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="INDEMNIFICATION_TYPE_ID" constraintName="INDEMNIFICATION_TYPE_REF_PK" tableName="INDEMNIFICATION_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-165" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="JOB_EXECUTION_ID" constraintName="JOB_EXECUTION_PK" tableName="JOB_EXECUTION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-166" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="JOB_EXECUTION_STATUS_ID" constraintName="JOB_EXECUTION_STATUS_REF_PK" tableName="JOB_EXECUTION_STATUS_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-167" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="JOB_ID" constraintName="JOB_PK" tableName="JOB"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-168" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="JOB_TYPE_ID" constraintName="JOB_TYPE_REF_PK" tableName="JOB_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-169" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="MTGEE5" constraintName="LENDER_INCREASED_SELECTION_PK" tableName="LENDER_INCREASED_SELECTION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-170" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="SELECTION_REQUEST_ID" constraintName="LENDER_MONITORING_SELECTION_REQUEST_PK" tableName="LENDER_MONITORING_SELECTION_REQUEST"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-171" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="LENDER_REQUEST_ID" constraintName="LENDER_REQUEST_PK" tableName="LENDER_REQUEST"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-172" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="SELECTION_REQUEST_ID, DEFECT_ID" constraintName="LENDER_SELF_REPORT_SELECTION_REQUEST_DEFECT_PK" tableName="LENDER_SELF_REPORT_SELECTION_REQUEST_DEFECT"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-173" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="SELECTION_REQUEST_ID, DEFECT_TYPE_ID" constraintName="LENDER_SELF_REPORT_SELECTION_REQUEST_DEFECT_TYPE_REF_PK" tableName="LENDER_SELF_REPORT_SELECTION_REQUEST_DEFECT_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-174" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="SELECTION_REQUEST_ID, FRAUD_PARTICIPANT_ID" constraintName="LENDER_SELF_REPORT_SELECTION_REQUEST_FRAUD_PARTICIPANT_REF_PK" tableName="LENDER_SELF_REPORT_SELECTION_REQUEST_FRAUD_PARTICIPANT_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-175" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="SELECTION_REQUEST_ID, FRAUD_TYPE_ID" constraintName="LENDER_SELF_REPORT_SELECTION_REQUEST_FRAUD_TYPE_REF_PK" tableName="LENDER_SELF_REPORT_SELECTION_REQUEST_FRAUD_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-176" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="SELECTION_REQUEST_ID" constraintName="LENDER_SELF_REPORT_SELECTION_REQUEST_PK" tableName="LENDER_SELF_REPORT_SELECTION_REQUEST"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-177" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="MTGEE5" constraintName="LENDER_SUPPRESSION_PK" tableName="LENDER_SUPPRESSION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-178" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="AUDIT_FINDING, CASE_NUMBER" constraintName="LENDE_PARMS_FINDINGS_PK" tableName="LENDE_PARMS_FINDINGS"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-179" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="SELECTION_ID" constraintName="LOAN_SELECTION_CASE_SUMMARY_PK" tableName="LOAN_SELECTION_CASE_SUMMARY"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-180" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="LOAN_SELECTION_PENDING_ID" constraintName="LOAN_SELECTION_PENDING_PK" tableName="LOAN_SELECTION_PENDING"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-181" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="SELECTION_ID" constraintName="LOAN_SELECTION_PK" tableName="LOAN_SELECTION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-182" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="LOAN_SELECTION_STATUS_ID" constraintName="LOAN_SELECTION_STATUS_REF_PK" tableName="LOAN_SELECTION_STATUS_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-183" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="LOAN_TYPE_REF_ID" constraintName="LOAN_TYPE_REF_PK" tableName="LOAN_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-184" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="REVIEW_LOCATION_ID, ASSIGNMENT_TYPE_CD" constraintName="LOCATION_ASSIGNMENT_TYPE_PK" tableName="LOCATION_ASSIGNMENT_TYPE"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-185" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="LOOKUP_ENTITY, LOOKUP_FIELD, LOOKUP_CODE" constraintName="LRS_GEN_LOOKUP_PK" tableName="LRS_GEN_LOOKUP"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-186" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="SELECTION_REQUEST_ID" constraintName="MANUAL_SELECTION_REQUEST_PK" tableName="MANUAL_SELECTION_REQUEST"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-187" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="MODEL_SCORE_ID" constraintName="MODEL_SCORE_PK" tableName="MODEL_SCORE"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-188" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="NOTE_ID" constraintName="NOTES_PK" tableName="NOTE"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-189" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="PERSONNEL_ASSIGNMENT_TYPE_ID" constraintName="PERSONNEL_ASSIGNMENT_TYPE_PK" tableName="PERSONNEL_ASSIGNMENT_TYPE"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-190" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="PERSONNEL_ID" constraintName="PERSONNEL_PK" tableName="PERSONNEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-191" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="PERSONNEL_STATUS_ID" constraintName="PERSONNEL_STATUS_REF_PK" tableName="PERSONNEL_STATUS_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-192" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="PERSONNEL_UNAVAILABILITY_ID" constraintName="PERSONNEL_UNAVAILABILITY_PK" tableName="PERSONNEL_UNAVAILABILITY"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-193" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="DOCUMENT_TYPE_ID" constraintName="PK__DOCUMENT__A90FC2DD6F05F5D4" tableName="DOCUMENT_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-194" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="NOTE_TYPE_ID" constraintName="PK__NOTE_TYP__5637E4347575BAF3" tableName="NOTE_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-195" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="PRODUCT_DETAIL_ID" constraintName="PRODUCT_DETAIL_REF_PK" tableName="PRODUCT_DETAIL_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-196" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="PRODUCT_TYPE_ID" constraintName="PRODUCT_TYPE_REF_PK" tableName="PRODUCT_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-197" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="QATREE_OUTCOME_ID, DEFECT_CAUSE_ID" constraintName="QATREE_OUTCOME_DEFECT_CAUSE_PK" tableName="QATREE_OUTCOME_DEFECT_CAUSE"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-198" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="QATREE_OUTCOME_ID, DEFECT_SEVERITY_ID" constraintName="QATREE_OUTCOME_DEFECT_SEVERITY_PK" tableName="QATREE_OUTCOME_DEFECT_SEVERITY"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-199" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="QATREE_OUTCOME_ID, DEFECT_SOURCE_ID" constraintName="QATREE_OUTCOME_DEFECT_SOURCE_PK" tableName="QATREE_OUTCOME_DEFECT_SOURCE"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-200" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="QATREE_OUTCOME_ID" constraintName="QATREE_OUTCOME_PK" tableName="QATREE_OUTCOME"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-201" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="QATREE_ID" constraintName="QATREE_PK" tableName="QATREE"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-202" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="QATREE_ID, QUESTION_ID, ENTITY_NAME, FIELD_NAME" constraintName="QATREE_QSTN_CAPT_PK" tableName="QATREE_QSTN_CAPTURE"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-203" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="QATREE_QSTN_CONDITION_ID" constraintName="QATREE_QSTN_COND_PK" tableName="QATREE_QSTN_CONDITION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-204" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_TYPE_ID, SELECTION_REASON_ID" constraintName="QATREE_QSTN_RULES_PK" tableName="QATREE_QSTN_RULES"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-205" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="QUESTION_ID" constraintName="QATREE_QUESTION_PK" tableName="QATREE_QUESTION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-206" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="QUESTION_ID, PRE_QUAL_POTENTIAL_ANSWER_CD" constraintName="QA_MODEL_INCOME_SOURCES_PK" tableName="QA_MODEL_PREQUAL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-207" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="QA_MODEL_ID" constraintName="QA_MODEL_PK" tableName="QA_MODEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-208" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="QA_MODEL_STATUS_ID" constraintName="QA_MODEL_STATUS_REF_PK" tableName="QA_MODEL_STATUS_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-209" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="QUESTION_ID" constraintName="QUESTION_REFERENCE_PK" tableName="QUESTION_REFERENCE"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-210" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="RATING_ID" constraintName="RATING_PK" tableName="RATING_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-211" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_LEVEL_ID" constraintName="REVIEW_LEVEL_ADMIN_PK" tableName="REVIEW_LEVEL_ADMIN"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-212" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="CANCELLATION_REASON_ID" constraintName="REVIEW_LEVEL_CANCELLATION_REASON_REF_PK" tableName="REVIEW_LEVEL_CANCELLATION_REASON_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-213" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_LEVEL_ITERATION_TIMEFRAME_ID" constraintName="REVIEW_LEVEL_ITERATION_TIMEFRAME_PK" tableName="REVIEW_LEVEL_ITERATION_TIMEFRAME"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-214" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_LEVEL_ID" constraintName="REVIEW_LEVEL_PK" tableName="REVIEW_LEVEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-215" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="REASSIGNMENT_REASON_ID" constraintName="REVIEW_LEVEL_REASSIGNMENT_REASON_REF_PK" tableName="REVIEW_LEVEL_REASSIGNMENT_REASON_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-216" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_LEVEL_STATUS_ID" constraintName="REVIEW_LEVEL_STATUS_REF_PK" tableName="REVIEW_LEVEL_STATUS_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-217" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_LEVEL_TYPE_ID" constraintName="REVIEW_LEVEL_TYPE_REF_PK" tableName="REVIEW_LEVEL_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-218" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_LOCATION_ID" constraintName="REVIEW_LOCATION_PK" tableName="REVIEW_LOCATION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-219" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_ID" constraintName="REVIEW_PK" tableName="REVIEW"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-220" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_PROCESS_EXCEPTION_TYPE_ID" constraintName="REVIEW_PROCESS_EXCEPTION_TYPE_REF_PK" tableName="REVIEW_PROCESS_EXCEPTION_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-221" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="REVIEW_REFERRAL_ID, AUDIT_TMSTMP" constraintName="REVIEW_REFERRAL_AUD_PK" tableName="REVIEW_REFERRAL_AUD"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-222" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="REVIEW_REFERRAL_ID" constraintName="REVIEW_REFERRAL_PK" tableName="REVIEW_REFERRAL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-223" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="REVIEW_REFERRAL_SOURCE_REF_ID" constraintName="REVIEW_REFERRAL_SOURCE_REF_PK" tableName="REVIEW_REFERRAL_SOURCE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-224" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="REVIEW_REFERRAL_TYPE_REF_ID" constraintName="REVIEW_REFERRAL_TYPE_REF_PK" tableName="REVIEW_REFERRAL_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-225" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="REVIEW_SCOPE_ID" constraintName="REVIEW_SCOPE_REF_PK" tableName="REVIEW_SCOPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-226" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_STATUS_ID" constraintName="REVIEW_STATUS_REF_PK" tableName="REVIEW_STATUS_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-227" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_TYPE_ID, DEFECT_ID" constraintName="REVIEW_TYPE_DEFECT_PK" tableName="REVIEW_TYPE_DEFECT"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-228" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_TYPE_ID" constraintName="REVIEW_TYPE_REF_PK" tableName="REVIEW_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-229" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="LENDER_REQUEST_STATUS_ID" constraintName="RQST_FROM_LENDER_STATUS_REF_PK" tableName="LENDER_REQUEST_STATUS_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-230" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_ID, DEFECT_ID" constraintName="RVW_DEFECT_PK" tableName="RVW_DEFECT"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-231" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="CASE_NUMBER" constraintName="RVW_HISTORY_PK" tableName="RVW_HISTORY"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-232" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_LOCATION_ID, SELECTION_REASON_ID" constraintName="RVW_LOCATION_REASON_PK" tableName="RVW_LOCATION_REASON"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-233" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="AUDIT_TMSTMP, REVIEW_LVL_ID" constraintName="RVW_LVL_AUDIT_PK" tableName="RVW_LVL_AUDIT"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-234" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_LEVEL_ID" constraintName="RVW_LVL_CASE_SUMMARY_PK" tableName="RVW_LVL_CASE_SUMMARY"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-235" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_LVL_ID, DEFECT_ID, AUDIT_TMSTMP" constraintName="RVW_LVL_DEFECT_AUD_PK" tableName="RVW_LVL_DEFECT_AUD"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-236" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_LEVEL_ID, DEFECT_ID" constraintName="RVW_LVL_DEFECT_PK" tableName="RVW_LVL_DEFECT"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-237" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="FINDING_ID, AUDIT_TMSTMP" constraintName="RVW_LVL_FINDING_AUD_PK" tableName="RVW_LVL_FINDING_AUD"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-238" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="FINDING_ID" constraintName="RVW_LVL_FINDING_PK" tableName="RVW_LVL_FINDING"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-239" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="FINDING_QUESTION_ID" constraintName="RVW_LVL_FINDING_QUESTION_PK" tableName="RVW_LVL_FINDING_QUESTION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-240" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="ANSWER_ID" constraintName="RVW_LVL_QSTN_ANSWERS_PK" tableName="RVW_LVL_QSTN_ANSWERS"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-241" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="SCORING_FACTOR_ID" constraintName="SCORING_FACTORS_PK" tableName="SCORING_FACTOR"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-242" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="SCORING_FACTOR_ID, SCORING_MODEL_VERSION_ID" constraintName="SCORING_MODEL_FACTORS_PK" tableName="SCORING_MODEL_FACTOR"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-243" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="SCORING_MODEL_ID" constraintName="SCORING_MODEL_PK" tableName="SCORING_MODEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-244" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="SCORING_MODEL_TYPE_ID" constraintName="SCORING_MODEL_TYPE_REF_PK" tableName="SCORING_MODEL_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-245" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="SCORING_MODEL_VERSION_ID" constraintName="SCORING_MODEL_VERSION_PK" tableName="SCORING_MODEL_VERSION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-246" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="SCORING_MODEL_VERSION_STATUS_ID" constraintName="SCORING_MODEL_VERSION_STATUS_PK" tableName="SCORING_MODEL_VERSION_STATUS_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-247" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="SELECTION_REASON_ID" constraintName="SELECTION_PARAMETERS_PK" tableName="SELECTION_REASON"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-248" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="SELECTION_REQUEST_ID" constraintName="SELECTION_REQUEST_PK" tableName="SELECTION_REQUEST"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-249" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="SELECTION_REQUEST_TYPE_ID" constraintName="SELECTION_REQUEST_TYPE_REF_PK" tableName="SELECTION_REQUEST_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-250" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="SELECTION_SUB_REASON_ID" constraintName="SELECTION_SUB_REASON_REF_PK" tableName="SELECTION_SUB_REASON_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-251" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="PARAMETER_NAME" constraintName="SYSPARMS_PK" tableName="SYSTEM_PARAMETERS"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-252" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="UNDERWRITER_ID" constraintName="UNDERWRITER_INCREASED_SELECTION_PK" tableName="UNDERWRITER_INCREASED_SELECTION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-253" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="UNIVERSE_ID" constraintName="UNIVERSE_REF_PK" tableName="UNIVERSE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-254" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="SELECTION_REQUEST_ID" constraintName="UNIVERSE_SELECTION_REQUEST_PK" tableName="UNIVERSE_SELECTION_REQUEST"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-255" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="CODE" constraintName="BATCH_STATUS_REF_UQ_CODE" tableName="BATCH_STATUS_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-256" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="CODE" constraintName="BINDER_REQUEST_SOURCE_REF_UQ_CODE" tableName="BINDER_REQUEST_SOURCE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-257" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="CODE" constraintName="FILE_DELIVERY_LOCATION_REF_UQ_CODE" tableName="FILE_DELIVERY_LOCATION_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-258" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="CODE" constraintName="INDEMNIFICATION_TYPE_REF_UQ_CODE" tableName="INDEMNIFICATION_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-259" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="REVIEW_LEVEL_ID" constraintName="INDEMNIFICATION_UQ_REVIEW_LEVEL_ID" tableName="INDEMNIFICATION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-260" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="CODE" constraintName="JOB_EXECUTION_STATUS_REF_UQ_CODE" tableName="JOB_EXECUTION_STATUS_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-261" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="CODE" constraintName="JOB_TYPE_REF_UQ_CODE" tableName="JOB_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-262" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="SELECTION_ID, SELECTION_REASON_ID" constraintName="LOAN_SELECTION_PENDING_UQ_SELECTION_ID_SLCTN_REASON_ID" tableName="LOAN_SELECTION_PENDING"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-263" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="CODE" constraintName="LOAN_SELECTION_STATUS_REF_UQ_CODE" tableName="LOAN_SELECTION_STATUS_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-264" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="PERSONNEL_ID, ASSIGNMENT_TYPE_CD" constraintName="PERSONNEL_ASSIGNMENT_TYPE_UQ_PERSONNEL_ID_ASSIGNMENT_TYPE_CD" tableName="PERSONNEL_ASSIGNMENT_TYPE"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-265" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="CODE" constraintName="PERSONNEL_STATUS_REF_UQ_CODE" tableName="PERSONNEL_STATUS_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-266" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="CODE" constraintName="QA_MODEL_STATUS_REF_UQ_CODE" tableName="QA_MODEL_STATUS_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-267" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="SELECTION_REASON_ID, REVIEW_LEVEL_TYPE_ID" constraintName="REVIEW_LEVEL_ITERATION_TIMEFRAME_UQ_SELECTION_REASON_ID_REVIEW_LEVEL_TYPE_ID" tableName="REVIEW_LEVEL_ITERATION_TIMEFRAME"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-268" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="CODE" constraintName="REVIEW_LEVEL_STATUS_REF_UQ_CODE" tableName="REVIEW_LEVEL_STATUS_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-269" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="CODE" constraintName="REVIEW_PROCESS_EXCEPTION_TYPE_UQ_CODE" tableName="REVIEW_PROCESS_EXCEPTION_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-270" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="REVIEW_ID, REVIEW_REFERRAL_TYPE_REF_ID" constraintName="REVIEW_REFERRAL_UQ" tableName="REVIEW_REFERRAL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-271" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="CODE" constraintName="REVIEW_STATUS_REF_UQ_CODE" tableName="REVIEW_STATUS_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-272" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="CODE" constraintName="RQST_FROM_LENDER_STATUS_REF_UQ_CODE" tableName="LENDER_REQUEST_STATUS_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-273" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="CODE" constraintName="SCORING_MODEL_TYPE_REF_UQ_CODE" tableName="SCORING_MODEL_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-274" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="CODE" constraintName="SCORING_MODEL_UQ_CODE" tableName="SCORING_MODEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-275" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="CODE" constraintName="SCORING_MODEL_VERSION_STATUS_UQ_CODE" tableName="SCORING_MODEL_VERSION_STATUS_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-276" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="CODE" constraintName="SELECTION_REASON_UQ_CODE" tableName="SELECTION_REASON"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-277" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="CODE" constraintName="SELECTION_REQUEST_TYPE_REF_UQ_CODE" tableName="SELECTION_REQUEST_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-278" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="CODE" constraintName="SELECTION_SUB_REASON_REF_UQ_CODE" tableName="SELECTION_SUB_REASON_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-279" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="DISPLAY_NAME_IDX" tableName="DICT_METADATA_FIELD" unique="true">
+            <column name="ENTITY_NAME"/>
+            <column name="DISPLAY_NAME"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-280" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="MODEL_SCORE_UQ_SELECTION_ID_SCORING_MODEL_VERSION_ID" tableName="MODEL_SCORE" unique="true">
+            <column name="SELECTION_ID"/>
+            <column name="SCORING_MODEL_VERSION_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-281" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="PROD_TYPE_IDX2" tableName="PRODUCT_DETAIL_REF" unique="true">
+            <column name="PROD_TYPE"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-282" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="RVW_LVL_RVW_TYPE_ITERATION_IDX" tableName="REVIEW_LEVEL">
+            <column name="REVIEW_LEVEL_ID"/>
+            <column name="REVIEW_LEVEL_TYPE_ID"/>
+            <column name="ITERATION_NUMBER"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-283" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="SELECTION_ID_UQ" tableName="REVIEW" unique="true">
+            <column name="SELECTION_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-284" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="QATREE_ID" baseTableName="RVW_LVL_QSTN_ANSWERS" constraintName="ANSWERS_TO_QATREE_FK" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="QATREE_ID" referencedTableName="QATREE"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-285" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="BATCH_STATUS_ID" baseTableName="BATCH" constraintName="BATCH_FK_BATCH_STATUS_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="BATCH_STATUS_ID" referencedTableName="BATCH_STATUS_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-286" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="ORIGINAL_OWNER_PERSONNEL_ID" baseTableName="BATCH" constraintName="BATCH_FK_ORIGINAL_OWNER_PERSONNEL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="PERSONNEL_ID" referencedTableName="PERSONNEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-287" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="OWNER_PERSONNEL_ID" baseTableName="BATCH" constraintName="BATCH_FK_OWNER_PERSONNEL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="PERSONNEL_ID" referencedTableName="PERSONNEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-288" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LOCATION_ID" baseTableName="BATCH" constraintName="BATCH_FK_REVIEW_LOCATION_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LOCATION_ID" referencedTableName="REVIEW_LOCATION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-289" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SELECTION_REQUEST_ID" baseTableName="BATCH" constraintName="BATCH_FK_SELECTION_REQUEST_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_REQUEST_ID" referencedTableName="SELECTION_REQUEST"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-290" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="BATCH_ID" baseTableName="BATCH_PERSONNEL" constraintName="BATCH_PERSONNEL_FK_BATCH_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="BATCH_ID" referencedTableName="BATCH"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-291" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="PERSONNEL_ID" baseTableName="BATCH_PERSONNEL" constraintName="BATCH_PERSONNEL_FK_PERSONNEL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="PERSONNEL_ID" referencedTableName="PERSONNEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-292" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="BINDER_REQUEST_SOURCE_ID" baseTableName="BINDER_REQUEST" constraintName="BINDER_REQUEST_FK_BINDER_REQUEST_SOURCE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="BINDER_REQUEST_SOURCE_ID" referencedTableName="BINDER_REQUEST_SOURCE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-293" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="BINDER_REQUEST_STATUS_ID" baseTableName="BINDER_REQUEST" constraintName="BINDER_REQUEST_FK_BINDER_REQUEST_STATUS_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="BINDER_REQUEST_STATUS_ID" referencedTableName="BINDER_REQUEST_STATUS_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-294" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SELECTION_ID" baseTableName="BINDER_REQUEST" constraintName="BINDER_REQUEST_FK_SELECTION_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_ID" referencedTableName="LOAN_SELECTION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-295" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_ID" baseTableName="DEFECT_CAUSE" constraintName="DEFECTCAUSETODEFECT" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_ID" referencedTableName="DEFECT"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-296" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="QA_MODEL_ID" baseTableName="DEFECT" constraintName="DEFECT_FK_QA_MODEL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="QA_MODEL_ID" referencedTableName="QA_MODEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-297" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_ID" baseTableName="DEFECT_REMEDY_TYPE" constraintName="DEFECT_REMEDY_TYPE_FK_DEFECT_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_ID" referencedTableName="DEFECT"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-298" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LEVEL_ID" baseTableName="DELIV_PARMS_ITERATION" constraintName="DELIVPARMITERTORVWLVLREF" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LEVEL_TYPE_ID" referencedTableName="REVIEW_LEVEL_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-299" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LEVEL_ID" baseTableName="DELIV_PARMS_REQUEST" constraintName="DELIVPARMSREQREVLEVEL" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LEVEL_ID" referencedTableName="REVIEW_LEVEL_ADMIN"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-300" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SLCTN_REASON_ID" baseTableName="DELIV_PARMS_REQUEST" constraintName="DELIVPARMSREQSELPARMS" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_REASON_ID" referencedTableName="SELECTION_REASON"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-301" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LEVEL_ID" baseTableName="DELIV_PARMS_ITERATION" constraintName="DELIVPARMSREVLEVEL" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LEVEL_ID" referencedTableName="REVIEW_LEVEL_ADMIN"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-302" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LEVEL_ID" baseTableName="DELIV_PARMS_REQUEST" constraintName="DELIVPARMSRQSTTORVWLVLREF" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LEVEL_TYPE_ID" referencedTableName="REVIEW_LEVEL_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-303" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SLCTN_REASON_ID" baseTableName="DELIV_PARMS_ITERATION" constraintName="DELIVPARMSSELPARMS" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_REASON_ID" referencedTableName="SELECTION_REASON"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-304" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_ID" baseTableName="DEFECT_SEVERITY" constraintName="DFCTSEVERITYTIERTODEFECT" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_ID" referencedTableName="DEFECT"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-305" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_ID" baseTableName="DEFECT_SOURCE" constraintName="DFCTSOURCETODEFECT" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_ID" referencedTableName="DEFECT"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-306" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="CONDITION_ENTITY_NAME,CONDITION_FIELD_NAME" baseTableName="DICT_METADATA_FIELD_CONDITION" constraintName="DICTMETACOND2TODICTMETAFIELD" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ENTITY_NAME,FIELD_NAME" referencedTableName="DICT_METADATA_FIELD"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-307" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="ENTITY_NAME,FIELD_NAME" baseTableName="DICT_METADATA_FIELD_CONDITION" constraintName="DICTMETACONDTODICTMETAFIELD" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ENTITY_NAME,FIELD_NAME" referencedTableName="DICT_METADATA_FIELD"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-308" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="ENTITY_NAME,FIELD_NAME" baseTableName="DICT_METADATA_FIELD_DEFECT" constraintName="DICTMETADEFECTDICTMETAFIELD" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ENTITY_NAME,FIELD_NAME" referencedTableName="DICT_METADATA_FIELD"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-309" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_ID" baseTableName="DICT_METADATA_FIELD_DEFECT" constraintName="DICTMETADEFECTTODEFECT" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_ID" referencedTableName="DEFECT"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-310" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="ENTITY_NAME,FIELD_NAME" baseTableName="DICT_METADATA_FIELD_RELATIVES" constraintName="DICTMETARELATIVEDICTMETAFIELD" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ENTITY_NAME,FIELD_NAME" referencedTableName="DICT_METADATA_FIELD"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-311" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DICT_METADATA_FIELD_SUBJECT_AREA_ID" baseTableName="DICT_METADATA_FIELD_MODEL" constraintName="DICT_METADATA_FIELD_MODEL_FK_DICT_METADATA_FIELD_SUBJECT_AREA_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DICT_METADATA_FIELD_SUBJECT_AREA_ID" referencedTableName="DICT_METADATA_FIELD_SUBJECT_AREA"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-312" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="ENTITY_NAME,FIELD_NAME" baseTableName="DICT_METADATA_FIELD_MODEL" constraintName="DICT_METADATA_FIELD_MODEL_FK_ENTITY_NAME_FIELD_NAME" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ENTITY_NAME,FIELD_NAME" referencedTableName="DICT_METADATA_FIELD"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-313" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="QA_MODEL_ID" baseTableName="DICT_METADATA_FIELD_MODEL" constraintName="DICT_METADATA_FIELD_MODEL_FK_QA_MODEL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="QA_MODEL_ID" referencedTableName="QA_MODEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-314" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="QA_MODEL_ID" baseTableName="DICT_METADATA_FIELD_SUBJECT_AREA" constraintName="DICT_METADATA_FIELD_SUBJECT_AREA_FK_QA_MODEL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="QA_MODEL_ID" referencedTableName="QA_MODEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-315" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="BATCH_ID" baseTableName="DOCUMENT" constraintName="DOCUMENT_FK_BATCH_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="BATCH_ID" referencedTableName="BATCH"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-316" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DOCUMENT_FILE_ID" baseTableName="DOCUMENT" constraintName="DOCUMENT_FK_DOCUMENT_FILE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DOCUMENT_FILE_ID" referencedTableName="DOCUMENT_FILE"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-317" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DOCUMENT_TYPE_ID" baseTableName="DOCUMENT" constraintName="DOCUMENT_FK_DOCUMENT_TYPE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DOCUMENT_TYPE_ID" referencedTableName="DOCUMENT_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-318" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_ID" baseTableName="DOCUMENT" constraintName="DOCUMENT_FK_REVIEW_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_ID" referencedTableName="REVIEW"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-319" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LEVEL_ID" baseTableName="DOCUMENT" constraintName="DOCUMENT_FK_REVIEW_LEVEL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LEVEL_ID" referencedTableName="REVIEW_LEVEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-320" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_ID" baseTableName="REVIEW_PROCESS_EXCEPTION" constraintName="EXCEPTION_FK_REVIEW_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_ID" referencedTableName="REVIEW"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-321" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DOCUMENT_ID" baseTableName="FINDING_DOCUMENT" constraintName="FINDING_DOCUMENT_FK_DOCUMENT_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DOCUMENT_ID" referencedTableName="DOCUMENT"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-322" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="FINDING_ID" baseTableName="FINDING_DOCUMENT" constraintName="FINDING_DOCUMENT_FK_RVW_LVL_FINDING" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="FINDING_ID" referencedTableName="RVW_LVL_FINDING"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-323" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="FINDING_ID" baseTableName="RVW_LVL_FINDING_QUESTION" constraintName="FINDING_QUESTION_TO_FINDING_FK" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="FINDING_ID" referencedTableName="RVW_LVL_FINDING"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-324" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="QUESTION_ID" baseTableName="RVW_LVL_FINDING_QUESTION" constraintName="FINDING_QUESTION_TO_QUESTION_FK" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="QUESTION_ID" referencedTableName="QATREE_QUESTION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-325" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_CAUSE_ID" baseTableName="FINDING_RATING_RULE" constraintName="FINDING_RATING_RULES_FK_DEFECT_CAUSE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_CAUSE_ID" referencedTableName="DEFECT_CAUSE"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-326" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_ID" baseTableName="FINDING_RATING_RULE" constraintName="FINDING_RATING_RULES_FK_DEFECT_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_ID" referencedTableName="DEFECT"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-327" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_SOURCE_ID" baseTableName="FINDING_RATING_RULE" constraintName="FINDING_RATING_RULES_FK_DEFECT_SOURCE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_SOURCE_ID" referencedTableName="DEFECT_SOURCE"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-328" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="FHA_SIGNER_PERSONNEL_ID" baseTableName="INDEMNIFICATION" constraintName="INDEMNIFICATION_FK_FHA_SIGNER_PERSONNEL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="PERSONNEL_ID" referencedTableName="PERSONNEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-329" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LOCATION_ID" baseTableName="INDEMNIFICATION" constraintName="INDEMNIFICATION_FK_REVIEW_LOCATION_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LOCATION_ID" referencedTableName="REVIEW_LOCATION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-330" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="JOB_EXECUTION_STATUS_ID" baseTableName="JOB_EXECUTION" constraintName="JOB_EXECUTION_FK_JOB_EXECUTION_STATUS_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="JOB_EXECUTION_STATUS_ID" referencedTableName="JOB_EXECUTION_STATUS_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-331" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="JOB_ID" baseTableName="JOB_EXECUTION" constraintName="JOB_EXECUTION_FK_JOB_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="JOB_ID" referencedTableName="JOB"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-332" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="JOB_TYPE_ID" baseTableName="JOB" constraintName="JOB_FK_JOB_TYPE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="JOB_TYPE_ID" referencedTableName="JOB_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-333" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="FILE_DELIVERY_LOCATION_ID" baseTableName="LENDER_MONITORING_SELECTION_REQUEST" constraintName="LENDER_MONITORING_SELECTION_REQUEST_FK_FILE_DELIVERY_LOCATION_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="FILE_DELIVERY_LOCATION_ID" referencedTableName="FILE_DELIVERY_LOCATION_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-334" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="LOAN_TYPE_REF_ID" baseTableName="LENDER_MONITORING_SELECTION_REQUEST" constraintName="LENDER_MONITORING_SELECTION_REQUEST_FK_LOAN_TYPE_REF_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="LOAN_TYPE_REF_ID" referencedTableName="LOAN_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-335" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LOCATION_ID" baseTableName="LENDER_MONITORING_SELECTION_REQUEST" constraintName="LENDER_MONITORING_SELECTION_REQUEST_FK_REVIEW_LOCATION_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LOCATION_ID" referencedTableName="REVIEW_LOCATION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-336" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_TYPE_ID" baseTableName="LENDER_MONITORING_SELECTION_REQUEST" constraintName="LENDER_MONITORING_SELECTION_REQUEST_FK_REVIEW_TYPE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_TYPE_ID" referencedTableName="REVIEW_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-337" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SELECTION_REQUEST_ID" baseTableName="LENDER_MONITORING_SELECTION_REQUEST" constraintName="LENDER_MONITORING_SELECTION_REQUEST_FK_SELECTION_REQUEST_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_REQUEST_ID" referencedTableName="SELECTION_REQUEST"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-338" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="LENDER_REQUEST_STATUS_ID" baseTableName="LENDER_REQUEST" constraintName="LENDER_REQUEST_FK_LENDER_REQUEST_STATUS_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="LENDER_REQUEST_STATUS_ID" referencedTableName="LENDER_REQUEST_STATUS_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-339" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_ID" baseTableName="LENDER_SELF_REPORT_SELECTION_REQUEST_DEFECT" constraintName="LENDER_SELF_REPORT_SELECTION_REQUEST_DEFECT_FK_DEFECT_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_ID" referencedTableName="DEFECT"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-340" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SELECTION_REQUEST_ID" baseTableName="LENDER_SELF_REPORT_SELECTION_REQUEST_DEFECT" constraintName="LENDER_SELF_REPORT_SELECTION_REQUEST_DEFECT_FK_SELECTION_REQUEST_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_REQUEST_ID" referencedTableName="LENDER_SELF_REPORT_SELECTION_REQUEST"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-341" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_TYPE_ID" baseTableName="LENDER_SELF_REPORT_SELECTION_REQUEST_DEFECT_TYPE_REF" constraintName="LENDER_SELF_REPORT_SELECTION_REQUEST_DEFECT_TYPE_REF_FK_DEFECT_TYPE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_TYPE_ID" referencedTableName="DEFECT_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-342" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SELECTION_REQUEST_ID" baseTableName="LENDER_SELF_REPORT_SELECTION_REQUEST_DEFECT_TYPE_REF" constraintName="LENDER_SELF_REPORT_SELECTION_REQUEST_DEFECT_TYPE_REF_FK_SELECTION_REQUEST_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_REQUEST_ID" referencedTableName="LENDER_SELF_REPORT_SELECTION_REQUEST"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-343" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SELECTION_REQUEST_ID" baseTableName="LENDER_SELF_REPORT_SELECTION_REQUEST" constraintName="LENDER_SELF_REPORT_SELECTION_REQUEST_FK_SELECTION_REQUEST_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_REQUEST_ID" referencedTableName="SELECTION_REQUEST"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-344" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="FRAUD_PARTICIPANT_ID" baseTableName="LENDER_SELF_REPORT_SELECTION_REQUEST_FRAUD_PARTICIPANT_REF" constraintName="LENDER_SELF_REPORT_SELECTION_REQUEST_FRAUD_PARTICIPANT_REF_FK_FRAUD_PARTICIPANT_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="FRAUD_PARTICIPANT_ID" referencedTableName="FRAUD_PARTICIPANT_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-345" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SELECTION_REQUEST_ID" baseTableName="LENDER_SELF_REPORT_SELECTION_REQUEST_FRAUD_PARTICIPANT_REF" constraintName="LENDER_SELF_REPORT_SELECTION_REQUEST_FRAUD_PARTICIPANT_REF_FK_SELECTION_REQUEST_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_REQUEST_ID" referencedTableName="LENDER_SELF_REPORT_SELECTION_REQUEST"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-346" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="FRAUD_TYPE_ID" baseTableName="LENDER_SELF_REPORT_SELECTION_REQUEST_FRAUD_TYPE_REF" constraintName="LENDER_SELF_REPORT_SELECTION_REQUEST_FRAUD_TYPE_REF_FK_FRAUD_TYPE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="FRAUD_TYPE_ID" referencedTableName="FRAUD_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-347" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SELECTION_REQUEST_ID" baseTableName="LENDER_SELF_REPORT_SELECTION_REQUEST_FRAUD_TYPE_REF" constraintName="LENDER_SELF_REPORT_SELECTION_REQUEST_FRAUD_TYPE_REF_FK_SELECTION_REQUEST_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_REQUEST_ID" referencedTableName="LENDER_SELF_REPORT_SELECTION_REQUEST"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-348" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_TYPE_ID" baseTableName="LOAN_SELECTION_PENDING" constraintName="LOANSLCTPENDTORVWTYPREF" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_TYPE_ID" referencedTableName="REVIEW_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-349" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SELECTION_REQUEST_ID" baseTableName="LOAN_SELECTION_CASE_SUMMARY" constraintName="LOAN_SELECTION_CASE_SUMMARY_FK_SELECTION_REQUEST_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_REQUEST_ID" referencedTableName="SELECTION_REQUEST"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-350" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="BATCH_ID" baseTableName="LOAN_SELECTION" constraintName="LOAN_SELECTION_FK_BATCH_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="BATCH_ID" referencedTableName="BATCH"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-351" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SELECTION_ID" baseTableName="LOAN_SELECTION" constraintName="LOAN_SELECTION_FK_LOAN_SELECTION_CASE_SUMMARY" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_ID" referencedTableName="LOAN_SELECTION_CASE_SUMMARY"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-352" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="LOAN_SELECTION_STATUS_ID" baseTableName="LOAN_SELECTION" constraintName="LOAN_SELECTION_FK_LOAN_SELECTION_STATUS_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="LOAN_SELECTION_STATUS_ID" referencedTableName="LOAN_SELECTION_STATUS_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-353" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="PREFERRED_REVIEW_LOCATION_ID" baseTableName="LOAN_SELECTION" constraintName="LOAN_SELECTION_FK_PREFERRED_REVIEW_LOCATION_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LOCATION_ID" referencedTableName="REVIEW_LOCATION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-354" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="PRODUCT_TYPE_ID" baseTableName="LOAN_SELECTION" constraintName="LOAN_SELECTION_FK_PRODUCT_TYPE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="PRODUCT_TYPE_ID" referencedTableName="PRODUCT_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-355" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LOCATION_ID" baseTableName="LOAN_SELECTION" constraintName="LOAN_SELECTION_FK_REVIEW_LOCATION_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LOCATION_ID" referencedTableName="REVIEW_LOCATION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-356" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_TYPE_ID" baseTableName="LOAN_SELECTION" constraintName="LOAN_SELECTION_FK_REVIEW_TYPE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_TYPE_ID" referencedTableName="REVIEW_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-357" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SELECTION_REASON_ID" baseTableName="LOAN_SELECTION" constraintName="LOAN_SELECTION_FK_SELECTION_REASON_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_REASON_ID" referencedTableName="SELECTION_REASON"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-358" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="BATCH_ID" baseTableName="LOAN_SELECTION_PENDING" constraintName="LOAN_SELECTION_PENDING_FK_BATCH_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="BATCH_ID" referencedTableName="BATCH"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-359" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="PRODUCT_TYPE_ID" baseTableName="LOAN_SELECTION_PENDING" constraintName="LOAN_SELECTION_PENDING_FK_PRODUCT_TYPE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="PRODUCT_TYPE_ID" referencedTableName="PRODUCT_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-360" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LOCATION_ID" baseTableName="LOAN_SELECTION_PENDING" constraintName="LOAN_SELECTION_PENDING_FK_REVIEW_LOCATION_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LOCATION_ID" referencedTableName="REVIEW_LOCATION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-361" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SELECTION_ID" baseTableName="LOAN_SELECTION_PENDING" constraintName="LOAN_SELECTION_PENDING_FK_SELECTION_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_ID" referencedTableName="LOAN_SELECTION_CASE_SUMMARY"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-362" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SELECTION_REASON_ID" baseTableName="LOAN_SELECTION_PENDING" constraintName="LOAN_SELECTION_PENDING_FK_SELECTION_REASON_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_REASON_ID" referencedTableName="SELECTION_REASON"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-363" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SELECTION_SUB_REASON_ID" baseTableName="LOAN_SELECTION_PENDING" constraintName="LOAN_SELECTION_PENDING_FK_SELECTION_SUB_REASON_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_SUB_REASON_ID" referencedTableName="SELECTION_SUB_REASON_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-364" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="ASSIGNMENT_TYPE_CD" baseTableName="LOCATION_ASSIGNMENT_TYPE" constraintName="LOCASSIGNMENTTYPTOASGNTYPADM" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ASSIGNMENT_TYPE_CD" referencedTableName="ASSIGNMENT_TYPE_ADMIN"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-365" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LOCATION_ID" baseTableName="LOCATION_ASSIGNMENT_TYPE" constraintName="LOCATION_ASSIGNMENT_TYPE_FK_REVIEW_LOCATION_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LOCATION_ID" referencedTableName="REVIEW_LOCATION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-366" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LOCATION_ID" baseTableName="MANUAL_SELECTION_REQUEST" constraintName="MANUAL_SELECTION_REQUEST_FK_REVIEW_LOCATION_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LOCATION_ID" referencedTableName="REVIEW_LOCATION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-367" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_TYPE_ID" baseTableName="MANUAL_SELECTION_REQUEST" constraintName="MANUAL_SELECTION_REQUEST_FK_REVIEW_TYPE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_TYPE_ID" referencedTableName="REVIEW_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-368" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SELECTION_REASON_ID" baseTableName="MANUAL_SELECTION_REQUEST" constraintName="MANUAL_SELECTION_REQUEST_FK_SELECTION_REASON_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_REASON_ID" referencedTableName="SELECTION_REASON"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-369" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SELECTION_REQUEST_ID" baseTableName="MANUAL_SELECTION_REQUEST" constraintName="MANUAL_SELECTION_REQUEST_FK_SELECTION_REQUEST_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_REQUEST_ID" referencedTableName="SELECTION_REQUEST"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-370" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SELECTION_SUB_REASON_ID" baseTableName="MANUAL_SELECTION_REQUEST" constraintName="MANUAL_SELECTION_REQUEST_FK_SELECTION_SUB_REASON_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_SUB_REASON_ID" referencedTableName="SELECTION_SUB_REASON_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-371" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SCORING_MODEL_VERSION_ID" baseTableName="MODEL_SCORE" constraintName="MODEL_SCORE_FK_SCORING_MODEL_VERSION_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SCORING_MODEL_VERSION_ID" referencedTableName="SCORING_MODEL_VERSION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-372" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SELECTION_ID" baseTableName="MODEL_SCORE" constraintName="MODEL_SCORE_FK_SELECTION_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_ID" referencedTableName="LOAN_SELECTION_CASE_SUMMARY"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-373" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="NOTE_TYPE_ID" baseTableName="NOTE" constraintName="NOTETONOTETYPREF" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="NOTE_TYPE_ID" referencedTableName="NOTE_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-374" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="PERSONNEL_ID" baseTableName="NOTE" constraintName="NOTE_FK_PERSONNEL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="PERSONNEL_ID" referencedTableName="PERSONNEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-375" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="ASSIGNMENT_TYPE_CD" baseTableName="PERSONNEL_ASSIGNMENT_TYPE" constraintName="PERSONASSIGNTYPES" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ASSIGNMENT_TYPE_CD" referencedTableName="ASSIGNMENT_TYPE_ADMIN"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-376" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="PERSONNEL_ID" baseTableName="PERSONNEL_ASSIGNMENT_TYPE" constraintName="PERSONNEL_ASSIGNMENT_TYPE_FK_PERSONNEL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="PERSONNEL_ID" referencedTableName="PERSONNEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-377" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="PERSONNEL_STATUS_ID" baseTableName="PERSONNEL" constraintName="PERSONNEL_FK_PERSONNEL_STATUS_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="PERSONNEL_STATUS_ID" referencedTableName="PERSONNEL_STATUS_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-378" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REPORTS_TO_PERSONNEL_ID" baseTableName="PERSONNEL" constraintName="PERSONNEL_FK_REPORTS_TO_PERSONNEL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="PERSONNEL_ID" referencedTableName="PERSONNEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-379" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LOCATION_ID" baseTableName="PERSONNEL" constraintName="PERSONNEL_FK_REVIEW_LOCATION_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LOCATION_ID" referencedTableName="REVIEW_LOCATION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-380" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="VETTING_PERSONNEL_ID" baseTableName="PERSONNEL" constraintName="PERSONNEL_FK_VETTING_PERSONNEL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="PERSONNEL_ID" referencedTableName="PERSONNEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-381" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="PERSONNEL_ID" baseTableName="PERSONNEL_UNAVAILABILITY" constraintName="PERSONNEL_UNAVAILABILITY_FK_PERSONNEL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="PERSONNEL_ID" referencedTableName="PERSONNEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-382" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="PRODUCT_TYPE_ID" baseTableName="PRODUCT_DETAIL_REF" constraintName="PRODUCTDETAILREFTOPRODUCTTYP" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="PRODUCT_TYPE_ID" referencedTableName="PRODUCT_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-383" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="ENTITY_NAME" baseTableName="QATREE_QSTN_CAPTURE" constraintName="QATREEQSTNCAPTTOMETAENTITY" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ENTITY_NAME" referencedTableName="DICT_METADATA_ENTITY"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-384" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="ENTITY_NAME,FIELD_NAME" baseTableName="QATREE_QSTN_CAPTURE" constraintName="QATREEQSTNCAPTTOMETAFIELD" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ENTITY_NAME,FIELD_NAME" referencedTableName="DICT_METADATA_FIELD"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-385" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="QATREE_ID" baseTableName="QATREE_QSTN_CAPTURE" constraintName="QATREEQSTNCAPTTOQATREE" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="QATREE_ID" referencedTableName="QATREE"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-386" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="QATREE_ID" baseTableName="QATREE_QSTN_CONDITION" constraintName="QATREEQSTNCONDTOQATREE" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="QATREE_ID" referencedTableName="QATREE"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-387" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_TYPE_ID" baseTableName="QATREE_QSTN_RULES" constraintName="QATREEQSTNRULTORVWTYPREF" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_TYPE_ID" referencedTableName="REVIEW_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-388" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_ID" baseTableName="QATREE" constraintName="QATREE_FK_DEFECT_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_ID" referencedTableName="DEFECT"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-389" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="QA_MODEL_ID" baseTableName="QATREE" constraintName="QATREE_FK_QA_MODEL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="QA_MODEL_ID" referencedTableName="QA_MODEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-390" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_CAUSE_ID" baseTableName="QATREE_OUTCOME_DEFECT_CAUSE" constraintName="QATREE_OUTCOME_DEFECT_CAUSE_FK_DEFECT_CAUSE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_CAUSE_ID" referencedTableName="DEFECT_CAUSE"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-391" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="QATREE_OUTCOME_ID" baseTableName="QATREE_OUTCOME_DEFECT_CAUSE" constraintName="QATREE_OUTCOME_DEFECT_CAUSE_FK_QATREE_OUTCOME_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="QATREE_OUTCOME_ID" referencedTableName="QATREE_OUTCOME"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-392" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_SEVERITY_ID" baseTableName="QATREE_OUTCOME_DEFECT_SEVERITY" constraintName="QATREE_OUTCOME_DEFECT_SEVERITY_FK_DEFECT_SEVERITY_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_SEVERITY_ID" referencedTableName="DEFECT_SEVERITY"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-393" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="QATREE_OUTCOME_ID" baseTableName="QATREE_OUTCOME_DEFECT_SEVERITY" constraintName="QATREE_OUTCOME_DEFECT_SEVERITY_FK_QATREE_OUTCOME_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="QATREE_OUTCOME_ID" referencedTableName="QATREE_OUTCOME"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-394" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_SOURCE_ID" baseTableName="QATREE_OUTCOME_DEFECT_SOURCE" constraintName="QATREE_OUTCOME_DEFECT_SOURCE_FK_DEFECT_SOURCE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_SOURCE_ID" referencedTableName="DEFECT_SOURCE"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-395" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="QATREE_OUTCOME_ID" baseTableName="QATREE_OUTCOME_DEFECT_SOURCE" constraintName="QATREE_OUTCOME_DEFECT_SOURCE_FK_QATREE_OUTCOME_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="QATREE_OUTCOME_ID" referencedTableName="QATREE_OUTCOME"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-396" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_ID" baseTableName="QATREE_OUTCOME" constraintName="QATREE_OUTCOME_FK_DEFECT_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_ID" referencedTableName="DEFECT"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-397" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="QUESTION_ID" baseTableName="QATREE_QSTN_CONDITION" constraintName="QATREE_QSTN_CONDITION_FK_QUESTION_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="QUESTION_ID" referencedTableName="QATREE_QUESTION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-398" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SELECTION_REASON_ID" baseTableName="QATREE_QSTN_RULES" constraintName="QATREE_QSTN_RULES_FK_SELECTION_REASON_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_REASON_ID" referencedTableName="SELECTION_REASON"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-399" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="PARENT_QUESTION_ID" baseTableName="QATREE_QUESTION" constraintName="QATREE_QUESTION_FK_PARENT_QUESTION_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="QUESTION_ID" referencedTableName="QUESTION_REFERENCE"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-400" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="QATREE_ID" baseTableName="QATREE_QUESTION" constraintName="QATREE_QUESTION_FK_QATREE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="QATREE_ID" referencedTableName="QATREE"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-401" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="QATREE_OUTCOME_ID" baseTableName="QATREE_QUESTION" constraintName="QATREE_QUESTION_FK_QATREE_OUTCOME_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="QATREE_OUTCOME_ID" referencedTableName="QATREE_OUTCOME"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-402" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="QUESTION_ID" baseTableName="QATREE_QUESTION" constraintName="QATREE_QUESTION_FK_QUESTION_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="QUESTION_ID" referencedTableName="QUESTION_REFERENCE"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-403" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="PARENT_QUESTION_ID" baseTableName="QATREE_QUESTION" constraintName="QATREE_QUESTION_TO_QATREE_QUESTION_FK_PARENT_QUESTION_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="QUESTION_ID" referencedTableName="QATREE_QUESTION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-404" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="QA_MODEL_STATUS_ID" baseTableName="QA_MODEL" constraintName="QA_MODEL_FK_QA_MODEL_STATUS_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="QA_MODEL_STATUS_ID" referencedTableName="QA_MODEL_STATUS_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-405" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="QUESTION_ID" baseTableName="QA_MODEL_PREQUAL" constraintName="QA_MODEL_PREQUAL_FK_QUESTION_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="QUESTION_ID" referencedTableName="QUESTION_REFERENCE"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-406" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="BATCH_ID" baseTableName="REVIEW" constraintName="REVIEWBATCH" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="BATCH_ID" referencedTableName="BATCH"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-407" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_ID" baseTableName="RVW_DEFECT" constraintName="REVIEWDEFECTTODEFECT" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_ID" referencedTableName="DEFECT"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-408" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_ID" baseTableName="RVW_DEFECT" constraintName="REVIEWDEFECTTOREVIEW" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_ID" referencedTableName="REVIEW"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-409" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_ID" baseTableName="RVW_LVL_DEFECT" constraintName="REVIEWLEVELDEFECTTOAUDIT" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_ID" referencedTableName="DEFECT"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-410" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_ID" baseTableName="RVW_LVL_DEFECT" constraintName="REVIEWLEVELDEFECTTOREVIEW" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_ID" referencedTableName="REVIEW"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-411" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="INDEMNIFICATION_TYPE_ID" baseTableName="REVIEW_LEVEL" constraintName="REVIEWLEVELFKINDEMTYPEREF" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="INDEMNIFICATION_TYPE_ID" referencedTableName="INDEMNIFICATION_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-412" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LVL_ID" baseTableName="RVW_LVL_AUDIT" constraintName="REVIEWLEVELTOAUDIT" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LEVEL_ID" referencedTableName="REVIEW_LEVEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-413" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SELECTION_ID" baseTableName="REVIEW" constraintName="REVIEWSELECTION" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_ID" referencedTableName="LOAN_SELECTION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-414" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="CANCELLATION_REASON_ID" baseTableName="REVIEW" constraintName="REVIEW_FK_CANCELLATION_REASON_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="CANCELLATION_REASON_ID" referencedTableName="REVIEW_LEVEL_CANCELLATION_REASON_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-415" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="ORIGINAL_REVIEWER_PERSONNEL_ID" baseTableName="REVIEW" constraintName="REVIEW_FK_ORIGINAL_REVIEWER_PERSONNEL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="PERSONNEL_ID" referencedTableName="PERSONNEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-416" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="PRODUCT_TYPE_ID" baseTableName="REVIEW" constraintName="REVIEW_FK_PRODUCT_TYPE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="PRODUCT_TYPE_ID" referencedTableName="PRODUCT_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-417" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="QA_MODEL_ID" baseTableName="REVIEW" constraintName="REVIEW_FK_QA_MODEL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="QA_MODEL_ID" referencedTableName="QA_MODEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-418" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_SCOPE_ID" baseTableName="REVIEW" constraintName="REVIEW_FK_REVIEW_SCOPE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_SCOPE_ID" referencedTableName="REVIEW_SCOPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-419" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_STATUS_ID" baseTableName="REVIEW" constraintName="REVIEW_FK_REVIEW_STATUS_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_STATUS_ID" referencedTableName="REVIEW_STATUS_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-420" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_TYPE_ID" baseTableName="REVIEW" constraintName="REVIEW_FK_REVIEW_TYPE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_TYPE_ID" referencedTableName="REVIEW_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-421" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SELECTION_REASON_ID" baseTableName="REVIEW" constraintName="REVIEW_FK_SELECTION_REASON_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_REASON_ID" referencedTableName="SELECTION_REASON"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-422" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SUMMARY_RATING_ID" baseTableName="REVIEW" constraintName="REVIEW_FK_SUMMARY_RATING_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="RATING_ID" referencedTableName="RATING_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-423" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_ID" baseTableName="REVIEW_LEVEL" constraintName="REVIEW_LEVELTOREVIEW" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_ID" referencedTableName="REVIEW"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-424" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="CANCELLATION_REASON_ID" baseTableName="REVIEW_LEVEL" constraintName="REVIEW_LEVEL_FK_CANCELLATION_REASON_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="CANCELLATION_REASON_ID" referencedTableName="REVIEW_LEVEL_CANCELLATION_REASON_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-425" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="ORIGINAL_REVIEWER_PERSONNEL_ID" baseTableName="REVIEW_LEVEL" constraintName="REVIEW_LEVEL_FK_ORIGINAL_REVIEWER_PERSONNEL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="PERSONNEL_ID" referencedTableName="PERSONNEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-426" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="RATING_ID" baseTableName="REVIEW_LEVEL" constraintName="REVIEW_LEVEL_FK_RATING_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="RATING_ID" referencedTableName="RATING_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-427" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REASSIGNMENT_REASON_ID" baseTableName="REVIEW_LEVEL" constraintName="REVIEW_LEVEL_FK_REASSIGNMENT_REASON_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REASSIGNMENT_REASON_ID" referencedTableName="REVIEW_LEVEL_REASSIGNMENT_REASON_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-428" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEWER_PERSONNEL_ID" baseTableName="REVIEW_LEVEL" constraintName="REVIEW_LEVEL_FK_REVIEWER_PERSONNEL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="PERSONNEL_ID" referencedTableName="PERSONNEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-429" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LEVEL_STATUS_ID" baseTableName="REVIEW_LEVEL" constraintName="REVIEW_LEVEL_FK_REVIEW_LEVEL_STATUS_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LEVEL_STATUS_ID" referencedTableName="REVIEW_LEVEL_STATUS_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-430" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LEVEL_TYPE_ID" baseTableName="REVIEW_LEVEL" constraintName="REVIEW_LEVEL_FK_REVIEW_LEVEL_TYPE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LEVEL_TYPE_ID" referencedTableName="REVIEW_LEVEL_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-431" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LOCATION_ID" baseTableName="REVIEW_LEVEL" constraintName="REVIEW_LEVEL_FK_REVIEW_LOCATION_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LOCATION_ID" referencedTableName="REVIEW_LOCATION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-432" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LEVEL_TYPE_ID" baseTableName="REVIEW_LEVEL_ITERATION_TIMEFRAME" constraintName="REVIEW_LEVEL_ITERATION_TIMEFRAME_FK_REVIEW_LEVEL_TYPE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LEVEL_TYPE_ID" referencedTableName="REVIEW_LEVEL_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-433" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SELECTION_REASON_ID" baseTableName="REVIEW_LEVEL_ITERATION_TIMEFRAME" constraintName="REVIEW_LEVEL_ITERATION_TIMEFRAME_FK_SELECTION_REASON_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_REASON_ID" referencedTableName="SELECTION_REASON"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-434" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="BINDER_DELIVERY_LOCATION_ID" baseTableName="REVIEW_LOCATION" constraintName="REVIEW_LOCATION_FK_BINDER_DELIVERY_LOCATION_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="BINDER_DELIVERY_LOCATION_ID" referencedTableName="BINDER_DELIVERY_LOCATION_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-435" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="OWNER_PERSONNEL_ID" baseTableName="REVIEW_LOCATION" constraintName="REVIEW_LOCATION_FK_OWNER_PERSONNEL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="PERSONNEL_ID" referencedTableName="PERSONNEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-436" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="BATCH_ID" baseTableName="REVIEW_PROCESS_EXCEPTION" constraintName="REVIEW_PROCESS_EXCEPTION_FK_BATCH_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="BATCH_ID" referencedTableName="BATCH"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-437" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_PROCESS_EXCEPTION_TYPE_ID" baseTableName="REVIEW_PROCESS_EXCEPTION" constraintName="REVIEW_PROCESS_EXCEPTION_FK_REVIEW_PROCESS_EXCEPTION_TYPE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_PROCESS_EXCEPTION_TYPE_ID" referencedTableName="REVIEW_PROCESS_EXCEPTION_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-438" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SELECTION_ID" baseTableName="REVIEW_PROCESS_EXCEPTION" constraintName="REVIEW_PROCESS_EXCEPTION_FK_SELECTION_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_ID" referencedTableName="LOAN_SELECTION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-439" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_REFERRAL_ID" baseTableName="REVIEW_REFERRAL_AUD" constraintName="REVIEW_REFERRAL_AUD_FK_REVIEW_REFERRAL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_REFERRAL_ID" referencedTableName="REVIEW_REFERRAL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-440" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_ID" baseTableName="REVIEW_REFERRAL" constraintName="REVIEW_REFERRAL_FK_REVIEW_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_ID" referencedTableName="REVIEW"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-441" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_REFERRAL_SOURCE_REF_ID" baseTableName="REVIEW_REFERRAL" constraintName="REVIEW_REFERRAL_FK_REVIEW_REFERRAL_SOURCE_REF_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_REFERRAL_SOURCE_REF_ID" referencedTableName="REVIEW_REFERRAL_SOURCE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-442" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_REFERRAL_TYPE_REF_ID" baseTableName="REVIEW_REFERRAL" constraintName="REVIEW_REFERRAL_FK_REVIEW_REFERRAL_TYPE_REF_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_REFERRAL_TYPE_REF_ID" referencedTableName="REVIEW_REFERRAL_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-443" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_ID" baseTableName="REVIEW_TYPE_DEFECT" constraintName="REVIEW_TYPE_DEFECT_FK_DEFECT_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_ID" referencedTableName="DEFECT"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-444" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LEVEL_ID" baseTableName="LENDER_REQUEST" constraintName="RQST_FROM_LENDER_FK_REVIEW_LEVEL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LEVEL_ID" referencedTableName="REVIEW_LEVEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-445" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LEVEL_ID" baseTableName="REVIEW_LEVEL_ADMIN" constraintName="RVWLVLADMINTORVWLVLREF" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LEVEL_TYPE_ID" referencedTableName="REVIEW_LEVEL_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-446" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_ID" baseTableName="RVW_LVL_DEFECT_AUD" constraintName="RVWLVLDEFAUDTODEFECT" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_ID" referencedTableName="DEFECT"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-447" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_ID" baseTableName="RVW_LVL_DEFECT_AUD" constraintName="RVWLVLDEFAUDTOREVIEW" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_ID" referencedTableName="REVIEW"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-448" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LVL_ID" baseTableName="RVW_LVL_DEFECT_AUD" constraintName="RVWLVLDEFAUDTOREVIEWLEVEL" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LEVEL_ID" referencedTableName="REVIEW_LEVEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-449" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LVL_ID,DEFECT_ID" baseTableName="RVW_LVL_DEFECT_AUD" constraintName="RVWLVLDEFAUDTORVWLVLDEF" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LEVEL_ID,DEFECT_ID" referencedTableName="RVW_LVL_DEFECT"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-450" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_TYPE_ID" baseTableName="REVIEW_TYPE_DEFECT" constraintName="RVWTYPEDEFTORVWTYPREF" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_TYPE_ID" referencedTableName="REVIEW_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-451" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LOCATION_ID" baseTableName="RVW_LOCATION_REASON" constraintName="RVW_LOCATION_REASON_FK_REVIEW_LOCATION_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LOCATION_ID" referencedTableName="REVIEW_LOCATION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-452" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SELECTION_REASON_ID" baseTableName="RVW_LOCATION_REASON" constraintName="RVW_LOCATION_REASON_FK_SELECTION_REASON_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_REASON_ID" referencedTableName="SELECTION_REASON"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-453" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LEVEL_ID" baseTableName="RVW_LVL_CASE_SUMMARY" constraintName="RVW_LVL_CASE_SUMMARY_FK_REVIEW_LEVEL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LEVEL_ID" referencedTableName="REVIEW_LEVEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-454" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LEVEL_ID" baseTableName="RVW_LVL_DEFECT" constraintName="RVW_LVL_DEFECT_FK_REVIEW_LEVEL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LEVEL_ID" referencedTableName="REVIEW_LEVEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-455" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_CAUSE_ID" baseTableName="RVW_LVL_FINDING" constraintName="RVW_LVL_FINDING_FK_DEFECT_CAUSE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_CAUSE_ID" referencedTableName="DEFECT_CAUSE"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-456" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_ID" baseTableName="RVW_LVL_FINDING" constraintName="RVW_LVL_FINDING_FK_DEFECT_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_ID" referencedTableName="DEFECT"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-457" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_REMEDY_TYPE_ID" baseTableName="RVW_LVL_FINDING" constraintName="RVW_LVL_FINDING_FK_DEFECT_REMEDY_TYPE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_REMEDY_TYPE_ID" referencedTableName="DEFECT_REMEDY_TYPE"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-458" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_SEVERITY_ID" baseTableName="RVW_LVL_FINDING" constraintName="RVW_LVL_FINDING_FK_DEFECT_SEVERITY_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_SEVERITY_ID" referencedTableName="DEFECT_SEVERITY"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-459" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_SOURCE_ID" baseTableName="RVW_LVL_FINDING" constraintName="RVW_LVL_FINDING_FK_DEFECT_SOURCE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_SOURCE_ID" referencedTableName="DEFECT_SOURCE"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-460" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="ORIGINAL_REVIEW_LEVEL_ID" baseTableName="RVW_LVL_FINDING" constraintName="RVW_LVL_FINDING_FK_ORIGINAL_REVIEW_LEVEL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LEVEL_ID" referencedTableName="REVIEW_LEVEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-461" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="RATING_ID" baseTableName="RVW_LVL_FINDING" constraintName="RVW_LVL_FINDING_FK_RATING_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="RATING_ID" referencedTableName="RATING_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-462" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LEVEL_ID" baseTableName="RVW_LVL_FINDING" constraintName="RVW_LVL_FINDING_FK_REVIEW_LEVEL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LEVEL_ID" referencedTableName="REVIEW_LEVEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-463" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LEVEL_ID" baseTableName="INDEMNIFICATION" constraintName="RVW_LVL_INDEM_FK_REVIEW_LEVEL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LEVEL_ID" referencedTableName="REVIEW_LEVEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-464" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="QUESTION_ID" baseTableName="RVW_LVL_QSTN_ANSWERS" constraintName="RVW_LVL_QSTN_ANSWERS_FK_QUESTION_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="QUESTION_ID" referencedTableName="QATREE_QUESTION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-465" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LEVEL_ID" baseTableName="RVW_LVL_QSTN_ANSWERS" constraintName="RVW_LVL_QSTN_ANSWERS_FK_REVIEW_LEVEL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LEVEL_ID" referencedTableName="REVIEW_LEVEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-466" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SCORING_MODEL_ID" baseTableName="SCORING_MODEL_FACTOR" constraintName="SCORING_MODEL_FACTOR_FK_QA_MODEL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SCORING_MODEL_ID" referencedTableName="SCORING_MODEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-467" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SCORING_FACTOR_ID" baseTableName="SCORING_MODEL_FACTOR" constraintName="SCORING_MODEL_FACTOR_FK_SCORING_FACTOR_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SCORING_FACTOR_ID" referencedTableName="SCORING_FACTOR"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-468" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SCORING_MODEL_VERSION_ID" baseTableName="SCORING_MODEL_FACTOR" constraintName="SCORING_MODEL_FACTOR_FK_SCORING_MODEL_VERSION_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SCORING_MODEL_VERSION_ID" referencedTableName="SCORING_MODEL_VERSION"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-469" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="LOAN_TYPE_REF_ID" baseTableName="SCORING_MODEL" constraintName="SCORING_MODEL_FK_LOAN_TYPE_REF_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="LOAN_TYPE_REF_ID" referencedTableName="LOAN_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-470" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_TYPE_ID" baseTableName="SCORING_MODEL" constraintName="SCORING_MODEL_FK_REVIEW_TYPE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_TYPE_ID" referencedTableName="REVIEW_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-471" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SCORING_MODEL_TYPE_ID" baseTableName="SCORING_MODEL" constraintName="SCORING_MODEL_FK_SCORING_MODEL_TYPE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SCORING_MODEL_TYPE_ID" referencedTableName="SCORING_MODEL_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-472" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SELECTION_REASON_ID" baseTableName="SCORING_MODEL" constraintName="SCORING_MODEL_FK_SELECTION_REASON_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_REASON_ID" referencedTableName="SELECTION_REASON"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-473" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFAULT_REVIEW_TYPE_ID" baseTableName="SCORING_MODEL_VERSION" constraintName="SCORING_MODEL_VERSION_FK_DEFAULT_REVIEW_TYPE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_TYPE_ID" referencedTableName="REVIEW_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-474" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_SCOPE_ID" baseTableName="SCORING_MODEL_VERSION" constraintName="SCORING_MODEL_VERSION_FK_REVIEW_SCOPE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_SCOPE_ID" referencedTableName="REVIEW_SCOPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-475" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SCORING_MODEL_ID" baseTableName="SCORING_MODEL_VERSION" constraintName="SCORING_MODEL_VERSION_FK_SCORING_MODEL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SCORING_MODEL_ID" referencedTableName="SCORING_MODEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-476" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SCORING_MODEL_VERSION_STATUS_ID" baseTableName="SCORING_MODEL_VERSION" constraintName="SCORING_MODEL_VERSION_FK_SCORING_MODEL_VERSION_STATUS_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SCORING_MODEL_VERSION_STATUS_ID" referencedTableName="SCORING_MODEL_VERSION_STATUS_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-477" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SCORING_MODEL_ID" baseTableName="SELECTION_REASON" constraintName="SELECTION_REASON_FK_SCORING_MODEL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SCORING_MODEL_ID" referencedTableName="SCORING_MODEL"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-478" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SELECTION_REQUEST_TYPE_ID" baseTableName="SELECTION_REQUEST" constraintName="SELECTION_REQUEST_FK_SELECTION_REQUEST_TYPE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_REQUEST_TYPE_ID" referencedTableName="SELECTION_REQUEST_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-479" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="TEMPLATE_ID" baseTableName="COMM_TEMPLATE_AUDIT" constraintName="TEMPLAUDIT" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="TEMPLATE_ID" referencedTableName="COMM_TEMPLATE"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-480" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="JOB_ID" baseTableName="UNIVERSE_SELECTION_REQUEST" constraintName="UNIVERSE_SELECTION_REQUEST_FK_JOB_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="JOB_ID" referencedTableName="JOB"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-481" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SELECTION_REQUEST_ID" baseTableName="UNIVERSE_SELECTION_REQUEST" constraintName="UNIVERSE_SELECTION_REQUEST_FK_SELECTION_REQUEST_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_REQUEST_ID" referencedTableName="SELECTION_REQUEST"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-482" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="UNIVERSE_ID" baseTableName="UNIVERSE_SELECTION_REQUEST" constraintName="UNIVERSE_SELECTION_REQUEST_UNIVERSE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="UNIVERSE_ID" referencedTableName="UNIVERSE_REF"/>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-483" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createView fullDefinition="false" viewName="RESPONSE_FROM_LENDER">select D.FINDING_ID, D.UPDATED_BY, D.UPDATED_TS from
+					 (select B.FINDING_ID, A.UPDATED_BY, A.UPDATED_TS from DOCUMENT A, FINDING_DOCUMENT B, DOCUMENT_TYPE_REF R1
+								 where A.DOCUMENT_ID = B.DOCUMENT_ID AND A.DOCUMENT_TYPE_ID = R1.DOCUMENT_TYPE_ID AND R1.CODE = 'RESP'
+						  union
+					 select C.FINDING_ID, C.UPDATED_BY, C.UPDATED_TS from NOTE C, NOTE_TYPE_REF R2 WHERE C.NOTE_TYPE_ID = R2.NOTE_TYPE_ID and R2.NOTE_TYPE_CD = 'FCFL') D
+			  WHERE D.UPDATED_TS = (Select MAX(z.UPDATED_TS) from (select A.UPDATED_TS from DOCUMENT A, FINDING_DOCUMENT B, DOCUMENT_TYPE_REF R1
+																									 where A.DOCUMENT_ID = B.DOCUMENT_ID and B.FINDING_ID = D.FINDING_ID AND A.DOCUMENT_TYPE_ID = R1.DOCUMENT_TYPE_ID AND R1.CODE = 'RESP'
+																											union
+																									 select F.UPDATED_TS from NOTE F where F.FINDING_ID = D.FINDING_ID) z)</createView>
+    </changeSet>
+</databaseChangeLog>

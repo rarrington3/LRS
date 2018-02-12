@@ -1,0 +1,38 @@
+[
+    {
+        "code": "TEST_CASE",
+        "description": "Test Case",
+    },
+    {
+        "code": "FHA_MANUAL",
+        "description": "FHA Manual",
+    },
+    {
+        "code": "OIG_AUDIT",
+        "description": "OIG Audit",
+    },
+    {
+        "code": "RISK_RANDOM",
+        "description": "Risk/Random",
+    },
+    {
+        "code": "EARLY_CLAIM",
+        "description": "Early Claim",
+    },
+    {
+        "code": "EPD",
+        "description": "EPD",
+    },
+    {
+        "code": "QC",
+        "description": "QC",
+    },
+    {
+        "code": "MONITORING",
+        "description": "Monitoring",
+    },
+    {
+        "code": "SELF",
+        "description": "Self Report",
+    }
+]

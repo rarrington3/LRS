@@ -1,0 +1,23 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3478_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into SCORING_MODEL_VERSION_FACTOR
+			(SCORING_FACTOR_ID, 
+			 WEIGHT, 
+			 CREATED_BY, 
+			 CREATED_TS, 
+			 SCORING_MODEL_VERSION_ID)
+			values
+			('B4268896-738A-44AF-BA75-BCA18DA67EC7',
+			 -0.5734,
+			 'C20225',
+			 getdate(),
+			 '33FB160A-76C6-4911-82CA-E0A57D07E016') 
+		]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>    
+
+

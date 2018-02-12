@@ -1,0 +1,40 @@
+@import '../../bootstrap/_variables';
+@import '../../shared/_mixins';
+
+:host-context {
+    /* styles should be scoped under host-context */
+
+    .location-to-edit {
+        color: @link-light-blue;
+        text-transform: uppercase;
+    }
+
+    input[type='text'] {
+        &.address-ext {
+            margin-top: 8px;
+        }
+        &.cap {
+            width: 30%;
+        }
+    }
+
+    form {
+        padding-bottom: 20px;
+    }
+
+    .form-item {
+        margin-top: 10px;
+    }
+
+    .no-left-pad {
+        padding-left: 0;
+    }
+
+    .review-cap-top-margin {
+        margin-top: 48px;
+    }
+
+    .btn-primary {
+        float: right;
+    }
+}

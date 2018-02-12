@@ -1,0 +1,42 @@
+// This file is intended to contain NO OUTPUT. Only functions/mixins and variables.
+// Otherwise, we're going to get a ton of duplicate code as we import this file elsewhere.
+.vertically-center () {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.round-container(@length) {
+    overflow: hidden;
+    border-radius: @length/2;
+    width: @length;
+    height: @length;
+}
+
+.text-ellipsis() {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.vertical-scroll() {
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.horizontal-scroll() {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}

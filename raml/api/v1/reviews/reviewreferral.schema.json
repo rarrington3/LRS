@@ -1,0 +1,20 @@
+{
+    "id": "http://LRS/ReviewReferral",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "additionalProperties": false,
+    "properties": {
+        "hudNotes": {
+            "description": "Notes for HUD (Internal) type Referral",
+            "type": "string"
+        },
+        "externalNotes": {
+            "description": "Notes for external type Referral",
+            "type": "string"
+        },
+        "oigNotes": {
+            "description": "Notes for OIG type Referral",
+            "type": "string"
+        }
+    }
+}

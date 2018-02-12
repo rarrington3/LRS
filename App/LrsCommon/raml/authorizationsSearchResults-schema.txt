@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+  	"statusCode": {
+      "type": "string"
+    },
+    "statusMessage": {
+      "type": "string"
+    },
+    "userId": {
+      "type": "string"
+    },
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "applicationName": {
+      "type": "string"
+    },
+    "userStatus": {
+      "type": "string"
+    },
+    "securityAuthorizations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "agencyId": {
+            "type": "string"
+          },
+          "authorizationName": {
+            "type": "string"
+          },
+          "insuranceType": {
+            "type": "string"
+          },
+          "roleCode": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "agencyId",
+          "authorizationName",
+          "insuranceType",
+          "roleCode"
+        ]
+      }
+    }
+  },
+  "required": [
+	"statusCode",
+  	"statusMessage",
+    "userId",
+    "firstName",
+    "lastName",
+    "applicationName",
+    "userStatus",
+    "securityAuthorizations"
+  ]
+}

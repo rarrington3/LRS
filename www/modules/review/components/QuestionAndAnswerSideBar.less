@@ -1,0 +1,59 @@
+@import '../../../libs/bootstrap/less/mixins/vendor-prefixes';
+@import '../../bootstrap/_variables.less';
+:host-context {
+
+	/* styles should be scoped under host-context */
+	.summary-fields {
+		margin-bottom: 0;
+		&.display {
+			height: 0;
+			opacity: 0;
+			.transition(all .35s ease);
+		}
+
+		&.dirty {
+			margin-bottom: 42px;
+		}
+
+		&.display-after {
+			opacity: 1;
+			height: inherit;
+		}
+	}
+
+	.loan-attr {
+		margin-bottom: 8px;
+	}
+
+	.list-group-item {
+		padding: 6px 15px;
+		cursor: pointer;
+		a {
+			display: block;
+			text-align: left;
+			font-size: 12px;
+			font-weight: 600;
+		}
+		a, a:active, a:hover, a:visited {
+			text-decoration: none;
+		}
+		&.selected {
+			background-color: @brand-secondary;
+			a {
+				color: #fff;
+				text-decoration: none;
+			}
+		}
+		.indicator {
+			float: right;
+			top: 2px;
+		}
+		.valid{
+			color: @brand-success;
+			&.btn.active{
+				color: @brand-success;
+				border: none;
+			}
+		}
+	}
+}

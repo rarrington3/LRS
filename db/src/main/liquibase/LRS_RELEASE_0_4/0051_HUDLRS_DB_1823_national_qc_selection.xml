@@ -1,0 +1,16 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="jordanchavez" id="HUDLRS_1823_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+            <![CDATA[
+ALTER TABLE UNIVERSE_REF ALTER COLUMN CODE VARCHAR(50) NOT NULL
+GO
+UPDATE UNIVERSE_REF SET CODE = 'ENDORSEMENT' WHERE CODE = 'ENDR'
+UPDATE UNIVERSE_REF SET CODE = 'EARLY_CLAIM' WHERE CODE = 'ECLM'
+UPDATE UNIVERSE_REF SET CODE = 'EARLY_PAYMENT_DEFAULT' WHERE CODE = 'EPDF'
+UPDATE UNIVERSE_REF SET CODE = 'LENDER_MONITORING' WHERE CODE = 'LMON'
+UPDATE UNIVERSE_REF SET CODE = 'NATIONAL_QC' WHERE CODE = 'NATI'
+            ]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>

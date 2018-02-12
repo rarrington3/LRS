@@ -1,0 +1,73 @@
+// THIS FILE IS AUTO-GENERATED. DO NOT MODIFY.  RUN 'grunt server:apidesigner' TO EDIT THE SPECIFICATION
+package gov.hud.lrs.common.dto;
+
+import java.io.Serializable;
+import java.util.List;
+import java.util.Date;
+import java.math.BigDecimal;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
+
+/**
+ * This class contains all DTOs for the {{api.title}} API.
+ * Due to the way our RAML-->code generator works, all DTOs must be output to a single file.
+ * Java requires 1 class per file so we emit a single class within which there is an inner class per-DTO
+ */
+@SuppressWarnings("serial")
+public class LrsApiV1DTOs {
+    // This class is not intended to be used directly, only the inner classes it contains.
+    private LrsApiV1DTOs() {}
+
+// TODO: emit java enums
+{{#each (extractSchemas api) }}{{#compare schema.type '!==' 'array'}}
+    // {{key}} DTO
+    public static class {{key}}DTO implements Serializable {
+
+    {{#each schema.properties}}
+        /**
+         * {{description}}
+         */
+        private {{jsonTypeToJavaType this}} {{@key}};
+
+    {{/each}}
+
+        /**
+         * Creates a new instance of {{key}}DTO
+         */
+        public {{key}}DTO() {}
+
+    {{#each schema.properties}}
+        /**
+         * Get {{description}}
+         * @return {{description}}
+         */
+        public {{jsonTypeToJavaType this}} get{{camelCase @key}}() {
+            return {{@key}};
+        }
+
+        /**
+         * Set {{description}}
+         * @param {{@key}}
+         *            {{description}}
+         */
+        public void set{{camelCase @key}}({{jsonTypeToJavaType this}} {{@key}}) {
+            this.{{@key}} = {{@key}};
+        }
+
+    {{/each}}
+
+        /**
+         * (non-Javadoc)
+         * @see java.lang.Object#toString()
+         */
+        @Override
+        public String toString() {
+            return "{{key}}DTO [ " + 
+            {{#each schema.properties}}
+                "{{@key}} = " + {{@key}} + {{#if @last}}{{else}}", " + {{/if}}
+            {{/each}}
+                " ]";
+        }
+    }
+{{/compare}}{{/each}}
+}

@@ -1,0 +1,211 @@
+<div class="the-sub-header">
+    <div class="container-fluid">
+
+        <div class="row" *ngIf="currentReview">
+            <div class="col-xs-9 review-info" tabindex="0">
+                <h3 *ngIf="!this.isOperationalReview" class="sub-title" aria-label="Loan Number">
+                    <p>{{currentReview?.caseNumber}}</p>
+                </h3>
+                <div *ngIf="!this.isOperationalReview" class="loan-overview">
+                    <p class="description">Borrower Name</p>
+                    <p class="h5">{{currentReview?.borrowerName}}</p>
+                </div>
+                <div *ngIf="!this.isOperationalReview" class="loan-overview">
+                    <p class="description">Property Address</p>
+                    <p class="h5">{{currentReview?.propertyStreetAddress}}</p>
+                </div>
+                <div *ngIf="!this.isOperationalReview" class="loan-overview">
+                    <p class="description">Case # Assignment Date</p>
+                    <p class="h5">{{currentReview?.caseEstablishmentDate | datePipe}}</p>
+                </div>
+                <div class="loan-overview">
+                    <p class="description">Lender ID</p>
+                    <p class="h5">{{currentReview?.lenderId}}</p>
+                </div>
+                <div class="loan-overview">
+                    <p class="description">Lender Name</p>
+                    <p class="h5">{{currentReview?.lenderName}}</p>
+                </div>
+            </div>
+            <div class="col-xs-2 buttons">
+                <div class="dropdown" *ngIf="showReviewActions()">
+                    <button id="reviewActionsLabel" class="btn-link d-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Review Actions
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="reviewActionsLabel">
+                        <li *ngIf="reviewActions.showIndemnification"><button type="button" class="btn btn-link" (click)="onReviewActionClick('showIndemnification')">Review Indemnification</button></li>
+                        <li *ngIf="reviewActions.showIndemInfo"><button type="button" class="btn btn-link" (click)="onReviewActionClick('showIndemInfo')">Indemnification Info</button></li>
+                        <li *ngIf="reviewActions.showMgmtDecision"><button type="button" [disabled]="isReviewReadOnly(currentReview)" class="btn btn-link" (click)="onReviewActionClick('mgmtDecision')">Mgmt Decision</button></li>
+                        <li *ngIf="reviewActions.forceEscalation"><button type="button" [disabled]="isReviewReadOnly(currentReview)" class="btn btn-link" (click)="onReviewActionClick('forceEscalation')">Force Escalation </button></li>
+                        <li *ngIf="reviewActions.forceIndemnification"><button type="button" [disabled]="isReviewReadOnly(currentReview)" class="btn btn-link" (click)="onReviewActionClick('forceIndemnification')">Force Indemnification</button></li>
+                        <li *ngIf="reviewActions.referCase"><button type="button" [disabled]="isReviewReadOnly(currentReview)" class="btn btn-link" (click)="onReviewActionClick('referCase')">Refer Case</button></li>
+                        <li *ngIf="reviewActions.cancelCase"><button type="button" [disabled]="isReviewReadOnly(currentReview)" class="btn btn-link" (click)="onReviewActionClick('cancelCase')">Cancel Case</button></li>
+                        <li *ngIf="reviewActions.initiateMRB"><button type="button" [disabled]="isReviewReadOnly(currentReview)" class="btn btn-link" (click)="onReviewActionClick('initiateMRB')">Initiate MRB</button></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="review">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="lrs-layout-table">
+                    <td class="lrs-layout-table-cell review-sidebar left-side-bar">
+                        <div class="lrs-content-panel">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" [class.active]="isInitial()"><button data-target="#qa-sidebar" class="btn btn-link" aria-controls="qa-sidebar" role="tab"
+                                                                                             data-toggle="tab">Q&A</button></li>
+                                <li role="presentation" [class.active]="!isInitial()"><button data-target="#findings-sidebar" class="btn btn-link" aria-controls="findings-sidebar"
+                                                                                              role="tab" data-toggle="tab">{{isQCPostInitial ? 'QC' : 'Findings'}} <span class="num-findings">{{findingSideBar.totalFindings}}</span></button></li>
+                               <!-- QC original review's current findings-->
+                                <li *ngIf="isQCPostInitial" role="presentation"><button data-target="#qc-findings-sidebar" class="btn btn-link" aria-controls="qc-findings-sidebar"
+                                                                                              role="tab" data-toggle="tab">Original <span class="num-findings">{{QCFindingSideBar.totalFindings}}</span></button></li>
+
+                                <li role="presentation"><button data-target="#data-sidebar" class="btn btn-link" (click)="onTabSelect('reviewData')"
+                                                                aria-controls="data-sidebar" role="tab" data-toggle="tab">Data</button></li>
+
+
+                                <li role="presentation"><button data-target="#history-sidebar" class="btn btn-link" (click)="onTabSelect('history')"
+                                                                aria-controls="history-sidebar" role="tab" data-toggle="tab">History</button></li>
+
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade" [class.active]="isInitial()" [class.in]="isInitial()" id="qa-sidebar">
+                                    <question-and-answer-side-bar></question-and-answer-side-bar>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" [class.active]="!isInitial()" [class.in]="!isInitial()" id="findings-sidebar">
+                                    <findings-side-bar #findingSideBar></findings-side-bar>
+                                </div>
+
+                                <!-- QC original review's current findings-->
+                                <div role="tabpanel" class="tab-pane fade" id="qc-findings-sidebar">
+                                    <qc-findings-side-bar #QCFindingSideBar></qc-findings-side-bar>
+                                </div>
+
+                                <div role="tabpanel" class="tab-pane fade" id="data-sidebar">
+                                    <review-data-sidebar [selectedTab]="selectedTab"></review-data-sidebar>
+                                </div>
+
+                                <div role="tabpanel" class="tab-pane fade" id="history-sidebar">
+                                    <history-sidebar></history-sidebar>
+                                </div>
+
+                            </div>
+                            <disclaimer></disclaimer>
+                        </div>
+                    </td>
+                    <td class="lrs-layout-table-cell content-area">
+                        <div class="lrs-content-panel content-panel-inner review">
+                            <router-outlet></router-outlet>
+                            <review-footer></review-footer>
+                        </div>
+                    </td>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <modal [(isOpen)]="openReferCase" confirmText="Refer" cancelText="Cancel" title="REFER CASE" (confirmChange)="saveCase()">
+        <div class="modal-inner-body container-fluid" *ngIf="referral">
+            <p>Choose where to make the referral. Clicking "Refer" will finalize the referral.</p>
+
+            <div class="modal-refferal">
+                <input type="checkbox" [checked]="referral?.hudNotes" (click)="setReferalType('hudNotes')" /><span>Internal</span>
+                <textarea
+                    class="form-control" [disabled]="!localReferral.hudNotes" [(ngModel)]="referral.hudNotes"></textarea>
+            </div>
+            <div class="modal-refferal">
+                <input type="checkbox" [checked]="referral?.externalNotes" (click)="setReferalType('externalNotes')" /><span>External</span>
+                <textarea
+                    class="form-control" [disabled]="!localReferral.externalNotes" [(ngModel)]="referral.externalNotes"></textarea>
+            </div>
+            <div class="modal-refferal">
+                <input type="checkbox" [checked]="referral?.oigNotes" (click)="setReferalType('oigNotes')" /><span>OIG</span>
+                <textarea
+                    class="form-control" [disabled]="!localReferral.oigNotes" [(ngModel)]="referral.oigNotes"></textarea>
+            </div>
+        </div>
+    </modal>
+
+    <!-- Forced Indem-->
+    <modal [(isOpen)]="openForceIndem"  [closeOnSave]="true" [hasCancelButton]="false" [hasConfirmButton]="false"  title="FORCE INDEMNIFICATION">
+        <div class="modal-inner-body container-fluid" *ngIf="referral">
+            <p>Click Confirm to close the Review and initiate a Force Indemnification.</p>
+
+            <div class="modal-refferal">
+                <form #forceIndemForm="ngForm">
+                    <label class="list-name" for="#forceIndemTerm">Indem Terms:</label>
+                    <select id="forceIndemTerms" class="form-control input-sm" name="selectedIndemTerm" [(ngModel)]="selectedIndemTerm">
+                        <option value="">Select</option>
+                        <option *ngFor="let type of indemnificationTypes" [value]="type.code">
+                            {{type.description}}
+                        </option>
+                    </select>
+                </form>
+
+            </div>
+
+            <div class="modal-inner-footer">
+                <button type="button"
+                        class="btn btn-default "
+                        data-dismiss="modal">
+                    Cancel
+                </button>
+                <button type="button"
+                        class="btn btn-primary"
+                        [disabled]="!selectedIndemTerm"
+                        (click)="confirmForceIndem()">
+                    Confirm
+                </button>
+            </div>
+        </div>
+    </modal>
+
+    <modal [(isOpen)]="openCancelCase"
+           [closeOnSave]="true"
+           title="Cancel review"
+           [hasConfirmButton]="false"
+           [hasCancelButton]="false">
+        <form class="modal-inner-body container-fluid">
+            <div class="row modal-inner-body-info">
+                <div class="col-xs-12">
+                    <p>Please provide a reason for canceling this review.</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-7">
+                    <div class="form-group">
+                        <select id="cancellationReasonId"
+                                name="cancellationReasonId"
+                                class="form-control input-sm"
+                                [(ngModel)]="selectedCancelReason">
+                            <option value="">Select a Cancellation Reason</option>
+                            <option *ngFor="let reason of cancellationReasons" [value]="reason.code">
+                                {{reason.description}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+        <div class="modal-inner-footer">
+            <button type="button"
+                    class="btn btn-default "
+                    data-dismiss="modal">
+                Cancel
+            </button>
+            <button type="button"
+                    [disabled]="selectedCancelReason === null"
+                    class="btn btn-danger"
+                    (click)="cancelCase()">
+                Cancel Review
+            </button>
+        </div>
+    </modal>
+
+</div>

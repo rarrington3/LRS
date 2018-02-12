@@ -1,0 +1,46 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="jordanchavez@kpmg.com" id="HUDLRS_1483_rename_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			exec sp_rename 'DOCUMENTS', 'DOCUMENT'
+			exec sp_rename 'NOTES', 'NOTE'
+			exec sp_rename 'DOCUMENTSTODOCTYPREF', 'DOCUMENTTODOCTYPREF'
+			exec sp_rename 'NOTESTONOTETYPREF', 'NOTETONOTETYPREF'
+		]]>
+        </sql>
+    </changeSet>	
+			
+    <changeSet context="ALL"  author="jordanchavez@kpmg.com" id="HUDLRS_1483_alter_view_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter view RESPONSE_FROM_LENDER as
+			select D.FINDING_ID, D.UPDATED_BY, D.UPDATED_TS from
+					 (select B.FINDING_ID, A.UPDATED_BY, A.UPDATED_TS from DOCUMENT A, FINDING_DOCUMENT B, DOCUMENT_TYPE_REF R1
+								 where A.DOCUMENT_ID = B.DOCUMENT_ID AND A.DOCUMENT_TYPE_ID = R1.DOCUMENT_TYPE_ID AND R1.DOCUMENT_TYPE_CD = 'RESP'
+						  union
+					 select C.FINDING_ID, C.UPDATED_BY, C.UPDATED_TS from NOTE C, NOTE_TYPE_REF R2 WHERE C.NOTE_TYPE_ID = R2.NOTE_TYPE_ID and R2.NOTE_TYPE_CD = 'FCFL') D
+			  WHERE D.UPDATED_TS = (Select MAX(z.UPDATED_TS) from (select A.UPDATED_TS from DOCUMENT A, FINDING_DOCUMENT B, DOCUMENT_TYPE_REF R1
+																									 where A.DOCUMENT_ID = B.DOCUMENT_ID and B.FINDING_ID = D.FINDING_ID AND A.DOCUMENT_TYPE_ID = R1.DOCUMENT_TYPE_ID AND R1.DOCUMENT_TYPE_CD = 'RESP'
+																											union
+																									 select F.UPDATED_TS from NOTE F where F.FINDING_ID = D.FINDING_ID) z)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="jordanchavez@kpmg.com" id="HUDLRS_1483_add_personnel_column_to_note_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table NOTE add PRSNNL_ID uniqueidentifier null
+			alter table NOTE add constraint NOTETOPERSONNEL foreign key (PRSNNL_ID) references PERSONNEL(PRSNNL_ID)
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="jordanchavez@kpmg.com" id="HUDLRS_1483_metadata_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update DICT_METADATA_ENTITY set DB_VIEW_OR_TABLE = 'DOCUMENT' where ENTITY_NAME = 'LRS Documents'	
+			update DICT_METADATA_ENTITY set DB_VIEW_OR_TABLE = 'NOTE' where ENTITY_NAME = 'LRS Notes'
+		]]>
+        </sql>
+    </changeSet>		
+</databaseChangeLog>

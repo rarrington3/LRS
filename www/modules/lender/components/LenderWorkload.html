@@ -1,0 +1,4 @@
+<div class="workload-container panel-group">
+     <sortable-table [title]="'RESPONSE REQUESTS'" [items]="filteredPendingReviews" [categories]="categories" [id]="'Active'" [reviewRoute]="'../review'"></sortable-table>
+     <sortable-table [title]="'UNDER REVIEW BY FHA'" [items]="filteredReviews" [categories]="lenderCategories" [id]="'Pending'" [reviewRoute]="'../review'"></sortable-table>
+</div>

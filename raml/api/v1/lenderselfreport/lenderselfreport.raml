@@ -1,0 +1,36 @@
+displayName: lenderselfreport
+description: |
+  Service to facilitate the manual request for review by a lender.
+post:
+  securedBy:
+      - fhac:
+          roles: [ROLE_RESPONSE_COORDINATOR, ROLE_INDEMNIFIER]
+  description: |
+    Manually selects a loan or loans to be reviewed.
+  body:
+    schema: LenderSelfReport
+    example: !include "lenderSelfReport-example.json"
+  responses:
+    200:
+      description: |
+        The request was successfully processed.
+
+/{selectionRequestId}:
+  displayName: GetLenderSelfReport
+  description: |
+    Retrieves the LenderSelfReport DTO by specified selectionRequestId which can be found on the ReviewDTO object
+  securedBy:
+    - fhac:
+        roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER, ROLE_RESPONSE_COORDINATOR, ROLE_INDEMNIFIER, ROLE_LRS_READ_ONLY]
+  type:
+    member-readonly:
+      member-example: !include "lenderSelfReport-example.json"
+      member-schema: LenderSelfReport
+  get:
+    description: |
+      Retrieves the LenderSelfReport DTO by specified selectionRequestId which can be found on the ReviewDTO object
+    responses:
+        200:
+            description: Returns the LenderSelfReport DTO
+        410:
+            description: The specified LenderSelfReport DTO was not found.

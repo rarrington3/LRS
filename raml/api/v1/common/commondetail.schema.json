@@ -1,0 +1,17 @@
+{
+    "id": "http://LRS/CommonDetail",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": ["description", "code"],
+    "additionalProperties": false,
+    "properties": {
+        "description": {
+            "description": "The display text for this detail object.",
+            "type": "string"
+        },
+        "code": {
+            "description": "The unique code for this detail object.",
+            "type": "string"
+        }
+    }
+}

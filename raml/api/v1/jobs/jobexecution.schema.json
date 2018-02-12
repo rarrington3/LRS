@@ -1,0 +1,35 @@
+{
+    "id": "http://LRS/JobExecution",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "properties": {
+        "jobExecutionId": {
+            "description": "The identifier of the job",
+            "type": "string"
+        },
+        "status": {
+            "description": "COMPLETED, FAILED, or STARTED",
+            "type": "string"
+        },
+        "startDate": {
+            "type": "string",
+            "format": "date"
+        },
+        "endDate": {
+            "type": "string",
+            "format": "date"
+        },
+        "exceptionDetails": {
+            "type": "string"
+        },
+        "createdBy": {
+            "type": "string"
+        },
+        "serverName": {
+            "type": "string"
+        },
+        "serverPriority": {
+            "type": "string"
+        }
+    }
+}

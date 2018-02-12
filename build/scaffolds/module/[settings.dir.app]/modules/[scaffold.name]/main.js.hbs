@@ -1,0 +1,22 @@
+{{> jsFileHeader }}
+
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { SharedModule }  from '../shared/main';
+import { {{upperCase scaffold.name}}_ROUTING } from './routes';
+import { {{upperCase scaffold.name}}_COMPONENTS } from './components/';
+import { {{upperCase scaffold.name}}_PROVIDERS } from './services/';
+
+
+export let {{upperCase scaffold.name}}_IMPORTS = [
+    CommonModule,
+    SharedModule
+];
+
+@NgModule({
+    imports:      [ {{upperCase scaffold.name}}_IMPORTS, {{upperCase scaffold.name}}_ROUTING],
+    declarations: [ {{upperCase scaffold.name}}_COMPONENTS ],
+    exports:      [ ],
+    providers:    [ {{upperCase scaffold.name}}_PROVIDERS  ]
+})
+export class {{camelCase scaffold.name}}Module { }

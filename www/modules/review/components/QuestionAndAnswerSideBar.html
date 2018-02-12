@@ -1,0 +1,27 @@
+<div class="loan-attr list-group-item" [class.selected]="isSelected(null)">
+    <a routerLinkActive="active" [routerLink]="['summary']">Loan Attributes</a>
+</div>
+
+<ul class="list-group">
+    <template ngFor let-d [ngForOf]="defectAreas">
+        <li class="list-group-item" [class.selected]="isSelected(d)">
+            <a role="menuitem" routerLinkActive="active" [routerLink]="['tree',d.defectAreaCode]" (click)="cancelDefect()" [ngClass]="{'valid': isCompleted(d)}">{{d.title + " (" + d.defectAreaCode +")"}}<span class="indicator glyphicon" [ngClass]="{'glyphicon-ok': isCompleted(d), 'glyphicon-unchecked': !isCompleted(d)}" ></span></a>
+        </li>
+        <div class="summary-fields" *ngIf="isSelected(d)" [class.dirty]="form.dirty" [display]="{display:isSelected(d), setDynamicHeight: true, setDynamicHeightSelector: '.list-group'}">
+                <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="list-group">
+
+                    <li class="list-group-item" *ngFor="let field of reviewFields">
+                        <defect-area-summary-field class="container" [summaryField]="field" [form]="form"></defect-area-summary-field>
+                    </li>
+                    <li *ngIf="form.dirty"  class="list-group-item footer">
+                        <button type="button" class="btn btn-default" (click)="reset()">Reset</button>
+                        <button type="button" (click)="onSubmit()" [disabled]="!form.valid" class="btn btn-default">Update Data</button>
+                    </li>
+                </form>
+        </div>
+    </template>
+</ul>
+
+<div class="loan-attr list-group-item" [class.selected]="isSelected('wrapUp')">
+    <a routerLinkActive="active" [routerLink]="['wrapup']" (click)="showWrapUp()">{{wrapupTitle}}<span class="indicator glyphicon glyphicon-unchecked"  aria-hidden="true"></span></a>
+</div>

@@ -1,0 +1,23 @@
+{
+    "id": "http://LRS/ApiErrorException",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "additionalProperties": false,
+    "properties": {
+        "message": {
+            "description": "A description of the exception targetted for the development team.",
+            "type": "string"
+        },
+        "exceptionClass": {
+            "description": "Error identifier.",
+            "type": "string"
+        },
+        "stackTrace": {
+            "description": "The stack trace of the error if available.",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    }
+}

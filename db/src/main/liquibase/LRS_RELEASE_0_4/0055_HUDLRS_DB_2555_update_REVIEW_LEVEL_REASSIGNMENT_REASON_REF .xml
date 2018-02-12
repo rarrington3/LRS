@@ -1,0 +1,41 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2555_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+			<![CDATA[
+			update REVIEW_LEVEL
+			set REASSIGNMENT_REASON_ID = (select REASSIGNMENT_REASON_ID from REVIEW_LEVEL_REASSIGNMENT_REASON_REF where code = 'O')
+			]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2555_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+			<![CDATA[
+			delete from REVIEW_LEVEL_REASSIGNMENT_REASON_REF
+			where code != 'O'
+			]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2555_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+			<![CDATA[
+			insert into REVIEW_LEVEL_REASSIGNMENT_REASON_REF (REASSIGNMENT_REASON_ID,CODE,DESCRIPTION)values(newid(),'RU','Reviewer Unavailable')
+			]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2555_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+			<![CDATA[
+			insert into REVIEW_LEVEL_REASSIGNMENT_REASON_REF (REASSIGNMENT_REASON_ID,CODE,DESCRIPTION)values(newid(),'WR','Workload Reallocation')
+			]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2555_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+			<![CDATA[
+			insert into REVIEW_LEVEL_REASSIGNMENT_REASON_REF (REASSIGNMENT_REASON_ID,CODE,DESCRIPTION)values(newid(),'RAE','Reviewer Attribute Error')
+			]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>
+

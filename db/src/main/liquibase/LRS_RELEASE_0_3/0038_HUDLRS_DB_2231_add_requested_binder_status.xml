@@ -1,0 +1,57 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2231`_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create table REQUESTED_BINDER_STATUS_REF
+			(REQUESTED_BINDER_STATUS_ID uniqueidentifier not null default newid(),
+			 CODE VARCHAR(30) NOT NULL,
+			 DESCRIPTION VARCHAR(30) NOT NULL)
+
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_2231_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table REQUESTED_BINDER_STATUS_REF add constraint REQUESTED_BINDER_STATUS_REF_PK primary key (REQUESTED_BINDER_STATUS_ID)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_2231_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table REQUESTED_BINDER add REQUESTED_BINDER_STATUS_ID uniqueidentifier null
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2231_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table REQUESTED_BINDER add constraint QA_MODEL_FK_REQUESTED_BINDER_STATUS_ID foreign key (REQUESTED_BINDER_STATUS_ID) references REQUESTED_BINDER_STATUS_REF(REQUESTED_BINDER_STATUS_ID)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2231_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_ENTITY(ENTITY_NAME, DB_VIEW_OR_TABLE, CREATED_BY,CREATED_TS) values('Requested Binder Status Reference', 'REQUESTED_BINDER_STATUS_REF','C20225',getdate())
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Requested Binder Status Reference','Requested Binder Status ID ','REQUESTED_BINDER_STATUS_ID','C20225',getdate(),'Requested Binder Status ID')			
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Requested Binder Status Reference','Code','CODE','C20225',getdate(),'Code')
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Requested Binder Status Reference','Description','DESCRIPTION','C20225',getdate(),'Description')
+			insert into REQUESTED_BINDER_STATUS_REF(REQUESTED_BINDER_STATUS_ID,CODE,DESCRIPTION) values('C556D2AB-E422-43F6-97D9-0E38ABA54B5A','REQUESTED', 'Requested')
+			insert into REQUESTED_BINDER_STATUS_REF(REQUESTED_BINDER_STATUS_ID,CODE,DESCRIPTION) values('01E8E746-4D7C-4A4D-A919-12F0D17BD86B','RECEIVED', 'Received')
+			insert into REQUESTED_BINDER_STATUS_REF(REQUESTED_BINDER_STATUS_ID,CODE,DESCRIPTION) values('57C10AFB-FF47-4476-A790-FB5CEDB02790','EXCEPTION', 'Exception')
+			update REQUESTED_BINDER 
+			set REQUESTED_BINDER_STATUS_ID = 'C556D2AB-E422-43F6-97D9-0E38ABA54B5A'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_2231_0006" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table REQUESTED_BINDER alter column REQUESTED_BINDER_STATUS_ID uniqueidentifier not null
+		]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>

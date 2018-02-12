@@ -1,0 +1,30 @@
+{
+    "id": "http://LRS/QaModelDefectAreaSeverity",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": [
+        "code"
+    ],
+    "properties": {
+        "id": {
+            "description": "The defect severity tier id of this defect area",
+            "type": "string"
+        },
+        "code": {
+            "description": "The defect severity tier code of this defect area",
+            "type": "string"
+        },
+        "description": {
+            "description": "The description for the defect severity tier code of this defect area",
+            "type": "string"
+        },
+        "order": {
+            "description": "The order of the item",
+            "type": "number"
+        },
+        "examples": {
+            "description": "The examples for the defect severity tier code of this defect area",
+            "type": "string"
+        }
+    }
+}

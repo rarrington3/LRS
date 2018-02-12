@@ -1,0 +1,91 @@
+{
+    "id": "http://LRS/Binder",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "is": [
+        "mock"
+    ],
+    "required": [
+        "binderId",
+        "caseNumber",
+        "borrowerName",
+        "lenderName",
+        "propertyStreetAddress",
+        "requestedDate",
+        "requestedFrom",
+        "dueDate",
+        "assignedTo",
+        "reviewType",
+        "statusCode"
+    ],
+    "properties": {
+        "binderId": {
+            "description": "The identifier of the binder.",
+            "type": "string"
+        },
+        "caseNumber": {
+            "description": "The case number for the loan.",
+            "type": "string"
+        },
+        "borrowerName": {
+            "description": "The name of the borrower associated with this loan",
+            "type": "string"
+        },
+        "lenderName": {
+            "description": "The name of the lender associated with this loan",
+            "type": "string"
+        },
+        "propertyStreetAddress": {
+            "description": "The street address for the property associated with this loan",
+            "type": "string"
+        },
+        "requestedFrom": {
+            "description": "Where the binder request came from (e.g. 'Records Center', 'Review Location', 'Lender')",
+            "type": "string"
+        },
+        "requestedDate": {
+            "description": "The date when the binder request for this loan was sent to the lender",
+            "type": "string",
+            "format": "date"
+        },
+        "dueDate": {
+            "description": "The due date when the binder should be received from the lender",
+            "type": "string",
+            "format": "date"
+        },
+        "sentDate": {
+            "description": "The date that the binder was sent to the lender for review",
+            "type": "string",
+            "format": "date"
+        },
+        "receivedDate": {
+            "description": "The date that the binder was confirmed received from the lender",
+            "type": "string",
+            "format": "date"
+        },
+        "assignedTo": {
+            "description": "The person the binder is assigned to after it is received from the lender",
+            "type": "string"
+        },
+        "reviewLocationId": {
+            "description": "The review location id for binder",
+            "type": "string"
+        },
+        "locationName": {
+            "description": "The review location name for binder",
+            "type": "string"
+        },
+        "isElectronic": {
+            "description": "Indicates if this binder is electronic.",
+            "type": "boolean"
+        },
+        "reviewType": {
+            "description": "Review Type this binder",
+            "type": "string"
+        },
+        "statusCode": {
+            "description": "The binder's status code (e.g. 'REQUESTED', 'RECEIVED', 'CANCELLED', or 'EXCEPTION')",
+            "type": "string"
+        }
+    }
+}

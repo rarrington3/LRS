@@ -1,0 +1,43 @@
+<div class="the-sub-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-9 placeholder">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="review">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="lrs-layout-table">
+                    <td class="lrs-layout-table-cell workload-sidebar left-side-bar">
+                        <div class="lrs-content-panel workload-sidebar-inner">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" [routerLink]="['/lender/complete/reviews']" routerLinkActive="active" [ngClass]="isActive('/lender/complete/reviews')"><a aria-label="Lender">Reviews</a></li>
+                                <li role="presentation" [routerLink]="['/lender/complete/batches']" routerLinkActive="active" [ngClass]="isActive('/lender/complete/batches')"><a aria-label="Team Completed Batches">Batches</a></li>
+                            </ul>
+                            <div class="tab-content">
+
+                                <div role="tabpanel" class="tab-pane fade in" [ngClass]="isActive('/lender/complete/reviews')" id="lender-completed-reviews-sidebar">
+                                    <lender-reviews-completed-sidebar></lender-reviews-completed-sidebar>
+                                </div>
+
+                                <div role="tabpanel" class="tab-pane fade in" [ngClass]="isActive('/lender/complete/batches')" id="lender-completed-batches-sidebar">
+                                    <lender-completed-batches-sidebar></lender-completed-batches-sidebar>
+                                </div>
+
+                            </div>
+                            <disclaimer></disclaimer>
+                        </div>
+                    </td>
+                    <td class="lrs-layout-table-cell content-area">
+                        <div class="lrs-content-panel">
+                            <router-outlet></router-outlet>
+                        </div>
+                    </td>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

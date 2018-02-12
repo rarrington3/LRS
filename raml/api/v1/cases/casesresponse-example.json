@@ -1,0 +1,104 @@
+{
+    "cases": [
+        {
+            "caseNumber": "063-7127265",
+            "borrower": "Robinson, Lawrence",
+            "propertyAddress": "490 E Main Street",
+            "caseActivity": [
+                {
+                    "reviewId": "7B5DEB70-F109-44CA-88E2-264842B6473F",
+                    "reviewReferenceId": "75159-2017-000010",
+                    "reviewStatus": "Assigned",
+                    "distributionDate": "2017-07-19 23:40:13.980",
+                    "receivedDate": "2017-07-22 09:10:20.980",
+                    "requestedDate": "2017-07-20 08:00:20.980",
+                    "selectionDate": "2017-07-19 23:40:13.980",
+                    "selectionStatus": "Received"
+                },
+                {
+                    "distributionDate": "2017-07-19 23:40:13.980",
+                    "requestedDate": "2017-07-20 08:00:20.980",
+                    "selectionDate": "2017-07-19 23:40:13.980",
+                    "selectionStatus": "Requested"
+                }
+            ],
+            "lender": {
+                "lenderId": "20063",
+                "name": "First Security National Bank"
+            },
+            "underwritingReviewProhibited": true
+        },
+        {
+            "caseNumber": "393-2947472",
+            "borrower": "Weissman, Evan",
+            "propertyAddress": "1902 Federal Blvd, #200",
+            "lender": {
+                "lenderId": "98309",
+                "name": "American Federal Saving"
+            }
+        },
+        {
+            "caseNumber": "299-5783920",
+            "borrower": "Stuart, Larry",
+            "propertyAddress": "312 Indiana Street",
+            "lender": {
+                "lenderId": "30928",
+                "name": "Wells Fargo"
+            }
+        },
+        {
+            "caseNumber": "344-9892000",
+            "borrower": "Riegel, Tiffany",
+            "propertyAddress": "1001 Delaware Street",
+            "lender": {
+                "lenderId": "30928",
+                "name": "Wells Fargo"
+            }
+        },
+        {
+            "caseNumber": "110-0029889",
+            "borrower": "Harkey, Evita",
+            "propertyAddress": "18293 Barker Ave",
+            "lender": {
+                "lenderId": "30928",
+                "name": "Wells Fargo"
+            }
+        },
+        {
+            "caseNumber": "930-9387729",
+            "borrower": "Arguiniga, Marcel",
+            "propertyAddress": "102847 New Hampshire St",
+            "lender": {
+                "lenderId": "66044",
+                "name": "Douglas County Bank"
+            }
+        },
+        {
+            "caseNumber": "029-1937489",
+            "borrower": "Domenico, Marline",
+            "propertyAddress": "4150 Osage Street",
+            "caseActivity": [{
+                    "distributionDate": "2017-07-19 23:40:13.980",
+                    "selectionDate": "2017-07-19 23:40:13.980",
+                    "selectionStatus": "Selected"
+                }],
+            "lender": {
+                "lenderId": "66044",
+                "name": "Douglas County Bank"
+            }
+        },
+        {
+            "caseNumber": "033-1947755",
+            "borrower": "Stickles, Fumiko",
+            "propertyAddress": "349 Acoma St",
+            "lender": {
+                "lenderId": "66044",
+                "name": "Douglas County Bank"
+            }
+        }
+    ],
+    "errors": [
+        "42-24424 is not a valid case number.",
+        "asdf is not a valid case number."
+    ]
+}

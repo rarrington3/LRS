@@ -1,0 +1,18 @@
+{{> jsFileHeader }}
+
+import {{camelCase scaffold.name}} from './{{scaffold.name}}';
+
+describe('{{scaffold.module}}/{{scaffold.name}}.js', () => {
+
+	let {{headlessCamelCase scaffold.name}} = new {{camelCase scaffold.name}}();
+
+    it('should return {{scaffold.name}} instance', () => {
+        expect({{headlessCamelCase scaffold.name}}).toBeDefined();
+    });
+
+    it('should return name', () => {
+        expect({{headlessCamelCase scaffold.name}}.getName()).toBe('{{scaffold.name}}');
+    });
+
+});
+

@@ -1,0 +1,17 @@
+{
+    "id": "http://LRS/StaffManagementSelectionReasonDictionary",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": ["code", "description"],
+    "additionalProperties": false,
+    "properties": {
+        "code": {
+            "description": "The identifier of the object",
+            "type": "string"
+        },
+        "description": {
+            "description": "The display name for this selection reason.",
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,10 @@
+<div class="filterTitle">LOCATION</div>
+
+<div class="form-group">
+    <select [disabled]="!isHQAdmin" class="form-control select-sm" id="teamLocationsSelect" name="teamLocationsSelect" [(ngModel)]="selectedLocation">
+        <option *ngFor="let loc of allLocations" [value]="loc.locationId">{{loc.name}}</option>
+    </select>
+</div>
+
+<cross-filter-view [dimensions]="teamTabDimensions"  [dataSource]="filteredReviewsObservable"></cross-filter-view>
+

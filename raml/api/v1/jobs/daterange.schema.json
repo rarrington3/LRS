@@ -1,0 +1,16 @@
+{
+    "id": "http://LRS/DateRange",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": ["startDate", "endDate"],
+    "properties": {
+        "startDate": {
+            "type": "string",
+            "format": "date"
+        },
+        "endDate": {
+            "type": "string",
+            "format": "date"
+        }
+    }
+}

@@ -1,0 +1,92 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2236_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table SCORING_MODEL_VERSION add MODEL_NAME VARCHAR(100) NULL
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2236_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table SCORING_MODEL_VERSION add DESCRIPTION VARCHAR(100) NULL
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2236_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table SCORING_MODEL_VERSION add REVIEW_SCOPE_ID UNIQUEIDENTIFIER NULL
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2236_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table SCORING_MODEL_VERSION add ALLOCATION_PCT INT NULL
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2236_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table SCORING_MODEL_VERSION add DEFAULT_REVIEW_TYPE_ID uniqueidentifier NULL
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2236_0006" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table SCORING_MODEL_VERSION add constraint SCORING_MODEL_VERSION_FK_DEFAULT_REVIEW_TYPE_ID foreign key(DEFAULT_REVIEW_TYPE_ID) references REVIEW_TYPE_REF(REVIEW_TYPE_ID)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2236_0007" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create table REVIEW_SCOPE_REF
+			(REVIEW_SCOPE_ID uniqueidentifier not null default newid(),
+			 CODE char(1) not null,
+			 DESCRIPTION varchar(50) not null)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2236_0008" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table REVIEW_SCOPE_REF add constraint REVIEW_SCOPE_REF_PK primary key (REVIEW_SCOPE_ID)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2236_0009" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table SCORING_MODEL_VERSION add constraint SCORING_MODEL_VERSION_FK_REVIEW_SCOPE_ID foreign key(REVIEW_SCOPE_ID) references REVIEW_SCOPE_REF(REVIEW_SCOPE_ID)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2236_0010" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into REVIEW_SCOPE_REF(REVIEW_SCOPE_ID,CODE,DESCRIPTION) values('8CCC7E4C-F362-4B53-BA2C-44D9AA5F95A3','F','FULL')
+			insert into REVIEW_SCOPE_REF(REVIEW_SCOPE_ID,CODE,DESCRIPTION) values('AC5C2C42-6CE1-4FFC-B2ED-94F12B273B06','L','LIMITED')			
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_2236_0011" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_ENTITY(ENTITY_NAME, DB_VIEW_OR_TABLE, CREATED_BY,CREATED_TS) values('Review Scope Reference', 'REVIEW_SCOPE_REF','C20225',getdate())		
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Review Scope Reference','Review Scope Reference ID','REVIEW_SCOPE_ID','C20225',getdate(),'Review Scope Reference ID')
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Review Scope Reference','Code','CODE','C20225',getdate(),'Code')
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Review Scope Reference','Description','DESCRIPTION','C20225',getdate(),'Description')			
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Scoring Model Version','Description','MODEL_NAME','C20225',getdate(),'Model Name')						
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Scoring Model Version','Model Name','DESCRIPTION','C20225',getdate(),'Description')						
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Scoring Model Version','Review Scope ID','REVIEW_SCOPE_ID','C20225',getdate(),'Review Scope ID')						
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Scoring Model Version','Allocation Percent','ALLOCATION_PCT','C20225',getdate(),'Allocation Percent')						
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Scoring Model Version','Default Review Type','DEFAULT_REVIEW_TYPE_ID','C20225',getdate(),'Default Review Type')									
+		]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>    

@@ -1,0 +1,15 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+	<changeSet context="All"  author="wmcafee" id="LRSOM_719_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<sql>
+			<![CDATA[
+				INSERT INTO PERSONNEL (PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) VALUES
+						(NEWID(),'LRS.MONITOR@huddev.gov'       ,'LRS'       ,'Monitor 1' ,'C20225',getdate(),'X01643','Y', 0, (SELECT REVIEW_LOCATION_ID from REVIEW_LOCATION WHERE LOCATION_NAME='HQ') ,(SELECT PERSONNEL_STATUS_ID FROM PERSONNEL_STATUS_REF WHERE CODE = 'A'))
+						
+				INSERT INTO PERSONNEL (PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) VALUES
+						(NEWID(),'LRS.MONITOR@huddev.gov'       ,'LRS'       ,'Monitor 2' ,'C20225',getdate(),'X01244','Y', 0, (SELECT REVIEW_LOCATION_ID from REVIEW_LOCATION WHERE LOCATION_NAME='HQ') ,(SELECT PERSONNEL_STATUS_ID FROM PERSONNEL_STATUS_REF WHERE CODE = 'A'))
+
+			]]>
+		</sql>
+	</changeSet>
+</databaseChangeLog>

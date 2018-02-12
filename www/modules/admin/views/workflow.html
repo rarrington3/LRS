@@ -1,0 +1,131 @@
+<h1>{{name}}</h1>
+
+<h2>WARNING: This administrative tool is for QA and troubleshooting purposes and should only be used under the guidance of the dev team.</h2>
+
+<h2 *ngIf="canRunJobs">New Job</h2>
+<table *ngIf="canRunJobs" class="table table-hover table-condensed table-striped">
+    <tr>
+        <th>Job</th>
+        <th>Start Date (YYYY-MM-DD)</th>
+        <th>End Date (YYYY-MM-DD)</th>
+        <th>Action</th>
+    </tr>
+    <tr>
+        <td><b>Endorsement Selection</b></td>
+        <td><input type="text" (input)="endorsementRange.startDate=parseDate($event.target.value)" required/></td>
+        <td><input type="text" (input)="endorsementRange.endDate=parseDate($event.target.value)" required/></td>
+        <td><button class="btn btn-primary" (click)="runEndorsementSelections()">Run</button></td>
+    </tr>
+    <tr>
+        <td><b>Early Claim Selection</b></td>
+        <td><input type="text" (input)="earlyClaimRange.startDate=parseDate($event.target.value)" required/></td>
+        <td><input type="text" (input)="earlyClaimRange.endDate=parseDate($event.target.value)" required/></td>
+        <td><button class="btn btn-primary" (click)="runEarlyClaimSelections()">Run</button></td>
+    </tr>
+    <tr>
+        <td><b>Early Payment Default Selection</b></td>
+        <td><input type="text" (input)="earlyPaymentDefaultRange.startDate=parseDate($event.target.value)" required/></td>
+        <td><input type="text" (input)="earlyPaymentDefaultRange.endDate=parseDate($event.target.value)" required/></td>
+        <td><button class="btn btn-primary" (click)="runEarlyPaymentDefaultSelections()">Run</button></td>
+    </tr>
+	<tr>
+        <td><b>National QC Selection</b></td>
+        <td><input type="text" (input)="nationalQcDefaultRange.startDate=parseDate($event.target.value)" required/></td>
+        <td><input type="text" (input)="nationalQcDefaultRange.endDate=parseDate($event.target.value)" required/></td>
+        <td><button class="btn btn-primary" (click)="runNationalQcSelections()">Run</button></td>
+    </tr>
+    <tr>
+        <td><b>Aggregation</b></td>
+        <td></td>
+        <td></td>
+        <td><button class="btn btn-primary" (click)="runSelectionAggregation()">Run</button></td>
+    </tr>
+    <tr>
+        <td><b>Distribution</b></td>
+        <td></td>
+        <td></td>
+        <td><button class="btn btn-primary" (click)="runDistribution()">Run</button></td>
+    </tr>
+    <tr>
+        <td><b>Binder Request</b></td>
+        <td><input type="checkbox" [(ngModel)]="binderRequestThrottling" requred/>&nbsp;Throttling</td>
+        <td></td>
+        <td><button class="btn btn-primary" (click)="runBinderRequest()">Run</button></td>
+    </tr>
+    <tr>
+        <td><b>Binder Receipt</b></td>
+        <td></td>
+        <td></td>
+        <td><button class="btn btn-primary" (click)="runBinderReceipt()">Run</button></td>
+    </tr>
+    <tr>
+        <td><b>Late Binders</b></td>
+        <td></td>
+        <td></td>
+        <td><button class="btn btn-primary" (click)="runLateBinders()">Run</button></td>
+    </tr>
+    <tr>
+        <td><b>Late Lender Requests</b></td>
+        <td></td>
+        <td></td>
+        <td><button class="btn btn-primary" (click)="runLateLenderRequests()">Run</button></td>
+    </tr>
+    <tr>
+        <td><b>Lender Monitoring Email</b></td>
+        <td></td>
+        <td></td>
+        <td><button class="btn btn-primary" (click)="runLenderMonitoringEmail()">Run</button></td>
+    </tr>
+    <tr>
+        <td><b>Daily Combined Lender Email</b></td>
+        <td></td>
+        <td></td>
+        <td><button class="btn btn-primary" (click)="runDailyCombinedLenderEmail()">Run</button></td>
+    </tr>
+    <tr>
+        <td><b>Send Email</b></td>
+        <td></td>
+        <td></td>
+        <td><button class="btn btn-primary" (click)="runSendEmail()">Run</button></td>
+    </tr>
+    <tr>
+        <td><b>Refresh Lenders</b></td>
+        <td></td>
+        <td></td>
+        <td><button class="btn btn-primary" (click)="runRefreshLenders()">Run</button></td>
+    </tr>
+    <tr>
+        <td><b>Run All Pending Jobs</b></td>
+        <td></td>
+        <td></td>
+        <td><button class="btn btn-primary" (click)="runPendingJobs()">Run</button></td>
+    </tr>
+</table>
+
+<h2>Existing Jobs</h2>
+<table class="table table-hover table-condensed table-striped">
+    <tr>
+        <th>Id/Type</th>
+        <th>Parameters</th>
+        <th>Executions</th>
+    </tr>
+    <tr *ngFor="let job of jobs">
+        <td>
+            <span style="font-weight: bold">{{job.type}}</span><br/>
+            {{job.jobId}}
+        </td>
+        <td style="white-space: nowrap;">
+            <div *ngFor="let jobParameter of job.parameters">
+                <span style="display: inline-block; min-width: 80px;">{{jobParameter.name}}:</span> {{jobParameter.value}}
+            </div>
+        </td>
+        <td>
+            <div *ngFor="let ex of job.executions">
+                <span style="font-weight: bold">{{ex.status}}</span> {{ex.jobExecutionId}}<br/>
+                Started: {{ex.startDate | datePipe}}<br/>
+                Ended: {{ex.endDate | datePipe}}<br/>
+                Server: {{ex.serverName}} (Priority: {{ex.serverPriority}})
+            </div>
+        </td>
+    </tr>
+</table>

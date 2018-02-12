@@ -1,0 +1,157 @@
+@import '../../bootstrap/_variables.less';
+@due-today: #e6c12b;
+:host-context {
+    .badge {
+        background-color: @brand-secondary;
+        position: relative;
+        top: -15px
+    }
+    .glyphicon-flag{
+        color: @brand-danger;
+        float: right;
+        padding-right: 5px;
+    }
+    .activeFilter {
+        background-color: @brand-secondary;
+        color: #fff;
+        .badge {
+            background-color: white;
+            color: @brand-secondary;
+            position: relative;
+            top: -15px;
+        }
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
+    }
+    .category {
+        font-size: 12px;
+        font-weight: 600;
+        padding-right: 3px;
+    }
+    .list-group {
+        &.snug-top {
+            margin-top: -14px;
+        }
+    }
+    .list-group-item {
+        border-color: @brand-grey-border-color;
+        height: 33px;
+        padding-top: 7px;
+        font-weight: 500;
+        cursor: pointer;
+        white-space: nowrap;
+        a {
+            overflow: hidden;
+            white-space: nowrap;
+            margin-right: 37px;
+            display: block;
+            text-decoration: none;
+        }
+        a:hover,
+        a:active,
+        a:visited {
+            text-decoration: none;
+        }
+        &.disabled {
+            opacity: 0.65;
+            font-style: italic;
+        }
+    }
+
+    // START special styles for daadllines filter options
+    .list-group-item.due-today {
+        color: @due-today;
+        font-weight: 700;
+        border-radius: 0;
+        .badge {
+            background-color: @due-today;
+            color: white;
+        }
+        a {
+            color: @due-today;
+        }
+    }
+    .activeFilter.due-today {
+        background-color: @due-today;
+        color: white;
+        .badge {
+            background-color: white;
+            color: @due-today;
+        }
+        &.activeFilter {
+            a {
+                color: #fff;
+                text-decoration: none;
+            }
+        }
+    }
+    .list-group-item.past-due {
+        color: @brand-danger;
+        font-weight: 700;
+        border-radius: 0;
+        .badge {
+            background-color: @brand-danger;
+            color: white;
+        }
+        a {
+            color: @brand-danger;
+        }
+        &.activeFilter {
+            a {
+                color: #fff;
+                text-decoration: none;
+            }
+        }
+    }
+    .activeFilter.past-due {
+        background-color: @brand-danger;
+        color: white;
+        .badge {
+            background-color: white;
+            color: @brand-danger;
+        }
+    }
+    // END special styles for daadllines filter options
+
+    .badge {
+        float: right;
+        padding-left: 12px;
+        padding-right: 13px;
+        font-size: 10px;
+    }
+    .disabledClear {
+        float: right;
+        font-size: 8pt;
+        font-style: italic;
+        text-decoration: none;
+        cursor: none;
+        a {
+            font-weight: 400;
+            color: @gray-light;
+        }
+    }
+    .clearFilters {
+        float: right;
+        font-size: 8pt;
+        font-weight: 600;
+        padding-right: 3px;
+        color: @brand-secondary;
+        cursor: pointer;
+        padding-top: 5px;
+        a:hover,
+        a:active,
+        a:visited {
+            text-decoration: none;
+        }
+    }
+    .filterTitle {
+        font-weight: bold;
+        color: #00295A;
+        padding-top: 15px;
+        padding-bottom: 6px;
+        font-size: 10pt;
+        margin-left: 1px;
+    }
+}

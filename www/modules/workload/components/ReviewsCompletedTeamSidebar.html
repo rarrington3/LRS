@@ -1,0 +1,56 @@
+<div class="filterTitle">LOCATION</div>
+<div class="form-group">
+    <select [disabled]="!isHQAdmin" class="form-control select-sm" id="teamLocationsSelect" name="teamLocationsSelect" [(ngModel)]="currentUserLocation">
+        <option *ngFor="let loc of locations" [value]="loc.locationId">{{loc.name}}</option>
+    </select>
+</div>
+
+
+<!-- start date -->
+<div class="row">
+    <div class="col-xs-6">
+        <div class="form-group-sm">
+                <label class="small" for="dateStart">Close Date Start</label>
+            <div class="input-group">
+                <input 
+                id="dateStart" 
+                name="dateStart" 
+                class="form-control input-sm" 
+                placeholder="mm-dd-yyyy" 
+                data-provide="datepicker" 
+                data-date-format="mm-dd-yyyy"
+                data-date-autoclose="true"
+                (ngModelChange)="onStartDateChange($event)"
+                [(ngModel)]="dateRangeModel.startDate"
+                [(isOpen)]="startIsOpened">
+                <span class="input-group-btn">
+                    <button class="btn btn-default btn-sm" (click)="startIsOpened = !startIsOpened">
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- end date -->
+    <div class="col-xs6">
+        <div class="form-group-sm">
+            <label class="small" for="dateEnd">Close Date End</label>
+            <div class="input-group">
+                <input 
+                id="dateEnd" 
+                name="dateEnd" 
+                class="form-control input-sm" 
+                placeholder="mm-dd-yyyy" 
+                data-provide="datepicker" 
+                data-date-format="mm-dd-yyyy"
+                data-date-autoclose="true"
+                disabled
+                [(ngModel)]="dateRangeModel.endDate">
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<cross-filter-view [dimensions]="teamReviewDimensions" [dataSource]="workloadProvider.completedReviewsByLocationObservable"></cross-filter-view>

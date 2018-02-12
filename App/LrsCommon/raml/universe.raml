@@ -1,0 +1,142 @@
+#%RAML 0.8
+title: Get Universe Information
+version: 1.0
+#baseUri: http://localhost:8082
+baseUri:  http://localhost:8088/hud-esb/edw/api/v1.0/universe
+#baseUri: https://mocksvc.mulesoft.com/mocks/fa0874c4-1765-4970-8c63-4a154e8d989b
+#baseUri: https://esb-t-lnx-api.hud.dev/hud-esb/edw/api/v1.0/universe
+mediaType: application/json
+documentation:
+  - title: Get Universe API
+    content : Receive Universe Information.
+#securedBy: [oauth_2_0: { scopes: [ "urn:hud:esb:api:portfolio:get:universe" ] } ]
+#securitySchemes:
+#  - oauth_2_0: !include securitySchemes/oauth_2_0.raml
+
+
+/monthly:
+  get:
+    description: Need to bring case number for previous month
+    queryParameters:
+      start_date:
+        example: 2016-09-01
+        required: true
+      end_date:
+        example: 2016-10-29
+        required: true
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include CaseDetailsSchema.json
+            example: !include CaseDetails.json
+      400:
+        headers:
+          application/json:
+            type: string
+        body:
+          application/json:
+      500:
+        headers:
+          application/json:
+            type: string
+        body:
+          application/json:
+/epd:
+  get:
+    description: Need to bring case number for the previous 24 months when ERLY_PMT_DFLT_IND = 'Y'
+    queryParameters:
+      start_date:
+        example: 2016-09-01
+        required: true
+      end_date:
+        example: 2016-10-29
+        required: true
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include CaseDetailsSchema.json
+            example: !include CaseDetails.json
+      400:
+        headers:
+          application/json:
+            type: string
+        body:
+          application/json:
+      500:
+        headers:
+          application/json:
+            type: string
+        body:
+          application/json:
+
+/ec:
+  get:
+    description: Need to bring case number for the previous 24 months  when ERLY_CLM_IND = 'Y'
+    queryParameters:
+      start_date:
+        example: 2016-09-01
+        required: true
+      end_date:
+        example: 2016-10-29
+        required: true
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include CaseDetailsSchema.json
+            example: !include CaseDetails.json
+      400:
+        headers:
+          application/json:
+            type: string
+        body:
+          application/json:
+      500:
+        headers:
+          application/json:
+            type: string
+        body:
+          application/json:
+
+
+/lenderMonitoring:
+  get:
+    description: Need to bring case number based on the start & end date
+    queryParameters:
+      mortgee_id:
+        example: 22823
+        required: true
+        type: integer
+      review_type:
+        example: Underwriting
+        required: true
+      start_date:
+        example: 2016-09-01
+        required: true
+      end_date:
+        example: 2016-10-29
+        required: true
+      Loan_Type:
+        example: 02
+        required: false
+        type: integer
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include CaseDetailsSchema.json
+            example: !include CaseDetails.json
+      400:
+        headers:
+          application/json:
+            type: string
+        body:
+          application/json:
+      500:
+        headers:
+          application/json:
+            type: string
+        body:
+          application/json:

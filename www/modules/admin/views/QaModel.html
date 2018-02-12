@@ -1,0 +1,128 @@
+<div class="panel panel-default lrs-panel-primary">
+    <div class="panel-heading">
+        <a class="panel-title qa-model-title"
+           [routerLink]="['../../qaModels/']">Q&A Models - </a>
+        <span class="qa-model-subtitle">{{qaModel.name}}  </span>
+        <span class="glyphicon glyphicon-lock"
+              [class.glyphicon-check]="qaModel.statusCode === qaModelStatusCode.ACTIVE"
+              [class.glyphicon-cog]="qaModel.statusCode === qaModelStatusCode.DRAFT"
+              [class.glyphicon-lock]="qaModel.statusCode === qaModelStatusCode.ARCHIVED"
+              [class.text-success]="qaModel.statusCode === qaModelStatusCode.ACTIVE"
+              [attr.aria-label]="qaModel.status"
+              [title]="qaModel.status">
+        </span>
+        <span [class.text-success]="qaModel.statusCode === qaModelStatusCode.ACTIVE">{{qaModel.status}}</span>
+        <table class="qa-model-header-table pull-right">
+            <thead>
+            <tr>
+                <th class="small">Version</th>
+                <th class="small">Creation Date</th>
+                <th class="small">Last Modified Date</th>
+                <th class="small">Last Modified By</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{qaModel.version}}</td>
+                <td>{{qaModel.createdDate | datePipe}}</td>
+                <td>{{qaModel.modifiedDate | datePipe }}</td>
+                <td>{{qaModel.modifiedBy}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-body">
+        <div *ngIf="qaModelLoading" class="lrs-loading">
+            <span class="glyphicon glyphicon-refresh"
+                  aria-label="loading" title="Loading">
+            </span>
+        </div>
+        <div *ngIf="!qaModelLoading">
+            <form class="row">
+                <div class="col-xs-3">
+                    <div class="form-group">
+                        <label class="control-label small">
+                            Model Name
+                        </label>
+                        <p>
+                            {{qaModel.name}}
+                        </p>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label id="qaModelDescLabel"
+                               class="control-label small">
+                            Model Description
+                        </label>
+                        <p>
+                            {{qaModel.description}}
+                        </p>
+                    </div>
+                </div>
+                <div class="col-xs-3 qa-model-actions">
+                    <a class="btn btn-primary"
+                       [routerLink]="['../../qaModelAttributes/', qaModel.qaModelId]">
+                        View Loan Attributes
+                    </a>
+                    <a class="btn btn-primary"
+                       [routerLink]="['../../../reviewLevels/lenderResponses/']">
+                        Edit Review Levels
+                    </a>
+                </div>
+            </form>
+            <div class="row">
+                <div *ngIf="qaModelLoading" class="lrs-loading">
+                        <span class="glyphicon glyphicon-refresh"
+                              aria-label="loading" title="Loading">
+                        </span>
+                </div>
+                <div *ngIf="!qaModelLoading && !qaModel.defectAreas.length" class="lrs-no-results">
+                    <span class="small" aria-label="no results">No results found</span>
+                </div>
+                <table *ngIf="!qaModelLoading && qaModel.defectAreas.length"
+                       class="table table-bordered outer-bordered header-less-bordered qa-model-defect-area-table">
+                    <thead>
+                    <tr class="defect-area-review-types-row">
+                        <th class="defect-area-desc-col"></th>
+                        <th class="defect-area-review-type-col small" [attr.colspan]="reviewTypes.length">Review Types</th>
+                        <th class="defect-area-action-col"></th>
+                    </tr>
+                    <tr>
+                        <th class="defect-area-desc-col">
+                        </th>
+                        <th class="defect-area-review-type-col" *ngFor="let reviewType of reviewTypes">
+                            {{reviewType.description}}
+                        </th>
+                        <th class="defect-area-action-col">
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let defectArea of qaModel.defectAreas">
+                        <td class="defect-area-desc-col">
+                            <span aria-label="Description">{{defectArea.description}} ({{defectArea.code}})</span>
+                        </td>
+                        <td class="text-center defect-area-review-type-col"
+                            *ngFor="let reviewType of reviewTypes">
+                            <button type="button" class="btn btn-xs lrs-btn-circle lrs-btn-check"
+                                    data-toggle="button"
+                                    aria-pressed="false"
+                                    [class.active]="isDefectAreaChecked(defectArea, reviewType.code)"
+                                    disabled="disabled">
+                                <span class="glyphicon glyphicon-ok small" aria-hidden="true"></span>
+                            </button>
+                        </td>
+                        <td class="defect-area-action-col">
+                            <a class="btn btn-primary"
+                               [routerLink]="['../../qaModelDefectArea/', qaModel.qaModelId, defectArea.defectAreaId, 'attributes']">
+                                View
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

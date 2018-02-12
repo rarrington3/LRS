@@ -1,0 +1,16 @@
+USE LRSDEV_STAGE
+go
+
+
+Create FUNCTION dbo.NEW_CASE_NUMBER (@case_num Char(11))
+Returns Char(11)
+as
+BEGIN
+DECLARE @ret Char(11);
+ select @ret = substring(@case_num,3,1) + substring(@case_num,2,1) + substring(@case_num,1,1) + substring(@case_num,4,1)
+	 + substring(@case_num,11,1) + substring(@case_num,8,1) + substring(@case_num,10,1) + substring(@case_num,7,1)
+	 + substring(@case_num,9,1) + substring(@case_num,6,1) + substring(@case_num,5,1);
+ RETURN @ret; 
+
+END;
+go

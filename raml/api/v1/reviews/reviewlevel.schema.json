@@ -1,0 +1,122 @@
+{
+    "id": "http://LRS/ReviewLevel",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": ["reviewLevelId", "type", "status", "reviewerDateAssigned", "reviewerDateDue"],
+    "additionalProperties": false,
+    "properties": {
+        "reviewLevelId": {
+            "description": "The id of review level for this loan review",
+            "type": "string"
+        },
+        "type": {
+            "description": "The short name of the review level this active review is currently at (e.g. Initial, Mitigation, HOC Escalation, HQ Escalation, Force Placed Indemnification, Indemnification)",
+            "type": "string"
+        },
+        "status": {
+            "description": "The review level status (e.g. Awaiting Assignement, Assigned, In Progress, Pending Batch Review, Pending Vetting, Post Vetting Review, Completed, Canceled, Exception)",
+            "type": "string"
+        },
+        "iteration": {
+            "description": "The review level iteration number",
+            "type": "string"
+        },
+        "ratingCode": {
+            "description": "The rating code given to this finding which is based on defect area, source, cause, and severity tier. Known codes: 'C' = Conforming, 'D' = Deficient, 'M' = Mitigated, 'R' = Remediated, 'U' = Unacceptable. Use the ratingcodedictionary API to translate code to description.",
+            "type": "string"
+        },
+        "dateRequestSentToLender": {
+            "description": "The date when the mitigation request, if any, for this review was sent to the lender",
+            "type": "string",
+            "format": "date"
+        },
+        "dateResponseDueFromLender": {
+            "description": "The date when the mitigation response, if requested, is due from the lender",
+            "type": "string",
+            "format": "date"
+        },
+        "reviewerDateAssigned": {
+            "description": "The date when this review was assigned to the reviewer",
+            "type": "string",
+            "format": "date"
+        },
+        "reviewerDateDue": {
+            "description": "The date when this review needs to be completed by the reviewer",
+            "type": "string",
+            "format": "date"
+        },
+        "reviewerCompletedDate": {
+            "description": "The date when this review level was completed by the reviewer",
+            "type": "string",
+            "format": "date"
+        },
+        "reviewLocationName": {
+            "description": "The name of the location where this loan review level is being reviewed",
+            "type": "string"
+        },
+        "reviewerName": {
+            "description": "The name of the reviewer working on the review. The first and last names will be utilized from the personel table. The string will be concatinated as last, first: (e.g. 'Smith, John')",
+            "type": "string"
+        },
+        "reviewerId": {
+            "description": "The user id of the reviewer working on the review.",
+            "type": "string"
+        },
+        "originalReviewerName": {
+            "description": "The name of the original reviewer working on the review. The first and last names will be utilized from the personel table. The string will be concatinated as last, first: (e.g. 'Smith, John')",
+            "type": "string"
+        },
+        "originalReviewerId": {
+            "description": "The original user id of the reviewer working on the review.",
+            "type": "string"
+        },
+        "updatedById": {
+            "description": "The user id of the last person to update the review level.",
+            "type": "string"
+        },
+        "vettingInd": {
+            "description": "Flag to indicate if the reviewlevel is created for the Vetter",
+            "type": "string"
+        },
+        "vetteeAcknowledgedDate": {
+            "description": "Date indicating when the vettee acknowledged the vetting review",
+            "type": "string",
+            "format": "date"
+        },
+        "reviewLocationId": {
+            "description": "The review level location id",
+            "type": "string"
+        },
+        "indemnificationStart":  {
+            "description": "The indemnification start date type, Time of Endorsement or Agreement",
+            "type": "string"
+        },
+        "indemnificationAgreementDate":  {
+            "description": "The indemnification agreement date (i.e. the date it was signed)",
+            "type": "string",
+            "format": "date"
+        },
+        "indemnificationExpirationDate": {
+            "description": "The expiration date of indemnification",
+            "type": "string",
+            "format": "date"
+        },
+        "indemnificationTypeCode": {
+            "description": "Indicates the Indemnification Type, which will determine the Indemnification letter template that the lender will sign if they elect the indemnification route. Potential values are '5_YEAR', and 'LIFE_OF_LOAN'",
+            "type": "string"
+        },
+        "termOfAgreement": {
+            "description": "The term of the indemnification",
+            "type": "string"
+        },
+        "qcOutcomeCode": {
+            "description": "The QC review outcome code",
+            "type": "string"
+        },
+        "forceEscalationDate": {
+            "description": "The date if a reviewer force escalates the review level",
+            "type": "string",
+            "format": "date"
+        }
+    }
+}

@@ -1,0 +1,1 @@
+java -jar /Users/astrauss/.m2/repository/org/liquibase/liquibase-core/3.5.1/liquibase-core-3.5.1.jar --classpath lib/sqljdbc42.jar --driver=com.microsoft.sqlserver.jdbc.SQLServerDriver --url=jdbc:sqlserver://10.0.3.67\ONEMORETHING:1433;databaseName=LRSDEV --username=sa --password=lrs#12345 --changeLogFile src/main/liquibase/LRS_RELEASE_1_0/HUDLRS_917_DATA_QATREE_001.xml update

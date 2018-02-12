@@ -1,0 +1,23 @@
+displayName: lenderMonitoring
+description: |
+  Service to facilitate submission of lender monitoring requests
+post:
+    securedBy: 
+      - fhac:
+          roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN]
+      - requestGeography
+      - batchOwnerGeographyAndSkill
+      - batchParticipantsGeography
+    body:
+        schema: LenderMonitoring
+        example: !include "lendermonitoring-example.json"
+    responses:
+        200:
+            description: |
+                The submitted parameters will be used to select Loans for review.
+        401:
+            description: |
+                The current user is not allowed to request Lendor Monitoring Reviews.
+        410:
+            description: |
+                The specified Lender could not be found

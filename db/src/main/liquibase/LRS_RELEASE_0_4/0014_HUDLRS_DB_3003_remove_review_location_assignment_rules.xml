@@ -1,0 +1,14 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+	<changeSet context="ALL"  author="jordanchavez" id="HUDLRS_3003_001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<sql>
+			<![CDATA[
+DELETE VF FROM SCORING_MODEL_VERSION_FACTOR VF
+INNER JOIN SCORING_FACTOR F ON (F.SCORING_FACTOR_ID = VF.SCORING_FACTOR_ID)
+WHERE F.FACTOR_ATTRIBUTE_NAME IN ('At Review Location Multiplier', 'HQ Escalation Multiplier')
+
+UPDATE SCORING_MODEL_VERSION SET MODEL_SCORE_THRESHOLD = 5000 WHERE MODEL_NAME = 'Assignment Scoring'
+			]]>
+		</sql>
+	</changeSet>
+</databaseChangeLog>

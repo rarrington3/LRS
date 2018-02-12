@@ -1,0 +1,31 @@
+{
+    "id": "http://LRS/FHAConnectionReviewer",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": ["hudId", "nameFirst", "nameLast"],
+    "properties": {
+        "hudId": {
+            "description": "The identifier of the reviewer",
+            "type": "string"
+        },
+        "nameFirst": {
+            "description": "The forename of the reviewer.",
+            "type": "string"
+        },
+        "nameLast": {
+            "description": "The family name of the reviewer.",
+            "type": "string"
+        },
+        "roles": {
+            "description": "The list of authorities the user has.",
+            "type": "array",
+            "items": {
+                "type": "SimpleGrantedAuthority"
+            }
+        },
+        "lenderId": {
+            "description": "The identifier of the lender the user is associated to.",
+            "type": "string"
+        }
+    }
+}

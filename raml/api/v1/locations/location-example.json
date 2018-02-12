@@ -1,0 +1,19 @@
+{
+    "locationId": "ATL-PUD",
+    "name": "Atlanta, GA (PUD)",
+    "address": "1207 Peach St.",
+    "address2": "Suite 500",
+    "city": "Atlanta",
+    "state": "GA",
+    "zipCode": "30301",
+    "capacity": 400,
+    "contactName": "Meghann Cleary",
+    "contactPhone": "555-867-5309",
+    "contactPhoneExtension": "2895",
+    "locationOwner": "Ralph de Bricassart",
+    "activationDate": "2014-03-02",
+    "deActivationDate": "2016-07-28",
+    "allowedSelectionReasons": ["SRwert","SRqwer","SRasdf"],
+    "allowedReviewTypes": [ "RT789", "RT101"],
+    "allowedProductTypes": ["LTzxcv","LTtyui"]
+}

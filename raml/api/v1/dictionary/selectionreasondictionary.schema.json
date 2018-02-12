@@ -1,0 +1,21 @@
+{
+    "id": "http://LRS/SelectionReasonDictionary",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": ["code", "description", "processingCycle"],
+    "additionalProperties": false,
+    "properties": {
+        "code": {
+            "description": "The identifier of the object",
+            "type": "string"
+        },
+        "description": {
+            "description": "The display name for this selection reason.",
+            "type": "string"
+        },
+        "processingCycle": {
+            "description": "When or how often is the processing performed.",
+            "type": "string"
+        }
+    }
+}

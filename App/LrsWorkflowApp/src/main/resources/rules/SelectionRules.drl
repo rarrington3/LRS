@@ -1,0 +1,1345 @@
+package lrs.hud.gov.rules
+
+import gov.hud.lrs.common.enumeration.LoanTypeCodes;
+import gov.hud.lrs.workflow.service.SelectionRulesParameters;
+import gov.hud.lrs.common.util.DateUtils;
+
+rule "Address Overwritten Multiplier"
+	no-loop true
+	when
+		// IF [Geocode Flag] indicates the Case Address was overridden THEN 1 ELSE 0 GEO_CD_FLAG
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Address Overwritten Multiplier"),
+			loanSelectionCaseSummary.geocdFlag == "Y"
+		)
+	then
+		rulesParameters.addFactorScore("Address Overwritten Multiplier");
+end
+
+rule "Application Face to Face Multiplier"
+	no-loop true
+	when
+		// IF [Application Method] is Face-to-Face THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Application Face to Face Multiplier"),
+			loanSelectionCaseSummary.aplctnMthd == "F"
+		)
+	then
+		rulesParameters.addFactorScore("Application Face to Face Multiplier");
+end
+
+rule "Application via Internet Multiplier"
+	no-loop true
+	when
+		// IF [Application Method] is Internet THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Application via Internet Multiplier"),
+			loanSelectionCaseSummary.aplctnMthd == "I"
+		)
+	then
+		rulesParameters.addFactorScore("Application via Internet Multiplier");
+end
+
+rule "ARM Index Multiplier"
+	no-loop true
+	when
+		// IF [ARM Index Indicator] IS NOT LA THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("ARM Index Multiplier"),
+			loanSelectionCaseSummary.armInd != "LA"
+		)
+	then
+		rulesParameters.addFactorScore("ARM Index Multiplier");
+end
+
+rule "AUS Count Total"
+	no-loop true
+	when
+		// [AUS Count], unchanged
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("AUS Count Total"),
+			ausCountTotal: loanSelectionCaseSummary.countAus!.doubleValue() != null
+		)
+	then
+		rulesParameters.addFactorScore("AUS Count Total", ausCountTotal);
+end
+
+rule "AUS Decision Accept Indicator"
+	no-loop true
+	when
+		// IF [Miscellaneous AUS Decision Code] is A THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("AUS Decision Accept Indicator"),
+			loanSelectionCaseSummary.miscAusDcsnCd == "A"
+		)
+	then
+		rulesParameters.addFactorScore("AUS Decision Accept Indicator");
+end
+
+rule "Back endRatio BW 0 and 46"
+	no-loop true
+	when
+		// IF 0 < [Back endRatio] <= 46 THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Back endRatio BW 0 and 46"),
+			ratio: loanSelectionCaseSummary.ratioFixTeiEndrs!.doubleValue(),
+			ratio != null,
+			ratio >= 0.0,
+			ratio <= 46.0
+		)
+	then
+		rulesParameters.addFactorScore("Back endRatio BW 0 and 46");
+end
+
+rule "Back endRatio BW 46 and 52"
+	no-loop true
+
+	when
+		// IF 46 < [Back endRatio] <= 52 THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Back endRatio BW 46 and 52"),
+			ratio: loanSelectionCaseSummary.ratioFixTeiEndrs!.doubleValue(),
+			ratio != null,
+			ratio >= 46.0,
+			ratio <= 52.0
+		)
+	then
+		rulesParameters.addFactorScore("Back endRatio BW 46 and 52");
+end
+
+rule "Back endRatio GT 49.5"
+	no-loop true
+	when
+		// IF [Back endRatio] > 49.5 THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Back endRatio GT 49.5"),
+			ratio: loanSelectionCaseSummary.ratioFixTeiEndrs!.doubleValue(),
+			ratio != null,
+			ratio >= 49.0
+		)
+	then
+		rulesParameters.addFactorScore("Back endRatio GT 49.5");
+end
+
+rule "Borrower Self Employed Multiplier"
+	no-loop true
+	when
+		// IF [Borrower Employment Indicator] is S THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Borrower Self Employed Multiplier"),
+			loanSelectionCaseSummary.borr1SelfEmplInd == "S"
+		)
+	then
+		rulesParameters.addFactorScore("Borrower Self Employed Multiplier");
+end
+
+rule "Buy Down Indicator Multiplier"
+	no-loop true
+	when
+		// IF [buy_dwn_ind] is Y THEN 1 ELSE 0	Dynamic	1
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Buy Down Indicator Multiplier"),
+			loanSelectionCaseSummary.buyDwnInd == "Y"
+		)
+	then
+		rulesParameters.addFactorScore("Buy Down Indicator Multiplier");
+end
+
+rule "Case Warning Not Null"
+	no-loop true
+	when
+		// IF [Case Warning Endorsement Reviewer ID] is not NULL THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Case Warning Not Null"),
+			loanSelectionCaseSummary.endrsmntRvwPrsnnlId != null
+		)
+	then
+		rulesParameters.addFactorScore("Case Warning Not Null");
+end
+
+rule "Claim Type Multiplier"
+	no-loop true
+	when
+		// IF [Claim Type] IN(01, 02, 06, 07) THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Claim Type Multiplier"),
+			(
+				(loanSelectionCaseSummary.claimType == "01") ||
+				(loanSelectionCaseSummary.claimType == "02") ||
+				(loanSelectionCaseSummary.claimType == "06") ||
+				(loanSelectionCaseSummary.claimType == "07")
+			)
+		)
+	then
+		rulesParameters.addFactorScore("Claim Type Multiplier");
+end
+
+rule "Coborrower Credit Count"
+	no-loop true
+	when
+		// [Co Borrower 1 FICO]
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Coborrower Credit Count"),
+			coborrowerCreditCount: loanSelectionCaseSummary.coborr1FicoCnt!.doubleValue() != null
+		)
+	then
+		rulesParameters.addFactorScore("Coborrower Credit Count", coborrowerCreditCount);
+end
+
+rule "Condo Indicator Multiplier"
+	no-loop true
+	when
+		// IF [Condo Indicator] = N THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Condo Indicator Multiplier"),
+			loanSelectionCaseSummary.cndInd == "N"
+		)
+	then
+		rulesParameters.addFactorScore("Condo Indicator Multiplier");
+end
+
+rule "Conventional Refinance Not Delinquent Indicator"
+	no-loop true
+	when
+	// IF [Property Disposition Streamline Refinance Flag] is C THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Conventional Refinance Not Delinquent Indicator"),
+			loanSelectionCaseSummary.pdStrmlnFlg == "C"
+		)
+	then
+		rulesParameters.addFactorScore("Conventional Refinance Not Delinquent Indicator");
+end
+
+rule "Current Default Extended Months Multiplier"
+	no-loop true
+	when
+		// IF([Months Delinquent] - 3) > 0 THEN multiple by 100 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Current Default Extended Months Multiplier"),
+			currentDefaultExtendedMonths: loanSelectionCaseSummary.currDlnqncyMnthsDlnqnt,
+			(currentDefaultExtendedMonths - 3) > 0
+		)
+	then
+		rulesParameters.addFactorScore("Current Default Extended Months Multiplier", 100 * (currentDefaultExtendedMonths - 3));
+end
+
+rule "Current Payments Indicator"
+	no-loop true
+	when
+		// IF [Current Payments Flag] is N THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Current Payments Indicator"),
+			loanSelectionCaseSummary.currentAtEndorseInd == "N"
+		)
+	then
+		rulesParameters.addFactorScore("Current Payments Indicator");
+end
+
+rule "Current Tax and Insurance Default Multiplier"
+	no-loop true
+	when
+		// IF [Default Reason Code - HECM] = 02 AND [Default Flag - HECM] THEN 1 ELSE 0
+		rulesParameters: SelectionRulesParameters(
+			hasFactor("Current Tax and Insurance Default Multiplier"),
+			loanSelectionCaseSummary.loanType == "H",
+			loanSelectionCaseSummary.currDfltRsnCd == "02",
+			loanSelectionCaseSummary.defaultEpisodeExistsInd == "Y"
+		)
+	then
+		rulesParameters.addFactorScore("Current Tax and Insurance Default Multiplier");
+end
+
+rule "Death Due and Payable Multiplier"
+	no-loop true
+	when
+		// IF [Default Reason Code - HECM] = 06 THEN 1 ELSE 0
+		rulesParameters: SelectionRulesParameters(
+			hasFactor("Death Due and Payable Multiplier"),
+			loanSelectionCaseSummary.loanType == "H",
+			loanSelectionCaseSummary.currDfltRsnCd == "06"
+		)
+	then
+		rulesParameters.addFactorScore("Death Due and Payable Multiplier");
+end
+
+rule "Decision Score Multiplier"
+	no-loop true
+	when
+		// IF [Original Decision FICO Score] is missing or NULL THEN 0 ELSE [Original Decision FICO Score]
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Decision Score Multiplier"),
+			decisionScore: loanSelectionCaseSummary.ficoDecisionScoreEndrs != null
+		)
+	then		
+		rulesParameters.addFactorScore("Decision Score Multiplier", decisionScore);
+end
+
+rule "Defect Probability Forward Constant"
+	no-loop true
+	when
+		// ALWAYS 1
+		rulesParameters:SelectionRulesParameters(hasFactor("Defect Probability Forward Constant"))
+	then
+		rulesParameters.addFactorScore("Defect Probability Forward Constant");
+end
+
+rule "Defect Probability Reverse Constant"
+	no-loop true
+	when
+		// ALWAYS 1
+		rulesParameters:SelectionRulesParameters(hasFactor("Defect Probability Reverse Constant"))
+	then
+		rulesParameters.addFactorScore("Defect Probability Reverse Constant");
+end
+
+rule "Direct Endorsement Case Indicator"
+	no-loop true
+	when
+		// IF [Case Type] = 4 THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Direct Endorsement Case Indicator"),
+			loanSelectionCaseSummary.csTyp == "4"
+		)
+	then
+		rulesParameters.addFactorScore("Direct Endorsement Case Indicator");
+end
+
+rule "Early Claim Multiplier"
+	no-loop true
+	when
+		// IF [Early Claim Indicator] = Y THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Early Claim Multiplier"),
+			loanSelectionCaseSummary.earlyClaimInd == "Y"
+		)
+	then
+		rulesParameters.addFactorScore("Early Claim Multiplier");
+end
+
+rule "Early Payment Default Multiplier"
+	no-loop true
+	when
+		// IF [Early Default] = Y THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Early Payment Default Multiplier"),
+			loanSelectionCaseSummary.earlyDefaultInd == "Y"
+		)
+	then
+		rulesParameters.addFactorScore("Early Payment Default Multiplier");
+end
+
+rule "Endorse Appraisal Days"
+	no-loop true
+	when
+		// Number of days between [Appraisal Date] and [Endorsement Date]
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Endorse Appraisal Days"),
+			endorsementDate: loanSelectionCaseSummary.endrsmntDt != null,
+			appraisalDate: loanSelectionCaseSummary.aprslCmpltnDt != null
+		)
+	then
+		rulesParameters.addFactorScore("Endorse Appraisal Days", DateUtils.daysBetween(endorsementDate, appraisalDate));
+end
+
+rule "Endorsement Appraisal Date Difference Else Multiplier"
+	no-loop true
+	when
+		// IF 0 <([Endorsement Date]-[Appraisal Date]) <=38 THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Endorsement Appraisal Date Difference Else Multiplier"),
+			endrsmntDt: loanSelectionCaseSummary.endrsmntDt != null,
+			aprslCmpltnDt: loanSelectionCaseSummary.aprslCmpltnDt != null,
+			DateUtils.daysBetween(endrsmntDt, aprslCmpltnDt) > 0,
+			DateUtils.daysBetween(endrsmntDt, aprslCmpltnDt) <= 38
+		)
+	then
+		rulesParameters.addFactorScore("Endorsement Appraisal Date Difference Else Multiplier");
+end
+
+rule "Endorsement Appraisal Date Difference LT 39 Multiplier"
+	no-loop true
+	when
+		// IF [Endorsement Date] - [Appraisal Date] <= 39 THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Endorsement Appraisal Date Difference LT 39 Multiplier"),
+			endrsmntDt: loanSelectionCaseSummary.endrsmntDt != null,
+			aprslCmpltnDt: loanSelectionCaseSummary.aprslCmpltnDt != null,
+			DateUtils.daysBetween(endrsmntDt, aprslCmpltnDt) <= 39
+		)
+	then
+		rulesParameters.addFactorScore("Endorsement Appraisal Date Difference LT 39 Multiplier");
+end
+
+rule "Endorsement Appraisal Date Difference Less BW 39 and 53 Multiplier"
+	no-loop true
+	when
+		// IF 39 < [Endorsement Date] - [Appraisal Date] <=53 THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Endorsement Appraisal Date Difference Less BW 39 and 53 Multiplier"),
+			endrsmntDt: loanSelectionCaseSummary.endrsmntDt != null,
+			aprslCmpltnDt: loanSelectionCaseSummary.aprslCmpltnDt != null,
+			DateUtils.daysBetween(endrsmntDt, aprslCmpltnDt) > 39,
+			DateUtils.daysBetween(endrsmntDt, aprslCmpltnDt) <= 53
+		)
+	then
+		rulesParameters.addFactorScore("Endorsement Appraisal Date Difference Less BW 39 and 53 Multiplier");
+end
+
+rule "Endorsement Appraisal Date Difference Less BW 53 and 69 Multiplier"
+	no-loop true
+	when
+		// IF 53 < [Endorsement Date] - [Appraisal Date] <=69 THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Endorsement Appraisal Date Difference Less BW 53 and 69 Multiplier"),
+			endrsmntDt: loanSelectionCaseSummary.endrsmntDt != null,
+			aprslCmpltnDt: loanSelectionCaseSummary.aprslCmpltnDt != null,
+		 	DateUtils.daysBetween(endrsmntDt, aprslCmpltnDt) > 53,
+		 	DateUtils.daysBetween(endrsmntDt, aprslCmpltnDt) <= 69
+		 )
+	then
+		rulesParameters.addFactorScore("Endorsement Appraisal Date Difference Less BW 53 and 69 Multiplier");
+end
+
+rule "Endorsement Appraisal Date Difference Less BW 69 and 96 Multiplier"
+	no-loop true
+	when
+		// IF 69 < [Endorsement Date] - [Appraisal Date] <=96 THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Endorsement Appraisal Date Difference Less BW 69 and 96 Multiplier"),
+			endrsmntDt: loanSelectionCaseSummary.endrsmntDt != null,
+			aprslCmpltnDt: loanSelectionCaseSummary.aprslCmpltnDt != null,
+			DateUtils.daysBetween(endrsmntDt, aprslCmpltnDt) > 69,
+			DateUtils.daysBetween(endrsmntDt, aprslCmpltnDt) <= 96
+		)
+	then
+		rulesParameters.addFactorScore("Endorsement Appraisal Date Difference Less BW 69 and 96 Multiplier");
+end
+
+rule "Endorsement Appraisal Date Difference GT 96 Multiplie"
+	no-loop true
+	when
+		// IF [Endorsement Date] - [Appraisal Date] > 96 THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Endorsement Appraisal Date Difference GT 96 Multiplie"),
+			endrsmntDt: loanSelectionCaseSummary.endrsmntDt != null,
+			aprslCmpltnDt: loanSelectionCaseSummary.aprslCmpltnDt != null,
+			DateUtils.daysBetween(endrsmntDt, aprslCmpltnDt) > 96
+		)
+	then
+		rulesParameters.addFactorScore("Endorsement Appraisal Date Difference GT 96 Multiplie");
+end
+
+rule "Escrow Flag Multiplier"
+	no-loop true
+	when
+		// IF [Escrow Flag] IS NOT LA THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Escrow Flag Multiplier"),
+			loanSelectionCaseSummary.escrwFlag != 'Y'
+		)
+	then
+		rulesParameters.addFactorScore("Escrow Flag Multiplier");
+end
+
+rule "Factory Fabricated Multiplier"
+	no-loop true
+	when
+		// IF [Factory Fabrication] is 2 THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Factory Fabricated Multiplier"),
+			loanSelectionCaseSummary.getFctryFbrct() == "2"
+		)
+	then
+		rulesParameters.addFactorScore("Factory Fabricated Multiplier");
+end
+
+rule "FHA Connection Address Change Indicator"
+	no-loop true
+
+	when
+		// IF [FHA Connection Address Change] is F THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters
+			(hasFactor("FHA Connection Address Change Indicator"),
+			loanSelectionCaseSummary.fhacAddrChg == "F"
+		)
+	then
+		rulesParameters.addFactorScore("FHA Connection Address Change Indicator");
+end
+
+rule "First Time Homebuyer Counseling Not Received"
+	no-loop true
+
+	when
+		//First Time Homebuyer Counseling Not Received	IF [borr_cnsl_typ] is A or B or C THEN 1 ELSE 0	Dynamic	1
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("First Time Homebuyer Counseling Not Received"),
+			loanSelectionCaseSummary.borrCnslTyp in ("A", "B", "C")
+		)
+	then
+		rulesParameters.addFactorScore("First Time Homebuyer Counseling Not Received");
+end
+
+rule "Fixed Payment GT 2888 Multiplier"
+	no-loop true
+	when
+		// IF [Total Fixed Payment] > 2888 THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Fixed Payment GT 2888 Multiplier"),
+			(
+				((loanSelectionCaseSummary.totFixedPymtEndrs != null) && (loanSelectionCaseSummary.totFixedPymtEndrs.doubleValue() > 2888.0)) ||
+				((loanSelectionCaseSummary.totFixedPymtUw != null) && (loanSelectionCaseSummary.totFixedPymtUw.doubleValue() > 2888.0))
+			)
+		)
+	then
+		rulesParameters.addFactorScore("Fixed Payment GT 2888 Multiplier");
+end
+
+rule "Front endRatio BW 0 and 35"
+	no-loop true
+
+	when
+		// IF 0 < [Front endRatio] <= 35 THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Front endRatio BW 0 and 35"),
+			loanSelectionCaseSummary.ratioTotPmtToTotIncEndrs!.doubleValue() > 0.0,
+			loanSelectionCaseSummary.ratioTotPmtToTotIncEndrs!.doubleValue() <= 35.0
+		)
+	then
+		rulesParameters.addFactorScore("Front endRatio BW 0 and 35");
+end
+
+rule "Gift Funds in 10Ks Multiplier"
+	no-loop true
+	when
+	 	// [Gift Letter 1 Amount] divided by 10000
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Gift Funds in 10Ks Multiplier"),
+			giftFunds: loanSelectionCaseSummary.giftLtrAmt!.doubleValue() != null
+		)
+	then
+		rulesParameters.addFactorScore("Gift Funds in 10Ks Multiplier", giftFunds / 10000.0);
+end
+
+rule "Hard Copy Documentation Multiplier"
+	no-loop true
+	when
+		// IF [Electronic Binder indicator] is No THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Hard Copy Documentation Multiplier"),
+			loanSelectionCaseSummary.miscEbndrInd == "N"
+		)
+	then
+		rulesParameters.addFactorScore("Hard Copy Documentation Multiplier");
+end
+
+rule "Lender Insured Case Multiplier"
+	no-loop true
+	when
+	// IF [Lender Insured Indicator] is No THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Lender Insured Case Multiplier"),
+			loanSelectionCaseSummary.miscLndrInsrncInd == "N"
+		)
+	then
+		rulesParameters.addFactorScore("Lender Insured Case Multiplier");
+end
+
+rule "Loan Type Forward Multiplier"
+	no-loop true
+	when
+		// IF [Loan Type] is F THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Loan Type Forward Multiplier"),
+			loanSelectionCaseSummary.loanType == "F"
+		)
+	then
+		rulesParameters.addFactorScore("Loan Type Forward Multiplier");
+end
+
+rule "Loan Type HECM Multiplier"
+	no-loop true
+	when
+		// IF [Loan Type] is H THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Loan Type HECM Multiplier"),
+			loanSelectionCaseSummary.loanType == "H"
+		)
+	then
+		rulesParameters.addFactorScore("Loan Type HECM Multiplier");
+end
+
+rule "Manually Underwritten Case Indicator"
+	no-loop true
+	when
+		// IF [Underwriting Method] = Manual THEN 1 ELSE 0
+		// Underwriting Method	UNDERWRITING_METHOD	Null	Manual
+		// Underwriting Method	UNDERWRITING_METHOD	Z	Automated Underwriting
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Manually Underwritten Case Indicator"),
+			loanSelectionCaseSummary.underwritingMethod == null
+		)
+	then
+		rulesParameters.addFactorScore("Manually Underwritten Case Indicator");
+end
+
+rule "Moderate Payment Shock (GE 1.5 LT 3) Multiplier"
+	no-loop true
+	when
+		// IF 1.5 < [Total Monthly Mortgage Payment] / [Borrower Housing Expense] < 3 THEN 1 ELSE IF data field is 0 or missing THEN 0 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Moderate Payment Shock (GE 1.5 LT 3) Multiplier"),
+			totalMonthlyPayment: loanSelectionCaseSummary.totMnthlyMtgPymtEndrs!.doubleValue() != null,
+			borrowerHousingExpense: loanSelectionCaseSummary.borrHsngExpEndrs!.doubleValue() != null,
+			(totalMonthlyPayment / borrowerHousingExpense) > 1.5,
+			(totalMonthlyPayment / borrowerHousingExpense) <= 3.0
+		)
+	then
+		rulesParameters.addFactorScore("Moderate Payment Shock (GE 1.5 LT 3) Multiplier");
+end
+
+// TODO: there are two variants of this rule, what's the diffrence between them? One has Valid = FALSE, the other has Valid = TRUE in the spreadsheet
+rule "Neighborhood Differential Percent BW -0.1098 and 0"
+	no-loop true
+	when
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Neighborhood Differential Percent BW -0.1098 and 0"),
+			prprtyAprslVl: loanSelectionCaseSummary.prprtyAprslVl!.doubleValue() != null,
+			nbrhdPrice: loanSelectionCaseSummary.nbrhdPrice!.doubleValue() != null,
+			nbrhdPrice != 0.0,	// TODO: this is an unsafe check. we need to determine realistic epsilons around zero to avoid overflow
+			((prprtyAprslVl / nbrhdPrice) - 1.0) > -0.1098,
+			((prprtyAprslVl / nbrhdPrice) - 1.0) <= 0.0
+		)
+	then
+		rulesParameters.addFactorScore("Neighborhood Differential Percent BW -0.1098 and 0");
+end
+
+rule "Neighborhood Differential Percent BW 0 and 0.0832"
+	no-loop true
+	when
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Neighborhood Differential Percent BW 0 and 0.0832"),
+			prprtyAprslVl: loanSelectionCaseSummary.prprtyAprslVl!.doubleValue() != null,
+			nbrhdPrice: loanSelectionCaseSummary.nbrhdPrice!.doubleValue() != null,
+			nbrhdPrice != 0.0,	// TODO: this is an unsafe check. we need to determine realistic epsilons around zero to avoid overflow
+			((prprtyAprslVl / nbrhdPrice) - 1.0) > 0.0,
+			((prprtyAprslVl / nbrhdPrice) - 1.0) <= 0.0832
+		)
+	then
+		rulesParameters.addFactorScore("Neighborhood Differential Percent BW 0 and 0.0832");
+end
+
+rule "Neighborhood Differential Percent GT 0.0832"
+	no-loop true
+	when
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Neighborhood Differential Percent GT 0.0832"),
+			prprtyAprslVl: loanSelectionCaseSummary.prprtyAprslVl!.doubleValue() != null,
+			nbrhdPrice: loanSelectionCaseSummary.nbrhdPrice!.doubleValue() != null,
+			nbrhdPrice != 0.0,	// TODO: this is an unsafe check. we need to determine realistic epsilons around zero to avoid overflow
+			((prprtyAprslVl / nbrhdPrice) - 1.0) > 0.0832
+		)
+	then
+		rulesParameters.addFactorScore("Neighborhood Differential Percent GT 0.0832");
+end
+
+rule "Neighborhood Price in 10K"
+	no-loop true
+	when
+		// [Neighborhood Predominant Price] divided by 10000
+		rulesParameters: SelectionRulesParameters(
+			hasFactor("Neighborhood Price in 10K"),
+			neighborhoodPrice: loanSelectionCaseSummary.nbrhdPrice!.doubleValue() != null
+		)
+	then
+		rulesParameters.addFactorScore("Neighborhood Price in 10K", neighborhoodPrice / 10000.0);
+end
+
+rule "New and Old Refinance Difference Multiplier"
+	no-loop true
+	when
+		// IF [Maximum Claim Amount] - [Prior Max Claim Amount] > 0 AND [Maximum Claim Amount] - [Prior Max Claim Amount] < 20001 THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("New and Old Refinance Difference Multiplier"),
+			maximumClaimAmount: loanSelectionCaseSummary.maxClaimAmt!.doubleValue() != null,
+			priorMaximumClaimAmount: loanSelectionCaseSummary.prrCaseMxmmClmAmt!.doubleValue() != null,
+			(maximumClaimAmount - priorMaximumClaimAmount) > 0.0,
+			(maximumClaimAmount - priorMaximumClaimAmount) < 20001.0
+		)
+	then
+		rulesParameters.addFactorScore("New and Old Refinance Difference Multiplier");
+end
+
+rule "New or Proposed Construction"
+	no-loop true
+	when
+		// IF [const_sts_cd] is 1 THEN 1 ELSE 0	Dynamic	1
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("New or Proposed Construction"),
+			loanSelectionCaseSummary.constStsCd == "1"
+		)
+	then
+		rulesParameters.addFactorScore("New or Proposed Construction");
+end
+
+rule "Non-First Time Homebuyer Indicator"
+	no-loop true
+	when
+		// IF [First Time Buyer] is N THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Non-First Time Homebuyer Indicator"),
+			loanSelectionCaseSummary.borr1FirstTimeBuyerInd == "N"
+		)
+	then
+		rulesParameters.addFactorScore("Non-First Time Homebuyer Indicator");
+end
+
+rule "Non-Refinance with LTV above 96.5"
+	no-loop true
+	when
+		// IF [Refinance Indicator] is N and [Loan to Value Ratio New] > 96.5 THEN 0 ELSE 1
+		rulesParameters: SelectionRulesParameters(
+			hasFactor("Non-Refinance with LTV above 96.5"),
+			(loanSelectionCaseSummary.refinanceInd != "N" ||
+			loanSelectionCaseSummary.ratioLoanToVlNew == null ||
+ 			loanSelectionCaseSummary.ratioLoanToVlNew!.doubleValue() <= 96.5)
+ 		)
+	then
+		rulesParameters.addFactorScore("Non-Refinance with LTV above 96.5");
+end
+
+rule "Non-Subdivision Spot Lot Indicator"
+	no-loop true
+
+	when
+		// IF [Subdivision Spot Lot] is N THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Non-Subdivision Spot Lot Indicator"),
+			loanSelectionCaseSummary.sbdvsnSpotLot == "N"
+		)
+	then
+		rulesParameters.addFactorScore("Non-Subdivision Spot Lot Indicator");
+end
+
+rule "Not Previously Selected for Underwriting Review Multiplier"
+	no-loop true
+	when
+		// IF COUNT(WHEN [Loan Selection]![Review Type] = Underwriting) = 0 THEN 1 ELSE 0
+		rulesParameters: SelectionRulesParameters(
+			hasFactor("Not Previously Selected for Underwriting Review Multiplier"), 
+			notPreviouslySelectedforUnderwritingReview()
+		)
+	then		
+		rulesParameters.addFactorScore("Not Previously Selected for Underwriting Review Multiplier");
+end
+
+rule "Previously Selected for Underwriting Review Multiplier"
+	no-loop true
+	when
+		// IF COUNT (WHEN [Loan Selection]![Review Type] = Underwriting) > 0 THEN 1 ELSE 0
+		rulesParameters: SelectionRulesParameters(
+			hasFactor("Previously Selected for Underwriting Review Multiplier"), 
+			previouslySelectedforUnderwritingReview()
+		)
+	then		
+		rulesParameters.addFactorScore("Previously Selected for Underwriting Review Multiplier");
+end
+
+rule "Number of Bathrooms Multiplier"
+	no-loop true
+	when
+		// [Number of Bathrooms], unchanged
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Number of Bathrooms Multiplier"),
+			numberOfBathrooms: loanSelectionCaseSummary.nbrBthrms!.doubleValue() != null
+		)
+	then
+		rulesParameters.addFactorScore("Number of Bathrooms Multiplier", numberOfBathrooms);
+end
+
+rule "Number of Bedrooms"
+	no-loop true
+	when
+		// [Number of Bedrooms], unchanged
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Number of Bedrooms"),
+			numberOfBedrooms: loanSelectionCaseSummary.nbrBdrm != null
+		)
+	then
+		rulesParameters.addFactorScore("Number of Bedrooms", (double)numberOfBedrooms);
+end
+
+rule "Occupancy Due and Payable Multiplier"
+	no-loop true
+	when
+		// IF [Default Reason Code - HECM] = 01 THEN 1 ELSE 0
+		rulesParameters: SelectionRulesParameters(
+			hasFactor("Occupancy Due and Payable Multiplier"),
+			loanSelectionCaseSummary.loanType == "H",
+			loanSelectionCaseSummary.currDfltRsnCd == "01"
+		)
+	then
+		rulesParameters.addFactorScore("Occupancy Due and Payable Multiplier");
+end
+
+rule "Original Mortgage Amount in 50Ks Multiplier"
+	no-loop true
+
+	when
+		// (INT([Original Mortgage Amount] / 50000)) multiplied by 100
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Original Mortgage Amount in 50Ks Multiplier"),
+			originalMortgageAmount: loanSelectionCaseSummary.origMrtgAmt!.doubleValue() != null
+		)
+	then
+		rulesParameters.addFactorScore("Original Mortgage Amount in 50Ks Multiplier", (double)((int)(originalMortgageAmount / 50000)) * 100.0);
+end
+
+rule "Prior Sale Information Required Multiplier"
+	no-loop true
+
+	when
+		// IF [Prior Sale Required Indicator] is Y AND [Property Disposition Streamline Refinance Flag] is H THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Prior Sale Information Required Multiplier"),
+			loanSelectionCaseSummary.priorSaleRqrdInd == "Y",
+			loanSelectionCaseSummary.pdStrmlnFlg == "H"
+		)
+	then
+		rulesParameters.addFactorScore("Prior Sale Information Required Multiplier");
+end
+
+rule "Prior Sale Information Not Required Multiplier"
+	no-loop true
+
+	when
+		// IF [Prior Sale Required Indicator] is N AND [Property Disposition Streamline Refinance Flag] is H THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Prior Sale Information Not Required Multiplier"),
+			loanSelectionCaseSummary.priorSaleRqrdInd == "N",
+			loanSelectionCaseSummary.pdStrmlnFlg == "H"
+		)
+	then
+		rulesParameters.addFactorScore("Prior Sale Information Not Required Multiplier");
+end
+
+rule "Property Under Construction Multiplier"
+	no-loop true
+	when
+		// If [Construction Status Code] = 5 THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Property Under Construction Multiplier"),
+			loanSelectionCaseSummary.constStsCd == "5"
+		)
+	then
+		rulesParameters.addFactorScore("Property Under Construction Multiplier");
+end
+
+rule "Model Random Number 100"
+	no-loop true
+	when
+		// RANDOM(100)
+		rulesParameters:SelectionRulesParameters(hasFactor("Model Random Number 100"))
+	then
+		rulesParameters.addFactorScore("Model Random Number 100", rulesParameters.d100());
+end
+
+rule "Streamline Refinance Indicator"
+	no-loop true
+	when
+		// IF [Factory Fabrication] is 0 THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Streamline Refinance Indicator"),
+			loanSelectionCaseSummary.fctryFbrct == "0"
+		)
+	then
+		rulesParameters.addFactorScore("Streamline Refinance Indicator");
+end
+
+rule "Subdivision Spot Lot Indicator"
+	no-loop true
+	when
+		// IF [Subdivision Spot Lot] = N THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Subdivision Spot Lot Indicator"),
+			loanSelectionCaseSummary.sbdvsnSpotLot == "N"
+		)
+	then
+		rulesParameters.addFactorScore("Subdivision Spot Lot Indicator");
+end
+
+rule "Suburban Neighborhood Multiplier"
+	no-loop true
+	when
+		// IF [Rural Neighborhood Code] = S THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Suburban Neighborhood Multiplier"),
+			loanSelectionCaseSummary.nbrhdCd == "S"
+		)
+	then
+		rulesParameters.addFactorScore("Suburban Neighborhood Multiplier");
+end
+
+rule "Suppressed Lender Multiplier"
+	no-loop true
+	when
+		// IF [Suppressed Lender ID] = [Underwriting Lender ID] THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Suppressed Lender Multiplier"),
+			lenderSuppressed()
+		)
+	then
+		rulesParameters.addFactorScore("Suppressed Lender Multiplier");
+end
+
+rule "Term Greater than 15 Years"
+	no-loop true
+	when
+		// IF [Term 15 Year Indicator] is N THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Term Greater than 15 Years"),
+			loanSelectionCaseSummary.term15YrInd == "N"
+		)
+	then
+		rulesParameters.addFactorScore("Term Greater than 15 Years");
+end
+
+// TODO: as we process each case batch, we need to accumulate lender information with calls to mule
+// it would be nice if mule provided a batch API for this that accepted multiple IDs
+rule "Terminated Underwriting Lender Multiplier"
+	no-loop true
+	when
+		// IF [Lender Status] is T THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Terminated Underwriting Lender Multiplier"),
+			loanSelectionCaseSummary.orgntngMrtggeeInstStat == 'T'
+		)
+	then
+		rulesParameters.addFactorScore("Terminated Underwriting Lender Multiplier");
+end
+
+rule "Total Monthly Borrower Income below 3070"
+	no-loop true
+	when
+		// IF 0 < [Total Monthly Effective Income] <= 3070 THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Total Monthly Borrower Income below 3070"),
+			totalMonthlyIncome: loanSelectionCaseSummary.totMnthlyEffIncm!.doubleValue() != null,
+			totalMonthlyIncome > 0,
+			totalMonthlyIncome <= 3070.0
+		)
+	then
+		rulesParameters.addFactorScore("Total Monthly Borrower Income below 3070");
+end
+
+rule "Underserved Indicator"
+	no-loop true
+	when
+		// IF [Underserved Indicator] is 0 THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Underserved Indicator"),
+			loanSelectionCaseSummary.undrsrvdInd == "0"
+		)
+	then
+		rulesParameters.addFactorScore("Underserved Indicator");
+end
+
+rule "Mortgage Status Reporting Indicator"
+	no-loop true
+	when
+		// IF [Default Status Code] exists then 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Mortgage Status Reporting Indicator"),
+			loanSelectionCaseSummary.currDfltStsCd != null
+		)
+	then
+		rulesParameters.addFactorScore("Mortgage Status Reporting Indicator");
+end
+
+rule "Not Factory Fabricated Multiplier"
+	no-loop true
+	when
+		// IF [Factory Fabrication] !=2 AND [Factory Fabrication] IS NOT NULL AND  [Factory Fabrication] !=0 THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Not Factory Fabricated Multiplier"),
+			loanSelectionCaseSummary.getFctryFbrct() != null,
+			loanSelectionCaseSummary.getFctryFbrct() != "2",
+			loanSelectionCaseSummary.getFctryFbrct() != "0"
+		)
+	then
+		rulesParameters.addFactorScore("Not Factory Fabricated Multiplier");
+end
+
+rule "Adjustable Rate Mortgage Multiplier"
+	no-loop true
+	when
+		// IF [Amortization Type Code] is Adjustable Rate THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Adjustable Rate Mortgage Multiplier"),
+			loanSelectionCaseSummary.amortTypCd == "A"
+		)
+	then
+		rulesParameters.addFactorScore("Adjustable Rate Mortgage Multiplier");
+end
+
+rule "Existing Construction Multiplier"
+	no-loop true
+	when
+		// IF [Construction Code] = 4 THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Existing Construction Multiplier"),
+			loanSelectionCaseSummary.constCd == "4"
+		)
+	then
+		rulesParameters.addFactorScore("Existing Construction Multiplier");
+end
+
+rule "Defect Probability (Fwd) Score"
+	no-loop true
+	when
+		//MAX( [Model Score] WHEN [Model ID] = "Defect Probability Fwd")
+		rulesParameters:SelectionRulesParameters(hasFactor("Defect Probability Fwd Score"))
+	then
+		rulesParameters.addFactorScore("Defect Probability Fwd Score", rulesParameters.getDefectProbabilityForwardScore());
+end
+
+rule "Defect Probability (Fwd) Percentile"
+	no-loop true
+	when
+		//MAX( [Score Percentile] WHEN [Model ID] = "Defect Probability Fwd" )
+		rulesParameters:SelectionRulesParameters(hasFactor("Defect Probability (Fwd) Percentile"))
+	then
+		rulesParameters.addFactorScore("Defect Probability (Fwd) Percentile", rulesParameters.getDefectProbabilityForwardPercentile());
+end
+
+rule "Defect Probability (Rev) Score"
+	no-loop true
+	when
+		//MAX( [Model Score] WHEN [Model ID] = "Defect Probability Rev")
+		rulesParameters:SelectionRulesParameters(hasFactor("Defect Probability (Rev) Score"))
+	then
+		rulesParameters.addFactorScore("Defect Probability (Rev) Score", rulesParameters.getDefectProbabilityReverseScore());
+end
+
+rule "Defect Probability (Rev) Percentile"
+	no-loop true
+	when
+		//MAX( [Score Percentile] WHEN [Model ID] = "Defect Probability Rev" )
+		rulesParameters:SelectionRulesParameters(hasFactor("Defect Probability (Rev) Percentile"))
+	then
+		rulesParameters.addFactorScore("Defect Probability (Rev) Percentile", rulesParameters.getDefectProbabilityReversePercentile());
+end
+
+rule "Lender Forward Risk Above Threshold"
+	no-loop true
+	when
+		//IF [Loan Type Forward Multiplier] = 1 AND   lenderFwdRiskAboveThreshold
+		//MAX ( [Lender Score Percentile] WHEN [Model ID] = "Defect Probability Fwd" ) >=[Targeted Lender Forward Percent] THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Lender Forward Risk Above Threshold"),
+			loanSelectionCaseSummary.getLoanType() == LoanTypeCodes.FORWARD,
+			defectProbabilityForwardPercentileWithinLenderIncreasedSelectionForwardPercent()
+		)
+	then
+		rulesParameters.addFactorScore("Lender Forward Risk Above Threshold");
+end
+
+rule "Lender HECM Risk Above Threshold"
+	no-loop true
+
+	when
+		// IF [Loan Type HECM Multiplier] = 1 AND MAX( [Lender Score Percentile] WHEN [Model ID] = "Defect Probability Rev") >=[Targeted Lender HECM Percent] THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(hasFactor("Lender HECM Risk Above Threshold"),
+			loanSelectionCaseSummary.getLoanType() == LoanTypeCodes.HECM,
+			defectProbabilityReversePercentileWithinLenderIncreasedSelectionHecmPercent()
+		)
+	then
+		rulesParameters.addFactorScore("Lender HECM Risk Above Threshold");
+end
+
+rule "Lender Monitoring Forward Servicing Score Multiplier"
+	no-loop true
+	when
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Lender Monitoring Forward Servicing Score Multiplier"),
+			loanSelectionCaseSummary.loanType == LoanTypeCodes.FORWARD
+		)
+	then
+		rulesParameters.addFactorScore("Lender Monitoring Forward Servicing Score Multiplier", rulesParameters.getLenderMonitoringForwardServicingScore());
+end
+
+rule "Lender Monitoring Forward Servicing Score Percentile"
+	no-loop true
+	when
+		// IF [Loan Type Forward Multiplier] = 1 THEN MAX ( [Score Percentile] WHEN [Model ID] = "Lender Monitoring Forward Servicing") ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Lender Monitoring Forward Servicing Score Percentile"),
+			loanSelectionCaseSummary.loanType == LoanTypeCodes.FORWARD
+		)
+	then
+		rulesParameters.addFactorScore("Lender Monitoring Forward Servicing Score Percentile", rulesParameters.getLenderMonitoringForwardServicingPercentile());
+end
+
+rule "Lender Monitoring Forward Underwriting Score Multiplier"
+	no-loop true
+	when
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Lender Monitoring Forward Underwriting Score Multiplier"),
+			loanSelectionCaseSummary.getLoanType() == LoanTypeCodes.FORWARD
+		)
+	then
+		rulesParameters.addFactorScore("Lender Monitoring Forward Underwriting Score Multiplier", rulesParameters.getLenderMonitoringForwardUnderwritingScore());
+end
+
+rule "Lender Monitoring Forward Underwriting Score Percentile"
+	no-loop true
+	when
+		//IF [Loan Type Forward Multiplier] = 1 THEN MAX ( [Score Percentile] WHEN [Model ID] = "Lender Monitoring Forward Underwriting") ELSE 0				
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Lender Monitoring Forward Underwriting Score Percentile"),
+			loanSelectionCaseSummary.getLoanType() == LoanTypeCodes.FORWARD
+		)
+	then
+		rulesParameters.addFactorScore("Lender Monitoring Forward Underwriting Score Percentile", rulesParameters.getLenderMonitoringForwardUnderwritingPercentile());
+end
+
+rule "Lender Monitoring HECM Servicing Score Multiplier"
+	no-loop true
+	when
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Lender Monitoring HECM Servicing Score Multiplier"),
+			loanSelectionCaseSummary.loanType == LoanTypeCodes.HECM
+		)
+	then
+		rulesParameters.addFactorScore("Lender Monitoring HECM Servicing Score Multiplier", rulesParameters.getLenderMonitoringReverseServicingScore());
+end
+
+rule "Lender Monitoring HECM Servicing Score Percentile"
+	no-loop true
+	// IF [Loan Type HECM Multiplier] = 1 THEN MAX( [Score Percentile] WHEN [Model ID] = "Lender Monitoring HECM Servicing") ELSE 0
+	when
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Lender Monitoring HECM Servicing Score Percentile"),
+			loanSelectionCaseSummary.loanType == LoanTypeCodes.HECM
+		)
+	then
+		rulesParameters.addFactorScore("Lender Monitoring HECM Servicing Score Percentile", rulesParameters.getLenderMonitoringReverseServicingPercentile());
+end
+
+rule "Lender Monitoring HECM Underwriting Score Multiplier"
+	no-loop true
+	when
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Lender Monitoring HECM Underwriting Score Multiplier"),
+			loanSelectionCaseSummary.loanType == LoanTypeCodes.HECM
+		)
+	then
+		rulesParameters.addFactorScore("Lender Monitoring HECM Underwriting Score Multiplier", rulesParameters.getLenderMonitoringReverseUnderwritingScore());
+end
+
+rule "Lender Monitoring HECM Underwriting Score Percentile"
+	no-loop true
+	// IF [Loan Type HECM Multiplier] = 1 THEN MAX( [Score Percentile] WHEN [Model ID] = "Lender Monitoring HECM Underwriting") ELSE 0
+	when
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Lender Monitoring HECM Underwriting Score Percentile"),
+			loanSelectionCaseSummary.loanType == LoanTypeCodes.HECM
+		)
+	then
+		rulesParameters.addFactorScore("Lender Monitoring HECM Underwriting Score Percentile", rulesParameters.getLenderMonitoringReverseUnderwritingPercentile());
+end
+
+rule "Underwriter Forward Score Above Threshold"
+	no-loop true
+	when
+		// IF [Loan Type Forward Multiplier] = 1 AND MAX ([Underwriter Score Percentile]
+		// WHEN [Model ID] = "Defect Probability Fwd" ) >=[Targeted UW Forward Percent] THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Underwriter Forward Score Above Threshold"),
+			loanSelectionCaseSummary.getLoanType() == LoanTypeCodes.FORWARD,
+			defectProbabilityForwardPercentileWithinUnderwriterIncreasedSelectionForwardPercent()
+		)
+
+	then
+		rulesParameters.addFactorScore("Underwriter Forward Score Above Threshold", 1);
+end
+
+rule "Underwriter HECM Score Above Threshold"
+	no-loop true
+	when
+		//IF [Loan Type HECM Multiplier] = 1 AND
+		//MAX ([Underwriter Score Percentile] WHEN [Model ID] = "Defect Probability Rev" ) >=[Targeted UW HECM Percent] THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Underwriter HECM Score Above Threshold"),
+			loanSelectionCaseSummary.getLoanType() == LoanTypeCodes.HECM,
+			defectProbabilityReversePercentileWithinUnderwriterIncreasedSelectionHecmPercent()
+		)
+	then
+		rulesParameters.addFactorScore("Underwriter HECM Score Above Threshold", 1);
+end
+
+rule "Back End Ratio GT 49.5"
+	no-loop true
+	when
+		//IF [Back End Ratio] > 49.5 THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Back End Ratio GT 49.5"),
+			loanSelectionCaseSummary.ratioFixTeiEndrs!.doubleValue() > 49.5
+		)
+	then
+		rulesParameters.addFactorScore("Back End Ratio GT 49.5");
+end
+
+rule "Front End Ratio BW 0 and 35"
+	no-loop true
+	when
+		//IF 0 < [Front End Ratio] <= 35 THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Front End Ratio BW 0 and 35"),
+			loanSelectionCaseSummary.ratioTotPmtToTotIncEndrs!.doubleValue() > 0,
+			loanSelectionCaseSummary.ratioTotPmtToTotIncEndrs!.doubleValue() <= 35
+		)
+	then
+		rulesParameters.addFactorScore("Front End Ratio BW 0 and 35");
+end
+
+rule "Suburban Indicator"
+	no-loop true
+	when
+		//IF [Rural Neighborhood Code] is S THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Suburban Indicator"),
+			loanSelectionCaseSummary.nbrhdCd == "S"
+		)
+	then
+		rulesParameters.addFactorScore("Suburban Indicator");
+end
+
+rule "Neighborhood Differential Percent BW 0 and -0.1098"
+	no-loop true
+	when
+		//IF 0 > ([Property Appraisal Estimate] / [Neighborhood Predominant Price] - 1) > -0.1098 THEN 1 ELSE
+		// IF either [Property Appraisal Estimate] or [Neighborhood Predominant Price] is 0 or missing THEN 0 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Neighborhood Differential Percent BW 0 and -0.1098"),
+			propAppEst: loanSelectionCaseSummary.prprtyAprslVl!.doubleValue() != null,
+			neigPredPrice: loanSelectionCaseSummary.nbrhdPrice!.doubleValue() != null,
+			((propAppEst / neigPredPrice) - 1.0) < 0,
+			((propAppEst / neigPredPrice) - 1.0) >= -0.1098
+		)
+	then
+		rulesParameters.addFactorScore("Neighborhood Differential Percent BW 0 and -0.1098");
+end
+
+rule "Back End Ratio BW 46 and 52"
+	no-loop true
+	when
+		//IF 46 < [Back End Ratio] <= 52 THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Back End Ratio BW 46 and 52"),
+			loanSelectionCaseSummary.ratioFixTeiEndrs!.doubleValue() > 46,
+			loanSelectionCaseSummary.ratioFixTeiEndrs!.doubleValue() <= 52
+		)
+	then
+		rulesParameters.addFactorScore("Back End Ratio BW 46 and 52");
+end
+
+
+rule "Back End Ratio BW 0 and 46"
+	no-loop true
+	when
+		//IF 0 < [Back End Ratio] <= 46 THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Back End Ratio BW 0 and 46"),
+			loanSelectionCaseSummary.ratioFixTeiEndrs!.doubleValue() > 0,
+			loanSelectionCaseSummary.ratioFixTeiEndrs!.doubleValue() <= 46
+		)
+	then
+		rulesParameters.addFactorScore("Back End Ratio BW 0 and 46");
+end
+			
+rule "Condominium Multiplier"
+	no-loop true
+	when
+		//IF [Condo Indicator] = N THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Condominium Multiplier"),
+			loanSelectionCaseSummary.cndInd == "N"
+		)
+	then
+		rulesParameters.addFactorScore("Condominium Multiplier");
+end
+
+rule "Underserved Indicator Multiplier"
+	no-loop true
+	when
+		//IF [Underserved Indicator] is 0 THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Underserved Indicator Multiplier"),
+			loanSelectionCaseSummary.undrsrvdInd == "0"
+		)
+	then
+		rulesParameters.addFactorScore("Underserved Indicator Multiplier");
+end
+
+rule "ARM Indicator Multiplier"
+	no-loop true
+	when
+		//IF [ARM Index Indicator] IS NOT LA THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("ARM Indicator Multiplier"),
+			loanSelectionCaseSummary.armInd != "LA"
+		)
+	then
+		rulesParameters.addFactorScore("ARM Indicator Multiplier");
+end
+
+rule "Endorsement Appraisal Date Difference GT 96 Multiplier"
+	no-loop true
+	when
+		// IF [Endorsement Date] - [Appraisal Date] > 96 THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Endorsement Appraisal Date Difference GT 96 Multiplier"),
+			endrsmntDt: loanSelectionCaseSummary.endrsmntDt != null,
+			aprslCmpltnDt: loanSelectionCaseSummary.aprslCmpltnDt != null,
+			DateUtils.daysBetween(endrsmntDt, aprslCmpltnDt) > 96
+		)
+	then
+		rulesParameters.addFactorScore("Endorsement Appraisal Date Difference GT 96 Multiplier");
+end
+
+rule "Number of Bedrooms Multiplier"
+	no-loop true
+	when
+		// [Number of Bedrooms], unchanged
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Number of Bedrooms Multiplier"),
+			numberOfBedrooms: loanSelectionCaseSummary.nbrBdrm!.doubleValue() != null
+		)
+	then
+		rulesParameters.addFactorScore("Number of Bedrooms Multiplier", numberOfBedrooms);
+end
+
+rule "Number of Units GT 2 Multiplier DR"
+	no-loop true
+	when
+		// Should be Living Units [NBR_OF_LVNG_UNITS] > 2 THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Number of Units GT 2 Multiplier DR"),
+			loanSelectionCaseSummary.numLivingUnits!.doubleValue() > 2
+		)
+	then
+		rulesParameters.addFactorScore("Number of Units GT 2 Multiplier DR");
+end
+
+rule "Terminated Insurance – Paid in full"
+	no-loop true
+	when
+		// if “TERM_TYP_CD” = 11 AND “INSRNC_STATUS_CD” = ‘T’ THEN 1 ELSE 0
+		rulesParameters:SelectionRulesParameters(
+			hasFactor("Terminated Insurance – Paid in full"),
+			loanSelectionCaseSummary.termTypCd == '11',
+			loanSelectionCaseSummary.insrncStatusCd == 'T'
+		)
+	then
+		rulesParameters.addFactorScore("Terminated Insurance – Paid in full");
+end

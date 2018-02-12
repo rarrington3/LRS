@@ -1,0 +1,150 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3413_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into PERSONNEL(
+				PERSONNEL_ID, 
+				EMAIL_ADDRESS, 
+				FIRST_NAME, 
+				LAST_NAME, 
+				CREATED_BY, 
+				CREATED_TS, 
+				LOGIN_CREDENTIAL, 
+				AVAILABILITY_IND, 
+				REVIEWER_CAPACITY, 
+				REVIEW_LOCATION_ID, 
+				PERSONNEL_STATUS_ID
+			)
+			SELECT
+				NEWID(),
+				'John.S.Higgins@hud.gov',
+				'Jack',
+				'Higgins',
+				'C20225',
+				GETDATE(),
+				'H46604',
+				'Y',
+				0,
+				(SELECT REVIEW_LOCATION_ID FROM REVIEW_LOCATION WHERE LOCATION_NAME = 'HQ'),
+			 	(SELECT PERSONNEL_STATUS_ID FROM PERSONNEL_STATUS_REF WHERE CODE = 'A')
+			WHERE NOT EXISTS (SELECT * FROM PERSONNEL WHERE LOGIN_CREDENTIAL = 'H46604')
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3413_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			INSERT INTO PERSONNEL(
+				PERSONNEL_ID, 
+				EMAIL_ADDRESS, 
+				FIRST_NAME, 
+				LAST_NAME, 
+				CREATED_BY, 
+				CREATED_TS, 
+				LOGIN_CREDENTIAL, 
+				AVAILABILITY_IND, 
+				REVIEWER_CAPACITY, 
+				REVIEW_LOCATION_ID, 
+				PERSONNEL_STATUS_ID
+			)
+			SELECT
+				NEWID(),
+				'Joy.Hadley@hud.gov',
+				'Joy',
+				'Hadley',
+				'C20225',
+				GETDATE(),
+				'H10925',
+				'Y',
+				0,
+				(SELECT REVIEW_LOCATION_ID FROM REVIEW_LOCATION WHERE LOCATION_NAME = 'HQ'),
+				(SELECT PERSONNEL_STATUS_ID FROM PERSONNEL_STATUS_REF WHERE CODE = 'A')
+			WHERE NOT EXISTS (SELECT * FROM PERSONNEL WHERE LOGIN_CREDENTIAL = 'H10925')
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3413_0006" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			INSERT INTO PERSONNEL(
+				PERSONNEL_ID, 
+				EMAIL_ADDRESS, 
+				FIRST_NAME, 
+				LAST_NAME, 
+				CREATED_BY, 
+				CREATED_TS, 
+				LOGIN_CREDENTIAL, 
+				AVAILABILITY_IND, 
+				REVIEWER_CAPACITY, 
+				REVIEW_LOCATION_ID, 
+				PERSONNEL_STATUS_ID
+			)
+			SELECT
+				NEWID(),
+				'Justin.Burch@hud.gov',
+				'Justin',
+				'Burch',
+				'C20225',
+				GETDATE(),
+				'H47750',
+				'Y',
+				0,
+				(SELECT REVIEW_LOCATION_ID FROM REVIEW_LOCATION WHERE LOCATION_NAME = 'HQ'),
+				(SELECT PERSONNEL_STATUS_ID FROM PERSONNEL_STATUS_REF WHERE CODE = 'A')
+			WHERE NOT EXISTS (SELECT * FROM PERSONNEL WHERE LOGIN_CREDENTIAL = 'H47750')
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3413_0007" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			INSERT INTO PERSONNEL(
+				PERSONNEL_ID, 
+				EMAIL_ADDRESS, 
+				FIRST_NAME, 
+				LAST_NAME, 
+				CREATED_BY, 
+				CREATED_TS, 
+				LOGIN_CREDENTIAL, 
+				AVAILABILITY_IND, 
+				REVIEWER_CAPACITY, 
+				REVIEW_LOCATION_ID, 
+				PERSONNEL_STATUS_ID
+			)
+			SELECT
+				NEWID(),
+				'Alex.Adkins@hud.gov',
+				'Alex',
+				'Adkins',
+				'C20225',
+				GETDATE(),
+				'H55767',
+				'Y',
+				0,
+				(SELECT REVIEW_LOCATION_ID FROM REVIEW_LOCATION WHERE LOCATION_NAME = 'HQ'),
+				(SELECT PERSONNEL_STATUS_ID FROM PERSONNEL_STATUS_REF WHERE CODE = 'A')
+			WHERE NOT EXISTS (SELECT * FROM PERSONNEL WHERE LOGIN_CREDENTIAL = 'H55767')
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3413_0008" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update PERSONNEL
+			set LAST_NAME = 'Higgins (TEST)'
+			where LOGIN_CREDENTIAL = 'HTH009'
+
+			update PERSONNEL
+			set LAST_NAME = 'Burch (TEST)'
+			where LOGIN_CREDENTIAL = 'HTH011'
+
+			update PERSONNEL
+			set LAST_NAME = 'Hadley (TEST)'
+			where LOGIN_CREDENTIAL = 'HTH010'
+		]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>    
+
+

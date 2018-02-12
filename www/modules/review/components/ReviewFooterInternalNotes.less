@@ -1,0 +1,32 @@
+@import './ReviewFooterLenderComments';
+:host-context {
+	/* styles should be scoped under host-context */
+    .form-inline {
+        position: relative;
+        padding-top: 10px;
+    }
+
+    .finding-comment > div {
+        padding-left: 10px;
+        padding-right: 0;
+    }
+
+	.list-container {
+		height: 125px;
+	}
+
+	.post-btn {
+		margin-top: 5px;
+	}
+
+	.reviewer-name {
+		color: @brand-secondary;
+	}
+
+	.warning-wrapper.internal-notes {
+		color: @brand-green;
+		span {
+			color: @brand-green;
+		}
+	}
+}

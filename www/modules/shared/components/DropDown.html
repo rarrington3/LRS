@@ -1,0 +1,15 @@
+<label *ngIf="label" class="small" [attr.for]="id">{{label}}</label>
+<div class="btn-group" role="group" aria-label="..." [class.left-menu-visible]="leftMenuVisible">
+    <button type="button" class="btn btn-default btn-sm left-menu" *ngIf="leftMenuVisible" data-toggle="dropdown">
+        <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+    </button>
+    <button [id]="id" type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"
+            aria-haspopup="true">
+        {{ selectedItem ? textField ? selectedItem[textField] : selectedItem : text ? text : 'Select'}}
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" [attr.aria-labelledby]="id" role="menu" aria-expanded="false">
+        <li [class.selected]="item === selectedItem" *ngFor="let item of items" role="menuitem">
+            <a href="javascript:void(0);" (click)="selectItem(item)">{{textField ? item[textField] : item}}</a></li>
+    </ul>
+</div>

@@ -1,0 +1,20 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1432_alter rqst_from_lender_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table RQST_FROM_LENDER drop constraint RQST_FROM_LENDER_PK
+
+			ALTER TABLE RQST_FROM_LENDER ADD CONSTRAINT RQST_FROM_LENDER_PK PRIMARY KEY  NONCLUSTERED (REQUEST_ID ASC)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1432_rename_column_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			EXEC sp_rename 'RQST_FROM_LENDER.REVIEW_LVL_ID', 'REVIEW_ID', 'COLUMN' 			  
+		]]>
+        </sql>
+    </changeSet>		
+</databaseChangeLog>
+

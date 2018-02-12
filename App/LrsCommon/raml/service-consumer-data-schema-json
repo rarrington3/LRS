@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "definitions": {
+    "serviceConsumerData": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "auditCorrelationId",
+        "serviceRequestTimestamp",
+        "sourceSystem",
+        "authenticationId"
+      ],
+      "properties": {
+        "auditCorrelationId": {
+          "type": "string"
+        },
+        "serviceRequestTimestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "sourceSystem": {
+          "type": "string"
+        },
+        "endUserId": {
+          "type": "string"
+        },
+        "authenticationId": {
+          "type": "string"
+        },
+        "tenantId": {
+          "type": "string"
+        },
+        "locale": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "serviceConsumerData"
+  ],
+  "$ref": "#/definitions/serviceConsumerData"
+}

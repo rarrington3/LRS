@@ -1,0 +1,85 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1147_create_table_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create table LRS_NOTES
+			(NOTE_ID uniqueidentifier not null default newid(),
+			 REFERENCE_ID uniqueidentifier null,
+			 LOGIN_CREDENTIAL varchar(32) null,
+			 NOTE_TYPE_CD char(3) null,
+			 ASSOCICATED_DEFECT_CD varchar(16) null,
+			 CREATED_BY char(6) null,
+			 CREATED_TS datetime null,
+			 UPDATED_BY char(6) null, 
+			 UPDATED_TS datetime null,
+			 NOTE_TEXT text null)
+
+			 ALTER TABLE LRS_NOTES
+				ADD CONSTRAINT [LRS_NOTES_PK] PRIMARY KEY  NONCLUSTERED (NOTE_ID ASC)
+
+			create index NOTE_ID_IDX1 on LRS_NOTES(REFERENCE_ID)
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1147_add_metadata_data_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+		    insert into DICT_METADATA_ENTITY(ENTITY_NAME,DB_VIEW_OR_TABLE,CREATED_BY,CREATED_TS)values('LRS Notes','LRS_NOTES','C20225',getdate())
+			insert into dict_metadata_field (entity_name, field_name, db_column, created_by, created_ts, subject_area, ui_control_type) values('LRS Notes', 'Note ID', 'NOTE_ID','C20225', getdate(),'UNKNOWN','STATIC')
+			insert into dict_metadata_field (entity_name, field_name, db_column, created_by, created_ts, subject_area, ui_control_type) values('LRS Notes', 'Reference ID', 'REFERENCE_ID','C20225', getdate(),'UNKNOWN','STATIC')			
+			insert into dict_metadata_field (entity_name, field_name, db_column, created_by, created_ts, subject_area, ui_control_type) values('LRS Notes', 'Login Credential', 'LOGIN_CREDENTIAL','C20225', getdate(),'UNKNOWN','STATIC')
+			insert into dict_metadata_field (entity_name, field_name, db_column, created_by, created_ts, subject_area, ui_control_type) values('LRS Notes', 'Note Type Code', 'NOTE_TYPE_CD','C20225', getdate(),'UNKNOWN','STATIC')			
+			insert into dict_metadata_field (entity_name, field_name, db_column, created_by, created_ts, subject_area, ui_control_type) values('LRS Notes', 'Associated Deffect Code', 'ASSOCICATED_DEFECT_CD','C20225', getdate(),'UNKNOWN','STATIC')
+			insert into dict_metadata_field (entity_name, field_name, db_column, created_by, created_ts, subject_area, ui_control_type) values('LRS Notes', 'Note Text', 'NOTE_TEXT','C20225', getdate(),'UNKNOWN','STATIC')						
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1147_add_lrs_gen_lookup_data_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into lrs_gen_lookup (lookup_entity,lookup_field,lookup_code,lookup_description,created_by, created_ts) values('LRS Notes','Note Type Code','10','Review'  ,'C20225',getdate())
+			insert into lrs_gen_lookup (lookup_entity,lookup_field,lookup_code,lookup_description,created_by, created_ts) values('LRS Notes','Note Type Code','20','Review Level','C20225',getdate())
+			insert into lrs_gen_lookup (lookup_entity,lookup_field,lookup_code,lookup_description,created_by, created_ts) values('LRS Notes','Note Type Code','30','Review Level Finding','C20225',getdate())
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1147_rename_column_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			EXEC sp_rename 'LRS_NOTES.ASSOCICATED_DEFECT_CD', 'ASSOCIATED_DEFECT_CD', 'COLUMN'
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1147_update_metadata_field_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update dict_metadata_field
+			set db_column = 'ASSOCIATED_DEFECT_CD'
+			where db_column = 'ASSOCICATED_DEFECT_CD'
+		]]>
+        </sql>		
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1147_add_column_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table lrs_notes add PRSNNL_ID uniqueidentifier null
+		]]>
+        </sql>		
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1147_add_fk_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE lrs_notes ADD CONSTRAINT LRS_NOTES_TO_PERSONNEL FOREIGN KEY (PRSNNL_ID) REFERENCES PERSONNEL(PRSNNL_ID)
+		]]>
+        </sql>		
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1147_add_metadata_data_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into dict_metadata_field (entity_name, field_name, db_column, created_by, created_ts, subject_area, ui_control_type) values('LRS Notes', 'Personnel ID', 'PRSNNL_ID','C20225', getdate(),'UNKNOWN','STATIC')						
+		]]>
+        </sql>		
+    </changeSet>			
+</databaseChangeLog>
+

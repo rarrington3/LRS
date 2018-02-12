@@ -1,0 +1,173 @@
+<div class="selection-body container-fluid">
+    <div class="row">
+
+        <div class="panel selection-panel">
+            <span class="section-head" [class.inactive]="caseStep != 1"><a href="javascript:void(0)" [ngClass]="{'hide-anchor': caseStep == 1}" (click)="caseStep = 1">1) Add Case(s) to Self-Report</a></span><span class="section-head" [class.inactive]="caseStep != 2">2) Add Case Details:<span class="case-count" *ngIf="caseStep == 2">{{submitableCases.length}} Cases Selected</span> </span>
+
+            <hr/>
+
+            <div class="flex-container" [ngSwitch]="caseStep">
+                <div class="inner-container" *ngSwitchCase="1">
+                    <div class="filter-select">
+                        <label class="small required" for="reviewType">Review Type</label>
+                        <select id="reviewType"
+                                name="reviewType"
+                                #reviewType="ngModel"
+                                class="form-control select-sm"
+                                (ngModelChange)="setReviewType()"
+                                [(ngModel)]="selectedReviewType" required>
+                            <option value="">Select</option>
+                            <option *ngFor="let reviewType of reviewTypes" [value]="reviewType.code">
+                                {{reviewType.description}}
+                            </option>
+                        </select>
+                        <div class="alert alert-danger lrs-alert"
+                             [display]="reviewType.errors && (reviewType.dirty || reviewType.touched)">
+                            <div class="small"
+                                 [hidden]="!(reviewType.errors && reviewType.errors.required)">
+                                Review Type is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="case-input">
+
+                        <div class="case-numbers" [ngClass]="{'has-error' : noSearchResults}">
+                            <label id="caseNo">Enter Case Number(s)</label>
+                            <textarea name="cases" class="form-control" [(ngModel)]="searchCaseNumbers" aria-labelledby="caseNo" (keypress)="keyEventHandler($event)" [attr.aria-invalid]="noSearchResults"></textarea>
+
+                            <div class="msg-and-add">
+                                <div class="msg"><span *ngIf="noSearchResults" role="alert" [innerHtml]="searchErrorMessage"></span></div>
+                                <div class="add">
+                                    <button class="btn btn-primary" (click)="lookUpCases()" [disabled]="!searchCaseNumbers || (reviewType.errors && reviewType.errors.required)">Add</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="panel case-panel" [ngClass]="{'with-border' : !resultingCases.length}">
+                        <table class="table workload-table" *ngIf="resultingCases.length">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th scope="col">Case #</th>
+                                <th scope="col">Borrower Name</th>
+                                <th scope="col">Property Address</th>
+                                <th scope="col">Errors/Warnings</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let case of resultingCases">
+                                <td class="case-id" scope="row">
+                                    <button class="trash-can" value="Delete case" aria-label="Delete case" (click)="deleteCase(case);">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </button>
+                                </td>
+                                <td>{{case.caseNumber}}</td>
+                                <td>{{case.borrower}}</td>
+                                <td>{{case.propertyAddress}}</td>
+                                <td>
+                                    <span class="detail-inline warning" *ngIf="case.caseActivity && case.caseActivity.length">
+                                        <div *ngFor="let caseActivity of case.caseActivity">
+                                            <span *ngIf="caseActivity.blocksSubmit" class="glyphicon glyphicon-warning-sign status-icon"></span>
+                                            <span *ngIf="caseActivity.blocksSubmit && caseActivity.reviewStatus"><a [routerLink]="['../activeReviews/review', caseActivity.reviewId]">Under Review</a></span>
+                                            <span *ngIf="caseActivity.blocksSubmit && !caseActivity.reviewStatus">Pending Review</span>
+                                        </div>
+                                    </span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="no-case-message" *ngIf="!resultingCases.length">No cases selected. Add individual cases or multiple cases separated by commas.</div>
+                    </div>
+                </div>
+
+                <div *ngSwitchCase="2">
+                    <div class="row detail-input">
+                        <div class="col-xs-6 defects">
+                            <form>
+                                <div class="defect-block">
+                                    <div class="section-heading">DEFECT AREAS</div>
+                                    <div class="section-items">
+                                        <div *ngFor="let defectArea of filteredDefectAreas; let i = index;">
+                                            <input type="checkbox" [attr.id]="'rb_' + defectArea.defectAreaCode" [name]="'rb_' + defectArea.defectAreaCode" [(ngModel)]="defectArea.checked">
+                                            <label class="defect-area-label" [attr.for]="'rb_' + defectArea.defectAreaCode">{{defectArea.title}}&nbsp;({{defectArea.defectAreaCode}})</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="defect-block">
+                                    <div class="section-heading">FRAUD</div>
+                                    <div class="section-items">
+                                        <div>
+                                            <input id="rb_fraudDetected" name="fraudDetected" type="checkbox" [(ngModel)]="reportDTO.isFraudDetected">
+                                            <label for="rb_fraudDetected">Fraud has been detected for selected cases(s)</label>
+                                        </div>
+
+                                        <div class="fraud-select">
+                                            <label class="x-small" for="selectedFraudType">Types of Fraud</label>
+                                            <select id="selectedFraudType"
+                                                    name="selectedFraudType"
+                                                    class="form-control select-sm"
+                                                    multiple="multiple"
+                                                    data-placeholder="Select"
+                                                    [(ngModel)]="reportDTO.typesOfFraud"
+                                                    [disabled]="!reportDTO.isFraudDetected">
+                                                //@formatter:off
+                                                <option *ngFor="let fraud of fraudTypes" [value]="fraud.code">{{fraud.description}}</option>
+                                                //@formatter:on
+                                            </select>
+                                        </div>
+                                        <div class="fraud-select">
+                                            <label class="x-small" for="selectedFraudster">Fraud Participants</label>
+                                            <select id="selectedFraudster"
+                                                    name="selectedFraudster"
+                                                    class="form-control select-sm"
+                                                    multiple="multiple"
+                                                    data-placeholder="Select"
+                                                    [(ngModel)]="reportDTO.fraudParticipants"
+                                                    [disabled]="!reportDTO.isFraudDetected">
+                                                //@formatter:off
+                                                <option *ngFor="let fraudster of fraudParticipants" [value]="fraudster.code">{{fraudster.description}}</option>
+                                                //@formatter:on
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="ruler"></div>
+                        <div class="col-xs-6 findings">
+                            <div class="defect-block">
+                                <div class="section-heading">FINDINGS AND CORRECTIVE ACTIONS</div>
+                                <div class="finding-input">
+                                    <label for="txt_findingsDesc">Describe the findings that led to this Self-Report:</label>
+                                    <textarea id="txt_findingsDesc" name="txt_findingsDesc" [(ngModel)]="reportDTO.descriptionOfFindings"></textarea>
+                                </div>
+                                <div class="finding-input">
+                                    <label for="txt_correctiveActions">Describe any corrective actions that have been taken:</label>
+                                    <textarea id="txt_correctiveActions" name="correctiveActions" [(ngModel)]="reportDTO.descriptionOfCorrectiveActions"></textarea>
+                                </div>
+                                <div class="finding-input hud-cb">
+                                    <input id="rb_loanCovered" name="loanCovered" type="checkbox" [value]="reportDTO.isCoveredUnderSettlement" [(ngModel)]="reportDTO.isCoveredUnderSettlement">
+                                    <label for="rb_loanCovered">Loan Covered Under Settlement with HUD</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="actions" *ngIf="caseStep == 1">
+            <div class="action-buttons">
+                <button class="btn btn-secondary" (click)="resetCasesForReview()">Clear</button>
+                <button class="btn btn-primary" (click)="addCaseDetails()" [disabled]="!submitableCases.length">Next Step</button>
+            </div>
+        </div>
+        <div class="actions" *ngIf="caseStep == 2">
+            <div class="action-buttons">
+                <button class="btn btn-secondary" (click)="resetReportDetails()">Clear</button>
+                <button class="btn btn-primary" (click)="submitReport()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>

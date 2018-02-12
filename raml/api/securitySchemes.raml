@@ -1,0 +1,99 @@
+- activeReviewLevelAssignedToUser:
+    type: x-custom-authorization
+    description: |
+      This request is related to a review level. The request will be rejected if the active review level is not assigned to the user making the request.
+
+- reviewForLender:
+    type: x-custom-authorization
+    description: |
+      This request is related to a review. The request will be rejected if the request is coming from a lender and the lender is not responsible for this case.
+
+- activeLenderRequest:
+    type: x-custom-authorization
+    description: |
+      This request is related to a lender request.  The request will be rejected if there is no active lender request for the review.
+
+- activeReviewLevel:
+    type: x-custom-authorization
+    description: |
+      This request is related to a review level.  The request will be rejected if the review level is not in the 'Assigned' or 'In Progress state.
+
+- fhac:
+    type: x-custom-authorization
+    description: |
+     This request will be rejected if the user making the request is not authenticated or assigned to one of the following roles in FHA Connection: <<roles>>
+
+- reviewerChainOfCommand:
+    type: x-custom-authorization
+    description: |
+     This request relates to an LRS reviewer.  The request will be rejected if the user making the request is not an HQ Admin or a Supervisor in the same geographic region (state) as the reviewer the request is for.
+
+- reviewerSupervisorGeographyChainOfCommand:
+    type: x-custom-authorization
+    description: |
+     This request relates to an LRS reviewer.  The request will be rejected if the user making the request is not in the geography of reviewer the request relates to.
+
+- reviewerVetterGeography:
+    type: x-custom-authorization
+    description: |
+     This request relates to an LRS reviewer.  The request will be rejected if the user making the request is not in the geography of reviewer the request relates to.
+
+- requestGeography:
+    type: x-custom-authorization
+    description: |
+     This request relates to FHA Manual, Lender Monitoring, Binder requests.  The request will be rejected if the user making the request is not in the same geographic region as the request.
+
+- batchOwnerGeographyAndSkill:
+    type: x-custom-authorization
+    description: |
+     This request relates to FHA Manual and Lender Monitoring requests.  The request will be rejected if the batch owner is not in the same geography as the request and does not have the Operational Review Type skill.
+
+- batchParticipantsGeography:
+    type: x-custom-authorization
+    description: |
+     This request relates to FHA Manual and Lender Monitoring requests.  The request will be rejected if any of the batch participants are not in the specified review location.
+
+- batchOwner:
+    type: x-custom-authorization
+    description: |
+        This request relates to an LRS batch owner. This request will be rejected if the user making this request is not the owner of the batch.
+
+- lenderBatchOwnerActive:
+    type: x-custom-authorization
+    description: |
+        This request relates to a Lender who belongs to the bank this batch is associated with. This request will be rejected if the user making this request does not belong to the lender that owns this batch. The request will also be rejected if batch status is not pending lender response.
+
+- devMode:
+    type: x-custom-authorization
+    description: |
+     This request will be rejected if the server is not running in dev mode
+
+- lenderBatchOwner:
+    type: x-custom-authorization
+    description: |
+     The request will be rejected in the same way as lenderBatchOwnerActive, but allows the request even if the batch is not status of pending lender response.
+
+- escalationSkill:
+    type: x-custom-authorization
+    description: |
+     This request is related to a review. The request will be rejected if the request is coming from a user that does not have the Escalation skill.
+
+- hqEscalationSkill:
+    type: x-custom-authorization
+    description: |
+     This request is related to a review. The request will be rejected if the request is coming from a user that does not have the HQ Escalation skill.
+
+- anyEscalationSkill:
+    type: x-custom-authorization
+    description: |
+     This request is related to a review. The request will be rejected if the request is coming from a user that does not have the Escalation or HQ Escalation skill.
+
+- forcedIndemnificationSkill:
+    type: x-custom-authorization
+    description: |
+     This request is related to a review. The request will be rejected if the request is coming from a user that does not have the Forced Indemnification skill.
+
+- indemnificationSkill:
+    type: x-custom-authorization
+    description: |
+     This request is related to a review. The request will be rejected if the request is coming from a user that does not have the Indemnification skill.

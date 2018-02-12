@@ -1,0 +1,56 @@
+{
+    "id": "http://LRS/DevLoginDetails",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": ["userId", "authorities"],
+    "additionalProperties": false,
+    "properties": {
+        "userId": {
+            "description": "The ID of the user to simulate authenticating as",
+            "type": "string"
+        },
+        "description": {
+            "description": "Description of what permissions/roles this test user is defined as having",
+            "type": "string"
+        },
+        "authorities": {
+            "description": "A collection of access rights this user has.",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "firstName": {
+            "description": "The first name of the current user.",
+            "type": "string"
+        },
+        "lastName": {
+            "description": "The last name of the current user.",
+            "type": "string"
+        },
+        "lender": {
+            "description": "An object containing information about the lender this user is associated with.",
+            "$ref": "LiteLender"
+        },
+        "reviewLocation": {
+            "description": "This person's review location name",
+            "type": "string"
+        },
+        "reportsToName": {
+            "description": "This person's supervisor's name",
+            "type": "string"
+        },
+        "reportsToId": {
+            "description": "This person's supervisor's ID",
+            "type": "string"
+        },
+        "vetterName": {
+            "description": "This person's vetter's name",
+            "type": "string"
+        },
+        "vetterId": {
+            "description": "This person's vetter's ID",
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,77 @@
+{
+    "id": "http://LRS/Exception",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": ["exceptionId"],
+    "additionalProperties": false,
+    "properties": {
+        "exceptionId": {
+            "description": "The identifier of the object",
+            "type": "string"
+        },
+        "caseNumber": {
+            "description": "The case number for the loan.",
+            "type": "string"
+        },
+        "borrowerName": {
+            "description": "The legal name of the borrower.",
+            "type": "string"
+        },
+        "lenderName": {
+            "description": "The name of the lender who issues this loan.",
+            "type": "string"
+        },
+        "selectionReasonCode": {
+            "description": "The identifier of the object of the business rule that triggered the need to review this loan.  For example: 'Lender Monitoring', 'Random', 'Lender Self'",
+            "type": "string"
+        },
+        "selectionReason": {
+            "description": "Short name of the business rule that triggered the need to review this loan.  For example: 'Lender Monitoring', 'Random', 'Lender Self'",
+            "type": "string"
+        },
+        "riskScore": {
+            "description": "The numeric value representing the level of risk for this loan.",
+            "type": "number"
+        },
+        "exceptionTypeCode": {
+            "description": "The identifier of the exception that needs attention on this review.",
+            "type": "string"
+        },
+        "exceptionType": {
+            "description": "The short name of the exception that needs attention on this review.",
+            "type": "string"
+        },
+        "daysOnList": {
+            "description": "The number of days that this loan has been on the exception list.",
+            "type": "number"
+        },
+        "assignedTo": {
+            "description": "This is used to resolve assignment exceptions.",
+            "type": "string"
+        },
+        "batchInfo": {
+            "description": "This is used to resolve missing batch info exceptions.",
+            "$ref": "Batch"
+        },
+        "reviewId": {
+            "description": "The identifier of the review",
+            "type": "string"
+        },
+        "currentReviewLevel": {
+            "description": "The current review level object for this loan review. Each Review will have multiple review levels (i.e. 'passes') throughout it's life. Once this review level is completed, a new review level will be created and this one will be archived in the completedReviewLevels collection.",
+            "$ref": "ReviewLevel"
+        },
+        "loanType": {
+            "description": "The short name of the Loan Type that's being requested for review.",
+            "type": "string"
+        },
+        "reviewLocationId": {
+            "description": "The location where this distribution exception should be resolved to.",
+            "type": "string"
+        },
+        "reviewType": {
+            "description": "Review Type of this loan.",
+            "type": "string"
+        }
+    }
+}

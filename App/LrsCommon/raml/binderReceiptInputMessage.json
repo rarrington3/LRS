@@ -1,0 +1,22 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Binder Receipt",
+    "description": "Confirms if binders in list have been received",
+    "type": "object",
+    "properties": {
+    
+        "caseNumbers": {"type": "array",
+            "items": {
+            	"type": "string",
+            	"minLength":10,
+            	"maxLength":10,
+            	"pattern":"^[0-9]{10}$"
+            },
+            "minItems": 1,
+            "maxItems": 500,
+            "uniqueItems": true
+        }      
+      
+    },
+    "required": ["caseNumbers"]
+}

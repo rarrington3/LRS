@@ -1,0 +1,17 @@
+{
+    "id": "http://LRS/ReviewLevelInfo",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": ["indemnificationTypeCode"],
+    "additionalProperties": false,
+    "properties": {
+        "indemnificationTypeCode": {
+            "description": "Indicates the Indemnification Type, which will determine the Indemnification letter template that the lender will sign if they elect the indemnification route. Potential values are '5_YEAR', and 'LIFE_OF_LOAN'",
+            "type": "string"
+        },
+        "qcOutcomeCd": {
+            "description": "For a QC review, this is the selected QC outcome code (e.g. ACCEPTABLE, MODERATE, or MATERIAL)",
+            "type": "string"
+        }
+    }
+}

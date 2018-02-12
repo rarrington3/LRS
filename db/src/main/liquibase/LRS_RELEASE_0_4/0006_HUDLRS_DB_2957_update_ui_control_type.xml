@@ -1,0 +1,167 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_2957_alter_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update DICT_METADATA_FIELD
+			set UI_CONTROL_TYPE = 'BOOLEAN'
+			where ENTITY_NAME = 'Case Summary for Review Level'
+			and UI_CONTROL_TYPE = 'STATIC'
+			and DB_COLUMN like '%IND'
+			
+			update DICT_METADATA_FIELD
+			set UI_CONTROL_TYPE = 'BOOLEAN'
+			where ENTITY_NAME = 'Case Summary for Review Level'
+			and UI_CONTROL_TYPE = 'STATIC'
+			and DB_COLUMN in
+			('FCTRY_FBRCT')
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_2957_alter_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update DICT_METADATA_FIELD
+			set UI_CONTROL_TYPE = 'DATE'
+			where ENTITY_NAME = 'Case Summary for Review Level'
+			and UI_CONTROL_TYPE = 'STATIC'
+			and DB_COLUMN like '%DT'
+			
+			update DICT_METADATA_FIELD
+			set UI_CONTROL_TYPE = 'DATE'
+			where ENTITY_NAME = 'Case Summary for Review Level'
+			and UI_CONTROL_TYPE = 'STATIC'
+			and DB_COLUMN in
+			(
+			'DATE_OF_PRIOR_SALE',
+			'REPAIR_COMPLETION_DATE',
+			'APPLICATION_DATE'
+			)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_2957_alter_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update DICT_METADATA_FIELD
+			set UI_CONTROL_TYPE = 'CURRENCY',
+			    FIELD_MIN_VALUE = 0,
+				FIELD_MAX_VALUE = 1000000
+			where ENTITY_NAME = 'Case Summary for Review Level'
+			and DB_COLUMN in
+			(
+			'MNDTRY_OBLGTNS_AMT'             ,
+			'ORIG_MRTG_AMT'                  ,
+			'SECONDARY_FINANCE_AMT'          ,
+			'SELLER_CNTRBTN'                 ,
+			'BORR_PAID_CLOSING_COSTS'        ,
+			'BORR_REQD_INVEST_TO_CLOSE'      ,
+			'TOTAL_REQUIRED_FUNDS_TO_CLOSE'  ,
+			'HUD_REO_REPAIR_AMT'             ,
+			'QUALIFIED_MRTG_POINTS_AND_FEES' ,
+			'SALES_PRICE'                    ,
+			'TOT_MNTHLY_EFF_INCM'            ,
+			'PRICE_OF_PRIOR_SALE'            ,
+			'MANDATORY_OBLIG_BORR_AMT'       ,
+			'MANDATORY_OBLIG_LEND_AMT'       ,
+			'INIT_DISBURSEMENT_LIMIT'        ,
+			'HECM_PRNCPL_LMT'                ,
+			'ORIGINATION_FEE'                ,
+			'TAXES_INSRNC_FRST_YR_AMT'       ,
+			'GIFT_LTR_2_AMT'                 ,
+			'MAX_CLAIM_AMT'                  ,
+			'TOT_CLSNG_CSTS_UW'              ,
+			'TOT_FIXED_PYMT_ENDRS'           ,
+			'TOT_FIXED_PYMT_UW'              ,
+			'TOT_MNTHLY_MTG_PYMT_ENDRS'      ,
+			'TOT_MNTHLY_MTG_PYMT_UW'         ,
+			'ASSETS_AFTER_CLOSING_UW'        ,
+			'BORR_HSNG_EXP_ENDRS'            ,
+			'BORR_HSNG_EXP_UW'               ,
+			'TOT_ASSETS_ENDRS'               ,
+			'TOT_ASSETS_UW'                  ,
+			'TOT_CLSNG_CSTS_ENDRS',
+			'PRPRTY_APRSL_VL')
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_2957_alter_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update DICT_METADATA_FIELD
+			set UI_CONTROL_TYPE = 'STRING'
+			where ENTITY_NAME = 'Case Summary for Review Level'
+			and DB_COLUMN in
+			('GIFT_LTR_TIN',
+			'MISC_AUS_DCSN_CD',
+			 'BNKRPTCY_CD',
+			 'LOSSMIT_CD',
+			 'OCPNCY_STS_CD',
+			 'TERM_TYP_CD',
+			 'REVIEW_TYPE_CD'		,
+			'CLAIM_TYPE'			,
+			'BORR_1_NAME'			,
+			'BORR_2_NAME'			,
+			'BORR_1_SSN'			,
+			'BORR_2_SSN'			,
+			'BORR_TYP'				,
+			'LOAN_OFFICER'			,
+			'LOAN_OFFICER_NMLS'		,
+			'ORGNTNG_MTGEE_NMLS_ID'	,
+			'SPECIAL_PROGRAM'		,
+			'YEAR_BUILT'			,
+			'APPRAISER_NAME'		,
+			'SITE_TYPE'				,
+			'HECM_COUNSEL_CERT_NO'	,
+			'PAYMENT_PLAN'			,
+			'GIFT_LTR_2_TIN'		,
+			'GIFT_LTR_2_SOURCE'		,
+			'GIFT_LTR_SRC'			,
+			'LOAN_TYPE'				,
+			'BLDG_TYP'				,
+			'REVIEW_LEVEL_ID'
+						
+			)
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_2957_alter_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update DICT_METADATA_FIELD
+			set UI_CONTROL_TYPE = 'NUMBER',
+			    FIELD_MIN_VALUE = 0,
+				FIELD_MAX_VALUE = 100
+			where ENTITY_NAME = 'Case Summary for Review Level'
+			and DB_COLUMN in		
+			('RATIO_LOAN_TO_VL_NEW',
+			'SELLER_CNTRBTN_PCNT',
+			'MORT_EXCLD_FNCD_MIP',
+			'INT_RT',
+			'ARM_INDX_EXPCTD_RT',
+			'EXPECTED_RATE',
+			'MAX_RATE',
+			'RATIO_FIX_TEI_ENDRS',
+			'RATIO_FIX_TEI_UW',
+			'RATIO_TOT_PMT_TO_TOT_INC_ENDRS',
+			'RATIO_TOT_PMT_TO_TOT_INC_UW'
+			)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_2957_alter_0006" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update DICT_METADATA_FIELD
+			set UI_CONTROL_TYPE = 'INTEGER',
+			    FIELD_MIN_VALUE = 300,
+				FIELD_MAX_VALUE = 850
+			where ENTITY_NAME = 'Case Summary for Review Level'
+			and DB_COLUMN in		
+			('FICO_DECISION_SCORE_UW',
+			 'FICO_DECISION_SCORE_ENDRS')
+
+		]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>    

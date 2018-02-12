@@ -1,0 +1,40 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1643_alter_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table review_location add PHONE_EXTENSION char(4)null
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1643_insert_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Review Location','Phone Extension','PHONE_EXTENSION','C20225', getdate(),'STATIC','Phone Extension')
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="TEST"  author="astrauss (generated)" id="HUDLRS_1644_insert_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into PERSONNEL_ASSIGNMENT_TYPE ( PRSNNL_ID, ASSIGNMENT_TYPE_CD, CREATED_BY, UPDATED_BY, CREATED_TS, UPDATED_TS, ACTIVE_IND )
+			  select PRSNNL_ID, ASSIGNMENT_TYPE_CD, 'C20221', 'C20221', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Y'
+			  from PERSONNEL P, ASSIGNMENT_TYPE_ADMIN A
+			  where P.PRSNNL_ID not in (select distinct PRSNNL_ID from PERSONNEL_ASSIGNMENT_TYPE);
+
+			  update PERSONNEL_ASSIGNMENT_TYPE set ACTIVE_IND = 'Y';
+
+		]]>
+        </sql>
+    </changeSet>	
+ </databaseChangeLog>
+
+
+
+
+
+
+
+
+
+

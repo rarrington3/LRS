@@ -1,0 +1,164 @@
+<div class="panel panel-default lrs-panel-primary">
+    <div class="panel-heading">
+        <a class="panel-title qa-model-title"
+           [routerLink]="['../../qaModels/']">Q&A Models - </a>
+        <a class="qa-model-subtitle"
+           [routerLink]="['../../editQaModel/', qaModel.qaModelId]">{{qaModel.name}} </a>
+        <span class="glyphicon glyphicon-lock"
+              [class.glyphicon-check]="qaModel.statusCode === qaModelStatusCode.ACTIVE"
+              [class.glyphicon-cog]="qaModel.statusCode === qaModelStatusCode.DRAFT"
+              [class.glyphicon-lock]="qaModel.statusCode === qaModelStatusCode.ARCHIVED"
+              [class.text-success]="qaModel.statusCode === qaModelStatusCode.ACTIVE"
+              [attr.aria-label]="qaModel.status"
+              [title]="qaModel.status">
+        </span>
+        <span [class.text-success]="qaModel.statusCode === qaModelStatusCode.ACTIVE">{{qaModel.status}}</span>
+        <table class="qa-model-header-table pull-right">
+            <thead>
+            <tr>
+                <th class="small">Version</th>
+                <th class="small">Creation Date</th>
+                <th class="small">Last Modified Date</th>
+                <th class="small">Last Modified By</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{qaModel.version}}</td>
+                <td>{{qaModel.createdDate | datePipe}}</td>
+                <td>{{qaModel.modifiedDate | datePipe}}</td>
+                <td>{{qaModel.modifiedBy}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-body">
+        <div *ngIf="qaModelLoading" class="lrs-loading">
+            <span class="glyphicon glyphicon-refresh"
+                  aria-label="loading" title="Loading">
+            </span>
+        </div>
+        <div *ngIf="!qaModelLoading">
+            <div class="row">
+                <div class="col-xs-12">
+                    <table *ngIf="!qaModelLoading && qaModel.categories.length"
+                           class="table table-bordered lrs-sortable-table qa-tree-attributes-table">
+                        <tbody>
+                        <tr *ngFor="let category of qaModel.categories; let i = index">
+                            <td class="lrs-order-col">
+                                <button type="button" class="btn btn-xs btn-default lrs-sort-up"
+                                        aria-pressed="false"
+                                        (click)="sortUp(qaModel.categories, category)">
+                                    <span class="glyphicon glyphicon-chevron-up small" aria-hidden="true"></span>
+                                </button>
+                                <button type="button" class="btn btn-xs btn-default lrs-sort-down"
+                                        aria-pressed="false"
+                                        (click)="sortDown(qaModel.categories, category)">
+                                    <span class="glyphicon glyphicon-chevron-down small" aria-hidden="true"></span>
+                                </button>
+                            </td>
+                            <td class="category-col">
+                                <div class="qa-model-category-wrapper">
+                                    <div class="form-group">
+                                        <label class="control-label"
+                                               [attr.for]="'qaModelCategoryName_'+i">
+                                            Category
+                                        </label>
+                                        <input [id]="'qaModelCategoryName_'+i"
+                                               [name]="'qaModelCategoryName_'+i"
+                                               type="text"
+                                               class="form-control qa-model-category-name"
+                                               [(ngModel)]="category.name"
+                                               (ngModelChange)="askForSave()"
+                                               maxlength="60"
+                                               required>
+                                    </div>
+                                    <div class="qa-model-delete-button">
+                                        <button type="button"
+                                                class="btn btn-default pull-right"
+                                                (click)="remove(qaModel.categories, category)">
+                                            Delete
+                                        </button>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">
+                                            Fields
+                                        </label>
+                                        <div>
+                                            <div *ngIf="qaModelLoading" class="lrs-loading">
+                                                <span class="glyphicon glyphicon-refresh"
+                                                      aria-label="loading" title="Loading">
+                                                </span>
+                                            </div>
+                                            <div *ngIf="!qaModelLoading && !category.loanAttributes.length" class="lrs-no-results">
+                                                <span class="small" aria-label="no results">No results found</span>
+                                            </div>
+                                            <table *ngIf="!qaModelLoading && category.loanAttributes.length"
+                                                   class="table table-bordered lrs-sortable-table attributes-table">
+                                                <tbody>
+                                                <tr *ngFor="let loanAttribute of category.loanAttributes">
+                                                    <td class="lrs-order-col">
+                                                        <button type="button" class="btn btn-xs btn-default lrs-sort-up"
+                                                                aria-pressed="false"
+                                                                (click)="sortUp(category.loanAttributes, loanAttribute)">
+                                                            <span class="glyphicon glyphicon-chevron-up small" aria-hidden="true"></span>
+                                                        </button>
+                                                        <button type="button" class="btn btn-xs btn-default lrs-sort-down"
+                                                                aria-pressed="false"
+                                                                (click)="sortDown(category.loanAttributes, loanAttribute)">
+                                                            <span class="glyphicon glyphicon-chevron-down small" aria-hidden="true"></span>
+                                                        </button>
+                                                    </td>
+                                                    <td class="attributes-name-col">
+                                                        <span aria-label="Name">{{loanAttribute.fieldName}}</span>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button"
+                                                                class="btn btn-default"
+                                                                (click)="remove(category.loanAttributes, loanAttribute)">
+                                                            Delete
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <select class="form-control select-sm"
+                                                        [(ngModel)]="category._selectedFieldCode"
+                                                        [dataTriggered]="true">
+                                                    <option value="">Select</option>
+                                                    <option *ngFor="let field of fields" [value]="field.code">
+                                                        {{field.fieldName}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-xs-1">
+                                                <button class="btn btn-primary"
+                                                        [disabled]="!category._selectedFieldCode"
+                                                        (click)="addAttribute(category)">
+                                                    + Add Loan Attribute
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <button class="btn btn-primary pull-right"
+                            (click)="add(qaModel.categories, newCategory, 'qaModel.categories')">
+                        + Add Category
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

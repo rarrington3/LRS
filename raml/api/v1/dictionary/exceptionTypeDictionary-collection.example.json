@@ -1,0 +1,26 @@
+[
+    {
+        "code": "DO",
+        "description": "Distribution: Overflow"
+    },
+    {
+        "code": "DB",
+        "description": "Distribution: Batch Info"
+    },
+    {
+        "code": "AS",
+        "description": "Assignment"
+    },
+    {
+        "code": "PD",
+        "description": "Request Past Due"
+    },
+    {
+        "code": "RQ",
+        "description": "Request Error"
+    },
+    {
+        "code": "HQES",
+        "description": "HQ Escalation"
+    }
+]

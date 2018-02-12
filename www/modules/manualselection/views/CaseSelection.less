@@ -1,0 +1,306 @@
+@import '../../bootstrap/_variables';
+@import '../../shared/_mixins';
+:host-context {
+    /* styles should be scoped under host-context */
+    display: block;
+
+    .selection-body {
+        padding: 7px 0;
+    }
+    .selection-panel {
+        height: 100%;
+        padding: 30px 40px 20px 40px;
+
+        .selection-details {
+            min-height: 90px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid @hr-border;
+            .filter-select{
+                display: inline-block;
+                width: 20%;
+                float: left;
+                margin-right: 36px;
+                label {
+                    font-size: small;
+                }
+            }
+        }
+
+        .selection-input {
+            display: table;
+            width: 100%;
+            border-bottom: 1px solid @hr-border;
+            .selection-case-numbers {
+                display: table-cell;
+                width: 8%;
+                vertical-align: top;
+                label {
+                    display: block;
+                }
+
+                textarea[name=cases] {
+                    resize: vertical;
+                }
+
+                .form-control {
+                    display: block;
+                    width: 300px;
+                    height: 100px;
+                }
+
+                .msg-and-add {
+                    width: 300px;
+                    margin-top: 15px;
+                    .msg {
+                        display: inline-block;
+                        vertical-align: top;
+                        color: @brand-danger;
+                        font-size: 12px;
+                    }
+                    .add {
+                        display: inline-block;
+                        vertical-align: top;
+                        float: right;
+                        button {
+                            height: 33px;
+                            line-height: 0px;
+                            padding: 10px;
+                        }
+                    }
+                }
+            }
+
+            .selection-batch {
+                display: table-cell;
+                vertical-align: top;
+                width: 50%;
+                position: relative;
+                padding-bottom: 40px;
+                .batch-col-heads {
+                    display: block;
+                    margin-bottom: 45px;
+
+                    .batch-col-head {
+                        float: left;
+                        font-size: small;
+                        font-weight: 700;
+
+                        &.case-num {
+                            width: 144px;
+                            padding-left: 81px;
+                        }
+                        &.borrower {
+                            width: 180px;
+                            margin-left: 54px;
+                        }
+                        &.address {
+                            width: 210px;
+                            margin-left: 0;
+                        }
+
+                    }
+                }
+                .batch-panel {
+                    min-height: 200px;
+                    border: 1px solid @hr-border;
+                    border-radius: 5px;
+                    padding-top: 15px;
+                    padding-right: 19px;
+                    padding-bottom: 20px;
+                    padding-left: 19px;
+                    .batch-item {
+                        float: left;
+                        margin-top: 11px;
+                        &:first-child {
+                            margin-top: 0px;
+                        }
+                        .batch-selection-checkbox-wrapper {
+                            padding-left: 10px;
+                        }
+                        .item-options {
+                            padding: 0;
+                            border:  1px solid @hr-border;
+                            border-radius: 5px;
+                            background-color: #f0f0f0;
+
+                            opacity:0;
+                            height: 0;
+                            overflow: hidden;
+                            transition: all .3s ease .10s;
+                            &.open {
+                                opacity:1;
+                                height: 200px;
+                                margin-bottom: -1px;
+                            }
+                            form {
+                                padding: 12px;
+                            }
+                            .inline-form-item {
+                                padding-top: 10px;
+                                label {
+                                    color: @brand-primary;
+                                }
+                                .block-label {
+                                    display: block;
+                                }
+                                .right-padded {
+                                    padding-right: 10px;
+                                }
+                                input[type='text'] {
+                                    height: 30px;
+                                    width: 210px;
+                                }
+                                textarea {
+                                    width: 210px;
+                                    margin-bottom: 20px;
+                                }
+                            }
+                            .members {
+                                max-width: 300px;
+                            }
+
+                        }
+
+                        input[type='checkbox'] {
+                            margin-right: 8px;
+                        }
+                        label {
+                            color: @gray-light;
+                            font-size: 11px;
+                        }
+                        .item-title {
+                            display: block;
+                            width: 100%;
+                            color: @brand-primary;
+                            font-size: small;
+                            font-weight: 600;
+                            text-transform: uppercase;
+                            padding-left: 10px;
+                        }
+
+                        .item-details {
+                            display: block;
+                            min-height: 40px;
+                            line-height: 36px;
+                            font-size: small;
+                            border: 1px solid @hr-border;
+                            button {
+                                float: left;
+                                border: none;
+                                color: @brand-secondary;
+                                background: transparent;
+                                line-height: 30px;
+                                margin-left: 4px;
+                                margin-right: 16px;
+                            }
+
+                            .detail-inline {
+                                float: left;
+                                width: 20%;
+                                margin-left: 0;
+                                white-space: nowrap;
+
+                                &.case-num {
+                                    width: 120px;
+                                }
+                            }
+
+                            &.has-review {
+                                .detail-inline.address {
+                                    .text-ellipsis();
+                                    padding-right: 2px;
+                                }
+                            }
+
+                            &.first-one {
+                                border-top-left-radius: 5px;
+                                border-top-right-radius: 5px;
+                            }
+
+                            &.error-no-submit {
+                                background-color: @brand-review-past-due;
+                            }
+
+                            &.warning-can-submit {
+                                background-color: @brand-review-due-today;
+                            }
+
+                            .status-icon {
+                                display: inline-block;
+                                margin: 0 5px 0 5px;
+                                color: @brand-warning;
+                                &.blocks-submit {
+                                    color: @brand-danger;
+                                }
+                            }
+
+                            .glyphicon-trash {
+                                transform: translate3d(0px, 4px, 0px);
+                            }
+                        }
+                    }
+
+                    .batch-item .item-details:last-child {
+                        border-bottom-left-radius: 5px;
+                        border-bottom-right-radius: 5px;
+                        border-bottom: 1px solid @hr-border;
+                        margin-bottom: 15px;
+                    }
+                    .batch-item .item-details:not(first-child) {
+                        border-bottom: none;
+                    }
+
+                    .no-case-message {
+                        position: absolute;
+                        top: 40%;
+                        left: 18%;
+                        height: 25px;
+                        font-size: 13px;
+                        color: @gray-light;
+                    }
+
+                    .no-left-pad {
+                        padding-left: 0;
+                    }
+                }
+            }
+        }
+
+        .actions {
+            padding-top: 18px;
+            padding-bottom: 25px;
+            margin-bottom: 20px;
+            .action-buttons {
+                float: right;
+
+                .btn {
+                    display: inline-block;
+                }
+
+                .btn-primary{
+                    margin-right: 12px;
+                }
+            }
+        }
+    }
+
+    .selection-heading {
+        font-size: @font-size-base;
+        color: @brand-secondary;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    .selection-subhead {
+        font-size: 14px;
+        color: @brand-primary;
+        font-weight: 400;
+        margin-bottom: 20px;
+        .subtext {
+            color: @gray-light;
+            font-size: 11px;
+            margin-left: 8px;
+        }
+    }
+
+}

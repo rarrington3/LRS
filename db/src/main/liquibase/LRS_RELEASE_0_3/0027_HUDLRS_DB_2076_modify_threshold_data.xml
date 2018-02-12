@@ -1,0 +1,21 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="TEST"  author="astrauss" id="HUDLRS_2076_update_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update scoring_model_version 
+			set MODEL_SCORE_THRESHOLD = 6000
+			where model_id = 'E1DA534E-F26A-494E-8109-B40FDA18AADF'
+		]]>
+        </sql>
+    </changeSet>    
+    <changeSet context="TEST"  author="astrauss" id="HUDLRS_2076_update_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update scoring_model_version 
+			set MODEL_SCORE_THRESHOLD = 3000
+			where model_id = '490FC583-86C5-418B-B5C6-3979C9692EDB'			
+		]]>
+        </sql>
+    </changeSet>  	
+</databaseChangeLog>    

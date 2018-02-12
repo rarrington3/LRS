@@ -1,0 +1,103 @@
+@import '../../bootstrap/_variables';
+@import '../../../libs/bootstrap/less/mixins/buttons';
+@import '../../shared/_mixins';
+@import "../../shared/icons";
+:host-context {
+	/* styles should be scoped under host-context */
+	display: block;
+
+	.status {
+		text-transform: uppercase;
+	}
+
+	.finding-title {
+		display: inline-block;
+		font-weight: @headings-font-weight;
+		color: @brand-secondary;
+
+		&.level-type {
+			text-transform: uppercase;
+		}
+	}
+
+	.list-description, .list-name {
+		font-size: @font-size-small;
+		color: @text-muted;
+	}
+
+	.rating-btn, .clear-btn {
+		margin-right: 5px;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.sub-title {
+		font-size: @font-size-h5;
+		font-weight: @headings-font-weight;
+		color: @brand-primary;
+		margin-bottom: 5px;
+	}
+
+	.header {
+		margin-bottom: 5px;
+		.icon-text, .finding-status-icon {
+			display: inline-block;
+			padding-top: 4px;
+			width: 20px;
+			height: 20px;
+			text-align: center;
+			border-radius: @border-radius-base;
+			font-size: @font-size-small;
+			color: @btn-primary-color;
+		}
+
+		.icon-text {
+			width: initial;
+			color: @gray-dark;
+		}
+		.danger {
+			.finding-red-icon;
+		}
+
+		.warning {
+			.finding-orange-icon;
+		}
+
+		.conforming {
+			.finding-green-icon;
+		}
+	}
+
+	.list-group.source-cause  {
+		box-shadow: none;
+
+		li {
+			border: none;
+			padding: 2px 15px 2px 15px;
+		}
+	}
+
+	.reviewer-response {
+		margin-top: 10px;
+		.btn {
+			border: 1px solid @btn-primary-bg;
+		}
+
+	   .active {
+		  background-color: @btn-primary-bg;
+		  color: @btn-primary-color;
+	  }
+	}
+
+	.reviewer-response-form {
+		margin: 20px 0 15px 0;
+	}
+
+	.input-group {
+		padding: 0;
+		input.ng-invalid {
+			border: 1px solid @brand-danger;
+		}
+	}
+
+}

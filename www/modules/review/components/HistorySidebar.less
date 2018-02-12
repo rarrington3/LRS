@@ -1,0 +1,22 @@
+@import '../../shared/components/ReviewDataSidebarBase.less';
+:host-context {
+	/* styles should be scoped under host-context */
+    .level-title {
+        font-weight: bold;
+        color: #00295A;
+        margin: 0 0 7px 5px;
+    }
+
+    .list-group.warning {
+        background: none;
+        box-shadow: none;
+
+        li {
+            border: none;
+            .field-value {
+                color: @gray-darker;
+                text-transform: none;
+            }
+        }
+    }
+}

@@ -1,0 +1,42 @@
+[
+    {
+        "reviewerId": "6037FDC9-5910-45F2-8059-8F0759B8DC58",
+        "hudId": "HLRS01",
+        "nameFirst": "John",
+        "nameLast": "Doe",
+        "remainingCapacity": 20,
+        "locationId": "56F8FF8E-A7EF-40BE-B893-4D6FB57CE298",
+        "reportsTo": "",
+        "statusCode": "A"
+    },
+    {
+        "reviewerId": "84807699-C805-4C76-9A89-76A026ADEE93",
+        "hudId": "HLRS02",
+        "nameFirst": "Jane",
+        "nameLast": "Doe",
+        "remainingCapacity": 20,
+        "locationId": "56F8FF8E-A7EF-40BE-B893-4D6FB57CE298",
+        "reportsTo": "6037FDC9-5910-45F2-8059-8F0759B8DC58",
+        "statusCode": "A"
+    },
+    {
+        "reviewerId": "F543D67C-68B9-44E0-91A7-F80326BD0EEA",
+        "hudId": "HLRS03",
+        "nameFirst": "Joh",
+        "nameLast": "Smith",
+        "remainingCapacity": 20,
+        "locationId": "56F8FF8E-A7EF-40BE-B893-4D6FB57CE298",
+        "reportsTo": "6037FDC9-5910-45F2-8059-8F0759B8DC58",
+        "statusCode": "A"
+    },
+    {
+        "reviewerId": "60188AB9-FD49-47A7-A59D-30592CB89C79",
+        "hudId": "HLRS04",
+        "nameFirst": "Jane",
+        "nameLast": "Smith",
+        "remainingCapacity": 20,
+        "locationId": "56F8FF8E-A7EF-40BE-B893-4D6FB57CE298",
+        "reportsTo": "6037FDC9-5910-45F2-8059-8F0759B8DC58",
+        "statusCode": "A"
+    }
+]

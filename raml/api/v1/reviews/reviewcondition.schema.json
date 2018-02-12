@@ -1,0 +1,36 @@
+{
+    "id": "http://LRS/ReviewCondition",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": ["conditionId", "entityName", "fieldName", "operator"],
+    "additionalProperties": false,
+    "properties": {
+        "conditionId": {
+            "description": "The ID for this condition",
+            "type": "string"
+        },
+        "entityName": {
+            "description": "The entity name the qa model loan attribute is referencing.",
+            "type": "string"
+        },		
+        "attributeId": {
+            "description": "The loan attribute id this condition is referencing.",
+            "type": "string"
+        },
+        "fieldName": {
+            "description": "The summary field that this condition will test.",
+            "type": "string"
+        },
+        "operator": {
+            "description": "The operator used to test the field value (e.g. '>', '<', '=', '!=', 'isPresent', 'in', 'notIn', 'intersects'). If the 'isPresent' operator is used, no comparisonValues will be given, and the field value will be inspected for a value.",
+            "type": "string"
+        },
+        "comparisonValues": {
+            "description": "A collection of values to compare against the field value. If more then one item in the colleciton, they are treated based on the operator: For example, 'in' will use OR (e.g. field.value in [1, 2] could be tested for field.value = 1 OR field.value = 2). For '>', '<', '=', '!=', and 'notIn', AND is used (e.g. field.value < [1, 2] will be tested for field.value < 1 AND field.value < 2). For 'intersects' each value in the collection of values will use OR to check each item in the comparisonValues collection. If the operator is '<' or '>' the value(s) should be converted into a number.",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "id": "http://LRS/RemediationResponse",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": [
+        "remediationTypeCode",
+        "remediationAmount"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "remediationTypeCode": {
+            "description": "The code of the remediation type",
+            "type": "string"
+        },
+        "remediationAmount": {
+            "description": "The amount being remediated",
+            "type": "number"
+        }
+    }
+}

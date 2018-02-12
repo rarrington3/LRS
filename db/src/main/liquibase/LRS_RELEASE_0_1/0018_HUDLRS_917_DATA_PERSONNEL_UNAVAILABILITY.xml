@@ -1,0 +1,12 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="astrauss (generated)" id="HUDLRS_917_DATA_PERSONNEL_UNAVAILABILITY_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS" context="TEST">
+        <sql>
+		<![CDATA[		
+			INSERT [dbo].[PERSONNEL_UNAVAILABILITY] ([PRSNNL_ID], [UNAVAIL_START_TS], [UNAVAIL_END_TS], [CREATED_BY], [UPDATED_BY], [CREATED_TS], [UPDATED_TS], [PERSONNEL_UNAVAILABILITY_ID]) VALUES (N'6037fdc9-5910-45f2-8059-8f0759b8dc58', CAST(N'2016-11-01T00:00:00.000' AS DateTime), CAST(N'2016-11-05T00:00:00.000' AS DateTime), N'H00001', N'H00001', CAST(N'2016-08-25T11:41:42.640' AS DateTime), CAST(N'2016-08-25T11:41:42.640' AS DateTime), N'2800386b-452d-4ef1-8490-a1887b53439a')
+			INSERT [dbo].[PERSONNEL_UNAVAILABILITY] ([PRSNNL_ID], [UNAVAIL_START_TS], [UNAVAIL_END_TS], [CREATED_BY], [UPDATED_BY], [CREATED_TS], [UPDATED_TS], [PERSONNEL_UNAVAILABILITY_ID]) VALUES (N'84807699-c805-4c76-9a89-76a026adee93', CAST(N'2016-11-01T00:00:00.000' AS DateTime), CAST(N'2016-11-05T00:00:00.000' AS DateTime), N'H00001', N'H00001', CAST(N'2016-08-25T11:42:01.847' AS DateTime), CAST(N'2016-08-25T11:42:01.847' AS DateTime), N'e0b6452a-3f7e-4eac-9d2f-9af20a35372c')
+			INSERT [dbo].[PERSONNEL_UNAVAILABILITY] ([PRSNNL_ID], [UNAVAIL_START_TS], [UNAVAIL_END_TS], [CREATED_BY], [UPDATED_BY], [CREATED_TS], [UPDATED_TS], [PERSONNEL_UNAVAILABILITY_ID]) VALUES (N'84807699-c805-4c76-9a89-76a026adee93', CAST(N'2016-11-28T00:00:00.000' AS DateTime), CAST(N'2016-11-30T00:00:00.000' AS DateTime), N'H00001', N'H00001', CAST(N'2016-08-25T11:42:47.103' AS DateTime), CAST(N'2016-08-25T11:42:47.103' AS DateTime), N'b747762c-e58b-4ffe-8548-fb8be1b037ea')
+		]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>    

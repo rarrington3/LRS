@@ -1,0 +1,70 @@
+{
+    "qaModelId": "QM12",
+    "name": "Upgrade 2017 copy",
+    "description": "This is a change to address the specific issues surrounding the shortcommings found in the previous version of the model.",
+    "version": 12,
+    "activeReviews": 625,
+    "completedReviews": 345,
+    "isActive": true,
+    "isReadonly": true,
+    "createdDate": "2016-10-20",
+    "modifiedDate": "2016-10-21",
+    "activatedDate": "2016-10-21",
+    "modifiedBy": "Justin Burch",
+    "statusCode": "D",
+    "status": "Draft",
+    "defectAreas": [
+        {
+            "defectAreaId": "1",
+            "code": "BI",
+            "description": "Borrower Income",
+            "order": 1,
+            "reviewTypeCodes": ["U", "S"]
+        },
+        {
+            "defectAreaId": "2",
+            "code": "BC",
+            "description": "Borrower Credit",
+            "order": 2,
+            "reviewTypeCodes": []
+        },
+        {
+            "defectAreaId": "3",
+            "code": "LA",
+            "description": "Loan Amount",
+            "order": 3,
+            "reviewTypeCodes": []
+        }
+    ],
+    "categories" : [
+        {
+            "name" : "Loan Data",
+            "order": 1,
+            "loanAttributes": [
+                {
+                    "id": "1",
+                    "entityName": "Case Summary for Review Level",
+                    "fieldName": "Product Type",
+                    "order": 1
+                },
+                {
+                    "id": "2",
+                    "entityName": "Case Summary for Selection",
+                    "fieldName": "Borrower Birthday",
+                    "order": 2
+                },
+                {
+                    "id": "3",
+                    "entityName": "Case Summary for Review Level",
+                    "fieldName": "Borrower SSN",
+                    "order": 3
+                }
+            ]
+        },
+        {
+            "name" : "Property Data",
+            "order": 2,
+            "loanAttributes": []
+        }
+    ]
+}

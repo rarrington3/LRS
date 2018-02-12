@@ -1,0 +1,479 @@
+#https://github.com/raml-org/raml-spec/blob/master/raml-0.8.md
+displayName: admin
+#see traits.raml for more traits: secured, paged...
+
+/reviewLevel/lenderResponseTimeLimits:
+    displayName: ReviewLevelLenderResponseTimeLimits
+    #see traits.raml for more traits: secured, paged...
+    get:
+        description: |
+            Retrieve all of the time limits for Lender Response Requests.
+        securedBy:
+            - fhac:
+                roles: [ROLE_REVIEWER, ROLE_PROGRAM_ASSISTANT, ROLE_REVIEW_LOCATION_ADMIN, ROLE_HQ_ADMIN, ROLE_INDEMNIFIER, ROLE_RESPONSE_COORDINATOR, ROLE_LRS_READ_ONLY]
+        responses:
+            200:
+                body:
+                    example: !include "get-all-lender-response-time-limits.example.json"
+                    schema: ReviewLevelTimeLimitsCollection
+
+    /{reviewLevelCode}:
+        put:
+            description: |
+                Update a specific Lender Response time limits.
+            securedBy:
+                - fhac:
+                    roles: [ROLE_HQ_ADMIN]
+            body:
+                example: !include "put-lender-response-time-limits.example.json"
+                schema: TimeLimit
+            responses:
+                200:
+                    description: |
+                        The Lender Response Time Limit was successfully saved.
+
+/reviewLevel/reviewerTimeLimits:
+    displayName: ReviewLevelReviewerTimeLimits
+    #see traits.raml for more traits: secured, paged...
+    get:
+        description: |
+            Retrieve all of the time limits for Reviewers.
+        securedBy:
+            - fhac:
+                  roles: [ROLE_REVIEWER, ROLE_PROGRAM_ASSISTANT, ROLE_REVIEW_LOCATION_ADMIN, ROLE_HQ_ADMIN]
+        responses:
+            200:
+                body:
+                    example: !include "get-all-reviewer-time-limits.example.json"
+                    schema: ReviewLevelTimeLimitsCollection
+
+    /{reviewLevelCode}:
+        put:
+            description: |
+                Update a specific Review Level's time limits.
+            securedBy:
+                - fhac:
+                    roles: [ROLE_HQ_ADMIN]
+            body:
+                example: !include "put-reviewer-time-limits.example.json"
+                schema: TimeLimit
+            responses:
+                200:
+                    description: |
+                        The Reviewer Deadline was succesfully saved.
+
+/selectionModels:
+    description: A service for reading, creating, and updating selection models.
+    type:
+      collection-readonly:
+        collection-example: !include "get-all-selection-models.example.json"
+        collection-schema: SelectionModelCollection
+    securedBy:
+        - fhac:
+            roles: [ROLE_HQ_ADMIN]
+    /{id}:
+        description: Update an existing Selection Model.
+        get:
+            securedBy:
+                - fhac:
+                    roles: [ROLE_HQ_ADMIN]
+            responses:
+                200:
+                    body:
+                        example: !include "get-selection-model.example.json"
+                        schema: SelectionModel
+        put:
+            securedBy:
+                - fhac:
+                    roles: [ROLE_HQ_ADMIN]
+            body:
+                 example: !include "get-selection-model.example.json"
+                 schema: SelectionModel
+            responses:
+                200:
+                    body:
+                        example: !include "get-selection-model.example.json"
+                        schema: SelectionModel
+                409:
+                    description: Cannot save model. Names must be unique.
+        delete:
+            securedBy:
+                - fhac:
+                    roles: [ROLE_HQ_ADMIN]
+            responses:
+                200:
+                    description: Successful deletion.
+        /duplicate:
+            put:
+                description: Used to duplicate a model. Returns the same model with a new ID. A clone.
+                securedBy:
+                    - fhac:
+                        roles: [ROLE_HQ_ADMIN]
+                body:
+                     example: !include "put-duplicate-model.example.json"
+                     schema: ModelDuplicator
+                responses:
+                    200:
+                        body:
+                            example: !include "get-selection-model.example.json"
+                            schema: SelectionModel
+                    409:
+                        description: Cannot duplicate model. Names must be unique.
+
+/assignmentModels:
+  description: A service for reading, creating, and updating assignment models.
+  type:
+    collection-readonly:
+      collection-example: !include "get-all-assignment-models.example.json"
+      collection-schema: AssignmentModelCollection
+  securedBy:
+      - fhac:
+          roles: [ROLE_HQ_ADMIN]
+  /{id}:
+      description: Update an existing Assignment Model.
+      get:
+          securedBy:
+              - fhac:
+                  roles: [ROLE_HQ_ADMIN]
+          responses:
+              200:
+                  body:
+                      example: !include "get-assignment-model.example.json"
+                      schema: AssignmentModel
+      put:
+          securedBy:
+              - fhac:
+                  roles: [ROLE_HQ_ADMIN]
+          body:
+               example: !include "get-assignment-model.example.json"
+               schema: AssignmentModel
+          responses:
+              200:
+                  body:
+                      example: !include "get-assignment-model.example.json"
+                      schema: AssignmentModel
+              409:
+                  description: Cannot save model. Names must be unique.
+      delete:
+          securedBy:
+              - fhac:
+                  roles: [ROLE_HQ_ADMIN]
+          responses:
+              200:
+                  description: Successful deletion.
+      /duplicate:
+          put:
+              description: Used to duplicate a model. Returns the same model with a new ID. A clone.
+              securedBy:
+                  - fhac:
+                      roles: [ROLE_HQ_ADMIN]
+              body:
+                   example: !include "put-duplicate-model.example.json"
+                   schema: ModelDuplicator
+              responses:
+                  200:
+                      body:
+                          example: !include "get-assignment-model.example.json"
+                          schema: AssignmentModel
+                  409:
+                      description: Cannot duplicate model. Names must be unique.
+
+/distributionModels:
+    description: A service for reading, creating, and updating distribution models.
+    type:
+      collection-readonly:
+        collection-example: !include "get-all-distribution-models.example.json"
+        collection-schema: DistributionModelCollection
+    securedBy:
+        - fhac:
+            roles: [ROLE_HQ_ADMIN]
+    /{id}:
+        description: |
+            Update an existing Distribution Model.
+        get:
+            securedBy:
+                - fhac:
+                    roles: [ROLE_HQ_ADMIN]
+            responses:
+                200:
+                    body:
+                        example: !include "get-distribution-model.example.json"
+                        schema: DistributionModel
+        put:
+            securedBy:
+                - fhac:
+                    roles: [ROLE_HQ_ADMIN]
+            body:
+                 example: !include "get-distribution-model.example.json"
+                 schema: DistributionModel
+            responses:
+                200:
+                    body:
+                        example: !include "get-distribution-model.example.json"
+                        schema: DistributionModel
+                409:
+                    description: Cannot save model. Names must be unique.
+        delete:
+            securedBy:
+                - fhac:
+                    roles: [ROLE_HQ_ADMIN]
+            responses:
+                200:
+                    description: Successful deletion.
+        /duplicate:
+            put:
+                description: Used to duplicate a model. Returns the same model with a new ID. A clone.
+                securedBy:
+                    - fhac:
+                        roles: [ROLE_HQ_ADMIN]
+                body:
+                     example: !include "put-duplicate-model.example.json"
+                     schema: ModelDuplicator
+                responses:
+                    200:
+                        body:
+                            example: !include "get-distribution-model.example.json"
+                            schema: DistributionModel
+                    409:
+                        description: Cannot duplicate model. Names must be unique.
+
+/emails:
+    displayName: emails
+    description: A service for reading, editing, and duplicating email templates.
+    get:
+        description: Get all email templates.
+        securedBy:
+            - fhac:
+                roles: [ROLE_HQ_ADMIN]
+        responses:
+            200:
+                body:
+                    example: !include "get-all-email-templates.example.json"
+                    schema: EmailTemplateCollection
+
+    /{templateId}:
+        displayName: emailManagement
+        get:
+            description: Get a specific Email Template Version
+            securedBy:
+                - fhac:
+                    roles: [ROLE_HQ_ADMIN]
+            responses:
+                200:
+                    body:
+                        example: !include "get-email-template.example.json"
+                        schema: EmailTemplateVersion
+        put:
+            description: Update a specific Email Template Version
+            securedBy:
+                - fhac:
+                    roles: [ROLE_HQ_ADMIN]
+            body:
+                example: !include "get-email-template.example.json"
+                schema: EmailTemplateVersion
+            responses:
+                200:
+                    body:
+                        example: !include "get-email-template.example.json"
+                        schema: EmailTemplateVersion
+        /duplicate:
+            put:
+                description: Duplicate an Email Template version.
+                securedBy:
+                    - fhac:
+                        roles: [ROLE_HQ_ADMIN]
+                body:
+                     example: !include "put-duplicate-email-template.example.json"
+                     schema: ModelDuplicator
+                responses:
+                    200:
+                        body:
+                            example: !include "get-email-template.example.json"
+                            schema: EmailTemplateVersion
+        /activate:
+            put:
+                description: Update a specific Email Template version
+                is: [ack]
+                securedBy:
+                    - fhac:
+                        roles: [ROLE_HQ_ADMIN]
+        /sendTest/{emailAddress}:
+            post:
+                description: Used to send a test email of the selected email template to the specified email address.
+                securedBy:
+                    - fhac:
+                        roles: [ROLE_HQ_ADMIN]
+
+
+/lenderSuppressions:
+    displayName: LenderSuppressions
+    get:
+        description: Get all lender suppressions.
+        securedBy:
+            - fhac:
+                roles: [ROLE_HQ_ADMIN]
+        responses:
+            200:
+                body:
+                    example: !include "get-all-lender-suppressions.example.json"
+                    schema: LenderSelectionAdjustmentCollection
+
+    /{lenderId}:
+        is: [ack]
+        post:
+            description: Used to add a lender to the suppression list.
+            securedBy:
+                - fhac:
+                    roles: [ROLE_HQ_ADMIN]
+        delete:
+            description: Remove a lender from the suppression list.
+            securedBy:
+                - fhac:
+                    roles: [ROLE_HQ_ADMIN]
+
+/lenderSelectionIncreases:
+    displayName: LenderSelectionIncreases
+    get:
+        description: Get all lender selection increases.
+        securedBy:
+            - fhac:
+                roles: [ROLE_HQ_ADMIN]
+        responses:
+            200:
+                body:
+                    example: !include "get-all-lender-selection-increases.example.json"
+                    schema: LenderSelectionAdjustmentCollection
+    /{lenderId}:
+        delete:
+            description: Removes a lender from the increased selections.
+            securedBy:
+                - fhac:
+                    roles: [ROLE_HQ_ADMIN]
+        post:
+            description: Adds a lender on the increased selections list.
+            securedBy:
+                - fhac:
+                    roles: [ROLE_HQ_ADMIN]
+        put:
+            description: Updates a lender on the increased selections list.
+            securedBy:
+                - fhac:
+                    roles: [ROLE_HQ_ADMIN]
+            body:
+                example: !include "post-lender-selection-increases.example.json"
+                schema: LenderSelectionAdjustment
+
+/underwriterSelectionIncreases:
+    displayName: LenderSelectionIncreases
+    get:
+        description: Get all lender selection increases.
+        securedBy:
+            - fhac:
+                roles: [ROLE_HQ_ADMIN]
+        responses:
+            200:
+                body:
+                    example: !include "get-all-lender-selection-increases.example.json"
+                    schema: LenderSelectionAdjustmentCollection
+    /{lenderId}:
+        delete:
+            description: Removes a lender from the increased selections.
+            securedBy:
+                - fhac:
+                    roles: [ROLE_HQ_ADMIN]
+        post:
+            description: Adds a lender on the increased selections list.
+            securedBy:
+                - fhac:
+                    roles: [ROLE_HQ_ADMIN]
+        put:
+            description: Updates a lender on the increased selections list.
+            securedBy:
+                - fhac:
+                    roles: [ROLE_HQ_ADMIN]
+            body:
+                example: !include "post-lender-selection-increases.example.json"
+                schema: LenderSelectionAdjustment
+/fields:
+    securedBy:
+        - fhac:
+            roles: [ROLE_HQ_ADMIN]
+    type:
+        collection-readonly:
+            collection-example: !include "fieldCollection.example.json"
+            collection-schema: FieldCollection
+
+/qaModels:
+    securedBy:
+        - fhac:
+              roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+    type:
+        collection-readonly:
+            collection-example: !include "qaModelCollection.example.json"
+            collection-schema: QaModelCollection
+
+    /{qaModelId}:
+        securedBy:
+            - fhac:
+                  roles: [ROLE_HQ_ADMIN]
+        type:
+            member:
+                member-example: !include "qaModelDetail.example.json"
+                member-schema: QaModelDetail
+
+        /activate:
+            put:
+                description: Activates the qa model.
+                securedBy:
+                    - fhac:
+                        roles: [ROLE_HQ_ADMIN]
+                responses:
+                    200:
+                        description: |
+                            The qa model was successfully activated.
+
+        /duplicate:
+            put:
+                description: Used to duplicate a model. Returns the same model with a new ID. A clone.
+                securedBy:
+                    - fhac:
+                        roles: [ROLE_HQ_ADMIN]
+                body:
+                     example: !include "put-duplicate-model.example.json"
+                     schema: ModelDuplicator
+                responses:
+                    200:
+                        body:
+                            example: !include "qaModel.example.json"
+                            schema: QaModel
+                    409:
+                        description: Cannot duplicate model. Names must be unique.
+
+        /defectAreas:
+            securedBy:
+                - fhac:
+                      roles: [ROLE_HQ_ADMIN]
+            type:
+                collection-writeonly:
+                    member-example: !include "qaModelDefectArea.example.json"
+                    member-schema: QaModelDefectArea
+
+            /{defectAreaId}:
+                securedBy:
+                    - fhac:
+                          roles: [ROLE_HQ_ADMIN]
+                type:
+                    member:
+                        member-example: !include "qaModelDefectAreaDetail.example.json"
+                        member-schema: QaModelDefectAreaDetail
+
+/staffManagementReviewLevels:
+    displayName: staffManagementReviewLevels
+    description: Returns a mapping of review level IDs to static metadata to be used in Staff Management
+    securedBy:
+        - fhac:
+            roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN]
+    type:
+            collection-readonly:
+                collection-example: !include "staffmanagementreviewlevel-collection.example.json"
+                collection-schema: CommonDetailCollection

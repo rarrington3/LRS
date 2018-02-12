@@ -1,0 +1,424 @@
+<!--TODO: this is where child views get output, if needed
+<router-outlet></router-outlet>
+-->
+<div class="lrs-sub-header empty">
+</div>
+<div class="lrs-body container-fluid">
+    <div class="row">
+        <div class="col-xs-3 staff-col-filters">
+            <div class="panel panel-default lrs-panel-secondary staff-panel-filters">
+                <div class="panel-heading">
+                    <form>
+                        <div class="form-group staff-search">
+                            <label class="small" for="staffReviewerIds">Search People</label>
+                            <select id="staffReviewerIds"
+                                    name="staffReviewerIds"
+                                    class="form-control input-sm"
+                                    multiple="multiple"
+                                    [(ngModel)]="filter.reviewerIds"
+                                    (ngModelChange)="search()">
+                                //@formatter:off
+                                <option *ngFor="let reviewer of allReviewers" [value]="reviewer.reviewerId">{{reviewer.name}} - {{reviewer.hudId}}</option>
+                                //@formatter:on
+                            </select>
+                        </div>
+                    </form>
+                    <div class="staff-panel-title-container">
+                        <h3 class="panel-title">Filters</h3>
+                        <a href="javascript:void(0);" class="staff-reset small" (click)="reset()">Show All</a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <form>
+                        <div class="form-group">
+                            <label class="small" for="staffLocation">Location</label>
+                            <select id="staffLocation"
+                                    name="staffLocation"
+                                    class="form-control input-sm"
+                                    [(ngModel)]="filter.locationId"
+                                    (ngModelChange)="search()"
+                                    [disabled]="userIsLocationAdmin">
+                                <option value="">Select All</option>
+                                <option *ngFor="let location of locations" [value]="location.locationId">
+                                    {{location.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="small" for="staffReviewType">Review Type</label>
+                            <select id="staffReviewType"
+                                    name="staffReviewType"
+                                    class="form-control input-sm"
+                                    [(ngModel)]="filter.reviewTypeId"
+                                    (ngModelChange)="search()">
+                                <option value="">Select All</option>
+                                <option *ngFor="let reviewType of reviewTypes" [value]="reviewType.code">
+                                    {{reviewType.description}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="small" for="staffProductType">Loan Type</label>
+                            <select id="staffProductType"
+                                    name="staffProductType"
+                                    class="form-control input-sm"
+                                    [(ngModel)]="filter.loanTypeId"
+                                    (ngModelChange)="search()">
+                                <option value="">Select All</option>
+                                <option *ngFor="let loanType of productTypes" [value]="loanType.code">
+                                    {{loanType.description}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="small" for="staffSelectionReason">Selection Reason</label>
+                            <select id="staffSelectionReason"
+                                    name="staffSelectionReason"
+                                    class="form-control input-sm"
+                                    [(ngModel)]="filter.selectionReasonId"
+                                    (ngModelChange)="search()">
+                                <option value="">Select All</option>
+                                <option *ngFor="let selectionReason of selectionReasons"
+                                        [value]="selectionReason.code">
+                                    {{selectionReason.description}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="small" for="staffReviewLevel">Review Level</label>
+                            <select id="staffReviewLevel"
+                                    name="staffReviewLevel"
+                                    class="form-control input-sm"
+                                    [(ngModel)]="filter.reviewLevelId"
+                                    (ngModelChange)="search()">
+                                <option value="">Select All</option>
+                                <option *ngFor="let reviewLevel of reviewLevels"
+                                        [value]="reviewLevel.code">
+                                    {{reviewLevel.description}}
+                                </option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <disclaimer></disclaimer>
+            </div>
+        </div>
+        <div class="col-xs-9 staff-col-content">
+            <div class="panel-group" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default lrs-panel-primary staff-panel-content staff-panel-reviewers">
+                    <div class="panel-heading" role="tab" id="staffHeadingOne">
+                        <h4 class="panel-title">
+                            <a class="lrs-arrow" role="button" data-toggle="collapse" href="#staffCollapseOne"
+                               aria-expanded="true" aria-controls="staffCollapseOne">
+                                <span class="caret" aria-hidden="true"></span>
+                                Active Staff Members <span *ngIf="reviewers.length">({{reviewers.length}})</span>
+                            </a>
+                        </h4>
+                        <div class="panel-btn-group">
+                            <button type="button" class="btn btn-secondary staff-add-member-btn"
+                                    (click)="openAddMember()">
+                                <span class="glyphicon glyphicon-plus small" aria-hidden="true"></span>
+                                <span class="small">Add Staff Member</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="staffCollapseOne" class="panel-collapse collapse in" role="tabpanel"
+                         aria-labelledby="staffHeadingOne">
+                        <div class="panel-body">
+                            <div class="staff-mngt-type-selection">
+                                <drop-down class="fill aut-table-selector"
+                                           leftMenuVisible="true"
+                                           textField="text"
+                                           [(selectedItem)]="selectedMgmtType"
+                                           [items]="mgmtTypes">
+                                </drop-down>
+                            </div>
+                            <div *ngIf="reviewersLoading" class="lrs-loading">
+                                <span class="glyphicon glyphicon-refresh"
+                                      aria-label="loading" title="Loading">
+                                </span>
+                            </div>
+                            <div *ngIf="!reviewersLoading && !reviewers.length" class="lrs-no-results">
+                                <span class="small" aria-label="no results">No results found</span>
+                            </div>
+                            <form *ngIf="!reviewersLoading && reviewers.length" class="staff-form-reviewers">
+                                <table *ngIf="selectedMgmtType.value === staffMgmtTypes.GENERAL"
+                                       class="table table-bordered table-tilted staff-table-reviewers">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            <span class="divider" aria-hidden="true"></span>
+                                        </th>
+                                        <th class="staff-capacity-col">
+                                            <span class="header-title" aria-label="Capacity">Capacity</span>
+                                            <span class="divider" aria-hidden="true"></span>
+                                        </th>
+                                        <th class="staff-reports-col">
+                                            <span class="header-title" aria-label="Reports To">Reports To</span>
+                                            <span class="divider" aria-hidden="true"></span>
+                                        </th>
+                                        <th class="staff-vetted-col">
+                                            <div class="header-title">
+                                                <span class="header-title-text" aria-label="Vetted By">Vetted By</span>
+                                            </div>
+                                            <span class="divider" aria-hidden="true"></span>
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let reviewer of reviewers" class="aut-reviewer-row">
+                                        <td>
+                                            <span class="staff-reviewer-available"
+                                                  aria-label="available"
+                                                  title="Available"
+                                                  *ngIf="reviewer.isAvailable">
+                                            </span>
+                                            <span class="staff-reviewer-unavailable glyphicon glyphicon-remove small"
+                                                  aria-label="unavailable"
+                                                  title="Unavailable"
+                                                  *ngIf="!reviewer.isAvailable">
+                                            </span>
+                                            <a href="javascript:void(0);"
+                                               class="glyphicon glyphicon-calendar"
+                                               (click)="openAvailability(reviewer)">
+                                            </a>
+                                            <div class="dropdown small staff-menu">
+                                                <a href="javascript:void(0);"
+                                                   class="dropdown-toggle"
+                                                   data-toggle="dropdown"
+                                                   role="button"
+                                                   aria-haspopup="true"
+                                                   aria-expanded="false">
+                                                    {{reviewer.name}} <span class="caret"></span> </a>
+                                                <ul class="dropdown-menu">
+                                                    <li>
+                                                        <a class="aut-deactivate-button" href="javascript:void(0);" (click)="deactivate(reviewer)">Deactivate</a>
+                                                    </li>
+                                                    <li role="separator" class="divider"></li>
+                                                    <li>
+                                                        <a class="aut-view-workload-button"
+                                                           routerLink="/workload/team"
+                                                           [queryParams]="{user: '' + reviewer.reviewerId,location: '' + reviewer.locationId}">
+                                                            View Workload
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="staff-hud-id">
+                                                <span class="small">{{reviewer.hudId}}</span>
+                                            </div>
+                                        </td>
+                                        <td class="staff-capacity-col">
+                                            <input type="number"
+                                                   class="form-control input-sm"
+                                                   min="0"
+                                                   step="1"
+                                                   [(ngModel)]="reviewer.totalCapacity"
+                                                   [ngModelOptions]="{standalone: true}"
+                                                   (change)="debouncedSave(reviewer)">
+                                        </td>
+                                        <td class="staff-reports-col">
+                                            <select class="form-control input-sm"
+                                                    [(ngModel)]="reviewer.reportsTo"
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    (ngModelChange)="save(reviewer)">
+                                                <option value="">Not Assigned</option>
+                                                <option *ngFor="let eligibleReviewer of getEligibleReviewers(reviewer)"
+                                                        [value]="eligibleReviewer.reviewerId">
+                                                    {{eligibleReviewer.name}}
+                                                </option>
+                                            </select>
+                                        </td>
+                                        <td class="staff-vetted-col">
+                                            <select class="form-control input-sm"
+                                                    [(ngModel)]="reviewer.vettedBy"
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    (ngModelChange)="save(reviewer)">
+                                                <option value="">Not Assigned</option>
+                                                <option *ngFor="let eligibleReviewer of getEligibleReviewers(reviewer)"
+                                                        [value]="eligibleReviewer.reviewerId">
+                                                    {{eligibleReviewer.name}}
+                                                </option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <table *ngIf="selectedMgmtType.value !== staffMgmtTypes.GENERAL"
+                                       class="table table-bordered table-tilted staff-table-reviewers {{selectedMgmtType.value}}">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            <span class="divider"></span>
+                                        </th>
+                                        <th class="staff-check-col" *ngFor="let item of selectedMgmtType.items">
+                                            <div class="header-title">
+                                                <span class="header-title-text">
+                                                    {{item.description}}
+                                                </span>
+                                            </div>
+                                            <span class="divider"></span>
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let reviewer of reviewers">
+                                        <td>
+                                            <span class="staff-reviewer-available"
+                                                  aria-label="available"
+                                                  *ngIf="reviewer.isAvailable">
+                                            </span>
+                                            <span class="staff-reviewer-unavailable glyphicon glyphicon-remove small"
+                                                  aria-label="unavailable"
+                                                  *ngIf="!reviewer.isAvailable">
+                                            </span>
+                                            <a href="javascript:void(0);"
+                                               class="glyphicon glyphicon-calendar"
+                                               aria-hidden="true"
+                                               (click)="openAvailability(reviewer)">
+                                            </a>
+                                            <div class="dropdown small staff-menu">
+                                                <a href="javascript:void(0);"
+                                                   class="dropdown-toggle"
+                                                   data-toggle="dropdown"
+                                                   role="button"
+                                                   aria-haspopup="true"
+                                                   aria-expanded="false">
+                                                    {{reviewer.name}} <span class="caret"></span> </a>
+                                                <ul class="dropdown-menu">
+                                                    <li>
+                                                        <a class="aut-deactivate-button" href="javascript:void(0);" (click)="deactivate(reviewer)">Deactivate</a>
+                                                    </li>
+                                                    <li role="separator" class="divider"></li>
+                                                    <li>
+                                                        <a class="aut-view-workload-button"
+                                                           routerLink="/workload/team"
+                                                           [queryParams]="{user: '' + reviewer.reviewerId}">
+                                                            View Workload
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="staff-hud-id">
+                                                <span class="small">{{reviewer.hudId}}</span>
+                                            </div>
+                                        </td>
+                                        <td class="text-center staff-check-col"
+                                            *ngFor="let item of selectedMgmtType.items">
+                                            <button type="button" class="btn btn-xs lrs-btn-circle lrs-btn-check aut-{{_.kebabCase(item.description)}}"
+                                                    data-toggle="button"
+                                                    aria-pressed="false"
+                                                    [class.active]="isChecked(item, selectedMgmtType, reviewer)"
+                                                    (click)="$event.stopPropagation();check(item, selectedMgmtType, reviewer)">
+                                                <span class="glyphicon glyphicon-ok small" aria-hidden="true"></span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default lrs-panel-primary staff-panel-content">
+                    <div class="panel-heading" role="tab" id="staffHeadingTwo">
+                        <h4 class="panel-title">
+                            <a class="collapsed lrs-arrow" role="button" data-toggle="collapse" href="#staffCollapseTwo"
+                               aria-expanded="false" aria-controls="staffCollapseTwo">
+                                <span class="caret"></span>
+                                Deactivated staff members <span *ngIf="inactiveReviewers.length">({{inactiveReviewers.length}})</span>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="staffCollapseTwo" class="panel-collapse collapse" role="tabpanel"
+                         aria-labelledby="staffHeadingTwo">
+                        <div class="panel-body">
+                            <div *ngIf="inactiveReviewersLoading" class="lrs-loading">
+                                <span class="glyphicon glyphicon-refresh"
+                                      aria-label="loading" title="Loading">
+                                </span>
+                            </div>
+                            <div *ngIf="!inactiveReviewersLoading && !inactiveReviewers.length" class="lrs-no-results">
+                                <span class="small">No results found</span>
+                            </div>
+                            <table *ngIf="!inactiveReviewersLoading && inactiveReviewers.length" class="table table-bordered outer-bordered staff-table-inactive-reviewers">
+                                <tbody>
+                                <tr *ngFor="let reviewer of inactiveReviewers">
+                                    <td>
+                                        <div class="dropdown small staff-menu">
+                                            <a href="javascript:void(0);"
+                                               class="dropdown-toggle"
+                                               data-toggle="dropdown"
+                                               role="button"
+                                               aria-haspopup="true"
+                                               aria-expanded="false">
+                                                {{reviewer.name}} <span class="caret"></span> </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a href="javascript:void(0);" (click)="activate(reviewer)">Re-Activate</a>
+                                                </li>
+                                                <li role="separator" class="divider"></li>
+                                                <li>
+                                                    <a routerLink="/workload/team"
+                                                       [queryParams]="{user: '' + reviewer.reviewerId}">
+                                                        View Workload
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="staff-hud-id">
+                                            <span class="small">{{reviewer.hudId}}</span>
+                                        </div>
+                                    </td>
+                                    <td class="text-center staff-btn-group-col">
+                                        <button type="button"
+                                                class="btn btn-default"
+                                                (click)="activate(reviewer)">
+                                            <span class="small" aria-label="Re-Activate">Re-Activate</span>
+                                        </button>
+                                        <button type="button"
+                                                class="btn btn-primary"
+                                                (click)="remove(reviewer)">
+                                            <span class="small" aria-label="Remove">Remove</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<modal [(isOpen)]="availabilityRangeData.isOpen"
+       confirmText="Save"
+       [closeOnSave]="false"
+       [title]="availabilityRangeData.title"
+       [canSave]="availabilityRangeData.canSave"
+       (confirmChange)="saveAvailability()"
+       (isOpenChange)="!$event ? resetAvailability() : null">
+    <availability-range (canSaveChange)="availabilityRangeData.canSave = $event"
+                        [unavailabilities]="availabilityRangeData.unavailabilities"
+                        class="modal-inner-body">
+    </availability-range>
+</modal>
+
+<modal [(isOpen)]="addMemberData.isOpen"
+       confirmText="Save"
+       [closeOnSave]="false"
+       title="Add Staff Member"
+       [canSave]="addMemberData.canSave"
+       (confirmChange)="saveAddMember()"
+       (isOpenChange)="!$event ? resetAddMember() : null">
+    <add-member (canSaveChange)="addMemberData.canSave = $event"
+                [locations]="addMemberData.locations"
+                [reviewers]="addMemberData.reviewers"
+                [reviewer]="addMemberData.reviewer"
+                [userIsLocationAdmin]="userIsLocationAdmin"
+                [hqLocationId]="hqLocationId"
+                class="modal-inner-body">
+    </add-member>
+</modal>

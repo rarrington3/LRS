@@ -1,0 +1,70 @@
+<form #staffAddMemberForm="ngForm">
+    <div class="container-fluid">
+        <div class="row staff-add-member-info">
+            <div class="col-xs-12">
+                <span class="small">Enter staff information</span>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label class="small" for="staffAddMemberId">Staff ID#</label>
+                    <div class="input-group input-group-sm">
+                        <input type="text"
+                               id="staffAddMemberId"
+                               name="staffAddMemberId"
+                               class="form-control"
+                               [(ngModel)]="staffId"
+                               placeholder="Staff ID">
+                        <span class="input-group-btn">
+                            <button class="btn btn-secondary" [class.disabled]="!staffId" type="button" (click)="search()">
+                                <span aria-hidden="true">Search</span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="staff-add-member-success" *ngIf="reviewer.hudId">
+                    <span class="glyphicon glyphicon-ok small" aria-hidden="true"></span>
+                    <span class="small aut-reviewer-name-txt">{{reviewer.nameFirst}} {{reviewer.nameLast}}</span>
+                </div>
+                <div class="staff-add-member-fail" *ngIf="notFound">
+                    <span class="glyphicon glyphicon-remove small" aria-hidden="true"></span>
+                    <span class="small">No results found</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label class="small" for="staffAddMemberLocationId">Location</label>
+                    <select id="staffAddMemberLocationId"
+                            name="staffAddMemberLocationId"
+                            class="form-control input-sm"
+                            [(ngModel)]="reviewer.locationId"
+                            (ngModelChange)="onLocationChanged($event)" [disabled]="userIsLocationAdmin" required>
+                        <option value="">Not Assigned</option>
+                        <option *ngFor="let location of locations" [value]="location.locationId">
+                            {{location.name}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label class="small" for="staffAddMemberReportsTo">Reports to</label>
+                    <select id="staffAddMemberReportsTo"
+                            name="staffAddMemberReportsTo"
+                            class="form-control input-sm"
+                            [(ngModel)]="reviewer.reportsTo"
+                            (ngModelChange)="onReportsToChanged($event)">
+                        <option *ngFor="let reviewer of reviewersByLoc" [value]="reviewer.reviewerId">
+                            {{reviewer.name}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

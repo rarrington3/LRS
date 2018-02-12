@@ -1,0 +1,21 @@
+{
+    "id": "http://LRS/LiteReview",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": ["reviewId", "status"],
+    "additionalProperties": false,
+    "properties": {
+        "reviewId": {
+            "description": "The identifier of this review",
+            "type": "string"
+        },
+        "status": {
+            "description": "The status of the review. Is it in-progress or completed.",
+            "type": "string"
+        },
+        "reviewReferenceId": {
+            "description": "The human readable identifier of this review",
+            "type": "string"
+        }
+    }
+}

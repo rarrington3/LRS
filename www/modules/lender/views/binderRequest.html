@@ -1,0 +1,207 @@
+
+<div class="review">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="lrs-layout-table">
+                    <td class="lrs-layout-table-cell left-side-bar">
+                        <div class="lrs-content-panel">
+
+                            <cross-filter-view [dimensions]="binderDimensions" [dataSource]="bindersObservable"></cross-filter-view>
+                            <disclaimer></disclaimer>
+                        </div>
+                    </td>
+                    <td class="lrs-layout-table-cell content-area">
+
+                        <div *ngIf="currentUserRole == USER_ROLES.FHA" class="lrs-content-panel binders">
+
+                            <ul class="nav nav-tabs">
+                                <li class="active" (click)="selectedTab = 0;"><a data-toggle="tab" href="#requests">Binder Requests <span *ngIf="binderRequests.length > 0">({{binderRequests.length}})</span></a></li>
+                                <li (click)="selectedTab = 1;"><a data-toggle="tab" href="#recipients">Recent Receipts <span *ngIf="recentRecipients.length">({{recentRecipients.length}})</span></a></li>
+                            </ul>
+
+                            <button class="trans-access btn btn-primary pull-right" (click)="downloadBinders()"><span class="glyphicon glyphicon-save"></span>TransAccess Export</button>
+                            <div class="binder-filter"></div>
+
+                            <div class="tab-content">
+                                <div id="requests" class="tab-pane binders in active">
+
+                                    <pagination-controls id="binderRequestsFha" autoHide="true" (pageChange)="binderRequestsFhaPageNumber = $event"></pagination-controls>
+
+                                    <table class="table case-table">
+                                        <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th scope="col"><a href="javascript:void(0)" (click)="sortCasesByCategory(CASE_CATS.CASE_NUM)">Case #</a></th>
+                                            <th scope="col"><a href="javascript:void(0)" (click)="sortCasesByCategory(CASE_CATS.BORROWER)">Borrower Name</a></th>
+                                            <th scope="col"><a href="javascript:void(0)" (click)="sortCasesByCategory(CASE_CATS.LENDER)">Lender Name</a></th>
+                                            <th scope="col"><a href="javascript:void(0)" (click)="sortCasesByCategory(CASE_CATS.REVIEW_TYPE)">Review Type</a></th>
+                                            <th scope="col"><a href="javascript:void(0)" (click)="sortCasesByCategory(CASE_CATS.REQUEST_DATE)">Request Date</a></th>
+                                            <th scope="col"><a href="javascript:void(0)" (click)="sortCasesByCategory(CASE_CATS.DUE_DATE)">Binder Due</a></th>
+                                            <th scope="col"><a href="javascript:void(0)" (click)="sortCasesByCategory(CASE_CATS.REQUESTED_FROM)">Requested From</a></th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let binder of binderRequests | paginate: { itemsPerPage: 20, currentPage: binderRequestsFhaPageNumber, id: 'binderRequestsFha' }">
+                                                <td class="case-id" scope="row">
+                                                    <span class="glyphicon glyphicon-flash" *ngIf="binder.isElectronic != false"></span>
+                                                </td>
+                                                <td>{{binder.caseNumber}}</td>
+                                                <td>{{binder.borrowerName}}</td>
+                                                <td>{{binder.lenderName}}</td>
+												<td>{{binder.reviewType}}</td>
+                                                <td>{{binder.requestedDate | datePipe}}</td>
+                                                <td>{{binder.dueDate | datePipe}}</td>
+                                                <td>{{binder.requestedFrom}}</td>
+                                                <td>
+                                                    <span *ngIf="binder.statusCode === 'CANCELLED'">Cancelled</span>
+                                                    <button class="btn btn-primary" *ngIf="!binder.receivedDate && !binder.assignedTo && binder.statusCode !== 'CANCELLED'" (click)="receiveBinder(binder)">Receive</button>
+                                                </td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <pagination-controls id="binderRequestsFha" autoHide="true" (pageChange)="binderRequestsFhaPageNumber = $event"></pagination-controls>
+
+                                </div>
+
+                                <div id="recipients" class="tab-pane binders">
+
+                                    <pagination-controls id="binderRecieptsFha" autoHide="true" (pageChange)="binderRecieptsFhaPageNumber = $event"></pagination-controls>
+
+                                    <table class="table case-table">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th scope="col"><a href="javascript:void(0)" (click)="sortCasesByCategory(CASE_CATS.CASE_NUM, true)">Case #</a></th>
+                                                <th scope="col"><a href="javascript:void(0)" (click)="sortCasesByCategory(CASE_CATS.BORROWER, true)">Borrower Name</a></th>
+                                                <th scope="col"><a href="javascript:void(0)" (click)="sortCasesByCategory(CASE_CATS.LENDER, true)">Lender Name</a></th>
+												<th scope="col"><a href="javascript:void(0)" (click)="sortCasesByCategory(CASE_CATS.REVIEW_TYPE, true)">Review Type</a></th>
+                                                <th scope="col"><a href="javascript:void(0)" (click)="sortCasesByCategory(CASE_CATS.REQUEST_DATE, true)">Request Date</a></th>
+                                                <th scope="col"><a href="javascript:void(0)" (click)="sortCasesByCategory(CASE_CATS.DUE_DATE, true)">Binder Due</a></th>
+                                                <th scope="col"><a href="javascript:void(0)" (click)="sortCasesByCategory(CASE_CATS.REQUESTED_FROM, true)">Requested From</a></th>
+                                                <th scope="col"><a href="javascript:void(0)" (click)="sortCasesByCategory(CASE_CATS.ASSIGNED_TO, true)">Assigned To</a></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let binder of recentRecipients | paginate: { itemsPerPage: 20, currentPage: binderRecieptsFhaPageNumber, id: 'binderRecieptsFha' }">
+                                                <td class="case-id" scope="row">
+                                                    <span class="glyphicon glyphicon-flash" *ngIf="binder.isElectronic != false"></span>
+                                                </td>
+                                                <td>{{binder.caseNumber}}</td>
+                                                <td>{{binder.borrowerName}}</td>
+                                                <td>{{binder.lenderName}}</td>
+                                                <td>{{binder.reviewType}}</td>
+                                                <td>{{binder.requestedDate | datePipe}}</td>
+                                                <td>{{binder.dueDate | datePipe}}</td>
+                                                <td>{{binder.requestedFrom}}</td>
+                                                <td>{{binder.assignedTo}}</td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <pagination-controls id="binderRecieptsFha" autoHide="true" (pageChange)="binderRecieptsFhaPageNumber = $event"></pagination-controls>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div *ngIf="currentUserRole == USER_ROLES.LENDER" class="lrs-content-panel binders">
+
+                            <div class="all-binders">
+
+                                <div class="section-heading">BINDER REQUESTS <span *ngIf="binderRequests.length">({{binderRequests.length}})</span></div>
+
+                                <hr/>
+
+                                <table class="table case-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col"><a href="javascript:void(0)" (click)="sortCasesByCategory(CASE_CATS.CASE_NUM)">Case #</a></th>
+                                            <th scope="col"><a href="javascript:void(0)" (click)="sortCasesByCategory(CASE_CATS.BORROWER)">Borrower Name</a></th>
+                                            <th scope="col"><a href="javascript:void(0)" (click)="sortCasesByCategory(CASE_CATS.LOCATION)">HOC</a></th>
+                                            <th scope="col"><a href="javascript:void(0)" (click)="sortCasesByCategory(CASE_CATS.STATUS)">Status</a></th>
+                                            <th scope="col"><a href="javascript:void(0)" (click)="sortCasesByCategory(CASE_CATS.REVIEW_TYPE)">Review Type</a></th>
+                                            <th scope="col"><a href="javascript:void(0)" (click)="sortCasesByCategory(CASE_CATS.REQUEST_DATE)">Request Date</a></th>
+                                            <th scope="col"><a href="javascript:void(0)" (click)="sortCasesByCategory(CASE_CATS.DUE_DATE)">Binder Due</a></th>
+                                            <th scope="col"><a href="javascript:void(0)" (click)="sortCasesByCategory(CASE_CATS.SENT_DATE)">Date Sent</a></th>
+                                            <th scope="col"><a href="javascript:void(0)" (click)="sortCasesByCategory(CASE_CATS.RECEIVED_DATE)">Date Received</a></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let binder of binderRequests">
+                                            <td>{{binder.caseNumber}}</td>
+                                            <td>{{binder.borrowerName}}</td>
+                                            <td>{{binder.locationName}}</td>
+                                            <td>{{binder.status}}</td>
+                                            <td>{{binder.reviewType}}</td>
+                                            <td>{{binder.requestedDate | datePipe}}</td>
+                                            <td>{{binder.dueDate | datePipe}}</td>
+                                            <td>
+                                                <span *ngIf="binder.sentDate">{{binder.sentDate | datePipe}}</span>
+                                                <div *ngIf="!binder.sentDate" class="input-group input-group-sm">
+                                                    <input class="form-control input-sm"
+                                                        placeholder="yyyy-mm-dd"
+                                                        data-provide="datepicker"
+                                                        data-date-format="yyyy-mm-dd"
+                                                        data-date-autoclose="true"
+                                                        [(ngModel)]="binder.sentDate"
+                                                        [(isOpen)]="binder._sendIsOpen"
+                                                        (isOpenChange)="!$event ? updateBinder(binder) : null">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default btn-sm" type="button"
+                                                            (click)="binder._sendIsOpen = true">
+                                                        <span class="glyphicon glyphicon-calendar"
+                                                            aria-hidden="true"></span>
+                                                    </button>
+                                                </span>
+                                                </div>
+                                            </td>
+                                            <td>{{binder.receivedDate | datePipe}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </div>
+
+
+                        <modal [(isOpen)]="receiveModalIsOpen"
+                               confirmText="Confirm"
+                               [closeOnSave]="false"
+                               title="CONFIRM RECEIPT"
+                               (confirmChange)="confirmReceipt()">
+                            <div class="modal-inner-body container-fluid">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <p class="small modal-msg" role="region">Please confirm receipt.</p>
+                                    </div>
+                                </div>
+                                <div class="row" tabindex="0">
+                                    <div class="col-xs-3">
+                                        <label class="small">Case #</label>
+                                        <p class="small modal-detail">{{binderToReceive?.caseNumber}}</p>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <label class="small">Borrower Name</label>
+                                        <p class="small modal-detail">{{binderToReceive?.borrowerName}}</p>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <label class="small">Property Address</label>
+                                        <p class="small modal-detail">{{binderToReceive?.propertyStreetAddress}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </modal>
+
+                    </td>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

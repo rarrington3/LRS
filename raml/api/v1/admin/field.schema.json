@@ -1,0 +1,26 @@
+{
+    "id": "http://LRS/Field",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": [
+        "code"
+    ],
+    "properties": {
+        "code": {
+            "description": "The code for the field.",
+            "type": "string"
+        },
+        "description": {
+            "description": "The description for the field.",
+            "type": "string"
+        },
+        "entityName": {
+            "description": "The entity name for the field.",
+            "type": "string"
+        },
+        "fieldName": {
+            "description": "The field name for the field.",
+            "type": "string"
+        }
+    }
+}

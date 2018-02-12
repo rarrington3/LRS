@@ -1,0 +1,35 @@
+{
+  "dir": {
+    "temp": ".temp",
+    "app": "www",
+    "dist": "uibin",
+    "cordova": ".",
+    "docs": "documentation/generated",
+    "server": {
+      "controller": "App/LrsServicesApp/src/main/java/gov/hud/lrs/services/controller",
+      "dto": "App/LrsCommon/src/main/java/gov/hud/lrs/common/dto"
+    },
+    "apiroot": "./raml"
+  },
+  "globs": {
+    "scripts": "/**/*.{js,jsx,ts,tsx}",
+    "specs": "/**/*.spec.{js,jsx,ts,tsx}",
+    "mocks": "/**/*.mock.{js,jsx,ts,tsx}",
+    "e2e": "/**/*.e2e.{js,jsx,ts,tsx}",
+    "sprites": "modules/**/*.png",
+    "fonts": "modules/**/*.svg",
+    "bootstraps": "/**/bootstrap*.{js,jsx,ts,tsx}"
+  },
+  "isolateModules": [
+    "preloader"
+  ],
+  "spritebasedir": "/",
+  "styleformat": "less",
+  "defaultmodule": "lrs",
+  "cordovaenabled": false,
+  "servertask": "server",
+  "defaultlocale": "en",
+  "server": {
+    "port": 8080
+  }
+}

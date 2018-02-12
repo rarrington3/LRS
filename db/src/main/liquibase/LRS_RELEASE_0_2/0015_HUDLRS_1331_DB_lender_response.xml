@@ -1,0 +1,182 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1331_create_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+				CREATE TABLE DOCUMENT_TYPE_REF(
+				DOCUMENT_TYPE_ID UNIQUEIDENTIFIER NOT NULL PRIMARY KEY default newid(),
+				DOCUMENT_TYPE_CD VARCHAR(4) NULL,
+				DESCRIPTION VARCHAR(50) NULL)
+				
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1331_insert_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			INSERT INTO DOCUMENT_TYPE_REF(document_type_id,DOCUMENT_TYPE_CD, DESCRIPTION) values('8489141A-4468-44F4-9079-1DAFF61F7D64','INDM', 'Indemnification Letter')
+			INSERT INTO DOCUMENT_TYPE_REF(document_type_id,DOCUMENT_TYPE_CD, DESCRIPTION) values('B02252CC-A386-4221-8E7A-6E3A3C1E1834','RESP', 'Lender Response Upload')
+			INSERT INTO DOCUMENT_TYPE_REF(document_type_id,DOCUMENT_TYPE_CD, DESCRIPTION) values('75BB2E10-5CB4-4E5C-851B-B23D9B0A4E8F','OPER', 'Operational Document')
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1331_create_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+				CREATE TABLE NOTE_TYPE_REF(
+				NOTE_TYPE_ID UNIQUEIDENTIFIER NOT NULL PRIMARY KEY default newid(),
+				NOTE_TYPE_CD VARCHAR(4) NULL,
+				DESCRIPTION VARCHAR(50) NULL)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1331_insert_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			INSERT INTO NOTE_TYPE_REF(note_type_id,note_TYPE_CD, DESCRIPTION) values('BC026163-0326-424F-B98A-180786CB3FDA','FCTL', 'Finding Level Comments To Lender')
+			INSERT INTO NOTE_TYPE_REF(note_type_id,note_TYPE_CD, DESCRIPTION) values('B3A14D8B-8001-469C-9E33-D90F54AB87D7','FCFL', 'Finding Level Comments From Lender')
+			INSERT INTO NOTE_TYPE_REF(note_type_id,note_TYPE_CD, DESCRIPTION) values('21FB584A-CC7C-4B0F-8738-E614E60AC214','RLN', 'Review Level Note')
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1331_drop_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			drop table LRS_DOCUMENTS
+			drop table LRS_NOTES
+			drop table RESPONSE_FROM_LENDER			
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1331_create_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			CREATE TABLE DOCUMENTS(
+				   DOCUMENT_ID   UNIQUEIDENTIFIER NOT NULL default newid(),
+				   EXTERNAL_ID VARCHAR(64) NOT NULL,
+				   DOCUMENT_TYPE_ID UNIQUEIDENTIFIER NOT NULL,    
+				   FILE_NAME VARCHAR(100) NOT NULL,
+				   REVIEW_ID UNIQUEIDENTIFIER NULL,
+				   REVIEW_LEVEL_ID UNIQUEIDENTIFIER NULL,
+				   FINDING_ID UNIQUEIDENTIFIER NULL,
+				   CREATED_BY   CHAR(6) null,
+				   UPDATED_BY   CHAR(6) null,
+				   CREATED_TS   datetime null,
+				   UPDATED_TS   datetime null)
+
+			alter table DOCUMENTS add constraint DOCUMENTS_PK primary key nonclustered (DOCUMENT_ID)
+
+			alter table DOCUMENTS add constraint DOCUMENTSTODOCTYPREF foreign key (DOCUMENT_TYPE_ID) references document_type_ref(DOCUMENT_TYPE_ID)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1331_create_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			 CREATE TABLE NOTES(
+			NOTE_ID uniqueidentifier NOT NULL default newid(),
+			REVIEW_ID UNIQUEIDENTIFIER NULL,
+			REVIEW_LEVEL_ID UNIQUEIDENTIFIER NULL,
+			FINDING_ID UNIQUEIDENTIFIER NULL,
+			ASSOCIATED_DEFECT_CD varchar(16) NULL,
+			CREATED_BY char(6) NULL,
+			CREATED_TS datetime NULL,
+			UPDATED_BY char(6) NULL,
+			UPDATED_TS datetime NULL,
+			NOTE_TEXT text NULL,
+			NOTE_TYPE_ID UNIQUEIDENTIFIER null)
+
+
+			alter table NOTES add constraint NOTES_PK primary key nonclustered (NOTE_ID)
+			
+			alter table NOTES add constraint NOTESTONOTETYPREF foreign key (NOTE_TYPE_ID) references note_type_ref(NOTE_TYPE_ID)			
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1331_alter_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table documents drop column finding_id
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1331_create_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create table FINDING_DOCUMENT
+(			FINDING_ID UNIQUEIDENTIFIER NOT NULL,
+			DOCUMENT_ID UNIQUEIDENTIFIER NOT NULL )
+
+ 			alter table FINDING_DOCUMENT add constraint FINDINGDOCTORVWFIND foreign key (FINDING_ID) references RVW_LVL_FINDING(FINDING_ID)
+			alter table FINDING_DOCUMENT add constraint FINDINGDOCTODOCUMENT foreign key (DOCUMENT_ID) references DOCUMENTS(DOCUMENT_ID)
+
+			alter table FINDING_DOCUMENT add constraint FINDING_DOCUMENT_PK primary key nonclustered (FINDING_ID,DOCUMENT_ID)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1331_create_view_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create view RESPONSE_FROM_LENDER as
+			select D.FINDING_ID, D.UPDATED_BY, D.UPDATED_TS from
+					 (select B.FINDING_ID, A.UPDATED_BY, A.UPDATED_TS from DOCUMENTS A, FINDING_DOCUMENT B, DOCUMENT_TYPE_REF R1
+								 where A.DOCUMENT_ID = B.DOCUMENT_ID AND A.DOCUMENT_TYPE_ID = R1.DOCUMENT_TYPE_ID AND R1.DOCUMENT_TYPE_CD = 'RESP'
+						  union
+					 select C.FINDING_ID, C.UPDATED_BY, C.UPDATED_TS from NOTES C, NOTE_TYPE_REF R2 WHERE C.NOTE_TYPE_ID = R2.NOTE_TYPE_ID and R2.NOTE_TYPE_CD = 'FCFL') D
+			  WHERE D.UPDATED_TS = (Select MAX(z.UPDATED_TS) from (select A.UPDATED_TS from DOCUMENTS A, FINDING_DOCUMENT B, DOCUMENT_TYPE_REF R1
+																									 where A.DOCUMENT_ID = B.DOCUMENT_ID and B.FINDING_ID = D.FINDING_ID AND A.DOCUMENT_TYPE_ID = R1.DOCUMENT_TYPE_ID AND R1.DOCUMENT_TYPE_CD = 'RESP'
+																											union
+																									 select F.UPDATED_TS from NOTES F where F.FINDING_ID = D.FINDING_ID) z)
+
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1331_metadata_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			  delete from DICT_METADATA_FIELD
+			  where ENTITY_NAME in
+			  ('LRS Documents',
+			   'LRS Notes')
+			   
+			update DICT_METADATA_ENTITY
+			set DB_VIEW_OR_TABLE = 'NOTES'
+			where ENTITY_NAME = 'LRS Notes'
+
+			update DICT_METADATA_ENTITY
+			set DB_VIEW_OR_TABLE = 'DOCUMENTS'
+			where ENTITY_NAME = 'LRS Documents'	
+
+			insert into DICT_METADATA_ENTITY(ENTITY_NAME,DB_VIEW_OR_TABLE,CREATED_BY, CREATED_TS)values('Finding Document','FINDING_DOCUMENT','C20225',getdate())			
+			
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name)values('LRS Documents','Document ID',     'DOCUMENT_ID'          ,'C20225',getdate(),'STATIC',   'Document ID'    )
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name)values('LRS Documents','External ID',     'EXTERNAL_ID'          ,'C20225',getdate(),'STATIC',   'External ID'    )
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name)values('LRS Documents','Document Type ID','DOCUMENT_TYPE_ID','C20225',getdate(),'STATIC',        'Document Type ID')
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name)values('LRS Documents','File Name',       'FILE_NAME'              ,'C20225',getdate(),'STATIC', 'File Name'      )
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name)values('LRS Documents','Review ID',       'REVIEW_ID'              ,'C20225',getdate(),'STATIC', 'Review ID'      )
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name)values('LRS Documents','Review Level ID',  'REVIEW_LEVEL_ID'  ,'C20225',getdate(),'STATIC',      'Review Level ID' )
+
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name)values('Finding Document','Finding ID', 'FINDING_ID' , 'C20225', getdate(),'STATIC','Finding ID' )
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name)values('Finding Document','Document ID','DOCUMENT_ID', 'C20225', getdate(),'STATIC','Document ID')
+
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name)values('LRS Notes','Note ID',               'NOTE_ID'             ,'C20225',getdate(),'STATIC','Note ID'                )
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name)values('LRS Notes','Reference ID',          'REFERENCE_ID'        ,'C20225',getdate(),'STATIC','Reference ID'           )
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name)values('LRS Notes','Review ID',             'REVIEW_ID'           ,'C20225',getdate(),'STATIC','Review ID'              )
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name)values('LRS Notes','Review Level ID',       'REVIEW_LEVEL_ID'     ,'C20225',getdate(),'STATIC','Review Level ID'        )
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name)values('LRS Notes','Finding ID',            'FINDING_ID'          ,'C20225',getdate(),'STATIC','Finding ID'             )
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name)values('LRS Notes','Associated Defect Code','ASSOCIATED_DEFECT_CD','C20225',getdate(),'STATIC','Associated Defect Code' )    
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name)values('LRS Notes','Note Text',              'NOTE_TEXT'          ,'C20225',getdate(),'STATIC','Note Text'              )			
+		]]>
+        </sql>
+    </changeSet>		
+</databaseChangeLog>
+
+
+
+
+
+
+
+
+
+

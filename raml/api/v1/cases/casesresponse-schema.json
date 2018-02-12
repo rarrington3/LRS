@@ -1,0 +1,20 @@
+{
+    "id": "http://LRS/CasesResponse",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "additionalProperties": true,
+    "properties": {
+        "cases": {
+            "type": "array",
+            "items": {
+                "$ref": "Case"
+            }
+        },
+        "errors": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    }
+}

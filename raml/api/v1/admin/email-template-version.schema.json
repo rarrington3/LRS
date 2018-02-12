@@ -1,0 +1,74 @@
+{
+    "id": "http://LRS/EmailTemplateVersion",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": [
+        "emailName",
+        "emailCategory",
+        "version",
+        "description",
+        "lastModifiedDate",
+        "lastModifiedBy",
+        "activationDate",
+        "id",
+        "subject",
+        "copy",
+        "isActive",
+        "documentVariables"
+    ],
+    "properties": {
+        "emailName": {
+            "description": "The name of the email this template belongs to.",
+            "type": "string"
+        },
+        "emailCategory": {
+            "description": "The category name of this email template version. Should hint at what this email is used for.",
+            "type": "string"
+        },
+        "version": {
+            "description": "An incremented counter of the templates created for this email.",
+            "type": "integer"
+        },
+        "description": {
+            "description": "A human readable description of this email template. Private to HUD.",
+            "type": "string"
+        },
+        "lastModifiedDate": {
+            "description": "The date that this template was last modified.",
+            "type": "string",
+            "format": "date"
+        },
+        "lastModifiedBy": {
+            "description": "The name of who had last modified this email template.",
+            "type": "string"
+        },
+        "activationDate": {
+            "description": "The date that this template was activated.",
+            "type": "string",
+            "format": "date"
+        },
+        "isActive": {
+            "description": "State of this email template version.",
+            "type": "boolean"
+        },
+        "id": {
+            "description": "A unique identifier of this Email Template.",
+            "type": "string"
+        },
+        "subject": {
+            "description": "The text that will render into the subject of this email.",
+            "type": "string"
+        },
+        "copy": {
+            "description": "The text that will render into the body of this email.",
+            "type": "string"
+        },
+        "documentVariables": {
+            "description": "A collection of variables that can be rendered into the template.",
+            "type": "array",
+            "items": {
+                "$ref": "NameValuePair"
+            }
+        }
+    }
+}

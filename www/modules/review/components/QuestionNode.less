@@ -1,0 +1,172 @@
+@import '../../../libs/bootstrap/less/mixins/vendor-prefixes';
+@import "../../bootstrap/_variables";
+
+:host-context {
+	.read-only {
+
+		.question-text-wrapper {
+			color: @gray;
+		}
+
+		.question-button-wrapper span {
+			color: @gray;
+		}
+	}
+
+	/* styles should be scoped under host-context */
+	.btn-default {
+		height: 30px;
+	}
+
+	.list-group-item.node-wrapper {
+		border: none;
+		border-radius: 0;
+		background-color: transparent;
+		margin: 0;
+		padding: 10px;
+
+		&.childNode {
+			border-top: 1px solid @hr-border;
+		}
+
+		&.display {
+			opacity: 0;
+			height: 0;
+			.transition(all .35s ease);
+		}
+
+		&.display-after {
+			opacity: 1;
+			height: inherit;
+		}
+
+		&.depth0 {
+			padding-left: 0;
+		}
+
+		&.depth1 {
+			padding-left: 20px;
+		}
+
+		&.depth2 {
+			padding-left: 40px;
+		}
+
+		&.depth3 {
+			padding-left: 60px;
+		}
+
+		&.depth4 {
+			padding-left: 80px;
+		}
+
+		&.depth5 {
+			padding-left: 100px;
+		}
+
+		&.depth6 {
+			padding-left: 120px;
+		}
+
+		&.depth7 {
+			padding-left: 140px;
+		}
+
+		&.depth8 {
+			padding-left: 160px;
+		}
+
+		&.depth9 {
+			padding-left: 180px;
+		}
+
+		>.row {
+			clear: both;
+			&.display {
+				height: 0;
+				opacity: 0;
+				.transition(all .35s ease);
+			}
+
+			&.display-after {
+				opacity: 1;
+				height: 22px;
+			}
+		}
+
+		&.child-node{
+			margin-top: 0;
+			border-top: none;
+		}
+
+		.question-text-wrapper {
+			display: inline-block;
+			font-size: @font-size-medium;
+			color: @column-name-color;
+			width: 100%;
+			margin-left: 0;
+			text-align: left;
+
+			.status {
+				display:inline-block;
+				width: 10px;
+				height: 10px;
+				margin: 0 5px 0 0;
+			}
+		}
+
+		.checkbox-wrapper {
+            padding: 10px;
+		}
+
+		.btn {
+			margin-right: 4px;
+		}
+
+		.question-button-wrapper {
+			display: inline-block;
+			width: 100%;
+			text-align: right;
+			padding: 5px;
+			.btn {
+				width: 60px;
+			}
+		}
+
+		.question-text-wrapper {
+			line-height: 2;
+		}
+
+		&.finding-triggered {
+			.question-text-wrapper {
+				.status {
+					background-color: @brand-danger;
+				}
+			}
+		}
+	}
+
+	.finding-wrapper {
+		margin-left: 35px;
+
+		.glyphicon-flag {
+			color: @brand-danger;
+		}
+
+		.finding-alert {
+			color: @brand-danger;
+		}
+
+		a {
+			color: @brand-secondary;
+			text-decoration: underline;
+		}
+	}
+
+	.answer-container {
+
+		.controls {
+			padding: 0;
+		}
+	}
+}

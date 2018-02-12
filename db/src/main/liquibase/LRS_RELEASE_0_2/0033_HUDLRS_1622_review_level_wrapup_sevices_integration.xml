@@ -1,0 +1,27 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="jordanchavez@kpmg.com" id="HUDLRS_1622_review_level_wrapup_sevices_integration" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+			<![CDATA[
+				ALTER TABLE RQST_FROM_LENDER DROP COLUMN CASE_NUMBER
+                DELETE FROM DICT_METADATA_FIELD WHERE ENTITY_NAME = 'Request of Lender' AND DB_COLUMN = 'CASE_NUMBER'
+
+                ALTER TABLE RVW_LVL_CASE_SUMMARY DROP CONSTRAINT RVW_LVL_CASE_SUMMARY_PK
+                ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN REVIEW_ID
+                DELETE FROM DICT_METADATA_FIELD WHERE ENTITY_NAME = 'Case Summary for Review Level' AND DB_COLUMN = 'REVIEW_ID'
+                ALTER TABLE RVW_LVL_CASE_SUMMARY ADD CONSTRAINT RVW_LVL_CASE_SUMMARY_FK_REVIEW_LVL_ID FOREIGN KEY(REVIEW_LVL_ID) REFERENCES REVIEW_LEVEL(REVIEW_LVL_ID)
+                ALTER TABLE RVW_LVL_CASE_SUMMARY ADD CONSTRAINT RVW_LVL_CASE_SUMMARY_PK PRIMARY KEY NONCLUSTERED(REVIEW_LVL_ID)
+			]]>
+        </sql>
+    </changeSet>	
+ </databaseChangeLog>
+
+
+
+
+
+
+
+
+
+

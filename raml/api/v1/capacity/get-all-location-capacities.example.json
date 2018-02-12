@@ -1,0 +1,56 @@
+[
+    {
+        "id": "56F8FF8E-A7EF-40BE-B893-4D6FB57CE298",
+        "display": "Denver, Colorado (PUD)",
+        "totalCapacity": 471,
+        "availableCapacity": 51
+    },
+    {
+        "id": "79745834-F8F3-41E6-8E53-BDE2353DF177",
+        "display": "Denver, Colorado (QAD)",
+        "totalCapacity": 502,
+        "availableCapacity": -12
+    },
+    {
+        "id": "5896D396-8D64-4B45-82BE-677561D7BF07",
+        "display": "Atlanta, Georgia (PUD)",
+        "totalCapacity": 490,
+        "availableCapacity": 490
+    },
+    {
+        "id": "BBF1B50E-7908-499E-AF01-C828A1AA41FE",
+        "display": "Atlanta, Georgia (QAD)",
+        "totalCapacity": 476,
+        "availableCapacity": 476
+    },
+    {
+        "id": "3354605D-7BCC-4DE4-82FA-CF0EE44383DF",
+        "display": "Santa Ana, California (PUD)",
+        "totalCapacity": 505,
+        "availableCapacity": 505
+    },
+    {
+        "id": "E94C30F3-9CA6-4309-BE32-D836E641AC35",
+        "display": "Santa Ana, California (QAD)",
+        "totalCapacity": 548,
+        "availableCapacity": 548
+    },
+    {
+        "id": "90E796C0-2E7B-4FB1-A32D-F03D6B63B22A",
+        "display": "Philadelphia, Pennsylvania (PUD)",
+        "totalCapacity": 497,
+        "availableCapacity": 497
+    },
+    {
+        "id": "54840449-D7E4-4B1C-8390-F08FFEB6FC69",
+        "display": "Philadelphia, Pennsylvania (QAD)",
+        "totalCapacity": 462,
+        "availableCapacity": 462
+    },
+    {
+        "id": "C2844126-716F-449A-B152-C891948888FA",
+        "display": "HQ",
+        "totalCapacity": 471,
+        "availableCapacity": 470
+    }
+]

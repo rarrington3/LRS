@@ -1,0 +1,29 @@
+#%RAML 0.8
+title: User-Auth-fracstore-check
+version: 1.0
+#baseUri: http://localhost:8088
+#baseUri: https://mocksvc.mulesoft.com/mocks/dc5ecb0c-f4b9-46b5-a3c0-c61aa0294780
+baseUri: https://mocksvc.mulesoft.com/mocks/2f3fc9f9-53fc-4c8d-b156-366ae8f44213/mocks/dc5ecb0c-f4b9-46b5-a3c0-c61aa0294780
+mediaType: application/json
+documentation: 
+  - title: User Store API
+    content : Receive User's roles.
+
+/userrole:
+  description: User ID and its roles.
+  get:
+    headers:
+      LRS_USER:
+        example: HLRS02
+    responses:
+      200:
+        body:
+          example: |
+            [
+              {
+                "rolename": "Review_Location_Admin"
+              },
+              {
+                "rolename": "Lender_Indemnifier"
+              }
+            ]

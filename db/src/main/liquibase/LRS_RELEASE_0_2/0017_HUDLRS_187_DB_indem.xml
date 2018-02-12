@@ -1,0 +1,18 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="jordanchavez@kpmg.com" id="HUDLRS_187_drop_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table DOCUMENT drop column EXTERNAL_ID
+		]]>
+        </sql>
+    </changeSet>		
+
+    <changeSet context="ALL"  author="jordanchavez@kpmg.com" id="HUDLRS_187_metadata_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from dict_metadata_field where entity_name = 'LRS DOcuments' and db_column = 'EXTERNAL_ID'
+		]]>
+        </sql>
+    </changeSet>		
+</databaseChangeLog>

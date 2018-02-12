@@ -1,0 +1,17 @@
+{{> jsFileHeader }}
+
+import { Routes, RouterModule } from '@angular/router';
+import { LoggedInGuard } from '../app/services/AuthGuards';
+//import { YourView } from './views';
+
+export const {{upperCase scaffold.name}}_ROUTES: Routes = [
+    {
+        path: '{{scaffold.name}}',
+        //component: YourView,
+        canActivate: [LoggedInGuard]/*,
+        navigationBarEntry: '{{scaffold.name}}' <- To utilize this, import {{upperCase scaffold.name}}_ROUTES
+                                                   in the App.js file and include it into the allRoutes array. */
+    }
+];
+
+export const {{upperCase scaffold.name}}_ROUTING = RouterModule.forChild({{upperCase scaffold.name}}_ROUTES);

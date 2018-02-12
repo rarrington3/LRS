@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<springProperty scope="context" name="lrs.log.jboss.root" source="lrs.log.directory.jboss.root"/>
+	<springProperty scope="context" name="lrs.log.services" source="lrs.log.directory.services"/>
+	<springProperty scope="context" name="lrs.log.ui" source="lrs.log.directory.ui"/>
+    
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>
+				[%date][%t][%-5level] %msg%n
+			</Pattern>
+		</layout>
+	</appender>
+
+	<appender name="UI-ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${lrs.log.jboss.root}/${lrs.log.ui}/ui-errors.log</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>
+				%date %-5level [%logger] \(%thread\) %msg%n
+			</Pattern>
+		</encoder>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${lrs.log.jboss.root}/${lrs.log.ui}/ui-errors.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<maxFileSize>50MB</maxFileSize>
+			<maxHistory>30</maxHistory>
+			<totalSizeCap>10GB</totalSizeCap>
+		</rollingPolicy>
+	</appender>
+
+	<appender name="LRS-SERVICES" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${lrs.log.jboss.root}/${lrs.log.services}/services.log</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>
+				%date %-5level [%logger] \(%thread\) %msg%n
+			</Pattern>
+		</encoder>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${lrs.log.jboss.root}/${lrs.log.services}/services.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<maxFileSize>50MB</maxFileSize>
+			<maxHistory>30</maxHistory>
+			<totalSizeCap>10GB</totalSizeCap>
+		</rollingPolicy>
+	</appender>
+	
+	<logger name="gov.hud.lrs.ui.error" level="ERROR" additivity="false">
+		<appender-ref ref="UI-ERROR" />
+	</logger>
+
+	<logger name="gov.hud.lrs" level="DEBUG" additivity="false">
+		<appender-ref ref="LRS-SERVICES" />
+	</logger>
+	
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+	</root>
+
+</configuration>

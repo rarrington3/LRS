@@ -1,0 +1,38 @@
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+	<div class="panel panel-default" *ngFor="let group of findingGroups;trackBy:trackGroup">
+		<div class="panel-heading" role="tab" [id]="group.headerId">
+			<button role="button" data-toggle="collapse" data-parent="#accordion" [attr.data-target]="'#'+group.name" aria-expanded="false" class="collapsed btn btn-link">
+				<h4 class="panel-title">
+					<span class="caret glyphicon glyphicon-menu-down"></span>
+					<span class="heading-title">{{group.name}} Finding ({{group.findings.length}})</span>
+					<span class="badge header-status">{{group.status}}</span>
+
+				</h4>
+			</button>
+		</div>
+
+		<div [id]="group.name" class="panel-collapse collapse" role="tabpanel" [attr.aria-labelledby]="group.headerId">
+			<div class="panel-body">
+
+				<!-- Findings -->
+				<div class="row" *ngFor="let finding of group.findings;trackBy:trackFinding">
+					<div class="col-xs-12">
+
+						<div class="finding-item">
+							<a type="button" role="menuitem"  routerLinkActive="active" [routerLink]="getURL(finding)" class="btn">
+								<div class="finding-item-wrapper">
+                                    <span class="finding-title">{{finding.defectAreaCode}}.{{finding.selectedSourceCode}}.{{finding.selectedCauseCode}}</span>
+                                    <span class="reviewer-response-label" *ngIf="finding.mitigatedAction !== null || finding.isNewAdhoc">{{(finding.isNewAdhoc) ? 'New' : finding.mitigatedAction}}</span>
+                                    <span class="finding-status-icon" aria-hidden="true" [class.danger]="(finding.ratingCode === 'U' || finding.ratingCode === 'M' || finding.ratingCode === 'R')" [class.warning]="(finding.ratingCode === 'D')" [class.conforming]="(finding.ratingCode === 'C')">{{finding.ratingCode !== 'C' ? finding.selectedTierCode : 'C'}}</span>
+                                    <span class="icon-text sr-only" >{{finding.rating.description}}</span>
+                                    <span class="response-progress glyphicon glyphicon-ok"  aria-hidden="true" *ngIf="(finding.ratingCode === 'U' || finding.ratingCode === 'M' || finding.ratingCode === 'R') && (getResponseProgress(finding) !== 'empty')"></span>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

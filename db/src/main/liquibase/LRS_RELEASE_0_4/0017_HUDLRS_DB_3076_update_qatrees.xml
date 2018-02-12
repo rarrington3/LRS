@@ -1,0 +1,26 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3076_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update  QUESTION_REFERENCE
+			set VALUE_TO_TRIGGER_ACTION = 'NO'
+			where QUESTION_ID = 'A563D39F-1B6F-4C80-A1EE-A225A476291B'
+			
+			delete from QATREE_QSTN_CONDITION
+			where QATREE_QSTN_CONDITION_ID in ('49E5D38D-69C3-45CA-9CCD-C19134E0DE55',
+			                                   '47A9629C-B1A9-4290-A901-F510C122BE20')
+
+			update  QUESTION_REFERENCE
+			set VALUE_TO_TRIGGER_ACTION = 'YES'
+			where QUESTION_ID in ('72AA683B-280C-47BA-9CEA-842692EC2618',
+			                      '2D89F269-3351-4EAF-B72E-9C5A7222F221',
+								  'D91EA602-BB63-40AC-A99D-042C44A1883B',
+								  'FC9BB336-4341-4BA6-98F5-361E2F86916C',
+								  '8B339C36-1400-40A2-AE4E-24E2C47E02ED')
+		]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>    
+
+

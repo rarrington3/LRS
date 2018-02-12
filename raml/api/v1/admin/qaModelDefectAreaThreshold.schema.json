@@ -1,0 +1,24 @@
+{
+    "id": "http://LRS/QaModelDefectAreaThreshold",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "extends": "QaModelDefectArea",
+    "properties": {
+        "id": {
+            "description": "The id of this item.",
+            "type": "string"
+        },
+        "sourceCode": {
+            "description": "The source code for this item.",
+            "type": "string"
+        },
+        "causeCode": {
+            "description": "The cause code for this item.",
+            "type": "string"
+        },
+        "severityCode": {
+            "description": "The severity code for this item.",
+            "type": "string"
+        }
+    }
+}

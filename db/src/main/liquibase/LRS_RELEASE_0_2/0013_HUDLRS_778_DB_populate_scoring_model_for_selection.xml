@@ -1,0 +1,19 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_778_insert_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+		    INSERT [dbo].[SCORING_FACTORS] ([FACTOR_ID], [FACTOR_ATTRIBUTE_NAME], [DESCRIPTION], [COMMENTS], [TECHNICAL_REFERENCE]) VALUES (N'752111d3-5e2a-45d9-9340-2abf1e5294c7', N'Random Number Between 1 and 100', NULL, NULL, NULL)
+			insert into scoring_model_factors([FACTOR_ID],[MODEL_ID],[MODEL_VER_NUM],[WEIGHT],created_by,created_ts) values('752111D3-5E2A-45D9-9340-2ABF1E5294C7','A27A5CD9-432B-49C5-8155-141226E05FFC',1,1,'C20225',getdate())
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_778_insert_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into REVIEW_LEVEL_REF (REVIEW_LEVEL_ID,REVIEW_LEVEL_CD,DESCRIPTION) values('F9059505-7D38-4623-BB0F-3EF5E7BB17C7','MITG','Mitigation')
+		]]>
+        </sql>
+    </changeSet>		
+</databaseChangeLog>
+

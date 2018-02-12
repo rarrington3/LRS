@@ -1,0 +1,65 @@
+<div class="panel panel-default lrs-panel-primary">
+    <div class="panel-heading">
+        <a class="panel-title qa-model-title"
+           [routerLink]="['../../../qaModels/']">Q&A Models - </a>
+        <a class="qa-model-subtitle" *ngIf="mode === 'view'"
+           [routerLink]="['../../../qaModel/', qaModel.qaModelId]">{{qaModel.name}} </a>
+        <a class="qa-model-subtitle" *ngIf="mode === 'edit'"
+           [routerLink]="['../../../editQaModel/', qaModel.qaModelId]">{{qaModel.name}} </a>
+        <span class="glyphicon glyphicon-lock"
+              [class.glyphicon-check]="qaModel.statusCode === qaModelStatusCode.ACTIVE"
+              [class.glyphicon-cog]="qaModel.statusCode === qaModelStatusCode.DRAFT"
+              [class.glyphicon-lock]="qaModel.statusCode === qaModelStatusCode.ARCHIVED"
+              [class.text-success]="qaModel.statusCode === qaModelStatusCode.ACTIVE"
+              [attr.aria-label]="qaModel.status"
+              [title]="qaModel.status">
+        </span>
+        <span [class.text-success]="qaModel.statusCode === qaModelStatusCode.ACTIVE">{{qaModel.status}}</span>
+        <table class="qa-model-header-table pull-right">
+            <thead>
+            <tr>
+                <th class="small">Version</th>
+                <th class="small">Creation Date</th>
+                <th class="small">Last Modified Date</th>
+                <th class="small">Last Modified By</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{qaModel.version}}</td>
+                <td>{{qaModel.createdDate | datePipe}}</td>
+                <td>{{qaModel.modifiedDate | datePipe}}</td>
+                <td>{{qaModel.modifiedBy}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-body">
+        <div class="defect-area-title">
+            <h4 *ngIf="!qaModelLoading">{{defectArea.description}} ({{defectArea.code}})</h4>
+        </div>
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" [class.active]="selectedTab === tabs[i]"
+                *ngFor="let tab of tabs; let i=index">
+                <a [routerLink]="[tab.route]">{{tab.desc}}</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active fade in">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+        <div class="pull-right">
+            <a class="btn btn-primary"
+               [attr.disabled]="getPrevTabAvailable() ? undefined : 'disabled'"
+               [routerLink]="[getPrevTab().route]">
+                <span class="glyphicon glyphicon-chevron-left smaller" aria-hidden="true"></span> <span>Back</span>
+            </a>
+            <a class="btn btn-primary"
+               [attr.disabled]="getNextTabAvailable() ? undefined : 'disabled'"
+               [routerLink]="[getNextTab().route]">
+                <span>Next</span> <span class="glyphicon glyphicon-chevron-right smaller" aria-hidden="true"></span>
+            </a>
+        </div>
+    </div>
+</div>

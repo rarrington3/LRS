@@ -1,0 +1,33 @@
+{{> jsFileHeader }}
+
+import {Component, Input, Output, EventEmitter} from '@angular/core';
+import template from './{{scaffold.name}}.html';
+import styles from './{{scaffold.name}}.{{settings.styleformat}}';
+
+@Component({
+    selector: '{{hyphenCase scaffold.name}}',
+    template: template,
+    styles: [styles],
+})
+/**
+ * @see https://angular.io/docs/ts/latest/api/core/Component-decorator.html
+ * @example
+ * <{{hyphenCase scaffold.name}} name="{{camelCase scaffold.name}}" (change)="onChange($event)"></{{hyphenCase scaffold.name}}>
+ */
+export default class {{camelCase scaffold.name}} {
+    /**
+     * An example input for this component
+     * @see https://angular.io/docs/ts/latest/api/core/Input-var.html
+     */
+    @Input() name:string = '{{camelCase scaffold.name}}';
+
+    /**
+     * An example output for this component
+     * @see https://angular.io/docs/ts/latest/api/core/Output-var.html
+     */
+    @Output() change:EventEmitter = new EventEmitter();
+
+    constructor() {
+
+    }
+}

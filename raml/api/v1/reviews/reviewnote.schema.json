@@ -1,0 +1,40 @@
+{
+    "id": "http://LRS/ReviewNote",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": [
+        "hudId",
+        "nameFirst",
+        "nameLast",
+        "lastUpdated",
+        "text"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "hudId": {
+            "description": "The login identifier of the reviewer; the user's HID.",
+            "type": "string"
+        },
+        "nameFirst": {
+            "description": "The forename of the reviewer.",
+            "type": "string"
+        },
+        "nameLast": {
+            "description": "The family name of the reviewer.",
+            "type": "string"
+        },
+        "lastUpdated": {
+            "description": "Date and time when the note was last updated (or created if no updates).",
+            "type": "string",
+            "format": "date-time"
+        },
+        "defectAreaCode": {
+            "description": "Defect area code that can be optionally associated with this note. The display text of this codes can be retrieved from the 'defectAreaDictionary' service.",
+            "type": "string"
+        },
+        "text": {
+            "description": "The note text.",
+            "type": "string"
+        }
+    }
+}

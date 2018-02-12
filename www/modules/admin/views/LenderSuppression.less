@@ -1,0 +1,91 @@
+@import '../../bootstrap/_variables';
+@import '../../shared/_mixins';
+:host-context {
+    /* styles should be scoped under host-context */
+
+    .model-admin-body {
+        padding: 30px 45px 20px 45px;
+    }
+
+    .padded {
+        padding: 0 40px;
+    }
+
+    .section-heading {
+        font-size: @font-size-base;
+        color: @link-light-blue;
+        font-weight: 600;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+    }
+
+    label {
+        display: block;
+    }
+
+    input[type='text'] {
+        display: block;
+        height: 30px;
+        border: 1px solid @hr-border;
+        border-radius: 5px;
+        font-size: @font-size-small;
+        padding: 4px 8px;
+        margin-bottom: 10px;
+        width: 220px;
+        color: @link-light-blue;
+    }
+
+    .form-item {
+        margin-top: 20px;
+        padding-left: 0;
+        padding-right: 0;
+
+        .inline-input {
+            display: inline-block;
+            height: 30px;
+        }
+        .add-btn {
+            display: inline-block;
+            width: 70px;
+            height: 30px;
+            margin-left: 8px;
+        }
+    }
+
+    .lrs-case-table {
+        margin-top: 20px;
+
+        th:first-child {
+            padding-left: 16px;
+        }
+
+        td {
+            &.lender-td {
+                width: 10%;
+            }
+            &.lender-name {
+                width: 60%;
+            }
+            .btn {
+                height: 24px;
+                line-height: 10px;
+                font-size: 12px;
+            }
+        }
+    }
+
+    .modal-inner-body {
+        .tall {
+            min-height: 100px;
+        }
+        .form-item {
+            label {
+                display: block;
+            }
+            input[type='text'] {
+                width: 300px;
+            }
+        }
+    }
+
+}

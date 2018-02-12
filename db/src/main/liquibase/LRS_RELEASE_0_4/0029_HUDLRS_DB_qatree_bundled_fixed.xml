@@ -1,0 +1,225 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3220_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			EXEC sp_create_qa_model_by_name 'LRS Initial QA Model V2','LRS Initial QA Model V3','LRS Initial QA Model V3','C20225'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3220_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update qr
+			set VALUE_TO_TRIGGER_ACTION = 'YES'
+			from QUESTION_REFERENCE qr,
+				 QATREE_QUESTION a,
+				 QATREE b,
+				QA_MODEL c
+			where a.QUESTION_REFERENCE = 'PE.008'  
+			  and qr.QUESTION_ID = a.QUESTION_ID
+			  and a.QATREE_ID = b.QATREE_ID
+			  and b.QA_MODEL_ID = c.QA_MODEL_ID
+			  and c.VERSION_NUM = '3'		
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3263_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update qqc
+			set COMPARISON_VALUES = 'Unknown'
+			from QATREE_QSTN_CONDITION qqc,
+			     QUESTION_REFERENCE qr,
+				 QATREE_QUESTION a,
+				 QATREE b,
+				QA_MODEL c
+			where a.QUESTION_REFERENCE = 'BE.013'  
+			  and qr.QUESTION_ID = a.QUESTION_ID
+			  and a.QATREE_ID = b.QATREE_ID
+			  and b.QA_MODEL_ID = c.QA_MODEL_ID
+			  and c.VERSION_NUM = '3'
+			  and qqc.QUESTION_ID = a.QUESTION_ID
+			  and qqc.FIELD_NAME = 'Underwriting Method'	
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3282_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update DICT_METADATA_FIELD_MODEL
+			set ORDER_NUMBER = ORDER_NUMBER + 1
+			from DICT_METADATA_FIELD_MODEL dmfm,
+			     QA_MODEL qm,
+				 DICT_METADATA_FIELD_SUBJECT_AREA dmfsa
+			where dmfm.QA_MODEL_ID = qm.QA_MODEL_ID
+			  and qm.MODEL_NAME = 'LRS Initial QA Model V3'
+			  and dmfm.DICT_METADATA_FIELD_SUBJECT_AREA_ID = dmfsa.DICT_METADATA_FIELD_SUBJECT_AREA_ID
+			  and dmfsa.SUBJECT_AREA = 'Loan'
+			  and ORDER_NUMBER >= 7
+
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3282_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','ADP Code'                      ,'C20225',getdate(),7,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V3' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Loan' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V3' and created_by = 'C20225')))
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_1567_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update ds
+			set DESCRIPTION = case when SEVERITY_TIER_CD = '1' then 'Tier 1: Unacceptable (Highest)'
+								   when SEVERITY_TIER_CD = '2' then 'Tier 2: Unacceptable'
+								   when SEVERITY_TIER_CD = '3' then 'Tier 3: Deficient'
+								   when SEVERITY_TIER_CD = '4' then 'Tier 4: Deficient (Lowest)' end
+			from DEFECT_SEVERITY ds,
+				 DEFECT d,
+				 QA_MODEL qm
+			where ds.DEFECT_ID = d.DEFECT_ID
+			  and d.QA_MODEL_ID = qm.QA_MODEL_ID
+			  and VERSION_NUM = 3    
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3279_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from DICT_METADATA_FIELD_CONDITION 
+			where FIELD_NAME not in
+			(
+			'Additional 10 Pct of IPL Usage Indicator',
+			'ARM Index Expected Rate',
+			'Bankruptcy Code',
+			'Expected Rate',
+			'First Time In Episode Three Month Delinquent Date',
+			'Foreclosure Start Date',
+			'HUD REO Repair Amount',
+			'Initial Disbursement Limit',
+			'Initial Principal Limit',
+			'loss mitigation code',
+			'Mandatory Obligations Amt',
+			'Mandatory Obligations Cash from Borrower',
+			'Mandatory Obligations Cash from Lender',
+			'Married to NBS Indicator',
+			'Maximum Claim Amount (MCA)',
+			'Maximum Rate',
+			'occupancy status',
+			'Oldest Unpaid Installment',
+			'Origination Fee',
+			'Payment Plan',
+			'Repair Complete Date',
+			'Taxes Insurance First Year Amount HECM',
+			'Ten Year Rate Lock Indicator',
+			'Termination type code')
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3279_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_FIELD_CONDITION
+			(
+			ENTITY_NAME, 
+			FIELD_NAME, 
+			CONDITION_ENTITY_NAME, 
+			CONDITION_FIELD_NAME, 
+			CREATED_BY, 
+			CREATED_TS,
+			COMPARISON_VALUES, 
+			CONDITION_OPERATOR, 
+			METADATA_FIELD_COND_ID
+			)
+			select 
+			  ENTITY_NAME,
+			  FIELD_NAME,
+			  ENTITY_NAME,
+			  'Review Type',
+			  'C20225',
+			  getdate(),
+			  'U,S,C',
+			  'IN',
+			  newid()
+			from DICT_METADATA_FIELD
+			where ENTITY_NAME = 'Case Summary for Review Level'
+			and FIELD_NAME not in
+			(select FIELD_NAME from DICT_METADATA_FIELD_CONDITION )
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3283_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			  update a
+			  set REVIEW_DAYS_ITERATION_1 = 20
+			  from REVIEW_LEVEL_ITERATION_TIMEFRAME a,
+				   REVIEW_LEVEL_TYPE_REF b
+			  where a.REVIEW_LEVEL_TYPE_ID = b.REVIEW_LEVEL_TYPE_ID
+				and b.REVIEW_LEVEL_CD in ('INIT')
+		]]>
+        </sql>
+    </changeSet>			
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3283_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			  update a
+			  set REVIEW_DAYS_ITERATION_1 = 15,
+			      REVIEW_DAYS_ITERATION_2 = 15
+			  from REVIEW_LEVEL_ITERATION_TIMEFRAME a,
+				   REVIEW_LEVEL_TYPE_REF b
+			  where a.REVIEW_LEVEL_TYPE_ID = b.REVIEW_LEVEL_TYPE_ID
+				and b.REVIEW_LEVEL_CD in ('MITG')
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3283_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			  update a
+			  set REVIEW_DAYS_ITERATION_1 = 10,
+			      REVIEW_DAYS_ITERATION_2 = 10
+			  from REVIEW_LEVEL_ITERATION_TIMEFRAME a,
+				   REVIEW_LEVEL_TYPE_REF b
+			  where a.REVIEW_LEVEL_TYPE_ID = b.REVIEW_LEVEL_TYPE_ID
+				and b.REVIEW_LEVEL_CD in ('HQES','ESCL')
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3303_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update q 
+			set ENABLE_PRE_QUAL_QUESTION_IND = 'Y'
+			from QATREE q,
+				 QUESTION_REFERENCE qr,
+				 QATREE_QUESTION qq
+			where ANSWER_VALUES = 'QA_MODEL_PREQUAL'
+			 and qr.QUESTION_ID = qq.QUESTION_ID
+			 and q.QATREE_ID = qq.QATREE_ID
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3279_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from DICT_METADATA_FIELD_CONDITION 
+			where FIELD_NAME = 'HUD REO Repair Amount'
+			  and COMPARISON_VALUES in
+			  ('203k','Y','N')
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3279_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from DICT_METADATA_FIELD_CONDITION 
+			where FIELD_NAME = 'Review Type'
+		]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>    
+
+

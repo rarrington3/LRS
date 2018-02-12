@@ -1,0 +1,22 @@
+{
+    "id": "http://LRS/EmailTemplate",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": [
+        "emailCategory",
+        "templateVersions"
+    ],
+    "properties": {
+        "emailCategory": {
+            "description": "The category name of this group of email template versions. Should hint at what this email template version is used for.",
+            "type": "string"
+        },
+        "templateVersions": {
+            "description": "A collection of 'lite' email template versions for this email template.",
+            "type": "array",
+            "items": {
+                "$ref": "EmailTemplateVersionLite"
+            }
+        }
+    }
+}

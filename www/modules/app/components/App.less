@@ -1,0 +1,55 @@
+@import '../../bootstrap/_variables.less';
+
+:host-context {
+    /* styles should be scoped under host-context */
+
+    min-width: 1200px;
+    display: block;
+
+    #GlobalHeader {
+        color: white;
+        background-color: @brand-primary;
+
+        .user-info {
+            margin-top: 11px;
+            text-align: right;
+            font-size: @font-size-small;
+            text-transform: capitalize;
+
+            .name {
+                color: @brand-secondary;
+            }
+        }
+
+        .glyphicon-star {
+            color: white;
+        }
+
+        .title {
+            font-weight: bold;
+            margin-top: 11px;
+            margin-bottom: 0px;
+        }
+    }
+
+    #GlobalHeaderNav {
+
+        .header-nav {
+            display: block;
+            float: left;
+            color: @gray-light;
+            font-size: @font-size-small;
+            padding: 11px 12px;
+            border-bottom: 1px solid transparent;
+            &:hover, &:focus {
+                text-decoration: none;
+            }
+
+            &.currentTab {
+                background-color: @brand-secondary;
+                color: white;
+                border-bottom-color: @brand-blue-border-color;
+            }
+        }
+    }
+}

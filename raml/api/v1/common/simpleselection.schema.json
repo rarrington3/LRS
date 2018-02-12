@@ -1,0 +1,16 @@
+{
+    "id": "http://LRS/SimpleSelection",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "additionalProperties": false,
+    "properties": {
+        "selectionId": {
+            "description": "An optional simple selection ID that can be used for various API calls that only need to know an ID.",
+            "type": "string"
+        },
+        "reasonCode": {
+            "description": "An optional reason code for the selection.",
+            "type": "string"
+        }
+    }
+}

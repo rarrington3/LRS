@@ -1,0 +1,35 @@
+displayName: case
+
+/search:
+    displayName: searchCase
+    post:
+        description: Search for one or more cases by ID.
+        securedBy:
+            - fhac:
+                roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+        body:
+            schema: CaseRequest
+            example: !include "caserequest-example.json"
+        responses:
+            200:
+                description: The service successfully searched
+                body:
+                    schema: CasesResponse
+                    example: !include "casesresponse-example.json"
+
+/selfReportSearch:
+    displayName: selfReportSearch
+    post:
+        description: Search for one or more cases by ID.
+        securedBy:
+            - fhac:
+                roles: [ROLE_RESPONSE_COORDINATOR, ROLE_INDEMNIFIER]
+        body:
+            schema: CaseRequest
+            example: !include "caserequest-example.json"
+        responses:
+            200:
+                description: The service successfully searched
+                body:
+                    schema: CasesResponse
+                    example: !include "casesresponse-example.json"

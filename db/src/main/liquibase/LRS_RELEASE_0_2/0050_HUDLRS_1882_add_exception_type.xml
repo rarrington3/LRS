@@ -1,0 +1,34 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1882_insert_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update LRS_GEN_LOOKUP 
+			set LOOKUP_ENTITY = 'Review Process Exception'
+			where LOOKUP_ENTITY = 'Exception'
+
+			insert into LRS_GEN_LOOKUP (LOOKUP_ENTITY, LOOKUP_FIELD, LOOKUP_CODE, LOOKUP_DESCRIPTION, CREATED_BY, CREATED_TS)values('Review Process Exception','Exception Type','HQES','HQ Escalation','C20225',getdate())
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1882_insert_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update LRS_GEN_LOOKUP 
+			set display_order = 6
+			where LOOKUP_ENTITY = 'Review Process Exception'
+			  and lookup_code = 'HQES'
+		]]>
+        </sql>
+    </changeSet>		
+ </databaseChangeLog>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,208 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3128_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table rvw_lvl_case_summary add APRSL_CMPLTN_DT datetime null
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3128_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_FIELD
+			(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, USER_EDITABLE_IND, UI_CONTROL_TYPE, DISPLAY_ORDER, DISPLAY_NAME)
+			select ENTITY_NAME, 'Appraisal Completion Date', 'APRSL_CMPLTN_DT', 'C20225', getdate(), USER_EDITABLE_IND, UI_CONTROL_TYPE, DISPLAY_ORDER, 'Appraisal Completion Date'
+			from DICT_METADATA_FIELD
+			where ENTITY_NAME = 'Case Summary for Review Level'
+			and FIELD_NAME = 'Effective Date of Appraisal'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3128_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update QATREE_QSTN_CONDITION
+			set FIELD_NAME = 'Appraisal Completion Date'
+			where FIELD_NAME = 'Effective Date of Appraisal'
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3128_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update DICT_METADATA_FIELD_RELATIVES
+			set FIELD_NAME = 'Appraisal Completion Date'
+			where FIELD_NAME = 'Effective Date of Appraisal'
+		]]>
+        </sql>
+    </changeSet>			
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3128_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update DICT_METADATA_FIELD_MODEL
+			set FIELD_NAME = 'Appraisal Completion Date'
+			where FIELD_NAME = 'Effective Date of Appraisal'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3128_0006" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from DICT_METADATA_FIELD
+			where ENTITY_NAME = 'Case Summary for Review Level'
+			and FIELD_NAME = 'Effective Date of Appraisal'			
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3128_0007" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update dict_metadata_field set display_order = 1    where entity_name ='Case Summary for Review Level' and field_name ='100 REO Down Payment Program Indicator'
+			update dict_metadata_field set display_order = 2    where entity_name ='Case Summary for Review Level' and field_name ='Additional 10 Pct of IPL Usage Indicator'
+			update dict_metadata_field set display_order = 3    where entity_name ='Case Summary for Review Level' and field_name ='ADP Code'
+			update dict_metadata_field set display_order = 4    where entity_name ='Case Summary for Review Level' and field_name ='Amortization Type Code'
+			update dict_metadata_field set display_order = 5    where entity_name ='Case Summary for Review Level' and field_name ='Appraisal Completion Date'
+			update dict_metadata_field set display_order = 6    where entity_name ='Case Summary for Review Level' and field_name ='Appraiser Name'			
+			update dict_metadata_field set display_order = 7    where entity_name ='Case Summary for Review Level' and field_name ='ARM Index Expected Rate'
+			update dict_metadata_field set display_order = 8    where entity_name ='Case Summary for Review Level' and field_name ='ARM Indicator'
+			update dict_metadata_field set display_order = 9    where entity_name ='Case Summary for Review Level' and field_name ='Assets after Closing at Underwriting'
+			update dict_metadata_field set display_order = 10   where entity_name ='Case Summary for Review Level' and field_name ='Assumed Loan Indicator'
+			update dict_metadata_field set display_order = 11   where entity_name ='Case Summary for Review Level' and field_name ='Back End Ratio at Endorsement'
+			update dict_metadata_field set display_order = 12   where entity_name ='Case Summary for Review Level' and field_name ='Back End Ratio at Underwriting'
+			update dict_metadata_field set display_order = 13   where entity_name ='Case Summary for Review Level' and field_name ='Back To Work Indicator'
+			update dict_metadata_field set display_order = 14   where entity_name ='Case Summary for Review Level' and field_name ='Bankruptcy Code'
+			update dict_metadata_field set display_order = 15   where entity_name ='Case Summary for Review Level' and field_name ='Bankruptcy Date'
+			update dict_metadata_field set display_order = 16   where entity_name ='Case Summary for Review Level' and field_name ='Bankruptcy Indicator'
+			update dict_metadata_field set display_order = 17   where entity_name ='Case Summary for Review Level' and field_name ='Borrower 1 Birth Date'
+			update dict_metadata_field set display_order = 18   where entity_name ='Case Summary for Review Level' and field_name ='Borrower 1 First Time Homebuyer Indicator'
+			update dict_metadata_field set display_order = 19   where entity_name ='Case Summary for Review Level' and field_name ='Borrower 1 Name'
+			update dict_metadata_field set display_order = 20   where entity_name ='Case Summary for Review Level' and field_name ='Borrower 1 Renting Indicator'
+			update dict_metadata_field set display_order = 21   where entity_name ='Case Summary for Review Level' and field_name ='Borrower 1 Self Employed Indicator'
+			update dict_metadata_field set display_order = 22   where entity_name ='Case Summary for Review Level' and field_name ='Borrower 1 SSN'
+			update dict_metadata_field set display_order = 23   where entity_name ='Case Summary for Review Level' and field_name ='Borrower 2 Name'
+			update dict_metadata_field set display_order = 24   where entity_name ='Case Summary for Review Level' and field_name ='Borrower 2 SSN'
+			update dict_metadata_field set display_order = 25   where entity_name ='Case Summary for Review Level' and field_name ='Borrower Birth Date'
+			update dict_metadata_field set display_order = 26   where entity_name ='Case Summary for Review Level' and field_name ='Borrower Funds To Close Required Investment'
+			update dict_metadata_field set display_order = 27   where entity_name ='Case Summary for Review Level' and field_name ='Borrower Housing Expenses at Endorsement'
+			update dict_metadata_field set display_order = 28   where entity_name ='Case Summary for Review Level' and field_name ='Borrower Housing Expenses at Underwriting'
+			update dict_metadata_field set display_order = 29   where entity_name ='Case Summary for Review Level' and field_name ='Borrower Paid Closing Costs'
+			update dict_metadata_field set display_order = 30   where entity_name ='Case Summary for Review Level' and field_name ='Borrower Type (Occupancy)'
+			update dict_metadata_field set display_order = 31   where entity_name ='Case Summary for Review Level' and field_name ='Building on Own Land Indicator'
+			update dict_metadata_field set display_order = 32   where entity_name ='Case Summary for Review Level' and field_name ='Building Type'
+			update dict_metadata_field set display_order = 33   where entity_name ='Case Summary for Review Level' and field_name ='Cash Out Refinance Indicator'
+			update dict_metadata_field set display_order = 34   where entity_name ='Case Summary for Review Level' and field_name ='Chapter 13 Bankruptcy Exists Indicator'
+			update dict_metadata_field set display_order = 35   where entity_name ='Case Summary for Review Level' and field_name ='Chapter 7 Bankruptcy Exists Indicator'
+			update dict_metadata_field set display_order = 36   where entity_name ='Case Summary for Review Level' and field_name ='Claim Type'
+			update dict_metadata_field set display_order = 37   where entity_name ='Case Summary for Review Level' and field_name ='Closing Date of the Mortgage'
+			update dict_metadata_field set display_order = 38   where entity_name ='Case Summary for Review Level' and field_name ='CLTV'
+			update dict_metadata_field set display_order = 39   where entity_name ='Case Summary for Review Level' and field_name ='Construction Code'
+			update dict_metadata_field set display_order = 40   where entity_name ='Case Summary for Review Level' and field_name ='Date of Application'
+			update dict_metadata_field set display_order = 41   where entity_name ='Case Summary for Review Level' and field_name ='Date of Prior Sale or Transfer'
+			update dict_metadata_field set display_order = 42   where entity_name ='Case Summary for Review Level' and field_name ='Decision Code at Endorsement'
+			update dict_metadata_field set display_order = 43   where entity_name ='Case Summary for Review Level' and field_name ='Decision Code at Underwriting'
+			update dict_metadata_field set display_order = 44   where entity_name ='Case Summary for Review Level' and field_name ='Default Episode Exists'
+			update dict_metadata_field set display_order = 45   where entity_name ='Case Summary for Review Level' and field_name ='Disaster Indicator'
+			update dict_metadata_field set display_order = 46  where entity_name ='Case Summary for Review Level' and field_name ='Effective Date of Appraisal Update'
+			update dict_metadata_field set display_order = 47  where entity_name ='Case Summary for Review Level' and field_name ='Endorsement Date'
+			update dict_metadata_field set display_order = 48  where entity_name ='Case Summary for Review Level' and field_name ='Endorses beyond 60 days from closing'
+			update dict_metadata_field set display_order = 49  where entity_name ='Case Summary for Review Level' and field_name ='Escrow Amount'
+			update dict_metadata_field set display_order = 50  where entity_name ='Case Summary for Review Level' and field_name ='Expected Rate'
+			update dict_metadata_field set display_order = 51  where entity_name ='Case Summary for Review Level' and field_name ='Factory Fabricated Indicator'
+			update dict_metadata_field set display_order = 52  where entity_name ='Case Summary for Review Level' and field_name ='FHA Case Number'
+			update dict_metadata_field set display_order = 53  where entity_name ='Case Summary for Review Level' and field_name ='FICO Decision Score at Endorsement'
+			update dict_metadata_field set display_order = 54  where entity_name ='Case Summary for Review Level' and field_name ='FICO Decision Score at Underwriting'
+			update dict_metadata_field set display_order = 55  where entity_name ='Case Summary for Review Level' and field_name ='First Time In Episode Three Month Delinquent Date'
+			update dict_metadata_field set display_order = 56  where entity_name ='Case Summary for Review Level' and field_name ='Flipping Category 2 Indicator'
+			update dict_metadata_field set display_order = 57  where entity_name ='Case Summary for Review Level' and field_name ='Foreclosure Indicator'
+			update dict_metadata_field set display_order = 58  where entity_name ='Case Summary for Review Level' and field_name ='Foreclosure Start Date'
+			update dict_metadata_field set display_order = 59  where entity_name ='Case Summary for Review Level' and field_name ='Front End Ratio at Endorsement'
+			update dict_metadata_field set display_order = 60  where entity_name ='Case Summary for Review Level' and field_name ='Front End Ratio at Underwriting'
+			update dict_metadata_field set display_order = 61  where entity_name ='Case Summary for Review Level' and field_name ='Gift Letter 2 TIN'
+			update dict_metadata_field set display_order = 62  where entity_name ='Case Summary for Review Level' and field_name ='Gift Letter Amount'
+			update dict_metadata_field set display_order = 63  where entity_name ='Case Summary for Review Level' and field_name ='Gift Letter Amount - Second'
+			update dict_metadata_field set display_order = 64  where entity_name ='Case Summary for Review Level' and field_name ='Gift Letter Source'
+			update dict_metadata_field set display_order = 65  where entity_name ='Case Summary for Review Level' and field_name ='Gift Letter Source - Second'
+			update dict_metadata_field set display_order = 66  where entity_name ='Case Summary for Review Level' and field_name ='Gift Letter TIN'
+			update dict_metadata_field set display_order = 67  where entity_name ='Case Summary for Review Level' and field_name ='HECM Counseling Certificate Number'
+			update dict_metadata_field set display_order = 68  where entity_name ='Case Summary for Review Level' and field_name ='HECM Counseling Date'
+			update dict_metadata_field set display_order = 69  where entity_name ='Case Summary for Review Level' and field_name ='HUD REO Repair Amount'
+			update dict_metadata_field set display_order = 70  where entity_name ='Case Summary for Review Level' and field_name ='Initial Disbursement Limit'
+			update dict_metadata_field set display_order = 71  where entity_name ='Case Summary for Review Level' and field_name ='Initial Principal Limit'
+			update dict_metadata_field set display_order = 72  where entity_name ='Case Summary for Review Level' and field_name ='Insurance Application In Time'
+			update dict_metadata_field set display_order = 73  where entity_name ='Case Summary for Review Level' and field_name ='Interest Rate'
+			update dict_metadata_field set display_order = 74  where entity_name ='Case Summary for Review Level' and field_name ='Is Investment/Secondary Residence'
+			update dict_metadata_field set display_order = 75  where entity_name ='Case Summary for Review Level' and field_name ='Last Servicing Mortgagee Transfer Date'
+			update dict_metadata_field set display_order = 76  where entity_name ='Case Summary for Review Level' and field_name ='Living Units'
+			update dict_metadata_field set display_order = 77  where entity_name ='Case Summary for Review Level' and field_name ='Loan Officer Name'
+			update dict_metadata_field set display_order = 78  where entity_name ='Case Summary for Review Level' and field_name ='Loan Officer NMLS ID'
+			update dict_metadata_field set display_order = 79  where entity_name ='Case Summary for Review Level' and field_name ='Loan Purpose'
+			update dict_metadata_field set display_order = 80  where entity_name ='Case Summary for Review Level' and field_name ='Loan to Value Ratio - New'
+			update dict_metadata_field set display_order = 81  where entity_name ='Case Summary for Review Level' and field_name ='Loan Type'
+			update dict_metadata_field set display_order = 82  where entity_name ='Case Summary for Review Level' and field_name ='loss mitigation code'
+			update dict_metadata_field set display_order = 83  where entity_name ='Case Summary for Review Level' and field_name ='Mandatory Obligations Amt'
+			update dict_metadata_field set display_order = 84  where entity_name ='Case Summary for Review Level' and field_name ='Mandatory Obligations Cash from Borrower'
+			update dict_metadata_field set display_order = 85  where entity_name ='Case Summary for Review Level' and field_name ='Mandatory Obligations Cash from Lender'
+			update dict_metadata_field set display_order = 86  where entity_name ='Case Summary for Review Level' and field_name ='Manual Underwrite Stretch Ratios Indicator'
+			update dict_metadata_field set display_order = 87  where entity_name ='Case Summary for Review Level' and field_name ='Manufactured Housing Indicator'
+			update dict_metadata_field set display_order = 88  where entity_name ='Case Summary for Review Level' and field_name ='Married to NBS Indicator'
+			update dict_metadata_field set display_order = 89  where entity_name ='Case Summary for Review Level' and field_name ='Maximum Claim Amount (MCA)'
+			update dict_metadata_field set display_order = 90  where entity_name ='Case Summary for Review Level' and field_name ='Maximum Rate'
+			update dict_metadata_field set display_order = 91  where entity_name ='Case Summary for Review Level' and field_name ='Miscellaneous AUS Decision Code'
+			update dict_metadata_field set display_order = 92  where entity_name ='Case Summary for Review Level' and field_name ='Mortgage Current at Endorsement'
+			update dict_metadata_field set display_order = 93  where entity_name ='Case Summary for Review Level' and field_name ='Mortgage Excluding Financed MIP'
+			update dict_metadata_field set display_order = 94  where entity_name ='Case Summary for Review Level' and field_name ='Non-Occupying Borrower on Loan'
+			update dict_metadata_field set display_order = 95  where entity_name ='Case Summary for Review Level' and field_name ='occupancy status'
+			update dict_metadata_field set display_order = 96  where entity_name ='Case Summary for Review Level' and field_name ='Oldest Unpaid Installment'
+			update dict_metadata_field set display_order = 97  where entity_name ='Case Summary for Review Level' and field_name ='Original Mortgage Amount'
+			update dict_metadata_field set display_order = 98  where entity_name ='Case Summary for Review Level' and field_name ='Originating Mortgagee NMLS ID'
+			update dict_metadata_field set display_order = 99  where entity_name ='Case Summary for Review Level' and field_name ='Origination Fee'
+			update dict_metadata_field set display_order = 100 where entity_name ='Case Summary for Review Level' and field_name ='Payment Plan'
+			update dict_metadata_field set display_order = 101 where entity_name ='Case Summary for Review Level' and field_name ='Price of Prior Sale'
+			update dict_metadata_field set display_order = 102 where entity_name ='Case Summary for Review Level' and field_name ='Prior sale or transfer within last 3 years'
+			update dict_metadata_field set display_order = 103 where entity_name ='Case Summary for Review Level' and field_name ='Product Type'
+			update dict_metadata_field set display_order = 104 where entity_name ='Case Summary for Review Level' and field_name ='Product Type Code'
+			update dict_metadata_field set display_order = 105 where entity_name ='Case Summary for Review Level' and field_name ='Property Address 1'
+			update dict_metadata_field set display_order = 106 where entity_name ='Case Summary for Review Level' and field_name ='Property Address 2'
+			update dict_metadata_field set display_order = 107 where entity_name ='Case Summary for Review Level' and field_name ='Property Address City'
+			update dict_metadata_field set display_order = 108 where entity_name ='Case Summary for Review Level' and field_name ='Property Address State'
+			update dict_metadata_field set display_order = 109 where entity_name ='Case Summary for Review Level' and field_name ='Property Address Zip Code'
+			update dict_metadata_field set display_order = 110 where entity_name ='Case Summary for Review Level' and field_name ='Property Appraisal Estimate'
+			update dict_metadata_field set display_order = 111 where entity_name ='Case Summary for Review Level' and field_name ='Property Disposition Streamline Refinance Flag'
+			update dict_metadata_field set display_order = 112 where entity_name ='Case Summary for Review Level' and field_name ='QM Points and Fees'
+			update dict_metadata_field set display_order = 113 where entity_name ='Case Summary for Review Level' and field_name ='Refinance Code'
+			update dict_metadata_field set display_order = 114 where entity_name ='Case Summary for Review Level' and field_name ='Refinance Indicator'
+			update dict_metadata_field set display_order = 115 where entity_name ='Case Summary for Review Level' and field_name ='Repair Complete Date'
+			update dict_metadata_field set display_order = 116 where entity_name ='Case Summary for Review Level' and field_name ='Review Level ID'
+			update dict_metadata_field set display_order = 117 where entity_name ='Case Summary for Review Level' and field_name ='Review Type'
+			update dict_metadata_field set display_order = 118 where entity_name ='Case Summary for Review Level' and field_name ='Sales Contract Date'
+			update dict_metadata_field set display_order = 119 where entity_name ='Case Summary for Review Level' and field_name ='Sales Price'
+			update dict_metadata_field set display_order = 120 where entity_name ='Case Summary for Review Level' and field_name ='Sales Prices Greater than Acquisition Cost'
+			update dict_metadata_field set display_order = 121 where entity_name ='Case Summary for Review Level' and field_name ='Secondary Financing Amount'
+			update dict_metadata_field set display_order = 122 where entity_name ='Case Summary for Review Level' and field_name ='Secondary Financing Exists Indicator'
+			update dict_metadata_field set display_order = 123 where entity_name ='Case Summary for Review Level' and field_name ='Seller Contribution Amount'
+			update dict_metadata_field set display_order = 124 where entity_name ='Case Summary for Review Level' and field_name ='Seller Contribution Percent'
+			update dict_metadata_field set display_order = 125 where entity_name ='Case Summary for Review Level' and field_name ='Site Type'
+			update dict_metadata_field set display_order = 126 where entity_name ='Case Summary for Review Level' and field_name ='SOA Code'
+			update dict_metadata_field set display_order = 127 where entity_name ='Case Summary for Review Level' and field_name ='Special Program'
+			update dict_metadata_field set display_order = 128 where entity_name ='Case Summary for Review Level' and field_name ='Taxes Insurance First Year Amount HECM'
+			update dict_metadata_field set display_order = 129 where entity_name ='Case Summary for Review Level' and field_name ='Ten Year Rate Lock Indicator'
+			update dict_metadata_field set display_order = 130 where entity_name ='Case Summary for Review Level' and field_name ='Termination type code'
+			update dict_metadata_field set display_order = 131 where entity_name ='Case Summary for Review Level' and field_name ='Total Assets at Endorsement'
+			update dict_metadata_field set display_order = 132 where entity_name ='Case Summary for Review Level' and field_name ='Total Assets at Underwriting'
+			update dict_metadata_field set display_order = 133 where entity_name ='Case Summary for Review Level' and field_name ='Total Closing Costs at Endorsement'
+			update dict_metadata_field set display_order = 134 where entity_name ='Case Summary for Review Level' and field_name ='Total Closing Costs at Underwriting'
+			update dict_metadata_field set display_order = 135 where entity_name ='Case Summary for Review Level' and field_name ='Total Fixed Payment at Endorsement'
+			update dict_metadata_field set display_order = 136 where entity_name ='Case Summary for Review Level' and field_name ='Total Fixed Payment at Underwriting'
+			update dict_metadata_field set display_order = 137 where entity_name ='Case Summary for Review Level' and field_name ='Total Monthly Effective Income'
+			update dict_metadata_field set display_order = 138 where entity_name ='Case Summary for Review Level' and field_name ='Total Monthly Mortgage Payment at Endorsement'
+			update dict_metadata_field set display_order = 139 where entity_name ='Case Summary for Review Level' and field_name ='Total Monthly Mortgage Payment at Underwriting'
+			update dict_metadata_field set display_order = 140 where entity_name ='Case Summary for Review Level' and field_name ='Total Requirements To Close'
+			update dict_metadata_field set display_order = 141 where entity_name ='Case Summary for Review Level' and field_name ='Underwriting Method'
+			update dict_metadata_field set display_order = 142 where entity_name ='Case Summary for Review Level' and field_name ='Year Built'
+		]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>    
+
+

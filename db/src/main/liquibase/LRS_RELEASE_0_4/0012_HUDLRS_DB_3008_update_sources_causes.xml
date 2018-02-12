@@ -1,0 +1,93 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '194BEEF0-A866-4EEB-9EE2-2245900340AA','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'LA' and DEFECT_SOURCE_CD = '5'
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from QATREE_OUTCOME_DEFECT_CAUSE
+			where QATREE_OUTCOME_ID = 'BDB264B0-2C23-41A1-BE74-E90B7CC980A5'
+			and DEFECT_CAUSE_ID in
+			(select DEFECT_CAUSE_ID from DEFECT_CAUSE
+			 where DEFECT_CD = 'LA' and DEFECT_CAUSE_CD = 'C')	
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update QATREE_QUESTION
+			set PARENT_QUESTION_CONDITION_ANSWER = '1,2'
+			where QUESTION_REFERENCE = 'BA.07'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update QUESTION_REFERENCE
+			set QUESTION_DESCRIPTION = 'Are there any concerns related to Property Appraisal that require a finding but are not already captured in other questions?'
+			where QUESTION_ID = 'B4C1DDAD-B918-47CF-929D-7DD9DA266F7F'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update DEFECT_SOURCE
+			set DESCRIPTION = 'Issues with borrower or non-borrowing spouse’s identity (SSN or TIN)'
+			where DEFECT_CD = 'BE' and DEFECT_SOURCE_CD = '1'	
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_006" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'E80180DE-3965-4C9F-B40C-EE579A1D30EE','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'ME' and DEFECT_SOURCE_CD = '8'			
+			
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_007" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update QUESTION_REFERENCE
+			set VALUE_TO_TRIGGER_ACTION = 'NO'
+			where QUESTION_ID = '5F528340-5760-4BFD-AAB5-5D56C9F0BF42'	
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_008" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update QUESTION_REFERENCE
+			set QUESTION_DESCRIPTION = 'Are there any concerns related to Lender Operations that require a finding but are not already captured in other questions?'
+			where QUESTION_ID = '43AEE918-0D36-41D7-B9FB-CC44983D2D0E'	
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_009" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update DEFECT_SOURCE
+			set DESCRIPTION = 'Issues with late endorsement certification'
+			where DEFECT_CD = 'LP' and DEFECT_SOURCE_CD = '4'
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_010" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update QATREE_QUESTION
+			set PARENT_QUESTION_CONDITION_ANSWER = '1,2'
+			where QUESTION_ID = 'A665E60B-2AB9-4933-A3C3-19D19D63D8B9'
+		]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>    

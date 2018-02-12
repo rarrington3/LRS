@@ -1,0 +1,87 @@
+@import '../../bootstrap/_variables';
+
+:host-context {
+	/* styles should be scoped under host-context */
+
+	.list-container {
+		overflow-x: hidden;
+		overflow-y: auto;
+		height: 200px;
+	}
+
+	.finding-comment {
+		margin: 10px 0;
+	}
+
+	.last-comment-name {
+		color: @brand-secondary;
+		font-weight: bold;
+	}
+
+	.warning-wrapper {
+		display: inline-block;
+		span {
+			color: @brand-danger;
+		}
+	}
+
+	.defect-area-title {
+		font-weight: @badge-font-weight;
+	}
+
+	.divider {
+		display: inline-block;
+		margin: 0 10px 0 10px;
+		&:after {
+			content: "\2022";
+		}
+		font-weight: bold;
+	}
+
+	.group-link {
+		text-decoration: underline;
+		font-size: @font-size-small;
+		.codes {
+			font-size: @font-size-small;
+			text-transform: uppercase;
+		}
+	}
+
+	.form-inline {
+		position: relative;
+        padding-top: 10px;
+
+		.form-group {
+			width: 100%;
+		}
+
+		.filter-select-container  {
+			margin-left: 10px;
+			float: left;
+			width: 250px;
+		}
+
+		.filter-select-container.sort {
+			float: right;
+		}
+	}
+
+	.comment-header {
+		button {
+			color: @link-color;
+		}
+
+		button, span {
+			border: none;
+			background-color: inherit;
+			font-size: @font-size-small;
+		}
+		margin-bottom: 5px;
+	}
+
+	.comment-text {
+		color: @panel-info-text;
+	}
+
+
+}

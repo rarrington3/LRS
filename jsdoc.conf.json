@@ -1,0 +1,37 @@
+{
+  "tags": {
+    "allowUnknownTags": true
+  },
+  "plugins": [
+    "node_modules/jsdoc-babel",
+    "node_modules/jsdoc/plugins/markdown"
+  ],
+  "templates": {
+    "cleverLinks": false,
+    "monospaceLinks": false,
+    "dateFormat": "ddd MMM Do YYYY",
+    "outputSourceFiles": true,
+    "outputSourcePath": true,
+    "systemName": "HUDLRS",
+    "copyright": "Copyright © 2016 KPMG LLC",
+    "navType": "inline",
+    "theme": "paper",
+    "linenums": true,
+    "collapseSymbols": true,
+    "inverseNav": true,
+    "highlightTutorialCode": true,
+    "protocol": "fred://",
+    "syntaxTheme": "dark"
+  },
+  "markdown": {
+    "parser": "gfm",
+    "hardwrap": true
+  },
+  "babel": {
+    "babelrc": ".babelrc",
+    "compact": false,
+    "plugins": [
+      "add-jsdoc-properties"
+    ]
+  }
+}

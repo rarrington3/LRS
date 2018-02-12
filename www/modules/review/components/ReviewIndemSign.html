@@ -1,0 +1,24 @@
+<div class="indem-container">
+	<div class="title-header">
+		<h4 class="view-title">{{(isForcedIndem())? 'FORCED ': ''}}INDEMNIFICATION - CASE # {{review?.caseNumber}}</h4>
+		<div class="section-divider">
+			<hr/>
+		</div>
+	</div>
+	<lrs-pdf-viewer [source]="document"></lrs-pdf-viewer>
+	<div class="footer download clearfix">
+		<a type="button" class="btn btn-primary pull-left" target="_blank" [href]="document.url">Download PDF</a>
+		<button *ngIf="!readOnly" type="button" (click)="onNext()" class="btn btn-primary pull-right" [disabled]="indemState === STATE.REVIEWER_SIGN">Next Step</button>
+		<button *ngIf="!readOnly" type="button" (click)="onReject()" class="btn btn-primary pull-right reject-btn" [disabled]="indemState !== STATE.LENDER_SIGNED && indemState !==  STATE.REVIEWER_SIGN">Reject Indem</button>
+
+	</div>
+	<div class="section-divider" *ngIf="!readOnly">
+		<hr/>
+	</div>
+	<div class="footer clearfix">
+		<button type="button" *ngIf="!readOnly" (click)="onSubmit()" class="btn btn-primary pull-right" [disabled]="indemState === STATE.LENDER_SIGNED">Submit</button>
+		<button type="button" *ngIf="!readOnly" (click)="onCancel()" class="btn pull-right cancel-btn">Cancel</button>
+        <button type="button" (click)="onViewIndemInfo()" *ngIf="readOnly && reviewIsCompleted" class="btn btn-primary pull-right">View Indemnification Data</button>
+	</div>
+
+</div>

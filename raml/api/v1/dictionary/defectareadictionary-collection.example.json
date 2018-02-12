@@ -1,0 +1,112 @@
+[
+    {
+        "defectAreaId": "72CD9424-41C9-4C5D-996C-55241214EC26",
+        "defectAreaCode": "BI",
+        "title": "Borrower Income",
+        "order": 1,
+        "reviewTypeCodes": ["U"]
+    },
+    {
+        "defectAreaId": "81B55A27-C56E-4787-B152-604B80F44755",
+        "defectAreaCode": "BC",
+        "title": "Borrower Credit / Liabilities",
+        "order": 2,
+        "reviewTypeCodes": ["U"]
+    },
+    {
+        "defectAreaId": "9D7BBED9-0A67-4EDF-A79B-7A1C48B16C69",
+        "defectAreaCode": "LM",
+        "title": "Loan To Value and Maximum Mortgage Amount",
+        "order": 3,
+        "reviewTypeCodes": ["U"]
+    },
+    {
+        "defectAreaId": "D7916C67-5501-4443-BF53-62BB482721C0",
+        "defectAreaCode": "BA",
+        "title": "Borrower Assets",
+        "order": 4,
+        "reviewTypeCodes": ["U"]
+    },
+    {
+        "defectAreaId": "BBF689FC-A866-42D6-96E7-DBE6F30B232D",
+        "defectAreaCode": "PE",
+        "title": "Property Eligibility",
+        "order": 5
+    },
+    {
+        "defectAreaId": "DC8D705A-1808-4315-A120-DD6CD8904DCC",
+        "defectAreaCode": "PA",
+        "title": "Property Appraisal",
+        "order": 6,
+        "reviewTypeCodes": ["U"]
+    },
+    {
+        "defectAreaId": "3FB1E297-557C-40B6-9D6C-417742316B76",
+        "defectAreaCode": "BE",
+        "title": "Borrower Eligibility and Qualification",
+        "order": 7,
+        "reviewTypeCodes": ["U"]
+    },
+    {
+        "defectAreaId": "8DFC254A-1BFE-41B2-963D-0A97C159BEE4",
+        "defectAreaCode": "ME",
+        "title": "Mortgage Eligibility",
+        "order": 8,
+        "reviewTypeCodes": ["U"]
+    },
+    {
+        "defectAreaId": "2129C74E-60A6-4FA5-8673-61C24FBD5DB9",
+        "defectAreaCode": "LO",
+        "title": "Lender Operations",
+        "order": 9,
+        "reviewTypeCodes": ["U"]
+    },
+    {
+        "defectAreaId": "01F703F4-EA08-4ED2-9C20-0E708A7A1236",
+        "defectAreaCode": "SG",
+        "title": "Servicing: General",
+        "order": 1,
+        "reviewTypeCodes": ["U"]
+    },
+    {
+        "defectAreaId": "11028830-DEA8-4CBB-A34B-3F9031E7E3E8",
+        "defectAreaCode": "SD",
+        "title": "Servicing: Delinquent",
+        "order": 2,
+        "reviewTypeCodes": ["U"]
+    },
+    {
+        "defectAreaId": "2FFC7228-6098-474C-92C4-C12B4858D774",
+        "defectAreaCode": "SO",
+        "title": "Servicing: Operational",
+        "order": 3,
+        "reviewTypeCodes": ["U"]
+    },
+    {
+        "defectAreaId": "80ED1AEC-5713-4AD7-891F-D9F4B318AFC9",
+        "defectAreaCode": "SL",
+        "title": "Servicing: Operational - Loan Level",
+        "order": 4,
+        "reviewTypeCodes": ["U"]
+    },
+    {
+        "defectAreaId": "3A7020DE-18DB-4A79-A46A-7C01000A7DAF",
+        "defectAreaCode": "OL",
+        "title": "Operations: Lender Eligibility",
+        "order": 1,
+        "reviewTypeCodes": ["U"]
+    },
+    {
+        "defectAreaId": "92F25A78-1A6C-4C6D-9350-3CF81BB4C8A1",
+        "defectAreaCode": "OO",
+        "title": "Operations: Lender Operations",
+        "order": 2
+    },
+    {
+        "defectAreaId": "48C4D26F-C52A-4DD0-B85C-7A0E0E70C650",
+        "defectAreaCode": "OQ",
+        "title": "Operations: Quality Control",
+        "order": 3,
+        "reviewTypeCodes": ["U"]
+    }
+]

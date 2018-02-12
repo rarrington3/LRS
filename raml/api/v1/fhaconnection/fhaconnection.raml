@@ -1,0 +1,21 @@
+displayName: fhaConnection
+description: |
+    FHA Connection services return data from the external FHAC services.
+
+/{hudId}:
+  displayName: fhaConnectionReviewer
+  description: Returns a collection of reviewers from the FHAC services.
+  type:
+    member-readonly:
+        member-example: !include "fhaconnectionreviewer.example.json"
+        member-schema: FHAConnectionReviewer
+  get:
+    securedBy:
+        - fhac:
+            roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN]
+    description: A lookup for FHA Connection Staff.
+    responses:
+        200:
+            description: Returns the staff member info.
+        410:
+            description: The specified staff member was not found.

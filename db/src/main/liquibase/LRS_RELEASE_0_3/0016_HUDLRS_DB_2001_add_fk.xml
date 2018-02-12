@@ -1,0 +1,21 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="TEST"  author="astrauss" id="HUDLRS_2001_alter_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table scoring_model_factors add constraint SCORINGMODELFACTTOSCORINGFAC foreign key (factor_id) references scoring_factors (factor_id)
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="TEST"  author="astrauss" id="HUDLRS_2001_alter_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from SCORING_MODEL_FACTORS
+			where MODEL_ID not in
+			(select model_id from SCORING_MODEL)
+		
+			alter table scoring_model_factors add constraint SCORINGMODELFACTTOSCORINGMODEL foreign key (model_id) references scoring_model (model_id)
+		]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>    

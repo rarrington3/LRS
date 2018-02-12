@@ -1,0 +1,256 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "definitions": {
+    "lenderSearchResults": {
+      "type": "object",
+      "additionalProperties": false,        
+      "properties": {
+        "sourceSystem": {
+          "type": "string"
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "lenders": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "lender"
+            ],
+            "properties": {
+              "lender": {
+                "type": "object",
+                "additionalProperties": true,
+                "properties": {
+                  "institutionId": {
+                    "type": "string"
+                  },
+                  "institutionName": {
+                    "type": "string"
+                  },
+                  "insuranceType": {
+                    "type": "string"
+                  },
+                  "institutionType": {
+                    "type": "string"
+                  },
+                  "mortgageeType": {
+                    "type": "string"
+                  },
+                  "supervisingAgency": {
+                    "type": "string"
+                  },
+                  "serviceOrigCode": {
+                    "type": "string"
+                  },
+                  "mainOfficeId": {
+                    "type": "string"
+                  },
+                  "nmlsid": {
+                    "type": "string"
+                  },
+                  "fyEndMonth": {
+                    "type": "string"
+                  },
+                  "anniversaryDate": {
+                    "type": "string"
+                  },
+                  "phoneNumber": {
+                    "type": "string"
+                  },
+                  "faxNumber": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "originate": {
+                    "type": "string"
+                  },
+                  "underwrite": {
+                    "type": "string"
+                  },
+                  "taxIdNumber": {
+                    "type": "string"
+                  },
+                  "stateofIncorp": {
+                    "type": "string"
+                  },
+                  "incorprationDate": {
+                    "type": "string"
+                  },
+                  "adjustedNetWorth": {
+                    "type": "string"
+                  },
+                  "parentInstitutionId": {
+                    "type": "string"
+                  },
+                  "parentInstitutionName": {
+                    "type": "string"
+                  },
+                  "nonFhaParentInstName": {
+                    "type": "string"
+                  },
+                  "csn": {
+                    "type": "string"
+                  },
+                  "companyWebsite": {
+                    "type": "string"
+                  },
+                  "currencyCode": {
+                    "type": "string"
+                  },
+                  "totalActiveBranches": {
+                    "type": "string"
+                  },
+                  "totalAuthorizedAgents": {
+                    "type": "string"
+                  },
+                  "totalPrincipals": {
+                    "type": "string"
+                  },
+                  "totalSubsidiaries": {
+                    "type": "string"
+                  },
+                  "totalTerminatedBranches": {
+                    "type": "string"
+                  },
+                  "groupTypeCode": {
+                    "type": "string"
+                  },
+                  "internalOrgFlag": {
+                    "type": "string"
+                  },
+                  "partyTypeCode": {
+                    "type": "string"
+                  },
+                  "partyUId": {
+                    "type": "string"
+                  },
+                  "visOrganization": {
+                    "type": "string"
+                  },
+                  "visOrganizationId": {
+                    "type": "string"
+                  },
+                  "listOfDba": {
+                    "type": ["object","string"],
+                    "properties": {
+                      "dba": {
+                        "type": "object",
+                        "properties": {
+                          "dba": {
+                            "type": "string"
+                          },
+                          "name2": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "geographicAddress": {
+                    "type": ["object","string"],
+                    "properties": {
+                      "geoAddress": {
+                        "type": "object",
+                        "properties": {
+                          "addressType": {
+                            "type": "string"
+                          },
+                          "streetAddress": {
+                            "type": "string"
+                          },
+                          "streetAddress2": {
+                            "type": "string"
+                          },
+                          "city": {
+                            "type": "string"
+                          },
+                          "state": {
+                            "type": "string"
+                          },
+                          "zipCode": {
+                            "type": "string"
+                          },
+                          "zipCodeExt": {
+                            "type": "string"
+                          },
+                          "addressName": {
+                            "type": "string"
+                          },
+                          "county": {
+                            "type": "string"
+                          },
+                          "addressee": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "administrativeContact": {
+                    "type": "object",
+                    "properties": {
+                      "adminContact": {
+                        "type": "object",
+                        "properties": {
+                          "firstName": {
+                            "type": "string"
+                          },
+                          "middleInitial": {
+                            "type": "string"
+                          },
+                          "lastName": {
+                            "type": "string"
+                          },
+                          "phoneNumber": {
+                            "type": "string"
+                          },
+                          "faxNumber": {
+                            "type": "string"
+                          },
+                          "email": {
+                            "type": "string"
+                          },
+                          "secondaryEmail": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "institutionId",
+                  "institutionName"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "sourceSystem",
+        "errorCode",
+        "errorMessage",
+        "lenders"
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "lenderSearchResults"
+  ],
+  "properties": {
+    "lenderSearchResults": {
+      "$ref": "#/definitions/lenderSearchResults"
+    }
+  }
+}

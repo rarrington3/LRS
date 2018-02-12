@@ -1,0 +1,97 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+	<changeSet context="All"  author="pwang" id="LRSOM_888_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<sql>
+			<![CDATA[
+				  INSERT INTO SCORING_FACTOR (FACTOR_ATTRIBUTE_NAME, DESCRIPTION) VALUES('Mitigation Consistency Multiplier', 'Mitigation Consistency Multiplier')
+				  INSERT INTO SCORING_FACTOR (FACTOR_ATTRIBUTE_NAME, DESCRIPTION) VALUES('Escalation 1 Consistency Multiplier', 'Escalation 1 Consistency Multiplier')
+				  INSERT INTO SCORING_FACTOR (FACTOR_ATTRIBUTE_NAME, DESCRIPTION) VALUES('Escalation or HQ Escalation greater than 1 Consistency Multiplier', 'Escalation or HQ Escalation greater than 1 Consistency Multiplier')
+
+				  INSERT INTO SCORING_MODEL_VERSION_FACTOR
+							(SCORING_FACTOR_ID, 
+							 WEIGHT, 
+							 CREATED_BY, 
+							 CREATED_TS, 
+							 SCORING_MODEL_VERSION_ID)
+							VALUES
+							((SELECT SF.SCORING_FACTOR_ID from SCORING_FACTOR SF where SF.FACTOR_ATTRIBUTE_NAME IN ('Mitigation Consistency Multiplier')),
+							 -5000.00,
+							 'C31264',
+							 getdate(),	 
+							 (SELECT SMV.SCORING_MODEL_VERSION_ID FROM SCORING_MODEL_VERSION SMV WHERE 
+									SMV.SCORING_MODEL_VERSION_STATUS_ID IN 
+									(
+										SELECT SMVSRF.SCORING_MODEL_VERSION_STATUS_ID FROM SCORING_MODEL_VERSION_STATUS_REF SMVSRF WHERE SMVSRF.CODE='ACTIVE'
+									) 
+								AND  
+									SCORING_MODEL_ID IN 
+									(
+										SELECT SM.SCORING_MODEL_ID FROM SCORING_MODEL SM WHERE SM.CODE IN (
+											'ASSIGNMENT')
+									)
+						))
+						
+				  INSERT INTO SCORING_MODEL_VERSION_FACTOR
+							(SCORING_FACTOR_ID, 
+							 WEIGHT, 
+							 CREATED_BY, 
+							 CREATED_TS, 
+							 SCORING_MODEL_VERSION_ID)
+							VALUES
+							((SELECT SF.SCORING_FACTOR_ID from SCORING_FACTOR SF where SF.FACTOR_ATTRIBUTE_NAME IN ('Escalation 1 Consistency Multiplier')),
+							 -5000.00,
+							 'C31264',
+							 getdate(),	 
+							 (SELECT SMV.SCORING_MODEL_VERSION_ID FROM SCORING_MODEL_VERSION SMV WHERE 
+									SMV.SCORING_MODEL_VERSION_STATUS_ID IN 
+									(
+										SELECT SMVSRF.SCORING_MODEL_VERSION_STATUS_ID FROM SCORING_MODEL_VERSION_STATUS_REF SMVSRF WHERE SMVSRF.CODE='ACTIVE'
+									) 
+								AND  
+									SCORING_MODEL_ID IN 
+									(
+										SELECT SM.SCORING_MODEL_ID FROM SCORING_MODEL SM WHERE SM.CODE IN (
+											'ASSIGNMENT')
+									)
+						))
+						
+				  INSERT INTO SCORING_MODEL_VERSION_FACTOR
+							(SCORING_FACTOR_ID, 
+							 WEIGHT, 
+							 CREATED_BY, 
+							 CREATED_TS, 
+							 SCORING_MODEL_VERSION_ID)
+							VALUES
+							((SELECT SF.SCORING_FACTOR_ID from SCORING_FACTOR SF where SF.FACTOR_ATTRIBUTE_NAME IN ('Escalation or HQ Escalation greater than 1 Consistency Multiplier')),
+							 -5000.00,
+							 'C31264',
+							 getdate(),	 
+							 (SELECT SMV.SCORING_MODEL_VERSION_ID FROM SCORING_MODEL_VERSION SMV WHERE 
+									SMV.SCORING_MODEL_VERSION_STATUS_ID IN 
+									(
+										SELECT SMVSRF.SCORING_MODEL_VERSION_STATUS_ID FROM SCORING_MODEL_VERSION_STATUS_REF SMVSRF WHERE SMVSRF.CODE='ACTIVE'
+									) 
+								AND  
+									SCORING_MODEL_ID IN 
+									(
+										SELECT SM.SCORING_MODEL_ID FROM SCORING_MODEL SM WHERE SM.CODE IN (
+											'ASSIGNMENT')
+									)
+						))	
+
+					DELETE FROM SCORING_MODEL_VERSION_FACTOR
+					WHERE SCORING_FACTOR_ID =
+						(SELECT SF.SCORING_FACTOR_ID from SCORING_FACTOR SF where SF.FACTOR_ATTRIBUTE_NAME IN ('Mitigation 1 Consistency Multiplier'))
+							
+					DELETE FROM SCORING_MODEL_VERSION_FACTOR
+					WHERE SCORING_FACTOR_ID =
+						(SELECT SF.SCORING_FACTOR_ID from SCORING_FACTOR SF where SF.FACTOR_ATTRIBUTE_NAME IN ('Supervise Previous Reviewer Multiplier'))
+						
+					DELETE FROM SCORING_FACTOR WHERE FACTOR_ATTRIBUTE_NAME = 'Mitigation 1 Consistency Multiplier'
+							
+					DELETE FROM SCORING_FACTOR WHERE FACTOR_ATTRIBUTE_NAME = 'Supervise Previous Reviewer Multiplier'
+						
+			]]>
+		</sql>
+	</changeSet>
+</databaseChangeLog>

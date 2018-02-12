@@ -1,0 +1,23 @@
+#https://github.com/raml-org/raml-spec/blob/master/raml-0.8.md
+displayName: exception
+#see traits.raml for more traits: secured, paged...
+type:
+  #see types.raml for more options: collection, collection-readonly, collection-writeonly...
+  collection-readonly:
+    collection-example: !include "exceptions-example.json"
+    collection-schema: Exceptions
+securedBy:
+  - fhac:
+      roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_PROGRAM_ASSISTANT]
+
+/{exceptionId}:
+  displayName: exception
+  #see traits.raml for more traits: secured, paged...
+  type:
+    #see types.raml for more options: member, member-readonly, member-writeonly...
+    member:
+      member-example: !include "exception-example.json"
+      member-schema: Exception
+  securedBy:
+    - fhac:
+        roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_PROGRAM_ASSISTANT]

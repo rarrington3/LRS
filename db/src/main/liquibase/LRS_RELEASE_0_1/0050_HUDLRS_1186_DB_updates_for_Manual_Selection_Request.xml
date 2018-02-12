@@ -1,0 +1,258 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1186_db_update_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [LOAN_SELECTION_CASE_SUMMARY] drop CONSTRAINT [LOAN_SELECTION_CASE_SUMMARY_PK]
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1186_db_update_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [LOAN_SELECTION_CASE_SUMMARY]
+				ADD CONSTRAINT [LOAN_SELECTION_CASE_SUMMARY_PK] PRIMARY KEY  NONCLUSTERED ([SELECTION_ID] ASC)
+		]]>
+        </sql>
+    </changeSet>				
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1186_db_update_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [LOAN_SELECTION_CASE_SUMMARY] drop CONSTRAINT [CASESUMMARYTOSELECTION]
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1186_db_update_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [LOAN_SELECTION]
+				ADD CONSTRAINT [SELECTIONTOCASESUMMARY] FOREIGN KEY ([SELECTION_ID]) REFERENCES [LOAN_SELECTION_CASE_SUMMARY]([SELECTION_ID])
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1186_db_update_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [dbo].LOAN_SELECTION drop  CONSTRAINT [DF_LOAN_SELECTION_SELECTION_ID]
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1186_db_update_0006" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [dbo].LOAN_SELECTION_CASE_SUMMARY ADD  CONSTRAINT [GUID_LOAN_SELECTION]  DEFAULT (newid()) FOR selection_ID
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1186_db_update_0007" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[	
+			alter table rvw_batch add OPERATIONAL_REVIEW_IND char(1) null
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1186_db_update_0008" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table rvw_batch add REQUEST_OPS_DOCS_IND char(1) null
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1186_db_update_0009" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table rvw_batch add SECONDARY_REFERENCE varchar(100) null
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1186_db_update_0010" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table rvw_batch add OPERATIONAL_RVW_GUIDANCE_TXT text null
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1186_db_update_0011" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table rvw_batch drop column slctn_req_id
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1186_db_update_0012" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table SELECT_REQUEST_MANUAL_FHA add BATCH_ID uniqueidentifier null
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1186_db_update_0013" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table select_request_manual_fha drop column RQST_LOAN_DOCS_SOURCE_CD
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1186_db_update_0014" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table select_request_manual_fha drop column SECONDARY_REFERENCE
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1186_db_update_0015" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table select_request_manual_fha drop column RQST_OPR_DOCS_SOURCE_CD
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1186_db_update_0016" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table select_request_manual_fha drop column REQUEST_OPS_DOCS_IND
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1186_db_update_0017" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table select_request_manual_fha drop column OPERATIONAL_RVW_GUIDANCE_TXT
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1186_db_update_0018" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table select_request_lender_mon drop column RQST_LOAN_DOCS_SOURCE_CD
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1186_db_update_0019" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table select_request_lender_mon drop column SECONDARY_REFERENCE
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1186_db_update_0020" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table select_request_lender_mon drop column RQST_OPR_DOCS_SOURCE_CD
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1186_db_update_0021" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table select_request_lender_mon drop column REQUEST_OPS_DOCS_IND
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1186_db_update_0022" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table select_request_lender_mon drop column OPERATIONAL_RVW_GUIDANCE_TXT
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1186_db_update_0023" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table select_request_lender_mon add BATCH_ID uniqueidentifier null
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1186_db_update_0024" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[	
+			insert into DICT_METADATA_FIELD(ENTITY_NAME,FIELD_NAME,DB_COLUMN,CREATED_BY,CREATED_TS,SUBJECT_AREA)values('Review Batch','Operational Review Indicator','OPERATIONAL_REVIEW_IND','C20225',getdate(),'UNKNOWN')
+		]]>
+        </sql>
+    </changeSet>			
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1186_db_update_0025" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_FIELD(ENTITY_NAME,FIELD_NAME,DB_COLUMN,CREATED_BY,CREATED_TS,SUBJECT_AREA)values('Review Batch','Request Operational Documents','REQUEST_OPS_DOCS_IND','C20225',getdate(),'UNKNOWN')
+		]]>
+        </sql>
+    </changeSet>			
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1186_db_update_0026" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_FIELD(ENTITY_NAME,FIELD_NAME,DB_COLUMN,CREATED_BY,CREATED_TS,SUBJECT_AREA)values('Review Batch','Secondary ID','SECONDARY_REFERENCE','C20225',getdate(),'UNKNOWN')
+		]]>
+        </sql>
+    </changeSet>			
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1186_db_update_0027" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_FIELD(ENTITY_NAME,FIELD_NAME,DB_COLUMN,CREATED_BY,CREATED_TS,SUBJECT_AREA)values('Review Batch','Operational Review Guidance Text','OPERATIONAL_RVW_GUIDANCE_TXT','C20225',getdate(),'UNKNOWN')
+		]]>
+        </sql>
+    </changeSet>			
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1186_db_update_0028" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from DICT_METADATA_FIELD
+			where ENTITY_NAME = 'Review Batch'
+			  and FIELD_NAME = 'Batch ID'
+		]]>
+        </sql>
+    </changeSet>			  
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1186_db_update_0029" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_FIELD(ENTITY_NAME,FIELD_NAME,DB_COLUMN,CREATED_BY,CREATED_TS,SUBJECT_AREA)values('Manual Loan Selection Request','Batch ID','BATCH_ID','C20225',getdate(),'UNKNOWN')
+		]]>
+        </sql>
+    </changeSet>			
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1186_db_update_0030" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from DICT_METADATA_FIELD
+			where ENTITY_NAME = 'Manual Loan Selection Request'
+			  and FIELD_NAME in (
+			  'Request Initial Loan Documents From',
+			  'Secondary ID',
+			  'Request Initial Operational Documents From',
+			  'Request Operational Documents',
+			  'Operational Review Guidance Text')
+		]]>
+        </sql>
+    </changeSet>			  
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1186_db_update_0031" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_FIELD(ENTITY_NAME,FIELD_NAME,DB_COLUMN,CREATED_BY,CREATED_TS,SUBJECT_AREA)values('Lender Monitoring Selection Request','Batch ID','BATCH_ID','C20225',getdate(),'UNKNOWN')
+		]]>
+        </sql>
+    </changeSet>			
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1186_db_update_0032" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from DICT_METADATA_FIELD
+			where ENTITY_NAME = 'Lender Monitoring Selection Request'
+			  and FIELD_NAME in (
+			  'Secondary ID',
+			  'Request Initial Operational Documents From',
+			  'Request Operational Documents',
+			  'Operational Review Guidance Text')
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1203_db_update_0033" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[	
+			insert into DICT_METADATA_FIELD(ENTITY_NAME,FIELD_NAME,DB_COLUMN,CREATED_BY,CREATED_TS,SUBJECT_AREA)values('Selection Parameters','Counts Toward Monthly Capacity ','COUNTS_TWD_MNTHLY_CAPACITY_IND','C20225',getdate(),'UNKNOWN')
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1203_db_update_0034" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[			
+			alter table selection_parameters add COUNTS_TWD_MNTHLY_CAPACITY_IND char(1) null
+		]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>	

@@ -1,0 +1,2249 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			CREATE TABLE AUDIT_BATCH(
+				BATCH_ID uniqueidentifier NOT NULL,
+				OWNER_PERSONNEL_ID uniqueidentifier NULL,
+				MTGEE5 char(5) NULL,
+				ORIGINAL_OWNER_PERSONNEL_ID uniqueidentifier NULL,
+				CREATED_BY char(6)  NULL,
+				UPDATED_BY char(6)  NULL,
+				CREATED_TS datetime NULL,
+				UPDATED_TS datetime NULL,
+				BATCH_REFERENCE_ID varchar(16) NULL,
+				OPERATIONAL_REVIEW_IND char(1) NULL,
+				REQUEST_OPERATIONAL_DOCUMENTS_IND char(1) NULL,
+				SECONDARY_REFERENCE varchar(100) NULL,
+				OPERATIONAL_REVIEW_GUIDANCE varchar(max) NULL,
+				SELECTION_REQUEST_ID uniqueidentifier  NULL,
+				BATCH_STATUS_ID uniqueidentifier NULL,
+				REVIEW_LOCATION_ID uniqueidentifier NULL,
+				RECEIVED_OPERATIONAL_DOCUMENTS_IND char(1) NULL,
+				AUDIT_CREATED_TS datetime not null,
+				AUDIT_ACTION_CODE char(1) not null)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table AUDIT_BATCH add constraint AUDIT_BATCH_PK primary key (BATCH_ID,AUDIT_CREATED_TS)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create index AUDIT_BATCH_MTGEE5_NUI on AUDIT_BATCH(MTGEE5)
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			CREATE TABLE AUDIT_LENDER_INCREASED_SELECTION(
+				MTGEE5 char(5) NOT NULL,
+				COMMENTS varchar(max) NULL,
+				EFFECTIVE_DATE datetime NULL,
+				TARGET_FWD_PCT int NULL,
+				TARGET_HECM_PCT int NULL,
+				CREATED_BY char(6) NULL,
+				UPDATED_BY char(6) NULL,
+				CREATED_TS datetime NULL,
+				UPDATED_TS datetime NULL,
+				AUDIT_CREATED_TS datetime not null,				
+				AUDIT_ACTION_CODE char(1) not null)
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table AUDIT_LENDER_INCREASED_SELECTION add constraint AUDIT_LENDER_INCREASED_SELECTION_PK primary key (MTGEE5,AUDIT_CREATED_TS)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0006" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create index AUDIT_LENDER_INCREASED_SELECTION_MTGEE5_NUI on AUDIT_LENDER_INCREASED_SELECTION(MTGEE5)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0007" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			CREATE TABLE AUDIT_LENDER_SUPPRESSION(
+				MTGEE5 char(5) NOT NULL,
+				CREATED_BY char(6) NULL,
+				UPDATED_BY char(6) NULL,
+				CREATED_TS datetime NULL,
+				UPDATED_TS datetime NULL,
+				AUDIT_CREATED_TS datetime not null,				
+				AUDIT_ACTION_CODE char(1) not null)
+
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0008" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table AUDIT_LENDER_SUPPRESSION add constraint AUDIT_LENDER_SUPPRESSION_PK primary key (MTGEE5,AUDIT_CREATED_TS)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0009" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create index AUDIT_LENDER_SUPPRESSION_MTGEE5_NUI on AUDIT_LENDER_SUPPRESSION(MTGEE5)
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0010" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			CREATE TABLE AUDIT_PERSONNEL(
+				PERSONNEL_ID uniqueidentifier NOT NULL,
+				EMAIL_ADDRESS varchar(255) NULL,
+				REPORTS_TO_PERSONNEL_ID uniqueidentifier NULL,
+				FIRST_NAME varchar(100) NULL,
+				LAST_NAME varchar(100) NULL,
+				VETTING_PERSONNEL_ID uniqueidentifier NULL,
+				CREATED_BY char(6) NULL,
+				UPDATED_BY char(6) NULL,
+				CREATED_TS datetime NULL,
+				UPDATED_TS datetime NULL,
+				LOGIN_CREDENTIAL varchar(32) NULL,
+				AVAILABILITY_IND char(1)  NULL,
+				REVIEWER_CAPACITY int  NULL,
+				REVIEW_LOCATION_ID uniqueidentifier NULL,
+				PERSONNEL_STATUS_ID uniqueidentifier  NULL,
+				AUDIT_CREATED_TS datetime not null,				
+				AUDIT_ACTION_CODE char(1) not null)
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0011" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table AUDIT_PERSONNEL add constraint AUDIT_PERSONNEL_PK primary key (PERSONNEL_ID,AUDIT_CREATED_TS)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0012" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			CREATE TABLE AUDIT_PERSONNEL_UNAVAILABILITY(
+				PERSONNEL_ID uniqueidentifier NOT NULL,
+				UNAVAIL_START_TS datetime  NULL,
+				UNAVAIL_END_TS datetime  NULL,
+				CREATED_BY char(6) NULL,
+				UPDATED_BY char(6) NULL,
+				CREATED_TS datetime NULL,
+				UPDATED_TS datetime NULL,
+				PERSONNEL_UNAVAILABILITY_ID uniqueidentifier  NULL,			
+				AUDIT_CREATED_TS datetime not null,				
+				AUDIT_ACTION_CODE char(1) not null)				
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0013" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table AUDIT_PERSONNEL_UNAVAILABILITY add constraint AUDIT_PERSONNEL_UNAVAILABILITY_PK primary key (PERSONNEL_ID,AUDIT_CREATED_TS)
+
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0014" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			CREATE TABLE AUDIT_REVIEW(
+				REVIEW_ID uniqueidentifier NOT NULL,
+				BATCH_ID uniqueidentifier NULL,
+				CASE_NUMBER char(11) NULL,
+				ORIG_MIT_RQST_DT datetime NULL,
+				ORIG_ASSIGN_DT datetime NULL,
+				SELECTION_ID uniqueidentifier NULL,
+				ORIGINAL_REVIEWER_PERSONNEL_ID uniqueidentifier NULL,
+				RVW_COMPLTD_DT datetime NULL,
+				RVW_STARTED_DT_TM datetime NULL,
+				CREATED_BY char(6) NULL,
+				UPDATED_BY char(6) NULL,
+				CREATED_TS datetime NULL,
+				UPDATED_TS datetime NULL,
+				REVIEW_REFERENCE_ID varchar(20) NULL,
+				DUE_DATE datetime NULL,
+				CANCELLATION_REASON_ID uniqueidentifier NULL,
+				QC_OUTCOME_CD char(2) NULL,
+				MRB_REFERRAL_IND char(1)  NULL,
+				REVIEW_STATUS_ID uniqueidentifier  NULL,
+				SUMMARY_RATING_ID uniqueidentifier NULL,
+				REVIEW_SCOPE_ID uniqueidentifier  NULL,
+				REVIEW_TYPE_ID uniqueidentifier  NULL,
+				PRODUCT_TYPE_ID uniqueidentifier NULL,
+				SELECTION_REASON_ID uniqueidentifier  NULL,
+				QA_MODEL_ID uniqueidentifier  NULL,
+				AUDIT_CREATED_TS datetime not null,				
+				AUDIT_ACTION_CODE char(1) not null)	
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0015" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table AUDIT_REVIEW add constraint AUDIT_REVIEW_PK primary key (REVIEW_ID,AUDIT_CREATED_TS)
+
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0016" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create index AUDIT_REVIEW_CASE_NUMBER_NUI on AUDIT_REVIEW(CASE_NUMBER)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0017" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create index AUDIT_REVIEW_BATCH_ID_NUI on AUDIT_REVIEW(BATCH_ID)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0018" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			CREATE TABLE AUDIT_REVIEW_LEVEL(
+				REVIEW_LEVEL_ID uniqueidentifier NOT NULL,
+				ASSIGN_DT datetime NULL,
+				COMPLT_DT datetime NULL,
+				INDEMNIFICATION_TYPE_ID uniqueidentifier NULL,
+				ITERATION_NUMBER numeric(3, 0)  NULL,
+				NOTES varchar(max) NULL,
+				ORIGINAL_REVIEWER_PERSONNEL_ID uniqueidentifier NULL,
+				REVIEW_ID uniqueidentifier  NULL,
+				RVW_STARTED_DT_TM datetime NULL,
+				REVIEWER_PERSONNEL_ID uniqueidentifier NULL,
+				CREATED_BY char(6) NULL,
+				UPDATED_BY char(6) NULL,
+				CREATED_TS datetime NULL,
+				UPDATED_TS datetime NULL,
+				DUE_DATE datetime NULL,
+				REVIEW_LEVEL_TYPE_ID uniqueidentifier NULL,
+				REVIEW_LOCATION_ID uniqueidentifier NULL,
+				REVIEW_LEVEL_STATUS_ID uniqueidentifier  NULL,
+				RATING_ID uniqueidentifier  NULL,
+				VETTING_IND char(1)  NULL,
+				VETTEE_ACKNOWLEDGEMENT_DT datetime NULL,
+				VETTEE_ACKNOWLEDGEMENT_DUE_DT datetime NULL,
+				REASSIGNMENT_REASON_ID uniqueidentifier NULL,
+				CANCELLATION_REASON_ID uniqueidentifier NULL,
+				AUDIT_CREATED_TS datetime not null,				
+				AUDIT_ACTION_CODE char(1) not null)	
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0019" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table AUDIT_REVIEW_LEVEL add constraint AUDIT_REVIEW_LEVEL_PK primary key (REVIEW_LEVEL_ID,AUDIT_CREATED_TS)
+
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0020" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create index AUDIT_REVIEW_LEVEL_REVIEW_ID_NUI on AUDIT_REVIEW_LEVEL(REVIEW_ID)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0021" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			CREATE TABLE AUDIT_REVIEW_LOCATION(
+				LOCATION_NAME varchar(16)  NULL,
+				CONTACT_NAME varchar(100) NULL,
+				CONTACT_PHONE_NUMBER varchar(32) NULL,
+				MAILING_ADDRESS varchar(100) NULL,
+				MAILING_CITY varchar(100) NULL,
+				MAILING_STATE varchar(16) NULL,
+				MAILING_ZIP varchar(16) NULL,
+				COMMITTED_MONTHLY_CAPACITY int NULL,
+				OWNER_PERSONNEL_ID uniqueidentifier NULL,
+				CREATED_BY char(6) NULL,
+				UPDATED_BY char(6) NULL,
+				CREATED_TS datetime NULL,
+				UPDATED_TS datetime NULL,
+				PHONE_EXTENSION char(4) NULL,
+				REVIEW_LOCATION_ID uniqueidentifier NOT NULL,
+				ACTIVATION_DATE datetime NULL,
+				DEACTIVATION_DATE datetime NULL,
+				MAILING_ADDRESS_2 varchar(100) NULL,
+				BINDER_DELIVERY_LOCATION_ID uniqueidentifier NULL,
+				AUDIT_CREATED_TS datetime not null,				
+				AUDIT_ACTION_CODE char(1) not null)	
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0022" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table AUDIT_REVIEW_LOCATION add constraint AUDIT_REVIEW_LOCATION_PK primary key (REVIEW_LOCATION_ID,AUDIT_CREATED_TS)
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0023" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create index AUDIT_REVIEW_LOCATION_LOCATION_NAME_NUI on AUDIT_REVIEW_LOCATION(LOCATION_NAME)
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0024" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			CREATE TABLE AUDIT_REVIEW_REFERRAL(
+				NOTES varchar(max) NULL,
+				REVIEW_REFERRAL_TYPE_REF_ID uniqueidentifier NULL,
+				REFERRAL_TMSTMP datetime NULL,
+				REVIEW_ID uniqueidentifier  NULL,
+				CREATED_BY char(6) NULL,
+				UPDATED_BY char(6) NULL,
+				CREATED_TS datetime NULL,
+				UPDATED_TS datetime NULL,
+				REVIEW_REFERRAL_ID uniqueidentifier NOT NULL,
+				REVIEW_REFERRAL_SOURCE_REF_ID uniqueidentifier NULL,
+				AUDIT_CREATED_TS datetime not null,				
+				AUDIT_ACTION_CODE char(1) not null)	
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0025" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table AUDIT_REVIEW_REFERRAL add constraint AUDIT_REVIEW_REFERRAL_PK primary key (REVIEW_REFERRAL_ID,AUDIT_CREATED_TS)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0026" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			CREATE TABLE AUDIT_RVW_LVL_CASE_SUMMARY(
+				REVIEW_LEVEL_ID uniqueidentifier NOT NULL,
+				ASSUMED_LOAN_IND char(1) NULL,
+				CASHOUT_REFI_IND char(1) NULL,
+				DISASTER_IND char(1) NULL,
+				GIFT_LTR_AMT numeric(16, 2) NULL,
+				GIFT_LTR_2_AMT numeric(16, 2) NULL,
+				GIFT_LTR_SRC varchar(32) NULL,
+				GIFT_LTR_2_SOURCE varchar(32) NULL,
+				INVEST_2ND_RESID_IND char(1) NULL,
+				NUM_LIVING_UNITS numeric(3, 0) NULL,
+				LOAN_PRPS varchar(3) NULL,
+				RATIO_LOAN_TO_VL_NEW numeric(10, 5) NULL,
+				LOAN_TYPE varchar(16) NULL,
+				FCTRY_FBRCT char(1) NULL,
+				MAX_CLAIM_AMT numeric(16, 2) NULL,
+				CURRENT_AT_ENDORSE_IND char(1) NULL,
+				PD_STRMLN_FLG varchar(3) NULL,
+				RFNC_CD varchar(16) NULL,
+				SOA_CD varchar(16) NULL,
+				UNDERWRITING_METHOD varchar(16) NULL,
+				ENDRS_BYND_60_DAYS_CLOSE_IND char(1) NULL,
+				NON_OCCUPYING_BORR_IND char(1) NULL,
+				SALE_PRICE_GTR_ACQ_COST_IND char(1) NULL,
+				INSUR_APP_IN_TIME_IND char(1) NULL,
+				CREATED_BY varchar(6) NULL,
+				UPDATED_BY varchar(6) NULL,
+				CREATED_TS datetime NULL,
+				UPDATED_TS datetime NULL,
+				ASSETS_AFTER_CLOSING_UW numeric(16, 2) NULL,
+				TOT_ASSETS_UW numeric(16, 2) NULL,
+				RATIO_FIX_TEI_UW numeric(10, 5) NULL,
+				BORR_HSNG_EXP_UW numeric(16, 2) NULL,
+				FICO_DECISION_SCORE_UW int NULL,
+				RATIO_TOT_PMT_TO_TOT_INC_UW numeric(10, 5) NULL,
+				TOT_MNTHLY_MTG_PYMT_UW numeric(16, 2) NULL,
+				TOT_CLSNG_CSTS_UW numeric(16, 2) NULL,
+				DCSN_CD_UW varchar(16) NULL,
+				TOT_FIXED_PYMT_UW numeric(16, 2) NULL,
+				TOT_ASSETS_ENDRS numeric(16, 2) NULL,
+				RATIO_FIX_TEI_ENDRS numeric(10, 5) NULL,
+				BORR_HSNG_EXP_ENDRS numeric(16, 2) NULL,
+				FICO_DECISION_SCORE_ENDRS int NULL,
+				RATIO_TOT_PMT_TO_TOT_INC_ENDRS numeric(10, 5) NULL,
+				TOT_MNTHLY_MTG_PYMT_ENDRS numeric(16, 2) NULL,
+				TOT_CLSNG_CSTS_ENDRS numeric(16, 2) NULL,
+				DCSN_CD_ENDRS varchar(16) NULL,
+				TOT_FIXED_PYMT_ENDRS numeric(16, 2) NULL,
+				MNDTRY_OBLGTNS_AMT numeric(16, 2) NULL,
+				BNKRPTCY_CHPTR13_IND char(1) NULL,
+				BNKRPTCY_CHPTR7_IND char(1) NULL,
+				GIFT_LTR_TIN varchar(13) NULL,
+				ORIG_MRTG_AMT numeric(16, 2) NULL,
+				PRPRTY_APRSL_VL numeric(16, 2) NULL,
+				SECONDARY_FINANCE_AMT numeric(16, 2) NULL,
+				CLAIM_TYPE varchar(16) NULL,
+				MARRIED_TO_NBS_IND char(1) NULL,
+				BORR_1_NAME varchar(100) NULL,
+				BORR_2_NAME varchar(100) NULL,
+				BORR_1_SSN varchar(11) NULL,
+				BORR_2_SSN varchar(11) NULL,
+				CLSNG_DT datetime NULL,
+				CONST_CD varchar(16) NULL,
+				BNKRPTCY_ANY_IND char(1) NULL,
+				SECONDARY_FINANCE_EXISTS_IND char(1) NULL,
+				BORR_TYP varchar(16) NULL,
+				REO_100_DOWN_PMT_PROG_IND char(1) NULL,
+				AMORT_TYP_CD varchar(16) NULL,
+				LOAN_OFFICER varchar(100) NULL,
+				LOAN_OFFICER_NMLS varchar(12) NULL,
+				SELLER_CNTRBTN numeric(16, 2) NULL,
+				SELLER_CNTRBTN_PCNT numeric(10, 5) NULL,
+				BORR_PAID_CLOSING_COSTS numeric(16, 2) NULL,
+				BORR_REQD_INVEST_TO_CLOSE numeric(16, 2) NULL,
+				BACK_TO_WORK_IND char(1) NULL,
+				COMBINED_LOAN_TO_VALUE_PCT numeric(10, 5) NULL,
+				ESCROW_AMOUNT numeric(16, 2) NULL,
+				TOTAL_REQUIRED_FUNDS_TO_CLOSE numeric(16, 2) NULL,
+				HUD_REO_REPAIR_AMT numeric(16, 2) NULL,
+				MORT_EXCLD_FNCD_MIP numeric(16, 2) NULL,
+				MAN_UW_STRETCH_RATIO_IND char(1) NULL,
+				ORGNTNG_MTGEE_NMLS_ID varchar(12) NULL,
+				QUALIFIED_MRTG_POINTS_AND_FEES numeric(16, 2) NULL,
+				INT_RT numeric(10, 5) NULL,
+				SALES_PRICE numeric(16, 2) NULL,
+				SPECIAL_PROGRAM varchar(30) NULL,
+				TOT_MNTHLY_EFF_INCM numeric(16, 2) NULL,
+				YEAR_BUILT varchar(4) NULL,
+				EFF_DATE_APRSL_UPDATE datetime NULL,
+				APPRAISER_NAME varchar(100) NULL,
+				SITE_TYPE varchar(30) NULL,
+				PRIOR_SALE_WITHIN_LAST_3YR_IND char(1) NULL,
+				DATE_OF_PRIOR_SALE datetime NULL,
+				PRICE_OF_PRIOR_SALE numeric(16, 2) NULL,
+				RCV_SALE_DT datetime NULL,
+				LAST_SERVICING_MRTG_XFER_DT datetime NULL,
+				ARM_INDX_EXPCTD_RT numeric(10, 5) NULL,
+				TEN_YR_RATE_LOCK_IND char(1) NULL,
+				ADDTNL_10PCT_IPL_USAGE_IND char(1) NULL,
+				MANDATORY_OBLIG_BORR_AMT numeric(16, 2) NULL,
+				MANDATORY_OBLIG_LEND_AMT numeric(16, 2) NULL,
+				HECM_COUNSEL_DT datetime NULL,
+				APPLICATION_DATE datetime NULL,
+				BORR_BRTH_DT datetime NULL,
+				EXPECTED_RATE numeric(10, 5) NULL,
+				HECM_COUNSEL_CERT_NO varchar(36) NULL,
+				INIT_DISBURSEMENT_LIMIT numeric(16, 2) NULL,
+				HECM_PRNCPL_LMT numeric(16, 2) NULL,
+				MAX_RATE numeric(10, 5) NULL,
+				ORIGINATION_FEE numeric(16, 2) NULL,
+				PAYMENT_PLAN varchar(16) NULL,
+				TAXES_INSRNC_FRST_YR_AMT numeric(16, 2) NULL,
+				REPAIR_COMPLETION_DATE datetime NULL,
+				BORR_1_RENTING_IND char(1) NULL,
+				BORR_1_SELF_EMPL_IND char(1) NULL,
+				BORR_1_FIRST_TIME_BUYER_IND char(1) NULL,
+				ARM_IND varchar(3) NULL,
+				BLDG_TYP char(1) NULL,
+				BUILDING_ON_OWN_LAND_IND char(1) NULL,
+				FLIPPING_CATEGORY_2_IND char(1) NULL,
+				FRCLSR_IND char(1) NULL,
+				DEFAULT_EPISODE_EXISTS_IND char(1) NULL,
+				ADP_CODE varchar(16) NULL,
+				GIFT_LTR_2_TIN varchar(11) NULL,
+				MISC_AUS_DCSN_CD varchar(16) NULL,
+				BNKRPTCY_CD varchar(16) NULL,
+				FRCLSR_STRT_DT datetime NULL,
+				FT_IN_EPS_3MNTH_DELQ_DT datetime NULL,
+				LOSSMIT_CD varchar(16) NULL,
+				OCPNCY_STS_CD varchar(16) NULL,
+				OLDST_UNPD_DT datetime NULL,
+				TERM_TYP_CD varchar(16) NULL,
+				ENDRSMNT_DT datetime NULL,
+				REFINANCE_IND char(1) NULL,
+				CASE_NUMBER varchar(11) NULL,
+				PROP_ADDR_1 varchar(100) NULL,
+				PROP_ADDR_2 varchar(100) NULL,
+				PROP_ADDR_CITY varchar(100) NULL,
+				PROP_ADDR_ZIP varchar(5) NULL,
+				PROP_ADDR_ST char(2) NULL,
+				BNKRPTCY_DT datetime NULL,
+				MNFCTRD_HUSNG_IND char(1) NULL,
+				PRODUCT_TYPE_CD varchar(5) NULL,
+				REVIEW_TYPE_CD char(1) NULL,
+				AUDIT_CREATED_TS datetime not null,				
+				AUDIT_ACTION_CODE char(1) not null)	
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0027" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table AUDIT_RVW_LVL_CASE_SUMMARY add constraint AUDIT_RVW_LVL_CASE_SUMMARY_PK primary key (REVIEW_LEVEL_ID,AUDIT_CREATED_TS)
+
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0028" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			CREATE TABLE AUDIT_UNDERWRITER_INCREASED_SELECTION(
+				UNDERWRITER_ID varchar(16) NOT NULL,
+				COMMENTS varchar(max) NULL,
+				EFFECTIVE_DATE datetime NULL,
+				FWD_PERCENT numeric(3, 0) NULL,
+				HECM_PERCENT numeric(3, 0) NULL,
+				CREATED_BY char(6) NULL,
+				UPDATED_BY char(6) NULL,
+				CREATED_TS datetime NULL,
+				UPDATED_TS datetime NULL,
+				AUDIT_CREATED_TS datetime not null,				
+				AUDIT_ACTION_CODE char(1) not null)	
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0029" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table AUDIT_UNDERWRITER_INCREASED_SELECTION add constraint AUDIT_UNDERWRITER_INCREASED_SELECTION_PK primary key (UNDERWRITER_ID,AUDIT_CREATED_TS)
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0030" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			if exists (select * from sysobjects
+					   where type = 'TR'
+					     and name = 'tI_BATCH')
+			    drop trigger tI_BATCH
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0031" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+       <createProcedure>
+		<![CDATA[
+			CREATE TRIGGER tI_BATCH ON BATCH FOR insert AS
+			BEGIN
+				insert into AUDIT_BATCH(
+				 BATCH_ID ,
+				 OWNER_PERSONNEL_ID ,
+				 MTGEE5,
+				 ORIGINAL_OWNER_PERSONNEL_ID ,
+				 CREATED_BY ,
+				 UPDATED_BY ,
+				 CREATED_TS ,
+				 UPDATED_TS ,
+				 BATCH_REFERENCE_ID,
+				 OPERATIONAL_REVIEW_IND,
+				 REQUEST_OPERATIONAL_DOCUMENTS_IND,
+				 SECONDARY_REFERENCE,
+				 OPERATIONAL_REVIEW_GUIDANCE,
+				 SELECTION_REQUEST_ID,
+				 BATCH_STATUS_ID,
+				 REVIEW_LOCATION_ID,
+				 RECEIVED_OPERATIONAL_DOCUMENTS_IND,
+				 AUDIT_CREATED_TS,
+				 AUDIT_ACTION_CODE)	
+				select 
+				 BATCH_ID ,
+				 OWNER_PERSONNEL_ID ,
+				 MTGEE5,
+				 ORIGINAL_OWNER_PERSONNEL_ID ,
+				 CREATED_BY ,
+				 UPDATED_BY ,
+				 CREATED_TS ,
+				 UPDATED_TS ,
+				 BATCH_REFERENCE_ID,
+				 OPERATIONAL_REVIEW_IND,
+				 REQUEST_OPERATIONAL_DOCUMENTS_IND,
+				 SECONDARY_REFERENCE,
+				 OPERATIONAL_REVIEW_GUIDANCE,
+				 SELECTION_REQUEST_ID,
+				 BATCH_STATUS_ID,
+				 REVIEW_LOCATION_ID,
+				 RECEIVED_OPERATIONAL_DOCUMENTS_IND,
+				 getdate(),
+				 'C'
+				from inserted
+				
+			END
+
+		]]>
+        </createProcedure>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0032" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			if exists (select * from sysobjects
+					   where type = 'TR'
+					     and name = 'tU_BATCH')
+			    drop trigger tU_BATCH
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0033" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+       <createProcedure>
+		<![CDATA[
+			CREATE TRIGGER tU_BATCH ON BATCH FOR update AS
+			BEGIN
+				insert into AUDIT_BATCH(
+				 BATCH_ID ,
+				 OWNER_PERSONNEL_ID ,
+				 MTGEE5,
+				 ORIGINAL_OWNER_PERSONNEL_ID ,
+				 CREATED_BY ,
+				 UPDATED_BY ,
+				 CREATED_TS ,
+				 UPDATED_TS ,
+				 BATCH_REFERENCE_ID,
+				 OPERATIONAL_REVIEW_IND,
+				 REQUEST_OPERATIONAL_DOCUMENTS_IND,
+				 SECONDARY_REFERENCE,
+				 OPERATIONAL_REVIEW_GUIDANCE,
+				 SELECTION_REQUEST_ID,
+				 BATCH_STATUS_ID,
+				 REVIEW_LOCATION_ID,
+				 RECEIVED_OPERATIONAL_DOCUMENTS_IND,
+				 AUDIT_CREATED_TS,
+				 AUDIT_ACTION_CODE)	
+				select 
+				 BATCH_ID ,
+				 OWNER_PERSONNEL_ID ,
+				 MTGEE5,
+				 ORIGINAL_OWNER_PERSONNEL_ID ,
+				 CREATED_BY ,
+				 UPDATED_BY ,
+				 CREATED_TS ,
+				 UPDATED_TS ,
+				 BATCH_REFERENCE_ID,
+				 OPERATIONAL_REVIEW_IND,
+				 REQUEST_OPERATIONAL_DOCUMENTS_IND,
+				 SECONDARY_REFERENCE,
+				 OPERATIONAL_REVIEW_GUIDANCE,
+				 SELECTION_REQUEST_ID,
+				 BATCH_STATUS_ID,
+				 REVIEW_LOCATION_ID,
+				 RECEIVED_OPERATIONAL_DOCUMENTS_IND,
+				 getdate(),
+				 'U'
+				from inserted
+				
+			END
+
+		]]>
+        </createProcedure>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0034" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			if exists (select * from sysobjects
+					   where type = 'TR'
+					     and name = 'tI_LENDER_INCREASED_SELECTION')
+			    drop trigger tI_LENDER_INCREASED_SELECTION
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0035" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+       <createProcedure>
+		<![CDATA[
+			CREATE TRIGGER tI_LENDER_INCREASED_SELECTION ON LENDER_INCREASED_SELECTION FOR insert AS
+			BEGIN
+				insert into AUDIT_LENDER_INCREASED_SELECTION(
+				  MTGEE5,
+				  COMMENTS,
+				  EFFECTIVE_DATE,
+				  TARGET_FWD_PCT,
+				  TARGET_HECM_PCT,
+				  CREATED_BY,
+				  UPDATED_BY,
+				  CREATED_TS,
+				  UPDATED_TS,
+				  AUDIT_CREATED_TS,
+				  AUDIT_ACTION_CODE)
+				select 
+				  MTGEE5,
+				  COMMENTS,
+				  EFFECTIVE_DATE,
+				  TARGET_FWD_PCT,
+				  TARGET_HECM_PCT,
+				  CREATED_BY,
+				  UPDATED_BY,
+				  CREATED_TS,
+				  UPDATED_TS,
+				  getdate(),
+				  'C'
+				 from inserted
+			END
+
+		]]>
+        </createProcedure>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0036" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			if exists (select * from sysobjects
+					   where type = 'TR'
+					     and name = 'tU_LENDER_INCREASED_SELECTION')
+			    drop trigger tU_LENDER_INCREASED_SELECTION
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0037" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+       <createProcedure>
+		<![CDATA[
+			CREATE TRIGGER tU_LENDER_INCREASED_SELECTION ON LENDER_INCREASED_SELECTION FOR update AS
+			BEGIN
+				insert into AUDIT_LENDER_INCREASED_SELECTION(
+				  MTGEE5,
+				  COMMENTS,
+				  EFFECTIVE_DATE,
+				  TARGET_FWD_PCT,
+				  TARGET_HECM_PCT,
+				  CREATED_BY,
+				  UPDATED_BY,
+				  CREATED_TS,
+				  UPDATED_TS,
+				  AUDIT_CREATED_TS,
+				  AUDIT_ACTION_CODE)
+				select 
+				  MTGEE5,
+				  COMMENTS,
+				  EFFECTIVE_DATE,
+				  TARGET_FWD_PCT,
+				  TARGET_HECM_PCT,
+				  CREATED_BY,
+				  UPDATED_BY,
+				  CREATED_TS,
+				  UPDATED_TS,
+				  getdate(),
+				  'U'
+				 from inserted
+			END
+
+		]]>
+        </createProcedure>
+    </changeSet>	
+   <changeSet context="All"  author="astrauss" id="HUDLRS_664_0038" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			if exists (select * from sysobjects
+					   where type = 'TR'
+					     and name = 'tI_AUDIT_LENDER_SUPPRESSION')
+			    drop trigger tI_AUDIT_LENDER_SUPPRESSION
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0039" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+       <createProcedure>
+		<![CDATA[
+			CREATE TRIGGER tI_AUDIT_LENDER_SUPPRESSION ON LENDER_SUPPRESSION FOR insert AS
+			BEGIN
+				insert into AUDIT_LENDER_SUPPRESSION(
+				  MTGEE5,
+				  CREATED_BY,
+				  UPDATED_BY,
+				  CREATED_TS,
+				  UPDATED_TS,
+				  AUDIT_CREATED_TS,
+				  AUDIT_ACTION_CODE)
+				select
+				  MTGEE5,
+				  CREATED_BY,
+				  UPDATED_BY,
+				  CREATED_TS,
+				  UPDATED_TS,			
+				  getdate(),
+				  'C'
+				 from inserted
+			END
+
+		]]>
+        </createProcedure>
+    </changeSet>		
+   <changeSet context="All"  author="astrauss" id="HUDLRS_664_0040" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			if exists (select * from sysobjects
+					   where type = 'TR'
+					     and name = 'tU_AUDIT_LENDER_SUPPRESSION')
+			    drop trigger tU_AUDIT_LENDER_SUPPRESSION
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0041" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+       <createProcedure>
+		<![CDATA[
+			CREATE TRIGGER tU_AUDIT_LENDER_SUPPRESSION ON LENDER_SUPPRESSION FOR update AS
+			BEGIN
+				insert into AUDIT_LENDER_SUPPRESSION(
+				  MTGEE5,
+				  CREATED_BY,
+				  UPDATED_BY,
+				  CREATED_TS,
+				  UPDATED_TS,
+				  AUDIT_CREATED_TS,
+				  AUDIT_ACTION_CODE)
+				select
+				  MTGEE5,
+				  CREATED_BY,
+				  UPDATED_BY,
+				  CREATED_TS,
+				  UPDATED_TS,			
+				  getdate(),
+				  'U'
+				 from inserted
+			END
+
+		]]>
+        </createProcedure>
+    </changeSet>	
+   <changeSet context="All"  author="astrauss" id="HUDLRS_664_0042" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			if exists (select * from sysobjects
+					   where type = 'TR'
+					     and name = 'tI_AUDIT_PERSONNEL')
+			    drop trigger tI_AUDIT_PERSONNEL
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0043" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+       <createProcedure>
+		<![CDATA[
+			CREATE TRIGGER tI_AUDIT_PERSONNEL ON PERSONNEL FOR insert AS
+			BEGIN
+				insert into AUDIT_PERSONNEL(
+				  PERSONNEL_ID,
+				  EMAIL_ADDRESS,
+				  REPORTS_TO_PERSONNEL_ID,
+				  FIRST_NAME,
+				  LAST_NAME,
+				  VETTING_PERSONNEL_ID,
+				  CREATED_BY,
+				  UPDATED_BY,
+				  CREATED_TS,
+				  UPDATED_TS,
+				  LOGIN_CREDENTIAL,
+				  AVAILABILITY_IND,
+				  REVIEWER_CAPACITY,
+				  REVIEW_LOCATION_ID,
+				  PERSONNEL_STATUS_ID,
+				  AUDIT_CREATED_TS,				
+				  AUDIT_ACTION_CODE)
+				select 
+				  PERSONNEL_ID,
+				  EMAIL_ADDRESS,
+				  REPORTS_TO_PERSONNEL_ID,
+				  FIRST_NAME,
+				  LAST_NAME,
+				  VETTING_PERSONNEL_ID,
+				  CREATED_BY,
+				  UPDATED_BY,
+				  CREATED_TS,
+				  UPDATED_TS,
+				  LOGIN_CREDENTIAL,
+				  AVAILABILITY_IND,
+				  REVIEWER_CAPACITY,
+				  REVIEW_LOCATION_ID,
+				  PERSONNEL_STATUS_ID,
+				  getdate(),				
+				  'C'				
+				 from inserted
+			END
+
+		]]>
+        </createProcedure>
+    </changeSet>		
+   <changeSet context="All"  author="astrauss" id="HUDLRS_664_0044" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			if exists (select * from sysobjects
+					   where type = 'TR'
+					     and name = 'tU_AUDIT_PERSONNEL')
+			    drop trigger tU_AUDIT_PERSONNEL
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0045" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+       <createProcedure>
+		<![CDATA[
+			CREATE TRIGGER tU_AUDIT_PERSONNEL ON PERSONNEL FOR update AS
+			BEGIN
+				insert into AUDIT_PERSONNEL(
+				  PERSONNEL_ID,
+				  EMAIL_ADDRESS,
+				  REPORTS_TO_PERSONNEL_ID,
+				  FIRST_NAME,
+				  LAST_NAME,
+				  VETTING_PERSONNEL_ID,
+				  CREATED_BY,
+				  UPDATED_BY,
+				  CREATED_TS,
+				  UPDATED_TS,
+				  LOGIN_CREDENTIAL,
+				  AVAILABILITY_IND,
+				  REVIEWER_CAPACITY,
+				  REVIEW_LOCATION_ID,
+				  PERSONNEL_STATUS_ID,
+				  AUDIT_CREATED_TS,				
+				  AUDIT_ACTION_CODE)
+				select 
+				  PERSONNEL_ID,
+				  EMAIL_ADDRESS,
+				  REPORTS_TO_PERSONNEL_ID,
+				  FIRST_NAME,
+				  LAST_NAME,
+				  VETTING_PERSONNEL_ID,
+				  CREATED_BY,
+				  UPDATED_BY,
+				  CREATED_TS,
+				  UPDATED_TS,
+				  LOGIN_CREDENTIAL,
+				  AVAILABILITY_IND,
+				  REVIEWER_CAPACITY,
+				  REVIEW_LOCATION_ID,
+				  PERSONNEL_STATUS_ID,
+				  getdate(),				
+				  'U'				
+				 from inserted
+			END
+
+		]]>
+        </createProcedure>
+    </changeSet>	
+   <changeSet context="All"  author="astrauss" id="HUDLRS_664_0046" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			if exists (select * from sysobjects
+					   where type = 'TR'
+					     and name = 'tI_AUDIT_PERSONNEL_UNAVAILABILITY')
+			    drop trigger tI_AUDIT_PERSONNEL_UNAVAILABILITY
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0047" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+       <createProcedure>
+		<![CDATA[
+			CREATE TRIGGER tI_AUDIT_PERSONNEL_UNAVAILABILITY ON PERSONNEL_UNAVAILABILITY FOR insert AS
+			BEGIN
+				insert into AUDIT_PERSONNEL_UNAVAILABILITY(
+				  PERSONNEL_ID,
+				  UNAVAIL_START_TS,
+				  UNAVAIL_END_TS,
+				  CREATED_BY,
+				  UPDATED_BY,
+				  CREATED_TS,
+				  UPDATED_TS,
+				  PERSONNEL_UNAVAILABILITY_ID,
+				  AUDIT_CREATED_TS,
+				  AUDIT_ACTION_CODE)
+				select 
+				  PERSONNEL_ID,
+				  UNAVAIL_START_TS,
+				  UNAVAIL_END_TS,
+				  CREATED_BY,
+				  UPDATED_BY,
+				  CREATED_TS,
+				  UPDATED_TS,
+				  PERSONNEL_UNAVAILABILITY_ID,
+				  getdate(),				
+				  'C'				
+				 from inserted
+			END
+
+		]]>
+        </createProcedure>
+    </changeSet>		
+   <changeSet context="All"  author="astrauss" id="HUDLRS_664_0048" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			if exists (select * from sysobjects
+					   where type = 'TR'
+					     and name = 'tU_AUDIT_PERSONNEL_UNAVAILABILITY')
+			    drop trigger tU_AUDIT_PERSONNEL_UNAVAILABILITY
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0049" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+       <createProcedure>
+		<![CDATA[
+			CREATE TRIGGER tU_AUDIT_PERSONNEL_UNAVAILABILITY ON PERSONNEL_UNAVAILABILITY FOR update AS
+			BEGIN
+				insert into AUDIT_PERSONNEL_UNAVAILABILITY(
+				  PERSONNEL_ID,
+				  UNAVAIL_START_TS,
+				  UNAVAIL_END_TS,
+				  CREATED_BY,
+				  UPDATED_BY,
+				  CREATED_TS,
+				  UPDATED_TS,
+				  PERSONNEL_UNAVAILABILITY_ID,
+				  AUDIT_CREATED_TS,
+				  AUDIT_ACTION_CODE)
+				select 
+				  PERSONNEL_ID,
+				  UNAVAIL_START_TS,
+				  UNAVAIL_END_TS,
+				  CREATED_BY,
+				  UPDATED_BY,
+				  CREATED_TS,
+				  UPDATED_TS,
+				  PERSONNEL_UNAVAILABILITY_ID,
+				  getdate(),				
+				  'U'				
+				 from inserted
+			END
+
+		]]>
+        </createProcedure>
+    </changeSet>			
+   <changeSet context="All"  author="astrauss" id="HUDLRS_664_0050" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			if exists (select * from sysobjects
+					   where type = 'TR'
+					     and name = 'tI_AUDIT_REVIEW_LEVEL')
+			    drop trigger tI_AUDIT_REVIEW_LEVEL
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0051" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+       <createProcedure>
+		<![CDATA[
+			CREATE TRIGGER tI_AUDIT_REVIEW_LEVEL ON REVIEW_LEVEL FOR insert AS
+			BEGIN
+				insert into AUDIT_REVIEW_LEVEL(
+				  REVIEW_LEVEL_ID,
+				  ASSIGN_DT,
+				  COMPLT_DT,
+				  INDEMNIFICATION_TYPE_ID,
+				  ITERATION_NUMBER,
+				  NOTES,
+				  ORIGINAL_REVIEWER_PERSONNEL_ID,
+				  REVIEW_ID,
+				  RVW_STARTED_DT_TM,
+				  REVIEWER_PERSONNEL_ID,
+				  CREATED_BY,
+				  UPDATED_BY,
+				  CREATED_TS,
+				  UPDATED_TS,
+				  DUE_DATE,
+				  REVIEW_LEVEL_TYPE_ID,
+				  REVIEW_LOCATION_ID,
+				  REVIEW_LEVEL_STATUS_ID,
+				  RATING_ID,
+				  VETTING_IND,
+				  VETTEE_ACKNOWLEDGEMENT_DT,
+				  VETTEE_ACKNOWLEDGEMENT_DUE_DT,
+				  REASSIGNMENT_REASON_ID,
+				  CANCELLATION_REASON_ID,
+				  AUDIT_CREATED_TS,
+				  AUDIT_ACTION_CODE)	
+				select 
+				  REVIEW_LEVEL_ID,
+				  ASSIGN_DT,
+				  COMPLT_DT,
+				  INDEMNIFICATION_TYPE_ID,
+				  ITERATION_NUMBER,
+				  NOTES,
+				  ORIGINAL_REVIEWER_PERSONNEL_ID,
+				  REVIEW_ID,
+				  RVW_STARTED_DT_TM,
+				  REVIEWER_PERSONNEL_ID,
+				  CREATED_BY,
+				  UPDATED_BY,
+				  CREATED_TS,
+				  UPDATED_TS,
+				  DUE_DATE,
+				  REVIEW_LEVEL_TYPE_ID,
+				  REVIEW_LOCATION_ID,
+				  REVIEW_LEVEL_STATUS_ID,
+				  RATING_ID,
+				  VETTING_IND,
+				  VETTEE_ACKNOWLEDGEMENT_DT,
+				  VETTEE_ACKNOWLEDGEMENT_DUE_DT,
+				  REASSIGNMENT_REASON_ID,
+				  CANCELLATION_REASON_ID,
+				  getdate(),				
+				  'C'				
+				 from inserted
+			END
+
+		]]>
+        </createProcedure>
+    </changeSet>			
+   <changeSet context="All"  author="astrauss" id="HUDLRS_664_0052" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			if exists (select * from sysobjects
+					   where type = 'TR'
+					     and name = 'tU_AUDIT_REVIEW_LEVEL')
+			    drop trigger tU_AUDIT_REVIEW_LEVEL
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0053" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+       <createProcedure>
+		<![CDATA[
+			CREATE TRIGGER tU_AUDIT_REVIEW_LEVEL ON REVIEW_LEVEL FOR update AS
+			BEGIN
+				insert into AUDIT_REVIEW_LEVEL(
+				  REVIEW_LEVEL_ID,
+				  ASSIGN_DT,
+				  COMPLT_DT,
+				  INDEMNIFICATION_TYPE_ID,
+				  ITERATION_NUMBER,
+				  NOTES,
+				  ORIGINAL_REVIEWER_PERSONNEL_ID,
+				  REVIEW_ID,
+				  RVW_STARTED_DT_TM,
+				  REVIEWER_PERSONNEL_ID,
+				  CREATED_BY,
+				  UPDATED_BY,
+				  CREATED_TS,
+				  UPDATED_TS,
+				  DUE_DATE,
+				  REVIEW_LEVEL_TYPE_ID,
+				  REVIEW_LOCATION_ID,
+				  REVIEW_LEVEL_STATUS_ID,
+				  RATING_ID,
+				  VETTING_IND,
+				  VETTEE_ACKNOWLEDGEMENT_DT,
+				  VETTEE_ACKNOWLEDGEMENT_DUE_DT,
+				  REASSIGNMENT_REASON_ID,
+				  CANCELLATION_REASON_ID,
+				  AUDIT_CREATED_TS,
+				  AUDIT_ACTION_CODE)	
+				select 
+				  REVIEW_LEVEL_ID,
+				  ASSIGN_DT,
+				  COMPLT_DT,
+				  INDEMNIFICATION_TYPE_ID,
+				  ITERATION_NUMBER,
+				  NOTES,
+				  ORIGINAL_REVIEWER_PERSONNEL_ID,
+				  REVIEW_ID,
+				  RVW_STARTED_DT_TM,
+				  REVIEWER_PERSONNEL_ID,
+				  CREATED_BY,
+				  UPDATED_BY,
+				  CREATED_TS,
+				  UPDATED_TS,
+				  DUE_DATE,
+				  REVIEW_LEVEL_TYPE_ID,
+				  REVIEW_LOCATION_ID,
+				  REVIEW_LEVEL_STATUS_ID,
+				  RATING_ID,
+				  VETTING_IND,
+				  VETTEE_ACKNOWLEDGEMENT_DT,
+				  VETTEE_ACKNOWLEDGEMENT_DUE_DT,
+				  REASSIGNMENT_REASON_ID,
+				  CANCELLATION_REASON_ID,
+				  getdate(),				
+				  'U'				
+				 from inserted
+			END
+
+		]]>
+        </createProcedure>
+    </changeSet>			
+   <changeSet context="All"  author="astrauss" id="HUDLRS_664_0054" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			if exists (select * from sysobjects
+					   where type = 'TR'
+					     and name = 'tI_AUDIT_REVIEW_LOCATION')
+			    drop trigger tI_AUDIT_REVIEW_LOCATION
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0055" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+       <createProcedure>
+		<![CDATA[
+			CREATE TRIGGER tI_AUDIT_REVIEW_LOCATION ON REVIEW_LOCATION FOR insert AS
+			BEGIN
+				insert into AUDIT_REVIEW_LOCATION(
+				  LOCATION_NAME,
+				  CONTACT_NAME,
+				  CONTACT_PHONE_NUMBER,
+				  MAILING_ADDRESS,
+				  MAILING_CITY,
+				  MAILING_STATE,
+				  MAILING_ZIP,
+				  COMMITTED_MONTHLY_CAPACITY,
+				  OWNER_PERSONNEL_ID,
+				  CREATED_BY,
+				  UPDATED_BY,
+				  CREATED_TS ,
+				  UPDATED_TS,
+				  PHONE_EXTENSION,
+				  REVIEW_LOCATION_ID,
+				  ACTIVATION_DATE,
+				  DEACTIVATION_DATE,
+				  MAILING_ADDRESS_2,
+				  BINDER_DELIVERY_LOCATION_ID,
+				  AUDIT_CREATED_TS,
+				  AUDIT_ACTION_CODE)
+				select 
+				  LOCATION_NAME,
+				  CONTACT_NAME,
+				  CONTACT_PHONE_NUMBER,
+				  MAILING_ADDRESS,
+				  MAILING_CITY,
+				  MAILING_STATE,
+				  MAILING_ZIP,
+				  COMMITTED_MONTHLY_CAPACITY,
+				  OWNER_PERSONNEL_ID,
+				  CREATED_BY,
+				  UPDATED_BY,
+				  CREATED_TS ,
+				  UPDATED_TS,
+				  PHONE_EXTENSION,
+				  REVIEW_LOCATION_ID,
+				  ACTIVATION_DATE,
+				  DEACTIVATION_DATE,
+				  MAILING_ADDRESS_2,
+				  BINDER_DELIVERY_LOCATION_ID,
+				  getdate(),				
+				  'C'				
+				 from inserted
+			END
+
+		]]>
+        </createProcedure>
+    </changeSet>				
+   <changeSet context="All"  author="astrauss" id="HUDLRS_664_0056" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			if exists (select * from sysobjects
+					   where type = 'TR'
+					     and name = 'tU_AUDIT_REVIEW_LOCATION')
+			    drop trigger tU_AUDIT_REVIEW_LOCATION
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0057" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+       <createProcedure>
+		<![CDATA[
+			CREATE TRIGGER tU_AUDIT_REVIEW_LOCATION ON REVIEW_LOCATION FOR update AS
+			BEGIN
+				insert into AUDIT_REVIEW_LOCATION(
+				  LOCATION_NAME,
+				  CONTACT_NAME,
+				  CONTACT_PHONE_NUMBER,
+				  MAILING_ADDRESS,
+				  MAILING_CITY,
+				  MAILING_STATE,
+				  MAILING_ZIP,
+				  COMMITTED_MONTHLY_CAPACITY,
+				  OWNER_PERSONNEL_ID,
+				  CREATED_BY,
+				  UPDATED_BY,
+				  CREATED_TS ,
+				  UPDATED_TS,
+				  PHONE_EXTENSION,
+				  REVIEW_LOCATION_ID,
+				  ACTIVATION_DATE,
+				  DEACTIVATION_DATE,
+				  MAILING_ADDRESS_2,
+				  BINDER_DELIVERY_LOCATION_ID,
+				  AUDIT_CREATED_TS,
+				  AUDIT_ACTION_CODE)
+				select 
+				  LOCATION_NAME,
+				  CONTACT_NAME,
+				  CONTACT_PHONE_NUMBER,
+				  MAILING_ADDRESS,
+				  MAILING_CITY,
+				  MAILING_STATE,
+				  MAILING_ZIP,
+				  COMMITTED_MONTHLY_CAPACITY,
+				  OWNER_PERSONNEL_ID,
+				  CREATED_BY,
+				  UPDATED_BY,
+				  CREATED_TS ,
+				  UPDATED_TS,
+				  PHONE_EXTENSION,
+				  REVIEW_LOCATION_ID,
+				  ACTIVATION_DATE,
+				  DEACTIVATION_DATE,
+				  MAILING_ADDRESS_2,
+				  BINDER_DELIVERY_LOCATION_ID,
+				  getdate(),				
+				  'U'				
+				 from inserted
+			END
+
+		]]>
+        </createProcedure>
+    </changeSet>	
+   <changeSet context="All"  author="astrauss" id="HUDLRS_664_0058" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			if exists (select * from sysobjects
+					   where type = 'TR'
+					     and name = 'tI_AUDIT_REVIEW_REFERRAL')
+			    drop trigger tI_AUDIT_REVIEW_REFERRAL
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0059" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+       <createProcedure>
+		<![CDATA[
+			CREATE TRIGGER tI_AUDIT_REVIEW_REFERRAL ON REVIEW_REFERRAL FOR insert AS
+			BEGIN
+				insert into AUDIT_REVIEW_REFERRAL(
+				  NOTES,
+				  REVIEW_REFERRAL_TYPE_REF_ID,
+				  REFERRAL_TMSTMP,
+				  REVIEW_ID,
+				  CREATED_BY,
+				  UPDATED_BY ,
+				  CREATED_TS,
+				  UPDATED_TS,
+				  REVIEW_REFERRAL_ID,
+				  REVIEW_REFERRAL_SOURCE_REF_ID,
+				  AUDIT_CREATED_TS,
+				  AUDIT_ACTION_CODE)
+				select 
+				  NOTES,
+				  REVIEW_REFERRAL_TYPE_REF_ID,
+				  REFERRAL_TMSTMP,
+				  REVIEW_ID,
+				  CREATED_BY,
+				  UPDATED_BY ,
+				  CREATED_TS,
+				  UPDATED_TS,
+				  REVIEW_REFERRAL_ID,
+				  REVIEW_REFERRAL_SOURCE_REF_ID,
+				  getdate(),				
+				  'C'				
+				 from inserted
+			END
+
+		]]>
+        </createProcedure>
+    </changeSet>		
+   <changeSet context="All"  author="astrauss" id="HUDLRS_664_0060" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			if exists (select * from sysobjects
+					   where type = 'TR'
+					     and name = 'tU_AUDIT_REVIEW_REFERRAL')
+			    drop trigger tU_AUDIT_REVIEW_REFERRAL
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0061" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+       <createProcedure>
+		<![CDATA[
+			CREATE TRIGGER tU_AUDIT_REVIEW_REFERRAL ON REVIEW_REFERRAL FOR update AS
+			BEGIN
+				insert into AUDIT_REVIEW_REFERRAL(
+				  NOTES,
+				  REVIEW_REFERRAL_TYPE_REF_ID,
+				  REFERRAL_TMSTMP,
+				  REVIEW_ID,
+				  CREATED_BY,
+				  UPDATED_BY ,
+				  CREATED_TS,
+				  UPDATED_TS,
+				  REVIEW_REFERRAL_ID,
+				  REVIEW_REFERRAL_SOURCE_REF_ID,
+				  AUDIT_CREATED_TS,
+				  AUDIT_ACTION_CODE)
+				select 
+				  NOTES,
+				  REVIEW_REFERRAL_TYPE_REF_ID,
+				  REFERRAL_TMSTMP,
+				  REVIEW_ID,
+				  CREATED_BY,
+				  UPDATED_BY ,
+				  CREATED_TS,
+				  UPDATED_TS,
+				  REVIEW_REFERRAL_ID,
+				  REVIEW_REFERRAL_SOURCE_REF_ID,
+				  getdate(),				
+				  'U'				
+				 from inserted
+			END
+
+		]]>
+        </createProcedure>
+    </changeSet>		
+   <changeSet context="All"  author="astrauss" id="HUDLRS_664_0062" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			if exists (select * from sysobjects
+					   where type = 'TR'
+					     and name = 'tI_AUDIT_RVW_LVL_CASE_SUMMARY')
+			    drop trigger tI_AUDIT_RVW_LVL_CASE_SUMMARY
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0063" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+       <createProcedure>
+		<![CDATA[
+			CREATE TRIGGER tI_AUDIT_RVW_LVL_CASE_SUMMARY ON RVW_LVL_CASE_SUMMARY FOR insert AS
+			BEGIN
+				insert into AUDIT_RVW_LVL_CASE_SUMMARY(
+			      REVIEW_LEVEL_ID                          ,
+                  ASSUMED_LOAN_IND                        ,
+                  CASHOUT_REFI_IND                        ,
+                  DISASTER_IND                            ,
+                  GIFT_LTR_AMT                            ,
+                  GIFT_LTR_2_AMT                          ,
+                  GIFT_LTR_SRC                            ,
+                  GIFT_LTR_2_SOURCE                       ,
+                  INVEST_2ND_RESID_IND                    ,
+                  NUM_LIVING_UNITS                        ,
+                  LOAN_PRPS                               ,
+                  RATIO_LOAN_TO_VL_NEW                    ,
+                  LOAN_TYPE                               ,
+                  FCTRY_FBRCT                             ,
+                  MAX_CLAIM_AMT                           ,
+                  CURRENT_AT_ENDORSE_IND                  ,
+                  PD_STRMLN_FLG                           ,
+                  RFNC_CD                                 ,
+                  SOA_CD                                  ,
+                  UNDERWRITING_METHOD                     ,
+                  ENDRS_BYND_60_DAYS_CLOSE_IND            ,
+                  NON_OCCUPYING_BORR_IND                  ,
+                  SALE_PRICE_GTR_ACQ_COST_IND             ,
+                  INSUR_APP_IN_TIME_IND                   ,
+                  CREATED_BY                              ,
+                  UPDATED_BY                              ,
+                  CREATED_TS                              ,
+                  UPDATED_TS                              ,
+                  ASSETS_AFTER_CLOSING_UW                 ,
+                  TOT_ASSETS_UW                           ,
+                  RATIO_FIX_TEI_UW                        ,
+                  BORR_HSNG_EXP_UW                        ,
+                  FICO_DECISION_SCORE_UW                  ,
+                  RATIO_TOT_PMT_TO_TOT_INC_UW             ,
+                  TOT_MNTHLY_MTG_PYMT_UW                  ,
+                  TOT_CLSNG_CSTS_UW                       ,
+                  DCSN_CD_UW                              ,
+                  TOT_FIXED_PYMT_UW                       ,
+                  TOT_ASSETS_ENDRS                        ,
+                  RATIO_FIX_TEI_ENDRS                     ,
+                  BORR_HSNG_EXP_ENDRS                     ,
+                  FICO_DECISION_SCORE_ENDRS               ,
+                  RATIO_TOT_PMT_TO_TOT_INC_ENDRS          ,
+                  TOT_MNTHLY_MTG_PYMT_ENDRS               ,
+                  TOT_CLSNG_CSTS_ENDRS                    ,
+                  DCSN_CD_ENDRS                           ,
+                  TOT_FIXED_PYMT_ENDRS                    ,
+                  MNDTRY_OBLGTNS_AMT                      ,
+                  BNKRPTCY_CHPTR13_IND                    ,
+                  BNKRPTCY_CHPTR7_IND                     ,
+                  GIFT_LTR_TIN                            ,
+                  ORIG_MRTG_AMT                           ,
+                  PRPRTY_APRSL_VL                         ,
+                  SECONDARY_FINANCE_AMT                   ,
+                  CLAIM_TYPE                              ,
+                  MARRIED_TO_NBS_IND                      ,
+                  BORR_1_NAME                             ,
+                  BORR_2_NAME                             ,
+                  BORR_1_SSN                              ,
+                  BORR_2_SSN                              ,
+                  CLSNG_DT                                ,
+                  CONST_CD                                ,
+                  BNKRPTCY_ANY_IND                        ,
+                  SECONDARY_FINANCE_EXISTS_IND            ,
+                  BORR_TYP                                ,
+                  REO_100_DOWN_PMT_PROG_IND               ,
+                  AMORT_TYP_CD                            ,
+                  LOAN_OFFICER                            ,
+                  LOAN_OFFICER_NMLS                       ,
+                  SELLER_CNTRBTN                          ,
+                  SELLER_CNTRBTN_PCNT                     ,
+                  BORR_PAID_CLOSING_COSTS                 ,
+                  BORR_REQD_INVEST_TO_CLOSE               ,
+                  BACK_TO_WORK_IND                        ,
+                  COMBINED_LOAN_TO_VALUE_PCT              ,
+                  ESCROW_AMOUNT                           ,
+                  TOTAL_REQUIRED_FUNDS_TO_CLOSE           ,
+                  HUD_REO_REPAIR_AMT                      ,
+                  MORT_EXCLD_FNCD_MIP                     ,
+                  MAN_UW_STRETCH_RATIO_IND                ,
+                  ORGNTNG_MTGEE_NMLS_ID                   ,
+                  QUALIFIED_MRTG_POINTS_AND_FEES          ,
+                  INT_RT                                  ,
+                  SALES_PRICE                             ,
+                  SPECIAL_PROGRAM                         ,
+                  TOT_MNTHLY_EFF_INCM                     ,
+                  YEAR_BUILT                              ,
+                  EFF_DATE_APRSL_UPDATE                   ,
+                  APPRAISER_NAME                          ,
+                  SITE_TYPE                               ,
+                  PRIOR_SALE_WITHIN_LAST_3YR_IND          ,
+                  DATE_OF_PRIOR_SALE                      ,
+                  PRICE_OF_PRIOR_SALE                     ,
+                  RCV_SALE_DT                             ,
+                  LAST_SERVICING_MRTG_XFER_DT             ,
+                  ARM_INDX_EXPCTD_RT                      ,
+                  TEN_YR_RATE_LOCK_IND                    ,
+                  ADDTNL_10PCT_IPL_USAGE_IND              ,
+                  MANDATORY_OBLIG_BORR_AMT                ,
+                  MANDATORY_OBLIG_LEND_AMT                ,
+                  HECM_COUNSEL_DT                         ,
+                  APPLICATION_DATE                        ,
+                  BORR_BRTH_DT                            ,
+                  EXPECTED_RATE                           ,
+                  HECM_COUNSEL_CERT_NO                    ,
+                  INIT_DISBURSEMENT_LIMIT                 ,
+                  HECM_PRNCPL_LMT                         ,
+                  MAX_RATE                                ,
+                  ORIGINATION_FEE                         ,
+                  PAYMENT_PLAN                            ,
+                  TAXES_INSRNC_FRST_YR_AMT                ,
+                  REPAIR_COMPLETION_DATE                  ,
+                  BORR_1_RENTING_IND                      ,
+                  BORR_1_SELF_EMPL_IND                    ,
+                  BORR_1_FIRST_TIME_BUYER_IND             ,
+                  ARM_IND                                 ,
+                  BLDG_TYP                                ,
+                  BUILDING_ON_OWN_LAND_IND                ,
+                  FLIPPING_CATEGORY_2_IND                 ,
+                  FRCLSR_IND                              ,
+                  DEFAULT_EPISODE_EXISTS_IND              ,
+                  ADP_CODE                                ,
+                  GIFT_LTR_2_TIN                          ,
+                  MISC_AUS_DCSN_CD                        ,
+                  BNKRPTCY_CD                             ,
+                  FRCLSR_STRT_DT                          ,
+                  FT_IN_EPS_3MNTH_DELQ_DT                 ,
+                  LOSSMIT_CD                              ,
+                  OCPNCY_STS_CD                           ,
+                  OLDST_UNPD_DT                           ,
+                  TERM_TYP_CD                             ,
+                  ENDRSMNT_DT                             ,
+                  REFINANCE_IND                           ,
+                  CASE_NUMBER                             ,
+                  PROP_ADDR_1                             ,
+                  PROP_ADDR_2                             ,
+                  PROP_ADDR_CITY                          ,
+                  PROP_ADDR_ZIP                           ,
+                  PROP_ADDR_ST                            ,
+                  BNKRPTCY_DT                             ,
+                  MNFCTRD_HUSNG_IND                       ,
+                  PRODUCT_TYPE_CD                         ,
+                  REVIEW_TYPE_CD                          ,
+                  AUDIT_CREATED_TS                        ,
+                  AUDIT_ACTION_CODE)	
+				select 
+			      REVIEW_LEVEL_ID                          ,
+                  ASSUMED_LOAN_IND                        ,
+                  CASHOUT_REFI_IND                        ,
+                  DISASTER_IND                            ,
+                  GIFT_LTR_AMT                            ,
+                  GIFT_LTR_2_AMT                          ,
+                  GIFT_LTR_SRC                            ,
+                  GIFT_LTR_2_SOURCE                       ,
+                  INVEST_2ND_RESID_IND                    ,
+                  NUM_LIVING_UNITS                        ,
+                  LOAN_PRPS                               ,
+                  RATIO_LOAN_TO_VL_NEW                    ,
+                  LOAN_TYPE                               ,
+                  FCTRY_FBRCT                             ,
+                  MAX_CLAIM_AMT                           ,
+                  CURRENT_AT_ENDORSE_IND                  ,
+                  PD_STRMLN_FLG                           ,
+                  RFNC_CD                                 ,
+                  SOA_CD                                  ,
+                  UNDERWRITING_METHOD                     ,
+                  ENDRS_BYND_60_DAYS_CLOSE_IND            ,
+                  NON_OCCUPYING_BORR_IND                  ,
+                  SALE_PRICE_GTR_ACQ_COST_IND             ,
+                  INSUR_APP_IN_TIME_IND                   ,
+                  CREATED_BY                              ,
+                  UPDATED_BY                              ,
+                  CREATED_TS                              ,
+                  UPDATED_TS                              ,
+                  ASSETS_AFTER_CLOSING_UW                 ,
+                  TOT_ASSETS_UW                           ,
+                  RATIO_FIX_TEI_UW                        ,
+                  BORR_HSNG_EXP_UW                        ,
+                  FICO_DECISION_SCORE_UW                  ,
+                  RATIO_TOT_PMT_TO_TOT_INC_UW             ,
+                  TOT_MNTHLY_MTG_PYMT_UW                  ,
+                  TOT_CLSNG_CSTS_UW                       ,
+                  DCSN_CD_UW                              ,
+                  TOT_FIXED_PYMT_UW                       ,
+                  TOT_ASSETS_ENDRS                        ,
+                  RATIO_FIX_TEI_ENDRS                     ,
+                  BORR_HSNG_EXP_ENDRS                     ,
+                  FICO_DECISION_SCORE_ENDRS               ,
+                  RATIO_TOT_PMT_TO_TOT_INC_ENDRS          ,
+                  TOT_MNTHLY_MTG_PYMT_ENDRS               ,
+                  TOT_CLSNG_CSTS_ENDRS                    ,
+                  DCSN_CD_ENDRS                           ,
+                  TOT_FIXED_PYMT_ENDRS                    ,
+                  MNDTRY_OBLGTNS_AMT                      ,
+                  BNKRPTCY_CHPTR13_IND                    ,
+                  BNKRPTCY_CHPTR7_IND                     ,
+                  GIFT_LTR_TIN                            ,
+                  ORIG_MRTG_AMT                           ,
+                  PRPRTY_APRSL_VL                         ,
+                  SECONDARY_FINANCE_AMT                   ,
+                  CLAIM_TYPE                              ,
+                  MARRIED_TO_NBS_IND                      ,
+                  BORR_1_NAME                             ,
+                  BORR_2_NAME                             ,
+                  BORR_1_SSN                              ,
+                  BORR_2_SSN                              ,
+                  CLSNG_DT                                ,
+                  CONST_CD                                ,
+                  BNKRPTCY_ANY_IND                        ,
+                  SECONDARY_FINANCE_EXISTS_IND            ,
+                  BORR_TYP                                ,
+                  REO_100_DOWN_PMT_PROG_IND               ,
+                  AMORT_TYP_CD                            ,
+                  LOAN_OFFICER                            ,
+                  LOAN_OFFICER_NMLS                       ,
+                  SELLER_CNTRBTN                          ,
+                  SELLER_CNTRBTN_PCNT                     ,
+                  BORR_PAID_CLOSING_COSTS                 ,
+                  BORR_REQD_INVEST_TO_CLOSE               ,
+                  BACK_TO_WORK_IND                        ,
+                  COMBINED_LOAN_TO_VALUE_PCT              ,
+                  ESCROW_AMOUNT                           ,
+                  TOTAL_REQUIRED_FUNDS_TO_CLOSE           ,
+                  HUD_REO_REPAIR_AMT                      ,
+                  MORT_EXCLD_FNCD_MIP                     ,
+                  MAN_UW_STRETCH_RATIO_IND                ,
+                  ORGNTNG_MTGEE_NMLS_ID                   ,
+                  QUALIFIED_MRTG_POINTS_AND_FEES          ,
+                  INT_RT                                  ,
+                  SALES_PRICE                             ,
+                  SPECIAL_PROGRAM                         ,
+                  TOT_MNTHLY_EFF_INCM                     ,
+                  YEAR_BUILT                              ,
+                  EFF_DATE_APRSL_UPDATE                   ,
+                  APPRAISER_NAME                          ,
+                  SITE_TYPE                               ,
+                  PRIOR_SALE_WITHIN_LAST_3YR_IND          ,
+                  DATE_OF_PRIOR_SALE                      ,
+                  PRICE_OF_PRIOR_SALE                     ,
+                  RCV_SALE_DT                             ,
+                  LAST_SERVICING_MRTG_XFER_DT             ,
+                  ARM_INDX_EXPCTD_RT                      ,
+                  TEN_YR_RATE_LOCK_IND                    ,
+                  ADDTNL_10PCT_IPL_USAGE_IND              ,
+                  MANDATORY_OBLIG_BORR_AMT                ,
+                  MANDATORY_OBLIG_LEND_AMT                ,
+                  HECM_COUNSEL_DT                         ,
+                  APPLICATION_DATE                        ,
+                  BORR_BRTH_DT                            ,
+                  EXPECTED_RATE                           ,
+                  HECM_COUNSEL_CERT_NO                    ,
+                  INIT_DISBURSEMENT_LIMIT                 ,
+                  HECM_PRNCPL_LMT                         ,
+                  MAX_RATE                                ,
+                  ORIGINATION_FEE                         ,
+                  PAYMENT_PLAN                            ,
+                  TAXES_INSRNC_FRST_YR_AMT                ,
+                  REPAIR_COMPLETION_DATE                  ,
+                  BORR_1_RENTING_IND                      ,
+                  BORR_1_SELF_EMPL_IND                    ,
+                  BORR_1_FIRST_TIME_BUYER_IND             ,
+                  ARM_IND                                 ,
+                  BLDG_TYP                                ,
+                  BUILDING_ON_OWN_LAND_IND                ,
+                  FLIPPING_CATEGORY_2_IND                 ,
+                  FRCLSR_IND                              ,
+                  DEFAULT_EPISODE_EXISTS_IND              ,
+                  ADP_CODE                                ,
+                  GIFT_LTR_2_TIN                          ,
+                  MISC_AUS_DCSN_CD                        ,
+                  BNKRPTCY_CD                             ,
+                  FRCLSR_STRT_DT                          ,
+                  FT_IN_EPS_3MNTH_DELQ_DT                 ,
+                  LOSSMIT_CD                              ,
+                  OCPNCY_STS_CD                           ,
+                  OLDST_UNPD_DT                           ,
+                  TERM_TYP_CD                             ,
+                  ENDRSMNT_DT                             ,
+                  REFINANCE_IND                           ,
+                  CASE_NUMBER                             ,
+                  PROP_ADDR_1                             ,
+                  PROP_ADDR_2                             ,
+                  PROP_ADDR_CITY                          ,
+                  PROP_ADDR_ZIP                           ,
+                  PROP_ADDR_ST                            ,
+                  BNKRPTCY_DT                             ,
+                  MNFCTRD_HUSNG_IND                       ,
+                  PRODUCT_TYPE_CD                         ,
+                  REVIEW_TYPE_CD                          ,
+				  getdate(),				
+				  'C'				
+				 from inserted
+			END
+
+		]]>
+        </createProcedure>
+    </changeSet>	
+   <changeSet context="All"  author="astrauss" id="HUDLRS_664_0064" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			if exists (select * from sysobjects
+					   where type = 'TR'
+					     and name = 'tU_AUDIT_RVW_LVL_CASE_SUMMARY')
+			    drop trigger tU_AUDIT_RVW_LVL_CASE_SUMMARY
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0065" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+       <createProcedure>
+		<![CDATA[
+			CREATE TRIGGER tU_AUDIT_RVW_LVL_CASE_SUMMARY ON RVW_LVL_CASE_SUMMARY FOR update AS
+			BEGIN
+				insert into AUDIT_RVW_LVL_CASE_SUMMARY(
+			      REVIEW_LEVEL_ID                          ,
+                  ASSUMED_LOAN_IND                        ,
+                  CASHOUT_REFI_IND                        ,
+                  DISASTER_IND                            ,
+                  GIFT_LTR_AMT                            ,
+                  GIFT_LTR_2_AMT                          ,
+                  GIFT_LTR_SRC                            ,
+                  GIFT_LTR_2_SOURCE                       ,
+                  INVEST_2ND_RESID_IND                    ,
+                  NUM_LIVING_UNITS                        ,
+                  LOAN_PRPS                               ,
+                  RATIO_LOAN_TO_VL_NEW                    ,
+                  LOAN_TYPE                               ,
+                  FCTRY_FBRCT                             ,
+                  MAX_CLAIM_AMT                           ,
+                  CURRENT_AT_ENDORSE_IND                  ,
+                  PD_STRMLN_FLG                           ,
+                  RFNC_CD                                 ,
+                  SOA_CD                                  ,
+                  UNDERWRITING_METHOD                     ,
+                  ENDRS_BYND_60_DAYS_CLOSE_IND            ,
+                  NON_OCCUPYING_BORR_IND                  ,
+                  SALE_PRICE_GTR_ACQ_COST_IND             ,
+                  INSUR_APP_IN_TIME_IND                   ,
+                  CREATED_BY                              ,
+                  UPDATED_BY                              ,
+                  CREATED_TS                              ,
+                  UPDATED_TS                              ,
+                  ASSETS_AFTER_CLOSING_UW                 ,
+                  TOT_ASSETS_UW                           ,
+                  RATIO_FIX_TEI_UW                        ,
+                  BORR_HSNG_EXP_UW                        ,
+                  FICO_DECISION_SCORE_UW                  ,
+                  RATIO_TOT_PMT_TO_TOT_INC_UW             ,
+                  TOT_MNTHLY_MTG_PYMT_UW                  ,
+                  TOT_CLSNG_CSTS_UW                       ,
+                  DCSN_CD_UW                              ,
+                  TOT_FIXED_PYMT_UW                       ,
+                  TOT_ASSETS_ENDRS                        ,
+                  RATIO_FIX_TEI_ENDRS                     ,
+                  BORR_HSNG_EXP_ENDRS                     ,
+                  FICO_DECISION_SCORE_ENDRS               ,
+                  RATIO_TOT_PMT_TO_TOT_INC_ENDRS          ,
+                  TOT_MNTHLY_MTG_PYMT_ENDRS               ,
+                  TOT_CLSNG_CSTS_ENDRS                    ,
+                  DCSN_CD_ENDRS                           ,
+                  TOT_FIXED_PYMT_ENDRS                    ,
+                  MNDTRY_OBLGTNS_AMT                      ,
+                  BNKRPTCY_CHPTR13_IND                    ,
+                  BNKRPTCY_CHPTR7_IND                     ,
+                  GIFT_LTR_TIN                            ,
+                  ORIG_MRTG_AMT                           ,
+                  PRPRTY_APRSL_VL                         ,
+                  SECONDARY_FINANCE_AMT                   ,
+                  CLAIM_TYPE                              ,
+                  MARRIED_TO_NBS_IND                      ,
+                  BORR_1_NAME                             ,
+                  BORR_2_NAME                             ,
+                  BORR_1_SSN                              ,
+                  BORR_2_SSN                              ,
+                  CLSNG_DT                                ,
+                  CONST_CD                                ,
+                  BNKRPTCY_ANY_IND                        ,
+                  SECONDARY_FINANCE_EXISTS_IND            ,
+                  BORR_TYP                                ,
+                  REO_100_DOWN_PMT_PROG_IND               ,
+                  AMORT_TYP_CD                            ,
+                  LOAN_OFFICER                            ,
+                  LOAN_OFFICER_NMLS                       ,
+                  SELLER_CNTRBTN                          ,
+                  SELLER_CNTRBTN_PCNT                     ,
+                  BORR_PAID_CLOSING_COSTS                 ,
+                  BORR_REQD_INVEST_TO_CLOSE               ,
+                  BACK_TO_WORK_IND                        ,
+                  COMBINED_LOAN_TO_VALUE_PCT              ,
+                  ESCROW_AMOUNT                           ,
+                  TOTAL_REQUIRED_FUNDS_TO_CLOSE           ,
+                  HUD_REO_REPAIR_AMT                      ,
+                  MORT_EXCLD_FNCD_MIP                     ,
+                  MAN_UW_STRETCH_RATIO_IND                ,
+                  ORGNTNG_MTGEE_NMLS_ID                   ,
+                  QUALIFIED_MRTG_POINTS_AND_FEES          ,
+                  INT_RT                                  ,
+                  SALES_PRICE                             ,
+                  SPECIAL_PROGRAM                         ,
+                  TOT_MNTHLY_EFF_INCM                     ,
+                  YEAR_BUILT                              ,
+                  EFF_DATE_APRSL_UPDATE                   ,
+                  APPRAISER_NAME                          ,
+                  SITE_TYPE                               ,
+                  PRIOR_SALE_WITHIN_LAST_3YR_IND          ,
+                  DATE_OF_PRIOR_SALE                      ,
+                  PRICE_OF_PRIOR_SALE                     ,
+                  RCV_SALE_DT                             ,
+                  LAST_SERVICING_MRTG_XFER_DT             ,
+                  ARM_INDX_EXPCTD_RT                      ,
+                  TEN_YR_RATE_LOCK_IND                    ,
+                  ADDTNL_10PCT_IPL_USAGE_IND              ,
+                  MANDATORY_OBLIG_BORR_AMT                ,
+                  MANDATORY_OBLIG_LEND_AMT                ,
+                  HECM_COUNSEL_DT                         ,
+                  APPLICATION_DATE                        ,
+                  BORR_BRTH_DT                            ,
+                  EXPECTED_RATE                           ,
+                  HECM_COUNSEL_CERT_NO                    ,
+                  INIT_DISBURSEMENT_LIMIT                 ,
+                  HECM_PRNCPL_LMT                         ,
+                  MAX_RATE                                ,
+                  ORIGINATION_FEE                         ,
+                  PAYMENT_PLAN                            ,
+                  TAXES_INSRNC_FRST_YR_AMT                ,
+                  REPAIR_COMPLETION_DATE                  ,
+                  BORR_1_RENTING_IND                      ,
+                  BORR_1_SELF_EMPL_IND                    ,
+                  BORR_1_FIRST_TIME_BUYER_IND             ,
+                  ARM_IND                                 ,
+                  BLDG_TYP                                ,
+                  BUILDING_ON_OWN_LAND_IND                ,
+                  FLIPPING_CATEGORY_2_IND                 ,
+                  FRCLSR_IND                              ,
+                  DEFAULT_EPISODE_EXISTS_IND              ,
+                  ADP_CODE                                ,
+                  GIFT_LTR_2_TIN                          ,
+                  MISC_AUS_DCSN_CD                        ,
+                  BNKRPTCY_CD                             ,
+                  FRCLSR_STRT_DT                          ,
+                  FT_IN_EPS_3MNTH_DELQ_DT                 ,
+                  LOSSMIT_CD                              ,
+                  OCPNCY_STS_CD                           ,
+                  OLDST_UNPD_DT                           ,
+                  TERM_TYP_CD                             ,
+                  ENDRSMNT_DT                             ,
+                  REFINANCE_IND                           ,
+                  CASE_NUMBER                             ,
+                  PROP_ADDR_1                             ,
+                  PROP_ADDR_2                             ,
+                  PROP_ADDR_CITY                          ,
+                  PROP_ADDR_ZIP                           ,
+                  PROP_ADDR_ST                            ,
+                  BNKRPTCY_DT                             ,
+                  MNFCTRD_HUSNG_IND                       ,
+                  PRODUCT_TYPE_CD                         ,
+                  REVIEW_TYPE_CD                          ,
+                  AUDIT_CREATED_TS                        ,
+                  AUDIT_ACTION_CODE)	
+				select 
+			      REVIEW_LEVEL_ID                          ,
+                  ASSUMED_LOAN_IND                        ,
+                  CASHOUT_REFI_IND                        ,
+                  DISASTER_IND                            ,
+                  GIFT_LTR_AMT                            ,
+                  GIFT_LTR_2_AMT                          ,
+                  GIFT_LTR_SRC                            ,
+                  GIFT_LTR_2_SOURCE                       ,
+                  INVEST_2ND_RESID_IND                    ,
+                  NUM_LIVING_UNITS                        ,
+                  LOAN_PRPS                               ,
+                  RATIO_LOAN_TO_VL_NEW                    ,
+                  LOAN_TYPE                               ,
+                  FCTRY_FBRCT                             ,
+                  MAX_CLAIM_AMT                           ,
+                  CURRENT_AT_ENDORSE_IND                  ,
+                  PD_STRMLN_FLG                           ,
+                  RFNC_CD                                 ,
+                  SOA_CD                                  ,
+                  UNDERWRITING_METHOD                     ,
+                  ENDRS_BYND_60_DAYS_CLOSE_IND            ,
+                  NON_OCCUPYING_BORR_IND                  ,
+                  SALE_PRICE_GTR_ACQ_COST_IND             ,
+                  INSUR_APP_IN_TIME_IND                   ,
+                  CREATED_BY                              ,
+                  UPDATED_BY                              ,
+                  CREATED_TS                              ,
+                  UPDATED_TS                              ,
+                  ASSETS_AFTER_CLOSING_UW                 ,
+                  TOT_ASSETS_UW                           ,
+                  RATIO_FIX_TEI_UW                        ,
+                  BORR_HSNG_EXP_UW                        ,
+                  FICO_DECISION_SCORE_UW                  ,
+                  RATIO_TOT_PMT_TO_TOT_INC_UW             ,
+                  TOT_MNTHLY_MTG_PYMT_UW                  ,
+                  TOT_CLSNG_CSTS_UW                       ,
+                  DCSN_CD_UW                              ,
+                  TOT_FIXED_PYMT_UW                       ,
+                  TOT_ASSETS_ENDRS                        ,
+                  RATIO_FIX_TEI_ENDRS                     ,
+                  BORR_HSNG_EXP_ENDRS                     ,
+                  FICO_DECISION_SCORE_ENDRS               ,
+                  RATIO_TOT_PMT_TO_TOT_INC_ENDRS          ,
+                  TOT_MNTHLY_MTG_PYMT_ENDRS               ,
+                  TOT_CLSNG_CSTS_ENDRS                    ,
+                  DCSN_CD_ENDRS                           ,
+                  TOT_FIXED_PYMT_ENDRS                    ,
+                  MNDTRY_OBLGTNS_AMT                      ,
+                  BNKRPTCY_CHPTR13_IND                    ,
+                  BNKRPTCY_CHPTR7_IND                     ,
+                  GIFT_LTR_TIN                            ,
+                  ORIG_MRTG_AMT                           ,
+                  PRPRTY_APRSL_VL                         ,
+                  SECONDARY_FINANCE_AMT                   ,
+                  CLAIM_TYPE                              ,
+                  MARRIED_TO_NBS_IND                      ,
+                  BORR_1_NAME                             ,
+                  BORR_2_NAME                             ,
+                  BORR_1_SSN                              ,
+                  BORR_2_SSN                              ,
+                  CLSNG_DT                                ,
+                  CONST_CD                                ,
+                  BNKRPTCY_ANY_IND                        ,
+                  SECONDARY_FINANCE_EXISTS_IND            ,
+                  BORR_TYP                                ,
+                  REO_100_DOWN_PMT_PROG_IND               ,
+                  AMORT_TYP_CD                            ,
+                  LOAN_OFFICER                            ,
+                  LOAN_OFFICER_NMLS                       ,
+                  SELLER_CNTRBTN                          ,
+                  SELLER_CNTRBTN_PCNT                     ,
+                  BORR_PAID_CLOSING_COSTS                 ,
+                  BORR_REQD_INVEST_TO_CLOSE               ,
+                  BACK_TO_WORK_IND                        ,
+                  COMBINED_LOAN_TO_VALUE_PCT              ,
+                  ESCROW_AMOUNT                           ,
+                  TOTAL_REQUIRED_FUNDS_TO_CLOSE           ,
+                  HUD_REO_REPAIR_AMT                      ,
+                  MORT_EXCLD_FNCD_MIP                     ,
+                  MAN_UW_STRETCH_RATIO_IND                ,
+                  ORGNTNG_MTGEE_NMLS_ID                   ,
+                  QUALIFIED_MRTG_POINTS_AND_FEES          ,
+                  INT_RT                                  ,
+                  SALES_PRICE                             ,
+                  SPECIAL_PROGRAM                         ,
+                  TOT_MNTHLY_EFF_INCM                     ,
+                  YEAR_BUILT                              ,
+                  EFF_DATE_APRSL_UPDATE                   ,
+                  APPRAISER_NAME                          ,
+                  SITE_TYPE                               ,
+                  PRIOR_SALE_WITHIN_LAST_3YR_IND          ,
+                  DATE_OF_PRIOR_SALE                      ,
+                  PRICE_OF_PRIOR_SALE                     ,
+                  RCV_SALE_DT                             ,
+                  LAST_SERVICING_MRTG_XFER_DT             ,
+                  ARM_INDX_EXPCTD_RT                      ,
+                  TEN_YR_RATE_LOCK_IND                    ,
+                  ADDTNL_10PCT_IPL_USAGE_IND              ,
+                  MANDATORY_OBLIG_BORR_AMT                ,
+                  MANDATORY_OBLIG_LEND_AMT                ,
+                  HECM_COUNSEL_DT                         ,
+                  APPLICATION_DATE                        ,
+                  BORR_BRTH_DT                            ,
+                  EXPECTED_RATE                           ,
+                  HECM_COUNSEL_CERT_NO                    ,
+                  INIT_DISBURSEMENT_LIMIT                 ,
+                  HECM_PRNCPL_LMT                         ,
+                  MAX_RATE                                ,
+                  ORIGINATION_FEE                         ,
+                  PAYMENT_PLAN                            ,
+                  TAXES_INSRNC_FRST_YR_AMT                ,
+                  REPAIR_COMPLETION_DATE                  ,
+                  BORR_1_RENTING_IND                      ,
+                  BORR_1_SELF_EMPL_IND                    ,
+                  BORR_1_FIRST_TIME_BUYER_IND             ,
+                  ARM_IND                                 ,
+                  BLDG_TYP                                ,
+                  BUILDING_ON_OWN_LAND_IND                ,
+                  FLIPPING_CATEGORY_2_IND                 ,
+                  FRCLSR_IND                              ,
+                  DEFAULT_EPISODE_EXISTS_IND              ,
+                  ADP_CODE                                ,
+                  GIFT_LTR_2_TIN                          ,
+                  MISC_AUS_DCSN_CD                        ,
+                  BNKRPTCY_CD                             ,
+                  FRCLSR_STRT_DT                          ,
+                  FT_IN_EPS_3MNTH_DELQ_DT                 ,
+                  LOSSMIT_CD                              ,
+                  OCPNCY_STS_CD                           ,
+                  OLDST_UNPD_DT                           ,
+                  TERM_TYP_CD                             ,
+                  ENDRSMNT_DT                             ,
+                  REFINANCE_IND                           ,
+                  CASE_NUMBER                             ,
+                  PROP_ADDR_1                             ,
+                  PROP_ADDR_2                             ,
+                  PROP_ADDR_CITY                          ,
+                  PROP_ADDR_ZIP                           ,
+                  PROP_ADDR_ST                            ,
+                  BNKRPTCY_DT                             ,
+                  MNFCTRD_HUSNG_IND                       ,
+                  PRODUCT_TYPE_CD                         ,
+                  REVIEW_TYPE_CD                          ,
+				  getdate(),				
+				  'U'				
+				 from inserted
+			END
+
+		]]>
+        </createProcedure>
+    </changeSet>		
+   <changeSet context="All"  author="astrauss" id="HUDLRS_664_0066" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			if exists (select * from sysobjects
+					   where type = 'TR'
+					     and name = 'tI_AUDIT_UNDERWRITER_INCREASED_SELECTION')
+			    drop trigger tI_AUDIT_UNDERWRITER_INCREASED_SELECTION
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0067" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+       <createProcedure>
+		<![CDATA[
+			CREATE TRIGGER tI_AUDIT_UNDERWRITER_INCREASED_SELECTION ON UNDERWRITER_INCREASED_SELECTION FOR insert AS
+			BEGIN
+				insert into AUDIT_UNDERWRITER_INCREASED_SELECTION(
+				  UNDERWRITER_ID,
+				  COMMENTS,
+				  EFFECTIVE_DATE,
+				  FWD_PERCENT,
+				  HECM_PERCENT,
+				  CREATED_BY,
+				  UPDATED_BY,
+				  CREATED_TS,
+				  UPDATED_TS,
+				  AUDIT_CREATED_TS,
+				  AUDIT_ACTION_CODE)	
+				select 
+				  UNDERWRITER_ID,
+				  COMMENTS,
+				  EFFECTIVE_DATE,
+				  FWD_PERCENT,
+				  HECM_PERCENT,
+				  CREATED_BY,
+				  UPDATED_BY,
+				  CREATED_TS,
+				  UPDATED_TS,
+				  getdate(),				
+				  'C'				
+				 from inserted
+			END
+
+		]]>
+        </createProcedure>
+    </changeSet>	
+   <changeSet context="All"  author="astrauss" id="HUDLRS_664_0068" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			if exists (select * from sysobjects
+					   where type = 'TR'
+					     and name = 'tU_AUDIT_UNDERWRITER_INCREASED_SELECTION')
+			    drop trigger tU_AUDIT_UNDERWRITER_INCREASED_SELECTION
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0069" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+       <createProcedure>
+		<![CDATA[
+			CREATE TRIGGER tU_AUDIT_UNDERWRITER_INCREASED_SELECTION ON UNDERWRITER_INCREASED_SELECTION FOR update AS
+			BEGIN
+				insert into AUDIT_UNDERWRITER_INCREASED_SELECTION(
+				  UNDERWRITER_ID,
+				  COMMENTS,
+				  EFFECTIVE_DATE,
+				  FWD_PERCENT,
+				  HECM_PERCENT,
+				  CREATED_BY,
+				  UPDATED_BY,
+				  CREATED_TS,
+				  UPDATED_TS,
+				  AUDIT_CREATED_TS,
+				  AUDIT_ACTION_CODE)	
+				select 
+				  UNDERWRITER_ID,
+				  COMMENTS,
+				  EFFECTIVE_DATE,
+				  FWD_PERCENT,
+				  HECM_PERCENT,
+				  CREATED_BY,
+				  UPDATED_BY,
+				  CREATED_TS,
+				  UPDATED_TS,
+				  getdate(),				
+				  'U'				
+				 from inserted
+			END
+
+		]]>
+        </createProcedure>
+    </changeSet>		
+   <changeSet context="All"  author="astrauss" id="HUDLRS_664_0070" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			if exists (select * from sysobjects
+					   where type = 'TR'
+					     and name = 'tI_AUDIT_REVIEW')
+			    drop trigger tI_AUDIT_REVIEW
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0071" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+       <createProcedure>
+		<![CDATA[
+			CREATE TRIGGER tI_AUDIT_REVIEW ON REVIEW FOR insert AS
+			BEGIN
+				insert into AUDIT_REVIEW(
+				 REVIEW_ID                            ,
+                 BATCH_ID                             ,
+                 CASE_NUMBER                          ,
+                 ORIG_MIT_RQST_DT                     ,
+                 ORIG_ASSIGN_DT                       ,
+                 SELECTION_ID                         ,
+                 ORIGINAL_REVIEWER_PERSONNEL_ID       ,
+                 RVW_COMPLTD_DT                       ,
+                 RVW_STARTED_DT_TM                    ,
+                 CREATED_BY                           ,
+                 UPDATED_BY                           ,
+                 CREATED_TS                           ,
+                 UPDATED_TS                           ,
+                 REVIEW_REFERENCE_ID                  ,
+                 DUE_DATE                             ,
+                 CANCELLATION_REASON_ID               ,
+                 QC_OUTCOME_CD                        ,
+                 MRB_REFERRAL_IND                     ,
+                 REVIEW_STATUS_ID                     ,
+                 SUMMARY_RATING_ID                    ,
+                 REVIEW_SCOPE_ID                      ,
+                 REVIEW_TYPE_ID                       ,
+                 PRODUCT_TYPE_ID                      ,
+                 SELECTION_REASON_ID                  ,
+                 QA_MODEL_ID,                         
+				 AUDIT_CREATED_TS,				
+				 AUDIT_ACTION_CODE)		
+				select 
+				 REVIEW_ID                            ,
+                 BATCH_ID                             ,
+                 CASE_NUMBER                          ,
+                 ORIG_MIT_RQST_DT                     ,
+                 ORIG_ASSIGN_DT                       ,
+                 SELECTION_ID                         ,
+                 ORIGINAL_REVIEWER_PERSONNEL_ID       ,
+                 RVW_COMPLTD_DT                       ,
+                 RVW_STARTED_DT_TM                    ,
+                 CREATED_BY                           ,
+                 UPDATED_BY                           ,
+                 CREATED_TS                           ,
+                 UPDATED_TS                           ,
+                 REVIEW_REFERENCE_ID                  ,
+                 DUE_DATE                             ,
+                 CANCELLATION_REASON_ID               ,
+                 QC_OUTCOME_CD                        ,
+                 MRB_REFERRAL_IND                     ,
+                 REVIEW_STATUS_ID                     ,
+                 SUMMARY_RATING_ID                    ,
+                 REVIEW_SCOPE_ID                      ,
+                 REVIEW_TYPE_ID                       ,
+                 PRODUCT_TYPE_ID                      ,
+                 SELECTION_REASON_ID                  ,
+                 QA_MODEL_ID,
+				 getdate(),				
+				 'C'				
+				 from inserted
+			END
+
+		]]>
+        </createProcedure>
+    </changeSet>	
+   <changeSet context="All"  author="astrauss" id="HUDLRS_664_0072" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			if exists (select * from sysobjects
+					   where type = 'TR'
+					     and name = 'tU_AUDIT_REVIEW')
+			    drop trigger tU_AUDIT_REVIEW
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_664_0073" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+       <createProcedure>
+		<![CDATA[
+			CREATE TRIGGER tU_AUDIT_REVIEW ON REVIEW FOR update AS
+			BEGIN
+				insert into AUDIT_REVIEW(
+				 REVIEW_ID                            ,
+                 BATCH_ID                             ,
+                 CASE_NUMBER                          ,
+                 ORIG_MIT_RQST_DT                     ,
+                 ORIG_ASSIGN_DT                       ,
+                 SELECTION_ID                         ,
+                 ORIGINAL_REVIEWER_PERSONNEL_ID       ,
+                 RVW_COMPLTD_DT                       ,
+                 RVW_STARTED_DT_TM                    ,
+                 CREATED_BY                           ,
+                 UPDATED_BY                           ,
+                 CREATED_TS                           ,
+                 UPDATED_TS                           ,
+                 REVIEW_REFERENCE_ID                  ,
+                 DUE_DATE                             ,
+                 CANCELLATION_REASON_ID               ,
+                 QC_OUTCOME_CD                        ,
+                 MRB_REFERRAL_IND                     ,
+                 REVIEW_STATUS_ID                     ,
+                 SUMMARY_RATING_ID                    ,
+                 REVIEW_SCOPE_ID                      ,
+                 REVIEW_TYPE_ID                       ,
+                 PRODUCT_TYPE_ID                      ,
+                 SELECTION_REASON_ID                  ,
+                 QA_MODEL_ID,                         
+				 AUDIT_CREATED_TS ,				
+				 AUDIT_ACTION_CODE )		
+				select 
+				 REVIEW_ID                            ,
+                 BATCH_ID                             ,
+                 CASE_NUMBER                          ,
+                 ORIG_MIT_RQST_DT                     ,
+                 ORIG_ASSIGN_DT                       ,
+                 SELECTION_ID                         ,
+                 ORIGINAL_REVIEWER_PERSONNEL_ID       ,
+                 RVW_COMPLTD_DT                       ,
+                 RVW_STARTED_DT_TM                    ,
+                 CREATED_BY                           ,
+                 UPDATED_BY                           ,
+                 CREATED_TS                           ,
+                 UPDATED_TS                           ,
+                 REVIEW_REFERENCE_ID                  ,
+                 DUE_DATE                             ,
+                 CANCELLATION_REASON_ID               ,
+                 QC_OUTCOME_CD                        ,
+                 MRB_REFERRAL_IND                     ,
+                 REVIEW_STATUS_ID                     ,
+                 SUMMARY_RATING_ID                    ,
+                 REVIEW_SCOPE_ID                      ,
+                 REVIEW_TYPE_ID                       ,
+                 PRODUCT_TYPE_ID                      ,
+                 SELECTION_REASON_ID                  ,
+                 QA_MODEL_ID,
+				 getdate(),				
+				 'U'				
+				 from inserted
+			END
+
+		]]>
+        </createProcedure>
+    </changeSet>		
+</databaseChangeLog>    

@@ -1,0 +1,17 @@
+{
+    "id": "http://LRS/ReviewAnswerDetail",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": ["description", "code"],
+    "additionalProperties": false,
+    "properties": {
+        "description": {
+            "description": "The display text for this answer. For most this will be 'Yes', or 'No', but for multiple select, this will be 'Standard Employment' or 'Part-time and Seasonal Employment', etc.",
+            "type": "string"
+        },
+        "code": {
+            "description": "The unique code used by the DB for this answer. For most, this will be 'Yes' or 'No', but for multiple select this will be '1', or '2', etc.",
+            "type": "string"
+        }
+    }
+}

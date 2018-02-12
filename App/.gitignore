@@ -1,0 +1,10 @@
+.apt_generated/
+.settings/
+bin/
+target/
+uploadedDocuments/
+.classpath
+.factorypath
+.project
+.springBreans
+devMuleDocuments/

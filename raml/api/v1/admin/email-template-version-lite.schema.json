@@ -1,0 +1,46 @@
+{
+    "id": "http://LRS/EmailTemplateVersionLite",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": [
+        "id",
+        "version",
+        "emailName",
+        "lastModifiedDate",
+        "lastModifiedBy",
+        "activationDate",
+        "isActive"
+    ],
+    "properties": {
+        "id": {
+            "description": "A unique identifier of this Email Template.",
+            "type": "string"
+        },
+        "version": {
+            "description": "An incremented counter of the templates created for this email.",
+            "type": "integer"
+        },
+        "emailName": {
+            "description": "The name of the email this template belongs to.",
+            "type": "string"
+        },
+        "lastModifiedDate": {
+            "description": "The date that this template was last modified.",
+            "type": "string",
+            "format": "date"
+        },
+        "lastModifiedBy": {
+            "description": "The name of who had last modified this email template.",
+            "type": "string"
+        },
+        "activationDate": {
+            "description": "The date that this template was activated.",
+            "type": "string",
+            "format": "date"
+        },
+        "isActive": {
+            "description": "State of this email template version.",
+            "type": "boolean"
+        }
+    }
+}

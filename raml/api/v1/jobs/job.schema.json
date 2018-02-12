@@ -1,0 +1,31 @@
+{
+    "id": "http://LRS/Job",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "properties": {
+        "jobId": {
+            "description": "The identifier of the job",
+            "type": "string"
+        },
+        "type": {
+            "description": "AGGREGATION, BINDER_DELIVERY_CHECK, DISTRIBUTION, EARLY_CLAIM_SELECTION, EARLY_PAYMENT_DEFAULT_SELECTION, ENDORSEMENT_SELECTION, or NATIONAL_QC_SELECTION",
+            "type": "string"
+        },
+        "status": {
+            "description": "Pending, Completed, Cancelled",
+            "type": "string"
+        },
+        "parameters": {
+            "type": "array",
+            "items": {
+                "$ref": "JobParameter"
+            }
+        },
+        "executions": {
+            "type": "array",
+            "items": {
+                "$ref": "JobExecution"
+            }
+        }
+    }
+}

@@ -1,0 +1,55 @@
+:host-context {
+    /* styles should be scoped under host-context */
+
+    .causes-table, .sources-table, .threshold-table {
+        tr {
+            th, td {
+                &:not(:last-child) {
+                    padding-right: 0;
+                }
+            }
+        }
+    }
+
+    .causes-code-col, .sources-code-col {
+        min-width: 50px;
+        max-width: 50px;
+    }
+
+    .causes-desc-col, .sources-desc-col {
+        width: 60%;
+    }
+
+    .threshold-panel {
+        border-color: transparent;
+
+        .panel-heading {
+            border-bottom-width: 0;
+            border-top-width: 1px;
+            border-top-style: solid;
+            margin-top: 15px;
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+    .threshold-table {
+        width: auto;
+
+        th {
+            text-align: center;
+            width: 50px;
+        }
+
+        td {
+            width: 80px;
+        }
+
+        tbody {
+            th {
+                vertical-align: middle;
+                border-color: transparent;
+            }
+        }
+    }
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "documentType": {
+      "type": "string",
+      "enum": ["Mitigating", "Indemnification", "Operational"]
+    },
+    "documentKey": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 10,
+      "pattern": "^[0-9]{5}|[0-9]{10}$"
+    },
+    "documentName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "documentMimeType": {
+      "type": "string",
+      "enum": ["PDF", "JPG", "TIF", "pdf", "jpg", "tif"]
+    },
+    "document": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "documentType",
+    "documentKey",
+    "documentName",
+    "documentMimeType",
+    "document"
+  ]
+}

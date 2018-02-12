@@ -1,0 +1,10 @@
+<modal [title]="header"
+       [confirmText]="confirmButtonText"
+       [cancelText]="rejectButtonText"
+       [hasCloseButton]="hasCloseButton"
+       [(isOpen)]="isOpen"
+       (isOpenChange)="$event ? noop() : finalize()"
+       (confirmChange)="confirm()">
+    <div class="modal-inner-body" [innerHTML]="body">
+    </div>
+</modal>

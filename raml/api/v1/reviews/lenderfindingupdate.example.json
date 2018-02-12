@@ -1,0 +1,15 @@
+{
+    "findingId": "A93C4BDE-71AF-4579-B6E6-C6D5515A2C51",
+    "reviewLevelId": "1722D21A-D282-4655-912D-C360185F2A05",
+    "ratingCode": "U",
+    "defectAreaCode": "BA",
+    "selectedSourceCode": "1",
+    "selectedCauseCode": "B",
+    "selectedTierCode": "1",
+    "lenderResponseComment": "Sample response to FHA from the lender about this finding/defect and an explandation.",
+    "lenderResponseDocuments": [
+        { "documentId": "1AA38E66-75F2-4678-8AC3-52A005CF5745", "documentType": "RESP", "fileName": "borrower_w2.jpg" },
+        { "documentId": "1AA38E66-75F2-4678-8AC3-52A005CF5746", "documentType": "RESP", "fileName": "borrowerId.pdf" },
+        { "documentId": "1AA38E66-75F2-4678-8AC3-52A005CF5747", "documentType": "RESP", "fileName": "mortgage_papers.pdf" }
+    ]
+}

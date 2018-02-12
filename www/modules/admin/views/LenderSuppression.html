@@ -1,0 +1,48 @@
+<div class="lrs-content-panel model-admin-body container-fluid">
+
+    <div class="row">
+        <div class="section-heading">Lender Suppression List</div>
+
+        <hr/>
+
+        <div class="form-item">
+            <label for="lender_id" class="small">Enter Lender Id</label>
+            <div>
+                <input type="text" id="lender_id" name="lender_id" class="inline-input" [(ngModel)]="addedLenderId">
+                <button class="btn btn-primary add-btn" (click)="addLender()" [disabled]="!addedLenderId">Add</button>
+            </div>
+        </div>
+
+
+        <hr/>
+
+        <div class="form-item">
+            <label class="small" for="lenderFilter">Filter</label>
+            <input type="text" #listFilter id="lenderFilter" name="lenderFilter" placeholder="Filter by Lender ID" (keyup)="0">
+        </div>
+
+        <table class="table lrs-case-table">
+            <thead>
+            <tr>
+                <th scope="col"><a href="javascript:void(0)" (click)="sortLenders(SORT_PROPS.ID)">Lender ID</a></th>
+                <th scope="col"><a href="javascript:void(0)" (click)="sortLenders(SORT_PROPS.NAME)">Lender Name</a></th>
+                <th scope="col"><a href="javascript:void(0)" (click)="sortLenders(SORT_PROPS.ACTIVE_REVIEWS)">Active Reviews</a></th>
+                <th scope="col"><a href="javascript:void(0)" (click)="sortLenders(SORT_PROPS.START_DATE)">Suppression Date</a></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of lenders | lenderIdPipe:listFilter.value">
+                <td class="lender-td" scope="row">{{item.lender.lenderId}}</td>
+                <td class="lender-name">{{item.lender.name}}</td>
+                <td class="lender-td">{{item.activeReviews}}</td>
+                <td class="lender-td">{{item.startDate | datePipe}}</td>
+                <td class="lender-td"><button class="btn btn-primary" [attr.aria-label]="'Remove ' + item.lender.name" (click)="removeLender(item.lender.lenderId)">Remove</button></td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+</div>

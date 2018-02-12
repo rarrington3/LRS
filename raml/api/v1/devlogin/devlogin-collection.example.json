@@ -1,0 +1,327 @@
+[
+    {
+        "userId": "StandardReviewer1",
+        "description": "This is a typical reviewer",
+        "authorities": ["ROLE_REVIEWER"],
+        "firstName": "Francis",
+        "lastName": "Crozier",
+        "locationId": "56F8FF8E-A7EF-40BE-B893-4D6FB57CE298",
+        "reviewLocation": "DEN-PUD",
+        "reportsToName": "Jane Schmane",
+        "reportsToId": "56789",
+        "vetterName": "Joe Schmoe",
+        "vetterId": "12345"
+    }, {
+        "userId": "StandardReviewer2",
+        "description": "This is a typical reviewer",
+        "authorities": ["ROLE_REVIEWER"],
+        "firstName": "Otis",
+        "lastName": "Driftwood",
+        "locationId": "56F8FF8E-A7EF-40BE-B893-4D6FB57CE298",
+        "reviewLocation": "DEN-PUD",
+        "reportsToName": "Jane Schmane",
+        "reportsToId": "56789",
+        "vetterName": "Joe Schmoe",
+        "vetterId": "12345"
+    }, {
+        "userId": "StandardReviewer3",
+        "description": "This is a typical reviewer",
+        "authorities": ["ROLE_REVIEWER"],
+        "firstName": "Vera-Ellen",
+        "lastName": "Firefly",
+        "locationId": "56F8FF8E-A7EF-40BE-B893-4D6FB57CE298",
+        "reviewLocation": "DEN-PUD",
+        "reportsToName": "Jane Schmane",
+        "reportsToId": "56789",
+        "vetterName": "Joe Schmoe",
+        "vetterId": "12345"
+    }, {
+        "userId": "VettedReviewer1",
+        "description": "Reviews done by this user will be vetted by VettingReviewer1",
+        "authorities": ["ROLE_REVIEWER"],
+        "firstName": "John Quincy",
+        "lastName": "Wydell",
+        "locationId": "56F8FF8E-A7EF-40BE-B893-4D6FB57CE298",
+        "reviewLocation": "DEN-PUD",
+        "reportsToName": "Jane Schmane",
+        "reportsToId": "56789",
+        "vetterName": "Joe Schmoe",
+        "vetterId": "12345"
+    }, {
+        "userId": "VettedReviewer2",
+        "description": "Reviews done by this user will be vetted by VettingReviewer2",
+        "authorities": ["ROLE_REVIEWER"],
+        "firstName": "Charlie",
+        "lastName": "Altamont",
+        "locationId": "56F8FF8E-A7EF-40BE-B893-4D6FB57CE298",
+        "reviewLocation": "DEN-PUD",
+        "reportsToName": "Jane Schmane",
+        "reportsToId": "56789",
+        "vetterName": "Joe Schmoe",
+        "vetterId": "12345"
+    }, {
+        "userId": "VettedReviewer3",
+        "description": "Reviews done by this user will be vetted by VettingReviewer3",
+        "authorities": ["ROLE_REVIEWER"],
+        "firstName": "Ray",
+        "lastName": "Dobson",
+        "locationId": "56F8FF8E-A7EF-40BE-B893-4D6FB57CE298",
+        "reviewLocation": "DEN-PUD",
+        "reportsToName": "Jane Schmane",
+        "reportsToId": "56789",
+        "vetterName": "Joe Schmoe",
+        "vetterId": "12345"
+    }, {
+        "userId": "VettingReviewer1",
+        "description": "This user is reponsible for vetting the work of VettedReviewer1",
+        "authorities": ["ROLE_REVIEWER", "ROLE_PROGRAM_ASSISTANT"],
+        "firstName": "Roy",
+        "lastName": "Sullivan",
+        "locationId": "56F8FF8E-A7EF-40BE-B893-4D6FB57CE298",
+        "reviewLocation": "DEN-PUD",
+        "reportsToName": "Jane Schmane",
+        "reportsToId": "56789",
+        "vetterName": "Joe Schmoe",
+        "vetterId": "12345"
+    }, {
+        "userId": "VettingReviewer2",
+        "description": "This user is reponsible for vetting the work of VettedReviewer2",
+        "authorities": ["ROLE_REVIEWER", "ROLE_PROGRAM_ASSISTANT"],
+        "firstName": "Wendy",
+        "lastName": "Banjo",
+        "locationId": "56F8FF8E-A7EF-40BE-B893-4D6FB57CE298",
+        "reviewLocation": "DEN-PUD",
+        "reportsToName": "Jane Schmane",
+        "reportsToId": "56789",
+        "vetterName": "Joe Schmoe",
+        "vetterId": "12345"
+    }, {
+        "userId": "VettingReviewer3",
+        "description": "This user is reponsible for vetting the work of VettedReviewer3",
+        "authorities": ["ROLE_REVIEWER", "ROLE_PROGRAM_ASSISTANT"],
+        "firstName": "Billy",
+        "lastName": "Snapper",
+        "locationId": "56F8FF8E-A7EF-40BE-B893-4D6FB57CE298",
+        "reviewLocation": "DEN-PUD",
+        "reportsToName": "Jane Schmane",
+        "reportsToId": "56789",
+        "vetterName": "Joe Schmoe",
+        "vetterId": "12345"
+    }, {
+        "userId": "HocSupervisor1",
+        "description": "This user is a HOC supervisor and has additional permissions that other reviewers in their HOC do not have",
+        "authorities": ["ROLE_REVIEWER", "ROLE_PROGRAM_ASSISTANT", "ROLE_REVIEW_LOCATION_ADMIN"],
+        "firstName": "Simon",
+        "lastName": "Williams",
+        "locationId": "56F8FF8E-A7EF-40BE-B893-4D6FB57CE298",
+        "reviewLocation": "DEN-PUD",
+        "reportsToName": "Jane Schmane",
+        "reportsToId": "56789",
+        "vetterName": "Joe Schmoe",
+        "vetterId": "12345"
+}, {
+        "userId": "HocSupervisor2",
+        "description": "This user is a HOC supervisor and has additional permissions that other reviewers in their HOC do not have",
+        "authorities": ["ROLE_REVIEWER", "ROLE_PROGRAM_ASSISTANT", "ROLE_REVIEW_LOCATION_ADMIN"],
+        "firstName": "Clint",
+        "lastName": "Barton",
+        "locationId": "56F8FF8E-A7EF-40BE-B893-4D6FB57CE298",
+        "reviewLocation": "DEN-PUD",
+        "reportsToName": "Jane Schmane",
+        "reportsToId": "56789",
+        "vetterName": "Joe Schmoe",
+        "vetterId": "12345"
+    }, {
+        "userId": "HocSupervisor3",
+        "description": "This user is a HOC supervisor and has additional permissions that other reviewers in their HOC do not have",
+        "authorities": ["ROLE_REVIEWER", "ROLE_PROGRAM_ASSISTANT", "ROLE_REVIEW_LOCATION_ADMIN"],
+        "firstName": "Mitchell",
+        "lastName": "Hundred",
+        "locationId": "56F8FF8E-A7EF-40BE-B893-4D6FB57CE298",
+        "reviewLocation": "DEN-PUD",
+        "reportsToName": "Jane Schmane",
+        "reportsToId": "56789",
+        "vetterName": "Joe Schmoe",
+        "vetterId": "12345"
+    }, {
+        "userId": "HqUser1",
+        "description": "This user is a part of the HQ team and has additional permissions that HOC staff do not have",
+        "authorities": ["ROLE_HQ_ADMIN"],
+        "firstName": "Matt",
+        "lastName": "Murdock",
+        "locationId": "56F8FF8E-A7EF-40BE-B893-4D6FB57CE298",
+        "reviewLocation": "DEN-PUD",
+        "reportsToName": "Jane Schmane",
+        "reportsToId": "56789",
+        "vetterName": "Joe Schmoe",
+        "vetterId": "12345"
+    }, {
+        "userId": "HqUser2",
+        "description": "This user is a part of the HQ team and has additional permissions that HOC staff do not have",
+        "authorities": ["ROLE_HQ_ADMIN"],
+        "firstName": "Janet",
+        "lastName": "Van Dyne",
+        "locationId": "56F8FF8E-A7EF-40BE-B893-4D6FB57CE298",
+        "reviewLocation": "DEN-PUD",
+        "reportsToName": "Jane Schmane",
+        "reportsToId": "56789",
+        "vetterName": "Joe Schmoe",
+        "vetterId": "12345"
+    }, {
+        "userId": "HqUser3",
+        "description": "This user is a part of the HQ team and has additional permissions that HOC staff do not have",
+        "authorities": ["ROLE_HQ_ADMIN"],
+        "firstName": "Jack",
+        "lastName": "Knight",
+        "locationId": "56F8FF8E-A7EF-40BE-B893-4D6FB57CE298",
+        "reviewLocation": "DEN-PUD",
+        "reportsToName": "Jane Schmane",
+        "reportsToId": "56789",
+        "vetterName": "Joe Schmoe",
+        "vetterId": "12345"
+    }, {
+        "userId": "LenderROLE_INDEMNIFIER1",
+        "description": "This user is the person who is able to execute indemnifications for Lender1.  Some of the test loans are defined as being from this lender.",
+        "authorities": ["ROLE_INDEMNIFIER"],
+        "firstName": "Hal",
+        "lastName": "Jordan",
+        "lender": {
+            "lenderId": "20063",
+            "name": "First Security National Bank"
+        },
+        "locationId": "56F8FF8E-A7EF-40BE-B893-4D6FB57CE298",
+        "reviewLocation": "DEN-PUD",
+        "reportsToName": "Jane Schmane",
+        "reportsToId": "56789",
+        "vetterName": "Joe Schmoe",
+        "vetterId": "12345"
+    }, {
+        "userId": "LenderROLE_INDEMNIFIER2",
+        "description": "This user is the person who is able to execute indemnifications for Lender2.  Some of the test loans are defined as being from this lender.",
+        "authorities": ["ROLE_INDEMNIFIER"],
+        "firstName": "Selina",
+        "lastName": "Kyle",
+        "lender": {
+            "lenderId": "20063",
+            "name": "First Security National Bank"
+        },
+        "locationId": "56F8FF8E-A7EF-40BE-B893-4D6FB57CE298",
+        "reviewLocation": "DEN-PUD",
+        "reportsToName": "Jane Schmane",
+        "reportsToId": "56789",
+        "vetterName": "Joe Schmoe",
+        "vetterId": "12345"
+    }, {
+        "userId": "LenderROLE_INDEMNIFIER3",
+        "description": "This user is the person who is able to execute indemnifications for Lender3.  Some of the test loans are defined as being from this lender.",
+        "authorities": ["ROLE_INDEMNIFIER"],
+        "firstName": "Bruce",
+        "lastName": "Wayne",
+        "lender": {
+            "lenderId": "20063",
+            "name": "First Security National Bank"
+        },
+        "locationId": "56F8FF8E-A7EF-40BE-B893-4D6FB57CE298",
+        "reviewLocation": "DEN-PUD",
+        "reportsToName": "Jane Schmane",
+        "reportsToId": "56789",
+        "vetterName": "Joe Schmoe",
+        "vetterId": "12345"
+    },{
+        "userId": "LenderCoordinator1",
+        "description": "This user is the coordinator for Lender1 with the ability to respond to binder/mitigation requests and the ability to perform self-reporting.  Some of the test loans are defined as being from this lender.",
+        "authorities": ["ROLE_RESPONSE_COORDINATOR"],
+        "firstName": "Tony",
+        "lastName": "Stark",
+        "lender": {
+            "lenderId": "20063",
+            "name": "First Security National Bank"
+        },
+        "locationId": "56F8FF8E-A7EF-40BE-B893-4D6FB57CE298",
+        "reviewLocation": "DEN-PUD",
+        "reportsToName": "Jane Schmane",
+        "reportsToId": "56789",
+        "vetterName": "Joe Schmoe",
+        "vetterId": "12345"
+    }, {
+        "userId": "LenderCoordinator2",
+        "description": "This user is the coordinator for Lender2 with the ability to respond to binder/mitigation requests and the ability to perform self-reporting.  Some of the test loans are defined as being from this lender.",
+        "authorities": ["ROLE_RESPONSE_COORDINATOR"],
+        "firstName": "Don",
+        "lastName": "Draper",
+        "lender": {
+            "lenderId": "20063",
+            "name": "First Security National Bank"
+        },
+        "locationId": "56F8FF8E-A7EF-40BE-B893-4D6FB57CE298",
+        "reviewLocation": "DEN-PUD",
+        "reportsToName": "Jane Schmane",
+        "reportsToId": "56789",
+        "vetterName": "Joe Schmoe",
+        "vetterId": "12345"
+    }, {
+        "userId": "LenderCoordinator3",
+        "description": "This user is the coordinator for Lender3 with the ability to respond to binder/mitigation requests and the ability to perform self-reporting.  Some of the test loans are defined as being from this lender.",
+        "authorities": ["ROLE_RESPONSE_COORDINATOR"],
+        "firstName": "Peggy",
+        "lastName": "Olson",
+        "lender": {
+            "lenderId": "20063",
+            "name": "First Security National Bank"
+        },
+        "locationId": "56F8FF8E-A7EF-40BE-B893-4D6FB57CE298",
+        "reviewLocation": "DEN-PUD",
+        "reportsToName": "Jane Schmane",
+        "reportsToId": "56789",
+        "vetterName": "Joe Schmoe",
+        "vetterId": "12345"
+    }, {
+        "userId": "LenderViewer1",
+        "description": "This user has read-only access to data associated with Lender1.  Some of the test loans are defined as being from this lender.",
+        "authorities": ["ROLE_LRS_READ_ONLY"],
+        "firstName": "Joan",
+        "lastName": "Holloway",
+        "lender": {
+            "lenderId": "20063",
+            "name": "First Security National Bank"
+        },
+        "locationId": "56F8FF8E-A7EF-40BE-B893-4D6FB57CE298",
+        "reviewLocation": "DEN-PUD",
+        "reportsToName": "Jane Schmane",
+        "reportsToId": "56789",
+        "vetterName": "Joe Schmoe",
+        "vetterId": "12345"
+    }, {
+        "userId": "LenderViewer2",
+        "description": "This user has read-only access to data associated with Lender2.  Some of the test loans are defined as being from this lender.",
+        "authorities": ["ROLE_LRS_READ_ONLY"],
+        "firstName": "Betty",
+        "lastName": "Draper",
+        "lender": {
+            "lenderId": "20063",
+            "name": "First Security National Bank"
+        },
+        "locationId": "56F8FF8E-A7EF-40BE-B893-4D6FB57CE298",
+        "reviewLocation": "DEN-PUD",
+        "reportsToName": "Jane Schmane",
+        "reportsToId": "56789",
+        "vetterName": "Joe Schmoe",
+        "vetterId": "12345"
+    }, {
+        "userId": "LenderViewer3",
+        "description": "This user has read-only access to data associated with Lender3.  Some of the test loans are defined as being from this lender.",
+        "authorities": ["ROLE_LRS_READ_ONLY"],
+        "firstName": "Roger",
+        "lastName": "Sterling",
+        "lender": {
+            "lenderId": "20063",
+            "name": "First Security National Bank"
+        },
+        "locationId": "56F8FF8E-A7EF-40BE-B893-4D6FB57CE298",
+        "reviewLocation": "DEN-PUD",
+        "reportsToName": "Jane Schmane",
+        "reportsToId": "56789",
+        "vetterName": "Joe Schmoe",
+        "vetterId": "12345"
+    }
+]

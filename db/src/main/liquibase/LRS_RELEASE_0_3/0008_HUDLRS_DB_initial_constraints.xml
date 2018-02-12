@@ -1,0 +1,735 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="astrauss (generated)" id="1480428392729-101" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="ASSIGNMENT_TYPE_CD" constraintName="ASSIGNMENT_TYPE_ADMIN_PK" tableName="ASSIGNMENT_TYPE_ADMIN"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-102" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="COMMUNICATION_ID" constraintName="COMM_ACTIVITY_PK" tableName="COMM_ACTIVITY"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-103" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="AUDIT_TMSTMP, TEMPLATE_ID" constraintName="COMM_TEMPLATE_AUDIT_PK" tableName="COMM_TEMPLATE_AUDIT"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-104" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="TEMPLATE_ID" constraintName="COMM_TEMPLATE_PK" tableName="COMM_TEMPLATE"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-105" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="DEFECT_CAUSE_CD, DEFECT_CD" constraintName="DEFECT_CAUSE_PK" tableName="DEFECT_CAUSE"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-106" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="DEFECT_CD" constraintName="DEFECT_PK" tableName="DEFECT"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-107" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="DEFECT_CD, SEVERITY_TIER_CD" constraintName="DEFECT_SEVERITY_PK" tableName="DEFECT_SEVERITY"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-108" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="DEFECT_CD, DFCT_SOURCE_CD" constraintName="DEFECT_SOURCE_PK" tableName="DEFECT_SOURCE"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-109" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="DEFECT_TYPE_ID" constraintName="DEFECT_TYPE_REF_PK" tableName="DEFECT_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-110" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="RQST_DOCS_SOURCE_CD" constraintName="DELIV_PARMS_BINDER_PK" tableName="DELIV_PARMS_BINDER"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-111" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_LEVEL_ID, SLCTN_REASON_ID" constraintName="DELIV_PARMS_ITERATION_PK" tableName="DELIV_PARMS_ITERATION"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-112" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="INTERATION_NUM, REVIEW_LEVEL_ID, SLCTN_REASON_ID" constraintName="DELIV_PARMS_REQUEST_PK" tableName="DELIV_PARMS_REQUEST"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-113" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="ENTITY_NAME" constraintName="DICT_META_ENTITY_PK" tableName="DICT_METADATA_ENTITY"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-114" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="METADATA_FIELD_COND_ID" constraintName="DICT_META_FIELD_COND_PK" tableName="DICT_METADATA_FIELD_CONDITION"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-115" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="ENTITY_NAME, FIELD_NAME, DEFECT_CD" constraintName="DICT_META_FIELD_DEF_PK" tableName="DICT_METADATA_FIELD_DEFECT"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-116" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="ENTITY_NAME, FIELD_NAME" constraintName="DICT_META_FIELD_PK" tableName="DICT_METADATA_FIELD"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-117" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="ENTITY_NAME, FIELD_NAME, RELATIONSHIP_TYPE" constraintName="DICT_META_FIELD_REL_PK" tableName="DICT_METADATA_FIELD_RELATIVES"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-118" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="DOCUMENT_ID" constraintName="DOCUMENTS_PK" tableName="DOCUMENT"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-119" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="EXCEPTION_ID" constraintName="EXCEPTION_PK" tableName="REVIEW_PROCESS_EXCEPTION"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-120" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="FINDING_ID, DOCUMENT_ID" constraintName="FINDING_DOCUMENT_PK" tableName="FINDING_DOCUMENT"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-121" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="FINDING_RATING_RULES_ID" constraintName="FINDING_RATING_RULES_ADMIN_PK" tableName="FINDING_RATING_RULES_ADMIN"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-122" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="FRAUD_PARTICIPANT_ID" constraintName="FRAUD_PARTICIPANT_REF_PK" tableName="FRAUD_PARTICIPANT_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-123" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="FRAUD_TYPE_ID" constraintName="FRAUD_TYPE_REF_PK" tableName="FRAUD_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-124" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="MTGEE5" constraintName="INCREASED_SELECT_LENDER_PK" tableName="INCREASED_SELECT_LENDER"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-125" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="UNDERWRITER_ID" constraintName="INCREASED_SELECT_UNDERWRITE_PK" tableName="INCREASED_SELECT_UNDERWRITER"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-126" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="INDEMNIFICATION_TYPE_ID" constraintName="INDEMNIFICATION_TYPE_REF_PK" tableName="INDEMNIFICATION_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-127" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="JOB_ID" constraintName="JOB_PK" tableName="JOB"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-128" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="JOB_TYPE_ID" constraintName="JOB_TYPE_REF_PK" tableName="JOB_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-129" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="LOAN_TYPE, REVIEW_TYPE" constraintName="LENDER_MONITORING_RQST_MDL_PK" tableName="LENDER_MONITORING_RQST_MODEL"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-130" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="AUDIT_FINDING, CASE_NUMBER" constraintName="LENDE_PARMS_FINDINGS_PK" tableName="LENDE_PARMS_FINDINGS"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-131" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="SELECTION_ID" constraintName="LOAN_SELECTION_CASE_SUMMARY_PK" tableName="LOAN_SELECTION_CASE_SUMMARY"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-132" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="LOAN_SELECTION_PENDING_ID" constraintName="LOAN_SELECTION_PENDING_PK" tableName="LOAN_SELECTION_PENDING"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-133" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="SELECTION_ID" constraintName="LOAN_SELECTION_PK" tableName="LOAN_SELECTION"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-134" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="LOOKUP_ENTITY, LOOKUP_FIELD, LOOKUP_CODE" constraintName="LRS_GEN_LOOKUP_PK" tableName="LRS_GEN_LOOKUP"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-135" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="MODEL_SCORE_ID" constraintName="MODEL_SCORE_PK" tableName="MODEL_SCORE"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-136" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="NOTE_ID" constraintName="NOTES_PK" tableName="NOTE"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-137" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="PERSONNEL_ASSIGNMENT_TYPE_ID" constraintName="PERSONNEL_ASSIGNMENT_TYPE_PK" tableName="PERSONNEL_ASSIGNMENT_TYPE"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-138" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="PRSNNL_ID" constraintName="PERSONNEL_PK" tableName="PERSONNEL"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-139" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="PERSONNEL_UNAVAILABILITY_ID" constraintName="PERSONNEL_UNAVAILABILITY_PK" tableName="PERSONNEL_UNAVAILABILITY"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-140" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="DOCUMENT_TYPE_ID" constraintName="PK__DOCUMENT__A90FC2DD6F05F5D4" tableName="DOCUMENT_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-141" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="NOTE_TYPE_ID" constraintName="PK__NOTE_TYP__5637E4347575BAF3" tableName="NOTE_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-142" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="PRODUCT_DETAIL_ID" constraintName="PRODUCT_DETAIL_REF_PK" tableName="PRODUCT_DETAIL_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-143" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="PRODUCT_TYPE_ID" constraintName="PRODUCT_TYPE_REF_PK" tableName="PRODUCT_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-144" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="DEFECT_CAUSE_CD, QA_OUTCM_ID" constraintName="QATREE_OUTCM_CAUSES_PK" tableName="QATREE_OUTCM_CAUSES"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-145" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="DFCT_SOURCE_CD, QA_OUTCM_ID" constraintName="QATREE_OUTCM_SOURCES_PK" tableName="QATREE_OUTCM_SOURCES"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-146" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="SEVERITY_TIER_CD, QA_OUTCM_ID" constraintName="QATREE_OUTCM_TIERS_PK" tableName="QATREE_OUTCM_SEVERITY"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-147" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="QA_OUTCM_ID" constraintName="QATREE_OUTCOME_PK" tableName="QATREE_OUTCOME"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-148" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="QATREE_ID" constraintName="QATREE_PK" tableName="QATREE"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-149" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="QATREE_ID, QUESTION_ID, ENTITY_NAME, FIELD_NAME" constraintName="QATREE_QSTN_CAPT_PK" tableName="QATREE_QSTN_CAPTURE"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-150" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="QATREE_QSTN_CONDITION_ID" constraintName="QATREE_QSTN_COND_PK" tableName="QATREE_QSTN_CONDITION"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-151" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_TYPE_ID, SLCTN_REASON_ID" constraintName="QATREE_QSTN_RULES_PK" tableName="QATREE_QSTN_RULES"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-152" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="QUESTION_ID, QATREE_ID" constraintName="QATREE_QUESTION_PK" tableName="QATREE_QUESTION"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-153" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="QUESTION_ID" constraintName="QUESTION_REFERENCE_PK" tableName="QUESTION_REFERENCE"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-154" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="RATING_CD" constraintName="RATING_PK" tableName="RATING"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-155" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REMEDY_TYPE_ID" constraintName="REMEDY_TYPE_REF_PK" tableName="REMEDY_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-156" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="SLCTN_REQ_ID" constraintName="REQUESTED_BINDER_PK" tableName="REQUESTED_BINDER"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-157" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_LEVEL_ID" constraintName="REVIEW_LEVEL_ADMIN_PK" tableName="REVIEW_LEVEL_ADMIN"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-158" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_LVL_ID" constraintName="REVIEW_LEVEL_PK" tableName="REVIEW_LEVEL"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-159" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_LEVEL_ID" constraintName="REVIEW_LEVEL_REF_PK" tableName="REVIEW_LEVEL_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-160" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="RVW_LOCATION_ID" constraintName="REVIEW_LOCATION_PK" tableName="REVIEW_LOCATION"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-161" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_ID" constraintName="REVIEW_PK" tableName="REVIEW"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-162" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_TYPE_ID, DEFECT_CD" constraintName="REVIEW_TYPE_DEFECT_PK" tableName="REVIEW_TYPE_DEFECT"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-163" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_TYPE_ID" constraintName="REVIEW_TYPE_REF_PK" tableName="REVIEW_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-164" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REQUEST_ID" constraintName="RQST_FROM_LENDER_PK" tableName="RQST_FROM_LENDER"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-165" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="RVW_LVL_ITERATION_TIMEFRAME_ID" constraintName="RVWLVLITERATION_PK" tableName="RVW_LEVEL_ITERATION_TIMEFRAME"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-166" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="BATCH_ID" constraintName="RVW_BATCH_PK" tableName="RVW_BATCH"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-167" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="BATCH_ID, PRSNNL_ID" constraintName="RVW_BATCH_PRSNNL_PK" tableName="RVW_BATCH_PRSNNL"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-168" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_ID, DEFECT_CD" constraintName="RVW_DEFECT_PK" tableName="RVW_DEFECT"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-169" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="CASE_NUMBER" constraintName="RVW_HISTORY_PK" tableName="RVW_HISTORY"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-170" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="RVW_LOCATION_ID, SLCTN_REASON_ID" constraintName="RVW_LOCATION_REASON_PK" tableName="RVW_LOCATION_REASON"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-171" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="AUDIT_TMSTMP, REVIEW_LVL_ID" constraintName="RVW_LVL_AUDIT_PK" tableName="RVW_LVL_AUDIT"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-172" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_LVL_ID" constraintName="RVW_LVL_CASE_SUMMARY_PK" tableName="RVW_LVL_CASE_SUMMARY"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-173" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_LVL_ID, DEFECT_CD, AUDIT_TMSTMP" constraintName="RVW_LVL_DEFECT_AUD_PK" tableName="RVW_LVL_DEFECT_AUD"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-174" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_LVL_ID, DEFECT_CD" constraintName="RVW_LVL_DEFECT_PK" tableName="RVW_LVL_DEFECT"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-175" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="FINDING_ID, AUDIT_TMSTMP" constraintName="RVW_LVL_FINDING_AUD_PK" tableName="RVW_LVL_FINDING_AUD"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-176" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="FINDING_ID" constraintName="RVW_LVL_FINDING_PK" tableName="RVW_LVL_FINDING"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-177" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="FINDING_QUESTION_ID" constraintName="RVW_LVL_FINDING_QUESTION_PK" tableName="RVW_LVL_FINDING_QUESTION"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-178" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_LVL_ID, INDEM_TYPE, AUDIT_TMSTMP" constraintName="RVW_LVL_INDEM_AUD_PK" tableName="RVW_LVL_INDEM_AUD"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-179" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_LVL_ID, INDEM_TYPE" constraintName="RVW_LVL_INDEM_PK" tableName="RVW_LVL_INDEM"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-180" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="ANSWER_ID" constraintName="RVW_LVL_QSTN_ANSWERS_PK" tableName="RVW_LVL_QSTN_ANSWERS"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-181" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="AUDIT_TMSTMP, REFERRAL_TYPE, REVIEW_LVL_ID" constraintName="RVW_LVL_RFRRL_AUD_PK" tableName="RVW_LVL_RFRRL_AUD"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-182" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="REVIEW_LVL_ID, REFERRAL_TYPE" constraintName="RVW_LVL_RFRRL_PK" tableName="RVW_LVL_RFRRL"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-183" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="FACTOR_ID" constraintName="SCORING_FACTORS_PK" tableName="SCORING_FACTORS"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-184" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="FACTOR_ID, MODEL_ID, MODEL_VER_NUM" constraintName="SCORING_MODEL_FACTORS_PK" tableName="SCORING_MODEL_FACTORS"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-185" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="MODEL_ID" constraintName="SCORING_MODEL_PK" tableName="SCORING_MODEL"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-186" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="SCORING_MODEL_TYPE_ID" constraintName="SCORING_MODEL_TYPE_REF_PK" tableName="SCORING_MODEL_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-187" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="MODEL_ID, MODEL_VER_NUM" constraintName="SCORING_MODEL_VERSION_PK" tableName="SCORING_MODEL_VERSION"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-188" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="SLCTN_REASON_ID" constraintName="SELECTION_PARAMETERS_PK" tableName="SELECTION_PARAMETERS"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-189" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="SLCTN_REQ_ID, DEFECT_CD" constraintName="SELECT_REQUEST_DEFECT_PK" tableName="SELECT_REQUEST_DEFECT"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-190" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="SLCTN_REQ_ID, DEFECT_TYPE_ID" constraintName="SELECT_REQUEST_DEFECT_TYPE_PK" tableName="SELECT_REQUEST_DEFECT_TYPE"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-191" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="SLCTN_REQ_ID, FRAUD_TYPE_ID" constraintName="SELECT_REQUEST_FRAUD_TYPE_PK" tableName="SELECT_REQUEST_FRAUD_TYPE"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-192" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="SLCTN_REQ_ID" constraintName="SELECT_REQUEST_LENDER_MON_PK" tableName="SELECT_REQUEST_LENDER_MON"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-193" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="SLCTN_REQ_ID" constraintName="SELECT_REQUEST_LENDER_SELF_PK" tableName="SELECT_REQUEST_LENDER_SELF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-194" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="SLCTN_REQ_ID" constraintName="SELECT_REQUEST_MANUAL_FHA_PK" tableName="SELECT_REQUEST_MANUAL_FHA"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-195" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="SLCTN_REQ_ID, FRAUD_PARTICIPANT_ID" constraintName="SELECT_RQST_FRAUD_PART_PK" tableName="SELECT_REQUEST_FRAUD_PRTCPNT"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-196" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="MTGEE5" constraintName="SUPPRESSION_LIST_PK" tableName="SUPPRESSION_LIST"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-197" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="PARAMETER_NAME" constraintName="SYSPARMS_PK" tableName="SYSTEM_PARAMETERS"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-198" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="UNIVERSE_REF_ID" constraintName="UNIVERSE_REF_PK" tableName="UNIVERSE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-199" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey clustered="false" columnNames="mortgagee_id" constraintName="lender_lookup_PK" tableName="lender_lookup"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-200" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="CODE" constraintName="JOB_TYPE_REF_UQ_CODE" tableName="JOB_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-201" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="CASE_NUMBER, JOB_ID" constraintName="LOAN_SELECTION_CASE_SUMMARY_UQ_CASE_NUMBER_JOB_ID" tableName="LOAN_SELECTION_CASE_SUMMARY"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-202" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="SELECTION_ID, SLCTN_REASON_ID" constraintName="LOAN_SELECTION_PENDING_UQ_SELECTION_ID_SLCTN_REASON_ID" tableName="LOAN_SELECTION_PENDING"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-203" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="SELECTION_ID, MODEL_ID" constraintName="MODEL_SCORE_UQ_SELECTION_ID_MODEL_ID" tableName="MODEL_SCORE"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-204" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="CODE" constraintName="SCORING_MODEL_TYPE_REF_UQ_CODE" tableName="SCORING_MODEL_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-205" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="DISPLAY_NAME_IDX" tableName="DICT_METADATA_FIELD" unique="true">
+            <column name="ENTITY_NAME"/>
+            <column name="DISPLAY_NAME"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-206" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="FINDING_RATING_RULES_IDX" tableName="FINDING_RATING_RULES_ADMIN">
+            <column name="DEFECT_CD"/>
+            <column name="DEFECT_CAUSE_CD"/>
+            <column name="DFCT_SOURCE_CD"/>
+            <column name="SEVERITY_TIER_CD"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-207" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="PERSONNEL_ASSIGNMENT_TYPE_IDX" tableName="PERSONNEL_ASSIGNMENT_TYPE">
+            <column name="PRSNNL_ID"/>
+            <column name="ASSIGNMENT_TYPE_CD"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-208" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="PROD_TYPE_IDX2" tableName="PRODUCT_DETAIL_REF" unique="true">
+            <column name="PROD_TYPE"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480435954217-209" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="RVWLVLITERATION_IDX" tableName="RVW_LEVEL_ITERATION_TIMEFRAME" unique="true">
+            <column name="SLCTN_REASON_ID"/>
+            <column name="REVIEW_LEVEL_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-210" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="RVW_LVL_RVW_TYPE_ITERATION_IDX" tableName="REVIEW_LEVEL">
+            <column name="REVIEW_LVL_ID"/>
+            <column name="REVIEW_LEVEL_ID"/>
+            <column name="ITERATION_NUM"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-211" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="lender_idx2" tableName="lender_lookup">
+            <column name="srvcr_mrtge_nbr"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-212" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="QATREE_ID" baseTableName="RVW_LVL_QSTN_ANSWERS" constraintName="ANSWERS_TO_QATREE_FK" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="QATREE_ID" referencedTableName="QATREE"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-213" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LVL_ID" baseTableName="RVW_LVL_QSTN_ANSWERS" constraintName="ANSWERS_TO_REVIEW_LEVEL_FK" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LVL_ID" referencedTableName="REVIEW_LEVEL"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-214" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_CD" baseTableName="DEFECT_CAUSE" constraintName="DEFECTCAUSETODEFECT" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_CD" referencedTableName="DEFECT"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-215" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LEVEL_ID" baseTableName="DELIV_PARMS_ITERATION" constraintName="DELIVPARMITERTORVWLVLREF" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LEVEL_ID" referencedTableName="REVIEW_LEVEL_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-216" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LEVEL_ID" baseTableName="DELIV_PARMS_REQUEST" constraintName="DELIVPARMSREQREVLEVEL" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LEVEL_ID" referencedTableName="REVIEW_LEVEL_ADMIN"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-217" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SLCTN_REASON_ID" baseTableName="DELIV_PARMS_REQUEST" constraintName="DELIVPARMSREQSELPARMS" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SLCTN_REASON_ID" referencedTableName="SELECTION_PARAMETERS"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-218" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LEVEL_ID" baseTableName="DELIV_PARMS_ITERATION" constraintName="DELIVPARMSREVLEVEL" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LEVEL_ID" referencedTableName="REVIEW_LEVEL_ADMIN"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-219" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LEVEL_ID" baseTableName="DELIV_PARMS_REQUEST" constraintName="DELIVPARMSRQSTTORVWLVLREF" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LEVEL_ID" referencedTableName="REVIEW_LEVEL_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-220" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SLCTN_REASON_ID" baseTableName="DELIV_PARMS_ITERATION" constraintName="DELIVPARMSSELPARMS" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SLCTN_REASON_ID" referencedTableName="SELECTION_PARAMETERS"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-221" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_CD" baseTableName="DEFECT_SEVERITY" constraintName="DFCTSEVERITYTIERTODEFECT" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_CD" referencedTableName="DEFECT"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-222" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_CD" baseTableName="DEFECT_SOURCE" constraintName="DFCTSOURCETODEFECT" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_CD" referencedTableName="DEFECT"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-223" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="CONDITION_ENTITY_NAME,CONDITION_FIELD_NAME" baseTableName="DICT_METADATA_FIELD_CONDITION" constraintName="DICTMETACOND2TODICTMETAFIELD" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ENTITY_NAME,FIELD_NAME" referencedTableName="DICT_METADATA_FIELD"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-224" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="ENTITY_NAME,FIELD_NAME" baseTableName="DICT_METADATA_FIELD_CONDITION" constraintName="DICTMETACONDTODICTMETAFIELD" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ENTITY_NAME,FIELD_NAME" referencedTableName="DICT_METADATA_FIELD"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-225" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="ENTITY_NAME,FIELD_NAME" baseTableName="DICT_METADATA_FIELD_DEFECT" constraintName="DICTMETADEFECTDICTMETAFIELD" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ENTITY_NAME,FIELD_NAME" referencedTableName="DICT_METADATA_FIELD"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-226" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_CD" baseTableName="DICT_METADATA_FIELD_DEFECT" constraintName="DICTMETADEFECTTODEFECT" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_CD" referencedTableName="DEFECT"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-227" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="ENTITY_NAME,FIELD_NAME" baseTableName="DICT_METADATA_FIELD_RELATIVES" constraintName="DICTMETARELATIVEDICTMETAFIELD" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ENTITY_NAME,FIELD_NAME" referencedTableName="DICT_METADATA_FIELD"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-228" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DOCUMENT_TYPE_ID" baseTableName="DOCUMENT" constraintName="DOCUMENTTODOCTYPREF" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DOCUMENT_TYPE_ID" referencedTableName="DOCUMENT_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-229" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_ID" baseTableName="REVIEW_PROCESS_EXCEPTION" constraintName="EXCEPTION_FK_REVIEW_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_ID" referencedTableName="REVIEW"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-230" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DOCUMENT_ID" baseTableName="FINDING_DOCUMENT" constraintName="FINDINGDOCTODOCUMENT" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DOCUMENT_ID" referencedTableName="DOCUMENT"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-231" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="FINDING_ID" baseTableName="FINDING_DOCUMENT" constraintName="FINDINGDOCTORVWFIND" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="FINDING_ID" referencedTableName="RVW_LVL_FINDING"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-232" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="FINDING_ID" baseTableName="RVW_LVL_FINDING_QUESTION" constraintName="FINDING_QUESTION_TO_FINDING_FK" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="FINDING_ID" referencedTableName="RVW_LVL_FINDING"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-233" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="QUESTION_ID,QATREE_ID" baseTableName="RVW_LVL_FINDING_QUESTION" constraintName="FINDING_QUESTION_TO_QUESTION_FK" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="QUESTION_ID,QATREE_ID" referencedTableName="QATREE_QUESTION"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-234" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_CAUSE_CD,DEFECT_CD" baseTableName="FINDING_RATING_RULES_ADMIN" constraintName="FINDING_RATING_TO_CAUSE" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_CAUSE_CD,DEFECT_CD" referencedTableName="DEFECT_CAUSE"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-235" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_CD" baseTableName="FINDING_RATING_RULES_ADMIN" constraintName="FINDING_RATING_TO_DEFECT" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_CD" referencedTableName="DEFECT"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-236" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_CD,SEVERITY_TIER_CD" baseTableName="FINDING_RATING_RULES_ADMIN" constraintName="FINDING_RATING_TO_SEVERITY" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_CD,SEVERITY_TIER_CD" referencedTableName="DEFECT_SEVERITY"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-237" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_CD,DFCT_SOURCE_CD" baseTableName="FINDING_RATING_RULES_ADMIN" constraintName="FINDING_RATING_TO_SOURCE" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_CD,DFCT_SOURCE_CD" referencedTableName="DEFECT_SOURCE"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-238" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LVL_ID" baseTableName="RVW_LVL_FINDING" constraintName="FINDING_TO_REVIEW_LEVEL_FK" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LVL_ID" referencedTableName="REVIEW_LEVEL"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-239" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LEVEL_ID" baseTableName="RVW_LEVEL_ITERATION_TIMEFRAME" constraintName="ITRATIONTIMEFRMTORVWLVL" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LEVEL_ID" referencedTableName="REVIEW_LEVEL_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-241" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="JOB_TYPE_ID" baseTableName="JOB" constraintName="JOB_FK_JOB_TYPE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="JOB_TYPE_ID" referencedTableName="JOB_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-242" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_TYPE_ID" baseTableName="LENDER_MONITORING_RQST_MODEL" constraintName="LNDRMONRQSTMODTORVWTYPREF" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_TYPE_ID" referencedTableName="REVIEW_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-243" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="PROD_TYPE" baseTableName="LOAN_SELECTION_CASE_SUMMARY" constraintName="LOANSELCASESUMTOPRODDETAIL" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="PROD_TYPE" referencedTableName="PRODUCT_DETAIL_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-244" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="PRODUCT_TYPE_ID" baseTableName="LOAN_SELECTION_CASE_SUMMARY" constraintName="LOANSELCASESUMTOPRODTYP" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="PRODUCT_TYPE_ID" referencedTableName="PRODUCT_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-245" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="UNIVERSE_REF_ID" baseTableName="LOAN_SELECTION_CASE_SUMMARY" constraintName="LOANSELCASESUMTOUNIVERSEREF" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="UNIVERSE_REF_ID" referencedTableName="UNIVERSE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-246" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SLCTN_REASON_ID" baseTableName="LOAN_SELECTION" constraintName="LOANSELECTIONTOSELECTPARM" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SLCTN_REASON_ID" referencedTableName="SELECTION_PARAMETERS"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-247" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="PRODUCT_TYPE_ID" baseTableName="LOAN_SELECTION" constraintName="LOANSELTOPRODTYP" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="PRODUCT_TYPE_ID" referencedTableName="PRODUCT_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-248" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_TYPE_ID" baseTableName="LOAN_SELECTION" constraintName="LOANSELTORVWTYPREF" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_TYPE_ID" referencedTableName="REVIEW_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-249" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_TYPE_ID" baseTableName="LOAN_SELECTION_PENDING" constraintName="LOANSLCTPENDTORVWTYPREF" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_TYPE_ID" referencedTableName="REVIEW_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-250" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="JOB_ID" baseTableName="LOAN_SELECTION_CASE_SUMMARY" constraintName="LOAN_SELECTION_CASE_SUMMARY_FK_JOB_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="JOB_ID" referencedTableName="JOB"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-251" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="RVW_LOCATION_ID" baseTableName="LOAN_SELECTION" constraintName="LOAN_SELECTION_FK_RVW_LOCATION_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="RVW_LOCATION_ID" referencedTableName="REVIEW_LOCATION"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-252" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SELECTION_ID" baseTableName="LOAN_SELECTION_PENDING" constraintName="LOAN_SELECTION_PENDING_FK_SELECTION_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_ID" referencedTableName="LOAN_SELECTION_CASE_SUMMARY"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-253" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="PREF_RVW_LOCATION_ID" baseTableName="LOAN_SELECTION" constraintName="LOAN_SELECT_FK_REVIEW_LOCATION" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="RVW_LOCATION_ID" referencedTableName="REVIEW_LOCATION"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-254" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="ENTITY_NAME" baseTableName="DICT_METADATA_FIELD" constraintName="METAFIELDTOMETAENTITY" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ENTITY_NAME" referencedTableName="DICT_METADATA_ENTITY"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-255" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SELECTION_ID" baseTableName="MODEL_SCORE" constraintName="MODEL_SCORE_FK_SELECTION_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_ID" referencedTableName="LOAN_SELECTION_CASE_SUMMARY"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-256" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="NOTE_TYPE_ID" baseTableName="NOTE" constraintName="NOTETONOTETYPREF" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="NOTE_TYPE_ID" referencedTableName="NOTE_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-257" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="PRSNNL_ID" baseTableName="NOTE" constraintName="NOTETOPERSONNEL" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="PRSNNL_ID" referencedTableName="PERSONNEL"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-258" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SLCTN_REASON_ID" baseTableName="LOAN_SELECTION_PENDING" constraintName="PENDSELECTIONTOREASON" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SLCTN_REASON_ID" referencedTableName="SELECTION_PARAMETERS"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-259" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="ASSIGNMENT_TYPE_CD" baseTableName="PERSONNEL_ASSIGNMENT_TYPE" constraintName="PERSONASSIGNTYPES" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ASSIGNMENT_TYPE_CD" referencedTableName="ASSIGNMENT_TYPE_ADMIN"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-260" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="PRSNNL_ID" baseTableName="PERSONNEL_ASSIGNMENT_TYPE" constraintName="PERSONASSIGNTYPESPERSON" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="PRSNNL_ID" referencedTableName="PERSONNEL"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-261" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REPORTS_TO_PRSNNL_ID" baseTableName="PERSONNEL" constraintName="PERSONNEL_FK_REPORTS_TO_PRSNNL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="PRSNNL_ID" referencedTableName="PERSONNEL"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-262" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="RVW_LOCATION_ID" baseTableName="PERSONNEL" constraintName="PERSONNEL_FK_REVIEW_LOCATION" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="RVW_LOCATION_ID" referencedTableName="REVIEW_LOCATION"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-263" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="VETTING_PRSNNL_ID" baseTableName="PERSONNEL" constraintName="PERSONNEL_FK_VETTING_PRSNNL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="PRSNNL_ID" referencedTableName="PERSONNEL"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-264" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="PRSNNL_ID" baseTableName="PERSONNEL_UNAVAILABILITY" constraintName="PERSONNEL_UNAVAIL_TO_PERSONNEL" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="PRSNNL_ID" referencedTableName="PERSONNEL"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-265" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="PRODUCT_TYPE_ID" baseTableName="PRODUCT_DETAIL_REF" constraintName="PRODUCTDETAILREFTOPRODUCTTYP" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="PRODUCT_TYPE_ID" referencedTableName="PRODUCT_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-266" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="QA_OUTCM_ID" baseTableName="QATREE_OUTCM_CAUSES" constraintName="QATREEOCCAUSETOOUTCOME" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="QA_OUTCM_ID" referencedTableName="QATREE_OUTCOME"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-267" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="QA_OUTCM_ID" baseTableName="QATREE_OUTCM_SOURCES" constraintName="QATREEOCSRCESTOOUTCOME" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="QA_OUTCM_ID" referencedTableName="QATREE_OUTCOME"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-268" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="QA_OUTCM_ID" baseTableName="QATREE_OUTCM_SEVERITY" constraintName="QATREEOUTCOMETOTIERS" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="QA_OUTCM_ID" referencedTableName="QATREE_OUTCOME"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-269" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="ENTITY_NAME" baseTableName="QATREE_QSTN_CAPTURE" constraintName="QATREEQSTNCAPTTOMETAENTITY" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ENTITY_NAME" referencedTableName="DICT_METADATA_ENTITY"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-270" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="ENTITY_NAME,FIELD_NAME" baseTableName="QATREE_QSTN_CAPTURE" constraintName="QATREEQSTNCAPTTOMETAFIELD" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ENTITY_NAME,FIELD_NAME" referencedTableName="DICT_METADATA_FIELD"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-271" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="QATREE_ID,QUESTION_ID" baseTableName="QATREE_QSTN_CAPTURE" constraintName="QATREEQSTNCAPTTOQAQSTN" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="QUESTION_ID,QATREE_ID" referencedTableName="QATREE_QUESTION"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-272" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="QATREE_ID" baseTableName="QATREE_QSTN_CAPTURE" constraintName="QATREEQSTNCAPTTOQATREE" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="QATREE_ID" referencedTableName="QATREE"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-273" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="QUESTION_ID,QATREE_ID" baseTableName="QATREE_QSTN_CONDITION" constraintName="QATREEQSTNCONDTOQAQSTN" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="QUESTION_ID,QATREE_ID" referencedTableName="QATREE_QUESTION"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-274" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="QATREE_ID" baseTableName="QATREE_QSTN_CONDITION" constraintName="QATREEQSTNCONDTOQATREE" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="QATREE_ID" referencedTableName="QATREE"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-275" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_TYPE_ID" baseTableName="QATREE_QSTN_RULES" constraintName="QATREEQSTNRULTORVWTYPREF" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_TYPE_ID" referencedTableName="REVIEW_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-276" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="QUESTION_ID" baseTableName="QATREE_QUESTION" constraintName="QUESTIONREFTOQATREE" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="QUESTION_ID" referencedTableName="QUESTION_REFERENCE"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-277" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SLCTN_REASON_ID" baseTableName="QATREE_QSTN_RULES" constraintName="QUESTIONRULESTOSELREASON" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SLCTN_REASON_ID" referencedTableName="SELECTION_PARAMETERS"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-278" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="QATREE_ID" baseTableName="QATREE_QUESTION" constraintName="QUESTIONTOQATREE" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="QATREE_ID" referencedTableName="QATREE"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-279" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SELECTION_ID" baseTableName="REQUESTED_BINDER" constraintName="REQUESTEDBINDERTOLOANSEL" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_ID" referencedTableName="LOAN_SELECTION"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-280" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="BATCH_ID" baseTableName="REVIEW" constraintName="REVIEWBATCH" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="BATCH_ID" referencedTableName="RVW_BATCH"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-281" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="PRSNNL_ID" baseTableName="RVW_BATCH_PRSNNL" constraintName="REVIEWBATCHTOPERSONNEL" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="PRSNNL_ID" referencedTableName="PERSONNEL"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-282" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_CD" baseTableName="RVW_DEFECT" constraintName="REVIEWDEFECTTODEFECT" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_CD" referencedTableName="DEFECT"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-283" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_ID" baseTableName="RVW_DEFECT" constraintName="REVIEWDEFECTTOREVIEW" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_ID" referencedTableName="REVIEW"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-284" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_CD" baseTableName="RVW_LVL_DEFECT" constraintName="REVIEWLEVELDEFECTTOAUDIT" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_CD" referencedTableName="DEFECT"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-285" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_ID" baseTableName="RVW_LVL_DEFECT" constraintName="REVIEWLEVELDEFECTTOREVIEW" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_ID" referencedTableName="REVIEW"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-286" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LVL_ID" baseTableName="RVW_LVL_DEFECT" constraintName="REVIEWLEVELDEFECTTORVWLVL" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LVL_ID" referencedTableName="REVIEW_LEVEL"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-287" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="INDEMNIFICATION_TYPE_ID" baseTableName="REVIEW_LEVEL" constraintName="REVIEWLEVELFKINDEMTYPEREF" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="INDEMNIFICATION_TYPE_ID" referencedTableName="INDEMNIFICATION_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-288" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LVL_ID" baseTableName="RVW_LVL_AUDIT" constraintName="REVIEWLEVELTOAUDIT" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LVL_ID" referencedTableName="REVIEW_LEVEL"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-289" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SELECTION_ID" baseTableName="REVIEW" constraintName="REVIEWSELECTION" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_ID" referencedTableName="LOAN_SELECTION"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-290" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LEVEL_ID" baseTableName="REVIEW" constraintName="REVIEWTORVWLVLREF" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LEVEL_ID" referencedTableName="REVIEW_LEVEL_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-291" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="ORIG_RVWR_PRSNNL_ID" baseTableName="REVIEW" constraintName="REVIEW_FK_ORIG_RVWR_PRSNNL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="PRSNNL_ID" referencedTableName="PERSONNEL"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-292" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_ID" baseTableName="REVIEW_LEVEL" constraintName="REVIEW_LEVELTOREVIEW" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_ID" referencedTableName="REVIEW"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-293" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="ORIG_RVWR_PRSNNL_ID" baseTableName="REVIEW_LEVEL" constraintName="REVIEW_LEVEL_FK_ORIG_RVWR_PRSNNL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="PRSNNL_ID" referencedTableName="PERSONNEL"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-294" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="RVWR_PRSNNL_ID" baseTableName="REVIEW_LEVEL" constraintName="REVIEW_LEVEL_FK_RVWR_PRSNNL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="PRSNNL_ID" referencedTableName="PERSONNEL"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-295" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="RVW_LOCATION_ID" baseTableName="REVIEW_LEVEL" constraintName="REVIEW_LEVEL_FK_RVW_LOCATION_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="RVW_LOCATION_ID" referencedTableName="REVIEW_LOCATION"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-296" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="OWNER_PRSNNL_ID" baseTableName="REVIEW_LOCATION" constraintName="REVIEW_LOCATION_FK_OWNER_PRSNNL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="PRSNNL_ID" referencedTableName="PERSONNEL"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-297" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="QATREE_ID" baseTableName="REVIEW_QATREE" constraintName="REVIEW_QATREE_TO_QATREE" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="QATREE_ID" referencedTableName="QATREE"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-298" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_ID" baseTableName="REVIEW_QATREE" constraintName="REVIEW_QATREE_TO_REVIEW" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_ID" referencedTableName="REVIEW"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-299" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_ID" baseTableName="RQST_FROM_LENDER" constraintName="RQST_FROM_LENDER_FK_REVIEW" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_ID" referencedTableName="REVIEW"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-300" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SLCTN_REASON_ID" baseTableName="RVW_LOCATION_REASON" constraintName="RVWLOCREASONTOSELECTPARM" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SLCTN_REASON_ID" referencedTableName="SELECTION_PARAMETERS"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-301" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LEVEL_ID" baseTableName="REVIEW_LEVEL_ADMIN" constraintName="RVWLVLADMINTORVWLVLREF" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LEVEL_ID" referencedTableName="REVIEW_LEVEL_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-302" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="PRODUCT_TYPE_ID" baseTableName="RVW_LVL_CASE_SUMMARY" constraintName="RVWLVLCASESUMTOPRODTYP" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="PRODUCT_TYPE_ID" referencedTableName="PRODUCT_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-303" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_TYPE_ID" baseTableName="RVW_LVL_CASE_SUMMARY" constraintName="RVWLVLCASESUMTORVWTYPREF" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_TYPE_ID" referencedTableName="REVIEW_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-304" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_CD" baseTableName="RVW_LVL_DEFECT_AUD" constraintName="RVWLVLDEFAUDTODEFECT" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_CD" referencedTableName="DEFECT"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-305" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_ID" baseTableName="RVW_LVL_DEFECT_AUD" constraintName="RVWLVLDEFAUDTOREVIEW" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_ID" referencedTableName="REVIEW"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-306" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LVL_ID" baseTableName="RVW_LVL_DEFECT_AUD" constraintName="RVWLVLDEFAUDTOREVIEWLEVEL" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LVL_ID" referencedTableName="REVIEW_LEVEL"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-307" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LVL_ID,DEFECT_CD" baseTableName="RVW_LVL_DEFECT_AUD" constraintName="RVWLVLDEFAUDTORVWLVLDEF" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LVL_ID,DEFECT_CD" referencedTableName="RVW_LVL_DEFECT"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-308" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REMEDY_TYPE_ID" baseTableName="RVW_LVL_FINDING" constraintName="RVWLVLFINDINGFKREMEDYTYPEREF" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REMEDY_TYPE_ID" referencedTableName="REMEDY_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-309" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LVL_ID" baseTableName="RVW_LVL_INDEM_AUD" constraintName="RVWLVLINDEMAUDITTORVWLEVEL" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LVL_ID" referencedTableName="REVIEW_LEVEL"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-310" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LVL_ID,INDEM_TYPE" baseTableName="RVW_LVL_INDEM_AUD" constraintName="RVWLVLINDEMAUDTORVWLVLIND" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LVL_ID,INDEM_TYPE" referencedTableName="RVW_LVL_INDEM"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-311" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LVL_ID" baseTableName="RVW_LVL_INDEM" constraintName="RVWLVLINDEMTORVWLEVEL" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LVL_ID" referencedTableName="REVIEW_LEVEL"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-312" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LVL_ID" baseTableName="RVW_LVL_RFRRL_AUD" constraintName="RVWLVLREFERRALTORVWLEVEL" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LVL_ID" referencedTableName="REVIEW_LEVEL"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-313" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LEVEL_ID" baseTableName="REVIEW_LEVEL" constraintName="RVWLVLTORVWLVLREF" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LEVEL_ID" referencedTableName="REVIEW_LEVEL_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-314" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SLCTN_REASON_ID" baseTableName="RVW_LEVEL_ITERATION_TIMEFRAME" constraintName="RVWTIMEFRAMETOSELECTPARM" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SLCTN_REASON_ID" referencedTableName="SELECTION_PARAMETERS"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-315" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_TYPE_ID" baseTableName="REVIEW_TYPE_DEFECT" constraintName="RVWTYPEDEFTORVWTYPREF" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_TYPE_ID" referencedTableName="REVIEW_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-316" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_LVL_ID" baseTableName="RVW_LVL_CASE_SUMMARY" constraintName="RVW_LVL_CASE_SUMMARY_FK_REVIEW_LVL_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_LVL_ID" referencedTableName="REVIEW_LEVEL"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-317" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SCORING_MODEL_TYPE_ID" baseTableName="SCORING_MODEL" constraintName="SCORING_MODEL_FK_SCORING_MODEL_TYPE_ID" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SCORING_MODEL_TYPE_ID" referencedTableName="SCORING_MODEL_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-318" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="MODEL_ID" baseTableName="SELECTION_PARAMETERS" constraintName="SELECTIONPARMTOMOD" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="MODEL_ID" referencedTableName="SCORING_MODEL"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-319" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SELECTION_ID" baseTableName="LOAN_SELECTION" constraintName="SELECTIONTOCASESUMMARY" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SELECTION_ID" referencedTableName="LOAN_SELECTION_CASE_SUMMARY"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-320" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_CD" baseTableName="SELECT_REQUEST_DEFECT" constraintName="SELECTRQSTDEFECTFKDEFECT" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_CD" referencedTableName="DEFECT"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-321" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SLCTN_REQ_ID" baseTableName="SELECT_REQUEST_DEFECT" constraintName="SELECTRQSTDEFECTFKSELECTREQST" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SLCTN_REQ_ID" referencedTableName="SELECT_REQUEST_LENDER_SELF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-322" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="PREF_RVW_LOCATION_ID" baseTableName="SELECT_REQUEST_LENDER_MON" constraintName="SELECT_MON_FK_REVIEW_LOCATION" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="RVW_LOCATION_ID" referencedTableName="REVIEW_LOCATION"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-323" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="FRAUD_PARTICIPANT_ID" baseTableName="SELECT_REQUEST_FRAUD_PRTCPNT" constraintName="SELRQSTFRAUDPARTFKFRAUDPART" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="FRAUD_PARTICIPANT_ID" referencedTableName="FRAUD_PARTICIPANT_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-324" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SLCTN_REQ_ID" baseTableName="SELECT_REQUEST_FRAUD_PRTCPNT" constraintName="SELRQSTFRAUDPARTFKSELECTREQST" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SLCTN_REQ_ID" referencedTableName="SELECT_REQUEST_LENDER_SELF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-325" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="FRAUD_TYPE_ID" baseTableName="SELECT_REQUEST_FRAUD_TYPE" constraintName="SELRQSTFRAUDTYPEFKFRAUDTYP" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="FRAUD_TYPE_ID" referencedTableName="FRAUD_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-326" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SLCTN_REQ_ID" baseTableName="SELECT_REQUEST_FRAUD_TYPE" constraintName="SELRQSTFRAUDTYPEFKSELECTREQST" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SLCTN_REQ_ID" referencedTableName="SELECT_REQUEST_LENDER_SELF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-327" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="DEFECT_TYPE_ID" baseTableName="SELECT_REQUEST_DEFECT_TYPE" constraintName="SLCTRQSTDEFECTTYPEFKDEFTYP" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="DEFECT_TYPE_ID" referencedTableName="DEFECT_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-328" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SLCTN_REQ_ID" baseTableName="SELECT_REQUEST_DEFECT_TYPE" constraintName="SLCTRQSTDEFECTTYPEFKSELECTREQST" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SLCTN_REQ_ID" referencedTableName="SELECT_REQUEST_LENDER_SELF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-329" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="BATCH_ID" baseTableName="SELECT_REQUEST_LENDER_SELF" constraintName="SLCTRQSTLENDERSELFTORVWBATCH" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="BATCH_ID" referencedTableName="RVW_BATCH"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-330" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_TYPE_ID" baseTableName="SELECT_REQUEST_LENDER_SELF" constraintName="SLCTRQSTLENSELFTORVWTYPREF" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_TYPE_ID" referencedTableName="REVIEW_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-331" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_TYPE_ID" baseTableName="SELECT_REQUEST_LENDER_MON" constraintName="SLCTRQSTLNDMONTORVWTYPREF" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_TYPE_ID" referencedTableName="REVIEW_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-332" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="REVIEW_TYPE_ID" baseTableName="SELECT_REQUEST_MANUAL_FHA" constraintName="SLCTRQSTMANFHATORVWTYPREF" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="REVIEW_TYPE_ID" referencedTableName="REVIEW_TYPE_REF"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-333" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="SLCTN_REASON_ID" baseTableName="SELECT_REQUEST_MANUAL_FHA" constraintName="SLCTRQSTMANFHATOSLCTIONPARAMS" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SLCTN_REASON_ID" referencedTableName="SELECTION_PARAMETERS"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-334" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="TEMPLATE_ID" baseTableName="COMM_TEMPLATE_AUDIT" constraintName="TEMPLAUDIT" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="TEMPLATE_ID" referencedTableName="COMM_TEMPLATE"/>
+    </changeSet>
+    <changeSet author="astrauss (generated)" id="1480428392729-335" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createView fullDefinition="false" viewName="RESPONSE_FROM_LENDER">select D.FINDING_ID, D.UPDATED_BY, D.UPDATED_TS from
+					 (select B.FINDING_ID, A.UPDATED_BY, A.UPDATED_TS from DOCUMENT A, FINDING_DOCUMENT B, DOCUMENT_TYPE_REF R1
+								 where A.DOCUMENT_ID = B.DOCUMENT_ID AND A.DOCUMENT_TYPE_ID = R1.DOCUMENT_TYPE_ID AND R1.DOCUMENT_TYPE_CD = 'RESP'
+						  union
+					 select C.FINDING_ID, C.UPDATED_BY, C.UPDATED_TS from NOTE C, NOTE_TYPE_REF R2 WHERE C.NOTE_TYPE_ID = R2.NOTE_TYPE_ID and R2.NOTE_TYPE_CD = 'FCFL') D
+			  WHERE D.UPDATED_TS = (Select MAX(z.UPDATED_TS) from (select A.UPDATED_TS from DOCUMENT A, FINDING_DOCUMENT B, DOCUMENT_TYPE_REF R1
+																									 where A.DOCUMENT_ID = B.DOCUMENT_ID and B.FINDING_ID = D.FINDING_ID AND A.DOCUMENT_TYPE_ID = R1.DOCUMENT_TYPE_ID AND R1.DOCUMENT_TYPE_CD = 'RESP'
+																											union
+																									 select F.UPDATED_TS from NOTE F where F.FINDING_ID = D.FINDING_ID) z)</createView>
+    </changeSet>
+</databaseChangeLog>

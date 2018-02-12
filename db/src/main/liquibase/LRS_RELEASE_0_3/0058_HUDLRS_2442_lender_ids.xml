@@ -1,0 +1,15 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="TEST"  author="jordanchavez@kpmg.com" id="HUDLRS_2552_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+			<![CDATA[
+UPDATE LOAN_SELECTION SET MTGEE5 = '70101' WHERE CASE_NUMBER <= '102-1031485'
+UPDATE LOAN_SELECTION_CASE_SUMMARY SET SRVCR_MTGEE5_A43 = '70101' WHERE CASE_NUMBER <= '102-1031485'
+UPDATE LOAN_SELECTION SET MTGEE5 = '30084' WHERE CASE_NUMBER > '102-1031485' AND CASE_NUMBER <= '102-1059985'
+UPDATE LOAN_SELECTION_CASE_SUMMARY SET SRVCR_MTGEE5_A43 = '30084' WHERE CASE_NUMBER > '102-1031485' AND CASE_NUMBER <= '102-1059985'
+UPDATE LOAN_SELECTION SET MTGEE5 = '04718' WHERE CASE_NUMBER > '102-1059985'
+UPDATE LOAN_SELECTION_CASE_SUMMARY SET SRVCR_MTGEE5_A43 = '04718' WHERE CASE_NUMBER > '102-1059985'
+			]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>

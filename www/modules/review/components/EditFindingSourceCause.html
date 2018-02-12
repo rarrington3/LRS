@@ -1,0 +1,48 @@
+	<h4 class="view-title">FINDING - SOURCE/CAUSE</h4>
+	<div class="sub-title">Choose a Source and a Cause based on the question below.</div>
+	<div class="section-divider"><hr/></div>
+
+	<div class="group-title">Question That Triggered Finding</div>
+
+	<!-- NOTE: We're dynamically rendering the finding questions here using the same technique as in the QA tree -->
+	<question-node-view *ngFor="let node of questions" [isReadOnly]="true" [showEditFinding]="false" [node]="node"></question-node-view>
+
+	<div class="group-title">Choose a Source and a Cause</div>
+
+	<form  #sourceCauseForm="ngForm">
+	<ul class="list-group">
+
+		<!-- Choose Source -->
+		<li class="list-group-item">
+			<div class="list-name">Choose Source</div>
+			<div class="radio" *ngFor="let source of defectAreaSources">
+				<label attr.for="{{source.defectSourceCode}}">
+					<input id="{{source.defectSourceCode}}"  type="radio" [attr.disabled]="isReviewReadOnly === true || null" [disabled]="isReviewReadOnly"  name="defectSourceCode" [value]="source.defectSourceCode" [ngModel]="finding.selectedSourceCode">
+			        {{source.description}}
+				</label>
+			</div>
+		</li>
+
+		<!-- Choose  Cause -->
+		<li class="list-group-item">
+			<div class="list-name">Choose Cause</div>
+			<div class="radio" *ngFor="let cause of defectAreaCauses">
+				<label attr.for="{{cause.defectCauseCode}}">
+					<input id="{{cause.defectCauseCode}}" type="radio" [attr.disabled]="isReviewReadOnly === true || null" [disabled]="isReviewReadOnly" name="defectCauseCode" [value]="cause.defectCauseCode" [ngModel]="finding.selectedCauseCode">
+			    	{{cause.description}}
+				</label>
+
+			</div>
+		</li>
+
+	</ul>
+
+</form>
+
+<div class="footer clearfix">
+	<button type="button" (click)="onNext(sourceCauseForm)" [disabled]="updatingFinding || disableSubmit(sourceCauseForm) || isReviewReadOnly" class="btn btn-primary pull-right">Next</button>
+	<!-- Show the Cancel Finding button only when the question does not have an existing finding. Cancel allows the user to delete just the answer. -->
+	<button *ngIf="!finding.findingId" type="button" [disabled]="isReviewReadOnly" class="btn btn-default pull-right" (click)="onCancelFinding()">Cancel Finding</button>
+	<!-- Show the 'Revisit Questions' only if there's an Existing finding. This allows the user to navigate back to the QA tree-->
+	<button type="button" *ngIf="finding.findingId" (click)="onRevisitQuestion()"  class="btn btn-primary pull-right">Revisit Question</button>
+</div>

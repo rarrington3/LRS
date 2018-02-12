@@ -1,0 +1,55 @@
+@import "../../bootstrap/_variables";
+:host-context {
+	/* styles should be scoped under host-context */
+	hr {
+		border-top: 1px solid  @hr-border;
+	}
+
+	.view-title {
+		color: @brand-danger;
+		text-transform: uppercase;
+	}
+
+	.sub-title {
+		font-size: @font-size-small;
+	}
+
+	.group-title {
+		font-size: @font-size-h5;
+		color: @brand-primary;
+	}
+
+	.finding-wrapper {
+		margin-left: 35px;
+
+		.glyphicon-flag {
+			color: @brand-danger;
+		}
+
+		.finding-alert {
+			color: @brand-danger;
+		}
+	}
+
+	question-node-view {
+    	display: inline-block;
+    	width: 100%;
+	}
+
+
+	.list-name {
+		font-size: @font-size-h6;
+		font-weight: bold;
+		color: @column-header-color;
+	}
+
+	.btn {
+		margin-right: 4px;
+	}
+
+	textarea.ng-invalid {
+		border: 1px solid @brand-danger;
+	}
+
+
+}

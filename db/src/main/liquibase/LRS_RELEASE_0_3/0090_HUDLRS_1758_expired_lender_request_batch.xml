@@ -1,0 +1,24 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="jordanchavez@kpmg.com" id="HUDLRS_1758_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+INSERT INTO JOB_TYPE_REF(JOB_TYPE_ID, CODE, DESCRIPTION, CREATED_BY, CREATED_TS, UPDATED_BY, UPDATED_TS) VALUES (NEWID(), 'LATE_LENDER_REQUESTS', 'Late Lender Requests', 'H00001', CURRENT_TIMESTAMP, 'H00001', CURRENT_TIMESTAMP)
+GO
+ALTER TABLE REVIEW_LEVEL_TYPE_REF ADD ORDINAL INT NULL
+GO
+UPDATE REVIEW_LEVEL_TYPE_REF SET ORDINAL = 1 WHERE REVIEW_LEVEL_CD = 'INIT'
+UPDATE REVIEW_LEVEL_TYPE_REF SET ORDINAL = 2 WHERE REVIEW_LEVEL_CD = 'MITG'
+UPDATE REVIEW_LEVEL_TYPE_REF SET ORDINAL = 3 WHERE REVIEW_LEVEL_CD = 'ESCL'
+UPDATE REVIEW_LEVEL_TYPE_REF SET ORDINAL = 4 WHERE REVIEW_LEVEL_CD = 'HQES'
+UPDATE REVIEW_LEVEL_TYPE_REF SET ORDINAL = 5 WHERE REVIEW_LEVEL_CD = 'INDM'
+UPDATE REVIEW_LEVEL_TYPE_REF SET ORDINAL = 6 WHERE REVIEW_LEVEL_CD = 'FRCE'
+UPDATE REVIEW_LEVEL_TYPE_REF SET ORDINAL = 7 WHERE REVIEW_LEVEL_CD = 'BNDR'
+GO
+ALTER TABLE REVIEW_LEVEL_TYPE_REF ALTER COLUMN ORDINAL INT NOT NULL
+GO
+		]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>    
+

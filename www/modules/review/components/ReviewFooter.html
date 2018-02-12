@@ -1,0 +1,37 @@
+<div class="review-footer-slider"  [class.expanded]="expanded">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="lrs-layout-table" >
+                    <td class="left-side-bar footer-slider-placeholder">&nbsp;</td>
+                    <td class="content-area footer-slider">
+                        <div class="tab-nav-container">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation">
+                                    <button data-target="#internalNotes" class="btn btn-link tab-btn"  (click)="expandSlider()"  aria-controls="internalNotes" role="tab" data-toggle="tab">Internal Notes ({{internalNotes.allReviewNotes.length}})</button>
+                                </li>
+                                <li role="presentation" class="active">
+                                    <button data-target="#lenderComments" class="btn btn-link tab-btn" (click)="expandSlider()"  aria-controls="lenderComments" role="tab" data-toggle="tab">Lender Visible Comments ({{lenderComments.findingsWithComment.length}})</button>
+                                </li>
+                            </ul>
+                            <a class="lrs-arrow"  [class.collapsed]="!expanded" role="button"  (click)="toggleFooterSlider()" href="javascript:void(0);" [attr.aria-expanded]="expanded">
+                                <span class="caret glyphicon glyphicon-menu-down"></span>
+                            </a>
+                        </div>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane" id="internalNotes">
+                                <review-footer-internal-notes #internalNotes></review-footer-internal-notes>
+                            </div>
+                            <div role="tabpanel" class="tab-pane active" id="lenderComments">
+                                <review-footer-lender-comments #lenderComments></review-footer-lender-comments>
+                            </div>
+                        </div>
+                    </td>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

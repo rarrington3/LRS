@@ -1,0 +1,64 @@
+<div class="panel panel-default">
+	<div class="panel-body" >
+
+		<div class="finding-title level-type">{{data?.levelType}}</div>
+		<ul class="list-group source-cause">
+			<li class="list-group-item"><span class="list-name">Severity: </span><span class="list-description danger">{{data?.selectedTierDescription}}</span></li>
+			<li class="list-group-item"><span class="list-name">Finding Description: </span><span class="list-description comment">{{data?.finding?.commentToLender}}</span></li>
+		</ul>
+		<div *ngIf="data?.finding?.lenderResponseDate" class="section-divider"><hr/></div>
+		<div *ngIf="data?.finding?.lenderResponseDate">
+			<div class="sub-title">LENDER RESPONSE TO FHA</div>
+			<div class="row">
+				<div class="col-xs-4 list-name">RESPONSE DATE</div>
+				<div class="col-xs-8 list-description comment">{{data?.finding?.lenderResponseDate | datePipe}}</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-4 list-name">RESPONSE BY</div>
+				<div class="col-xs-8 list-description comment">{{data?.finding?.lenderResponderName}}</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-4 list-name">RESPONSE DESCRIPTION</div>
+				<div class="col-xs-8 list-description comment">{{data?.finding?.lenderResponseComment}}</div>
+			</div>
+
+		</div>
+
+		<div *ngIf="data?.finding?.lenderResponseDocuments.length" class="section-divider"><hr/></div>
+
+		<div *ngIf="data?.finding?.lenderResponseDocuments.length" class="row">
+			<div class="col-xs-12">
+				<div class="sub-title">RESPONSE DOCUMENTS</div>
+				<ul class="list-group documents">
+					<li class="list-group-item clearfix"  *ngFor="let document of data?.finding?.lenderResponseDocuments">
+						<span class="glyphicon glyphicon-file pull-left" [class.success]="document.documentId" aria-label="Document" title="Document"></span>
+						<a type="button" class="list-name document-name pull-left" target="_blank" [href]="getResponseDocumentURL(document)">{{document.fileName}}</a>
+						<span class="list-name pull-right">{{data?.levelType}}</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+        <div class="list-description comment" *ngIf="!data?.finding?.lenderResponseDate && data?.finding?.lenderResponseExpiredDate">No lender response due to expiration</div>
+
+		<div class="section-divider" *ngIf="data?.isPostInitial && (data.finding.ratingCode === 'M' || data.finding.ratingCode === 'R' || data.finding.ratingCode === 'C')"><hr/></div>
+
+            <!-- Remediated info in post initial -->
+            <div class="list-description" *ngIf="data?.isPostInitial && (data.finding.ratingCode === 'R' && data.finding.reviewerResponseRemediated)">
+				<div class="comment">This finding was marked as remediated by the Reviewer.</div>
+                <div class="comment"><span class="list-name">Remediation Code:</span> <span class="comment">{{data.finding.reviewerResponseRemediated.remediationTypeCode}}</span></div>
+                <div class="comment"><span class="list-name">Remediation Amount:</span> <span class="comment">{{data.finding.reviewerResponseRemediated.remediationAmount}}</span></div>
+            </div>
+
+            <!-- Mitigated info in post initial -->
+            <div class="list-description comment" *ngIf="data?.isPostInitial && data.finding.ratingCode === 'M'">This finding was marked as mitigated by the Reviewer.</div>
+
+			<!-- Conforming finding in post initial -->
+            <div class="list-description comment" *ngIf="data?.isPostInitial && data.finding.ratingCode === 'C'">This finding was adjusted to conforming by the Reviewer.</div>
+
+
+	</div>
+</div>
+
+<!-- Force escalation warning -->
+<div class="list-description comment warning" *ngIf="data?.warning">{{data?.warning}}</div>

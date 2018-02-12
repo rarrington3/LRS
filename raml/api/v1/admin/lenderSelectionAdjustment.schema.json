@@ -1,0 +1,28 @@
+{
+    "id": "http://LRS/LenderSelectionAdjustment",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": [
+        "lender",
+        "startDate"
+    ],
+    "properties": {
+        "lender": {
+            "description": "An object containing information about the lender that's being suppressed.",
+            "$ref": "LiteLender"
+        },
+        "activeReviews": {
+            "description": "The current count of reviews for cases by this lender.",
+            "type": "integer"
+        },
+        "startDate": {
+            "description": "The date that this lender was added to the suppression list.",
+            "type": "string",
+            "format": "date"
+        },
+        "percentToReview": {
+            "description": "What percentage of this Lender's loans to review.",
+            "type": "number"
+        }
+    }
+}

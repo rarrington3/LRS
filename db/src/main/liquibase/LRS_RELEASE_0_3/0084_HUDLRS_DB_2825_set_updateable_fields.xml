@@ -1,0 +1,43 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2825_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update dict_metadata_field set user_editable_ind = 'Y', ui_control_type = 'BOOLEAN' where entity_name = 'Case Summary for Review Level' and db_column = 'BUILDING_ON_OWN_LAND_IND'
+			update dict_metadata_field set user_editable_ind = 'Y', ui_control_type = 'BOOLEAN' where entity_name = 'Case Summary for Review Level' and db_column = 'CASHOUT_REFI_IND'
+			update dict_metadata_field set user_editable_ind = 'Y', ui_control_type = 'BOOLEAN' where entity_name = 'Case Summary for Review Level' and db_column = 'ENDRS_BYND_60_DAYS_CLOSE_IND'
+			update dict_metadata_field set user_editable_ind = 'Y', ui_control_type = 'BOOLEAN' where entity_name = 'Case Summary for Review Level' and db_column = 'INVEST_2ND_RESID_IND'
+			update dict_metadata_field set user_editable_ind = 'Y', ui_control_type = 'BOOLEAN' where entity_name = 'Case Summary for Review Level' and db_column = 'MNFCTRD_HUSNG_IND'
+			update dict_metadata_field set user_editable_ind = 'Y', ui_control_type = 'BOOLEAN' where entity_name = 'Case Summary for Review Level' and db_column = 'CURRENT_AT_ENDORSE_IND'
+			update dict_metadata_field set user_editable_ind = 'Y', ui_control_type = 'BOOLEAN' where entity_name = 'Case Summary for Review Level' and db_column = 'SALE_PRICE_GTR_ACQ_COST_IND'
+			update dict_metadata_field set user_editable_ind = 'Y', ui_control_type = 'BOOLEAN' where entity_name = 'Case Summary for Review Level' and db_column = 'SECONDARY_FINANCE_EXISTS_IND'	
+			update dict_metadata_field set user_editable_ind = 'Y', ui_control_type = 'SELECT' where entity_name = 'Case Summary for Review Level' and db_column = 'ADP_CODE'
+			update dict_metadata_field set user_editable_ind = 'Y', ui_control_type = 'SELECT' where entity_name = 'Case Summary for Review Level' and db_column = 'PRODUCT_TYPE_CD'
+			update dict_metadata_field set user_editable_ind = 'Y', ui_control_type = 'SELECT' where entity_name = 'Case Summary for Review Level' and db_column = 'LOAN_PRPS'
+			update dict_metadata_field set user_editable_ind = 'Y', ui_control_type = 'SELECT' where entity_name = 'Case Summary for Review Level' and db_column = 'PD_STRMLN_FLG'
+			update dict_metadata_field set user_editable_ind = 'Y', ui_control_type = 'SELECT' where entity_name = 'Case Summary for Review Level' and db_column = 'RFNC_CD'
+			update dict_metadata_field set user_editable_ind = 'Y', ui_control_type = 'SELECT' where entity_name = 'Case Summary for Review Level' and db_column = 'SOA_CD'
+			update dict_metadata_field set user_editable_ind = 'Y', ui_control_type = 'SELECT' where entity_name = 'Case Summary for Review Level' and db_column = 'UNDERWRITING_METHOD'
+			update dict_metadata_field set user_editable_ind = 'Y', ui_control_type = 'SELECT' where entity_name = 'Case Summary for Review Level' and db_column = 'DCSN_CD_UW'
+			update dict_metadata_field set user_editable_ind = 'Y', ui_control_type = 'SELECT' where entity_name = 'Case Summary for Review Level' and db_column = 'DCSN_CD_ENDRS'
+			update dict_metadata_field set user_editable_ind = 'Y', ui_control_type = 'SELECT' where entity_name = 'Case Summary for Review Level' and db_column = 'CONST_CD'
+			update dict_metadata_field set user_editable_ind = 'Y', ui_control_type = 'SELECT' where entity_name = 'Case Summary for Review Level' and db_column = 'AMORT_TYP_CD'
+			update dict_metadata_field set user_editable_ind = 'Y', ui_control_type = 'CURRENCY',field_min_value = 0, field_max_value = 1000000 where entity_name = 'Case Summary for Review Level' and db_column = 'GIFT_LTR_AMT'
+			update dict_metadata_field set user_editable_ind = 'Y', ui_control_type = 'CURRENCY',field_min_value = 0, field_max_value = 1000000 where entity_name = 'Case Summary for Review Level' and db_column = 'ESCROW_AMOUNT'
+			update dict_metadata_field set user_editable_ind = 'Y', ui_control_type = 'NUMBER' where entity_name = 'Case Summary for Review Level' and db_column = 'NUM_LIVING_UNITS'
+			update dict_metadata_field set user_editable_ind = 'Y', ui_control_type = 'NUMBER' where entity_name = 'Case Summary for Review Level' and db_column = 'COMBINED_LOAN_TO_VALUE_PCT'
+			update dict_metadata_field set user_editable_ind = 'Y', ui_control_type = 'DATE' where entity_name = 'Case Summary for Review Level' and db_column = 'EFF_DATE_APRSL_UPDATE'			
+		]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>    
+
+
+
+
+
+
+
+
+
+

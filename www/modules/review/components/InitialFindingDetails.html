@@ -1,0 +1,42 @@
+<h4 class="view-title">FINDING DETAILS</h4>
+<div class="sub-title">Add a description to the lender and choose a severity.</div>
+<div class="section-divider"><hr/></div>
+
+<!-- Source and Cause -->
+<div class="group-title">Source and Cause</div>
+<ul class="list-group source-cause">
+	<li class="list-group-item"><span class="list-name">Source: </span><span>{{findingSource?.description}}</span></li>
+	<li class="list-group-item"><span class="list-name">Cause: </span><span>{{findingCause?.description}}</span></li>
+</ul>
+
+
+<!-- Questions-->
+<div class="group-title" *ngIf="!isAdhoc">Questions Associated to Finding</div>
+
+<!-- NOTE: We're dynamically rendering the finding questions here using the same technique as in the QA tree -->
+<div *ngIf="(isAdhoc === false)">
+    <question-node-view   *ngFor="let node of questions" [isReadOnly]="true" [node]="node"></question-node-view>
+</div>
+
+<form  #detailForm="ngForm" *ngIf="formActive">
+
+	<!-- Description and Severity-->
+	<div class="group-title">Choose Description and Severity</div>
+	<ul class="list-group">
+		<li class="list-group-item">
+			<label class="list-name" for="#commentToLender">Comment to Lender:</label>
+			<textarea  id="#commentToLender" class="form-control" [disabled]="isReviewReadOnly" rows="3" required name="commentToLender" [(ngModel)]="finding.commentToLender"></textarea>
+		</li>
+		<li class="list-group-item">
+			<label class="list-name" for="#selectedTierCode">Choose Severity:</label>
+			<select class="form-control input-sm" required name="selectedTierCode" [disabled]="isReviewReadOnly" [(ngModel)]="selectedTierCode">
+				<option *ngFor="let tier of defectAreaSeverities"  [value]="tier.defectSeverityTierCode">{{tier.description}}</option>
+			</select>
+		</li>
+	</ul>
+
+	<div class="footer clearfix">
+		<button type="button" (click)="onSaveFinding(detailForm)" [disabled]="!detailForm.valid || isReviewReadOnly" class="btn btn-primary pull-right">Update Finding</button>
+        <button  type="button" *ngIf="isAdhoc && finding && finding.isNewAdhoc" [disabled]="isReviewReadOnly"  class="btn btn-default pull-right cancel" (click)="onCancelNewAdhocFinding()">Cancel Finding</button>
+	</div>
+</form>

@@ -1,0 +1,1049 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_2516_001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update qatree_question set question_number =  '1' , question_reference = 'SD.001'   where question_id = '9AA3C6A9-8711-4444-BFBD-92535473DDA5'
+			update qatree_question set question_number =  '2' , question_reference = 'SD.002'   where question_id = '11721828-E465-4EBA-92D0-6E36CA181F69'
+			update qatree_question set question_number =  '3' , question_reference = 'SD.003'   where question_id = 'D1E7447B-1FF3-410C-B2FD-89086F32CCFA'
+			update qatree_question set question_number =  '4' , question_reference = 'SD.004'   where question_id = 'AF37B7F3-8C76-4151-9A94-CCB9D7A25E51'
+			update qatree_question set question_number =  '5' , question_reference = 'SD.005'   where question_id = 'B7418DAE-6173-4B42-81C5-9AB8D22159DB'
+			update qatree_question set question_number =  '6' , question_reference = 'SD.006'   where question_id = '565D7357-7725-4E1F-89BF-3F965FA997CF'
+			update qatree_question set question_number =  '7' , question_reference = 'SD.007'   where question_id = '6A6F6478-EA9A-42CD-B838-7AFDC750FB33'
+			update qatree_question set question_number =  '8' , question_reference = 'SD.008'   where question_id = '8A747F73-F3D7-467B-A8DB-08EDEB646842'
+			update qatree_question set question_number =  '9' , question_reference = 'SD.009'   where question_id = '50CA66B1-A9A5-465D-BC83-E51A006993F2'
+			update qatree_question set question_number =  '10', question_reference = 'SD.010'  where question_id  = 'F2F33063-43C1-4BED-9EBC-A3504C90331B'
+			update qatree_question set question_number =  '11', question_reference = 'SD.011'  where question_id  = 'F53A303F-A63C-4BC9-8C55-E8FBC8013EE7'
+			update qatree_question set question_number =  '12', question_reference = 'SD.012'  where question_id  = '4A62D719-0202-4F4A-BC87-BE9554678BE0'
+			update qatree_question set question_number =  '13', question_reference = 'SD.013'  where question_id  = '02BDA5B8-3DE4-497B-820B-5C3810FB4890'
+			update qatree_question set question_number =  '14', question_reference = 'SD.014'  where question_id  = '2CD77569-EE7C-4D83-A043-0DBE390696B7'
+			update qatree_question set question_number =  '15', question_reference = 'SD.015'  where question_id  = '2DB2C0B7-3D12-4408-BCCB-4E371F5DF73C'
+			update qatree_question set question_number =  '16', question_reference = 'SD.016'  where question_id  = '381B31D2-5E4D-4D78-B584-3EAF6E781C6D'			
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('D1AFBB83-CCC9-4C64-87D8-3ABBAC8FF4BD','C20225',getdate(),(select defect_id from defect where defect_cd = 'SD'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('65DF66C1-AD61-4748-BB13-87BACFFFEB00','C20225',getdate(),(select defect_id from defect where defect_cd = 'SD'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('52A7A0C8-5324-488B-A15A-23D962AB81C3','C20225',getdate(),(select defect_id from defect where defect_cd = 'SD'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('23EFCE11-1C71-434B-AB00-99358A9293D4','C20225',getdate(),(select defect_id from defect where defect_cd = 'SD'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('26C775EE-5232-4DCF-B492-44F69DF20CBD','C20225',getdate(),(select defect_id from defect where defect_cd = 'SD'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('05254E66-DDE7-4757-838C-86DFC9BF38C8','C20225',getdate(),(select defect_id from defect where defect_cd = 'SD'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('2598EFF1-506A-4045-BCD5-616D33B72BE3','C20225',getdate(),(select defect_id from defect where defect_cd = 'SD'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('AC8481BF-5AFA-4808-BC9F-1D9D4E6875AB','C20225',getdate(),(select defect_id from defect where defect_cd = 'SD'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('89F9814B-09A4-4C5A-A3BB-29419C39D5AA','C20225',getdate(),(select defect_id from defect where defect_cd = 'SD'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('9F64D8BC-9B68-4E3A-9FF7-1290B6188EA3','C20225',getdate(),(select defect_id from defect where defect_cd = 'SD'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('10A94C0E-5653-456A-A647-FD4B2555CC8D','C20225',getdate(),(select defect_id from defect where defect_cd = 'SD'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('26FE3DB3-FB94-4C14-9FB2-5D8F55DE6CB0','C20225',getdate(),(select defect_id from defect where defect_cd = 'SD'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('64EED62F-C4BC-4638-87AA-E3EDEA6A5193','C20225',getdate(),(select defect_id from defect where defect_cd = 'SD'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('0C7513C4-B6CF-4B03-8E11-E42D7FA52FEE','C20225',getdate(),(select defect_id from defect where defect_cd = 'SD'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('40DAD836-330F-4655-A326-7F49D797C1C2','C20225',getdate(),(select defect_id from defect where defect_cd = 'SD'))			
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('ABD40C94-4DAA-4BBB-B5B2-69C4758AFEE5','C20225',getdate(),(select defect_id from defect where defect_cd = 'SD'))	
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update qatree_question set qatree_outcome_id = 'D1AFBB83-CCC9-4C64-87D8-3ABBAC8FF4BD'   where question_id = '9AA3C6A9-8711-4444-BFBD-92535473DDA5'
+			update qatree_question set qatree_outcome_id = '65DF66C1-AD61-4748-BB13-87BACFFFEB00'   where question_id = '11721828-E465-4EBA-92D0-6E36CA181F69'		
+			update qatree_question set qatree_outcome_id = '52A7A0C8-5324-488B-A15A-23D962AB81C3'   where question_id = 'D1E7447B-1FF3-410C-B2FD-89086F32CCFA'		
+			update qatree_question set qatree_outcome_id = '23EFCE11-1C71-434B-AB00-99358A9293D4'   where question_id = 'AF37B7F3-8C76-4151-9A94-CCB9D7A25E51'		
+			update qatree_question set qatree_outcome_id = '26C775EE-5232-4DCF-B492-44F69DF20CBD'   where question_id = 'B7418DAE-6173-4B42-81C5-9AB8D22159DB'		
+			update qatree_question set qatree_outcome_id = '05254E66-DDE7-4757-838C-86DFC9BF38C8'   where question_id = '565D7357-7725-4E1F-89BF-3F965FA997CF'		
+			update qatree_question set qatree_outcome_id = '2598EFF1-506A-4045-BCD5-616D33B72BE3'   where question_id = '6A6F6478-EA9A-42CD-B838-7AFDC750FB33'		
+			update qatree_question set qatree_outcome_id = 'AC8481BF-5AFA-4808-BC9F-1D9D4E6875AB'   where question_id = '8A747F73-F3D7-467B-A8DB-08EDEB646842'		
+			update qatree_question set qatree_outcome_id = '89F9814B-09A4-4C5A-A3BB-29419C39D5AA'   where question_id = '50CA66B1-A9A5-465D-BC83-E51A006993F2'		
+			update qatree_question set qatree_outcome_id = '9F64D8BC-9B68-4E3A-9FF7-1290B6188EA3'  where question_id  = 'F2F33063-43C1-4BED-9EBC-A3504C90331B'		
+			update qatree_question set qatree_outcome_id = '10A94C0E-5653-456A-A647-FD4B2555CC8D'  where question_id  = 'F53A303F-A63C-4BC9-8C55-E8FBC8013EE7'		
+			update qatree_question set qatree_outcome_id = '26FE3DB3-FB94-4C14-9FB2-5D8F55DE6CB0'  where question_id  = '4A62D719-0202-4F4A-BC87-BE9554678BE0'		
+			update qatree_question set qatree_outcome_id = '64EED62F-C4BC-4638-87AA-E3EDEA6A5193'  where question_id  = '02BDA5B8-3DE4-497B-820B-5C3810FB4890'		
+			update qatree_question set qatree_outcome_id = '0C7513C4-B6CF-4B03-8E11-E42D7FA52FEE'  where question_id  = '2CD77569-EE7C-4D83-A043-0DBE390696B7'		
+			update qatree_question set qatree_outcome_id = '40DAD836-330F-4655-A326-7F49D797C1C2'  where question_id  = '2DB2C0B7-3D12-4408-BCCB-4E371F5DF73C'		
+			update qatree_question set qatree_outcome_id = 'ABD40C94-4DAA-4BBB-B5B2-69C4758AFEE5'  where question_id  = '381B31D2-5E4D-4D78-B584-3EAF6E781C6D'			
+	
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'D1AFBB83-CCC9-4C64-87D8-3ABBAC8FF4BD','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SD' and defect_source_cd in ('1')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '65DF66C1-AD61-4748-BB13-87BACFFFEB00','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SD' and defect_source_cd in ('1')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '52A7A0C8-5324-488B-A15A-23D962AB81C3','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SD' and defect_source_cd in ('3')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '23EFCE11-1C71-434B-AB00-99358A9293D4','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SD' and defect_source_cd in ('1')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '26C775EE-5232-4DCF-B492-44F69DF20CBD','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SD' and defect_source_cd in ('5')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '05254E66-DDE7-4757-838C-86DFC9BF38C8','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SD' and defect_source_cd in ('1')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '2598EFF1-506A-4045-BCD5-616D33B72BE3','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SD' and defect_source_cd in ('1')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'AC8481BF-5AFA-4808-BC9F-1D9D4E6875AB','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SD' and defect_source_cd in ('2')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '89F9814B-09A4-4C5A-A3BB-29419C39D5AA','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SD' and defect_source_cd in ('2')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '9F64D8BC-9B68-4E3A-9FF7-1290B6188EA3','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SD' and defect_source_cd in ('5')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '10A94C0E-5653-456A-A647-FD4B2555CC8D','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SD' and defect_source_cd in ('2')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '26FE3DB3-FB94-4C14-9FB2-5D8F55DE6CB0','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SD' and defect_source_cd in ('2')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '64EED62F-C4BC-4638-87AA-E3EDEA6A5193','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SD' and defect_source_cd in ('2','5')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '0C7513C4-B6CF-4B03-8E11-E42D7FA52FEE','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SD' and defect_source_cd in ('2')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '40DAD836-330F-4655-A326-7F49D797C1C2','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SD' and defect_source_cd in ('5')			
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'ABD40C94-4DAA-4BBB-B5B2-69C4758AFEE5','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SD' and defect_source_cd in ('7')
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'D1AFBB83-CCC9-4C64-87D8-3ABBAC8FF4BD','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SD' and defect_cause_cd in ('A','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '65DF66C1-AD61-4748-BB13-87BACFFFEB00','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SD' and defect_cause_cd in ('A','C','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '52A7A0C8-5324-488B-A15A-23D962AB81C3','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SD' and defect_cause_cd in ('A','C','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '23EFCE11-1C71-434B-AB00-99358A9293D4','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SD' and defect_cause_cd in ('A','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '26C775EE-5232-4DCF-B492-44F69DF20CBD','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SD' and defect_cause_cd in ('A','C','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '05254E66-DDE7-4757-838C-86DFC9BF38C8','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SD' and defect_cause_cd in ('B','C','D')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '2598EFF1-506A-4045-BCD5-616D33B72BE3','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SD' and defect_cause_cd in ('A','C','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'AC8481BF-5AFA-4808-BC9F-1D9D4E6875AB','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SD' and defect_cause_cd in ('A','B','C','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '89F9814B-09A4-4C5A-A3BB-29419C39D5AA','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SD' and defect_cause_cd in ('A','C','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '9F64D8BC-9B68-4E3A-9FF7-1290B6188EA3','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SD' and defect_cause_cd in ('A','C','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '10A94C0E-5653-456A-A647-FD4B2555CC8D','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SD' and defect_cause_cd in ('A','C','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '26FE3DB3-FB94-4C14-9FB2-5D8F55DE6CB0','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SD' and defect_cause_cd in ('A','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '64EED62F-C4BC-4638-87AA-E3EDEA6A5193','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SD' and defect_cause_cd in ('A','C','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '0C7513C4-B6CF-4B03-8E11-E42D7FA52FEE','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SD' and defect_cause_cd in ('A','C','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '40DAD836-330F-4655-A326-7F49D797C1C2','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SD' and defect_cause_cd in ('A','B','C','D','E')	
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'ABD40C94-4DAA-4BBB-B5B2-69C4758AFEE5','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SD' and defect_cause_cd in ('A','B','C','D','E')
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_006" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select 'D1AFBB83-CCC9-4C64-87D8-3ABBAC8FF4BD','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SD' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '65DF66C1-AD61-4748-BB13-87BACFFFEB00','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SD' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '52A7A0C8-5324-488B-A15A-23D962AB81C3','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SD' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '23EFCE11-1C71-434B-AB00-99358A9293D4','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SD' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '26C775EE-5232-4DCF-B492-44F69DF20CBD','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SD' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '05254E66-DDE7-4757-838C-86DFC9BF38C8','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SD' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '2598EFF1-506A-4045-BCD5-616D33B72BE3','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SD' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select 'AC8481BF-5AFA-4808-BC9F-1D9D4E6875AB','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SD' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '89F9814B-09A4-4C5A-A3BB-29419C39D5AA','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SD' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '9F64D8BC-9B68-4E3A-9FF7-1290B6188EA3','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SD' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '10A94C0E-5653-456A-A647-FD4B2555CC8D','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SD' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '26FE3DB3-FB94-4C14-9FB2-5D8F55DE6CB0','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SD' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '64EED62F-C4BC-4638-87AA-E3EDEA6A5193','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SD' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '0C7513C4-B6CF-4B03-8E11-E42D7FA52FEE','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SD' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '40DAD836-330F-4655-A326-7F49D797C1C2','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SD' 	
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select 'ABD40C94-4DAA-4BBB-B5B2-69C4758AFEE5','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SD' 
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_007" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_QSTN_CONDITION(ENTITY_NAME, FIELD_NAME, QUESTION_ID, QATREE_ID, COMPARISON_VALUES, CONDITION_OPERATOR, CREATED_BY, CREATED_TS, QATREE_QSTN_CONDITION_ID) values('Case Summary for Review Level','Default Episode Exists','9AA3C6A9-8711-4444-BFBD-92535473DDA5','59FF5074-B9E8-46B3-8369-C0FC34E0366F','Yes','=','C20225',getdate(),newid())			
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_008" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update qatree_question set question_number =  '1' , question_reference = 'SG.001'   where question_id = 'E5B57A7A-BA2D-4F9B-8B6F-59B9F4422F7B'
+			update qatree_question set question_number =  '2' , question_reference = 'SG.002'   where question_id = '0A0B3BBE-53E7-4BC6-B382-37C0E008D5BF'
+			update qatree_question set question_number =  '3' , question_reference = 'SG.003'   where question_id = '9D59BCD9-0DD0-4121-8557-847E9573810C'
+			update qatree_question set question_number =  '4' , question_reference = 'SG.004'   where question_id = 'A1A0891B-3B4D-4397-AC9D-E81B07F2AE65'
+			update qatree_question set question_number =  '5' , question_reference = 'SG.005'   where question_id = '4A8AE320-722A-4D5F-B284-2A5C8E148131'
+			update qatree_question set question_number =  '6' , question_reference = 'SG.006'   where question_id = '4CCF4E8B-D979-4661-B51F-50F3DBA860FA'
+			update qatree_question set question_number =  '7' , question_reference = 'SG.007'   where question_id = '1FF9D563-6DFC-4E3A-B466-64B9038566FF'
+			update qatree_question set question_number =  '8' , question_reference = 'SG.008'   where question_id = 'D8441E21-4A17-4658-906C-3605FB9658CD'
+			update qatree_question set question_number =  '9' , question_reference = 'SG.009'   where question_id = '9A52501D-D4D5-478A-B2CC-56AD782178E5'
+			update qatree_question set question_number =  '10', question_reference = 'SG.010'  where question_id  = '14FB54A7-6903-4777-8302-6EC78C068064'
+			update qatree_question set question_number =  '11', question_reference = 'SG.011'  where question_id  = '51D77742-2BEA-428C-8FBF-08369CABD8FF'
+			update qatree_question set question_number =  '12', question_reference = 'SG.012'  where question_id  = '85B70A62-DACE-4785-93FC-8EC7C10CC6C6'
+			update qatree_question set question_number =  '13', question_reference = 'SG.013'  where question_id  = '9EBC65A2-C50A-4193-BEAA-EC11D398D3AD'
+			update qatree_question set question_number =  '14', question_reference = 'SG.014'  where question_id  = '5FB9E1DE-77C5-4FF0-81A4-356E54B59909'
+			update qatree_question set question_number =  '15', question_reference = 'SG.015'  where question_id  = '355507B7-5633-49DF-8D36-FED4EE19F261'
+			update qatree_question set question_number =  '16', question_reference = 'SG.016'  where question_id  = 'EEFC8A47-61D7-4370-88B9-BF6E06354DF0'
+			update qatree_question set question_number =  '17', question_reference = 'SG.017'  where question_id  = 'DDD6D70C-2080-4892-98FC-B02C46D067C1'
+			update qatree_question set question_number =  '18', question_reference = 'SG.018'  where question_id  = '05CC97EF-EE40-4252-8F90-F77111E935E2'	
+		
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_009" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('81CBFAE0-83E9-417F-AA0C-50C201D137CA','C20225',getdate(),(select defect_id from defect where defect_cd = 'SG'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('A95D996D-5C23-450E-941F-88EBA863A75D','C20225',getdate(),(select defect_id from defect where defect_cd = 'SG'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('CDF1B239-6EF8-4CF7-A3FA-406C885C6DF7','C20225',getdate(),(select defect_id from defect where defect_cd = 'SG'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('C17CD43C-949C-4498-887D-FF455E3201A3','C20225',getdate(),(select defect_id from defect where defect_cd = 'SG'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('91F8B669-00FE-4A26-B80B-C38C3D653B79','C20225',getdate(),(select defect_id from defect where defect_cd = 'SG'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('50A3BE1F-A3C7-43C6-8159-570F86F673CE','C20225',getdate(),(select defect_id from defect where defect_cd = 'SG'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('9357599F-59A8-42A3-81F6-EAA2E5B795A7','C20225',getdate(),(select defect_id from defect where defect_cd = 'SG'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('8E091220-81F5-4922-AA8A-8027B0A8B638','C20225',getdate(),(select defect_id from defect where defect_cd = 'SG'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('89754584-D584-4BCA-A30A-51EFEC5D78CF','C20225',getdate(),(select defect_id from defect where defect_cd = 'SG'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('EB9EF5DF-8A0C-4561-A533-C26E640D62B8','C20225',getdate(),(select defect_id from defect where defect_cd = 'SG'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('E3B80309-F889-4386-BBC5-784652A0166E','C20225',getdate(),(select defect_id from defect where defect_cd = 'SG'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('E92A5AF7-E020-4738-BC48-4AA65323CA41','C20225',getdate(),(select defect_id from defect where defect_cd = 'SG'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('5515EFF5-DF89-4FC8-A6CA-9351B785797A','C20225',getdate(),(select defect_id from defect where defect_cd = 'SG'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('C98B9D00-C28C-4BA4-8F51-A6C1907BF764','C20225',getdate(),(select defect_id from defect where defect_cd = 'SG'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('C14D9C6A-A26E-4835-8FAD-6A3EE435E89B','C20225',getdate(),(select defect_id from defect where defect_cd = 'SG'))			
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('8C49725B-8362-42DB-9E58-91E31EDD8DC7','C20225',getdate(),(select defect_id from defect where defect_cd = 'SG'))	
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('9F7D1961-14CA-4372-A2E3-BA7705056E51','C20225',getdate(),(select defect_id from defect where defect_cd = 'SG'))			
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('B23A8873-807C-4CF0-BB6E-5BE4A905E1C8','C20225',getdate(),(select defect_id from defect where defect_cd = 'SG'))
+		
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_010" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update qatree_question set qatree_outcome_id = '81CBFAE0-83E9-417F-AA0C-50C201D137CA'   where question_id = 'E5B57A7A-BA2D-4F9B-8B6F-59B9F4422F7B'
+			update qatree_question set qatree_outcome_id = 'A95D996D-5C23-450E-941F-88EBA863A75D'   where question_id = '0A0B3BBE-53E7-4BC6-B382-37C0E008D5BF'		
+			update qatree_question set qatree_outcome_id = 'CDF1B239-6EF8-4CF7-A3FA-406C885C6DF7'   where question_id = '9D59BCD9-0DD0-4121-8557-847E9573810C'		
+			update qatree_question set qatree_outcome_id = 'C17CD43C-949C-4498-887D-FF455E3201A3'   where question_id = 'A1A0891B-3B4D-4397-AC9D-E81B07F2AE65'		
+			update qatree_question set qatree_outcome_id = '91F8B669-00FE-4A26-B80B-C38C3D653B79'   where question_id = '4A8AE320-722A-4D5F-B284-2A5C8E148131'		
+			update qatree_question set qatree_outcome_id = '50A3BE1F-A3C7-43C6-8159-570F86F673CE'   where question_id = '4CCF4E8B-D979-4661-B51F-50F3DBA860FA'		
+			update qatree_question set qatree_outcome_id = '9357599F-59A8-42A3-81F6-EAA2E5B795A7'   where question_id = '1FF9D563-6DFC-4E3A-B466-64B9038566FF'		
+			update qatree_question set qatree_outcome_id = '8E091220-81F5-4922-AA8A-8027B0A8B638'   where question_id = 'D8441E21-4A17-4658-906C-3605FB9658CD'		
+			update qatree_question set qatree_outcome_id = '89754584-D584-4BCA-A30A-51EFEC5D78CF'   where question_id = '9A52501D-D4D5-478A-B2CC-56AD782178E5'		
+			update qatree_question set qatree_outcome_id = 'EB9EF5DF-8A0C-4561-A533-C26E640D62B8'  where question_id  = '14FB54A7-6903-4777-8302-6EC78C068064'		
+			update qatree_question set qatree_outcome_id = 'E3B80309-F889-4386-BBC5-784652A0166E'  where question_id  = '51D77742-2BEA-428C-8FBF-08369CABD8FF'		
+			update qatree_question set qatree_outcome_id = 'E92A5AF7-E020-4738-BC48-4AA65323CA41'  where question_id  = '85B70A62-DACE-4785-93FC-8EC7C10CC6C6'		
+			update qatree_question set qatree_outcome_id = '5515EFF5-DF89-4FC8-A6CA-9351B785797A'  where question_id  = '9EBC65A2-C50A-4193-BEAA-EC11D398D3AD'		
+			update qatree_question set qatree_outcome_id = 'C98B9D00-C28C-4BA4-8F51-A6C1907BF764'  where question_id  = '5FB9E1DE-77C5-4FF0-81A4-356E54B59909'		
+			update qatree_question set qatree_outcome_id = 'C14D9C6A-A26E-4835-8FAD-6A3EE435E89B'  where question_id  = '355507B7-5633-49DF-8D36-FED4EE19F261'		
+			update qatree_question set qatree_outcome_id = '8C49725B-8362-42DB-9E58-91E31EDD8DC7'  where question_id  = 'EEFC8A47-61D7-4370-88B9-BF6E06354DF0'	
+			update qatree_question set qatree_outcome_id = '9F7D1961-14CA-4372-A2E3-BA7705056E51'  where question_id  = 'DDD6D70C-2080-4892-98FC-B02C46D067C1'		
+			update qatree_question set qatree_outcome_id = 'B23A8873-807C-4CF0-BB6E-5BE4A905E1C8'  where question_id  = '05CC97EF-EE40-4252-8F90-F77111E935E2'				
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_011" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '81CBFAE0-83E9-417F-AA0C-50C201D137CA','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SG' and defect_source_cd in ('1')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'A95D996D-5C23-450E-941F-88EBA863A75D','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SG' and defect_source_cd in ('1')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'CDF1B239-6EF8-4CF7-A3FA-406C885C6DF7','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SG' and defect_source_cd in ('2')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'C17CD43C-949C-4498-887D-FF455E3201A3','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SG' and defect_source_cd in ('3')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '91F8B669-00FE-4A26-B80B-C38C3D653B79','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SG' and defect_source_cd in ('2','3')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '50A3BE1F-A3C7-43C6-8159-570F86F673CE','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SG' and defect_source_cd in ('3')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '9357599F-59A8-42A3-81F6-EAA2E5B795A7','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SG' and defect_source_cd in ('3')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '8E091220-81F5-4922-AA8A-8027B0A8B638','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SG' and defect_source_cd in ('2')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '89754584-D584-4BCA-A30A-51EFEC5D78CF','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SG' and defect_source_cd in ('5')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'EB9EF5DF-8A0C-4561-A533-C26E640D62B8','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SG' and defect_source_cd in ('7')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'E3B80309-F889-4386-BBC5-784652A0166E','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SG' and defect_source_cd in ('6')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'E92A5AF7-E020-4738-BC48-4AA65323CA41','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SG' and defect_source_cd in ('6')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '5515EFF5-DF89-4FC8-A6CA-9351B785797A','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SG' and defect_source_cd in ('2')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'C98B9D00-C28C-4BA4-8F51-A6C1907BF764','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SG' and defect_source_cd in ('5')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'C14D9C6A-A26E-4835-8FAD-6A3EE435E89B','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SG' and defect_source_cd in ('8')			
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '8C49725B-8362-42DB-9E58-91E31EDD8DC7','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SG' and defect_source_cd in ('8')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '9F7D1961-14CA-4372-A2E3-BA7705056E51','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SG' and defect_source_cd in ('8')			
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'B23A8873-807C-4CF0-BB6E-5BE4A905E1C8','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SG' and defect_source_cd in ('5')			
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_013" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '81CBFAE0-83E9-417F-AA0C-50C201D137CA','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SG' and defect_cause_cd in ('A','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'A95D996D-5C23-450E-941F-88EBA863A75D','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SG' and defect_cause_cd in ('A','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'CDF1B239-6EF8-4CF7-A3FA-406C885C6DF7','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SG' and defect_cause_cd in ('A','D')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'C17CD43C-949C-4498-887D-FF455E3201A3','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SG' and defect_cause_cd in ('A','D')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '91F8B669-00FE-4A26-B80B-C38C3D653B79','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SG' and defect_cause_cd in ('A','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '50A3BE1F-A3C7-43C6-8159-570F86F673CE','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SG' and defect_cause_cd in ('B','D')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '9357599F-59A8-42A3-81F6-EAA2E5B795A7','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SG' and defect_cause_cd in ('A','B','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '8E091220-81F5-4922-AA8A-8027B0A8B638','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SG' and defect_cause_cd in ('C','D')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '89754584-D584-4BCA-A30A-51EFEC5D78CF','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SG' and defect_cause_cd in ('A','B','C','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'EB9EF5DF-8A0C-4561-A533-C26E640D62B8','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SG' and defect_cause_cd in ('B''E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'E3B80309-F889-4386-BBC5-784652A0166E','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SG' and defect_cause_cd in ('A','D')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'E92A5AF7-E020-4738-BC48-4AA65323CA41','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SG' and defect_cause_cd in ('A','B','D')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '5515EFF5-DF89-4FC8-A6CA-9351B785797A','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SG' and defect_cause_cd in ('A','B','C','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'C98B9D00-C28C-4BA4-8F51-A6C1907BF764','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SG' and defect_cause_cd in ('A','B','C','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'C14D9C6A-A26E-4835-8FAD-6A3EE435E89B','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SG' and defect_cause_cd in ('A','B','D','E')	
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '8C49725B-8362-42DB-9E58-91E31EDD8DC7','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SG' and defect_cause_cd in ('A','B','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '9F7D1961-14CA-4372-A2E3-BA7705056E51','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SG' and defect_cause_cd in ('A','B','D','E')	
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'B23A8873-807C-4CF0-BB6E-5BE4A905E1C8','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SG' and defect_cause_cd in ('A','B','C','D','E')			
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_014" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '81CBFAE0-83E9-417F-AA0C-50C201D137CA','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SG' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select 'A95D996D-5C23-450E-941F-88EBA863A75D','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SG' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select 'CDF1B239-6EF8-4CF7-A3FA-406C885C6DF7','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SG' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select 'C17CD43C-949C-4498-887D-FF455E3201A3','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SG' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '91F8B669-00FE-4A26-B80B-C38C3D653B79','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SG' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '50A3BE1F-A3C7-43C6-8159-570F86F673CE','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SG' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '9357599F-59A8-42A3-81F6-EAA2E5B795A7','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SG' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '8E091220-81F5-4922-AA8A-8027B0A8B638','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SG' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '89754584-D584-4BCA-A30A-51EFEC5D78CF','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SG' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select 'EB9EF5DF-8A0C-4561-A533-C26E640D62B8','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SG' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select 'E3B80309-F889-4386-BBC5-784652A0166E','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SG' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select 'E92A5AF7-E020-4738-BC48-4AA65323CA41','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SG' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '5515EFF5-DF89-4FC8-A6CA-9351B785797A','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SG' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select 'C98B9D00-C28C-4BA4-8F51-A6C1907BF764','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SG' 
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_015" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update QATREE_QSTN_CONDITION
+			set FIELD_NAME = 'Assumed Loan Indicator',
+				COMPARISON_VALUES = 'Yes'
+			where QATREE_QSTN_CONDITION_ID in ('DF8D5A24-7F02-44C4-A661-F5E96FBD700F',
+								  '08EF763C-1788-4B56-BC92-3132D6DA304F')
+
+			update QATREE_QSTN_CONDITION
+			set FIELD_NAME = 'ARM Indicator',
+				COMPARISON_VALUES = 'Yes'
+			where QATREE_QSTN_CONDITION_ID in ('630DFF4C-16FE-4242-A9F7-3F0821535508')
+
+			update QATREE_QSTN_CONDITION
+			set QUESTION_ID = '355507B7-5633-49DF-8D36-FED4EE19F261'
+			where QATREE_QSTN_CONDITION_ID = '41A29493-0D42-45F2-B681-922EDEC95062'
+
+			update QATREE_QSTN_CONDITION
+			set FIELD_NAME = 'SOA Code',
+				COMPARISON_VALUES = '203K',
+				QUESTION_ID = 'EEFC8A47-61D7-4370-88B9-BF6E06354DF0'
+			where QATREE_QSTN_CONDITION_ID in ('526333CA-1182-4B17-B6F9-70D4B98F23C4')
+
+			update QATREE_QSTN_CONDITION
+			set FIELD_NAME = 'Disaster Indicator',
+				COMPARISON_VALUES = 'Yes',
+				QUESTION_ID = '5FB9E1DE-77C5-4FF0-81A4-356E54B59909'
+			where QATREE_QSTN_CONDITION_ID in ('40C90A1D-2B42-45C1-BA5E-215670FB26E7')
+
+			update QATREE_QSTN_CONDITION
+			set FIELD_NAME = 'SOA Code',
+				COMPARISON_VALUES = '203K'
+			where QATREE_QSTN_CONDITION_ID in ('4AF159ED-64E2-41B5-9476-11C0CCF453C6')
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_016" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update qatree_question set question_number =  '1' , question_reference = 'SL.001'   where question_id = '76BAF2F0-D944-4CA2-AE00-4765755035B7'
+			update qatree_question set question_number =  '2' , question_reference = 'SL.002'   where question_id = '5BBFC34D-EBC1-4D8D-857E-93C64364FF30'
+			update qatree_question set question_number =  '3' , question_reference = 'SL.003'   where question_id = '4CA18C9D-CBAD-4285-A2B5-F2F2162BB18D'
+			update qatree_question set question_number =  '4' , question_reference = 'SL.004'   where question_id = '5097A31F-3C50-4B26-9B07-2A7AF4D0A930'
+			update qatree_question set question_number =  '5' , question_reference = 'SL.005'   where question_id = '85D476C1-257B-4900-8833-54DFE2CE3B6B'
+			update qatree_question set question_number =  '6' , question_reference = 'SL.006'   where question_id = '580B5639-FBDA-4F57-A885-D9E76FF61560'
+			update qatree_question set question_number =  '7' , question_reference = 'SL.007'   where question_id = '0FD6D078-B58B-435C-8CCC-C494FEB5BA96'
+			update qatree_question set question_number =  '8' , question_reference = 'SL.008'   where question_id = '16E21C86-F7BA-49CC-944A-D82E542A8F94'
+
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_017" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('3F9CC390-7525-456F-970B-561E00DDDFDE','C20225',getdate(),(select defect_id from defect where defect_cd = 'SL'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('9D6E0C77-A88A-4D10-BAD9-844772221A28','C20225',getdate(),(select defect_id from defect where defect_cd = 'SL'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('0D2B22B3-F4C5-4379-9269-290FC0939042','C20225',getdate(),(select defect_id from defect where defect_cd = 'SL'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('5777957E-0119-4132-8606-B8DD52B1761F','C20225',getdate(),(select defect_id from defect where defect_cd = 'SL'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('78EE059C-114E-44F1-BD4D-8ED614193301','C20225',getdate(),(select defect_id from defect where defect_cd = 'SL'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('25D76349-29C9-4716-AD8B-8EF1096DCE3E','C20225',getdate(),(select defect_id from defect where defect_cd = 'SL'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('E773B0C7-2F19-4834-872C-A18A2446D80C','C20225',getdate(),(select defect_id from defect where defect_cd = 'SL'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('20BB0D2A-5BD3-436A-A350-7A5926EC104A','C20225',getdate(),(select defect_id from defect where defect_cd = 'SL'))
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_018" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update qatree_question set qatree_outcome_id = '3F9CC390-7525-456F-970B-561E00DDDFDE'   where question_id = '76BAF2F0-D944-4CA2-AE00-4765755035B7'
+			update qatree_question set qatree_outcome_id = '9D6E0C77-A88A-4D10-BAD9-844772221A28'   where question_id = '5BBFC34D-EBC1-4D8D-857E-93C64364FF30'		
+			update qatree_question set qatree_outcome_id = '0D2B22B3-F4C5-4379-9269-290FC0939042'   where question_id = '4CA18C9D-CBAD-4285-A2B5-F2F2162BB18D'		
+			update qatree_question set qatree_outcome_id = '5777957E-0119-4132-8606-B8DD52B1761F'   where question_id = '5097A31F-3C50-4B26-9B07-2A7AF4D0A930'		
+			update qatree_question set qatree_outcome_id = '78EE059C-114E-44F1-BD4D-8ED614193301'   where question_id = '85D476C1-257B-4900-8833-54DFE2CE3B6B'		
+			update qatree_question set qatree_outcome_id = '25D76349-29C9-4716-AD8B-8EF1096DCE3E'   where question_id = '580B5639-FBDA-4F57-A885-D9E76FF61560'		
+			update qatree_question set qatree_outcome_id = 'E773B0C7-2F19-4834-872C-A18A2446D80C'   where question_id = '0FD6D078-B58B-435C-8CCC-C494FEB5BA96'		
+			update qatree_question set qatree_outcome_id = '20BB0D2A-5BD3-436A-A350-7A5926EC104A'   where question_id = '16E21C86-F7BA-49CC-944A-D82E542A8F94'		
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_019" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '3F9CC390-7525-456F-970B-561E00DDDFDE','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SL' and defect_source_cd in ('1')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '9D6E0C77-A88A-4D10-BAD9-844772221A28','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SL' and defect_source_cd in ('5')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '0D2B22B3-F4C5-4379-9269-290FC0939042','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SL' and defect_source_cd in ('5')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '5777957E-0119-4132-8606-B8DD52B1761F','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SL' and defect_source_cd in ('2')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '78EE059C-114E-44F1-BD4D-8ED614193301','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SL' and defect_source_cd in ('5')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '25D76349-29C9-4716-AD8B-8EF1096DCE3E','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SL' and defect_source_cd in ('5')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'E773B0C7-2F19-4834-872C-A18A2446D80C','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SL' and defect_source_cd in ('3','5','7')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '20BB0D2A-5BD3-436A-A350-7A5926EC104A','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SL' and defect_source_cd in ('4')
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_020" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '3F9CC390-7525-456F-970B-561E00DDDFDE','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SL' and defect_cause_cd in ('A','B','D')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '9D6E0C77-A88A-4D10-BAD9-844772221A28','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SL' and defect_cause_cd in ('A','B','D')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '0D2B22B3-F4C5-4379-9269-290FC0939042','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SL' and defect_cause_cd in ('A','B','D')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '5777957E-0119-4132-8606-B8DD52B1761F','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SL' and defect_cause_cd in ('A','B','C','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '78EE059C-114E-44F1-BD4D-8ED614193301','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SL' and defect_cause_cd in ('A','B','C','D')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '25D76349-29C9-4716-AD8B-8EF1096DCE3E','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SL' and defect_cause_cd in ('A','B','C','D')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'E773B0C7-2F19-4834-872C-A18A2446D80C','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SL' and defect_cause_cd in ('A','B','C','D')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '20BB0D2A-5BD3-436A-A350-7A5926EC104A','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SL' and defect_cause_cd in ('A','D','E')
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_021" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '3F9CC390-7525-456F-970B-561E00DDDFDE','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SL' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '9D6E0C77-A88A-4D10-BAD9-844772221A28','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SL' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '0D2B22B3-F4C5-4379-9269-290FC0939042','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SL' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '5777957E-0119-4132-8606-B8DD52B1761F','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SL' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '78EE059C-114E-44F1-BD4D-8ED614193301','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SL' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '25D76349-29C9-4716-AD8B-8EF1096DCE3E','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SL' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select 'E773B0C7-2F19-4834-872C-A18A2446D80C','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SL' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '20BB0D2A-5BD3-436A-A350-7A5926EC104A','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SL' 
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_022" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_QSTN_CONDITION(ENTITY_NAME, FIELD_NAME, QUESTION_ID, QATREE_ID, COMPARISON_VALUES, CONDITION_OPERATOR, CREATED_BY, CREATED_TS, QATREE_QSTN_CONDITION_ID) values('Case Summary for Review Level','Default Episode Exists','9AA3C6A9-8711-4444-BFBD-92535473DDA5','59FF5074-B9E8-46B3-8369-C0FC34E0366F','Yes','=','C20225',getdate(),newid())			
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_023" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update qatree_question set question_number =  '1' ,  question_reference = 'SO.001'   where question_id = '45247E20-82FA-444F-9C52-78EF474CC4AA'
+			update qatree_question set question_number =  '2' ,  question_reference = 'SO.002'   where question_id = '6761B108-E612-46EE-ADBB-BB99044B6D2B'
+			update qatree_question set question_number =  '3' ,  question_reference = 'SO.003'   where question_id = 'F91A145C-EFE6-44A6-9EFE-CB9F505522F0'
+			update qatree_question set question_number =  '4' ,  question_reference = 'SO.004'   where question_id = '0E67257F-8AB3-4F65-9348-8331F670624B'
+			update qatree_question set question_number =  '5' ,  question_reference = 'SO.005'   where question_id = 'C7586E20-5CFC-4FE1-9E39-08DA9BD40915'
+			update qatree_question set question_number =  '6' ,  question_reference = 'SO.006'   where question_id = '4C0DD8EA-C034-4407-95CC-182AC293084C'
+			update qatree_question set question_number =  '7' ,  question_reference = 'SO.007'   where question_id = 'DAD3A2F0-2190-4F0D-90C4-2713DF6341F2'
+			update qatree_question set question_number =  '8' ,  question_reference = 'SO.008'   where question_id = 'FE6D0001-1B39-455C-8A2D-B17CA82FC2CC'
+			update qatree_question set question_number =  '9' ,  question_reference = 'SO.009'   where question_id = '81E47778-0489-481B-941E-A8891393F4A8'
+			update qatree_question set question_number =  '10' , question_reference = 'SO.010'   where question_id = '6136BE2B-6E34-4252-A8E2-7E96A3768180'
+			update qatree_question set question_number =  '11' , question_reference = 'SO.011'   where question_id = '1D0EB2F6-4543-439A-891B-002117C8BEAC'
+			update qatree_question set question_number =  '12' , question_reference = 'SO.012'   where question_id = 'C3C4E75B-7035-478B-B480-C10AB019F317'
+			update qatree_question set question_number =  '13' , question_reference = 'SO.013'   where question_id = '87C7722C-E285-42A0-B279-A565B9354B3F'		
+	
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_024" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('A8C42A9E-DE07-4332-8A5E-8E773F109F42','C20225',getdate(),(select defect_id from defect where defect_cd = 'SO'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('742F0DDC-AA77-4BBD-A184-D99609AD085E','C20225',getdate(),(select defect_id from defect where defect_cd = 'SO'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('0097CF7E-33FB-463C-9318-A67127152BEB','C20225',getdate(),(select defect_id from defect where defect_cd = 'SO'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('7941CB20-EB5F-41A0-8CDE-ADEF04FC5DE6','C20225',getdate(),(select defect_id from defect where defect_cd = 'SO'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('5B19AFD4-FADE-4B63-956C-47A68248C7E9','C20225',getdate(),(select defect_id from defect where defect_cd = 'SO'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('093D24FA-7C3F-4F23-81DC-EAA1362DAB1F','C20225',getdate(),(select defect_id from defect where defect_cd = 'SO'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('5D78AF3C-3FD5-40E0-9E75-0D1B644061B7','C20225',getdate(),(select defect_id from defect where defect_cd = 'SO'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('A0F28EAB-0321-477D-B4FB-4E83E20089DD','C20225',getdate(),(select defect_id from defect where defect_cd = 'SO'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('E3A5DC8A-74A9-4BE1-BCED-231699521CC7','C20225',getdate(),(select defect_id from defect where defect_cd = 'SO'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('938C737F-49DB-46B4-AEA6-BD6B243B768D','C20225',getdate(),(select defect_id from defect where defect_cd = 'SO'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('260DDAB4-0521-40AD-A405-690D44006B83','C20225',getdate(),(select defect_id from defect where defect_cd = 'SO'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('69F01E05-C9C0-4CF9-A590-80A80A1FDAD4','C20225',getdate(),(select defect_id from defect where defect_cd = 'SO'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('F6FA1407-8D7C-4E2B-89F8-5E3082BBD027','C20225',getdate(),(select defect_id from defect where defect_cd = 'SO'))			
+			
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_025" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update qatree_question set qatree_outcome_id = 'A8C42A9E-DE07-4332-8A5E-8E773F109F42'   where question_id = '45247E20-82FA-444F-9C52-78EF474CC4AA'
+			update qatree_question set qatree_outcome_id = '742F0DDC-AA77-4BBD-A184-D99609AD085E'   where question_id = '6761B108-E612-46EE-ADBB-BB99044B6D2B'		
+			update qatree_question set qatree_outcome_id = '0097CF7E-33FB-463C-9318-A67127152BEB'   where question_id = 'F91A145C-EFE6-44A6-9EFE-CB9F505522F0'		
+			update qatree_question set qatree_outcome_id = '7941CB20-EB5F-41A0-8CDE-ADEF04FC5DE6'   where question_id = '0E67257F-8AB3-4F65-9348-8331F670624B'		
+			update qatree_question set qatree_outcome_id = '5B19AFD4-FADE-4B63-956C-47A68248C7E9'   where question_id = 'C7586E20-5CFC-4FE1-9E39-08DA9BD40915'		
+			update qatree_question set qatree_outcome_id = '093D24FA-7C3F-4F23-81DC-EAA1362DAB1F'   where question_id = '4C0DD8EA-C034-4407-95CC-182AC293084C'		
+			update qatree_question set qatree_outcome_id = '5D78AF3C-3FD5-40E0-9E75-0D1B644061B7'   where question_id = 'DAD3A2F0-2190-4F0D-90C4-2713DF6341F2'		
+			update qatree_question set qatree_outcome_id = 'A0F28EAB-0321-477D-B4FB-4E83E20089DD'   where question_id = 'FE6D0001-1B39-455C-8A2D-B17CA82FC2CC'	
+			update qatree_question set qatree_outcome_id = 'E3A5DC8A-74A9-4BE1-BCED-231699521CC7'   where question_id = '81E47778-0489-481B-941E-A8891393F4A8'		
+			update qatree_question set qatree_outcome_id = '938C737F-49DB-46B4-AEA6-BD6B243B768D'   where question_id = '6136BE2B-6E34-4252-A8E2-7E96A3768180'		
+			update qatree_question set qatree_outcome_id = '260DDAB4-0521-40AD-A405-690D44006B83'   where question_id = '1D0EB2F6-4543-439A-891B-002117C8BEAC'		
+			update qatree_question set qatree_outcome_id = '69F01E05-C9C0-4CF9-A590-80A80A1FDAD4'   where question_id = 'C3C4E75B-7035-478B-B480-C10AB019F317'		
+			update qatree_question set qatree_outcome_id = 'F6FA1407-8D7C-4E2B-89F8-5E3082BBD027'   where question_id = '87C7722C-E285-42A0-B279-A565B9354B3F'				
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_026" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'A8C42A9E-DE07-4332-8A5E-8E773F109F42','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SO' and defect_source_cd in ('9')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '742F0DDC-AA77-4BBD-A184-D99609AD085E','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SO' and defect_source_cd in ('1')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '0097CF7E-33FB-463C-9318-A67127152BEB','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SO' and defect_source_cd in ('2')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '7941CB20-EB5F-41A0-8CDE-ADEF04FC5DE6','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SO' and defect_source_cd in ('2')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '5B19AFD4-FADE-4B63-956C-47A68248C7E9','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SO' and defect_source_cd in ('2','5')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '093D24FA-7C3F-4F23-81DC-EAA1362DAB1F','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SO' and defect_source_cd in ('2','6')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '5D78AF3C-3FD5-40E0-9E75-0D1B644061B7','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SO' and defect_source_cd in ('2')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'A0F28EAB-0321-477D-B4FB-4E83E20089DD','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SO' and defect_source_cd in ('2')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'E3A5DC8A-74A9-4BE1-BCED-231699521CC7','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SO' and defect_source_cd in ('2')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '938C737F-49DB-46B4-AEA6-BD6B243B768D','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SO' and defect_source_cd in ('7')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '260DDAB4-0521-40AD-A405-690D44006B83','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SO' and defect_source_cd in ('1','2','9')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '69F01E05-C9C0-4CF9-A590-80A80A1FDAD4','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SO' and defect_source_cd in ('9')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'F6FA1407-8D7C-4E2B-89F8-5E3082BBD027','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'SO' and defect_source_cd in ('9')			
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_027" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'A8C42A9E-DE07-4332-8A5E-8E773F109F42','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SO' and defect_cause_cd in ('B','D')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '742F0DDC-AA77-4BBD-A184-D99609AD085E','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SO' and defect_cause_cd in ('A','B','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '0097CF7E-33FB-463C-9318-A67127152BEB','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SO' and defect_cause_cd in ('D')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '7941CB20-EB5F-41A0-8CDE-ADEF04FC5DE6','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SO' and defect_cause_cd in ('C','D')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '5B19AFD4-FADE-4B63-956C-47A68248C7E9','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SO' and defect_cause_cd in ('A','B','D')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '093D24FA-7C3F-4F23-81DC-EAA1362DAB1F','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SO' and defect_cause_cd in ('B','C','D')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '5D78AF3C-3FD5-40E0-9E75-0D1B644061B7','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SO' and defect_cause_cd in ('C','D')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'A0F28EAB-0321-477D-B4FB-4E83E20089DD','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SO' and defect_cause_cd in ('A','C','D')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'E3A5DC8A-74A9-4BE1-BCED-231699521CC7','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SO' and defect_cause_cd in ('A','C','D')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '938C737F-49DB-46B4-AEA6-BD6B243B768D','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SO' and defect_cause_cd in ('D')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '260DDAB4-0521-40AD-A405-690D44006B83','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SO' and defect_cause_cd in ('A','B','C','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '69F01E05-C9C0-4CF9-A590-80A80A1FDAD4','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SO' and defect_cause_cd in ('C','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'F6FA1407-8D7C-4E2B-89F8-5E3082BBD027','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'SO' and defect_cause_cd in ('C','D','E')			
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_028" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select 'A8C42A9E-DE07-4332-8A5E-8E773F109F42','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SO' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '742F0DDC-AA77-4BBD-A184-D99609AD085E','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SO' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '0097CF7E-33FB-463C-9318-A67127152BEB','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SO' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '7941CB20-EB5F-41A0-8CDE-ADEF04FC5DE6','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SO' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '5B19AFD4-FADE-4B63-956C-47A68248C7E9','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SO' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '093D24FA-7C3F-4F23-81DC-EAA1362DAB1F','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SO' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '5D78AF3C-3FD5-40E0-9E75-0D1B644061B7','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SO' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select 'A0F28EAB-0321-477D-B4FB-4E83E20089DD','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SO' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select 'E3A5DC8A-74A9-4BE1-BCED-231699521CC7','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SO' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '938C737F-49DB-46B4-AEA6-BD6B243B768D','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SO' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '260DDAB4-0521-40AD-A405-690D44006B83','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SO' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '69F01E05-C9C0-4CF9-A590-80A80A1FDAD4','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SO' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select 'F6FA1407-8D7C-4E2B-89F8-5E3082BBD027','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'SO' 
+		]]>
+        </sql>
+    </changeSet>			
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_029" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update qatree_question
+			set question_number = '10.1',
+			    question_reference = 'OO.010.1'
+			where question_id = 'FC035FFA-CC2E-4185-A17C-54D9C9ED2689'
+			
+			update qatree_question
+			set question_number = '12.1',
+			    question_reference = 'OO.012.1'
+			where question_id = '83196A69-20A7-4176-A70F-7CC582159493'			
+
+			update qatree_question
+			set question_number = '14',
+			    question_reference = 'OO.014'
+			where question_id = '79E3A6B8-D8E4-4301-B4BB-D674E7056265'		
+
+	
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_030" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update question_reference
+			set value_to_trigger_action = 'NO'
+			where question_id in
+			(
+			'884B050E-61EA-4366-A2E6-5EA8196C2DDF',
+			'EC36434C-F7F8-47F8-833A-D099B9BAAFA0',
+			'31F8D65B-404D-4C26-AB26-D3EEBB285D9C',
+			'D52CBAF0-9173-402B-8CDA-0DCB3ACCC8DE',
+			'BAE3DE13-D67C-4171-97C9-F5609BFE90BE',
+			'A04F3CF9-52EF-4C21-A305-C18130877E04',
+			'DD62798F-07FE-4475-9A49-683FAE1697C0',
+			'1BE92741-35AA-4355-982D-AEB2945B3E71',
+			'12053382-8541-4225-99C7-07E6F30D51F6',	
+			'FC035FFA-CC2E-4185-A17C-54D9C9ED2689',
+			'43EAB275-6646-4593-96CE-AE546B50EB9D',
+			'83196A69-20A7-4176-A70F-7CC582159493',
+			'101B5666-CFBD-439C-A0E5-E871707890DE',
+			'79E3A6B8-D8E4-4301-B4BB-D674E7056265'
+			)	
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_031" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('6FAB102D-ABA2-442A-86B8-3C303AD21832','C20225',getdate(),(select defect_id from defect where defect_cd = 'OO'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('4FAF46D6-A6CC-41B6-9E35-7AFBCD5E8287','C20225',getdate(),(select defect_id from defect where defect_cd = 'OO'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('0A19599A-CAFB-4473-AE9C-83D2C3634EDB','C20225',getdate(),(select defect_id from defect where defect_cd = 'OO'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('9A49CFF7-C2AD-40CC-8207-182B2F35D3B7','C20225',getdate(),(select defect_id from defect where defect_cd = 'OO'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('A800A5FE-5DEB-4134-9582-81D1E02A65BD','C20225',getdate(),(select defect_id from defect where defect_cd = 'OO'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('9F170242-43F5-419E-BAEC-9ABE9D532672','C20225',getdate(),(select defect_id from defect where defect_cd = 'OO'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('382BBD05-3EB3-4C6A-A3E3-BD28E41D57D9','C20225',getdate(),(select defect_id from defect where defect_cd = 'OO'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('53F429D3-351A-408E-AE69-88E3F1D6D80D','C20225',getdate(),(select defect_id from defect where defect_cd = 'OO'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('B7ACE374-8473-4778-B3F9-88CC445316CB','C20225',getdate(),(select defect_id from defect where defect_cd = 'OO'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('051A7BCB-77DB-452B-ACB3-A402EB7F7B72','C20225',getdate(),(select defect_id from defect where defect_cd = 'OO'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('008D6090-0C84-4B2C-ADB1-459DFCBC8660','C20225',getdate(),(select defect_id from defect where defect_cd = 'OO'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('AAAA5E00-BBDB-4F29-BE62-29FAE77882FC','C20225',getdate(),(select defect_id from defect where defect_cd = 'OO'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('E29C29A5-5610-4BCB-9947-1AADA2AD2DDF','C20225',getdate(),(select defect_id from defect where defect_cd = 'OO'))			
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('A14A31BB-8978-4D71-8032-5ACCE9414DCB','C20225',getdate(),(select defect_id from defect where defect_cd = 'OO'))			
+			
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_032" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update qatree_question set qatree_outcome_id = '6FAB102D-ABA2-442A-86B8-3C303AD21832'   where question_id = '884B050E-61EA-4366-A2E6-5EA8196C2DDF'
+			update qatree_question set qatree_outcome_id = '4FAF46D6-A6CC-41B6-9E35-7AFBCD5E8287'   where question_id = 'EC36434C-F7F8-47F8-833A-D099B9BAAFA0'		
+			update qatree_question set qatree_outcome_id = '0A19599A-CAFB-4473-AE9C-83D2C3634EDB'   where question_id = '31F8D65B-404D-4C26-AB26-D3EEBB285D9C'		
+			update qatree_question set qatree_outcome_id = '9A49CFF7-C2AD-40CC-8207-182B2F35D3B7'   where question_id = 'D52CBAF0-9173-402B-8CDA-0DCB3ACCC8DE'		
+			update qatree_question set qatree_outcome_id = 'A800A5FE-5DEB-4134-9582-81D1E02A65BD'   where question_id = 'BAE3DE13-D67C-4171-97C9-F5609BFE90BE'		
+			update qatree_question set qatree_outcome_id = '9F170242-43F5-419E-BAEC-9ABE9D532672'   where question_id = 'A04F3CF9-52EF-4C21-A305-C18130877E04'		
+			update qatree_question set qatree_outcome_id = '382BBD05-3EB3-4C6A-A3E3-BD28E41D57D9'   where question_id = 'DD62798F-07FE-4475-9A49-683FAE1697C0'		
+			update qatree_question set qatree_outcome_id = '53F429D3-351A-408E-AE69-88E3F1D6D80D'   where question_id = '1BE92741-35AA-4355-982D-AEB2945B3E71'	
+			update qatree_question set qatree_outcome_id = 'B7ACE374-8473-4778-B3F9-88CC445316CB'   where question_id = '12053382-8541-4225-99C7-07E6F30D51F6'		
+			update qatree_question set qatree_outcome_id = '051A7BCB-77DB-452B-ACB3-A402EB7F7B72'   where question_id = 'FC035FFA-CC2E-4185-A17C-54D9C9ED2689'		
+			update qatree_question set qatree_outcome_id = '008D6090-0C84-4B2C-ADB1-459DFCBC8660'   where question_id = '43EAB275-6646-4593-96CE-AE546B50EB9D'		
+			update qatree_question set qatree_outcome_id = 'AAAA5E00-BBDB-4F29-BE62-29FAE77882FC'   where question_id = '83196A69-20A7-4176-A70F-7CC582159493'		
+			update qatree_question set qatree_outcome_id = 'E29C29A5-5610-4BCB-9947-1AADA2AD2DDF'   where question_id = '101B5666-CFBD-439C-A0E5-E871707890DE'				
+			update qatree_question set qatree_outcome_id = 'A14A31BB-8978-4D71-8032-5ACCE9414DCB'   where question_id = '79E3A6B8-D8E4-4301-B4BB-D674E7056265'				
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_033" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '6FAB102D-ABA2-442A-86B8-3C303AD21832','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OO' and defect_source_cd in ('2')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '4FAF46D6-A6CC-41B6-9E35-7AFBCD5E8287','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OO' and defect_source_cd in ('2','6')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '0A19599A-CAFB-4473-AE9C-83D2C3634EDB','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OO' and defect_source_cd in ('2')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '9A49CFF7-C2AD-40CC-8207-182B2F35D3B7','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OO' and defect_source_cd in ('4')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'A800A5FE-5DEB-4134-9582-81D1E02A65BD','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OO' and defect_source_cd in ('5')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '9F170242-43F5-419E-BAEC-9ABE9D532672','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OO' and defect_source_cd in ('5','6')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '382BBD05-3EB3-4C6A-A3E3-BD28E41D57D9','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OO' and defect_source_cd in ('3','4','5')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '53F429D3-351A-408E-AE69-88E3F1D6D80D','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OO' and defect_source_cd in ('3','4')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'B7ACE374-8473-4778-B3F9-88CC445316CB','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OO' and defect_source_cd in ('4')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '051A7BCB-77DB-452B-ACB3-A402EB7F7B72','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OO' and defect_source_cd in ('1')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '008D6090-0C84-4B2C-ADB1-459DFCBC8660','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OO' and defect_source_cd in ('1')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'AAAA5E00-BBDB-4F29-BE62-29FAE77882FC','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OO' and defect_source_cd in ('7')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'E29C29A5-5610-4BCB-9947-1AADA2AD2DDF','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OO' and defect_source_cd in ('7')			
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'A14A31BB-8978-4D71-8032-5ACCE9414DCB','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OO' and defect_source_cd in ('7')						
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_034" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '6FAB102D-ABA2-442A-86B8-3C303AD21832','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OO' and defect_cause_cd in ('A','B','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '4FAF46D6-A6CC-41B6-9E35-7AFBCD5E8287','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OO' and defect_cause_cd in ('A','B','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '0A19599A-CAFB-4473-AE9C-83D2C3634EDB','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OO' and defect_cause_cd in ('A','B','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '9A49CFF7-C2AD-40CC-8207-182B2F35D3B7','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OO' and defect_cause_cd in ('A','B','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'A800A5FE-5DEB-4134-9582-81D1E02A65BD','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OO' and defect_cause_cd in ('A','B','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '9F170242-43F5-419E-BAEC-9ABE9D532672','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OO' and defect_cause_cd in ('A','B','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '382BBD05-3EB3-4C6A-A3E3-BD28E41D57D9','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OO' and defect_cause_cd in ('A','B','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '53F429D3-351A-408E-AE69-88E3F1D6D80D','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OO' and defect_cause_cd in ('A','B','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'B7ACE374-8473-4778-B3F9-88CC445316CB','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OO' and defect_cause_cd in ('A','B','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '051A7BCB-77DB-452B-ACB3-A402EB7F7B72','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OO' and defect_cause_cd in ('A','B','C','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '008D6090-0C84-4B2C-ADB1-459DFCBC8660','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OO' and defect_cause_cd in ('A','B','C','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'AAAA5E00-BBDB-4F29-BE62-29FAE77882FC','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OO' and defect_cause_cd in ('A','B','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'E29C29A5-5610-4BCB-9947-1AADA2AD2DDF','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OO' and defect_cause_cd in ('A','B','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'A14A31BB-8978-4D71-8032-5ACCE9414DCB','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OO' and defect_cause_cd in ('A','B','E')			
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_035" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '6FAB102D-ABA2-442A-86B8-3C303AD21832','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OO' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '4FAF46D6-A6CC-41B6-9E35-7AFBCD5E8287','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OO' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '0A19599A-CAFB-4473-AE9C-83D2C3634EDB','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OO' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '9A49CFF7-C2AD-40CC-8207-182B2F35D3B7','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OO' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select 'A800A5FE-5DEB-4134-9582-81D1E02A65BD','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OO' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '9F170242-43F5-419E-BAEC-9ABE9D532672','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OO' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '382BBD05-3EB3-4C6A-A3E3-BD28E41D57D9','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OO' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '53F429D3-351A-408E-AE69-88E3F1D6D80D','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OO' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select 'B7ACE374-8473-4778-B3F9-88CC445316CB','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OO' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '051A7BCB-77DB-452B-ACB3-A402EB7F7B72','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OO' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '008D6090-0C84-4B2C-ADB1-459DFCBC8660','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OO' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select 'AAAA5E00-BBDB-4F29-BE62-29FAE77882FC','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OO' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select 'E29C29A5-5610-4BCB-9947-1AADA2AD2DDF','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OO' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select 'A14A31BB-8978-4D71-8032-5ACCE9414DCB','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OO' 			
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_036" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update qatree_question set question_number =  '1' ,    question_reference = 'OL.001'   where question_id = 'F7753AB1-8850-40C0-B413-4E97E130409E'
+			update qatree_question set question_number =  '2' ,    question_reference = 'OL.002'   where question_id = '584D2ABB-756D-48CA-B462-35ADFED7F1C0'
+			update qatree_question set question_number =  '3' ,    question_reference = 'OL.003'   where question_id = '0069EF8E-0E94-4F28-80B7-072AD97BD630'
+			update qatree_question set question_number =  '4' ,    question_reference = 'OL.004'   where question_id = '818F5232-2A5E-45DC-BDF2-B7CB37440A38'
+			update qatree_question set question_number =  '5' ,    question_reference = 'OL.005'   where question_id = 'DBD1B829-2AFE-4D21-BDD5-1C76CE53F579'
+			update qatree_question set question_number =  '6' ,    question_reference = 'OL.006'   where question_id = '346D854A-2447-4FE0-BE67-6A5B90A976E1'
+			update qatree_question set question_number =  '7' ,    question_reference = 'OL.007'   where question_id = '61E273F4-F75F-40D0-8595-DB8FA2A0B76C'
+			update qatree_question set question_number =  '8' ,    question_reference = 'OL.008'   where question_id = 'B5087A4E-F097-4F83-9676-581119DCA66C'
+			update qatree_question set question_number =  '8.1' ,  question_reference = 'OL.008.1'   where question_id = 'CEF34202-894C-4CD9-9D0D-2CCC6FD802FA'
+			update qatree_question set question_number =  '9' ,    question_reference = 'OL.009', parent_question_id = null, parent_question_condition_answer = null   where question_id = 'E3450980-EAD5-46C4-8AFE-F91CF814E9B8'
+		
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_037" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update question_reference
+			set value_to_trigger_action = 'NO'
+			where question_id in
+			(
+			'F7753AB1-8850-40C0-B413-4E97E130409E',
+			'584D2ABB-756D-48CA-B462-35ADFED7F1C0',
+			'0069EF8E-0E94-4F28-80B7-072AD97BD630',
+			'818F5232-2A5E-45DC-BDF2-B7CB37440A38',
+			'DBD1B829-2AFE-4D21-BDD5-1C76CE53F579',
+			'346D854A-2447-4FE0-BE67-6A5B90A976E1',
+			'61E273F4-F75F-40D0-8595-DB8FA2A0B76C',
+			'CEF34202-894C-4CD9-9D0D-2CCC6FD802FA',
+			'E3450980-EAD5-46C4-8AFE-F91CF814E9B8'
+			)	
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_038" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('44074616-F07C-4368-A44D-1B5ADBE246EA','C20225',getdate(),(select defect_id from defect where defect_cd = 'OL'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('6941DB7F-B778-4BA9-B464-2C22A4589102','C20225',getdate(),(select defect_id from defect where defect_cd = 'OL'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('ACE191B6-AAFF-45C4-A0AD-58DB648AC63C','C20225',getdate(),(select defect_id from defect where defect_cd = 'OL'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('C347D4F6-4626-466C-8510-6BC6EC519A35','C20225',getdate(),(select defect_id from defect where defect_cd = 'OL'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('04095031-D444-4C3F-9780-95193D584689','C20225',getdate(),(select defect_id from defect where defect_cd = 'OL'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('642FABE0-6003-456F-9219-0430567194DC','C20225',getdate(),(select defect_id from defect where defect_cd = 'OL'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('D814CA36-C0B7-438E-B979-6E85AEE07E08','C20225',getdate(),(select defect_id from defect where defect_cd = 'OL'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('F0966E1D-26AB-4A20-B84C-D2DA8B278F37','C20225',getdate(),(select defect_id from defect where defect_cd = 'OL'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('665FF7D4-D138-4E80-86BA-84702D46CF28','C20225',getdate(),(select defect_id from defect where defect_cd = 'OL'))
+	
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_039" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update qatree_question set qatree_outcome_id = '44074616-F07C-4368-A44D-1B5ADBE246EA'   where question_id = 'F7753AB1-8850-40C0-B413-4E97E130409E'
+			update qatree_question set qatree_outcome_id = '6941DB7F-B778-4BA9-B464-2C22A4589102'   where question_id = '584D2ABB-756D-48CA-B462-35ADFED7F1C0'		
+			update qatree_question set qatree_outcome_id = 'ACE191B6-AAFF-45C4-A0AD-58DB648AC63C'   where question_id = '0069EF8E-0E94-4F28-80B7-072AD97BD630'		
+			update qatree_question set qatree_outcome_id = 'C347D4F6-4626-466C-8510-6BC6EC519A35'   where question_id = '818F5232-2A5E-45DC-BDF2-B7CB37440A38'		
+			update qatree_question set qatree_outcome_id = '04095031-D444-4C3F-9780-95193D584689'   where question_id = 'DBD1B829-2AFE-4D21-BDD5-1C76CE53F579'		
+			update qatree_question set qatree_outcome_id = '642FABE0-6003-456F-9219-0430567194DC'   where question_id = '346D854A-2447-4FE0-BE67-6A5B90A976E1'		
+			update qatree_question set qatree_outcome_id = 'D814CA36-C0B7-438E-B979-6E85AEE07E08'   where question_id = '61E273F4-F75F-40D0-8595-DB8FA2A0B76C'		
+			update qatree_question set qatree_outcome_id = 'F0966E1D-26AB-4A20-B84C-D2DA8B278F37'   where question_id = 'CEF34202-894C-4CD9-9D0D-2CCC6FD802FA'	
+			update qatree_question set qatree_outcome_id = '665FF7D4-D138-4E80-86BA-84702D46CF28'   where question_id = 'E3450980-EAD5-46C4-8AFE-F91CF814E9B8'		
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_040" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '44074616-F07C-4368-A44D-1B5ADBE246EA','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OL' and defect_source_cd in ('1','6','7')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '6941DB7F-B778-4BA9-B464-2C22A4589102','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OL' and defect_source_cd in ('1')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'ACE191B6-AAFF-45C4-A0AD-58DB648AC63C','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OL' and defect_source_cd in ('2')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'C347D4F6-4626-466C-8510-6BC6EC519A35','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OL' and defect_source_cd in ('2')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '04095031-D444-4C3F-9780-95193D584689','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OL' and defect_source_cd in ('1')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '642FABE0-6003-456F-9219-0430567194DC','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OL' and defect_source_cd in ('4')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'D814CA36-C0B7-438E-B979-6E85AEE07E08','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OL' and defect_source_cd in ('1')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'F0966E1D-26AB-4A20-B84C-D2DA8B278F37','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OL' and defect_source_cd in ('5')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '665FF7D4-D138-4E80-86BA-84702D46CF28','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OL' and defect_source_cd in ('5')
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_041" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '44074616-F07C-4368-A44D-1B5ADBE246EA','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OL' and defect_cause_cd in ('A','B','C')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '6941DB7F-B778-4BA9-B464-2C22A4589102','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OL' and defect_cause_cd in ('A','B')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'ACE191B6-AAFF-45C4-A0AD-58DB648AC63C','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OL' and defect_cause_cd in ('A','B','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'C347D4F6-4626-466C-8510-6BC6EC519A35','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OL' and defect_cause_cd in ('A','B','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '04095031-D444-4C3F-9780-95193D584689','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OL' and defect_cause_cd in ('B')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '642FABE0-6003-456F-9219-0430567194DC','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OL' and defect_cause_cd in ('A','B')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'D814CA36-C0B7-438E-B979-6E85AEE07E08','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OL' and defect_cause_cd in ('B')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'F0966E1D-26AB-4A20-B84C-D2DA8B278F37','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OL' and defect_cause_cd in ('A','B','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '665FF7D4-D138-4E80-86BA-84702D46CF28','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OL' and defect_cause_cd in ('A','B','E')
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_042" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '44074616-F07C-4368-A44D-1B5ADBE246EA','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OL' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '6941DB7F-B778-4BA9-B464-2C22A4589102','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OL' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select 'ACE191B6-AAFF-45C4-A0AD-58DB648AC63C','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OL' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select 'C347D4F6-4626-466C-8510-6BC6EC519A35','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OL' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '04095031-D444-4C3F-9780-95193D584689','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OL' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '642FABE0-6003-456F-9219-0430567194DC','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OL' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select 'D814CA36-C0B7-438E-B979-6E85AEE07E08','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OL' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select 'F0966E1D-26AB-4A20-B84C-D2DA8B278F37','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OL' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '665FF7D4-D138-4E80-86BA-84702D46CF28','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OL' 
+		]]>
+        </sql>
+    </changeSet>			
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_043" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update qatree_question set question_number =  '1' ,    question_reference = 'OQ.001'   where question_id = 'D9B42441-3BFA-4E21-B121-A2F1EA1AF170'
+			update qatree_question set question_number =  '2' ,    question_reference = 'OQ.002'   where question_id = '000F98B9-E777-4122-9D4F-6B44A4A2C248'
+			update qatree_question set question_number =  '3' ,    question_reference = 'OQ.003'   where question_id = '1D7E6951-1F75-4CC7-9683-36A77DF219C9'
+			update qatree_question set question_number =  '4' ,    question_reference = 'OQ.004'   where question_id = 'B94A60C2-126D-4F63-AB7D-ADEE6A159B18'
+			update qatree_question set question_number =  '5' ,    question_reference = 'OQ.005'   where question_id = 'C5EF15C1-B079-4F45-9D5D-5AE9FE52298F'
+			update qatree_question set question_number =  '6' ,    question_reference = 'OQ.006'   where question_id = 'AEAC2E05-C8BF-4625-962C-92FD73209A24'
+			update qatree_question set question_number =  '7' ,    question_reference = 'OQ.007'   where question_id = '8B3883A7-89EF-43BF-8428-73E5E96D5770'
+			update qatree_question set question_number =  '8' ,    question_reference = 'OQ.008'   where question_id = 'B738EF4B-AF7D-4A5B-9DA3-0113DE697B27'
+			update qatree_question set question_number =  '9' ,    question_reference = 'OQ.009'   where question_id = '3F281769-5138-4ECE-A3A3-7D8FB5541865'
+			update qatree_question set question_number =  '10' ,   question_reference = 'OQ.010'   where question_id = 'FF519F5F-557C-4C31-B2B9-07AC5EF3312C'
+			update qatree_question set question_number =  '11' ,   question_reference = 'OQ.011'   where question_id = 'D414E6E8-7627-4117-8E64-FC67E545E84B'
+			update qatree_question set question_number =  '11.1' , question_reference = 'OQ.011.1'   where question_id = '3C33693E-3300-4935-AAFF-97F42804967D'
+			update qatree_question set question_number =  '12' ,   question_reference = 'OQ.012'   where question_id = '498C6EAB-0D67-41D9-ACB7-5C17A4A16F29'
+			update qatree_question set question_number =  '13' ,   question_reference = 'OQ.013'   where question_id = '60B54775-AF60-4B83-AC44-209E6516E47B'
+			update qatree_question set question_number =  '14' ,   question_reference = 'OQ.014'   where question_id = '4674B34A-4BEC-4E2F-BF75-57271D249088'
+			update qatree_question set question_number =  '15' ,   question_reference = 'OQ.015'   where question_id = '260FC22F-B89D-414F-B7FA-4D08232860BF'			
+			update qatree_question set question_number =  '16' ,   question_reference = 'OQ.016'   where question_id = 'C92D0234-D575-4F6D-8EFE-44A4899E4374'
+			update qatree_question set question_number =  '17' ,   question_reference = 'OQ.017'   where question_id = '75BDE0A8-CE07-43C4-BBBC-67A45371FD75'
+			update qatree_question set question_number =  '18' ,   question_reference = 'OQ.018'   where question_id = '7C423723-56AD-4300-B78E-AC586975FDE7'
+			update qatree_question set question_number =  '19' ,   question_reference = 'OQ.019'   where question_id = '0C28BA21-EC6B-4F79-AAF7-F4A90F2BC7D5'
+			update qatree_question set question_number =  '20' ,   question_reference = 'OQ.020'   where question_id = 'B84B3713-E5FD-4491-85B4-960700F5BE5A'
+			update qatree_question set question_number =  '21' ,   question_reference = 'OQ.021'   where question_id = '55D104F6-B665-46AC-9F40-9A7118C2B670'
+			update qatree_question set question_number =  '22' ,   question_reference = 'OQ.022'   where question_id = '6C9AF927-D7AF-4475-87D1-C07CACA6EC62'
+			update qatree_question set question_number =  '23' ,   question_reference = 'OQ.023'   where question_id = 'DDF11BB7-F272-49FD-AF62-E6265976405E'
+			update qatree_question set question_number =  '23.1' , question_reference = 'OQ.023.1'   where question_id = 'A6630A05-16A9-4CC2-8F72-1BC1A9A7953A'
+			update qatree_question set question_number =  '24' ,   question_reference = 'OQ.024'   where question_id = 'BB57B3CC-D74A-4C60-92CE-2CD4114983DB'
+			update qatree_question set question_number =  '24.1' , question_reference = 'OQ.024.1'   where question_id = '6C284274-274D-47D6-A6CF-7465DE02925F'
+			update qatree_question set question_number =  '25' ,   question_reference = 'OQ.025'   where question_id = 'A1220031-3B82-46B2-89CA-BDAEF6FD42DA'
+			update qatree_question set question_number =  '26' ,   question_reference = 'OQ.026'   where question_id = 'E3678265-85E3-4331-95FF-1D87EF43EEB0'
+			update qatree_question set question_number =  '27' ,   question_reference = 'OQ.027'   where question_id = '16A52241-57E4-4C51-8D55-8A977FEA0447'
+			update qatree_question set question_number =  '28' ,   question_reference = 'OQ.028'   where question_id = 'C37EAABD-F351-470A-81A5-A0EEB0829FF1'
+			update qatree_question set question_number =  '29' ,   question_reference = 'OQ.029'   where question_id = '5CA36FB2-C333-44B1-9C5E-5C4525CBE4FE'
+		
+		]]>
+        </sql>
+    </changeSet>				
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_044" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update question_reference
+			set value_to_trigger_action = 'NO'
+			where question_id in
+			(		
+			'D9B42441-3BFA-4E21-B121-A2F1EA1AF170',
+			'000F98B9-E777-4122-9D4F-6B44A4A2C248',
+			'1D7E6951-1F75-4CC7-9683-36A77DF219C9',
+			'B94A60C2-126D-4F63-AB7D-ADEE6A159B18',
+			'C5EF15C1-B079-4F45-9D5D-5AE9FE52298F',
+			'AEAC2E05-C8BF-4625-962C-92FD73209A24',
+			'8B3883A7-89EF-43BF-8428-73E5E96D5770',
+			'B738EF4B-AF7D-4A5B-9DA3-0113DE697B27',
+			'3F281769-5138-4ECE-A3A3-7D8FB5541865',
+			'FF519F5F-557C-4C31-B2B9-07AC5EF3312C',
+			'3C33693E-3300-4935-AAFF-97F42804967D',
+			'498C6EAB-0D67-41D9-ACB7-5C17A4A16F29',
+			'60B54775-AF60-4B83-AC44-209E6516E47B',
+			'4674B34A-4BEC-4E2F-BF75-57271D249088',
+			'260FC22F-B89D-414F-B7FA-4D08232860BF',
+			'C92D0234-D575-4F6D-8EFE-44A4899E4374',
+			'75BDE0A8-CE07-43C4-BBBC-67A45371FD75',
+			'7C423723-56AD-4300-B78E-AC586975FDE7',
+			'0C28BA21-EC6B-4F79-AAF7-F4A90F2BC7D5',
+			'B84B3713-E5FD-4491-85B4-960700F5BE5A',
+			'55D104F6-B665-46AC-9F40-9A7118C2B670',
+			'6C9AF927-D7AF-4475-87D1-C07CACA6EC62',
+			'A6630A05-16A9-4CC2-8F72-1BC1A9A7953A',
+			'6C284274-274D-47D6-A6CF-7465DE02925F',
+			'A1220031-3B82-46B2-89CA-BDAEF6FD42DA',
+			'E3678265-85E3-4331-95FF-1D87EF43EEB0',
+			'16A52241-57E4-4C51-8D55-8A977FEA0447',
+			'C37EAABD-F351-470A-81A5-A0EEB0829FF1',
+			'5CA36FB2-C333-44B1-9C5E-5C4525CBE4FE')
+		]]>
+        </sql>
+    </changeSet>				
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_045" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('D452F489-AF12-4890-9A03-021A0DC81881','C20225',getdate(),(select defect_id from defect where defect_cd = 'OQ'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('43C80F0E-FAE3-4A59-88FB-995A550B2240','C20225',getdate(),(select defect_id from defect where defect_cd = 'OQ'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('C0DEFA77-1EA1-4159-8D29-89294440DBCB','C20225',getdate(),(select defect_id from defect where defect_cd = 'OQ'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('3511F4EF-B2E6-4EB3-97BE-2E936B8F15E5','C20225',getdate(),(select defect_id from defect where defect_cd = 'OQ'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('83C811B1-6CAC-4F53-8610-29225792C127','C20225',getdate(),(select defect_id from defect where defect_cd = 'OQ'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('3B0C581E-C075-4F76-B7B8-6065885B1D56','C20225',getdate(),(select defect_id from defect where defect_cd = 'OQ'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('5754701D-9C70-4185-A0B1-EC1D1BEFDC4A','C20225',getdate(),(select defect_id from defect where defect_cd = 'OQ'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('10BDEE15-E5C2-426D-8636-FE4DEA7ACF20','C20225',getdate(),(select defect_id from defect where defect_cd = 'OQ'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('2B783DCB-4AD3-4223-987A-2F1D1F19FFE7','C20225',getdate(),(select defect_id from defect where defect_cd = 'OQ'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('80EC3668-31E8-45C9-9707-96AAC9DFF8F4','C20225',getdate(),(select defect_id from defect where defect_cd = 'OQ'))			
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('49DCFA9C-AE08-4A46-AA92-61935359EBDF','C20225',getdate(),(select defect_id from defect where defect_cd = 'OQ'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('E20533CA-60AA-4FC4-8793-156AD992F30A','C20225',getdate(),(select defect_id from defect where defect_cd = 'OQ'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('552AF920-506F-4E88-B296-80B7A6C2BD93','C20225',getdate(),(select defect_id from defect where defect_cd = 'OQ'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('AA60D043-D266-4E6E-B8ED-04916706C32C','C20225',getdate(),(select defect_id from defect where defect_cd = 'OQ'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('E38E8E59-498E-4C2A-B4E7-997FD0B1EE3C','C20225',getdate(),(select defect_id from defect where defect_cd = 'OQ'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('20F1288F-D923-49E3-A23B-A0482648FA36','C20225',getdate(),(select defect_id from defect where defect_cd = 'OQ'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('89E5F5CA-382F-4AE4-855B-F24B21C3A7F5','C20225',getdate(),(select defect_id from defect where defect_cd = 'OQ'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('9C3ADE8C-8203-45B7-B7AC-534EDAB49FE0','C20225',getdate(),(select defect_id from defect where defect_cd = 'OQ'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('EE86FA3B-E73A-4AF4-8E66-4884BADE6912','C20225',getdate(),(select defect_id from defect where defect_cd = 'OQ'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('7A83CCF8-265A-480A-BE5F-CC5B45EC795D','C20225',getdate(),(select defect_id from defect where defect_cd = 'OQ'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('7414CDB6-A07A-4FA1-BDA5-3ABEC2C83D30','C20225',getdate(),(select defect_id from defect where defect_cd = 'OQ'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('0773E623-43ED-4719-A12C-20D4D61BB9CB','C20225',getdate(),(select defect_id from defect where defect_cd = 'OQ'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('01C44A6F-9358-40FA-B3A7-F13DE1887FEA','C20225',getdate(),(select defect_id from defect where defect_cd = 'OQ'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('F70CCF79-FED8-4193-9A98-95C8FC3D267B','C20225',getdate(),(select defect_id from defect where defect_cd = 'OQ'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('657BA52A-2987-41AC-8092-A00FF53A2AC2','C20225',getdate(),(select defect_id from defect where defect_cd = 'OQ'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('8D128BC1-740B-44C8-AE40-5E5EEA131076','C20225',getdate(),(select defect_id from defect where defect_cd = 'OQ'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('08CA85AE-1E3D-4735-8E72-F63031E5A702','C20225',getdate(),(select defect_id from defect where defect_cd = 'OQ'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('CC45C882-AFBD-4E68-97AA-00B275779892','C20225',getdate(),(select defect_id from defect where defect_cd = 'OQ'))
+			insert into QATREE_OUTCOME(QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_ID) values('22EF73D9-A045-47B1-A5B9-0E1E6474E3EB','C20225',getdate(),(select defect_id from defect where defect_cd = 'OQ'))
+		
+		]]>
+        </sql>
+    </changeSet>				
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_047" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update qatree_question set qatree_outcome_id = 'D452F489-AF12-4890-9A03-021A0DC81881'   where question_id = 'D9B42441-3BFA-4E21-B121-A2F1EA1AF170'
+			update qatree_question set qatree_outcome_id = '43C80F0E-FAE3-4A59-88FB-995A550B2240'   where question_id = '000F98B9-E777-4122-9D4F-6B44A4A2C248'		
+			update qatree_question set qatree_outcome_id = 'C0DEFA77-1EA1-4159-8D29-89294440DBCB'   where question_id = '1D7E6951-1F75-4CC7-9683-36A77DF219C9'		
+			update qatree_question set qatree_outcome_id = '3511F4EF-B2E6-4EB3-97BE-2E936B8F15E5'   where question_id = 'B94A60C2-126D-4F63-AB7D-ADEE6A159B18'		
+			update qatree_question set qatree_outcome_id = '83C811B1-6CAC-4F53-8610-29225792C127'   where question_id = 'C5EF15C1-B079-4F45-9D5D-5AE9FE52298F'		
+			update qatree_question set qatree_outcome_id = '3B0C581E-C075-4F76-B7B8-6065885B1D56'   where question_id = 'AEAC2E05-C8BF-4625-962C-92FD73209A24'		
+			update qatree_question set qatree_outcome_id = '5754701D-9C70-4185-A0B1-EC1D1BEFDC4A'   where question_id = '8B3883A7-89EF-43BF-8428-73E5E96D5770'		
+			update qatree_question set qatree_outcome_id = '10BDEE15-E5C2-426D-8636-FE4DEA7ACF20'   where question_id = 'B738EF4B-AF7D-4A5B-9DA3-0113DE697B27'	
+			update qatree_question set qatree_outcome_id = '2B783DCB-4AD3-4223-987A-2F1D1F19FFE7'   where question_id = '3F281769-5138-4ECE-A3A3-7D8FB5541865'
+			update qatree_question set qatree_outcome_id = '80EC3668-31E8-45C9-9707-96AAC9DFF8F4'   where question_id = 'FF519F5F-557C-4C31-B2B9-07AC5EF3312C'			
+			update qatree_question set qatree_outcome_id = '49DCFA9C-AE08-4A46-AA92-61935359EBDF'   where question_id = '3C33693E-3300-4935-AAFF-97F42804967D'
+			update qatree_question set qatree_outcome_id = 'E20533CA-60AA-4FC4-8793-156AD992F30A'   where question_id = '498C6EAB-0D67-41D9-ACB7-5C17A4A16F29'		
+			update qatree_question set qatree_outcome_id = '552AF920-506F-4E88-B296-80B7A6C2BD93'   where question_id = '60B54775-AF60-4B83-AC44-209E6516E47B'		
+			update qatree_question set qatree_outcome_id = 'AA60D043-D266-4E6E-B8ED-04916706C32C'   where question_id = '4674B34A-4BEC-4E2F-BF75-57271D249088'		
+			update qatree_question set qatree_outcome_id = 'E38E8E59-498E-4C2A-B4E7-997FD0B1EE3C'   where question_id = '260FC22F-B89D-414F-B7FA-4D08232860BF'		
+			update qatree_question set qatree_outcome_id = '20F1288F-D923-49E3-A23B-A0482648FA36'   where question_id = 'C92D0234-D575-4F6D-8EFE-44A4899E4374'		
+			update qatree_question set qatree_outcome_id = '89E5F5CA-382F-4AE4-855B-F24B21C3A7F5'   where question_id = '75BDE0A8-CE07-43C4-BBBC-67A45371FD75'		
+			update qatree_question set qatree_outcome_id = '9C3ADE8C-8203-45B7-B7AC-534EDAB49FE0'   where question_id = '7C423723-56AD-4300-B78E-AC586975FDE7'	
+			update qatree_question set qatree_outcome_id = 'EE86FA3B-E73A-4AF4-8E66-4884BADE6912'   where question_id = '0C28BA21-EC6B-4F79-AAF7-F4A90F2BC7D5'
+			update qatree_question set qatree_outcome_id = '7A83CCF8-265A-480A-BE5F-CC5B45EC795D'   where question_id = 'B84B3713-E5FD-4491-85B4-960700F5BE5A'
+			update qatree_question set qatree_outcome_id = '7414CDB6-A07A-4FA1-BDA5-3ABEC2C83D30'   where question_id = '55D104F6-B665-46AC-9F40-9A7118C2B670'
+			update qatree_question set qatree_outcome_id = '0773E623-43ED-4719-A12C-20D4D61BB9CB'   where question_id = '6C9AF927-D7AF-4475-87D1-C07CACA6EC62'		
+			update qatree_question set qatree_outcome_id = '01C44A6F-9358-40FA-B3A7-F13DE1887FEA'   where question_id = 'A6630A05-16A9-4CC2-8F72-1BC1A9A7953A'		
+			update qatree_question set qatree_outcome_id = 'F70CCF79-FED8-4193-9A98-95C8FC3D267B'   where question_id = '6C284274-274D-47D6-A6CF-7465DE02925F'		
+			update qatree_question set qatree_outcome_id = '657BA52A-2987-41AC-8092-A00FF53A2AC2'   where question_id = 'A1220031-3B82-46B2-89CA-BDAEF6FD42DA'		
+			update qatree_question set qatree_outcome_id = '8D128BC1-740B-44C8-AE40-5E5EEA131076'   where question_id = 'E3678265-85E3-4331-95FF-1D87EF43EEB0'		
+			update qatree_question set qatree_outcome_id = '08CA85AE-1E3D-4735-8E72-F63031E5A702'   where question_id = '16A52241-57E4-4C51-8D55-8A977FEA0447'		
+			update qatree_question set qatree_outcome_id = 'CC45C882-AFBD-4E68-97AA-00B275779892'   where question_id = 'C37EAABD-F351-470A-81A5-A0EEB0829FF1'	
+			update qatree_question set qatree_outcome_id = '22EF73D9-A045-47B1-A5B9-0E1E6474E3EB'   where question_id = '5CA36FB2-C333-44B1-9C5E-5C4525CBE4FE'
+			
+		]]>
+        </sql>
+    </changeSet>				
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_048" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'D452F489-AF12-4890-9A03-021A0DC81881','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OQ' and defect_source_cd in ('1')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '43C80F0E-FAE3-4A59-88FB-995A550B2240','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OQ' and defect_source_cd in ('1')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'C0DEFA77-1EA1-4159-8D29-89294440DBCB','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OQ' and defect_source_cd in ('2','3')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '3511F4EF-B2E6-4EB3-97BE-2E936B8F15E5','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OQ' and defect_source_cd in ('4')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '83C811B1-6CAC-4F53-8610-29225792C127','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OQ' and defect_source_cd in ('4')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '3B0C581E-C075-4F76-B7B8-6065885B1D56','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OQ' and defect_source_cd in ('4')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '5754701D-9C70-4185-A0B1-EC1D1BEFDC4A','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OQ' and defect_source_cd in ('6')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '10BDEE15-E5C2-426D-8636-FE4DEA7ACF20','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OQ' and defect_source_cd in ('1')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '2B783DCB-4AD3-4223-987A-2F1D1F19FFE7','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OQ' and defect_source_cd in ('7')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '80EC3668-31E8-45C9-9707-96AAC9DFF8F4','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OQ' and defect_source_cd in ('7')			
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '49DCFA9C-AE08-4A46-AA92-61935359EBDF','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OQ' and defect_source_cd in ('8')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'E20533CA-60AA-4FC4-8793-156AD992F30A','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OQ' and defect_source_cd in ('8')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '552AF920-506F-4E88-B296-80B7A6C2BD93','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OQ' and defect_source_cd in ('8')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'AA60D043-D266-4E6E-B8ED-04916706C32C','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OQ' and defect_source_cd in ('8')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'E38E8E59-498E-4C2A-B4E7-997FD0B1EE3C','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OQ' and defect_source_cd in ('8')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '20F1288F-D923-49E3-A23B-A0482648FA36','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OQ' and defect_source_cd in ('8')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '89E5F5CA-382F-4AE4-855B-F24B21C3A7F5','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OQ' and defect_source_cd in ('8')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '9C3ADE8C-8203-45B7-B7AC-534EDAB49FE0','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OQ' and defect_source_cd in ('3','6')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'EE86FA3B-E73A-4AF4-8E66-4884BADE6912','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OQ' and defect_source_cd in ('6','7','10')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '7A83CCF8-265A-480A-BE5F-CC5B45EC795D','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OQ' and defect_source_cd in ('1')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '7414CDB6-A07A-4FA1-BDA5-3ABEC2C83D30','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OQ' and defect_source_cd in ('3')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '0773E623-43ED-4719-A12C-20D4D61BB9CB','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OQ' and defect_source_cd in ('9')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '01C44A6F-9358-40FA-B3A7-F13DE1887FEA','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OQ' and defect_source_cd in ('9')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'F70CCF79-FED8-4193-9A98-95C8FC3D267B','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OQ' and defect_source_cd in ('9')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '657BA52A-2987-41AC-8092-A00FF53A2AC2','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OQ' and defect_source_cd in ('9')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '8D128BC1-740B-44C8-AE40-5E5EEA131076','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OQ' and defect_source_cd in ('9')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '08CA85AE-1E3D-4735-8E72-F63031E5A702','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OQ' and defect_source_cd in ('2')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select 'CC45C882-AFBD-4E68-97AA-00B275779892','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OQ' and defect_source_cd in ('10')
+			insert into QATREE_OUTCOME_DEFECT_SOURCE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SOURCE_ID) select '22EF73D9-A045-47B1-A5B9-0E1E6474E3EB','C20225',getdate(),DEFECT_SOURCE_ID from DEFECT_SOURCE where DEFECT_CD = 'OQ' and defect_source_cd in ('2','10')
+			
+		]]>
+        </sql>
+    </changeSet>				
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_049" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'D452F489-AF12-4890-9A03-021A0DC81881','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OQ' and defect_cause_cd in ('A','B','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '43C80F0E-FAE3-4A59-88FB-995A550B2240','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OQ' and defect_cause_cd in ('A','B','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'C0DEFA77-1EA1-4159-8D29-89294440DBCB','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OQ' and defect_cause_cd in ('A','B','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '3511F4EF-B2E6-4EB3-97BE-2E936B8F15E5','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OQ' and defect_cause_cd in ('A','B','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '83C811B1-6CAC-4F53-8610-29225792C127','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OQ' and defect_cause_cd in ('A','B','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '3B0C581E-C075-4F76-B7B8-6065885B1D56','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OQ' and defect_cause_cd in ('A','B','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '5754701D-9C70-4185-A0B1-EC1D1BEFDC4A','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OQ' and defect_cause_cd in ('A','B','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '10BDEE15-E5C2-426D-8636-FE4DEA7ACF20','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OQ' and defect_cause_cd in ('A','B','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '2B783DCB-4AD3-4223-987A-2F1D1F19FFE7','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OQ' and defect_cause_cd in ('A','B','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '80EC3668-31E8-45C9-9707-96AAC9DFF8F4','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OQ' and defect_cause_cd in ('A','B','E')			
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '49DCFA9C-AE08-4A46-AA92-61935359EBDF','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OQ' and defect_cause_cd in ('A','B','C','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'E20533CA-60AA-4FC4-8793-156AD992F30A','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OQ' and defect_cause_cd in ('A','B','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '552AF920-506F-4E88-B296-80B7A6C2BD93','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OQ' and defect_cause_cd in ('A','B','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'AA60D043-D266-4E6E-B8ED-04916706C32C','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OQ' and defect_cause_cd in ('A','B','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'E38E8E59-498E-4C2A-B4E7-997FD0B1EE3C','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OQ' and defect_cause_cd in ('A','B','C','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '20F1288F-D923-49E3-A23B-A0482648FA36','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OQ' and defect_cause_cd in ('A','B','C','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '89E5F5CA-382F-4AE4-855B-F24B21C3A7F5','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OQ' and defect_cause_cd in ('A','B','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '9C3ADE8C-8203-45B7-B7AC-534EDAB49FE0','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OQ' and defect_cause_cd in ('A','B','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'EE86FA3B-E73A-4AF4-8E66-4884BADE6912','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OQ' and defect_cause_cd in ('A','B','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '7A83CCF8-265A-480A-BE5F-CC5B45EC795D','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OQ' and defect_cause_cd in ('A','B','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '7414CDB6-A07A-4FA1-BDA5-3ABEC2C83D30','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OQ' and defect_cause_cd in ('A','B','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '0773E623-43ED-4719-A12C-20D4D61BB9CB','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OQ' and defect_cause_cd in ('A','B','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '01C44A6F-9358-40FA-B3A7-F13DE1887FEA','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OQ' and defect_cause_cd in ('A','B','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'F70CCF79-FED8-4193-9A98-95C8FC3D267B','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OQ' and defect_cause_cd in ('A','B','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '657BA52A-2987-41AC-8092-A00FF53A2AC2','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OQ' and defect_cause_cd in ('A','B','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '8D128BC1-740B-44C8-AE40-5E5EEA131076','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OQ' and defect_cause_cd in ('A','B','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '08CA85AE-1E3D-4735-8E72-F63031E5A702','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OQ' and defect_cause_cd in ('A','B','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select 'CC45C882-AFBD-4E68-97AA-00B275779892','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OQ' and defect_cause_cd in ('A','B','D','E')
+			insert into QATREE_OUTCOME_DEFECT_CAUSE (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_CAUSE_ID) select '22EF73D9-A045-47B1-A5B9-0E1E6474E3EB','C20225',getdate(),DEFECT_CAUSE_ID from DEFECT_CAUSE where DEFECT_CD = 'OQ' and defect_cause_cd in ('A','B','E')
+			
+		]]>
+        </sql>
+    </changeSet>				
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_3008_050" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select 'D452F489-AF12-4890-9A03-021A0DC81881','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OQ' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '43C80F0E-FAE3-4A59-88FB-995A550B2240','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OQ' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select 'C0DEFA77-1EA1-4159-8D29-89294440DBCB','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OQ' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '3511F4EF-B2E6-4EB3-97BE-2E936B8F15E5','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OQ' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '83C811B1-6CAC-4F53-8610-29225792C127','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OQ' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '3B0C581E-C075-4F76-B7B8-6065885B1D56','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OQ' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '5754701D-9C70-4185-A0B1-EC1D1BEFDC4A','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OQ' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '10BDEE15-E5C2-426D-8636-FE4DEA7ACF20','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OQ' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '2B783DCB-4AD3-4223-987A-2F1D1F19FFE7','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OQ' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '80EC3668-31E8-45C9-9707-96AAC9DFF8F4','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OQ' 			
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '49DCFA9C-AE08-4A46-AA92-61935359EBDF','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OQ' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select 'E20533CA-60AA-4FC4-8793-156AD992F30A','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OQ' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '552AF920-506F-4E88-B296-80B7A6C2BD93','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OQ' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select 'AA60D043-D266-4E6E-B8ED-04916706C32C','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OQ' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select 'E38E8E59-498E-4C2A-B4E7-997FD0B1EE3C','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OQ' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '20F1288F-D923-49E3-A23B-A0482648FA36','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OQ' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '89E5F5CA-382F-4AE4-855B-F24B21C3A7F5','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OQ' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '9C3ADE8C-8203-45B7-B7AC-534EDAB49FE0','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OQ' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select 'EE86FA3B-E73A-4AF4-8E66-4884BADE6912','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OQ' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '7A83CCF8-265A-480A-BE5F-CC5B45EC795D','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OQ' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '7414CDB6-A07A-4FA1-BDA5-3ABEC2C83D30','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OQ' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '0773E623-43ED-4719-A12C-20D4D61BB9CB','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OQ' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '01C44A6F-9358-40FA-B3A7-F13DE1887FEA','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OQ' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select 'F70CCF79-FED8-4193-9A98-95C8FC3D267B','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OQ' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '657BA52A-2987-41AC-8092-A00FF53A2AC2','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OQ' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '8D128BC1-740B-44C8-AE40-5E5EEA131076','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OQ' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '08CA85AE-1E3D-4735-8E72-F63031E5A702','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OQ' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select 'CC45C882-AFBD-4E68-97AA-00B275779892','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OQ' 
+			insert into QATREE_OUTCOME_DEFECT_SEVERITY (QATREE_OUTCOME_ID, CREATED_BY, CREATED_TS, DEFECT_SEVERITY_ID) select '22EF73D9-A045-47B1-A5B9-0E1E6474E3EB','C20225',getdate(),DEFECT_SEVERITY_ID from DEFECT_SEVERITY where DEFECT_CD = 'OQ' 
+			
+		]]>
+        </sql>
+    </changeSet>								
+</databaseChangeLog>    

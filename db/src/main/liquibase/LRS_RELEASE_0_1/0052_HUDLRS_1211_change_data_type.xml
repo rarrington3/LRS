@@ -1,0 +1,29 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1211_change_data_type_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			EXEC sp_rename 'loan_selection_case_summary.yr_mo_const_cmpltd', 'YR_MO_CONST_CMPLTD', 'COLUMN'     
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1211_change_data_type_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table loan_selection_case_summary alter column ASSETS_AFTER_CLOSING numeric(9,2) null
+			alter table loan_selection_case_summary alter column TOT_ASSETS numeric(9,2) null
+			alter table loan_selection_case_summary alter column BORR_HSNG_EXP numeric(9,2) null
+			alter table loan_selection_case_summary alter column TOT_MNTHLY_MTG_PYMT numeric(9,2) null
+			alter table loan_selection_case_summary alter column TOT_CLSNG_CSTS numeric(9,2) null
+			alter table loan_selection_case_summary alter column TOT_FIXED_PYMT numeric(9,2) null
+
+			alter table rvw_lvl_case_summary alter column ASSETS_AFTER_CLOSING numeric(9,2) null
+			alter table rvw_lvl_case_summary alter column TOT_ASSETS numeric(9,2) null
+			alter table rvw_lvl_case_summary alter column BORR_HSNG_EXP numeric(9,2) null
+			alter table rvw_lvl_case_summary alter column TOT_MNTHLY_MTG_PYMT numeric(9,2) null
+			alter table rvw_lvl_case_summary alter column TOT_CLSNG_CSTS numeric(9,2) null
+			alter table rvw_lvl_case_summary alter column TOT_FIXED_PYMT numeric(9,2) null	
+		]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>    

@@ -1,0 +1,51 @@
+<a  name="top"></a>
+<h4 class="view-title">LOAN ATTRIBUTES</h4>
+<div class="sub-title">You can update any editable fields that require adjustments. If you modify a data point, click "Update" to confirm.</div>
+    <div class="button-bar">
+        <div class="links">
+            <template ngFor let-group [ngForOf]="fieldGroups" let-i="index">
+                <a href="javascript:void(0);" type="button" (click)="onAnchorClick($event, group.label.toLowerCase())" class="group-link">{{group.label}}</a>
+                <span class="separator" [style.display]="i < fieldGroups.length -1 ? 'inline-block' : 'none'"> | </span>
+            </template>
+        </div>
+        <div *ngIf="!isReadOnly" class="button"><button class="btn btn-default save-btn" (click)="onSubmit()" [disabled]="!globalStateService.loanAttributesEdited">Update Tree</button></div>
+    </div>
+
+<div class="section-divider"><hr/></div>
+<div *ngIf="!isReadOnly" class="legend">* Changes</div>
+ <!-- Loan Attribute Group -->
+<div *ngFor="let group of fieldGroups">
+    <a name="{{group.label.toLowerCase()}}"></a>
+    <div class="group-title">{{group.label}} Data</div>
+
+	<div>
+
+		<table class="table  table-bordered">
+
+			<thead>
+			<tr>
+				<th scope="col" width="35%">Field Name</th>
+				<th scope="col" width="20%">At Underwriting</th>
+				<th scope="col" width="20%">At Endorsement</th>
+				<th scope="col" width="25%">File Data</th>
+			</tr>
+			</thead>
+
+			<tbody>
+				<tr *ngFor="let field of group.fields" [class.edited]="form.controls[field.fieldId].dirty">
+					<td scope="row"  class="name" width="35%">{{field.name}}</td>
+					<td width="20%">{{getArrayValues(field.valuesAtUnderwriting, field.type, field.selectChoices)}}</td>
+					<td width="20%">{{getArrayValues(field.valuesAtEndorsement, field.type, field.selectChoices)}}</td>
+					<td width="25%" class="control"><div class="field-wrapper"><loan-summary-field [field]="field"  [form]="form"></loan-summary-field></div> <div class="changed-icon">*</div></td>
+				</tr>
+
+			</tbody>
+		</table>
+
+        <div class="section-divider table-footer">
+            <a href="javascript:void(0);" (click)="onAnchorClick($event, 'top')" class="group-link">Back to Top</a>
+            <hr/>
+        </div>
+
+    </div>
+</div>

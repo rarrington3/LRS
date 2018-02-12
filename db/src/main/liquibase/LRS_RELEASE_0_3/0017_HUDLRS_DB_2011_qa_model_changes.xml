@@ -1,0 +1,253 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="TEST"  author="astrauss" id="HUDLRS_2011_alter_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table defect_severity add EXAMPLE_TEXT varchar(1024)
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="TEST"  author="astrauss" id="HUDLRS_2011_insert_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Defect Severity Tier Admin','Example Text','EXAMPLE_TEXT','C20225', getdate(),'STATIC','Example Text')			
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="TEST"  author="astrauss" id="HUDLRS_2011_alter_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table DICT_METADATA_FIELD_DEFECT add ORDER_NUMBER int null
+			alter table DICT_METADATA_FIELD_MODEL add ORDER_NUMBER int null			
+			
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="TEST"  author="astrauss" id="HUDLRS_2011_update_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update DICT_METADATA_FIELD_MODEL
+			set order_number = b.order_num
+			from
+			(select FIELD_NAME, ROW_NUMBER() over(order by field_name) as order_num from DICT_METADATA_FIELD_MODEL ) b
+			where DICT_METADATA_FIELD_MODEL.FIELD_NAME = b.FIELD_NAME			
+		
+			update DICT_METADATA_FIELD_DEFECT
+			set order_number = b.order_num
+			from
+			(select field_name, ROW_NUMBER() over(order by field_name) as order_num from DICT_METADATA_FIELD_DEFECT where DICT_METADATA_FIELD_DEFECT.DEFECT_CD = 'BA' ) b
+			where DICT_METADATA_FIELD_DEFECT.DEFECT_CD = 'BA'
+			and DICT_METADATA_FIELD_DEFECT.FIELD_NAME = b.FIELD_NAME
+
+			update DICT_METADATA_FIELD_DEFECT
+			set order_number = b.order_num
+			from
+			(select field_name, ROW_NUMBER() over(order by field_name) as order_num from DICT_METADATA_FIELD_DEFECT where DICT_METADATA_FIELD_DEFECT.DEFECT_CD = 'BE' ) b
+			where DICT_METADATA_FIELD_DEFECT.DEFECT_CD = 'BE'
+			and DICT_METADATA_FIELD_DEFECT.FIELD_NAME = b.FIELD_NAME
+
+			update DICT_METADATA_FIELD_DEFECT
+			set order_number = b.order_num
+			from
+			(select field_name, ROW_NUMBER() over(order by field_name) as order_num from DICT_METADATA_FIELD_DEFECT where DICT_METADATA_FIELD_DEFECT.DEFECT_CD = 'BI' ) b
+			where DICT_METADATA_FIELD_DEFECT.DEFECT_CD = 'BI'
+			and DICT_METADATA_FIELD_DEFECT.FIELD_NAME = b.FIELD_NAME
+
+			update DICT_METADATA_FIELD_DEFECT
+			set order_number = b.order_num
+			from
+			(select field_name, ROW_NUMBER() over(order by field_name) as order_num from DICT_METADATA_FIELD_DEFECT where DICT_METADATA_FIELD_DEFECT.DEFECT_CD = 'LA' ) b
+			where DICT_METADATA_FIELD_DEFECT.DEFECT_CD = 'LA'
+			and DICT_METADATA_FIELD_DEFECT.FIELD_NAME = b.FIELD_NAME
+
+			update DICT_METADATA_FIELD_DEFECT
+			set order_number = b.order_num
+			from
+			(select field_name, ROW_NUMBER() over(order by field_name) as order_num from DICT_METADATA_FIELD_DEFECT where DICT_METADATA_FIELD_DEFECT.DEFECT_CD = 'LP' ) b
+			where DICT_METADATA_FIELD_DEFECT.DEFECT_CD = 'LP'
+			and DICT_METADATA_FIELD_DEFECT.FIELD_NAME = b.FIELD_NAME
+
+			update DICT_METADATA_FIELD_DEFECT
+			set order_number = b.order_num
+			from
+			(select field_name, ROW_NUMBER() over(order by field_name) as order_num from DICT_METADATA_FIELD_DEFECT where DICT_METADATA_FIELD_DEFECT.DEFECT_CD = 'ME' ) b
+			where DICT_METADATA_FIELD_DEFECT.DEFECT_CD = 'ME'
+			and DICT_METADATA_FIELD_DEFECT.FIELD_NAME = b.FIELD_NAME
+
+			update DICT_METADATA_FIELD_DEFECT
+			set order_number = b.order_num
+			from
+			(select field_name, ROW_NUMBER() over(order by field_name) as order_num from DICT_METADATA_FIELD_DEFECT where DICT_METADATA_FIELD_DEFECT.DEFECT_CD = 'PA' ) b
+			where DICT_METADATA_FIELD_DEFECT.DEFECT_CD = 'PA'
+			and DICT_METADATA_FIELD_DEFECT.FIELD_NAME = b.FIELD_NAME
+
+			update DICT_METADATA_FIELD_DEFECT
+			set order_number = b.order_num
+			from
+			(select field_name, ROW_NUMBER() over(order by field_name) as order_num from DICT_METADATA_FIELD_DEFECT where DICT_METADATA_FIELD_DEFECT.DEFECT_CD = 'PE' ) b
+			where DICT_METADATA_FIELD_DEFECT.DEFECT_CD = 'PE'
+			and DICT_METADATA_FIELD_DEFECT.FIELD_NAME = b.FIELD_NAME
+
+			update DICT_METADATA_FIELD_DEFECT
+			set order_number = b.order_num
+			from
+			(select field_name, ROW_NUMBER() over(order by field_name) as order_num from DICT_METADATA_FIELD_DEFECT where DICT_METADATA_FIELD_DEFECT.DEFECT_CD = 'SD' ) b
+			where DICT_METADATA_FIELD_DEFECT.DEFECT_CD = 'SD'
+			and DICT_METADATA_FIELD_DEFECT.FIELD_NAME = b.FIELD_NAME
+
+			update DICT_METADATA_FIELD_DEFECT
+			set order_number = b.order_num
+			from
+			(select field_name, ROW_NUMBER() over(order by field_name) as order_num from DICT_METADATA_FIELD_DEFECT where DICT_METADATA_FIELD_DEFECT.DEFECT_CD = 'SG' ) b
+			where DICT_METADATA_FIELD_DEFECT.DEFECT_CD = 'SG'
+			and DICT_METADATA_FIELD_DEFECT.FIELD_NAME = b.FIELD_NAME
+
+			update DICT_METADATA_FIELD_DEFECT
+			set order_number = b.order_num
+			from
+			(select field_name, ROW_NUMBER() over(order by field_name) as order_num from DICT_METADATA_FIELD_DEFECT where DICT_METADATA_FIELD_DEFECT.DEFECT_CD = 'SL' ) b
+			where DICT_METADATA_FIELD_DEFECT.DEFECT_CD = 'SL'
+			and DICT_METADATA_FIELD_DEFECT.FIELD_NAME = b.FIELD_NAME
+
+			update DICT_METADATA_FIELD_DEFECT
+			set order_number = b.order_num
+			from
+			(select field_name, ROW_NUMBER() over(order by field_name) as order_num from DICT_METADATA_FIELD_DEFECT where DICT_METADATA_FIELD_DEFECT.DEFECT_CD = 'SO' ) b
+			where DICT_METADATA_FIELD_DEFECT.DEFECT_CD = 'SO'
+			and DICT_METADATA_FIELD_DEFECT.FIELD_NAME = b.FIELD_NAME
+		
+			
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="TEST"  author="astrauss" id="HUDLRS_2011_insert_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Dictionary MetaData Field Defect','Order Number','ORDER_NUMBER','C20225', getdate(),'STATIC','Order Number')			
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Dictionary MetaData Field Model','Order Number','ORDER_NUMBER','C20225', getdate(),'STATIC','Order Number')						
+		]]>
+        </sql>
+    </changeSet>
+	    <changeSet context="TEST"  author="astrauss" id="HUDLRS_2011_alter_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table QA_MODEL_INCOME_SOURCES add DESCRIPTION varchar(50) null
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="TEST"  author="astrauss" id="HUDLRS_2011_UPDATE_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+
+			update QA_MODEL_INCOME_SOURCES SET DESCRIPTION = 'Standard Employment', QUESTION_REF_ID_CSV = 'BI.040,BI.041,BI.042,BI.043,BI.045,BI.055,BI.056,BI.057'                                                  WHERE INCOME_SOURCE_CD = '1'
+			update QA_MODEL_INCOME_SOURCES SET DESCRIPTION = 'Part-time and Seasonal Employment', QUESTION_REF_ID_CSV = 'BI.040,BI.041,BI.042,BI.043,BI.045,BI.055,BI.056,BI.057'                                    WHERE INCOME_SOURCE_CD = '2'
+			update QA_MODEL_INCOME_SOURCES SET DESCRIPTION = 'Overtime, Bonus, and Commission Income', QUESTION_REF_ID_CSV = 'BI.040,BI.041,BI.042,BI.043,BI.045,BI.055,BI.056,BI.057'                               WHERE INCOME_SOURCE_CD = '3'
+			update QA_MODEL_INCOME_SOURCES SET DESCRIPTION = 'Self-Employment Income', QUESTION_REF_ID_CSV = 'BI.040,BI.041,BI.042,BI.043,BI.044,BI.045,BI.046,BI.047,BI.055,BI.056,BI.057'                          WHERE INCOME_SOURCE_CD = '4'
+			update QA_MODEL_INCOME_SOURCES SET DESCRIPTION = 'Pension and Retirement Income', QUESTION_REF_ID_CSV = 'BI.043,BI.048,BI.049,BI.051,BI.052,BI.053,BI.055,BI.056,BI.057'                                 WHERE INCOME_SOURCE_CD = '5'
+			update QA_MODEL_INCOME_SOURCES SET DESCRIPTION = 'Rental Income', QUESTION_REF_ID_CSV = 'BI.040,BI.044,BI.055,BI.056,BI.057'                                                                             WHERE INCOME_SOURCE_CD = '6'
+			update QA_MODEL_INCOME_SOURCES SET DESCRIPTION = 'Social Security Income', QUESTION_REF_ID_CSV = 'BI.043,BI.044,BI.050,BI.053,BI.055,BI.056,BI.057'                                                      WHERE INCOME_SOURCE_CD = '7'
+			update QA_MODEL_INCOME_SOURCES SET DESCRIPTION = 'Other', QUESTION_REF_ID_CSV = 'BI.040,BI.041,BI.042,BI.044,BI.045,BI.046,BI.047,BI.048,BI.049,BI.050,BI.051,BI.052,BI.053,BI.054,BI.055,BI.056,BI.057' WHERE INCOME_SOURCE_CD = '8'
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="TEST"  author="astrauss" id="HUDLRS_2011_alter_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table QA_MODEL_INCOME_SOURCES alter column DESCRIPTION varchar(50) not null
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="TEST"  author="astrauss" id="HUDLRS_2011_alter_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table QATREE add ENABLE_PRE_QUAL_QUESTION_IND char(1) not null default 'N'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="TEST"  author="astrauss" id="HUDLRS_2011_alter_0006" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table REMEDY_TYPE_REF add CODE CHAR(2) NULL
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="TEST"  author="astrauss" id="HUDLRS_2011_UPDATE_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update REMEDY_TYPE_REF set CODE = '01' where remedy_type_description = 'Borrower Refund'
+			update REMEDY_TYPE_REF set CODE = '02' where remedy_type_description = 'Principal Reduction'
+			update REMEDY_TYPE_REF set CODE = '03' where remedy_type_description = 'Reimburse FHA'			
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="TEST"  author="astrauss" id="HUDLRS_2011_alter_0007" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table REMEDY_TYPE_REF alter column CODE CHAR(2) NULL
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="TEST"  author="astrauss" id="HUDLRS_2011_create_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create table DEFECT_REMEDY_TYPE
+			(DEFECT_ID uniqueidentifier not null,
+			REMEDY_TYPE_ID uniqueidentifier not null,
+			CREATED_BY CHAR(6) NULL,
+			CREATED_TS DATETIME NULL,
+			UPDATED_BY CHAR(6) NULL,
+			UPDATED_TS DATETIME NULL)
+			
+			alter table DEFECT_REMEDY_TYPE add constraint DEFECT_REMEDY_TYPE_PK primary key (DEFECT_ID,REMEDY_TYPE_ID)
+			
+			alter table DEFECT_REMEDY_TYPE add constraint DEFECT_REMEDY_TYPE_FK_DEFECT_ID foreign key(DEFECT_ID) references DEFECT(DEFECT_ID)
+
+			alter table DEFECT_REMEDY_TYPE add constraint DEFECT_REMEDY_TYPE_FK_REMEDY_TYPE_ID foreign key(REMEDY_TYPE_ID) references REMEDY_TYPE_REF(REMEDY_TYPE_ID)			
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="TEST"  author="astrauss" id="HUDLRS_2011_insert_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into defect_remedy_type (defect_id, remedy_type_id, created_by,created_ts)
+			select defect_id, remedy_type_id,'C20225',getdate()
+			from defect, remedy_type_ref
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="TEST"  author="astrauss" id="HUDLRS_2011_insert_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into dict_metadata_entity(ENTITY_NAME, DB_VIEW_OR_TABLE,CREATED_BY,CREATED_TS) values('Defect Remedy Type','DEFECT_REMEDY_TYPE','C20225',getdate())			  
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Defect Remedy Type','Defect ID','DEFECT_ID','C20225', getdate(),'STATIC','Defect ID')
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Defect Remedy Type','Remedy Type ID','REMEDY_TYPE_ID','C20225', getdate(),'STATIC','Remedy Type ID')
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Remedy Type Reference','Remedy Type Code','CODE','C20225', getdate(),'STATIC','Remedy Type Code')
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Question Answer Tree','Enable Pre Qualification Question Ind','ENABLE_PRE_QUAL_QUESTION_IND','C20225', getdate(),'STATIC','Enable Pre Qualification Question Ind')			
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="TEST"  author="astrauss" id="HUDLRS_2011_alter_0008" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table QA_MODEL_INCOME_SOURCES drop constraint QA_MODEL_INCOME_SOURCES_PK
+			alter table QA_MODEL_INCOME_SOURCES drop constraint QAMODELINCOMESRCTOQUESTION
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="TEST"  author="astrauss" id="HUDLRS_2011_rename_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			EXEC sp_rename 'QA_MODEL_INCOME_SOURCES', 'QA_MODEL_PREQUAL'
+			EXEC sp_rename 'QA_MODEL_PREQUAL.INCOME_SOURCE_CD', 'PRE_QUAL_POTENTIAL_ANSWER_CD'			
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="TEST"  author="astrauss" id="HUDLRS_2011_alter_0009" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table QA_MODEL_PREQUAL add constraint QA_MODEL_PREQUAL_FK_QUESTION_ID foreign key (QUESTION_ID) references question_reference(QUESTION_ID)
+			alter table QA_MODEL_PREQUAL add constraint QA_MODEL_INCOME_SOURCES_PK primary key (QUESTION_ID,PRE_QUAL_POTENTIAL_ANSWER_CD)			
+		]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>    

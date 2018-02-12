@@ -1,0 +1,74 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1634_update_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into RVW_LEVEL_ITERATION_TIMEFRAME (ITERATION_NUMBER, REVIEW_DAYS_INTERATION_1, REVIEW_DAYS_INTERATION_2, REVIEW_DAYS_INTERATION_3, REVIEW_DAYS_INTERATION_4, REVIEW_DAYS_INTERATION_5, 
+			RESPONSE_DAYS_INTERATION_1, RESPONSE_DAYS_INTERATION_2, RESPONSE_DAYS_INTERATION_3, RESPONSE_DAYS_INTERATION_4, RESPONSE_DAYS_INTERATION_5, SLCTN_REASON_ID, REVIEW_TYPE_ID, REVIEW_LEVEL_ID)
+			select 5, 13,13,13,13,13, 
+			8,8,8,8,8, SLCTN_REASON_ID, REVIEW_TYPE_ID, 'F9059505-7D38-4623-BB0F-3EF5E7BB17C7'
+			from RVW_LEVEL_ITERATION_TIMEFRAME where review_type_id = '0EFDD262-B47C-4D04-9968-22C04FEE0FAD' and REVIEW_LEVEL_ID = '6EE39634-90A4-4DE2-8C7A-C5A6B3114B08'
+
+			update REVIEW_LEVEL_REF
+			set DESCRIPTION = 'Forced Indemnification'
+			where DESCRIPTION = 'Forced Indemnificaition'
+
+			update A 
+			set A.ITERATION_NUMBER = 1
+			from RVW_LEVEL_ITERATION_TIMEFRAME A, REVIEW_LEVEL_REF B
+			where A.REVIEW_LEVEL_ID = B.REVIEW_LEVEL_ID and B.DESCRIPTION = 'Initial'
+
+			update A 
+			set A.ITERATION_NUMBER = 5
+			from RVW_LEVEL_ITERATION_TIMEFRAME A, REVIEW_LEVEL_REF B
+			where A.REVIEW_LEVEL_ID = B.REVIEW_LEVEL_ID and B.DESCRIPTION = 'Mitigation'
+
+			update A 
+			set A.ITERATION_NUMBER = 4
+			from RVW_LEVEL_ITERATION_TIMEFRAME A, REVIEW_LEVEL_REF B
+			where A.REVIEW_LEVEL_ID = B.REVIEW_LEVEL_ID and B.DESCRIPTION = 'Escalation'
+
+			update A 
+			set A.ITERATION_NUMBER = 4
+			from RVW_LEVEL_ITERATION_TIMEFRAME A, REVIEW_LEVEL_REF B
+			where A.REVIEW_LEVEL_ID = B.REVIEW_LEVEL_ID and B.DESCRIPTION = 'HQ Escalation'
+
+			update A 
+			set A.ITERATION_NUMBER = 1
+			from RVW_LEVEL_ITERATION_TIMEFRAME A, REVIEW_LEVEL_REF B
+			where A.REVIEW_LEVEL_ID = B.REVIEW_LEVEL_ID and B.DESCRIPTION = 'Indemnification'
+
+			update A 
+			set A.ITERATION_NUMBER = 1
+			from RVW_LEVEL_ITERATION_TIMEFRAME A, REVIEW_LEVEL_REF B
+			where A.REVIEW_LEVEL_ID = B.REVIEW_LEVEL_ID and B.DESCRIPTION = 'Forced Indemnification'
+
+			update A 
+			set A.RESPONSE_DAYS_INTERATION_5 = 0, A.REVIEW_DAYS_INTERATION_5 = 0
+			from RVW_LEVEL_ITERATION_TIMEFRAME A WHERE A.ITERATION_NUMBER < 5
+
+			update A 
+			set A.RESPONSE_DAYS_INTERATION_4 = 0, A.REVIEW_DAYS_INTERATION_4 = 0
+			from RVW_LEVEL_ITERATION_TIMEFRAME A WHERE A.ITERATION_NUMBER < 4
+
+			update A 
+			set A.RESPONSE_DAYS_INTERATION_3 = 0, A.REVIEW_DAYS_INTERATION_3 = 0
+			from RVW_LEVEL_ITERATION_TIMEFRAME A WHERE A.ITERATION_NUMBER < 3
+
+			update A 
+			set A.RESPONSE_DAYS_INTERATION_2 = 0, A.REVIEW_DAYS_INTERATION_2 = 0
+			from RVW_LEVEL_ITERATION_TIMEFRAME A WHERE A.ITERATION_NUMBER < 2
+		]]>
+        </sql>
+    </changeSet>	
+ </databaseChangeLog>
+
+
+
+
+
+
+
+
+
+

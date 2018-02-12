@@ -1,0 +1,36 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3205_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			  update a
+			  set RESPONSE_DAYS_ITERATION_2 = 0,
+				  RESPONSE_DAYS_ITERATION_3 = 0,
+				  RESPONSE_DAYS_ITERATION_4 = 0,
+				  RESPONSE_DAYS_ITERATION_5 = 0
+			  from REVIEW_LEVEL_ITERATION_TIMEFRAME a,
+				   REVIEW_LEVEL_TYPE_REF b
+			  where a.REVIEW_LEVEL_TYPE_ID = b.REVIEW_LEVEL_TYPE_ID
+				and b.REVIEW_LEVEL_CD in ('MITG','ESCL','HQES')
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3205_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			  update a
+			  set REVIEW_DAYS_ITERATION_2 = 0,
+				  REVIEW_DAYS_ITERATION_3 = 0,
+				  REVIEW_DAYS_ITERATION_4 = 0,
+				  REVIEW_DAYS_ITERATION_5 = 0,
+				  REVIEW_DAYS_ITERATION_6 = 0
+			  from REVIEW_LEVEL_ITERATION_TIMEFRAME a,
+				   REVIEW_LEVEL_TYPE_REF b
+			  where a.REVIEW_LEVEL_TYPE_ID = b.REVIEW_LEVEL_TYPE_ID
+				and b.REVIEW_LEVEL_CD in ('MITG','ESCL','HQES')
+		]]>
+        </sql>
+    </changeSet>		
+</databaseChangeLog>    
+
+

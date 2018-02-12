@@ -1,0 +1,36 @@
+@import '../../bootstrap/_variables';
+
+:host-context {
+    /* styles should be scoped under host-context */
+
+    .save-bar-wrapper {
+        position: fixed;
+        display: none;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: 0;
+        border-radius: 0;
+        background-color: #92c684;
+        border-color: #92c684;
+        transition: transform .25s ease-out;
+        transform: translate(0, 45px);
+
+        &.display {
+            display: block;
+        }
+
+        &.display-after {
+            transform: translate(0, 0);
+        }
+
+        span {
+            font-weight: bold;
+        }
+
+        .btn {
+            min-width: 80px;
+            margin-left: 5px;
+        }
+    }
+}

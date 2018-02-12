@@ -1,0 +1,10 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="jordanchavez@kpmg.com" id="HUDLRS_2738_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+UPDATE DICT_METADATA_FIELD SET DB_COLUMN = 'PRODUCT_TYPE_CD' WHERE ENTITY_NAME = 'Case Summary for Review Level' AND DB_COLUMN = 'PRODUCT_TYPE_ID'
+		]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>    

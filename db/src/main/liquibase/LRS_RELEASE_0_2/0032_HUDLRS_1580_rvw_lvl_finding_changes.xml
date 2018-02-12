@@ -1,0 +1,43 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1580_rename_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			EXEC sp_rename 'RVW_LVL_FINDING.UNACCEPTABLE_IND', 'RATING_CD', 'COLUMN' 	
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1580_update_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update DICT_METADATA_FIELD
+			set DB_COLUMN = 'RATING_CD',
+				FIELD_NAME = 'Rating Code'
+			where FIELD_NAME = 'Unacceptable Indicator'
+			  and DB_COLUMN = 'UNACCEPTABLE_IND'
+			  and ENTITY_NAME = 'Review Level Finding'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1580_insert_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into LRS_GEN_LOOKUP (LOOKUP_ENTITY, LOOKUP_FIELD, LOOKUP_CODE, LOOKUP_DESCRIPTION, CREATED_BY, CREATED_TS) values('Review Level Finding','Rating Code','U','Unacceptable','C20225',getdate())
+			insert into LRS_GEN_LOOKUP (LOOKUP_ENTITY, LOOKUP_FIELD, LOOKUP_CODE, LOOKUP_DESCRIPTION, CREATED_BY, CREATED_TS) values('Review Level Finding','Rating Code','D','Deficient','C20225',getdate())
+			insert into LRS_GEN_LOOKUP (LOOKUP_ENTITY, LOOKUP_FIELD, LOOKUP_CODE, LOOKUP_DESCRIPTION, CREATED_BY, CREATED_TS) values('Review Level Finding','Rating Code','R','Remediated','C20225',getdate())
+			insert into LRS_GEN_LOOKUP (LOOKUP_ENTITY, LOOKUP_FIELD, LOOKUP_CODE, LOOKUP_DESCRIPTION, CREATED_BY, CREATED_TS) values('Review Level Finding','Rating Code','M','Mitigated','C20225',getdate())
+			insert into LRS_GEN_LOOKUP (LOOKUP_ENTITY, LOOKUP_FIELD, LOOKUP_CODE, LOOKUP_DESCRIPTION, CREATED_BY, CREATED_TS) values('Review Level Finding','Rating Code','C','Conforming','C20225',getdate())
+		]]>
+        </sql>
+    </changeSet>
+ </databaseChangeLog>
+
+
+
+
+
+
+
+
+
+

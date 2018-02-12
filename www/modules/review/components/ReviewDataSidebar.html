@@ -1,0 +1,71 @@
+<ul class="list-group ">
+	<form  #reviewDataForm="ngForm">
+		<li class="list-group-item clearfix" *ngFor="let field of displayedReviewFields">
+			<div class="field-name pull-left">{{field.name}}</div> <div class="field-value pull-right">{{field.values}}</div>
+		</li>
+
+		<li class="list-group-item clearfix" *ngIf="currentReview?.batchId">
+					<span class="cases-in-batch">
+						<div class="field-title">Cases in Batch</div>
+						<div class="field-title">
+							<button class="btn btn-link" (click)="onGoToBatchSummaryClick()">Go to Batch Summary</button>
+						</div>
+					 </span>
+			<div class="field-value pull-right cases-select">
+				<select  class="form-control input-sm"  name="selectedCaseReviewId" (ngModelChange)="onCaseNumberSelect($event)" [(ngModel)]="selectedCaseReviewId">
+					<option *ngFor="let value of casesInBatch" [value]="value.reviewId">{{value.caseNumber}}</option>
+				</select>
+			</div>
+		</li>
+		<li  class="list-group-item clearfix footer-links">
+			<button class="btn btn-link" (click)="openExternalURL('E_CASE_BINDER')">eCaseBinder</button>
+			<span>|</span>
+			<button class="btn btn-link" (click)="openExternalURL('E_APPRAISAL')">eAppraisal</button>
+			<span>|</span>
+			<button class="btn btn-link" (click)="openExternalURL('TOTAL_SCORE_EMULATOR')">TOTAL Emulator</button>
+		</li>
+        <li *ngIf="lenderSelfReport" class="list-group-item clearfix">
+            <div class="self-report-details">
+                <div class="sr-label">Lender Self-Report Information</div>
+
+                <div class="sr-item">
+                    <span class="sr-label">Defect Areas Identified</span>
+                    <ul class="sr-list">
+                        <li *ngFor="let defectArea of lenderSelfReport.defectAreas">- {{findDefectArea(defectArea)}}</li>
+                    </ul>
+                </div>
+
+                <div class="sr-item">
+                    <div class="sr-inline pad-right">
+                        <span class="sr-label">Fraud Detected</span>
+                        <ul class="sr-list">
+                            <li *ngFor="let fraudType of lenderSelfReport?.typesOfFraud">- {{findFraudType(fraudType)}}</li>
+                        </ul>
+                    </div>
+
+                    <div class="sr-inline">
+                        <div class="sr-label">Fraud Participants</div>
+                        <ul class="sr-list">
+                            <li *ngFor="let participant of lenderSelfReport?.fraudParticipants">- {{findFraudParticipant(participant)}}</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="sr-item">
+                    <span class="sr-label">Findings that led to this Self-Report</span>
+                    <div>{{lenderSelfReport?.descriptionOfFindings}}</div>
+                </div>
+
+                <div class="sr-item">
+                    <span class="sr-label">Corrective Actions taken by Lender</span>
+                    <div>{{lenderSelfReport?.descriptionOfCorrectiveActions}}</div>
+                </div>
+
+                <div class="sr-item">
+                    <div *ngIf="lenderSelfReport?.isCoveredUnderSettlement" class="sr-caveat">Loan <span class="strong">IS</span> Covered under Settlement with HUD</div>
+                    <div *ngIf="!lenderSelfReport?.isCoveredUnderSettlement" class="sr-caveat">Loan <span class="strong">NOT</span> Covered under Settlement with HUD</div>
+                </div>
+            </div>
+        </li>
+	</form>
+</ul>

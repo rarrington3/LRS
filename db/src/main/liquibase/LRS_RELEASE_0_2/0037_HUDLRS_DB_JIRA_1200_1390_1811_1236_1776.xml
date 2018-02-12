@@ -1,0 +1,53 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1200_update_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update SELECTION_PARAMETERS
+			set COUNTS_TWD_MNTHLY_CAPACITY_IND = 'N'
+			where SLCTN_REASON_ID in 
+			('86EC090C-EB80-4C72-BC37-71EE00C4E55E',
+			 '26795599-DC6C-449A-BE7D-432434952429')
+
+			update SELECTION_PARAMETERS
+			set COUNTS_TWD_MNTHLY_CAPACITY_IND = 'Y'
+			where COUNTS_TWD_MNTHLY_CAPACITY_IND is null
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1236_update_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			  update QUESTION_REFERENCE
+			  set QUESTION_DESCRIPTION = 'Do DTI/compensating factors meet requirements?'
+			  where QUESTION_ID = '981B6617-DBEA-4208-9E5E-5AE8293AB9E2'
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1811_alter_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table SELECT_REQUEST_LENDER_MON alter column MODEL_ID uniqueidentifier null
+			alter table LOAN_SELECTION_PENDING    alter column MODEL_ID uniqueidentifier null
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1776_insert_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into lrs_gen_lookup(LOOKUP_ENTITY, LOOKUP_FIELD, LOOKUP_CODE, LOOKUP_DESCRIPTION,  CREATED_BY, CREATED_TS) values('Review','Review Scope','F','Full','C20225',getdate())
+			insert into lrs_gen_lookup(LOOKUP_ENTITY, LOOKUP_FIELD, LOOKUP_CODE, LOOKUP_DESCRIPTION,  CREATED_BY, CREATED_TS) values('Review','Review Scope','L','Limited','C20225',getdate())
+		]]>
+        </sql>
+    </changeSet>	
+ </databaseChangeLog>
+
+
+
+
+
+
+
+
+
+

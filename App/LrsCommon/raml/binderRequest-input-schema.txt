@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "caseNumber": {
+      "type": "string"
+    },
+    "reason": {
+      "type": "string",
+      "enum": ["PUD","QAD"]
+    },
+    "hoc": {
+      "type": "string",
+      "enum": ["0326","0406","0806","0943","9901"]
+    },
+    "user": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "caseNumber",
+    "reason",
+    "hoc",
+    "user"
+  ]
+}

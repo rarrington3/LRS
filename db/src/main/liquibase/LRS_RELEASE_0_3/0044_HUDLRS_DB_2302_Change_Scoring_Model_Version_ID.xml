@@ -1,0 +1,141 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2302_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table SCORING_MODEL_VERSION add SCORING_MODEL_VERSION_ID uniqueidentifier not null default newid()
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2302_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table SCORING_MODEL_FACTOR add SCORING_MODEL_VERSION_ID uniqueidentifier null
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2302_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update SCORING_MODEL_FACTOR
+			set SCORING_MODEL_VERSION_ID = b.SCORING_MODEL_VERSION_ID
+			from SCORING_MODEL_FACTOR a,
+			     SCORING_MODEL_VERSION b
+			where a.MODEL_ID = b.MODEL_ID
+			  and a.MODEL_VER_NUM = b.MODEL_VER_NUM
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2302_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table SCORING_MODEL_FACTOR alter column SCORING_MODEL_VERSION_ID uniqueidentifier not null
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2302_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE SCORING_MODEL_FACTOR drop CONSTRAINT SCORING_MODEL_FACTOR_FK_MODEL_ID_MODEL_VER_NUM
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2302_0006" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE model_score drop CONSTRAINT MODEL_SCORE_FK_MODEL_ID_MODEL_VER_NUM
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2302_0007" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE SCORING_MODEL_VERSION drop CONSTRAINT SCORING_MODEL_VERSION_PK
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2302_0008" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE SCORING_MODEL_VERSION add CONSTRAINT SCORING_MODEL_VERSION_PK primary key (SCORING_MODEL_VERSION_ID)
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2302_0009" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE SCORING_MODEL_FACTOR  WITH CHECK ADD CONSTRAINT SCORING_MODEL_FACTOR_FK_SCORING_MODEL_VERSION_ID FOREIGN KEY(SCORING_MODEL_VERSION_ID)
+            REFERENCES SCORING_MODEL_VERSION (SCORING_MODEL_VERSION_ID)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2302_0010" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from model_score
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2302_0011" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE model_score drop constraint MODEL_SCORE_UQ_SELECTION_ID_MODEL_ID_MODEL_VER_NUM
+		]]>
+        </sql>
+    </changeSet>					
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2302_0012" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table model_score add SCORING_MODEL_VERSION_ID uniqueidentifier not null
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2302_0013" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE MODEL_SCORE  ADD  CONSTRAINT MODEL_SCORE_FK_SCORING_MODEL_VERSION_ID FOREIGN KEY(SCORING_MODEL_VERSION_ID)
+            REFERENCES SCORING_MODEL_VERSION (SCORING_MODEL_VERSION_ID)
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2302_0014" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create unique index MODEL_SCORE_UQ_SELECTION_ID_SCORING_MODEL_VERSION_ID on MODEL_SCORE (SELECTION_ID, SCORING_MODEL_VERSION_ID)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2302_0015" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE SCORING_MODEL_FACTOR drop CONSTRAINT SCORING_MODEL_FACTORS_PK
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2302_0016" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE SCORING_MODEL_FACTOR add CONSTRAINT SCORING_MODEL_FACTORS_PK primary key (SCORING_FACTOR_ID,SCORING_MODEL_VERSION_ID)
+		]]>
+        </sql>
+    </changeSet>				
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2302_0017" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE SCORING_MODEL_FACTOR drop column MODEL_VER_NUM
+		]]>
+        </sql>
+    </changeSet>			
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_2302_0018" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from DICT_METADATA_FIELD
+			where entity_name = 'Scoring Model Factors'
+			  and db_column = 'MODEL_VER_NUM'			  
+		
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Scoring Model Factors','Scoring Model Version ID','SCORING_MODEL_VERSION_ID','C20225',getdate(),'Scoring Model Version ID')
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Scoring Model Version','Scoring Model Version ID','SCORING_MODEL_VERSION_ID','C20225',getdate(),'Scoring Model Version ID')
+		]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>    

@@ -1,0 +1,17 @@
+{
+    "id": "http://LRS/NameValuePair",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": ["name", "value"],
+    "additionalProperties": false,
+    "properties": {
+        "name": {
+            "description": "The human-readable name for this variable.",
+            "type": "string"
+        },
+        "value": {
+            "description": "The value for this variable.",
+            "type": "string"
+        }
+    }
+}

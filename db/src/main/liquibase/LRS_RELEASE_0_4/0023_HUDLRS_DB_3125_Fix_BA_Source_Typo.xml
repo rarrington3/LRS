@@ -1,0 +1,1181 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create procedure sp_create_qa_model_by_name(
+							@old_model_name varchar(30),
+							@new_model_name varchar(30),
+							@description varchar(255),
+							@login_credential char(6)
+						) as
+							declare @to_qa_model_id uniqueidentifier,
+									@from_qa_model_id uniqueidentifier
+
+							select @from_qa_model_id = qa_model_id
+							from qa_model
+							where model_name = @old_model_name
+							  and created_by = @login_credential
+									
+							insert into qa_model(
+								model_name,
+								version_num,
+								description,
+								created_by,
+								created_ts,
+								updated_by,
+								updated_ts,				
+								qa_model_status_id
+							)
+							values (
+								@new_model_name,
+								(select max(version_num) + 1 from qa_model),
+								@description,
+								@login_credential,
+								getdate(),
+								@login_credential,
+								getdate(),				
+								(select qa_model_status_id from qa_model_status_ref where code = 'D')
+							)
+
+							select @to_qa_model_id = qa_model_id
+							from qa_model
+							where version_num = (select max(version_num) from qa_model)
+
+
+							create table #subject_area
+							(OLD_DICT_METADATA_FIELD_SUBJECT_AREA_ID uniqueidentifier null, 
+							 NEW_DICT_METADATA_FIELD_SUBJECT_AREA_ID uniqueidentifier null default newid(), 
+							 QA_MODEL_ID  uniqueidentifier null, 
+							 SUBJECT_AREA varchar(16) null, 
+							 DISPLAY_ORDER int null, 
+							 CREATED_BY char(6) null, 
+							 CREATED_TS datetime null)
+
+							insert into #subject_area
+							 (OLD_DICT_METADATA_FIELD_SUBJECT_AREA_ID, 
+							  QA_MODEL_ID, 
+							  SUBJECT_AREA, 
+							  DISPLAY_ORDER, 
+							  CREATED_BY, 
+							  CREATED_TS)
+							select DICT_METADATA_FIELD_SUBJECT_AREA_ID, 
+								   @to_qa_model_id, 
+								   SUBJECT_AREA, 
+								   DISPLAY_ORDER, 
+								   @login_credential, 
+								   getdate()
+							 from DICT_METADATA_FIELD_SUBJECT_AREA
+							 where QA_MODEL_ID = @from_qa_model_id
+
+							 insert into DICT_METADATA_FIELD_SUBJECT_AREA
+							 (DICT_METADATA_FIELD_SUBJECT_AREA_ID, 
+							  QA_MODEL_ID, 
+							  SUBJECT_AREA, 
+							  DISPLAY_ORDER, 
+							  CREATED_BY,
+							  CREATED_TS
+							 )
+							 select 
+							  NEW_DICT_METADATA_FIELD_SUBJECT_AREA_ID, 
+							  QA_MODEL_ID, 
+							  SUBJECT_AREA, 
+							  DISPLAY_ORDER, 
+							  CREATED_BY,
+							  CREATED_TS
+							 from #subject_area
+
+							insert into DICT_METADATA_FIELD_MODEL(
+								ENTITY_NAME,
+								FIELD_NAME,
+								QA_MODEL_ID,
+								CREATED_BY,
+								CREATED_TS,
+								ORDER_NUMBER,
+								DICT_METADATA_FIELD_SUBJECT_AREA_ID
+							)
+							select 
+								ENTITY_NAME,
+								FIELD_NAME,
+								@to_qa_model_id,
+								@login_credential,
+								getdate(),
+								ORDER_NUMBER,
+								(select NEW_DICT_METADATA_FIELD_SUBJECT_AREA_ID 
+								 from #subject_area b where a.DICT_METADATA_FIELD_SUBJECT_AREA_ID = b.OLD_DICT_METADATA_FIELD_SUBJECT_AREA_ID)
+							from DICT_METADATA_FIELD_MODEL a 
+							where QA_MODEL_ID = @from_qa_model_id
+
+							create table #t_defect(
+								new_defect_id uniqueidentifier null default newid(),
+								old_defect_id uniqueidentifier null,
+								defect_cd varchar(16) null,
+								description varchar(150) null,
+								relative_order int null
+							)
+
+							insert into #t_defect(
+								old_defect_id,
+								defect_cd,
+								description,
+								relative_order
+							)
+							select
+								defect_id,
+								defect_cd,
+								description,
+								relative_order
+							from defect
+							where qa_model_id = @from_qa_model_id
+
+							insert into defect(
+								defect_id,
+								defect_cd,
+								description,
+								relative_order,
+								qa_model_id,
+								created_by,
+								created_ts
+							)
+							select 
+								new_defect_id,
+								defect_cd,
+								description,
+								relative_order,
+								@to_qa_model_id,
+								@login_credential,
+								getdate()
+							from #t_defect
+
+							insert into DICT_METADATA_FIELD_DEFECT(
+								ENTITY_NAME,
+								FIELD_NAME,
+								DEFECT_ID,
+								DEFECT_CD,
+								ORDER_NUMBER,
+								CREATED_BY,
+								CREATED_TS
+							)
+							select 
+								m.ENTITY_NAME,
+								m.FIELD_NAME,
+								d.new_DEFECT_ID,
+								m.DEFECT_CD,
+								m.ORDER_NUMBER,
+								@login_credential,
+								getdate()
+							from DICT_METADATA_FIELD_DEFECT m, #t_defect d
+							where m.DEFECT_ID = d.old_defect_id
+
+							insert into REVIEW_TYPE_DEFECT(
+								REVIEW_TYPE_ID,
+								DEFECT_ID,
+								ORDER_NUMBER,
+								CREATED_BY,
+								CREATED_TS
+							)
+							select 
+								r.REVIEW_TYPE_ID,
+								d.new_DEFECT_ID,
+								ORDER_NUMBER,
+								@login_credential,
+								getdate()
+							from REVIEW_TYPE_DEFECT r, #t_defect d
+							where r.DEFECT_ID = d.old_defect_id	
+
+							insert into defect_remedy_type(
+								DEFECT_ID,
+								DESCRIPTION,
+								ORDER_NUMBER,
+								CODE,
+								created_by,
+								created_ts
+							)
+							select
+								d.new_defect_id,
+								dr.DESCRIPTION,
+								dr.ORDER_NUMBER,
+								dr.CODE,
+								@login_credential,
+								getdate()
+							from defect_remedy_type dr, #t_defect d
+							where dr.DEFECT_ID = d.old_defect_id							
+
+							create table #t_defect_cause(
+								new_defect_cause_id uniqueidentifier null default newid(),
+								old_defect_cause_id uniqueidentifier null,
+								defect_cause_cd varchar(16) null,
+								new_defect_id uniqueidentifier null,
+								defect_cd varchar(16) null,
+								description varchar(150) null,
+								relative_order int
+							)
+																   
+							insert into #t_defect_cause(
+								old_defect_cause_id,
+								defect_cause_cd,
+								new_defect_id,
+								defect_cd,
+								description,
+								relative_order
+							)
+							select 
+								dc.defect_cause_id,
+								dc.defect_cause_cd,
+								d.new_defect_id,
+								d.defect_cd,
+								dc.description, 
+								dc.relative_order
+							from defect_cause dc, #t_defect d
+							where dc.defect_id = d.old_defect_id
+
+							insert into defect_cause(
+								defect_cause_id,
+								defect_cause_cd,
+								description,
+								defect_id,
+								defect_cd,
+								relative_order,
+								created_by,
+								created_ts
+							)
+							select  
+								new_defect_cause_id,
+								defect_cause_cd,
+								description,
+								new_defect_id,
+								defect_cd,
+								relative_order,
+								@login_credential,
+								getdate()
+							from #t_defect_cause 
+
+							create table #t_defect_source(
+								new_defect_source_id uniqueidentifier null default newid(),
+								old_defect_source_id uniqueidentifier null,
+								defect_source_cd varchar(16) null,
+								new_defect_id uniqueidentifier null,
+								defect_cd varchar(16) null,
+								description varchar(150) null,
+								relative_order int
+							)
+																   
+							insert into #t_defect_source(
+								old_defect_source_id,
+								defect_source_cd,
+								new_defect_id,
+								defect_cd,
+								description,
+								relative_order
+							)
+							select 
+								ds.defect_source_id,
+								ds.defect_source_cd,
+								d.new_defect_id,
+								d.defect_cd,
+								ds.description,
+								ds.relative_order      
+							from defect_source ds, #t_defect d
+							where ds.defect_id = d.old_defect_id
+
+							insert into defect_source(
+								defect_source_id,
+								defect_source_cd,
+								description,
+								defect_id,
+								defect_cd,
+								created_by,
+								created_ts,
+								relative_order
+							)
+							select 
+								new_defect_source_id,
+								defect_source_cd,
+								description,
+								new_defect_id, 
+								defect_cd,
+								@login_credential,
+								getdate(),
+								relative_order
+							from #t_defect_source 
+
+							create table #t_defect_severity(
+								new_defect_severity_id uniqueidentifier null default newid(),
+								old_defect_severity_id uniqueidentifier null,
+								severity_tier_cd varchar(16) null,
+								description varchar(1024) null,
+								new_defect_id uniqueidentifier null,
+								defect_cd varchar(16) null,
+								relative_order int null,
+								example_text varchar(1024) null
+							)
+																   
+							insert into #t_defect_severity(
+								old_defect_severity_id,
+								severity_tier_cd,
+								description,
+								new_defect_id,
+								defect_cd,
+								relative_order,
+								example_text
+							)
+							select 
+								ds.defect_severity_id,
+								ds.severity_tier_cd,
+								ds.description,
+								d.new_defect_id,
+								d.defect_cd,
+								ds.relative_order,
+								ds.example_text
+							from defect_severity ds, #t_defect d
+							where ds.defect_id = d.old_defect_id
+
+							insert into defect_severity(
+								defect_severity_id,
+								severity_tier_cd,
+								description,
+								defect_id,
+								defect_cd,
+								created_by,
+								created_ts,
+								relative_order,
+								example_text
+							)
+							select 
+								new_defect_severity_id,
+								severity_tier_cd,
+								description,
+								new_defect_id, 
+								defect_cd,
+								@login_credential,
+								getdate(),
+								relative_order,
+								example_text
+							from #t_defect_severity 
+
+							insert into finding_rating_rule(
+								defect_id,
+								defect_cause_id,
+								defect_source_id,
+								unacceptable_rating_threshold
+							)
+							select
+								c.new_defect_id,
+								c.new_defect_cause_id,
+								s.new_defect_source_id,
+								fr.unacceptable_rating_threshold
+							from
+								#t_defect_cause c,
+								#t_defect_source s,
+								finding_rating_rule fr
+							where fr.defect_cause_id = c.old_defect_cause_id and fr.defect_source_id = s.old_defect_source_id 
+
+							create table #t_qatree(
+								new_qatree_id uniqueidentifier null default newid(),
+								old_qatree_id uniqueidentifier null,
+								new_qa_model_id uniqueidentifier not null,
+								new_defect_id uniqueidentifier null,
+								enable_pre_qual_question_ind char(1) null
+							)
+												   
+							insert into #t_qatree(
+								old_qatree_id,
+								new_qa_model_id,
+								new_defect_id,
+								enable_pre_qual_question_ind)
+							select
+								q.qatree_id,
+								@to_qa_model_id,
+								t.new_defect_id,
+								enable_pre_qual_question_ind
+							from #t_defect t,qatree q
+							where t.old_defect_id = q.defect_id
+
+							insert into qatree(
+								qatree_id,
+								created_by,
+								created_ts,
+								qa_model_id,
+								defect_id,
+								enable_pre_qual_question_ind)  
+							select 
+								new_qatree_id,
+								@login_credential,
+								getdate(),
+								new_qa_model_id,
+								new_defect_id,
+								enable_pre_qual_question_ind
+							from #t_qatree 
+
+							create table #t_outcome(
+								new_qatree_outcome_id uniqueidentifier null default newid(),
+								old_qatree_outcome_id uniqueidentifier null,
+								new_defect_id uniqueidentifier null
+							)
+
+							insert into #t_outcome(
+								old_qatree_outcome_id,
+								new_defect_id
+							)
+							select
+								o.qatree_outcome_id,
+								t.new_defect_id
+							from #t_defect t,qatree_outcome o
+							where t.old_defect_id = o.defect_id
+
+							insert into qatree_outcome(
+								qatree_outcome_id,
+								defect_id,
+								created_by,
+								created_ts,
+								source_filter_question_id
+							)
+							select
+								new_qatree_outcome_id,
+								new_defect_id,
+								@login_credential,
+								getdate(),
+								q.source_filter_question_id
+							from #t_outcome t,qatree_outcome q
+							where t.old_qatree_outcome_id = q.qatree_outcome_id
+
+							insert into qatree_outcome_defect_cause(
+								defect_cause_id,
+								qatree_outcome_id,
+								created_by,
+								created_ts
+							)
+							select
+								tc.new_defect_cause_id,
+								t.new_qatree_outcome_id,
+								@login_credential,
+								getdate()
+							from
+								#t_outcome t,
+								#t_defect_cause tc,
+								qatree_outcome_defect_cause c
+							where
+								t.old_qatree_outcome_id = c.qatree_outcome_id
+								and c.defect_cause_id = tc.old_defect_cause_id
+
+							insert into qatree_outcome_defect_source(
+								defect_source_id,
+								qatree_outcome_id,
+								created_by,
+								created_ts
+							)
+							select
+								tc.new_defect_source_id,
+								t.new_qatree_outcome_id,
+								@login_credential,
+								getdate()
+							from
+								#t_outcome t,
+								#t_defect_source tc,
+								qatree_outcome_defect_source c
+							where
+								t.old_qatree_outcome_id = c.qatree_outcome_id 
+								and c.defect_source_id = tc.old_defect_source_id
+
+							insert into qatree_outcome_defect_severity(
+								defect_severity_id,
+								qatree_outcome_id,
+								created_by,
+								created_ts
+							)
+							select
+								tc.new_defect_severity_id,
+								t.new_qatree_outcome_id,
+								@login_credential,
+								getdate()
+							from
+								#t_outcome t,
+								#t_defect_severity tc,
+								qatree_outcome_defect_severity c
+							where
+								t.old_qatree_outcome_id = c.qatree_outcome_id 
+								and c.defect_severity_id = tc.old_defect_severity_id
+
+							create table #t_question(
+								new_question_id uniqueidentifier null default newid(),
+								old_question_id uniqueidentifier null,
+								new_qatree_id uniqueidentifier null
+							)
+
+							insert into #t_question(
+								old_question_id,
+								new_qatree_id
+							)
+							select
+								qu.question_id,
+								qa.new_qatree_id 
+							from
+								qatree_question qu,
+								#t_qatree qa
+							where qu.qatree_id = qa.old_qatree_id
+
+							insert into QUESTION_REFERENCE(
+								QUESTION_ID,
+								QUESTION_DESCRIPTION,
+								VALUE_TO_TRIGGER_ACTION,
+								RESPONSE_TYPE,
+								ANSWER_VALUES,
+								created_by,
+								created_ts
+							)
+							select   
+								a.new_QUESTION_ID,
+								QUESTION_DESCRIPTION,
+								VALUE_TO_TRIGGER_ACTION,
+								RESPONSE_TYPE,
+								ANSWER_VALUES,
+								@login_credential,
+								getdate()
+							from
+								#t_question a,
+								QUESTION_REFERENCE b
+							where a.old_question_id = b.QUESTION_ID
+
+							insert into qatree_question(
+								question_id,
+								qatree_id,
+								question_number,
+								question_reference,
+								qatree_outcome_id,
+								--parent_question_id,
+								created_by,
+								created_ts,
+								order_number,
+								PARENT_QUESTION_CONDITION_ANSWER
+							)
+							select
+								t.new_question_id,
+								t.new_qatree_id,
+								q.question_number,
+								q.question_reference,
+								o.new_qatree_outcome_id,
+								--q.parent_question_id,
+								@login_credential,
+								getdate(),
+								q.order_number,
+								q.PARENT_QUESTION_CONDITION_ANSWER
+							from #t_question t
+							inner join qatree_question q
+								on t.old_question_id = q.question_id 
+							left outer join #t_outcome o
+								on q.qatree_outcome_id = o.old_qatree_outcome_id
+
+							select t.old_question_id,
+								   t.new_question_id,
+								   q.PARENT_QUESTION_ID as old_parent_question_id,
+								   (select new_question_id 
+									from #t_question
+									where old_question_id = q.PARENT_QUESTION_ID) as new_parent_question_id
+							into #parent_question						
+							from #t_question t,
+								 QATREE_QUESTION q
+							where t.old_question_id = q.QUESTION_ID
+							  and q.PARENT_QUESTION_ID is not null
+
+							update a
+							set PARENT_QUESTION_ID = b.new_parent_question_id
+							from QATREE_QUESTION a,
+								 #parent_question b
+							where a.QUESTION_ID = b.new_question_id
+
+							insert into QA_MODEL_PREQUAL(
+								QUESTION_ID,
+								PRE_QUAL_POTENTIAL_ANSWER_CD,
+								QUESTION_REF_ID_CSV,
+								description
+							)
+							select 
+								a.new_QUESTION_ID,
+								PRE_QUAL_POTENTIAL_ANSWER_CD,
+								QUESTION_REF_ID_CSV,
+								b.description
+							from
+								#t_question a,
+								QA_MODEL_PREQUAL b
+							where a.old_question_id = b.QUESTION_ID
+															
+							update QATREE_OUTCOME
+							set SOURCE_FILTER_QUESTION_ID = b.new_question_id
+							from
+								QATREE_OUTCOME a,
+								#t_question b
+							where a.SOURCE_FILTER_QUESTION_ID = b.old_question_id
+
+							insert into QATREE_QSTN_CONDITION(
+								entity_name,
+								field_name,
+								question_id,
+								qatree_id,
+								comparison_values,
+								condition_operator,
+								created_by,
+								created_ts
+							)
+							select
+								entity_name,
+								field_name,
+								new_question_id,
+								new_qatree_id,
+								comparison_values,
+								condition_operator,
+								@login_credential,
+								getdate()
+							from
+								#t_question tq,
+								QATREE_QSTN_CONDITION qqc
+							where tq.old_question_id = qqc.QUESTION_ID
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			EXEC sp_create_qa_model_by_name 'LRS Initial QA Model','LRS Initial QA Model V2','LRS Initial QA Model V2','C20225'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update ds
+			set DESCRIPTION = 'Minimum required investment is met, but closing costs and other (e.g., reserves, escrows) not met'
+			from defect d, 
+				 QA_MODEL q,
+				 DEFECT_SOURCE ds
+			where d.QA_MODEL_ID = q.QA_MODEL_ID
+			  and q.MODEL_NAME = 'LRS Initial QA Model V2'
+			  and q.CREATED_BY = 'C20225'
+			  and d.DEFECT_CD = 'BA'
+			  and d.DEFECT_ID = ds.DEFECT_ID
+			  and ds.DEFECT_SOURCE_CD = '2'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from DICT_METADATA_FIELD_MODEL
+			where QA_MODEL_ID in
+			(select QA_MODEL_ID
+			 from QA_MODEL
+			 where MODEL_NAME = 'LRS Initial QA Model V2'
+			   and CREATED_BY = 'C20225')			
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from DICT_METADATA_FIELD_SUBJECT_AREA
+			where QA_MODEL_ID in
+			(select QA_MODEL_ID
+			 from QA_MODEL
+			 where MODEL_NAME = 'LRS Initial QA Model V2'
+			   and CREATED_BY = 'C20225')			
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0006" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_FIELD_SUBJECT_AREA (DICT_METADATA_FIELD_SUBJECT_AREA_ID, QA_MODEL_ID, SUBJECT_AREA, DISPLAY_ORDER, CREATED_BY,  CREATED_TS) values(newid(),(select QA_MODEL_ID from QA_MODEL where MODEL_NAME = 'LRS Initial QA Model V2' and CREATED_BY = 'C20225'),'Loan'	  ,1,'C20225',getdate())
+			insert into DICT_METADATA_FIELD_SUBJECT_AREA (DICT_METADATA_FIELD_SUBJECT_AREA_ID, QA_MODEL_ID, SUBJECT_AREA, DISPLAY_ORDER, CREATED_BY,  CREATED_TS) values(newid(),(select QA_MODEL_ID from QA_MODEL where MODEL_NAME = 'LRS Initial QA Model V2' and CREATED_BY = 'C20225'),'Borrower' ,2,'C20225',getdate())
+			insert into DICT_METADATA_FIELD_SUBJECT_AREA (DICT_METADATA_FIELD_SUBJECT_AREA_ID, QA_MODEL_ID, SUBJECT_AREA, DISPLAY_ORDER, CREATED_BY,  CREATED_TS) values(newid(),(select QA_MODEL_ID from QA_MODEL where MODEL_NAME = 'LRS Initial QA Model V2' and CREATED_BY = 'C20225'),'Property' ,3,'C20225',getdate())
+			insert into DICT_METADATA_FIELD_SUBJECT_AREA (DICT_METADATA_FIELD_SUBJECT_AREA_ID, QA_MODEL_ID, SUBJECT_AREA, DISPLAY_ORDER, CREATED_BY,  CREATED_TS) values(newid(),(select QA_MODEL_ID from QA_MODEL where MODEL_NAME = 'LRS Initial QA Model V2' and CREATED_BY = 'C20225'),'HECM'	  ,4,'C20225',getdate())
+			insert into DICT_METADATA_FIELD_SUBJECT_AREA (DICT_METADATA_FIELD_SUBJECT_AREA_ID, QA_MODEL_ID, SUBJECT_AREA, DISPLAY_ORDER, CREATED_BY,  CREATED_TS) values(newid(),(select QA_MODEL_ID from QA_MODEL where MODEL_NAME = 'LRS Initial QA Model V2' and CREATED_BY = 'C20225'),'Servicing',5,'C20225',getdate())		
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0007" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','100 REO Down Payment Program Indicator'          ,'C20225',getdate(),7 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Loan' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','ARM Indicator'                                   ,'C20225',getdate(),5 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Loan' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Cash Out Refinance Indicator'                    ,'C20225',getdate(),4 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Loan' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Closing Date of the Mortgage'                    ,'C20225',getdate(),18,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Loan' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','CLTV'                                            ,'C20225',getdate(),11,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Loan' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Decision Code at Endorsement'                    ,'C20225',getdate(),17,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Loan' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Endorsement Date'                                ,'C20225',getdate(),19,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Loan' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Escrow Amount'                                   ,'C20225',getdate(),27,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Loan' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Repair Complete Date'                            ,'C20225',getdate(),15,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Loan' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Interest Rate'                                   ,'C20225',getdate(),14,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Loan' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Loan Officer Name'                               ,'C20225',getdate(),21,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Loan' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Loan Officer NMLS ID'                            ,'C20225',getdate(),22,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Loan' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Loan Purpose'                                    ,'C20225',getdate(),2 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Loan' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Loan to Value Ratio - New'                       ,'C20225',getdate(),10,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Loan' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Mortgage Excluding Financed MIP'                 ,'C20225',getdate(),12,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Loan' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Original Mortgage Amount'                        ,'C20225',getdate(),13,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Loan' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary For Review Level','Originating Mortgagee NMLS ID'                   ,'C20225',getdate(),20,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Loan' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Product Type'                                    ,'C20225',getdate(),1 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Loan' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Property Disposition Streamline Refinance Flag'  ,'C20225',getdate(),23,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Loan' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Refinance Code'                                  ,'C20225',getdate(),3 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Loan' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Secondary Financing Amount'                      ,'C20225',getdate(),26,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Loan' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Secondary Financing Exists Indicator'            ,'C20225',getdate(),16,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Loan' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Seller Contribution Amount'                      ,'C20225',getdate(),24,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Loan' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','SOA Code'                                        ,'C20225',getdate(),6 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Loan' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Special Program'                                 ,'C20225',getdate(),8 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Loan' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Total Closing Costs at Endorsement'              ,'C20225',getdate(),25,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Loan' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Underwriting Method'                             ,'C20225',getdate(),9 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Loan' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))			
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0008" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Assets after Closing at Underwriting'          ,'C20225',getdate(),21,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Borrower' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Back End Ratio at Endorsement'                 ,'C20225',getdate(),13,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Borrower' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Bankruptcy Code'                               ,'C20225',getdate(),16,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Borrower' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Bankruptcy Indicator'                          ,'C20225',getdate(),19,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Borrower' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Borrower 1 First Time Homebuyer Indicator'     ,'C20225',getdate(),5 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Borrower' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Borrower 1 Name'                               ,'C20225',getdate(),3 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Borrower' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Borrower 1 SSN'                                ,'C20225',getdate(),4 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Borrower' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Borrower 2 Name'                               ,'C20225',getdate(),6 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Borrower' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Borrower 2 SSN'                                ,'C20225',getdate(),7 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Borrower' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Borrower Funds To Close Required Investment'   ,'C20225',getdate(),14,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Borrower' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Borrower Type (Occupancy)'                     ,'C20225',getdate(),1 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Borrower' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','FICO Decision Score at Endorsement'            ,'C20225',getdate(),15,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Borrower' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Foreclosure Indicator'                         ,'C20225',getdate(),20,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Borrower' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Front End Ratio at Endorsement'                ,'C20225',getdate(),12,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Borrower' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Gift Letter Amount'                            ,'C20225',getdate(),23,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Borrower' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Gift Letter Source'                            ,'C20225',getdate(),22,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Borrower' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary For Review Level','Gift Letter Amount - Second'                   ,'C20225',getdate(),25,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Borrower' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Gift Letter Source - Second'                   ,'C20225',getdate(),24,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Borrower' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Manual Underwrite Stretch Ratios Indicator'    ,'C20225',getdate(),17,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Borrower' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Non-Occupying Borrower on Loan'                ,'C20225',getdate(),2 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Borrower' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Borrower 1 Renting Indicator'                  ,'C20225',getdate(),18,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Borrower' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Borrower 1 Self Employed Indicator'            ,'C20225',getdate(),9 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Borrower' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Total Fixed Payment at Endorsement'            ,'C20225',getdate(),11,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Borrower' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Total Monthly Effective Income'                ,'C20225',getdate(),8 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Borrower' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Total Monthly Mortgage Payment at Endorsement' ,'C20225',getdate(),10,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Borrower' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))			
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0009" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Site Type'                            ,'C20225',getdate(),1 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Property' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Building Type'                        ,'C20225',getdate(),2 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Property' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Living Units'                         ,'C20225',getdate(),3 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Property' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Manufactured Housing Indicator'       ,'C20225',getdate(),4 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Property' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Building on Own Land Indicator'       ,'C20225',getdate(),5 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Property' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Construction Code'                    ,'C20225',getdate(),6 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Property' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Year Built'                           ,'C20225',getdate(),7 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Property' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Appraiser Name'                       ,'C20225',getdate(),8 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Property' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Property Appraisal Estimate'          ,'C20225',getdate(),9 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Property' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Sales Price'                          ,'C20225',getdate(),10,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Property' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Sales Contract Date'                  ,'C20225',getdate(),11,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Property' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Appraisal Completion Date'            ,'C20225',getdate(),12,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Property' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Effective date of Appraisal Update'   ,'C20225',getdate(),13,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Property' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Date of Prior Sale or Transfer'       ,'C20225',getdate(),14,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Property' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Price of Prior Sale'                  ,'C20225',getdate(),15,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Property' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))			
+		]]>
+        </sql>
+    </changeSet>		
+   <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0010" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Initial Disbursement Limit'                        ,'C20225',getdate(),1 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'HECM' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Initial Principal Limit'                           ,'C20225',getdate(),2 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'HECM' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Maximum Claim Amount (MCA)'                        ,'C20225',getdate(),3 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'HECM' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Maximum Rate'                                      ,'C20225',getdate(),4 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'HECM' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Origination Fee'                                   ,'C20225',getdate(),5 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'HECM' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Payment Plan'                                      ,'C20225',getdate(),6 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'HECM' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Taxes Insurance First Year Amount HECM'            ,'C20225',getdate(),7 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'HECM' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Ten Year Rate Lock Indicator'                      ,'C20225',getdate(),8 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'HECM' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Additional 10 Pct of IPL Usage Indicator'          ,'C20225',getdate(),9 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'HECM' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Expected Rate'                                     ,'C20225',getdate(),10,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'HECM' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','ARM Index Expected Rate'                           ,'C20225',getdate(),11,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'HECM' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Mandatory Obligations Cash from Lender'            ,'C20225',getdate(),12,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'HECM' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			--insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Total Monthly Effective Income'                    ,'C20225',getdate(),13,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'HECM' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Mandatory Obligations Amt'                         ,'C20225',getdate(),14,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'HECM' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Mandatory Obligations Cash from Borrower'          ,'C20225',getdate(),15,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'HECM' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Married to NBS Indicator'                          ,'C20225',getdate(),16,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'HECM' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary For Review Level','HUD REO Repair Amount'                             ,'C20225',getdate(),17,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'HECM' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			--insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Repair Complete Date'                              ,'C20225',getdate(),18,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'HECM' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')
+		]]>
+        </sql>
+    </changeSet>			
+   <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0011" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Occupancy Status'                                             ,'C20225',getdate(),1 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Servicing' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Oldest Unpaid Installment'                                    ,'C20225',getdate(),2 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Servicing' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			--insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Bankruptcy Code'                                              ,'C20225',getdate(),3 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Servicing' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Foreclosure Start Date'                                       ,'C20225',getdate(),4 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Servicing' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','First Time In Episode Three Month Delinquent Date'            ,'C20225',getdate(),5 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Servicing' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','loss mitigation code'                                         ,'C20225',getdate(),6 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Servicing' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+			insert into DICT_METADATA_FIELD_MODEL(ENTITY_NAME, FIELD_NAME,  CREATED_BY, CREATED_TS, ORDER_NUMBER, QA_MODEL_ID, DICT_METADATA_FIELD_SUBJECT_AREA_ID)values('Case Summary for Review Level','Termination type code'                                        ,'C20225',getdate(),7 ,(select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225'),(select DICT_METADATA_FIELD_SUBJECT_AREA_ID  from DICT_METADATA_FIELD_SUBJECT_AREA where subject_area = 'Servicing' and qa_model_id = (select qa_model_id from qa_model where model_name = 'LRS Initial QA Model V2' and created_by = 'C20225')))
+		]]>
+        </sql>
+    </changeSet>	
+   <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0012" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from DICT_METADATA_FIELD_DEFECT
+			where DEFECT_ID in
+			(select defect_id
+			 from DEFECT a,
+				  QA_MODEL b
+			 where a.QA_MODEL_ID = b.QA_MODEL_ID
+			   and b.MODEL_NAME = 'LRS Initial QA Model V2'
+			   and b.CREATED_BY = 'C20225')
+		]]>
+        </sql>
+    </changeSet>
+   <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0013" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Total Monthly Effective Income'               ,1,'BI','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'BI' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Total Monthly Mortgage Payment at Endorsement',2,'BI','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'BI' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Total Fixed Payment at Endorsement'           ,3,'BI','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'BI' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Front End Ratio at Endorsement'               ,4,'BI','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'BI' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Back End Ratio at Endorsement'                ,5,'BI','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'BI' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Manual Underwrite Stretch Ratios Indicator'   ,6,'BI','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'BI' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Borrower 1 Self Employed Indicator'           ,7,'BI','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'BI' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+		]]>
+        </sql>
+    </changeSet>
+   <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0014" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Decision Code at Endorsement'                  ,1,'BC','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'BC' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Total Monthly Mortgage Payment at Endorsement' ,2,'BC','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'BC' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Total Fixed Payment at Endorsement'            ,3,'BC','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'BC' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','FICO Decision Score at Endorsement'            ,4,'BC','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'BC' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Front End Ratio at Endorsement'                ,5,'BC','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'BC' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Back End Ratio at Endorsement'                 ,6,'BC','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'BC' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Borrower Housing Expenses at Endorsement'      ,7,'BC','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'BC' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Borrower 1 Renting Indicator'                  ,8,'BC','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'BC' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Bankruptcy Indicator'                          ,9,'BC','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'BC' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Foreclosure Indicator'                         ,10,'BC','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'BC' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))			
+		]]>
+        </sql>
+    </changeSet>
+   <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0015" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Property Appraisal Estimate'                 ,1, 'LM','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'LM' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Sales Price'                                 ,2, 'LM','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'LM' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Escrow Amount'                               ,3, 'LM','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'LM' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Borrower Funds To Close Required Investment' ,4, 'LM','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'LM' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Total Closing Costs at Endorsement'          ,5, 'LM','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'LM' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Mortgage Excluding Financed MIP'             ,6, 'LM','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'LM' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Original Mortgage Amount'                    ,7, 'LM','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'LM' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Seller Contribution Amount'                  ,8, 'LM','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'LM' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Loan to Value Ratio - New'                   ,9, 'LM','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'LM' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','CLTV'                                        ,10,'LM','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'LM' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))			
+		]]>
+        </sql>
+    </changeSet>
+   <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0016" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Borrower Funds to Close Required Investment' ,1, 'BA','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'BA' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Borrower paid closing costs'                 ,2, 'BA','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'BA' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Total Closing Costs at Endorsement'          ,3, 'BA','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'BA' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Assets after Closing at Underwriting'        ,4, 'BA','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'BA' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Secondary Financing Amount'                  ,5, 'BA','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'BA' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Gift Letter Source'                          ,6, 'BA','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'BA' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Gift Letter Amount'                          ,7, 'BA','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'BA' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Gift Letter Source - Second'                 ,8, 'BA','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'BA' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Gift Letter Amount - Second'                 ,9, 'BA','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'BA' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+		]]>
+        </sql>
+    </changeSet>	
+   <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0017" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Appraisal Completion Date'           ,1, 'PA','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'PA' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Property Appraisal Estimate'         ,2, 'PA','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'PA' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Sales Contract Date'                 ,3, 'PA','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'PA' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Living Units'                        ,4, 'PA','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'PA' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Site Type'                           ,5, 'PA','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'PA' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Construction Code'                   ,6, 'PA','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'PA' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Year Built'                          ,7, 'PA','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'PA' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Effective date of Appraisal Update'  ,8, 'PA','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'PA' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Building Type'                       ,9, 'PA','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'PA' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Appraiser Name'                      ,10,'PA','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'PA' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))			
+		]]>
+        </sql>
+    </changeSet>
+   <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0018" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Living Units'                    ,1, 'PE','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'PE' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Manufactured Housing Indicator'  ,2, 'PE','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'PE' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Building on Own Land Indicator'  ,3, 'PE','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'PE' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Construction Code'               ,4, 'PE','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'PE' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Year Built'                      ,5, 'PE','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'PE' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Building Type'                   ,6, 'PE','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'PE' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Date of Prior Sale or Transfer'  ,7, 'PE','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'PE' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Price of Prior Sale'             ,8, 'PE','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'PE' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Sales Contract Date'             ,9, 'PE','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'PE' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Escrow Amount'                   ,10,'PE','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'PE' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))			
+		]]>
+        </sql>
+    </changeSet>
+   <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0019" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','FICO Decision Score at Endorsement'             ,1, 'BE','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'BE' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Borrower Housing Expenses at Endorsement'       ,2, 'BE','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'BE' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Total Monthly Mortgage Payment at Endorsement'  ,3, 'BE','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'BE' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Front End Ratio at Endorsement'                 ,4, 'BE','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'BE' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Back End Ratio at Endorsement'                  ,5, 'BE','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'BE' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Non-Occupying Borrower on Loan'                 ,6, 'BE','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'BE' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Borrower 1 First Time Homebuyer Indicator'      ,7, 'BE','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'BE' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+		]]>
+        </sql>
+    </changeSet>
+   <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0020" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Product Type'       ,1, 'ME','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'ME' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Closing Date of the Mortgage'       ,2, 'ME','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'ME' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+		]]>
+        </sql>
+    </changeSet>	
+   <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0021" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Product Type'                        ,1, 'LO','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'LO' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Endorsement Date'                    ,2, 'LO','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'LO' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Originating Mortgagee NMLS ID'       ,3, 'LO','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'LO' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Loan Officer Name'                   ,4, 'LO','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'LO' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Loan Officer NMLS ID'                ,5, 'LO','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'LO' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Total Closing Costs at Endorsement'  ,6, 'LO','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'LO' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+			insert into DICT_METADATA_FIELD_DEFECT (ENTITY_NAME, FIELD_NAME,ORDER_NUMBER, DEFECT_CD, CREATED_BY, CREATED_TS,  DEFECT_ID ) values('Case Summary for Review Level','Underwriting Method'                 ,7, 'LO','C20225',getdate(),(select defect_id from defect a, QA_MODEL b where a.DEFECT_CD = 'LO' and a.QA_MODEL_ID = b.QA_MODEL_ID and b.MODEL_NAME = 'LRS Initial QA Model V2' and b.CREATED_BY = 'C20225'))
+		]]>
+        </sql>
+    </changeSet>
+   <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0022" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			--3222
+			update QUESTION_REFERENCE
+			set VALUE_TO_TRIGGER_ACTION = 'NO'
+			where question_id in
+			(select a.QUESTION_ID from QATREE_QUESTION a,
+						  QATREE b,
+						  QA_MODEL c
+			where a.QATREE_ID = b.QATREE_ID
+			  and b.QA_MODEL_ID = c.QA_MODEL_ID
+			  and MODEL_NAME = 'LRS Initial QA Model V2'
+			   and c.CREATED_BY = 'C20225'
+			  and a.QUESTION_REFERENCE like 'PA.008')
+		]]>
+        </sql>
+    </changeSet>
+   <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0023" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update QATREE_QUESTION
+			set QUESTION_NUMBER = '16.1',
+				QUESTION_REFERENCE = 'PA.016.1',
+				ORDER_NUMBER = 18
+			from QATREE_QUESTION a,
+				 QATREE b,
+				 QA_MODEL c
+			where a.QUESTION_REFERENCE = 'PA.016'
+			  and a.QATREE_ID = b.QATREE_ID
+			  and b.QA_MODEL_ID = c.QA_MODEL_ID
+			  and MODEL_NAME = 'LRS Initial QA Model V2'
+			   and c.CREATED_BY = 'C20225'
+		]]>
+        </sql>
+    </changeSet>
+   <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0024" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QUESTION_REFERENCE
+			(QUESTION_ID, QUESTION_DESCRIPTION, VALUE_TO_TRIGGER_ACTION, RESPONSE_TYPE, ANSWER_VALUES, CREATED_BY, CREATED_TS)
+			values(
+			'3B4BCBE6-1488-47EA-9EBC-2767BB8C288C',
+			'Was a second appraisal completed?', 
+			null, 
+			'Single', 
+			'YESNO', 
+			'C20225',
+			getdate())
+		]]>
+        </sql>
+    </changeSet>
+   <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0025" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QATREE_QUESTION (QUESTION_ID, QATREE_ID, QUESTION_NUMBER, CREATED_BY, CREATED_TS,  ORDER_NUMBER)
+			values
+			('3B4BCBE6-1488-47EA-9EBC-2767BB8C288C',
+			 (select c.QATREE_ID from DEFECT a,
+						  QA_MODEL b,
+						  QATREE c
+			  where a.QA_MODEL_ID = b.QA_MODEL_ID
+			   and MODEL_NAME = 'LRS Initial QA Model V2'
+			   and b.CREATED_BY = 'C20225'
+			   and a.DEFECT_CD = 'PA'
+			   and a.DEFECT_ID = c.DEFECT_ID),
+			   '16',
+			   'C20225',
+			   getdate(),
+			   17)
+		]]>
+        </sql>
+    </changeSet>
+   <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0026" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			  update A
+			  set A.PARENT_QUESTION_ID = '3B4BCBE6-1488-47EA-9EBC-2767BB8C288C', A.PARENT_QUESTION_CONDITION_ANSWER = 'YES'
+			  FROM QATREE_QUESTION A, QATREE B, QA_MODEL C
+			  where A.QATREE_ID = B.QATREE_ID and B.QA_MODEL_ID = C.QA_MODEL_ID and C.MODEL_NAME = 'LRS Initial QA Model V2'
+			  and A.QUESTION_REFERENCE = 'PA.016.1'
+
+		]]>
+        </sql>
+    </changeSet>
+   <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0027" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			  update D
+			  set D.QUESTION_ID = '3B4BCBE6-1488-47EA-9EBC-2767BB8C288C'
+			  FROM QATREE_QUESTION A, QATREE B, QA_MODEL C, QATREE_QSTN_CONDITION D
+			  where D.QUESTION_ID = A.QUESTION_ID and A.QATREE_ID = B.QATREE_ID and B.QA_MODEL_ID = C.QA_MODEL_ID and C.MODEL_NAME = 'LRS Initial QA Model V2'
+			  and A.QUESTION_REFERENCE = 'PA.016.1'
+		]]>
+        </sql>
+    </changeSet>	
+	   <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0028" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update QATREE_QUESTION
+			set ORDER_NUMBER = 19
+			from QATREE_QUESTION a,
+				 QATREE b,
+				 QA_MODEL c
+			where a.QUESTION_REFERENCE = 'PA.017'
+			  and a.QATREE_ID = b.QATREE_ID
+			  and b.QA_MODEL_ID = c.QA_MODEL_ID
+			  and MODEL_NAME = 'LRS Initial QA Model V2'
+			   and c.CREATED_BY = 'C20225'
+		]]>
+        </sql>
+    </changeSet>	
+	   <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0029" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update QATREE_QUESTION
+			set ORDER_NUMBER = 20
+			from QATREE_QUESTION a,
+				 QATREE b,
+				 QA_MODEL c
+			where a.QUESTION_REFERENCE = 'PA.018'
+			  and a.QATREE_ID = b.QATREE_ID
+			  and b.QA_MODEL_ID = c.QA_MODEL_ID
+			  and MODEL_NAME = 'LRS Initial QA Model V2'
+			   and c.CREATED_BY = 'C20225'
+		]]>
+        </sql>
+    </changeSet>	
+	   <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0030" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update QATREE_QUESTION
+			set ORDER_NUMBER = 21
+			from QATREE_QUESTION a,
+				 QATREE b,
+				 QA_MODEL c
+			where a.QUESTION_REFERENCE = 'PA.019'
+			  and a.QATREE_ID = b.QATREE_ID
+			  and b.QA_MODEL_ID = c.QA_MODEL_ID
+			  and MODEL_NAME = 'LRS Initial QA Model V2'
+			   and c.CREATED_BY = 'C20225'
+		]]>
+        </sql>
+    </changeSet>	
+	   <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0031" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update QATREE_QUESTION
+			set ORDER_NUMBER = 22
+			from QATREE_QUESTION a,
+				 QATREE b,
+				 QA_MODEL c
+			where a.QUESTION_REFERENCE = 'PA.020'
+			  and a.QATREE_ID = b.QATREE_ID
+			  and b.QA_MODEL_ID = c.QA_MODEL_ID
+			  and MODEL_NAME = 'LRS Initial QA Model V2'
+			   and c.CREATED_BY = 'C20225'
+		]]>
+        </sql>
+    </changeSet>	
+	   <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0032" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update QATREE_QUESTION
+			set ORDER_NUMBER = 23
+			from QATREE_QUESTION a,
+				 QATREE b,
+				 QA_MODEL c
+			where a.QUESTION_REFERENCE = 'PA.021'
+			  and a.QATREE_ID = b.QATREE_ID
+			  and b.QA_MODEL_ID = c.QA_MODEL_ID
+			  and MODEL_NAME = 'LRS Initial QA Model V2'
+			   and c.CREATED_BY = 'C20225'
+		]]>
+        </sql>
+    </changeSet>	
+	   <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0033" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from QATREE_OUTCOME_DEFECT_CAUSE
+			where convert(char(36),QATREE_OUTCOME_ID) + convert(char(36),DEFECT_CAUSE_ID) in
+			(select convert(char(36),d.QATREE_OUTCOME_ID) + convert(char(36),d.DEFECT_CAUSE_ID) 
+			from QATREE_QUESTION a,
+						  QATREE b,
+						  QA_MODEL c,
+						  QATREE_OUTCOME_DEFECT_CAUSE d,
+						  DEFECT_CAUSE e
+
+			where a.QATREE_ID = b.QATREE_ID
+			  and b.QA_MODEL_ID = c.QA_MODEL_ID
+			  and MODEL_NAME = 'LRS Initial QA Model V2'
+			   and c.CREATED_BY = 'C20225'
+			  and a.QUESTION_REFERENCE like 'LM.001'
+			  and a.QATREE_OUTCOME_ID = d.QATREE_OUTCOME_ID
+			  and d.DEFECT_CAUSE_ID = e.DEFECT_CAUSE_ID
+			  and e.DEFECT_CAUSE_CD = 'B')
+		]]>
+        </sql>
+    </changeSet>	
+	   <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0034" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			  update a
+			  set REVIEW_DAYS_ITERATION_2 = 13
+			  from REVIEW_LEVEL_ITERATION_TIMEFRAME a,
+				   REVIEW_LEVEL_TYPE_REF b
+			  where a.REVIEW_LEVEL_TYPE_ID = b.REVIEW_LEVEL_TYPE_ID
+				and b.REVIEW_LEVEL_CD in ('MITG')
+		]]>
+        </sql>
+    </changeSet>	
+	   <changeSet context="All"  author="astrauss" id="HUDLRS_3125_0035" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			  update a
+			  set REVIEW_DAYS_ITERATION_2 = 12
+			  from REVIEW_LEVEL_ITERATION_TIMEFRAME a,
+				   REVIEW_LEVEL_TYPE_REF b
+			  where a.REVIEW_LEVEL_TYPE_ID = b.REVIEW_LEVEL_TYPE_ID
+				and b.REVIEW_LEVEL_CD in ('ESCL','HQES')
+		]]>
+        </sql>
+    </changeSet>		
+</databaseChangeLog>    
+
+

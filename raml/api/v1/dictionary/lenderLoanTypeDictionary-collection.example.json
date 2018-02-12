@@ -1,0 +1,10 @@
+[
+    {
+        "code": "F",
+        "description": "Forward"
+    },
+    {
+        "code": "H",
+        "description": "Reverse (HECM)"
+    }
+]

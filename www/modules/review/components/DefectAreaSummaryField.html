@@ -1,0 +1,51 @@
+<div class="form-group row">
+
+	<div id="{{summaryField.fieldId}}" class="col-xs-6 field-label">
+		{{summaryField.name}}
+	</div>
+
+	<div class="col-xs-6 field-input">
+		<div *ngIf="summaryField.isEditable" [ngSwitch]="summaryField.type.toLowerCase()">
+			<!-- string-->
+			<textarea *ngSwitchCase="'string'" class="form-control input-sm" rows="2" [attr.aria-label]="summaryField.fieldId" [formControl]="form.controls[summaryField.fieldId]"></textarea>
+			<!-- integer-->
+			<input *ngSwitchCase="'integer'" type="number" [attr.aria-labelledby]="summaryField.fieldId" step="1" class="form-control input-sm"
+				[min]="summaryField.minValue" [max]="summaryField.maxValue" [formControl]="form.controls[summaryField.fieldId]">
+			<!-- number-->
+			<input *ngSwitchCase="'number'" type="number" [attr.aria-labelledby]="summaryField.fieldId" step=".01" class="form-control input-sm"
+				[formControl]="form.controls[summaryField.fieldId]">
+			<!-- date -->
+			<input *ngSwitchCase="'date'" type="text" class="form-control input-sm" placeholder="{{summaryField.value}}" data-provide="datepicker"
+				data-date-format="mm/dd/yyyy" [formControl]="form.controls[summaryField.fieldId]">
+			<!-- currency-->
+			<div class="input-group input-sm" *ngSwitchCase="'currency'">
+				<div class="input-group-addon">$</div>
+				<input type="number" class="form-control" [attr.aria-labelledby]="summaryField.fieldId" step="0.01" [min]="summaryField.minValue"
+					[max]="summaryField.maxValue" [formControl]="form.controls[summaryField.fieldId]">
+			</div>
+			<!-- boolean. Radio input-->
+			<div class="input-group input-sm" *ngSwitchCase="'boolean'">
+				<label class="radio-inline">
+					<input type="radio" [name]="summaryField.fieldId" value="Y" [formControl]="form.controls[summaryField.fieldId ]" [attr.aria-labelledby]="summaryField.fieldId">Yes
+				</label>
+
+				<label class="radio-inline">
+					<input type="radio" [name]="summaryField.fieldId" value="N" [formControl]="form.controls[summaryField.fieldId ]" [attr.aria-labelledby]="summaryField.fieldId">No
+				</label>
+
+			</div>
+			<!-- select-->
+			<select *ngSwitchCase="'select'" class="form-control input-sm" [disabled]="form.controls[summaryField.fieldId].disabled"
+				[formControl]="form.controls[summaryField.fieldId]" [attr.aria-labelledby]="summaryField.fieldId">
+				<option *ngFor="let value of summaryField.selectChoices"  [value]="value.code">{{value.description}} ({{value.code}})</option>
+			</select>
+			<!-- multiselect-->
+			<select *ngSwitchCase="'multiselect'" multiple="multiple" [disabled]="form.controls[summaryField.fieldId].disabled" class="form-control input-sm"
+				[formControl]="form.controls[summaryField.fieldId]" [attr.aria-labelledby]="summaryField.fieldId">
+				<option *ngFor="let value of summaryField.selectChoices"   [value]="value.code">{{value.description}} ({{value.code}})</option>
+			</select>
+
+		</div>
+	</div>
+	<div *ngIf="!summaryField.isEditable" type="text" class="form-control input-sm static">{{summaryField.value}} </div>
+</div>

@@ -1,0 +1,65 @@
+{
+    "id": "http://LRS/AssignmentModel",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": [
+        "id",
+        "assignmentModelCategory",
+        "name",
+        "version",
+        "description",
+        "factors",
+        "selectionThreshold",
+        "allocationPercentage",
+        "status"
+    ],
+    "properties": {
+        "id": {
+            "description": "A unique, unchanging identifier for this selection model.",
+            "type": "string"
+        },
+        "assignmentModelCategory": {
+            "description": "The ID of the Selection Model Category that this model is a version of.",
+            "type": "string"
+        },
+        "name": {
+            "description": "A human readable identifier for this selection model.",
+            "type": "string"
+        },
+        "version": {
+            "description": "The incremented version for this model (by name).",
+            "type": "integer"
+        },
+        "description": {
+            "description": "An optional note field.",
+            "type": "string"
+        },
+        "factors": {
+            "description": "A collection of factors that make up this model.",
+            "type": "array",
+            "items": {
+                "$ref": "Factor"
+            }
+        },
+        "selectionThreshold": {
+            "description": "A top level multiplier for this selection model.",
+            "type": "number"
+        },
+        "allocationPercentage": {
+            "description": "A top level allocation power for this selection model.",
+            "type": "number"
+        },
+        "status": {
+            "description": "An enumerated condition. Either 'active', 'draft', or 'archived'.",
+            "type": "string"
+        },
+        "defaultReviewType": {
+            "description": "The review type that this model is for by default.",
+            "type": "string"
+        },
+        "defaultReviewTypeCode": {
+            "description": "The code of the review type that this model is for by default.",
+            "type": "string"
+        }
+    }
+}

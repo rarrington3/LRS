@@ -1,0 +1,46 @@
+<div class="workload-container panel-group">
+    <div *ngIf="activeBatch">
+        <div class="batch-title">BATCH {{activeBatch?.batchNumber}} - {{activeBatch?.lenderName}} ({{activeBatch?.lenderId}})</div>
+        <div class="batch-header">
+            <ul class="list-inline">
+                <li *ngFor="let header of batchHeaders" class="list-inline-item sub-header">{{header.title}}</li>
+            </ul>
+            <ul class="list-inline batch-info">
+                <li class="list-inline-item">{{activeBatch?.selectionReason}}</li>
+                <li class="list-inline-item">{{activeBatch?.reviewType}}</li>
+                <li class="list-inline-item">{{activeBatch?.creationDate | datePipe}}</li>
+                <li class="list-inline-item">{{batchOwner?.nameFirst}} {{batchOwner?.nameLast}}</li>
+                <li class="list-inline-item">{{activeBatch?.reviewLevel}}</li>
+                <li class="list-inline-item">{{activeBatch?.reviewLevel}}</li>
+            </ul>
+        </div>
+        <hr>
+        <div class="operational-review">
+            <sortable-defect-table *ngIf="operationalReview?.length" [title]="'OPERATIONAL REVIEW'" [items]="operationalReview" [categories]="categories" [reviewRoute]="batchRoute"
+                                   [findings]="operationalDefectAreas" [activeBatch]="activeBatch" (onEditReviewClick)="showEditReviewModal($event, true)">
+            </sortable-defect-table>
+            <sortable-defect-table *ngIf="!operationalReview?.length" [title]="'OPERATIONAL REVIEW'" [items]="placeHolderReview" [categories]="categories" reviewRoute="''"
+                                   [findings]="''" [placeHolder]="'true'">
+            </sortable-defect-table>
+            <div *ngIf="activeBatch?.requestOperationalDocuments">
+                <div class="batch-title">OPERATIONAL REVIEW RESPONSE DOCUMENTS</div>
+                <div *ngIf="activeBatch.operationalReview && (!activeBatch.operationalDocuments || !this.activeBatch.operationalDocuments.length)">Operational document request expired ({{activeBatch.operationalDocumentsDueDate | datePipe}})</div>
+                <div class="batch-documents" *ngFor="let document of activeBatch.operationalDocuments">
+                    <hr>
+                    <div class="document-area">
+                        <span class="glyphicon glyphicon-file pull-left" [class.success]="document.documentId" aria-label="Document" title="Document"></span>
+                        <a [href]="getResponseDocumentURL(document)" target="_blank"> {{document.fileName}} </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sortable-table">
+            <sortable-defect-table [title]="'LOAN REVIEWS'" [items]="activeReviews" [categories]="categories" [reviewRoute]="batchRoute"
+                                   icon="'edit'" [findings]="defectAreas" [batchLevel]="activeBatch.reviewLevel" (onEditReviewClick)="showEditReviewModal($event)">
+            </sortable-defect-table>
+        </div>
+
+        <div style="clear:both"></div>
+    </div>
+    <div class="batch-title" *ngIf="!activeBatch">NO COMPLETED BATCHES</div>
+</div>

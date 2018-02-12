@@ -1,0 +1,14 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+	<changeSet context="All"  author="astrauss" id="LRSOM_809_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<sql>
+			<![CDATA[
+                if exists(select 1 
+                from INFORMATION_SCHEMA.COLUMNS
+                where TABLE_NAME = 'LENDER_SELF_REPORT_SELECTION_REQUEST'
+                  and COLUMN_NAME = 'LENDER_ID')
+                  alter table LENDER_SELF_REPORT_SELECTION_REQUEST drop column LENDER_ID
+			]]>
+		</sql>
+	</changeSet>
+</databaseChangeLog>

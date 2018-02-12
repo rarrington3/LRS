@@ -1,0 +1,41 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+	<changeSet context="All"  author="nnalluri" id="LRSOM_904_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<sql>
+			<![CDATA[
+				CREATE TABLE WORKFLOW_SERVER_INFO (
+						SERVER_ID   UNIQUEIDENTIFIER NOT NULL default newid(),
+						SERVER_NAME VARCHAR(64) NOT NULL,
+						SERVER_PRIORITY INT NOT NULL,
+						ACTIVE CHAR(1) NULL,
+						HEARTBEAT_TS datetime null,
+						CREATED_BY   CHAR(6) null,
+						UPDATED_BY   CHAR(6) null,
+						CREATED_TS   datetime null,
+						UPDATED_TS   datetime null
+					)
+
+				ALTER TABLE WORKFLOW_SERVER_INFO ADD CONSTRAINT 
+					WORKFLOW_SERVER_INFO_PK PRIMARY KEY NONCLUSTERED (SERVER_ID)
+				
+			]]>
+		</sql>
+	</changeSet>
+	<changeSet context="All"  author="nnalluri" id="LRSOM_904_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<sql>
+			<![CDATA[
+				
+				ALTER TABLE JOB ADD CREATED_BY_SERVER_ID  UNIQUEIDENTIFIER  NULL
+				
+				ALTER TABLE [dbo].[JOB]  ADD CONSTRAINT [JOB_FK_CREATED_BY_SERVER_ID] FOREIGN KEY([CREATED_BY_SERVER_ID])
+					REFERENCES [dbo].[WORKFLOW_SERVER_INFO] ([SERVER_ID])
+
+				ALTER TABLE JOB_EXECUTION ADD PROCESSED_BY_SERVER_ID  UNIQUEIDENTIFIER  NULL
+				
+				ALTER TABLE [dbo].[JOB_EXECUTION]  ADD CONSTRAINT [JOB_EXECUTION_FK_PROCESSED_BY_SERVER_ID] FOREIGN KEY([PROCESSED_BY_SERVER_ID])
+					REFERENCES [dbo].[WORKFLOW_SERVER_INFO] ([SERVER_ID])
+				
+			]]>
+		</sql>
+	</changeSet>
+</databaseChangeLog>

@@ -1,0 +1,29 @@
+{
+    "id": "http://LRS/QaModelDefectAreaPreQualify",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": [
+        "code"
+    ],
+    "properties": {
+        "id": {
+            "description": "The pre qualify question ID.",
+            "type": "string"
+        },
+        "code": {
+            "description": "The pre qualify question unique reference string for this question (aka 'hash')",
+            "type": "string"
+        },
+        "description": {
+            "description": "The pre qualify  question text to display.",
+            "type": "string"
+        },
+        "optionsQuestions": {
+            "description": "Multiple options questions",
+            "type": "array",
+            "items": {
+                "$ref": "OptionsItem"
+            }
+        }
+    }
+}

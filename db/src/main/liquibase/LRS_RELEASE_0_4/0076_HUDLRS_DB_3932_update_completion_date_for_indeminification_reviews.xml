@@ -1,0 +1,12 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+	<changeSet context="All"  author="nnalluri" id="HUDLRS_3932_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<sql>
+			<![CDATA[
+             UPDATE R SET R.RVW_COMPLTD_DT = R.UPDATED_TS FROM REVIEW R
+                INNER JOIN REVIEW_STATUS_REF RSF ON RSF.REVIEW_STATUS_ID = R.REVIEW_STATUS_ID 
+                WHERE RSF.CODE='COMPLETED';
+			]]>
+		</sql>
+	</changeSet>
+</databaseChangeLog>

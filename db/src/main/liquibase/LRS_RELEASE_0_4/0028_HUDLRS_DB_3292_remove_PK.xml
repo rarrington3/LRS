@@ -1,0 +1,100 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3292_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table AUDIT_BATCH drop constraint AUDIT_BATCH_PK
+			alter table AUDIT_LENDER_INCREASED_SELECTION drop constraint AUDIT_LENDER_INCREASED_SELECTION_PK
+			alter table AUDIT_LENDER_SUPPRESSION drop constraint AUDIT_LENDER_SUPPRESSION_PK
+			alter table AUDIT_PERSONNEL drop constraint AUDIT_PERSONNEL_PK
+			alter table AUDIT_PERSONNEL_UNAVAILABILITY drop constraint AUDIT_PERSONNEL_UNAVAILABILITY_PK
+			alter table AUDIT_REVIEW drop constraint AUDIT_REVIEW_PK
+			alter table AUDIT_REVIEW_LEVEL drop constraint AUDIT_REVIEW_LEVEL_PK
+			alter table AUDIT_REVIEW_LOCATION drop constraint AUDIT_REVIEW_LOCATION_PK
+			alter table AUDIT_REVIEW_REFERRAL drop constraint AUDIT_REVIEW_REFERRAL_PK
+			alter table AUDIT_RVW_LVL_CASE_SUMMARY drop constraint AUDIT_RVW_LVL_CASE_SUMMARY_PK
+			alter table AUDIT_UNDERWRITER_INCREASED_SELECTION drop constraint AUDIT_UNDERWRITER_INCREASED_SELECTION_PK
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3292_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table AUDIT_BATCH alter column BATCH_ID uniqueidentifier NULL
+			alter table AUDIT_LENDER_INCREASED_SELECTION alter column MTGEE5 char(5) NULL
+			alter table AUDIT_LENDER_SUPPRESSION alter column MTGEE5 char(5) NULL
+			alter table AUDIT_PERSONNEL alter column PERSONNEL_ID uniqueidentifier NULL
+			alter table AUDIT_PERSONNEL_UNAVAILABILITY alter column PERSONNEL_ID uniqueidentifier NULL
+			alter table AUDIT_REVIEW alter column REVIEW_ID uniqueidentifier  NULL
+			alter table AUDIT_REVIEW_LEVEL alter column REVIEW_LEVEL_ID uniqueidentifier NULL
+			alter table AUDIT_REVIEW_LOCATION alter column REVIEW_LOCATION_ID uniqueidentifier NULL
+			alter table AUDIT_REVIEW_REFERRAL alter column REVIEW_REFERRAL_ID uniqueidentifier NULL
+			alter table AUDIT_RVW_LVL_CASE_SUMMARY alter column REVIEW_LEVEL_ID uniqueidentifier NULL
+			alter table AUDIT_UNDERWRITER_INCREASED_SELECTION alter column UNDERWRITER_ID varchar(16) NULL			
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3292_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table AUDIT_BATCH                             alter column AUDIT_CREATED_TS datetime  null
+			alter table AUDIT_LENDER_INCREASED_SELECTION        alter column AUDIT_CREATED_TS datetime  null
+			alter table AUDIT_LENDER_SUPPRESSION                alter column AUDIT_CREATED_TS datetime  null
+			alter table AUDIT_PERSONNEL                         alter column AUDIT_CREATED_TS datetime  null
+			alter table AUDIT_PERSONNEL_UNAVAILABILITY          alter column AUDIT_CREATED_TS datetime  null
+			alter table AUDIT_REVIEW                            alter column AUDIT_CREATED_TS datetime  null
+			alter table AUDIT_REVIEW_LEVEL                      alter column AUDIT_CREATED_TS datetime  null
+			alter table AUDIT_REVIEW_LOCATION                   alter column AUDIT_CREATED_TS datetime  null
+			alter table AUDIT_REVIEW_REFERRAL                   alter column AUDIT_CREATED_TS datetime  null
+			alter table AUDIT_RVW_LVL_CASE_SUMMARY              alter column AUDIT_CREATED_TS datetime  null
+			alter table AUDIT_UNDERWRITER_INCREASED_SELECTION   alter column AUDIT_CREATED_TS datetime  null
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3292_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table AUDIT_BATCH                             alter column AUDIT_ACTION_CODE char(1) null
+			alter table AUDIT_LENDER_INCREASED_SELECTION        alter column AUDIT_ACTION_CODE char(1) null
+			alter table AUDIT_LENDER_SUPPRESSION                alter column AUDIT_ACTION_CODE char(1) null
+			alter table AUDIT_PERSONNEL                         alter column AUDIT_ACTION_CODE char(1) null
+			alter table AUDIT_PERSONNEL_UNAVAILABILITY          alter column AUDIT_ACTION_CODE char(1) null
+			alter table AUDIT_REVIEW                            alter column AUDIT_ACTION_CODE char(1) null
+			alter table AUDIT_REVIEW_LEVEL                      alter column AUDIT_ACTION_CODE char(1) null
+			alter table AUDIT_REVIEW_LOCATION                   alter column AUDIT_ACTION_CODE char(1) null
+			alter table AUDIT_REVIEW_REFERRAL                   alter column AUDIT_ACTION_CODE char(1) null
+			alter table AUDIT_RVW_LVL_CASE_SUMMARY              alter column AUDIT_ACTION_CODE char(1) null
+			alter table AUDIT_UNDERWRITER_INCREASED_SELECTION   alter column AUDIT_ACTION_CODE char(1) null
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3292_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			 create index  AUDIT_BATCH_NUI                            on AUDIT_BATCH                             (BATCH_ID)
+			 create index  AUDIT_LENDER_INCREASED_SELECTION_NUI       on AUDIT_LENDER_INCREASED_SELECTION        (MTGEE5)
+			 create index  AUDIT_LENDER_SUPPRESSION_NUI               on AUDIT_LENDER_SUPPRESSION                (MTGEE5)
+			 create index  AUDIT_PERSONNEL_NUI                        on AUDIT_PERSONNEL                         (PERSONNEL_ID)
+			 create index  AUDIT_PERSONNEL_UNAVAILABILITY_NUI         on AUDIT_PERSONNEL_UNAVAILABILITY          (PERSONNEL_ID)
+			 create index  AUDIT_REVIEW_NUI                           on AUDIT_REVIEW                            (REVIEW_ID)
+			 create index  AUDIT_REVIEW_LEVEL_NUI                     on AUDIT_REVIEW_LEVEL                      (REVIEW_LEVEL_ID)
+			 create index  AUDIT_REVIEW_LOCATION_NUI                  on AUDIT_REVIEW_LOCATION                   (REVIEW_LOCATION_ID)
+			 create index  AUDIT_REVIEW_REFERRAL_NUI                  on AUDIT_REVIEW_REFERRAL                   (REVIEW_REFERRAL_ID)
+			 create index  AUDIT_RVW_LVL_CASE_SUMMARY_NUI             on AUDIT_RVW_LVL_CASE_SUMMARY              (REVIEW_LEVEL_ID)
+			 create index  AUDIT_UNDERWRITER_INCREASED_SELECTION_NUI  on AUDIT_UNDERWRITER_INCREASED_SELECTION   (UNDERWRITER_ID)
+		]]>
+        </sql>
+    </changeSet>		
+   <changeSet context="All"  author="astrauss" id="HUDLRS_3292_0006" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			if exists (select * from sysobjects
+					   where type = 'TR'
+					     and name = 'tI_AUDIT_REVIEW')
+			    drop trigger tI_AUDIT_REVIEW
+		]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>    
+
+

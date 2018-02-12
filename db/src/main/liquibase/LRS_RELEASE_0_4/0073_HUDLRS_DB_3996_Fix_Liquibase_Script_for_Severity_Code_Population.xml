@@ -1,0 +1,19 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+	<changeSet context="All"  author="Wes McAfee" id="HUDLRS_3996_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<sql>
+			<![CDATA[
+UPDATE RVW_LVL_FINDING SET SEVERITY_TIER_CD = (SELECT SEVERITY_TIER_CD FROM DEFECT_SEVERITY WHERE RVW_LVL_FINDING.DEFECT_SEVERITY_ID = DEFECT_SEVERITY.DEFECT_SEVERITY_ID)
+				where RVW_LVL_FINDING.DEFECT_SEVERITY_ID is not null;
+			   ;
+			]]>
+		</sql>
+	</changeSet>
+	<changeSet context="All"  author="Wes McAfee" id="HUDLRS_3996_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<sql>
+			<![CDATA[
+UPDATE REVIEW_REFERRAL SET REFERRAL_TMSTMP = UPDATED_TS WHERE REFERRAL_TMSTMP IS null;
+			]]>
+		</sql>
+	</changeSet>	
+</databaseChangeLog>

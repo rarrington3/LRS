@@ -1,0 +1,27 @@
+[
+    {
+        "ratingCode": "C",
+        "description": "Conforming",
+        "rankOrder": 5
+    },
+    {
+        "ratingCode": "D",
+        "description": "Deficient",
+        "rankOrder": 4
+    },
+    {
+        "ratingCode": "M",
+        "description": "Mitigated",
+        "rankOrder": 3
+    },
+    {
+        "ratingCode": "R",
+        "description": "Remediated",
+        "rankOrder": 2
+    },
+    {
+        "ratingCode": "U",
+        "description": "Unacceptable",
+        "rankOrder": 1
+    }
+]

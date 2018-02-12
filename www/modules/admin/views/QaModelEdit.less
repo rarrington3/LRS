@@ -1,0 +1,85 @@
+@import '../../bootstrap/_variables';
+
+:host-context {
+    /* styles should be scoped under host-context */
+
+    .qa-model-title {
+        display: inline;
+    }
+
+    .qa-model-subtitle {
+        display: inline;
+        color: @brand-thirdary;
+        text-transform: uppercase;
+    }
+
+    .qa-model-actions {
+        padding-top: 15px;
+
+        a {
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 5px;
+        }
+    }
+
+    .qa-model-header-table {
+
+        margin-top: -10px;
+
+        th, td {
+            padding-left: 10px;
+        }
+
+        th {
+            font-weight: normal;
+        }
+
+        td {
+            padding-top: 5px;
+            font-weight: bold;
+        }
+    }
+
+    .qa-model-review-types-text {
+
+    }
+
+    .qa-model-defect-area-table {
+        .defect-area-desc-col {
+            width: 60%;
+        }
+
+        .defect-area-action-col {
+            max-width: 80px;
+            min-width: 80px;
+
+            button, a {
+                width: 100%;
+                padding-top: 5px;
+                padding-bottom: 5px;
+            }
+        }
+
+        thead {
+            tr {
+                th {
+                    border-top: 0;
+                }
+
+                &.defect-area-review-types-row {
+
+                    th {
+                        padding: 0;
+                    }
+
+                    .defect-area-review-type-col {
+                        text-transform: uppercase;
+                        font-weight: normal;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}

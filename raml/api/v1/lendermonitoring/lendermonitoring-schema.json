@@ -1,0 +1,89 @@
+{
+    "id": "http://LRS/LenderMonitoring",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": [
+        "lenderId",
+        "locationId",
+        "reviewTypeId",
+        "requestFromId",
+        "loanTypeId",
+        "caseCount",
+        "endorsementStartDate",
+        "endorsementEndDate",
+        "operationalReview",
+        "batchOwner",
+        "batchTeamMembers"
+    ],
+    "additionalProperties": true,
+    "properties": {
+         "lenderId": {
+             "description": "The identifier of this lender",
+             "type": "string"
+
+         },
+         "locationId": {
+             "description": "The ID of the location where the selected loans should be reviewed.",
+             "type": "string"
+         },
+         "reviewTypeId": {
+             "description": "The ID of the type of reviews that should be selected.",
+             "type": "string"
+         },
+         "requestFromId": {
+             "description": "The ID of where the initial loan documents should come from.",
+             "type": "string"
+         },
+         "dateOfSiteVisit": {
+             "description": "Optional date to specify a site visit to the lender.",
+             "type": "string",
+             "format": "date"
+         },
+         "loanTypeId": {
+             "description": "The ID of the Loan Type that's being requested for review.",
+             "type": "string"
+         },
+         "caseCount": {
+             "description": "The number of cases that should be selected for review.",
+             "type": "number"
+         },
+         "endorsementStartDate": {
+             "description": "The date from which the Endorsement Dates can begin.",
+             "type": "string",
+             "format": "date"
+         },
+         "endorsementEndDate": {
+             "description": "The date to which the Endorsement Dates can end.",
+             "type": "string",
+             "format": "date"
+         },
+         "operationalReview": {
+             "description": "Flag to signify if this is or is not an operational review.",
+             "type": "boolean"
+         },
+         "secondaryId": {
+             "description": "An optional secondary ID to be applied to the Batch.",
+             "type": "string"
+         },
+         "requestOperationalDocuments": {
+             "description": "Flag to signify if Operational Docs should be requested.",
+             "type": "boolean"
+         },
+         "operationalReviewGuidance": {
+             "description": "Some optional text information.",
+             "type": "string"
+         },
+         "batchOwner": {
+             "description": "ID of the Reviewer who is the Batch owner.",
+             "type": "string"
+         },
+         "batchTeamMembers": {
+             "description": "A collection of Reviewers who should be placed on this Batch team.",
+             "type": "array",
+             "items": {
+                 "description": "ID of a Reviewer to be placed on this Batch team.",
+                 "type": "string"
+             }
+         }
+    }
+}

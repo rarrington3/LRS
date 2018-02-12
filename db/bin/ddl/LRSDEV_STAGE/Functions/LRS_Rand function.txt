@@ -1,0 +1,17 @@
+USE LRSDEV_STAGE
+go
+
+DROP FUNCTION dbo.LRS_Rand
+go
+
+CREATE FUNCTION dbo.LRS_Rand ( )
+RETURNS FLOAT
+AS
+      BEGIN
+         DECLARE @R FLOAT
+ 
+         SET @R = ABS(CHECKSUM(PWDENCRYPT(N''))) / 2147483647.0
+ 
+         RETURN @R
+      END
+GO

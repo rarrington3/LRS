@@ -1,0 +1,894 @@
+displayName: reviews
+description: |
+  Retrieve and manages active reviews
+securedBy:
+    - fhac:
+        roles: [ROLE_HQ_ADMIN]
+type:
+  collection-readonly:
+    collection-example: !include "../common/review-collection.example.json"
+    collection-schema: ReviewCollection
+get:
+  description: |
+    Retrieves a list of active reviews
+
+/my:
+  displayName: myReviews
+  description: |
+    Retrieve active reviews for the current user.  This returns a subset of the data return by the main /reviews service.
+  securedBy:
+    - fhac:
+        roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+  type:
+    collection-readonly:
+      collection-example: !include "../common/review-collection.example.json"
+      collection-schema: ReviewCollection
+  get:
+    description: |
+      Retrieve active reviews for the current user.  This returns a subset of the data return by the main /reviews service.
+
+  /lender:
+    displayName: lenderReviews
+    description: |
+      Retrieve all active reviews for the lender user's bank
+    securedBy:
+        - fhac:
+            roles: [ROLE_RESPONSE_COORDINATOR, ROLE_INDEMNIFIER, ROLE_LRS_READ_ONLY]
+    type:
+      collection-readonly:
+        collection-example: !include "../common/review-collection.example.json"
+        collection-schema: ReviewCollection
+    get:
+      description: |
+        Retrieves a list of active reviews for the lender
+
+  /completed:
+    displayName: completedReviews
+    description: |
+      Retrieves all my completed reviews
+    is: [dateRangeParams]
+    securedBy:
+      - fhac:
+          roles: [ROLE_REVIEWER, ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN]
+    type:
+      collection-readonly:
+        collection-example: !include "../common/review-collection.example.json"
+        collection-schema: ReviewCollection
+
+    /location/{locationId}:
+      displayName: completedReviewsByLocation
+      description: |
+        Retrieves all completed reviews for the location specified. HQ Admin will be allowed to retrieve all completed reviews from all locations. Non HQ admin users will get completed reviews from their locaitn if they have anyone who reports to them, otherwise an empty array will be returned.
+      is: [dateRangeParams]
+      securedBy:
+        - fhac:
+            roles: [ROLE_REVIEWER, ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN]
+      type:
+        collection-readonly:
+          collection-example: !include "../common/review-collection.example.json"
+          collection-schema: ReviewCollection
+
+    /lender:
+      displayName: completedLenderReviews
+      description: |
+        Retrieves all completed reviews for the lender user's bank
+      is: [dateRangeParams]
+      securedBy:
+        - fhac:
+            roles: [ROLE_RESPONSE_COORDINATOR, ROLE_INDEMNIFIER, ROLE_LRS_READ_ONLY]
+      type:
+        collection-readonly:
+          collection-example: !include "../common/review-collection.example.json"
+          collection-schema: ReviewCollection
+    
+    /batches:
+      displayName: completedBatches
+      description: |
+        Retrieve collection of completed batches for the current user.
+      securedBy:
+        - fhac:
+            roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+      type:
+        collection-readonly:
+          collection-example: !include "../common/batch-collection.example.json"
+          collection-schema: BatchCollection
+
+      /location/{locationId}:
+        displayName: completedBatchesByLocation
+        description: |
+          Retrieve collection of completed batches found in a specified location for the current admin user.
+        securedBy:
+          - fhac:
+              roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN]
+        type:
+          collection-readonly:
+            collection-example: !include "../common/batch-collection.example.json"
+            collection-schema: BatchCollection
+
+      /lender:
+        displayName: lenderCompletedBatches
+        description: |
+          Retrieve collection of completed batches for the current lender user. The difference between this and the normal /batches call is the batch.reviews will contain review levels w/o sensitive data (reviewerName and reviewLocationName)
+        securedBy:
+          - fhac:
+              roles: [ROLE_RESPONSE_COORDINATOR, ROLE_INDEMNIFIER, ROLE_LRS_READ_ONLY]
+        type:
+          collection-readonly:
+            collection-example: !include "../common/batch-collection.example.json"
+            collection-schema: BatchCollection
+
+/team:
+  displayName: teamReviews
+  description: |
+    Retrieve active reviews for the current user plus all users in the same review location.
+  securedBy:
+    - fhac:
+        roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN]
+  type:
+    collection-readonly:
+      collection-example: !include "../common/review-collection.example.json"
+      collection-schema: ReviewCollection
+
+/batches:
+  displayName: batches
+  description: |
+    Retrieve and manages collection of batches for the current user.
+  securedBy:
+    - fhac:
+        roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+  type:
+    collection-readonly:
+      collection-example: !include "../common/batch-collection.example.json"
+      collection-schema: BatchCollection
+
+  /location/{locationId}:
+    displayName: batchesByLocation
+    description: |
+      Retrieve collection of batches found in a specified location for the current admin user.
+    securedBy:
+      - fhac:
+          roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN]
+    type:
+      collection-readonly:
+        collection-example: !include "../common/batch-collection.example.json"
+        collection-schema: BatchCollection
+
+  /lender:
+    displayName: lenderBatches
+    description: |
+      Retrieve collection of batches for the current lender user. The difference between this and the normal /batches call is the batch.reviews will contain review levels w/o sensitive data (reviewerName and reviewLocationName)
+    securedBy:
+      - fhac:
+          roles: [ROLE_RESPONSE_COORDINATOR, ROLE_INDEMNIFIER, ROLE_LRS_READ_ONLY]
+    type:
+      collection-readonly:
+        collection-example: !include "../common/batch-collection.example.json"
+        collection-schema: BatchCollection
+
+  /{batchId}:
+    displayName: batch
+    description: |
+      Retrieve details about a batch, including which reviews are included
+    securedBy:
+    - fhac:
+        roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+    type:
+      member-readonly:
+        member-example: !include "../common/batch.example.json"
+        member-schema: Batch
+
+    /lenderByBatchId:
+      displayName: lenderBatch
+      description: |
+        Retrieve details about a batch for the current lender user, including which reviews are included
+      securedBy:
+      - fhac:
+          roles: [ROLE_RESPONSE_COORDINATOR, ROLE_INDEMNIFIER, ROLE_LRS_READ_ONLY]
+      - lenderBatchOwner
+      type:
+        member-readonly:
+          member-example: !include "../common/batch.example.json"
+          member-schema: Batch
+
+    /submit:
+      displayName: batchSubmit
+      description: Submit Batch by Batch Owner
+      securedBy:
+        - fhac:
+          roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+        - batchOwner
+      post:
+        responses:
+          200:
+            description: The batch was successfully submited.
+      /lender:
+        displayName: lenderBatchSubmit
+        description: Submit Lender Response Request as Batch
+        securedBy:
+          - fhac:
+            roles: [ROLE_RESPONSE_COORDINATOR, ROLE_INDEMNIFIER]
+          - lenderBatchOwnerActive
+        post:
+          responses:
+            200:
+              description: The batch was successfully submited.
+
+    /cancel:
+      displayName: batchCancel
+      description: Cancel Batch by Batch Owner
+      securedBy:
+        - fhac:
+          roles: [ROLE_HQ_ADMIN]
+      put:
+        responses:
+          200:
+            description: The batch was successfully canceled.
+
+    /operationalDocuments:
+      displayName: operationalDocuments
+      post:
+        description: |
+          Upload Document to operationalDocuments array
+        securedBy:
+          - fhac:
+              roles: [ROLE_INDEMNIFIER, ROLE_RESPONSE_COORDINATOR]
+          - lenderBatchOwner
+        body:
+          binary/octet-stream:
+          multipart/form-data:
+            formParameters:
+              file:
+                description: "Operational Document file"
+                required: true
+                type: file
+        responses:
+          200:
+            body:
+              schema: Document
+
+      /{documentId}:
+        displayName: operationalDocument
+        description: Retrieve the batch's operational document
+        get:
+          securedBy:
+            - fhac:
+                roles: [ROLE_INDEMNIFIER, ROLE_RESPONSE_COORDINATOR, ROLE_LRS_READ_ONLY, ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+            - lenderBatchOwner
+          responses:
+            200:
+              body:
+                binary/octet-stream:
+        delete:
+          securedBy:
+            - fhac:
+                roles: [ROLE_INDEMNIFIER, ROLE_RESPONSE_COORDINATOR]
+            - lenderBatchOwner
+          responses:
+            200:
+
+    /submitOperationalDocuments:
+      displayName: submitOperationalDocuments
+      description: submit operational documents
+      post:
+        securedBy:
+          - fhac:
+              roles: [ROLE_INDEMNIFIER, ROLE_RESPONSE_COORDINATOR]
+          - lenderBatchOwner
+        responses:
+          200:
+
+/{reviewId}:
+  displayName: review
+  description: |
+    Retrieves and manages an active review with the specified ID
+  securedBy:
+    - fhac:
+        roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER, ROLE_RESPONSE_COORDINATOR]
+    - reviewForLender
+  type:
+    member-readonly:
+      member-example: !include "review.example.json"
+      member-schema: Review
+  get:
+    description: |
+      Retrieves the active review with the specified ID
+
+  /lender:
+    displayName: lenderReview
+    description: |
+      Retrieves an active review with the specified ID for a lender (review will contain review levels w/o sensitive data like reviewerName and reviewLocationName)
+    securedBy:
+      - fhac:
+          roles: [ROLE_RESPONSE_COORDINATOR, ROLE_INDEMNIFIER, ROLE_LRS_READ_ONLY]
+      - reviewForLender
+    type:
+      member-readonly:
+        member-example: !include "review.example.json"
+        member-schema: Review
+    get:
+      description: |
+        Retrieves the active review with the specified ID
+
+  /notes:
+    displayName: notes
+    securedBy:
+        - fhac:
+            roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+    type:
+      collection:
+        member-example: !include "reviewnote.example.json"
+        member-schema: ReviewNote
+        collection-example: !include "reviewnote-collection.example.json"
+        collection-schema: ReviewNoteCollection
+    post:
+      securedBy:
+        - fhac:
+            roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+        - activeReviewLevelAssignedToUser
+      body:
+        schema: !include reviewnote-post.schema.json
+        example: !include reviewnote-post.example.json
+
+  /referral:
+    displayName: referral
+    description: Add referral notes to this review (can be done at anytime, and updated throughout the review process)
+    securedBy:
+      - fhac:
+          roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+      - activeReviewLevelAssignedToUser
+    type:
+      member:
+        member-example: !include "reviewreferral.example.json"
+        member-schema: ReviewReferral
+
+  /level/{reviewLevelId}:
+    displayName: reviewLevelManagement
+
+    /indemnification:
+      displayName: indemnification
+
+      /prePopulated:
+        displayName: prePopulatedIndemnificationLetter
+        description: Generates an indemnification letter pre-populated with information from this review. Totally stateless/idempotent function, does not save anything on the server.
+        securedBy:
+          - fhac:
+              roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER, ROLE_RESPONSE_COORDINATOR, ROLE_INDEMNIFIER, ROLE_LRS_READ_ONLY]
+          - reviewForLender
+        get:
+          responses:
+            200:
+              body:
+                binary/octet-stream:
+
+      /preSigned:
+        displayName: preSignedIndemnificationLetter
+
+        /lender:
+          displayName: preSignedIndemnificationLetter with lender signature
+          description: Returns an indemnification letter pre-populated with information from this review, *and* pre-signed with lender signature. Totally stateless/idempotent function, does not save anything on the server.
+          securedBy:
+            - fhac:
+                roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER, ROLE_INDEMNIFIER]
+            - reviewForLender
+          get:
+            responses:
+              200:
+                body:
+                  binary/octet-stream:
+
+        /reviewer:
+          displayName: preSignedIndemnificationLetter with reivewer signature
+          description: Returns an indemnification letter pre-populated with information from this review, *and* pre-signed with reviewer signature. Totally stateless/idempotent function, does not save anything on the server.
+          securedBy:
+            - fhac:
+                roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+          get:
+            responses:
+              200:
+                body:
+                  binary/octet-stream:
+
+        /both:
+          displayName: preSignedIndemnificationLetter with both lender and reivewer signatures
+          description: Returns an indemnification letter pre-populated with information from this review, *and* pre-signed with lender and reviewer signatures. Totally stateless/idempotent function, does not save anything on the server.
+          securedBy:
+            - fhac:
+                roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER, ROLE_INDEMNIFIER]
+            - reviewForLender
+          get:
+            responses:
+              200:
+                body:
+                  binary/octet-stream:
+
+      /lenderSubmit:
+        displayName: lenderSubmitIndemnification
+        description: Lender submits the signed indemnification letter.
+        securedBy:
+          - fhac:
+              roles: [ROLE_INDEMNIFIER]
+          - reviewForLender
+          - activeLenderRequest
+        put:
+          responses:
+            204:
+
+      /reviewerForceSubmit:
+        displayName: reviewerForceSubmitIndemnification
+        description: |
+          Close the Review and initiate a Force Indemnification
+        securedBy:
+            - fhac:
+                roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN]
+            - forcedIndemnificationSkill
+        post:
+          body:
+            schema: !include reviewlevelinfo.schema.json
+            example: !include reviewlevelinfo.example.json
+          responses:
+            401:
+              description: |
+                The current user is not allowed to perform this action.
+            409:
+              description: |
+                The specified review is not currently in a state in which this action may be made
+            410:
+              description: |
+                The specified review could not be found
+
+      /reviewerAccept:
+        displayName: reviewerAcceptIndemnification
+        description: Reviewer accepts the indemnification.
+        securedBy:
+          - fhac:
+              roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+          - activeReviewLevelAssignedToUser
+          - indemnificationSkill
+        type:
+          member-writeonly:
+            member-example: !include "indemaccept.example.json"
+            member-schema: IndemAccept
+
+      /reviewerReject:
+        displayName: reviewerRejectIndemnification
+        description: Reviewer rejects the indemnification.
+        securedBy:
+          - fhac:
+              roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+          - activeReviewLevelAssignedToUser
+          - indemnificationSkill
+        put:
+          responses:
+            204:
+
+      /final:
+        displayName: finalIndemnification
+        description: Returns the submitted indemnification document PDF for this review.
+        securedBy:
+          - fhac:
+              roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER, ROLE_RESPONSE_COORDINATOR, ROLE_INDEMNIFIER, ROLE_LRS_READ_ONLY]
+          - reviewForLender
+        get:
+          responses:
+            200:
+              body:
+                binary/octet-stream:
+
+    /confirmVetting:
+      displayName: confirmVetting
+      description: |
+        Vettee to acknowledge if Vetter updates QA tree. Acknowledgement is required only if Acknowledgement_Required indicator is set to Y.
+      post:
+      securedBy:
+        - fhac:
+            roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+
+    /submit:
+      displayName: submit
+      description: |
+        Once a reviewer has finished with the review level wrap-up they click 'Complete Wrap Up'. This endpoint will initiate the review level wrap-up workflow on the workflow server..
+      is: [ack]
+      securedBy:
+        - fhac:
+            roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+        - activeReviewLevelAssignedToUser
+      post:
+          body:
+            schema: !include reviewlevelinfo.schema.json
+            example: !include reviewlevelinfo.example.json
+
+    /indemnificationType:
+      displayName: indemnificationType
+      description: |
+        Let a batch owner save the indem type on a review while it's in pending batch review. Just the  'indemnificationTypeCode' will be sent on the PUT
+      is: [ack]
+      securedBy:
+        - fhac:
+            roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+        - activeReviewLevelAssignedToUser
+        - batchOwner
+      put:
+          body:
+            schema: !include reviewlevelinfo.schema.json
+            example: !include reviewlevelinfo.example.json
+
+    /lenderSubmit:
+      displayName: lenderSubmit
+      description: |
+        Once a lender has finished with the review level wrap-up they click 'Complete Wrap Up'. This endpoint will initiate the review level wrap-up workflow on the workflow server..
+      is: [ack]
+      securedBy:
+        - fhac:
+            roles: [ROLE_RESPONSE_COORDINATOR, ROLE_INDEMNIFIER]
+        - activeLenderRequest
+        - reviewForLender
+      put:
+        description: |
+          The PUT endpoint is use to mark the review level as completed and let the services do all the processing to generate the next step
+
+    /cancel:
+      displayName: cancel
+      description: |
+        Allows an admin to cancel the review
+      securedBy:
+        - fhac:
+            roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN]
+        - activeReviewLevel
+      type:
+        member-writeonly:
+          member-example: !include "cancelreview.example.json"
+          member-schema: SimpleSelection
+
+    /reassign:
+      displayName: reassign
+      description: |
+        Re-assign this review level to (optinally) another reviewer using the new assignee's reviewer (personel) ID, or if no reviewer ID provided, reassign through the assignemnt scoring model. This is also used when re-assigning operational batch owner which can be done by a ROLE_REVIEWER
+      securedBy:
+        - fhac:
+            roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+        - activeReviewLevel
+      type:
+        member-writeonly:
+          member-example: !include "assigntoreviewer.example.json"
+          member-schema: SimpleSelection
+
+    /fields:
+      displayName: fields
+      description: |
+        A collection of summary fields per review level that are used to filter questions based conditions. Fields can be retrieved as a collection and updated via PUT
+      securedBy:
+          - fhac:
+              roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+      type:
+        collection-readonly:
+          collection-example: !include "reviewfield-collection.example.json"
+          collection-schema: ReviewFieldCollection
+
+      /updateField:
+        displayName: fieldManagement
+        securedBy:
+          - fhac:
+              roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+          - activeReviewLevelAssignedToUser
+        type:
+          member-writeonly:
+            member-example: !include "reviewfield.example.json"
+            member-schema: ReviewField
+
+    /findings:
+      displayName: findings
+      type:
+        collection:
+          member-example: !include "reviewfinding.example.json"
+          member-schema: ReviewFinding
+          collection-example: !include "reviewfinding-collection.example.json"
+          collection-schema: ReviewFindingCollection
+      get:
+        securedBy:
+          - fhac:
+              roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+      post:
+        securedBy:
+          - activeReviewLevelAssignedToUser
+          - fhac:
+              roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+
+      /lender:
+        displayName: lenderFindings
+        type:
+          collection-readonly:
+            collection-example: !include "reviewfinding-collection.example.json"
+            collection-schema: ReviewFindingCollection
+        get:
+          securedBy:
+            - fhac:
+                roles: [ROLE_RESPONSE_COORDINATOR, ROLE_INDEMNIFIER, ROLE_LRS_READ_ONLY]
+            - reviewForLender
+
+      /{findingId}:
+        displayName: findingManagement
+        type:
+          member:
+            member-example: !include "reviewfinding.example.json"
+            member-schema: ReviewFinding
+        get:
+          securedBy:
+            - fhac:
+                roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+        put:
+          description: |
+            Updates a finding
+          securedBy:
+            - activeReviewLevelAssignedToUser
+            - fhac:
+                roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+        delete:
+          securedBy:
+            - activeReviewLevelAssignedToUser
+            - fhac:
+                roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+
+        /lender:
+          displayName: lenderFindingManagement
+          description: |
+            Endpoint for lender to get and update a finding.
+          get:
+            securedBy:
+              - fhac:
+                  roles: [ROLE_RESPONSE_COORDINATOR, ROLE_INDEMNIFIER, ROLE_LRS_READ_ONLY]
+              - reviewForLender
+            responses:
+              200:
+                body:
+                  schema: ReviewFinding
+                  example: !include "lenderfindingupdate.example.json"
+          put:
+            description: |
+              Updates a finding for a lender user: Only the lender specific fields can be changed (lenderResponseComment, lenderResponseDocuments)
+            securedBy:
+              - fhac:
+                  roles: [ROLE_RESPONSE_COORDINATOR, ROLE_INDEMNIFIER]
+              - reviewForLender
+              - activeLenderRequest
+            body:
+              schema: ReviewFinding
+              example: !include "lenderfindingupdate.example.json"
+
+        /lenderResponseDocuments:
+          displayName: lenderResponseDocuments
+          post:
+            description: Uploads a document to this response
+            securedBy:
+              - fhac:
+                  roles: [ROLE_RESPONSE_COORDINATOR, ROLE_INDEMNIFIER]
+              - reviewForLender
+              - activeLenderRequest
+            body:
+              binary/octet-stream:
+              multipart/form-data:
+                formParameters:
+                  file:
+                    description: "Lender response file"
+                    required: true
+                    type: file
+            responses:
+              200:
+                body:
+                  schema: Document
+
+          /{documentId}:
+            displayName: lenderResponseDocuments
+            get:
+              description: "download a document by ID"
+              securedBy:
+                - fhac:
+                    roles: [ROLE_RESPONSE_COORDINATOR, ROLE_INDEMNIFIER, ROLE_RESPONSE_COORDINATOR, ROLE_LRS_READ_ONLY, ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+                - reviewForLender
+              responses:
+                200:
+                  body:
+                    binary/octet-stream:
+            delete:
+              description: "deletes a document by ID"
+              securedBy:
+                - fhac:
+                    roles: [ROLE_RESPONSE_COORDINATOR, ROLE_INDEMNIFIER]
+                - reviewForLender
+                - activeLenderRequest
+              responses:
+                204:
+
+    /qaTree/{qaTreeId}:
+      displayName: qaTreeManagement
+
+      /answers:
+        displayName: answers
+        securedBy:
+          - fhac:
+              roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+        type:
+          collection:
+            member-example: !include "reviewanswer.example.json"
+            member-schema: ReviewAnswer
+            collection-example: !include "reviewanswer-collection.example.json"
+            collection-schema: ReviewAnswerCollection
+        post:
+          securedBy:
+            - activeReviewLevelAssignedToUser
+            - fhac:
+                roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+
+        /{answerId}:
+          displayName: answerManagement
+          securedBy:
+            - activeReviewLevelAssignedToUser
+            - fhac:
+                roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+          type:
+            member-noread:
+              member-example: !include "reviewanswer.example.json"
+              member-schema: ReviewAnswer
+
+  /managementDecision:
+    displayName: managementDecision
+    description: |
+      Regardless of the state of the this loan review and any defects that have been found, mark the review as 'unacceptable' and close the review
+    is: [ack]
+    securedBy:
+      - fhac:
+          roles: [ROLE_HQ_ADMIN]
+      - hqEscalationSkill
+    post:
+      responses:
+        401:
+          description: |
+            The current user is not allowed to make management decisions to close a loan review as 'unacceptable'
+        409:
+          description: |
+            The specified review is not currently in a state in which a management decision may be made
+        410:
+          description: |
+            The specified review could not be found
+  /forceEscalation:
+    displayName: forceEscalation
+    description: |
+      End the review level and escalate the review
+    securedBy:
+      - activeReviewLevelAssignedToUser
+      - anyEscalationSkill
+      - fhac:
+          roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+    post:
+      responses:
+        401:
+          description: |
+            The current user is not allowed to perform this action.
+        409:
+          description: |
+            The specified review is not currently in a state in which this action may be made
+        410:
+          description: |
+            The specified review could not be found
+
+  /mrbReferral:
+    displayName: mrbReferral
+    description: |
+      Add this review to the MRB referral case list. This will mark the review as 'unacceptable' and close the review
+    is: [ack]
+    securedBy:
+        - fhac:
+            roles: [ROLE_HQ_ADMIN]
+        - hqEscalationSkill
+    post:
+      responses:
+        401:
+          description: |
+            The current user is not allowed to close a loan review as 'unacceptable'
+        409:
+          description: |
+            The specified review is not currently in a state in which an MRB referral may be made
+        410:
+          description: |
+            The specified review could not be found
+
+/qaTree/{qaTreeId}:
+  displayName: reviewsQaModelDefectArea
+  description: Reviews qa model defect area.
+
+  /questions:
+    is: [constant]
+    displayName: reviewsQaModelDefectAreaQuestions
+    description: Reviews qa model defect area questions.
+    securedBy:
+      - fhac:
+          roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+    type:
+      collection-readonly:
+        collection-example: !include "reviewquestion-collection.example.json"
+        collection-schema: ReviewQuestionCollection
+    get:
+      description: |
+        Retrieves a list of questions that belong to the selected defect area
+
+/dictionary:
+  displayName: reviewsDictionary
+  description: Returns review dictionaries.
+
+  /qaModels:
+
+    /activeDefectAreas:
+      displayName: activeDefectAreaDictionary
+      description: Returns the defect area dictionary for the active qa model. Support for "Create Self Report".
+      securedBy:
+        - fhac:
+            roles: [ROLE_INDEMNIFIER, ROLE_RESPONSE_COORDINATOR, ROLE_LRS_READ_ONLY]
+      type:
+        collection-readonly:
+          collection-example: !include "../dictionary/defectareadictionary-collection.example.json"
+          collection-schema: DefectAreaDictionaryCollection
+
+    /{qaModelId}:
+      displayName: reviewsQaModel
+      description: Reviews qa model dictionary.
+
+      /defectAreas:
+        is: [constant]
+        displayName: DefectAreaDictionary
+        description: Returns the defect area dictionary for the qa model.
+        securedBy:
+          - fhac:
+              roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER, ROLE_RESPONSE_COORDINATOR, ROLE_INDEMNIFIER, ROLE_LRS_READ_ONLY]
+        type:
+          collection-readonly:
+            collection-example: !include "../dictionary/defectareadictionary-collection.example.json"
+            collection-schema: DefectAreaDictionaryCollection
+
+        /{qaTreeId}:
+
+          /remediationTypes:
+            is: [constant]
+            displayName: RemediationTypeDictionary
+            description: Returns a collection of objects representing remediation Types to be used by the reviewer during a non-initial review (e.g. 'BR' / 'Borrower Refund').
+            securedBy:
+              - fhac:
+                  roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+            type:
+              collection-readonly:
+                collection-example: !include "../dictionary/remediationtypedictionary-collection.example.json"
+                collection-schema: CommonDetailCollection
+
+      /defectAreaCauses:
+        is: [constant]
+        displayName: defectAreaCauseDictionary
+        description: Returns the defect area cause dictionary for the qa model.
+        securedBy:
+          - fhac:
+              roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER, ROLE_INDEMNIFIER, ROLE_RESPONSE_COORDINATOR, ROLE_LRS_READ_ONLY]
+        type:
+          collection-readonly:
+            collection-example: !include "../dictionary/defectareacausedictionary-collection.example.json"
+            collection-schema: DefectAreaCauseDictionaryCollection
+
+      /defectAreaSources:
+        is: [constant]
+        displayName: defectAreaSourceDictionary
+        description: Returns the defect area source dictionary for the qa model.
+        securedBy:
+          - fhac:
+              roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER, ROLE_INDEMNIFIER, ROLE_RESPONSE_COORDINATOR, ROLE_LRS_READ_ONLY]
+        type:
+          collection-readonly:
+            collection-example: !include "../dictionary/defectareasourcedictionary-collection.example.json"
+            collection-schema: DefectAreaSourceDictionaryCollection
+
+      /defectAreaSeverities:
+        is: [constant]
+        displayName: defectAreaSeverityDictionary
+        description: Returns the defect area severity dictionary for the qa model.
+        securedBy:
+          - fhac:
+              roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER, ROLE_INDEMNIFIER, ROLE_RESPONSE_COORDINATOR, ROLE_LRS_READ_ONLY]
+        type:
+          collection-readonly:
+            collection-example: !include "../dictionary/defectareaseveritydictionary-collection.example.json"
+            collection-schema: DefectAreaSeverityDictionaryCollection

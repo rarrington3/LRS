@@ -1,0 +1,111 @@
+@import '../../bootstrap/_variables';
+@import '../../shared/_mixins';
+:host-context {
+    /* styles should be scoped under host-context */
+
+    .selection-body {
+        padding: 30px;
+    }
+
+    .section-heading {
+        font-size: @font-size-base;
+        color: @link-light-blue;
+        font-weight: 600;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+    }
+
+    .locations-table {
+        border-collapse: separate;
+        border: none;
+        overflow: hidden;
+
+        thead > tr > th {
+            font-size: 12px;
+            font-weight: 700;
+            border: none;
+            text-align: left;
+            font-weight: bold;
+            a {
+                color: @brand-secondary;
+                text-decoration: underline;
+            }
+        }
+        // top corners
+        tr:first-child {
+            td:first-child {
+                border-top-left-radius: @border-radius-base;
+            }
+            td:last-child {
+                border-top-right-radius: @border-radius-base;
+            }
+        }
+        // bottom corners
+        tr:last-child {
+            td:first-child {
+                border-bottom-left-radius: @border-radius-base;
+            }
+            td:last-child {
+                border-bottom-right-radius: @border-radius-base;
+            }
+            td {
+                border-bottom: 1px solid @brand-grey-border-color;
+            }
+        }
+        // stripes
+        tr {
+            td:first-child {
+                border-left: 1px solid @brand-grey-border-color;
+            }
+            td:last-child {
+                border-right: 1px solid @brand-grey-border-color;
+            }
+        }
+        td {
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 10px;
+            vertical-align: middle;
+            padding: 5px;
+
+            &.location-icon {
+                padding-left: 10px;
+                .glyphicon-check {
+                    color: @brand-green;
+                }
+                .glyphicon-lock {
+                    color: @gray-light;
+                }
+
+            }
+            .btn-primary {
+                display: block;
+                width: 66px;
+                height: 26px;
+                line-height: 13px;
+                font-size: @font-size-smaller;
+                a, a:visited, a:hover, a:active {
+                    color: #fff;
+                    text-decoration: none;
+                }
+            }
+
+        }
+    }
+
+    .btn-primary {
+        display: block;
+        float: right;
+        font-size: @font-size-smaller;
+
+        .glyphicon-plus {
+            position: inherit;
+            font-size: 8px;
+            margin-right: 4px;
+        }
+        a, a:visited, a:hover, a:active {
+            color: #fff;
+            text-decoration: none;
+        }
+    }
+}

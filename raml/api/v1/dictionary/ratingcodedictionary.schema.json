@@ -1,0 +1,21 @@
+{
+    "id": "http://LRS/RatingCodeDictionary",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": ["ratingCode", "description", "rankOrder"],
+    "additionalProperties": false,
+    "properties": {
+        "ratingCode": {
+            "description": "The one char letter representing the rating (e.g. 'C', 'D', 'M', etc.)",
+            "type": "string"
+        },
+        "description": {
+            "description": "The displayable string for this rating code (e.g. 'Conforming', 'Deficient', 'Mitigated', etc.)",
+            "type": "string"
+        },
+        "rankOrder": {
+            "description": "The rank of how low the rating is (e.g. 5, 4, 3, etc.). NOTE: The rating with the lowest rankOrder _is_ the rating for that group of items",
+            "type": "number"
+        }
+    }
+}

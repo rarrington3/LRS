@@ -1,0 +1,22 @@
+[
+    {
+        "code": "INIT",
+        "description": "Initial"
+    },
+    {
+        "code": "ESCL",
+        "description": "Escalation"
+    },
+    {
+        "code": "INDM",
+        "description": "Indemnification"
+    },
+    {
+        "code": "FRCE",
+        "description": "Forced Indemnification"
+    },
+    {
+        "code": "HQES",
+        "description": "HQ Escalation"
+    }
+]

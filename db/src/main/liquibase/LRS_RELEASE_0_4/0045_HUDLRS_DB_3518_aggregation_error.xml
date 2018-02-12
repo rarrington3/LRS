@@ -1,0 +1,32 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+	<changeSet context="All"  author="jordanchavez" id="HUDLRS_3518_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<sql>
+			<![CDATA[
+ALTER TABLE LOAN_SELECTION ALTER COLUMN CASE_NUMBER CHAR(11) NOT NULL
+GO
+ALTER TABLE LOAN_SELECTION_PENDING ADD CASE_NUMBER CHAR(11) NULL
+GO
+UPDATE LSP SET LSP.CASE_NUMBER = LSCS.CASE_NUMBER FROM LOAN_SELECTION_PENDING LSP INNER JOIN LOAN_SELECTION_CASE_SUMMARY LSCS ON (LSCS.SELECTION_ID = LSP.SELECTION_ID)
+GO
+ALTER TABLE LOAN_SELECTION_PENDING ALTER COLUMN CASE_NUMBER CHAR(11) NOT NULL
+GO
+
+ALTER TABLE LOAN_SELECTION_PENDING ADD MTGEE5 CHAR(5) NULL
+GO
+UPDATE LSP
+SET LSP.MTGEE5 = (CASE
+	WHEN (RT.REVIEW_TYPE_CD = 'U') OR (RT.REVIEW_TYPE_CD = 'C') THEN LSCS.UNDRWRTING_MTGEE5
+	WHEN (RT.REVIEW_TYPE_CD = 'S') THEN LSCS.SRVCR_MTGEE5_A43
+END)
+FROM LOAN_SELECTION_PENDING LSP
+INNER JOIN REVIEW_TYPE_REF RT ON (RT.REVIEW_TYPE_ID = LSP.REVIEW_TYPE_ID)
+INNER JOIN LOAN_SELECTION_CASE_SUMMARY LSCS ON (LSCS.SELECTION_ID = LSP.SELECTION_ID)
+GO
+ALTER TABLE LOAN_SELECTION_PENDING ALTER COLUMN MTGEE5 CHAR(5) NOT NULL
+GO
+DELETE LSP FROM LOAN_SELECTION_PENDING LSP INNER JOIN LOAN_SELECTION LS ON (LS.SELECTION_ID = LSP.SELECTION_ID)
+			]]>
+		</sql>
+	</changeSet>
+</databaseChangeLog>

@@ -1,0 +1,50 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1171_create_lender_mon_request_model_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create table LENDER_MONITORING_RQST_MODEL
+			(LOAN_TYPE varchar(16) not NULL,
+			 REVIEW_TYPE varchar(16) NOT  NULL,
+			 MODEL_TYPE varchar(100)  NULL)
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1171_create_lender_mon_request_model_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			 ALTER TABLE [LENDER_MONITORING_RQST_MODEL]
+	         ADD CONSTRAINT [LENDER_MONITORING_RQST_MDL_PK] PRIMARY KEY  NONCLUSTERED (LOAN_TYPE ASC, REVIEW_TYPE ASC)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1171_create_lender_mon_request_model_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			 insert into LENDER_MONITORING_RQST_MODEL(LOAN_TYPE,REVIEW_TYPE,MODEL_TYPE) values('Forward','Underwriting','Defect Probability (Fwd)')
+			 insert into LENDER_MONITORING_RQST_MODEL(LOAN_TYPE,REVIEW_TYPE,MODEL_TYPE) values('Forward','Servicing','Servicing Risk')
+			 insert into LENDER_MONITORING_RQST_MODEL(LOAN_TYPE,REVIEW_TYPE,MODEL_TYPE) values('Forward','Consolidated','Defect Probability (Fwd)')
+			 insert into LENDER_MONITORING_RQST_MODEL(LOAN_TYPE,REVIEW_TYPE,MODEL_TYPE) values('HECM','Underwriting','Defect Probability (Rev)')
+			 insert into LENDER_MONITORING_RQST_MODEL(LOAN_TYPE,REVIEW_TYPE,MODEL_TYPE) values('HECM','Servicing','Random')
+			 insert into LENDER_MONITORING_RQST_MODEL(LOAN_TYPE,REVIEW_TYPE,MODEL_TYPE) values('HECM','Consolidated','Defect Probability (Rev)')			 
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1171_create_lender_mon_request_model_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_ENTITY(ENTITY_NAME,DB_VIEW_OR_TABLE, CREATED_BY, CREATED_TS) values('Lender Monitoring Request Model','LENDER_MONITORING_RQST_MODEL','C20225', getdate())
+		]]>
+        </sql>
+    </changeSet>			
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1171_create_lender_mon_request_model_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into dict_metadata_field (entity_name, field_name, db_column, created_by, created_ts, subject_area, ui_control_type) values('Lender Monitoring Request Model', 'Loan Type', 'LOAN_TYPE','C20225', getdate(),'UNKNOWN','STATIC')
+			insert into dict_metadata_field (entity_name, field_name, db_column, created_by, created_ts, subject_area, ui_control_type) values('Lender Monitoring Request Model', 'Review Type', 'REVIEW_TYPE','C20225', getdate(),'UNKNOWN','STATIC')
+			insert into dict_metadata_field (entity_name, field_name, db_column, created_by, created_ts, subject_area, ui_control_type) values('Lender Monitoring Request Model', 'Model Type', 'MODEL_TYPE','C20225', getdate(),'UNKNOWN','STATIC')			
+		]]>
+        </sql>
+    </changeSet>		
+</databaseChangeLog>
+

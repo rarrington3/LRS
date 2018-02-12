@@ -1,0 +1,9 @@
+{
+    "jobId": "ABC123",
+    "type": "Aggregation",
+    "status": "Pending",
+    "officialDate": "2017-01-01",
+    "startDate": "2017-01-01",
+    "endDate": "2017-01-02",
+    "executions": []
+}

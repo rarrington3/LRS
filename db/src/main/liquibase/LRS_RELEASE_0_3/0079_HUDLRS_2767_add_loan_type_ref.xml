@@ -1,0 +1,95 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2767_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create table LOAN_TYPE_REF
+			(LOAN_TYPE_REF_ID uniqueidentifier not null default newid(),
+			 CODE varchar(16) not null,
+			 DESCRIPTION varchar(30) not null)
+			 
+			alter table LOAN_TYPE_REF add constraint LOAN_TYPE_REF_PK primary key (LOAN_TYPE_REF_ID)
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2767_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table LENDER_MONITORING_SELECTION_REQUEST add LOAN_TYPE_REF_ID uniqueidentifier null
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2767_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table LENDER_MONITORING_SELECTION_REQUEST add constraint LENDER_MONITORING_SELECTION_REQUEST_FK_LOAN_TYPE_REF_ID foreign key (LOAN_TYPE_REF_ID) references LOAN_TYPE_REF(LOAN_TYPE_REF_ID)
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2767_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_ENTITY(ENTITY_NAME, DB_VIEW_OR_TABLE, CREATED_BY,CREATED_TS) values('Loan Type Reference', 'LOAN_TYPE_REF','C20225',getdate())		
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Loan Type Reference','Loan Type Reference ID','LOAN_TYPE_REF_ID','C20225',getdate(),'Loan Type Reference ID')
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Loan Type Reference','Code','CODE','C20225',getdate(),'Code')
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Loan Type Reference','Description','DESCRIPTION','C20225',getdate(),'Description')			
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2767_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into LOAN_TYPE_REF(LOAN_TYPE_REF_ID, CODE, DESCRIPTION) values(newid(),'F','Forward')
+			insert into LOAN_TYPE_REF(LOAN_TYPE_REF_ID, CODE, DESCRIPTION) values(newid(),'H','HECM (Reverse)')			
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2767_0006" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table LENDER_MONITORING_SELECTION_REQUEST drop constraint LENDER_MONITORING_SELECTION_REQUEST_FK_PRODUCT_TYPE_ID
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2767_0007" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table SCORING_MODEL drop constraint SCORING_MODEL_FK_PRODUCT_TYPE_ID
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2767_0008" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			sp_rename 'SCORING_MODEL.PRODUCT_TYPE_ID', 'LOAN_TYPE_REF_ID', 'COLUMN'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2767_0009" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			UPDATE SCORING_MODEL
+			SET LOAN_TYPE_REF_ID = (select LOAN_TYPE_REF_ID from LOAN_TYPE_REF where CODE = 'F')
+			where CODE in ('LENDER_MONITORING_FWD_SERVICING','LENDER_MONITORING_FWD_COMPREHENSIVE','LENDER_MONITORING_FWD_UNDERWRITING')
+
+			UPDATE SCORING_MODEL
+			SET LOAN_TYPE_REF_ID = (select LOAN_TYPE_REF_ID from LOAN_TYPE_REF where CODE = 'H')
+			where CODE in ('LENDER_MONITORING_REV_SERVICING','LENDER_MONITORING_REV_COMPREHENSIVE','LENDER_MONITORING_REV_UNDERWRITING')	
+
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Scoring Model','Order Number','ORDER_NUMBER','C20225',getdate(),'Order Number')
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Scoring Model','Code','CODE','C20225',getdate(),'Code')
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Scoring Model','Loan Type Reference ID','LOAN_TYPE_REF_ID','C20225',getdate(),'Loan Type Reference ID')
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Scoring Model','Review Type ID','REVIEW_TYPE_ID','C20225',getdate(),'Review Type ID')			  
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Scoring Model','Selection Reason ID','SELECTION_REASON_ID','C20225',getdate(),'Selection Reason ID')
+			  
+		]]>
+        </sql>
+    </changeSet>			
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2767_0010" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table SCORING_MODEL add constraint SCORING_MODEL_FK_LOAN_TYPE_REF_ID foreign key(LOAN_TYPE_REF_ID) references LOAN_TYPE_REF(LOAN_TYPE_REF_ID)
+		]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>    

@@ -1,0 +1,18 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+	<changeSet context="All"  author="mtross" id="LRSOM_832_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<sql>
+			<![CDATA[
+                ALTER TABLE PERSONNEL ADD MIDDLE_NAME varchar(100) null
+			]]>
+		</sql>
+	</changeSet>
+	<changeSet context="All"  author="mtross" id="LRSOM_832_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<sql>
+			<![CDATA[
+				UPDATE PERSONNEL SET FIRST_NAME = 'Valerie', MIDDLE_NAME = 'D' WHERE LOGIN_CREDENTIAL = 'H45623'
+				UPDATE PERSONNEL SET FIRST_NAME = 'Valerie', MIDDLE_NAME = 'J' WHERE LOGIN_CREDENTIAL = 'H56616'
+			]]>
+		</sql>
+	</changeSet>
+</databaseChangeLog>

@@ -1,0 +1,44 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="jordanchavez@kpmg.com" id="HUDLRS_1941_0001_create_JOB_TYPE_REF" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			INSERT INTO DICT_METADATA_ENTITY(ENTITY_NAME, DB_VIEW_OR_TABLE, CREATED_BY, CREATED_TS, UPDATED_BY, UPDATED_TS) VALUES
+				('Job Type Ref', 'JOB_TYPE_REF', 'jchav', CURRENT_TIMESTAMP, 'jchav', CURRENT_TIMESTAMP)
+			INSERT INTO DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DISPLAY_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, UPDATED_BY, UPDATED_TS) VALUES
+				('Job Type Ref', 'JOB_TYPE_ID', 'JOB_TYPE_ID', 'JOB_TYPE_ID', 'jchav', CURRENT_TIMESTAMP, 'jchav', CURRENT_TIMESTAMP),
+				('Job Type Ref', 'CODE, ',      'CODE',        'CODE',        'jchav', CURRENT_TIMESTAMP, 'jchav', CURRENT_TIMESTAMP),
+				('Job Type Ref', 'DESCRIPTION', 'DESCRIPTION', 'DESCRIPTION', 'jchav', CURRENT_TIMESTAMP, 'jchav', CURRENT_TIMESTAMP)
+
+			INSERT INTO DICT_METADATA_ENTITY(ENTITY_NAME, DB_VIEW_OR_TABLE, CREATED_BY, CREATED_TS, UPDATED_BY, UPDATED_TS) VALUES
+				('Job', 'JOB', 'jchav', CURRENT_TIMESTAMP, 'jchav', CURRENT_TIMESTAMP)
+			INSERT INTO DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DISPLAY_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, UPDATED_BY, UPDATED_TS) VALUES
+				('Job', 'JOB_ID',           'JOB_ID',           'JOB_ID',           'jchav', CURRENT_TIMESTAMP, 'jchav', CURRENT_TIMESTAMP),
+				('Job', 'JOB_TYPE_ID',      'JOB_TYPE_ID',      'JOB_TYPE_ID',      'jchav', CURRENT_TIMESTAMP, 'jchav', CURRENT_TIMESTAMP),
+				('Job', 'MANUALLY_INVOKED', 'MANUALLY_INVOKED', 'MANUALLY_INVOKED', 'jchav', CURRENT_TIMESTAMP, 'jchav', CURRENT_TIMESTAMP),
+				('Job', 'JBPM_PROCESS_ID',  'JBPM_PROCESS_ID',  'JBPM_PROCESS_ID',  'jchav', CURRENT_TIMESTAMP, 'jchav', CURRENT_TIMESTAMP),
+				('Job', 'COMPLETED_DT',     'COMPLETED_DT',     'COMPLETED_DT',     'jchav', CURRENT_TIMESTAMP, 'jchav', CURRENT_TIMESTAMP),
+				('Job', 'CREATED_DT',       'CREATED_DT',       'CREATED_DT',       'jchav', CURRENT_TIMESTAMP, 'jchav', CURRENT_TIMESTAMP)
+
+			INSERT INTO DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DISPLAY_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, UPDATED_BY, UPDATED_TS) VALUES
+				('Case Summary for Selection', 'JOB_ID', 'JOB_ID', 'JOB_ID', 'jchav', CURRENT_TIMESTAMP, 'jchav', CURRENT_TIMESTAMP)
+
+			INSERT INTO DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DISPLAY_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, UPDATED_BY, UPDATED_TS) VALUES
+				('Model Score', 'MODEL_SCORE_ID', 'MODEL_SCORE_ID', 'MODEL_SCORE_ID', 'jchav', CURRENT_TIMESTAMP, 'jchav', CURRENT_TIMESTAMP),
+				('Model Score', 'ELECTION_ID',    'ELECTION_ID',    'ELECTION_ID',    'jchav', CURRENT_TIMESTAMP, 'jchav', CURRENT_TIMESTAMP)
+			DELETE FROM DICT_METADATA_FIELD where ENTITY_NAME = 'Model Score' AND DB_COLUMN = 'CASE_NUMBER'
+
+			INSERT INTO DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DISPLAY_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, UPDATED_BY, UPDATED_TS) VALUES
+				('Pending Loan Selection', 'LOAN_SELECTION_PENDING_ID', 'LOAN_SELECTION_PENDING_ID', 'LOAN_SELECTION_PENDING_ID', 'jchav', CURRENT_TIMESTAMP, 'jchav', CURRENT_TIMESTAMP),
+				('Pending Loan Selection', 'SELECTION_ID',              'SELECTION_ID',              'SELECTION_ID',              'jchav', CURRENT_TIMESTAMP, 'jchav', CURRENT_TIMESTAMP)
+			DELETE FROM DICT_METADATA_FIELD where ENTITY_NAME = 'Pending Loan Selection' AND DB_COLUMN = 'CASE_NUMBER'
+
+			DELETE FROM DICT_METADATA_FIELD WHERE ENTITY_NAME = 'Processing Universe'
+			DELETE FROM DICT_METADATA_ENTITY WHERE ENTITY_NAME = 'Processing Universe'
+
+			DELETE FROM DICT_METADATA_FIELD WHERE ENTITY_NAME = 'Processing Universe Cases'
+			DELETE FROM DICT_METADATA_ENTITY WHERE ENTITY_NAME = 'Processing Universe Cases'
+		]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>

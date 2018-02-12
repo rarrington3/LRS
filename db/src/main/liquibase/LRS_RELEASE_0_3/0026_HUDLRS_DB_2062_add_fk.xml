@@ -1,0 +1,25 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="TEST"  author="astrauss" id="HUDLRS_2062_insert_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into SCORING_MODEL_VERSION(MODEL_ID, MODEL_VER_NUM, MODEL_SCORE_THRESHOLD, CREATED_BY, CREATED_TS)
+			values('3CBD624B-8394-490F-BE81-2F849EFE2F70',1,10,'C20225',getdate())
+		]]>
+        </sql>
+    </changeSet>    
+	<changeSet context="TEST"  author="astrauss" id="HUDLRS_2062_alter_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table scoring_model_factors add constraint SCORING_MODEL_FACTORS_FK_MODEL_ID_MODEL_VER_NUM foreign key (MODEL_ID, MODEL_VER_NUM) references SCORING_MODEL_VERSION (MODEL_ID, MODEL_VER_NUM)
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="TEST"  author="astrauss" id="HUDLRS_2062_alter_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table SCORING_MODEL_VERSION add constraint SCORING_MODEL_VERSION_FK_MODEL_ID foreign key (MODEL_ID) references SCORING_MODEL(MODEL_ID)
+		]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>    

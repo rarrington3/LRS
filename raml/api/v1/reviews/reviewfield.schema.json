@@ -1,0 +1,80 @@
+{
+    "id": "http://LRS/ReviewField",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": ["fieldId", "order", "name", "type", "value", "valuesAtEndorsement", "valuesAtUnderwriting", "isEditable"],
+    "additionalProperties": false,
+    "properties": {
+        "fieldId": {
+            "description": "The unique identifier for this field",
+            "type": "string"
+        },
+        "order": {
+            "description": "Sort order of this field relative to others displayed in the same panel",
+            "type": "integer"
+        },
+        "type": {
+            "description": "What type of UI element is used to display this?  Valid values are 'date', 'boolean', 'integer', 'number', 'currency', and 'select', and 'multiselect'",
+            "type": "string"
+        },
+        "conditionsToDisplay" : {
+            "description": "A collection of condition objects that the UI will use to determine if this field should be displayed (in any defect area or loan summary view).  If no conditions are included the question is displayed.",
+            "type": "array",
+            "items": {
+                "$ref": "ReviewCondition"
+            }
+        },
+        "loanAttributeGroup": {
+            "description": "Which section of the loan attributes screen this should be displayed in. Valid values are 'Loan', 'Property', and 'Borrower'. If NULL the field should not be displayed in the loan summary",
+            "type": "string"
+        },
+        "displayInDefectAreas": {
+            "description": "Which defect areas, if any, should display this field in their sidebar.  Values are the defect area codes (example: LA)",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "selectChoices": {
+            "description": "If type=select or multiselect, this is the array of options for the user to choose from",
+            "type": "array",
+            "items": {
+                "$ref": "CommonDetail"
+            }
+        },
+        "minValue": {
+            "description": "If type=integer, number, or currency this is the minimum allowed value",
+            "type":"number"
+        },
+        "maxValue": {
+            "description": "If type=integer, number, or currency this is the maximum allowed value",
+            "type":"number"
+        },
+        "name": {
+            "description": "The display name of the field (The DB refers to this as FIELD_NAME)",
+            "type": "string"
+        },
+        "value": {
+            "description": "The editable value for this field which is used to determine which questions are displayed to the user",
+            "type": "string"
+        },
+        "isEditable": {
+            "description": "Is this field editable",
+            "type": "boolean"
+        },
+        "valuesAtEndorsement": {
+            "description": "The values of this field at the time of endorsement (as reported by other systems).  Read-only. For most cases this will be a collection of one value, but in the case of multiple select it will be multiple values.",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "valuesAtUnderwriting": {
+            "description": "The values of this field at the time of underwriting (as reported by other systems).  Read-only. For most cases this will be a collection of one value, but in the case of multiple select it will be multiple values.",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    }
+}

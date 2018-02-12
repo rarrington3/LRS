@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<springProperty scope="context" name="lrs.log.jboss.root" source="lrs.log.directory.jboss.root"/>
+	<springProperty scope="context" name="lrs.log.workflow" source="lrs.log.directory.workflow"/>
+    
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>
+				[%date][%t][%-5level] %msg%n
+			</Pattern>
+		</layout>
+	</appender>
+
+	<appender name="LRS-WORKFLOW" class="ch.qos.logback.classic.sift.SiftingAppender">
+		<!-- MDC values -->
+		<!-- Will assign values via Java code -->
+		<discriminator>
+			<key>logFileName</key>
+			<defaultValue>workflow</defaultValue>
+		</discriminator>
+		<sift>
+			<appender name="LRS-WORKFLOW-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+				<file>${lrs.log.jboss.root}/${lrs.log.workflow}/${logFileName}.log</file>
+				<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+					<Pattern>
+						%date %-5level [%logger] \(%thread\) %msg%n
+					</Pattern>
+				</encoder>
+				<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+					<fileNamePattern>${lrs.log.jboss.root}/${lrs.log.workflow}/${logFileName}.%d{yyyy-MM-dd}.%i.log
+					</fileNamePattern>
+					<maxFileSize>50MB</maxFileSize>
+					<maxHistory>30</maxHistory>
+					<totalSizeCap>10GB</totalSizeCap>
+				</rollingPolicy>
+			</appender>
+		</sift>
+	</appender>
+
+	<logger name="gov.hud.lrs" level="DEBUG" additivity="false">
+		<appender-ref ref="LRS-WORKFLOW" />
+	</logger>
+	
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+	</root>
+
+</configuration>

@@ -1,0 +1,20 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+	<changeSet context="All"  author="jordanchavez" id="HUDLRS_3455_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<sql>
+			<![CDATA[
+CREATE TABLE LENDER(
+	LENDER_ID VARCHAR(5) NOT NULL,
+	NAME VARCHAR(100) NOT NULL,
+	EMAIL VARCHAR(100) NULL,
+	SECONDARY_EMAIL VARCHAR(100) NULL,
+	CREATED_BY CHAR(6) NOT NULL,
+	CREATED_DT DATETIME NOT NULL,
+	UPDATED_BY CHAR(6) NULL,
+	UPDATED_DT DATETIME NULL
+)
+ALTER TABLE LENDER ADD CONSTRAINT LENDER_PK PRIMARY KEY NONCLUSTERED(LENDER_ID)
+			]]>
+		</sql>
+	</changeSet>	
+</databaseChangeLog>

@@ -1,0 +1,45 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1881_create_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create table UNIVERSE_REF
+			(UNIVERSE_REF_ID uniqueidentifier not null default newid(),
+			 CODE varchar(4) not null,
+			 DESCRIPTION varchar(30) not null)
+			 
+			alter table UNIVERSE_REF add constraint UNIVERSE_REF_PK primary key nonclustered (UNIVERSE_REF_ID)	
+
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1881_insert_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into universe_ref(UNIVERSE_REF_ID,code,description)values('852426FC-84A8-4235-9D60-ED60516D92E4','ENDR','Monthly Endorsement')
+			insert into universe_ref(UNIVERSE_REF_ID,code,description)values('961EA000-7DBD-4B0E-A875-2D8464094CFC','EPDF','Early Payment Default')
+			insert into universe_ref(UNIVERSE_REF_ID,code,description)values('C469918C-C89C-4B07-92B2-C4AF749AD0E8','LMON','Lender Monitoring')
+			insert into universe_ref(UNIVERSE_REF_ID,code,description)values('F644D8E2-C089-4662-8DCA-F2C92FC67F1F','ECLM','Early Claim')
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1881_alter_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table loan_selection_case_summary add UNIVERSE_REF_ID uniqueidentifier null
+			ALTER TABLE loan_selection_case_summary ADD CONSTRAINT LOANSELCASESUMTOUNIVERSEREF FOREIGN KEY(UNIVERSE_REF_ID) REFERENCES UNIVERSE_REF(UNIVERSE_REF_ID)
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1881_insert_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into dict_metadata_entity(ENTITY_NAME, DB_VIEW_OR_TABLE,CREATED_BY,CREATED_TS) values('Universe Reference','UNIVERSE_REF','C20225',getdate())			  
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Universe Reference','Universe ID','UNIVERSE_REF_ID','C20225', getdate(),'STATIC','Universe ID')
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Universe Reference','Code','CODE','jchav', getdate(),'STATIC','Code')			
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Universe Reference','Description','DESCRIPTION','C20225', getdate(),'STATIC','Description')			
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary for Selection','Universe ID','UNIVERSE_REF_ID','C20225', getdate(),'STATIC','Universe ID')			
+		]]>
+        </sql>
+    </changeSet>
+ </databaseChangeLog>

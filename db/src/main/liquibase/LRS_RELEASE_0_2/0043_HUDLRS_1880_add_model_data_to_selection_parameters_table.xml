@@ -1,0 +1,28 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1880_update_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update SELECTION_PARAMETERS set MODEL_ID = '514DFA14-7227-4B80-9E57-69D887D44FDB' where SLCTN_REASON_ID = '62856DD0-95FF-4D85-9EBA-9339B853D807'
+			update SELECTION_PARAMETERS set MODEL_ID = '62B077CB-24F7-45B0-8CE3-B8B98417CCEA' where SLCTN_REASON_ID = '36F4E340-FF2C-44BA-9332-FE889614CD0A'
+			update SELECTION_PARAMETERS set MODEL_ID = 'AFB673A4-2AFB-46EE-8AF0-804B5C831EA3' where SLCTN_REASON_ID = '8FF9B956-972F-4523-B898-ABDF5995F296'
+			update SELECTION_PARAMETERS set MODEL_ID = '3CBD624B-8394-490F-BE81-2F849EFE2F70' where SLCTN_REASON_ID = 'CD6C7BE4-034E-47C0-8445-282D5FA143CF'
+			update SELECTION_PARAMETERS set MODEL_ID = '750FE77A-6262-470A-BC65-2BF15E099C90' where SLCTN_REASON_ID = '80139CFE-A19F-4BFB-A7C8-C51289E1A4AD'
+			update SELECTION_PARAMETERS set MODEL_ID = '20F785BE-1836-4AEC-8D11-E2FB45EA66FA' where SLCTN_REASON_ID = '05BA7348-36BE-4FED-9CF3-5F476275233C'
+			update SELECTION_PARAMETERS set MODEL_ID = '3BFA8E82-5F4C-4133-AD55-19B53B4264D7' where SLCTN_REASON_ID = '26795599-DC6C-449A-BE7D-432434952429'
+			update SELECTION_PARAMETERS set MODEL_ID = '3BFA8E82-5F4C-4133-AD55-19B53B4264D7' where SLCTN_REASON_ID = '406CDF81-EE62-42F1-90C1-D0AF689A03C6'
+			update SELECTION_PARAMETERS set MODEL_ID = 'FCB4565F-4246-4656-9C9A-28F5EAC62B87' where SLCTN_REASON_ID = '50B5A87E-D604-45B4-B004-7EDE4D85CD85'
+		]]>
+        </sql>
+    </changeSet>	
+ </databaseChangeLog>
+
+
+
+
+
+
+
+
+
+

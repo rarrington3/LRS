@@ -1,0 +1,64 @@
+package gov.hud.lrs.workflow
+
+import java.lang.Boolean;
+import java.lang.Integer;
+import java.util.List;
+import gov.hud.lrs.workflow.service.DistributionRulesParameters;
+import gov.hud.lrs.common.enumeration.SelectionReasonCodes;
+
+rule "Location Can Review Product Multiplier-rule"
+	no-loop true
+	when
+		rulesParameters:DistributionRulesParameters(reviewLocationContainsProductType(reviewLocationId, productTypeCode))
+	then
+	   rulesParameters.addFactorScore("Location Can Review Product Multiplier");
+end
+
+rule "Location Can Review Reason Multiplier-rule"
+	no-loop true
+	when
+	    rulesParameters:DistributionRulesParameters(reviewLocationContainsSelectionReason(reviewLocationId, selectionReasonCode))
+	then
+		rulesParameters.addFactorScore("Location Can Review Reason Multiplier");
+end
+
+rule "Location Can Review Type Multiplier-rule"
+	no-loop true
+	when
+	    rulesParameters:DistributionRulesParameters(reviewLocationContainsReviewType(reviewLocationId, reviewTypeCode))
+	then
+		rulesParameters.addFactorScore("Location Can Review Type Multiplier");
+end
+
+rule "Location Remaining Capacity Multiplier-rule"
+	no-loop true
+	when
+	    rulesParameters:DistributionRulesParameters()
+	then
+		rulesParameters.addFactorScore("Location Remaining Capacity Multiplier", rulesParameters.getRemainingCapacity());
+end
+
+rule "Prescribed Location Multiplier-rule"
+	no-loop true
+	when
+	    rulesParameters:DistributionRulesParameters(
+	    	(preferredReviewLocationId != null) &&
+	    	preferredReviewLocationId.equals(reviewLocationId)
+	    )
+	then
+		rulesParameters.addFactorScore("Prescribed Location Multiplier");
+end
+
+rule "Post Mortem At Different Location Multiplier-rule"
+	no-loop true
+	//IF [Loan Selection]![Preferred Review Location] = [Review Location]![Review Location] OR [Loan Selection]![Selection Reason] != "National QC" THEN 0 ELSE 1
+	when
+	    rulesParameters:DistributionRulesParameters(
+	    	(preferredReviewLocationId != null) &&
+	    	!preferredReviewLocationId.equals(reviewLocationId) &&
+	    	selectionReasonCode.equals(SelectionReasonCodes.NATIONAL_QC)
+	    )
+	then
+		rulesParameters.addFactorScore("Post Mortem At Different Location Multiplier");
+end
+

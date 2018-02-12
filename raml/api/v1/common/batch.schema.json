@@ -1,0 +1,120 @@
+{
+    "id": "http://LRS/Batch",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "additionalProperties": false,
+    "properties": {
+        "batchId": {
+            "description": "The unique batch ID (GUID) that can be used to update the batch",
+            "type": "string"
+        },
+        "batchNumber": {
+            "description": "The human readable batch number to be displayed in the UI",
+            "type": "string"
+        },
+        "lenderName":{
+            "description": "The name of the lender associated with this batch",
+            "type": "string"
+        },
+        "lenderId":{
+            "description": "The ID of the lender associated with this batch",
+            "type": "string"
+        },
+        "selectionReason": {
+            "description": "Short name of the business rule that triggered this batch.",
+            "type": "string"
+        },  
+        "operationalReview": {
+            "description": "Flag indicating whether or not an operational review exists for this batch.",
+            "$ref": "Review"
+        },                
+        "requestOperationalReview": {
+            "description": "Flag indicating whether or not an operational review has been requested for this batch.",
+            "type": "boolean"
+        },
+        "reviewType": {
+            "description": "Review type of all reviews in this batch, except for the operational review if any",
+            "type": "string"
+        },
+        "reviewLevel": {
+           "description": "The level of review being performed.  For example: 'Initial', 'Mitigation 1'",
+           "type": "string"
+        },
+        "operationalDocumentsDueDate": {
+            "description": "Op doc due date",
+            "type": "string",
+            "format": "date"
+        },
+        "operationalDocuments": {
+            "description": "A collection of files that are uploaded for the operational review",
+            "type": "array",
+            "items": {
+                "$ref": "Document"
+            }
+        },
+        "requestOperationalDocuments": {
+            "description": "A flag to trigger a request for operational documents.",
+            "type": "boolean"
+        },
+        "secondaryId": {
+            "description": "An optional secondary ID to assign to this batch.",
+            "type": "string"
+        },
+        "operationalReviewGuidance": {
+            "description": "Additional guidance for the operational review.",
+            "type": "string"
+        },
+        "batchOwner": {
+            "description": "ID of the reviewer who will be the owner of this batch.",
+            "type": "string"
+        },
+        "batchTeamMembers": {
+            "description": "A collection of reviewer IDs for those assigned to this batch.",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "reviews": {
+            "description": "The collection of review objects that belong to this batch once created",
+            "type": "array",
+            "items": {
+                "$ref": "Review"
+            }
+        },
+        "caseCount": {
+            "description": "The number of loan selection cases that belong to this batch (can be used before reviews created)",
+            "type": "number"
+        },
+        "lenderDateReceived": {
+            "description": "The date when the batch was sent to the lender",
+            "type": "string",
+            "format": "date"
+        },
+        "lenderDateDue": {
+            "description": "The date when all batch responses are due from the lender",
+            "type": "string",
+            "format": "date"
+        },
+        "status": {
+            "description": "The current status of the batch, ex:  'Selected', 'Cancelled', 'Assigned', 'Pending Lender Response', 'Completed', 'Under Batch Review', 'Under Review', 'Distributed'",
+            "type": "string"
+        },
+        "creationDate": {
+            "description": "The date this batch was created",
+            "type": "string",
+            "format": "date"
+        },
+        "iteration": {
+            "description": "Iteration number for the current batch",
+            "type": "string"
+        },
+        "outstandingCaseActivity": {
+            "description": "Information regarding loan selections that are not yet reviews so that the user can see all cases in the batch at all times.",
+            "type": "array",
+            "items": {
+                "$ref": "CaseActivity"
+            }
+        }
+    }
+}

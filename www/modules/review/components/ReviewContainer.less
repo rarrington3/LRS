@@ -1,0 +1,143 @@
+@import '../../bootstrap/_variables.less';
+@import '../../shared/_mixins.less';
+
+:host-context {
+    /* styles should be scoped under host-context */
+	a {
+		cursor: pointer;
+	}
+
+    .the-sub-header{
+        background-color: @brand-secondary;
+        color: white;
+
+        .sub-title, .loan-overview {
+            float: left;
+            padding: 10px 12px;
+            border-right: 1px solid @brand-blue-border-color;
+        }
+
+        .sub-title {
+			font-size: @font-size-title;
+			font-weight: 400;
+            margin: 0;
+            padding-top: 16px;
+            padding-bottom: 3px;
+            border-left: 1px solid @brand-blue-border-color;
+        }
+
+
+        .loan-overview{
+            p{
+                margin: 0px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            .description {
+				font-size: @font-size-small-title;
+                font-weight: 200;
+            }
+
+            .h5{
+				font-size: @font-size-medium-title;
+                font-weight: 400;
+            }
+        }
+
+      	.dropdown {
+			float: right;
+			width: 180px;
+	 	}
+
+		.dropdown > button {
+			padding: 0 15px 0 15px;
+			height: 60px;
+			width:100%;
+			background-color: @brand-primary;
+			border: none;
+		}
+
+		.d-btn {
+			font-weight: 100;
+			text-decoration: underline;
+			color: @brand-gray;
+		}
+
+		.dropdown-menu {
+			width: 100%;
+			border-radius: 0 0 5px 5px;
+			margin-top: -1px;
+			border: 1px solid @brand-grey-border-color;
+
+			li {
+				border-bottom: 1px solid @brand-grey-border-color;
+			}
+            
+            &.disabled{ 
+                li{
+                    cursor: not-allowed;
+                }
+            }
+
+			li:last-child {
+				border: none;
+			}
+		}
+
+        .btn-primary{
+            background-color: white;
+            color: @brand-primary;
+        }
+
+        .btn-secondary{
+            background-color: darken(@brand-secondary, 5%);
+            opacity: .75;
+            &:hover{
+                color: white;
+            }
+        }
+    }
+
+    .review {
+        margin-bottom: 150px;
+    }
+	.content-panel-inner.review {
+		position: relative;
+		padding: 40px;
+		min-height: 300px;
+		padding-bottom: 80px;
+	}
+
+    .num-findings{
+        border-radius: 100px;
+        width: 200px;
+        height: 200px;
+        background-color: @brand-secondary;
+        padding-left: 4px;
+        padding-right: 4px;
+        padding-top: 1px;
+        color: white;
+        padding-bottom: 1px;
+    }
+    
+    .modal-refferal {
+        display: flex;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        textarea {
+            resize: none;
+            width: 80%;
+            height: 55px;
+            border-radius: 5px;
+            margin-left: 85px;
+            border-color: lightgray;
+        }
+        span {
+            width: 50px;
+            margin-left: 5px;
+            padding-top: 2px;
+        }
+    }
+}
+

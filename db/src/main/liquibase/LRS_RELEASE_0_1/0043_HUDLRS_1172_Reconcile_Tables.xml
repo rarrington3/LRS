@@ -1,0 +1,105 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1172_reconcile_tables_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table loan_selection_case_summary drop column BORR_NM
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1172_reconcile_tables_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table loan_selection_case_summary drop column BORR_EMPLMNT_IND
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1172_reconcile_tables_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from dict_metadata_field 
+			where db_column = 'BORR_EMPLMNT_IND'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1172_reconcile_tables_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update dict_metadata_field 
+			set db_column = 'TEN_YR_RATE_LOCK_IND'
+			where field_name = 'Ten Year Rate Lock Indicator'
+
+			update dict_metadata_field 
+			set db_column = 'BORR_2_SSN'
+			where entity_name = 'Case Summary for Selection'			
+			  and field_name = 'Borrower 2 SSN'
+			  
+			update dict_metadata_field 
+			set db_column = 'BNKRPTCY_CHPTR7_IND'
+			where entity_name = 'Case Summary for Selection'			
+			  and field_name = 'Chapter 7 Bankruptcy Exists Indicator'			  
+			  
+			update dict_metadata_field 
+			set db_column = 'BNKRPTCY_CHPTR13_IND'
+			where entity_name = 'Case Summary for Selection'			
+			  and field_name = 'Chapter 13 Bankruptcy Exists Indicator'			  			  
+			  
+			update dict_metadata_field 
+			set field_name = 'Bankruptcy Date'
+			where entity_name = 'Case Summary for Selection'			
+			  and db_column = 'BNKRPTCY_DT'			  			  			  
+			  
+			update dict_metadata_field 
+			set db_column = 'HECM_COUNSEL_CERT_NO'
+			where entity_name = 'Case Summary for Selection'			
+			  and field_name = 'HECM Counseling Certificate Number'		  			  			  			  
+			  
+			update dict_metadata_field 
+			set db_column = 'FICO_DECISION_SCORE'
+			where entity_name = 'Case Summary for Selection'			
+			  and field_name = 'FICO Decision Score'		  			  			  			  			  
+			  
+			delete from dict_metadata_field
+			where ENTITY_NAME = 'Case Summary for Selection'
+			  and field_name = 'Case Nbr'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1172_reconcile_tables_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table loan_selection_case_summary drop column MANDATORY_OBLIGS_AMT
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1172_reconcile_tables_0006" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table loan_selection_case_summary add FICO_DECISION_SCORE int NULL
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1172_reconcile_tables_0007" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into dict_metadata_field (entity_name, field_name, db_column, created_by, created_ts, subject_area, ui_control_type) values('Case Summary for Selection', 'FICO Decision Score at Endorsement', 'FICO_DECISION_SCORE_ENDRS','C20225', getdate(),'UNKNOWN','STATIC')			
+			insert into dict_metadata_field (entity_name, field_name, db_column, created_by, created_ts, subject_area, ui_control_type) values('Case Summary for Selection', 'FICO Decision Score at Underwriting', 'FICO_DECISION_SCORE_UW','C20225', getdate(),'UNKNOWN','STATIC')			
+		]]>
+        </sql>
+    </changeSet>
+	<changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1172_reconcile_tables_0008" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table rvw_lvl_case_summary add BNKRPTCY_DT datetime NULL
+		]]>
+        </sql>
+    </changeSet>
+	 <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1172_reconcile_tables_0009" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into dict_metadata_field (entity_name, field_name, db_column, created_by, created_ts, subject_area, ui_control_type) values('Case Summary for Review Level', 'Bankruptcy Date', 'BNKRPTCY_DT','C20225', getdate(),'UNKNOWN','STATIC')			
+		]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>
+

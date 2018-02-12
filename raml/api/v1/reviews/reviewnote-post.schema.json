@@ -1,0 +1,19 @@
+{
+    "id": "http://LRS/ReviewNotePost",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": [
+        "text"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "text": {
+            "description": "The note text.",
+            "type": "string"
+        },
+        "defectAreaCode": {
+            "description": "Defect area code that can be optionally associated with this note",
+            "type": "string"
+        }
+    }
+}

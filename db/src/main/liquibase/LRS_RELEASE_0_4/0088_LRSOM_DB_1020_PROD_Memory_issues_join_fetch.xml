@@ -1,0 +1,33 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+	<changeSet context="All"  author="pwang" id="LRSOM_1020_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<sql>
+			<![CDATA[
+				
+				ALTER TABLE LOAN_SELECTION ADD BORR_NAME VARCHAR(100) NULL
+
+				ALTER TABLE LOAN_SELECTION_PENDING ADD BORR_NAME VARCHAR(100) NULL
+				
+			]]>
+		</sql>
+	</changeSet>
+	<changeSet context="All"  author="pwang" id="LRSOM_1020_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<sql>
+			<![CDATA[
+				
+				update LOAN_SELECTION
+				set BORR_NAME = b.BORR_1_NAME
+				from
+				LOAN_SELECTION a, LOAN_SELECTION_CASE_SUMMARY b
+				where a.SELECTION_ID = b.SELECTION_ID
+				
+				update LOAN_SELECTION_PENDING
+				set BORR_NAME = b.BORR_1_NAME
+				from
+				LOAN_SELECTION_PENDING a, LOAN_SELECTION_CASE_SUMMARY b
+				where a.SELECTION_ID = b.SELECTION_ID
+				
+			]]>
+		</sql>
+	</changeSet>	
+</databaseChangeLog>

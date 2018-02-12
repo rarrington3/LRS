@@ -1,0 +1,38 @@
+@import '../../bootstrap/_variables';
+@import '../../shared/_mixins';
+
+:host-context {
+    /* styles should be scoped under host-context */
+
+    .staff-add-member-info {
+        padding-bottom: 20px;
+    }
+
+    .staff-add-member-success {
+        padding-top: 30px;
+        color: @brand-success;
+
+        .glyphicon {
+            color: #fff;
+            background-color: @brand-success;
+            padding: 2px 2.5px;
+            font-size: 11px;
+
+            .round-container(15px);
+        }
+    }
+
+    .staff-add-member-fail {
+        padding-top: 30px;
+        color: @brand-danger;
+
+        .glyphicon {
+            color: #fff;
+            background-color: @brand-danger;
+            padding: 2px  2.5px;
+            font-size: 11px;
+
+            .round-container(15px);
+        }
+    }
+}

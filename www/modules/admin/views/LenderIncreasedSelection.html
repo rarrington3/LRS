@@ -1,0 +1,55 @@
+<div class="lrs-content-panel model-admin-body container-fluid">
+
+    <div class="row">
+        <div class="section-heading">{{lenderType}} Increased Selection</div>
+
+        <hr/>
+
+        <div class="form-item">
+            <label for="lender_id" class="small">Enter <span *ngIf="lenderType == LENDER_TYPES.LENDER">Lender</span><span *ngIf="lenderType == LENDER_TYPES.UNDERWRITER">Underwriter</span> Id</label>
+            <div>
+                <input type="text" id="lender_id" name="lender_id" class="inline-input" [(ngModel)]="addedLenderId">
+                <button class="btn btn-primary add-btn" (click)="addLender()" [disabled]="!addedLenderId">Add</button>
+            </div>
+        </div>
+
+
+        <hr/>
+
+        <div class="form-item">
+            <label class="small" for="lenderFilter">Filter by <span *ngIf="lenderType == LENDER_TYPES.LENDER">Lender</span><span *ngIf="lenderType == LENDER_TYPES.UNDERWRITER">Underwriter</span> ID or Name</label>
+            <input type="text" #listFilter id="lenderFilter" name="lenderFilter" (keyup)="0">
+        </div>
+
+        <table class="table workload-table">
+            <thead>
+            <tr *ngIf="lenderType == LENDER_TYPES.LENDER">
+                <th scope="col"><a href="javascript:void(0)" (click)="sortLenders(SORT_PROPS.ID)">Lender ID</a></th>
+                <th scope="col"><a href="javascript:void(0)" (click)="sortLenders(SORT_PROPS.NAME)">Lender Name</a></th>
+                <th scope="col"><a href="javascript:void(0)" (click)="sortLenders(SORT_PROPS.PERCENT_TO_REVIEW)">Percent of Loans to Review</a></th>
+                <th scope="col"><a href="javascript:void(0)" (click)="sortLenders(SORT_PROPS.START_DATE)">Increase Date</a></th>
+                <th></th>
+            </tr>
+            <tr *ngIf="lenderType == LENDER_TYPES.UNDERWRITER">
+                <th scope="col"><a href="javascript:void(0)" (click)="sortLenders(SORT_PROPS.ID)">Underwriter ID</a></th>
+                <th scope="col"><a href="javascript:void(0)" (click)="sortLenders(SORT_PROPS.NAME)">Underwriter Name</a></th>
+                <th scope="col"><a href="javascript:void(0)" (click)="sortLenders(SORT_PROPS.PERCENT_TO_REVIEW)">Percent of Loans to Review</a></th>
+                <th scope="col"><a href="javascript:void(0)" (click)="sortLenders(SORT_PROPS.START_DATE)">Increase Date</a></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of lenders | lenderIdPipe:listFilter.value">
+                <td class="lender-td" scope="row">{{item.lender.lenderId}}</td>
+                <td class="lender-name">{{item.lender.name}}</td>
+                <td class="lender-td"><input type="number" [(ngModel)]="item.percentToReview" (click)="changePercentage(item)"></td>
+                <td class="lender-td">{{item.startDate | datePipe}}</td>
+                <td class="lender-td"><button class="btn btn-primary" [attr.aria-label]="'Remove ' + item.lender.name" (click)="removeLender(item.lender.lenderId)">Remove</button></td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+</div>

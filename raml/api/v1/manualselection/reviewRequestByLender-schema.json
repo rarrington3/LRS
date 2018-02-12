@@ -1,0 +1,27 @@
+{
+    "id": "http://LRS/ReviewRequestByLender",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": [
+        "lenderId",
+        "cases"
+    ],
+    "additionalProperties": true,
+    "properties": {
+        "lenderId": {
+            "description": "The identifier of this lender",
+            "type": "string"
+        },
+        "cases": {
+            "description": "A collection of individual cases numbers to be reviewed.",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "batchInfo": {
+            "description": "Attributes to be set on the batch once created.",
+            "$ref": "Batch"
+        }
+    }
+}

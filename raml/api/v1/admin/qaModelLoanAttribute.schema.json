@@ -1,0 +1,24 @@
+{
+    "id": "http://LRS/QaModelLoanAttribute",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "additionalProperties": false,
+    "properties": {
+        "id": {
+            "description": "The id of qa model loan attribute.",
+            "type": "string"
+        },
+        "entityName": {
+            "description": "The entity name the qa model loan attribute is referencing.",
+            "type": "string"
+        },
+        "fieldName": {
+            "description": "The field name the qa model loan attribute is referencing.",
+            "type": "string"
+        },
+        "order": {
+            "description": "The order of the category",
+            "type": "number"
+        }
+    }
+}

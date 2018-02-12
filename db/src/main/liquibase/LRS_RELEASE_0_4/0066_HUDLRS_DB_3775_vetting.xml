@@ -1,0 +1,14 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+	<changeSet context="All"  author="jordanchavez@kpmg.com" id="HUDLRS_3775_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<sql>
+			<![CDATA[
+UPDATE RL SET RL.REVIEW_LEVEL_STATUS_ID = (SELECT REVIEW_LEVEL_STATUS_ID FROM REVIEW_LEVEL_STATUS_REF WHERE CODE = 'COMPLETED')
+FROM REVIEW_LEVEL RL
+WHERE
+	(RL.VETTING_IND = 'Y') AND
+	(RL.REVIEW_LEVEL_STATUS_ID = (SELECT REVIEW_LEVEL_STATUS_ID FROM REVIEW_LEVEL_STATUS_REF WHERE CODE = 'EXCEPTION'))
+			]]>
+		</sql>
+	</changeSet>
+</databaseChangeLog>

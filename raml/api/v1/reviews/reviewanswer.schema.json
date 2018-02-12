@@ -1,0 +1,32 @@
+{
+    "id": "http://LRS/ReviewAnswer",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": ["answerId", "reviewLevelId", "questionId", "qaTreeId"],
+    "additionalProperties": false,
+    "properties": {        
+        "answerId": {
+            "description": "The unique answer ID that can be used to update the answer",
+            "type": "string"
+        },
+        "reviewLevelId": {
+            "description": "The answer ID to a question for a specific loan review level",
+            "type": "string"
+        },
+        "questionId": {
+            "description": "The ID to the question this answer is for",
+            "type": "string"
+        },
+        "qaTreeId": {
+            "description": "The qa tree ID related to this review",
+            "type": "string"
+        },
+        "answers": {
+            "description": "The actual answer detail(s) to the qustion (e.g. [{code: 'Yes', description: 'Yes'}], or for a multiple choice: [{code:'1', description: 'Standard Employment'}, {code:'3', description:'Part-time and Seasonal Employment'}])",
+            "type": "array",
+            "items": {
+                "$ref": "CommonDetail"
+            }
+        }
+    }
+}

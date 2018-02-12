@@ -1,0 +1,118 @@
+{
+    "reviewId": "123",
+    "loanId": "14e54129-ec1e-4cc6-b423-19f7ad1e70f1",
+    "caseNumber": "351-6092905",
+    "selectionReason": "Random",
+    "reviewType": "Operational",
+    "scope": "L",
+    "propertyStreetAddress": "3797 Haylee Camp",
+    "borrowerName": "Farrell, Pablo",
+    "lenderId": "75271",
+    "lenderName": "First Commercial Bank",
+    "reviewReferenceId": "23373-2017-000001",
+    "currentReviewLevel": {
+        "reviewLevelId": "230ce36cb-a8f1-481c-bb93-609fd0c553d6",
+        "type": "Escalation",
+        "status": "In Progress",
+        "iteration": "1",
+        "ratingCode": "U",
+        "reviewerDateAssigned": "2016-07-15",
+        "reviewerDateDue": "2016-07-29",
+        "reviewLocationName": "Denver QAD",
+        "reviewerName": "Armen, Roger",
+        "reviewerId": "current-user-id-asdf-1234"
+    },
+    "completedReviewLevels": [
+        {
+            "reviewLevelId": "d2f957de-83e8-45a6-a384-458603727fc7",
+            "type": "Initial",
+            "status": "Completed",
+            "reviewerDateAssigned": "2016-07-20",
+            "reviewerDateDue": "2016-07-28",
+            "reviewerCompletedDate": "2016-09-29",
+            "reviewLocationName": "Denver QAD",
+            "dateRequestSentToLender": "2016-07-20",
+            "dateResponseDueFromLender": "2016-07-28",
+            "reviewerName": "Smith, John",
+            "reviewerId": "14e54129-ec1e-4cc6-b423-19f7ad1e70f1"
+        },
+        {
+            "reviewLevelId": "228ce36cb-a8f1-481c-bb93-609fd0c553d6",
+            "type": "Mitigation 1",
+            "status": "Completed",
+            "ratingCode": "U",
+            "reviewerDateAssigned": "2016-07-15",
+            "reviewerDateDue": "2016-07-29",
+            "reviewerCompletedDate": "2016-09-29",
+            "reviewLocationName": "Denver QAD",
+            "reviewerName": "Armen, Roger",
+            "reviewerId": "14e54129-ec1e-4cc6-b423-19f7ad1e70f1",
+            "forceEscalationDate": "2016-09-29"
+        }
+    ],
+    "status": "Pending Lender Response",
+    "batchId": "52b5257e-05fc-4a99-b090-0cf729f41ceb",
+    "defectAreaIds": [
+        "D7916C67-5501-4443-BF53-62BB482721C0",
+        "9D7BBED9-0A67-4EDF-A79B-7A1C48B16C69",
+        "8DFC254A-1BFE-41B2-963D-0A97C159BEE4",
+        "9D7BBED9-0A67-4EDF-A79B-7A1C48B16C69",
+        "BBF689FC-A866-42D6-96E7-DBE6F30B232D",
+        "DC8D705A-1808-4315-A120-DD6CD8904DCC",
+        "3FB1E297-557C-40B6-9D6C-417742316B76"
+    ],
+    "qaTrees": [
+        {
+            "qaTreeId": "BEE76DDC-5907-435C-80D1-45F894F7BD3C",
+            "defectAreaCode": "BA"
+        },
+        {
+            "qaTreeId": "4C5DE892-30D6-4E67-8A5F-506E883D2329",
+            "defectAreaCode": "LA"
+        },
+        {
+            "qaTreeId": "208189ED-165E-4D94-B494-C3FD37EF38AD",
+            "defectAreaCode": "ME"
+        },
+        {
+            "qaTreeId": "129BEB6E-B752-41C7-B195-4C7F8B222D9A",
+            "defectAreaCode": "LP"
+        },
+        {
+            "qaTreeId": "D94D8A17-6EAB-4A91-BB39-347F28507747",
+            "defectAreaCode": "PE"
+        },
+        {
+            "qaTreeId": "3F7570B8-C924-4A51-B8C0-DF5F481E67D1",
+            "defectAreaCode": "PA"
+        },
+        {
+            "qaTreeId": "1AA38E66-75F2-4678-8AC3-52A005CF5744",
+            "defectAreaCode": "BE"
+        }
+    ],
+    "documents": [
+        {
+            "documentId": "1AA38E66-75F2-4678-8AC3-52A005CF5745",
+            "documentType": "RESP",
+            "fileName": "borrower_w2.jpg"
+        },
+        {
+            "documentId": "1AA38E66-75F2-4678-8AC3-52A005CF5746",
+            "documentType": "INDM",
+            "fileName": "indem.pdf"
+        },
+        {
+            "documentId": "1AA38E66-75F2-4678-8AC3-52A005CF5747",
+            "documentType": "OPER",
+            "fileName": "lender_form.pdf"
+        }
+    ],
+    "qaModelId": "QA1",
+    "selectionRequestId": "GUIDS-FOR-LIFE",
+    "lastLenderName": "Banker, Amy",
+    "rvwCompltdDt": "2017-02-12",
+    "selectedDate": "2017-02-12",
+    "binderRequestDate": "2017-02-12",
+    "binderReceivedDate": null
+}

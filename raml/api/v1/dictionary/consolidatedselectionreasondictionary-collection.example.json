@@ -1,0 +1,38 @@
+[
+  {
+    "code": "FHA_MANUAL",
+    "description": "FHA Manual"
+  },
+  {
+    "code": "LENDER_SELF_REPORT",
+    "description": "Lender Self Report"
+  },
+  {
+    "code": "QC",
+    "description": "QC"
+  },
+  {
+    "code": "RISK_RANDOM",
+    "description": "Risk/Random"
+  },
+  {
+    "code": "TEST_CASE",
+    "description": "Test Case"
+  },
+  {
+    "code": "OIG_AUDIT",
+    "description": "OIG Audit"
+  },
+  {
+    "code": "EARLY_CLAIM",
+    "description": "Early Claim"
+  },
+  {
+    "code": "LENDER_MONITORING",
+    "description": "Lender Monitoring"
+  },
+  {
+    "code": "EARLY_PAYMENT_DEFAULT",
+    "description": "Early Payment Default"
+  }
+]

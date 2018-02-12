@@ -1,0 +1,15 @@
+{
+    "id": "http://LRS/JobParameter",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "properties": {
+        "name": {
+            "description": "Parameter name",
+            "type": "string"
+        },
+        "value": {
+            "description": "Parameter value",
+            "type": "string"
+        }
+    }
+}

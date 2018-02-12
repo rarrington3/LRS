@@ -1,0 +1,82 @@
+USE LRSDEV_STAGE
+go
+
+DROP PROCEDURE LRS_UPDATE_MASK_TEST_DATA
+go
+
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,Wes McAfee>
+-- Create date: <July 5, 2016>
+-- Description:	<Mask Test Data in Stage for LRS>
+-- =============================================
+CREATE PROCEDURE LRS_UPDATE_MASK_TEST_DATA 
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+		-- Mask Case Number and Borrower's birth date in IDB_1
+	Update dbo.STAGE_LOAN_SELECTION_IDB_1 
+	set CASE_NUMBER = dbo.NEW_CASE_NUMBER(CASE_NUMBER), BORR_BRTH_DT = CONVERT(CHAR (4),DATEPART(YYYY,BORR_BRTH_DT)) + '0701',
+	    MASKED_IND = 'Y'
+	where MASKED_IND != 'Y';
+
+	-- Mask Case Number in IDB_2
+	Update dbo.STAGE_LOAN_SELECTION_IDB_2 
+	set CASE_NUMBER = dbo.NEW_CASE_NUMBER(CASE_NUMBER),
+	    MASKED_IND = 'Y'
+	where MASKED_IND != 'Y';
+
+	-- Mask Case Number in DEF_DET
+	Update dbo.STAGE_LOAN_SELECTION_DEF_DET 
+	set CASE_NUMBER = dbo.NEW_CASE_NUMBER(CASE_NUMBER),
+	    MASKED_IND = 'Y'
+	where MASKED_IND != 'Y';
+
+	-- Mask Case Number, Borrowers Name, and Loan Number in DEF_HST
+	Update dbo.STAGE_LOAN_SELECTION_DEF_HST 
+	set CASE_NUMBER = dbo.NEW_CASE_NUMBER(CASE_NUMBER), 
+	    BORR_NM = dbo.NEW_NAME(15), 
+		LOAN_NBR = dbo.NEW_LOAN(LOAN_NBR,15),
+	    MASKED_IND = 'Y'
+	where MASKED_IND != 'Y';
+
+	-- Mask Case Number in Hermit
+	update dbo.STAGE_LOAN_SELECTION_HERMIT 
+	set CASE_NUMBER = dbo.NEW_CASE_NUMBER(CASE_NUMBER),
+	    MASKED_IND = 'Y'
+	where MASKED_IND != 'Y';
+
+	-- Mask Case Number in HUDSTAT
+	update dbo.STAGE_LOAN_SELECTION_HUDSTAT 
+	set CASE_NUMBER = dbo.NEW_CASE_NUMBER(CASE_NUMBER),
+	    MASKED_IND = 'Y'
+	where MASKED_IND != 'Y';
+
+    -- Mask Case Number in HECM
+	update dbo.STAGE_CHUMS_HECM_CASE_DETAIL 
+	set CASE_NUMBER = dbo.NEW_CASE_NUMBER(CASE_NUMBER),
+	    MASKED_IND = 'Y'
+	where MASKED_IND != 'Y';
+		
+    -- Mask Case Number in ARCHIVE_HECM_TBL
+	update dbo.ARCHIVE_HECM_FINANCIAL_TBL 
+	set CASE_NUMBER = dbo.NEW_CASE_NUMBER(CASE_NUMBER),
+	    MASKED_IND = 'Y'
+	where MASKED_IND != 'Y';
+	
+   -- Mask Case Number in IDB_3
+	update dbo.STAGE_IDB_3
+	set CASE_NUMBER = dbo.NEW_CASE_NUMBER(CASE_NUMBER),
+	    MASKED_IND = 'Y'
+	where MASKED_IND != 'Y';	
+	
+
+END
+GO

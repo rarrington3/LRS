@@ -1,0 +1,124 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+	<changeSet context="All"  author="Strauss" id="HUDLRS_3980_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<sql>
+			<![CDATA[
+				Alter table review add MANAGEMENT_DECISION_IND char(1) not null default 'N'
+			]]>
+		</sql>
+	</changeSet>
+	<changeSet context="All"  author="Strauss" id="HUDLRS_3980_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<sql>
+			<![CDATA[
+				Alter table audit_review add MANAGEMENT_DECISION_IND char(1) null
+			]]>
+		</sql>
+	</changeSet>	
+	<changeSet context="All"  author="Strauss" id="HUDLRS_3980_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<sql>
+			<![CDATA[
+				select REVIEW_ID
+				 into #temp_review
+				 from review r,
+					  REVIEW_STATUS_REF rsr
+				where r.REVIEW_STATUS_ID = rsr.REVIEW_STATUS_ID
+				  and rsr.CODE = 'COMPLETED'
+				  and r.MRB_REFERRAL_IND != 'Y'
+
+			  select REVIEW_ID, 
+					  RATING_CD,
+					  REVIEW_LEVEL_CD
+					  into #temp_review_level from 
+				 (select REVIEW_ID,
+						 b.CODE as RATING_CD,
+						 d.REVIEW_LEVEL_CD,
+						 row_number() over(partition by REVIEW_ID order by ASSIGN_DT  desc) as RN
+				  from REVIEW_LEVEL a,
+					   RATING_REF b,
+					   REVIEW_LEVEL_TYPE_REF d
+				  where a.RATING_ID = b.RATING_ID
+					and a.REVIEW_LEVEL_TYPE_ID = d.REVIEW_LEVEL_TYPE_ID) as T
+				 where RN = 1
+				   and RATING_CD = 'U'
+				   and REVIEW_LEVEL_CD != 'FRCE'
+				   and REVIEW_ID in
+					  (select REVIEW_ID
+					   from #temp_review)
+
+			update REVIEW
+			set MANAGEMENT_DECISION_IND = 'Y'
+			where REVIEW_ID in
+			(select REVIEW_ID
+			 from #temp_review_level)				
+			]]>
+		</sql>
+	</changeSet>	
+	<changeSet context="All"  author="Strauss" id="HUDLRS_3980_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<createProcedure>
+			<![CDATA[
+			ALTER TRIGGER [dbo].[tU_AUDIT_REVIEW] ON [dbo].[REVIEW] FOR update AS
+						BEGIN
+							insert into AUDIT_REVIEW(
+							 REVIEW_ID                            ,
+							 BATCH_ID                             ,
+							 CASE_NUMBER                          ,
+							 ORIG_MIT_RQST_DT                     ,
+							 ORIG_ASSIGN_DT                       ,
+							 SELECTION_ID                         ,
+							 ORIGINAL_REVIEWER_PERSONNEL_ID       ,
+							 RVW_COMPLTD_DT                       ,
+							 RVW_STARTED_DT_TM                    ,
+							 CREATED_BY                           ,
+							 UPDATED_BY                           ,
+							 CREATED_TS                           ,
+							 UPDATED_TS                           ,
+							 REVIEW_REFERENCE_ID                  ,
+							 DUE_DATE                             ,
+							 CANCELLATION_REASON_ID               ,
+							 QC_OUTCOME_CD                        ,
+							 MRB_REFERRAL_IND                     ,
+							 REVIEW_STATUS_ID                     ,
+							 SUMMARY_RATING_ID                    ,
+							 REVIEW_SCOPE_ID                      ,
+							 REVIEW_TYPE_ID                       ,
+							 PRODUCT_TYPE_ID                      ,
+							 SELECTION_REASON_ID                  ,
+							 QA_MODEL_ID,                         
+							 AUDIT_CREATED_TS ,				
+							 AUDIT_ACTION_CODE,
+							 MANAGEMENT_DECISION_IND)		
+							select 
+							 REVIEW_ID                            ,
+							 BATCH_ID                             ,
+							 CASE_NUMBER                          ,
+							 ORIG_MIT_RQST_DT                     ,
+							 ORIG_ASSIGN_DT                       ,
+							 SELECTION_ID                         ,
+							 ORIGINAL_REVIEWER_PERSONNEL_ID       ,
+							 RVW_COMPLTD_DT                       ,
+							 RVW_STARTED_DT_TM                    ,
+							 CREATED_BY                           ,
+							 UPDATED_BY                           ,
+							 CREATED_TS                           ,
+							 UPDATED_TS                           ,
+							 REVIEW_REFERENCE_ID                  ,
+							 DUE_DATE                             ,
+							 CANCELLATION_REASON_ID               ,
+							 QC_OUTCOME_CD                        ,
+							 MRB_REFERRAL_IND                     ,
+							 REVIEW_STATUS_ID                     ,
+							 SUMMARY_RATING_ID                    ,
+							 REVIEW_SCOPE_ID                      ,
+							 REVIEW_TYPE_ID                       ,
+							 PRODUCT_TYPE_ID                      ,
+							 SELECTION_REASON_ID                  ,
+							 QA_MODEL_ID,
+							 getdate(),				
+							 'U'	,
+							 MANAGEMENT_DECISION_IND
+							 from inserted
+						END
+			]]>
+		</createProcedure>
+	</changeSet>		
+</databaseChangeLog>

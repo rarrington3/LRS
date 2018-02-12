@@ -1,0 +1,57 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1881_create_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+
+			exec sp_rename 'EXCEPTION', 'REVIEW_PROCESS_EXCEPTION'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1881_insert_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+
+			insert into dict_metadata_entity(ENTITY_NAME, DB_VIEW_OR_TABLE,CREATED_BY,CREATED_TS) values('Review Process Exception','REVIEW_PROCESS_EXCEPTION','C20225',getdate())			  
+
+			insert into DICT_METADATA_FIELD
+			select
+			'Review Process Exception', 
+			FIELD_NAME, 
+			DB_COLUMN, 
+			DESCRIPTION, 
+			CREATED_BY, 
+			UPDATED_BY, 
+			CREATED_TS, 
+			UPDATED_TS, 
+			USER_EDITABLE_IND, 
+			SUBJECT_AREA, 
+			UI_CONTROL_TYPE, 
+			FIELD_MIN_VALUE, 
+			FIELD_MAX_VALUE, 
+			DISPLAY_ORDER, 
+			DISPLAY_NAME
+			from DICT_METADATA_FIELD
+			where entity_name = 'Exception'
+
+			delete from DICT_METADATA_FIELD
+			where entity_name = 'Exception'
+
+			delete from DICT_METADATA_ENTITY
+			where entity_name = 'Exception'
+
+		]]>
+        </sql>
+    </changeSet>		
+	
+ </databaseChangeLog>
+
+
+
+
+
+
+
+
+
+

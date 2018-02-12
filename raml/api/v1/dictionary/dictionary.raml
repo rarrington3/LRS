@@ -1,0 +1,170 @@
+displayName: dictionary
+description: |
+  Dictionary services return a mapping of static, cacheable metadata to
+  code values that are referenced in the responses of other services.
+  This is done for the purpose of reducing the size of service payloads.
+
+/reviewTypes:
+  is: [constant]
+  displayName: reviewTypeDictionary
+  description: Returns a mapping of review type IDs to static metadata.
+  type:
+    collection-readonly:
+      collection-example: !include "reviewtypedictionary-collection.example.json"
+      collection-schema: CommonDetailCollection
+
+/loanTypes:
+  is: [constant]
+  displayName: loanTypeDictionary
+  description: Returns a mapping of loan type IDs to static metadata.
+  type:
+    collection-readonly:
+        collection-example: !include "loantypedictionary-collection.example.json"
+        collection-schema: CommonDetailCollection
+
+/productTypes:
+  is: [constant]
+  displayName: productTypeDictionary
+  description: Returns a mapping of product type IDs to static metadata.
+  type:
+    collection-readonly:
+        collection-example: !include "producttypedictionary-collection.example.json"
+        collection-schema: CommonDetailCollection
+
+/consolidatedSelectionReasons:
+  is: [constant]
+  displayName: consolidatedSelectionReasonDictionary
+  description: Returns a mapping of consolidated selection reason IDs to static metadata.
+  type:
+    collection-readonly:
+      collection-example: !include "consolidatedselectionreasondictionary-collection.example.json"
+      collection-schema: ConsolidatedSelectionReasonDictionaryCollection
+
+/selectionReasons:
+  is: [constant]
+  displayName: selectionReasonDictionary
+  description: Returns a mapping of selection reason IDs to static metadata.
+  type:
+    collection-readonly:
+      collection-example: !include "selectionreasondictionary-collection.example.json"
+      collection-schema: SelectionReasonDictionaryCollection
+
+/selectionSubreasons:
+  is: [constant]
+  displayName: selectionSubReasonDictionary
+  description: Returns a mapping of selection reason IDs to static metadata.
+  type:
+    collection-readonly:
+        collection-example: !include "selectionsubreasondictionary-collection.example.json"
+        collection-schema: CommonDetailCollection
+
+/reassignmentReasons:
+  is: [constant]
+  displayName: reassignmentReasonsDictionary
+  description: Returns a dictionary of reassignment reasons.
+  type:
+    collection-readonly:
+      collection-example: !include "reassignmentreasondictionary-collection.example.json"
+      collection-schema: ReassignmentReasonDictionaryCollection
+
+/reviewCancelReasons:
+  is: [constant]
+  displayName: reviewCancelReasonsDictionary
+  description: Returns a dictionary of loan review cancel reasons.
+  type:
+    collection-readonly:
+      collection-example: !include "reviewcancelreasonsdictionary-collection.example.json"
+      collection-schema: ReviewCancelReasonsCollection
+
+/ratingCodes:
+  is: [constant]
+  displayName: ratingCodeDictionary
+  description: Returns a collection of rating code objects with details to be used with findings in the wrap up and summary type views and components.
+  type:
+    collection-readonly:
+      collection-example: !include "ratingcodedictionary-collection.example.json"
+      collection-schema: RatingCodeDictionaryCollection
+
+/documentLocations:
+  is: [constant]
+  displayName: documentLocationDictionary
+  description: Returns a collection of document location objects with details to be used when request documents.
+  type:
+    collection-readonly:
+      collection-example: !include "documentlocationdictionary-collection.example.json"
+      collection-schema: CommonDetailCollection
+
+/fraudTypes:
+  is: [constant]
+  displayName: FraudTypeDictionary
+  description: Returns a collection of objects representing Fraud Types.
+  type:
+      collection-readonly:
+          collection-example: !include "fraudTypeDictionary-collection.example.json"
+          collection-schema: CommonDetailCollection
+
+/fraudParticipants:
+    is: [constant]
+    displayName: FraudParticipantDictionary
+    description: Returns a collection of objects representing Fraud Participants.
+    type:
+        collection-readonly:
+            collection-example: !include "fraudParticipantDictionary-collection.example.json"
+            collection-schema: CommonDetailCollection
+
+/exceptionTypes:
+    is: [constant]
+    displayName: ExceptionTypeDictionary
+    description: Returns a collection of exception type objects.
+    type:
+        collection-readonly:
+            collection-example: !include "exceptionTypeDictionary-collection.example.json"
+            collection-schema: CommonDetailCollection
+
+/factors:
+    is: [constant]
+    displayName: FactorDictionary
+    description: Returns a collection of Factor objects which are used for Selection, Assignment, & Distribution Models.
+    securedBy:
+        - fhac:
+                roles: [ROLE_HQ_ADMIN]
+    type:
+        collection-readonly:
+            collection-example: !include "factordictionary-collection.example.json"
+            collection-schema: FactorCollection
+
+/selectionModelCategories:
+    is: [constant]
+    displayName: SelectionModelCategoryDictionary
+    description: Retrieve a collection of Selection Model Categories
+    securedBy:
+        - fhac:
+            roles: [ROLE_HQ_ADMIN]
+    type:
+        collection-readonly:
+            collection-example: !include "selectionModelCategoryDictionary-collection.example.json"
+            collection-schema: CommonDetailCollection
+
+/assignmentModelCategories:
+    is: [constant]
+    displayName: AssignmentModelCategoryDictionary
+    description: Retrieve a collection of Assignment Model Categories
+    securedBy:
+        - fhac:
+            roles: [ROLE_HQ_ADMIN]
+    type:
+        collection-readonly:
+            collection-example: !include "assignmentModelCategoryDictionary-collection.example.json"
+            collection-schema: CommonDetailCollection
+
+/distributionModelCategories:
+    is: [constant]
+    displayName: DistributionModelCategoryDictionary
+    description: Retrieve a collection of Distribution Model Categories
+    securedBy:
+        - fhac:
+            roles: [ROLE_HQ_ADMIN]
+    type:
+        collection-readonly:
+            collection-example: !include "distributionModelCategoryDictionary-collection.example.json"
+            collection-schema: CommonDetailCollection

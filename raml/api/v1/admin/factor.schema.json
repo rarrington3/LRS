@@ -1,0 +1,27 @@
+{
+    "id": "http://LRS/Factor",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": [
+        "name",
+        "description"
+    ],
+    "properties": {
+        "id": {
+            "description": "An unchanging unique identifier for this factor.",
+            "type": "string"
+        },
+        "name": {
+            "description": "A human readable identifier for this selection model.",
+            "type": "string"
+        },
+        "description": {
+            "description": "An extended and much more verbose explanation of what this factor consists of.",
+            "type": "string"
+        },
+        "weight": {
+            "description": "A multiplier for this particular factor. This is used for saving Factors to models.",
+            "type": "number"
+        }
+    }
+}

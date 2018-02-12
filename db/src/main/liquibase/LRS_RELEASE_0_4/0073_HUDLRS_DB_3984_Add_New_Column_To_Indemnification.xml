@@ -1,0 +1,23 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+	<changeSet context="All"  author="lcrew" id="HUDLRS_3984_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<sql>
+			<![CDATA[
+				Alter table indemnification add EXPIRATION_DATE datetime null
+			]]>
+		</sql>
+	</changeSet>
+	<changeSet context="All"  author="Wes McAfee" id="HUDLRS_3984_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<sql>
+			<![CDATA[
+				update A
+				set A.START_DATE = CASE WHEN RTR.REVIEW_TYPE_CD in ('U', 'C') THEN LS.ENDRSMNT_DT ELSE A.FHA_SIGNED_DATE END,
+					A.EXPIRATION_DATE = CASE WHEN IREF.CODE = '5_YEAR' THEN dateadd(MM,60,A.START_DATE) ELSE dateadd(MM,ls.term,START_DATE) END
+				from INDEMNIFICATION A, REVIEW R, REVIEW_LEVEL RL, LOAN_SELECTION_CASE_SUMMARY LS, REVIEW_TYPE_REF RTR, INDEMNIFICATION_TYPE_REF IREF
+				where A.REVIEW_LEVEL_ID = RL.REVIEW_LEVEL_ID and RL.REVIEW_ID = R.REVIEW_ID and R.SELECTION_ID = LS.SELECTION_ID
+						and R.REVIEW_TYPE_ID = RTR.REVIEW_TYPE_ID and RL.INDEMNIFICATION_TYPE_ID = IREF.INDEMNIFICATION_TYPE_ID
+						and A.FHA_SIGNED_DATE is not null
+			]]>
+		</sql>
+	</changeSet>	
+</databaseChangeLog>

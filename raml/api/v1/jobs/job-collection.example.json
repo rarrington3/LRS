@@ -1,0 +1,47 @@
+[
+    {
+        "jobId": "ABC123",
+        "type": "AGGREGATION",
+        "status": "Pending",
+        "parameters": [
+            {
+                "name": "OFFICIAL_DATE",
+                "value": "2017-01-01"
+            },
+            {
+                "name": "START_DATE",
+                "value": "2017-01-01"
+            },
+            {
+                "name": "END_DATE",
+                "value": "2017-01-02"
+            }
+        ],
+        "executions": []
+    },
+    {
+        "jobId": "ABC567",
+        "type": "DISTRIBUTION",
+        "status": "Complete",
+        "parameters": [
+            {
+                "name": "OFFICIAL_DATE",
+                "value": "2017-01-01"
+            },
+            {
+                "name": "START_DATE",
+                "value": "2017-01-01"
+            },
+            {
+                "name": "END_DATE",
+                "value": "2017-01-02"
+            }
+        ],
+        "executions": [
+            {
+                "serverName": "HAZRLADLRS02",
+                "serverPriority": "10"
+            }
+        ]
+    }
+]

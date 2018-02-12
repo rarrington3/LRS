@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "definitions": {
+    "esbException": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "auditCorrelationId",
+        "serviceRequestTimestamp",
+        "sourceSystem",
+        "errorCode"
+      ],
+      "properties": {
+        "auditCorrelationId": {
+          "type": "string"
+        },
+        "serviceRequestTimestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "sourceSystem": {
+          "type": "string"
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "shortDescription": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "statusCode","statusMessage"
+  ],
+  "properties": {
+    "esbException": {
+      "$ref": "#/definitions/esbException"
+    },
+    "statusCode" : {
+      "type" : "string"
+    },
+    "statusMessage" : {
+      "type" : "string"
+    }
+  }
+}

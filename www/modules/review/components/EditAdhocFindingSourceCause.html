@@ -1,0 +1,40 @@
+<h4 class="view-title">AD HOC FINDING - SOURCE/CAUSE</h4>
+<div class="sub-title">Choose a Source and a Cause based on the question below.</div>
+<div class="section-divider"><hr/></div>
+
+<div class="group-title">Choose a Source and a Cause</div>
+
+<form  #sourceCauseForm="ngForm">
+	<ul class="list-group">
+
+		<!-- Choose Source -->
+		<li class="list-group-item">
+			<div class="list-name">Choose Source</div>
+			<div class="radio" *ngFor="let source of defectAreaSourcesSource">
+				<label attr.for="{{source.defectSourceCode}}">
+					<input id="{{source.defectSourceCode}}" type="radio" [disabled]="isReviewReadOnly"  name="defectSourceCode" [value]="source.defectSourceCode" [ngModel]="existingSourceCause?.selectedSourceCode">
+					{{source.description}}
+				</label>
+			</div>
+		</li>
+
+		<!-- Choose  Cause -->
+		<li class="list-group-item">
+			<div class="list-name">Choose Cause</div>
+			<div class="radio" *ngFor="let cause of defectAreaCausesSource">
+				<label attr.for="{{cause.defectCauseCode}}">
+					<input id="{{cause.defectCauseCode}}" type="radio" [disabled]="isReviewReadOnly" name="defectCauseCode" [value]="cause.defectCauseCode" [ngModel]="existingSourceCause?.selectedCauseCode">
+					{{cause.description}}
+				</label>
+
+			</div>
+		</li>
+
+	</ul>
+
+</form>
+
+<div class="footer clearfix">
+	<button type="button" (click)="onNext(sourceCauseForm)" [disabled]="(!sourceCauseForm.value.defectSourceCode || !sourceCauseForm.value.defectCauseCode) || isReviewReadOnly" class="btn btn-primary pull-right">Next</button>
+	<button  type="button" [disabled]="isReviewReadOnly" class="btn btn-default pull-right cancel" (click)="onCancelFinding()">Cancel</button>
+</div>

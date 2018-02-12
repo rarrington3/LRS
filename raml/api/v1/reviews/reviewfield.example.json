@@ -1,0 +1,28 @@
+{
+    "fieldId": "LIV_UNITS",
+    "order": 1,
+    "conditionsToDisplay": [
+        {
+            "conditionId": "9b1c1905-ce56-456e-a3cc-1e1f671fd058",
+            "entityName": "123",
+            "fieldName": "LOAN_TYPE",
+            "operator": "in",
+            "comparisonValues": [
+                "HECM",
+                "Refinance",
+                "Purchase"
+            ]
+        }
+    ],
+    "name": "Living Units",
+    "value": "2",
+    "valuesAtUnderwriting": [
+        "1"
+    ],
+    "valuesAtEndorsement": [
+        "2"
+    ],
+    "type": "integer",
+    "loanAttributeGroup": "Property",
+    "isEditable": false
+}

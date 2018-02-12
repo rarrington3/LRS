@@ -1,0 +1,57 @@
+- ack:
+    responses:
+      204:
+         description: The request was successfully handled
+
+- paged:
+    queryParameters:
+      page:
+        description: The page number of the collection to return
+        type: integer
+        example: ?page=1
+        required: false
+        default: "0"
+      pageSize:
+        description: The number of items to display per page
+        type: integer
+        example: ?pageSize=10
+        required: false
+        default: "20"
+      sort:
+        description: A field to sort the paged collection by
+        type: string
+        example: ?sort=name
+        required: false
+      sortDescending:
+        description: Sort results in descending order rather than ascending
+        type: boolean
+        example: ?sortDescending=true
+        required: false
+        default: "false"
+
+- mock:
+    responses:
+          299:
+             description: This is a mock service that has not yet been implemented
+
+- member:
+    description: This is a member not a collection (flag trait only for codegen)
+
+- action:
+    description: This is a action of a parent member (flag trait only for codegen)
+
+- constant:
+    description: This request returns a value that is not expected to change and can be cached indefinitely
+
+- dateRangeParams:
+    queryParameters:
+      startDate:
+        description: The start date used when retrieving this collection in yyyy-mm-dd (Time set to 00:00:00 time by services)
+        type: string
+        example: 2017-06-21
+        required: false
+      endDate:
+        description: The end date used when retrieving this collection in yyyy-mm-dd (Time set to 23:59:59 time by services)
+        type: string
+        example: 2017-06-22
+        required: false

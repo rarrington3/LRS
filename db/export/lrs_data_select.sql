@@ -1,0 +1,197 @@
+select 
+case_nbr              		,
+adp_cd                		,
+amort_typ_cd          		,
+aplctn_mthd           		,
+arm_adj_prd           		,
+arm_indx_expctd_rt    		,
+arm_indx_ind          		,
+arm_ind               		,
+arm_mrgn_amt          		,
+arm_dt                		,
+borr_brth_dt          		,
+borr_cnsl_typ         		,
+borr_emplmnt_ind      		,
+borr_gender           		,
+borr_hsng_exp         		,
+borr_typ              		,
+buy_dwn_ind           		,
+cs_estab_dt           		,
+cs_typ                		,
+clsng_dt              		,
+const_cd              		,
+const_sts_cd          		,
+endrsmnt_dt           		,
+prc_excl_clsng_amt    		,
+prc_incl_clsng_amt    		,
+dpndnt_cnt            		,
+energy_eff_mrtg       		,
+fncng_typ             		,
+gift_ltr_amt          		,
+gift_ltr_src          		,
+gift_ltr_tin          		,
+hldr_mtgee10_a43c     		,
+hldr_mtgee5_a43       		,
+hsng_pgm_cd           		,
+insrnc_status_cd      		,
+int_rt                		,
+misc_lndr_insrnc_ind  		,
+loan_prps             		,
+ltv_cat               		,
+ltv_cat_new           		,
+ltv_cat_old           		,
+ratio_loan_to_vl_new  		,
+ratio_loan_to_vl_old  		,
+curr_mnthly_mip       		,
+misc_aus_dcsn_cd      		,
+misc_aus_ind            	,
+null     	              	,
+mort_excld_fncd_mip   		,
+liv_units             		,
+orig_mrtg_amt         	  ,
+orgntng_mtgee10_id    		,
+typ_orgntng_mtgee     		,
+pst_rvw_dcsn_cd       		,
+pre_clsng_ind         		,
+prncpl_rdctn_amt      		,
+prcsng_typ            		,
+prog_id_f17           		,
+dt_acq                		,
+prop_addr_st          		,
+prprty_aprsl_vl       		,
+prprty_cnvrsn_typ     		,
+pd_strmln_flg         		,
+ratio_ore_tei         		,
+ratio_fix_tei         		,
+pti_cat               		,
+rfnc_cd               		,
+rfnc_ind              		,
+rqrd_invest           		,
+nbrhd_cd              		,
+scndry_fnc_src        		,
+seller_cntrbtn        		,
+old_srvcr_mtgee       		,
+srvcr_mtgee10_a43c    		,
+srvcr_mtgee5_a43      		,
+sfpcs_mtgee_id        		,
+soa_cd                		,
+spnsr_mtgee10_id      		,
+trv_slct_rsn_cd       		,
+term                  		,
+term_typ_cd           		,
+tot_ann_eff_incm      		,
+tot_assets            		,
+tot_clsng_csts        		,
+tot_fixed_pymt        		,
+tot_mnthly_eff_incm   		,
+tot_mnthly_mtg_pymt   		,
+tot_acq_costs         		,
+ufmip_pd_amt          		,
+ufmip_pd_cash         		,
+ufmip_earned_curr_mm  		,
+ufmip_factor          		,
+val_plus_clsng        		
+from idb_1 where idb_1.endrsmnt_dt > '2016-JAN-01' and idb_1.case_nbr like '%1';
+OUTPUT to STAGE_LOAN_SELECTION_IDB_1.txt FORMAT ASCII quote ''
+Go
+
+
+select
+case_nbr, 
+allow_clsg_cost, 
+bsmt_cd, 
+fctry_fbrct, 
+fhac_addr_chg, 
+mip_financed_ind , 
+nbrhd_pct_owned , 
+nbrhd_price, 
+nbr_bthrms,
+nbr_rms, 
+nbr_bdrm, 
+rcv_sale_dt, 
+sbdvsn_spot_lot, 
+prior_sale_rqrd_ind, 
+send_mic_ind , 
+pct_1_fmly
+from idb_2 where case_nbr in (select idb_1.case_nbr from idb_1 where idb_1.endrsmnt_dt > '2016-JAN-01' and idb_1.case_nbr like '%1');
+OUTPUT to STAGE_LOAN_SELECTION_IDB_2.txt FORMAT ASCII quote ''
+Go
+
+select 
+case_nbr,                               
+dflt_90day_ind,
+dflt_asgnmnt_dt,
+dflt_crtn_dt,
+dflt_cyc_dt,
+dflt_episode_nbr,
+dflt_mm_cyc_dt,
+dflt_rsn_cd,
+dflt_sts_cd,
+dflt_sts_dt,
+dflt_sts_summary_cd,
+dflt_trnsctn_dt,
+end_cd,
+frclsr_ind, 
+ft_in_eps_2mnth_delq_dt,
+ft_in_eps_2mnth_delq_ind,
+ft_in_eps_3mnth_delq_dt,
+ft_in_eps_3mnth_delq_ind,
+lossmit_cd,
+ocpncy_sts,
+pymts_bfr_frst_missed_pymt
+from sfdw_default_current_detail cd
+where case_nbr in (select idb_1.case_nbr from idb_1 where idb_1.endrsmnt_dt > '2016-JAN-01' and idb_1.case_nbr like '%1');
+OUTPUT to STAGE_LOAN_SELECTION_DEF_DET.txt FORMAT ASCII quote ''
+Go
+
+select 
+case_nbr,                    
+bnkrptcy_cd,
+bnkrptcy_dt,
+borr_nm, 
+dflt_90day_ind,
+dflt_cyc_dt,
+dflt_episode_nbr,
+ft_in_eps_2mnth_delq_dt,
+lossmit_cd,
+dflt_mm_cyc_dt,
+dflt_rsn_cd,
+dflt_srvcr,
+dflt_sts_cd,
+dflt_sts_dt,
+dflt_sts_summary_cd,
+dflt_trnsctn_dt,
+derived_optn_used_cd,
+ft_in_eps_3mnth_delq_dt,
+fte_2mnth_delq_dt,
+loan_nbr,
+nbr_months,
+ocpncy_sts_cd,
+ocpncy_sts_dt,
+oldst_unpd_dt,
+sqnc_nbr,
+strt_stop_eps_ind,
+trnsmsn_typ,
+unpd_bal
+from sfdw_default_history dh
+where case_nbr in (select idb_1.case_nbr from idb_1 where idb_1.endrsmnt_dt > '2016-JAN-01' and idb_1.case_nbr like '%1');
+OUTPUT to STAGE_LOAN_SELECTION_DEF_HST.txt FORMAT ASCII quote ''
+Go
+
+select stat.case_nbr, 
+       stat.ratio_tmp_tei 
+from hudstat stat where stat.case_nbr in (select idb_1.case_nbr from idb_1 where idb_1.endrsmnt_dt > '2016-JAN-01' and idb_1.case_nbr like '%1');
+OUTPUT to STAGE_LOAN_SELECTION_HUDSTAT.txt FORMAT ASCII quote ''
+Go 
+
+select 
+case_nbr, 
+adtl_prncpl_lmt_amt, 
+adtl_prncpl_lmt_ind, 
+init_dsbrsmnt_lmt, 
+mndtry_oblgtns_amt, 
+txs_insrnc_frst_yr  
+from hermit_case_detail hermit where case_nbr in (select idb_1.case_nbr from idb_1 where idb_1.endrsmnt_dt > '2016-JAN-01' and idb_1.case_nbr like '%1');
+OUTPUT to STAGE_LOAN_SELECTION_HERMIT.txt FORMAT ASCII quote ''
+Go 
+

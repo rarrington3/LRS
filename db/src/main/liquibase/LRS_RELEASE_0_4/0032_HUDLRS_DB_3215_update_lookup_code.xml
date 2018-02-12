@@ -1,0 +1,97 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3215_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update LRS_GEN_LOOKUP
+			set lookup_code = 'UK'
+			where LOOKUP_ENTITY = 'Case Summary for Review Level'
+			  and LOOKUP_FIELD = 'Property Disposition Streamline Refinance Flag'
+			  and lookup_code = 'Unknown'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3215_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update LRS_GEN_LOOKUP
+			set lookup_code = 'UNKNOWN'
+			where LOOKUP_ENTITY = 'Case Summary for Review Level'		
+			  and LOOKUP_FIELD in
+			  (
+				'Claim Type'                      ,
+				'Construction Code'               ,
+				'Amortization Type Code'          ,
+				'Borrower Type (Occupancy)'       ,
+				'Refinance Code'                  ,
+				'Underwriting Method'             ,
+				'Decision Code at Endorsement'    ,
+				'Decision Code at Underwriting'   ,
+				'Miscellaneous AUS Decision Code' ,
+				'loss mitigation code'            ,
+				'occupancy status'                ,
+				'Termination type code'           ,
+				'Special Program'                 ,
+				'Gift Letter Source'			  
+			  )
+			  and lookup_code = 'Unknown'
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3215_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update LRS_GEN_LOOKUP
+			set lookup_code = 'U'
+			where LOOKUP_ENTITY = 'Case Summary for Review Level'		
+			  and LOOKUP_FIELD in
+			  (
+				'Manufactured Housing Indicator'              ,
+				'Refinance Indicator'                         ,
+				'Borrower 1 Renting Indicator'                ,
+				'Borrower 1 Self Employed Indicator'          ,
+				'Borrower 1 First Time Homebuyer Indicator'   ,
+				'Building Type'                               ,
+				'Building on Own Land Indicator'              ,
+				'Flipping Category 2 Indicator'               ,
+				'Foreclosure Indicator'                       ,
+				'Default Episode Exists'                      ,
+				'Ten Year Rate Lock Indicator'                ,
+				'Additional 10 Pct of IPL Usage Indicator'    ,
+				'Manual Underwrite Stretch Ratios Indicator'  ,
+				'Back To Work Indicator'                      ,
+				'Bankruptcy Indicator'                        ,
+				'Secondary Financing Exists Indicator'        ,
+				'Is Investment/Secondary Residence'           ,
+				'Factory Fabricated Indicator'                ,
+				'Married to NBS Indicator'                    ,
+				'Chapter 13 Bankruptcy Exists Indicator'      ,
+				'Chapter 7 Bankruptcy Exists Indicator'       ,
+				'Endorses beyond 60 days from closing'        ,
+				'Insurance Application In Time'               ,
+				'Mortgage Current at Endorsement'             ,
+				'Assumed Loan Indicator'                      ,
+				'Cash Out Refinance Indicator'                ,
+				'Disaster Indicator'                          ,
+				'ARM Indicator'                               ,
+				'Loan Purpose'                                ,
+				'Product Type',
+				'Property Disposition Streamline Refinance Flag',
+				'101 REO Down Payment Program Indicator'
+			  )
+			  and lookup_code = 'Unknown'
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3215_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from LRS_GEN_LOOKUP
+			where LOOKUP_FIELD = 'ARM Index Expected Rate'
+			  and LOOKUP_ENTITY = 'Case Summary for Review Level'
+		]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>    
+
+

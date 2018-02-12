@@ -1,0 +1,81 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 hr-wrapper">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"
+                           [ngModel]="defectArea.enablePreQualifyQuestion"
+                           disabled="disabled">
+                    Enable Pre-Qualification Question
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="defectArea.enablePreQualifyQuestion">
+        <div class="col-xs-12 hr-wrapper">
+            <hr/>
+        </div>
+    </div>
+    <div class="row" *ngIf="defectArea.enablePreQualifyQuestion">
+        <div class="col-xs-12">
+            <div class="qa-model-title">
+                <h6 aria-hidden="true"><strong>{{defectArea.code}}.{{defectArea.preQualifyQuestion.code}}</strong> - {{defectArea.preQualifyQuestion.description}}</h6>
+            </div>
+            <div class="form-group">
+                <label class="control-label">
+                    Question Code
+                </label>
+                <p>
+                    {{defectArea.preQualifyQuestion.code}}
+                </p>
+            </div>
+            <div class="form-group">
+                <label class="control-label">
+                    Question Description
+                </label>
+                <p>
+                    {{defectArea.preQualifyQuestion.description}}
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="defectArea.enablePreQualifyQuestion">
+        <div class="col-xs-12 hr-wrapper">
+            <hr/>
+        </div>
+    </div>
+    <div class="row" *ngIf="defectArea.enablePreQualifyQuestion">
+        <div class="col-xs-12">
+            <div *ngIf="defectAreaLoading" class="lrs-loading">
+                <span class="glyphicon glyphicon-refresh"
+                      aria-label="loading" title="Loading">
+                </span>
+            </div>
+            <div *ngIf="!defectAreaLoading && !defectArea.preQualifyQuestion.optionsQuestions.length"
+                 class="lrs-no-results">
+                <span class="small" aria-label="no results">No results found</span>
+            </div>
+            <table *ngIf="!defectAreaLoading && defectArea.preQualifyQuestion.optionsQuestions.length"
+                   class="table table-bordered outer-bordered header-less-bordered qa-tree-pre-qual-table">
+                <thead>
+                <tr>
+                    <th class="choice-col">Multiple Choice Options</th>
+                    <th class="questions-col">Included Questions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let optionsQuestion of defectArea.preQualifyQuestion.optionsQuestions">
+                    <td class="choice-col">
+                        {{optionsQuestion.description}}
+                    </td>
+                    <td class="questions-col">
+                        <span *ngFor="let option of optionsQuestion.options; let i=index">
+                            {{option}} <span *ngIf="i < (optionsQuestion.options.length-1)">,</span>
+                        </span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

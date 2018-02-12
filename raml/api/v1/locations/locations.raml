@@ -1,0 +1,36 @@
+displayName: location
+get:
+    description: Retrieves a collection of all review locations.
+    securedBy:
+        - fhac:
+            roles: [ROLE_REVIEWER, ROLE_PROGRAM_ASSISTANT, ROLE_REVIEW_LOCATION_ADMIN, ROLE_HQ_ADMIN, ROLE_INDEMNIFIER, ROLE_RESPONSE_COORDINATOR, ROLE_LRS_READ_ONLY, ROLE_MONITOR_READ_ONLY]
+    responses:
+        200:
+            body:
+                example: !include "locations-example.json"
+                schema: Locations
+
+/{id}:
+    get:
+        description: Retrieves a specific review location.
+        securedBy:
+            - fhac:
+                roles: [ROLE_REVIEWER, ROLE_PROGRAM_ASSISTANT, ROLE_REVIEW_LOCATION_ADMIN, ROLE_HQ_ADMIN, ROLE_INDEMNIFIER, ROLE_RESPONSE_COORDINATOR, ROLE_LRS_READ_ONLY]
+        responses:
+            200:
+                body:
+                    example: !include "location-example.json"
+                    schema: Location
+    put:
+        description: Update a specific review location.
+        securedBy:
+            - fhac:
+                roles: [ROLE_HQ_ADMIN]
+        body:
+            example: !include "location-example.json"
+            schema: Location
+        responses:
+            200:
+                body:
+                    example: !include "location-example.json"
+                    schema: Location

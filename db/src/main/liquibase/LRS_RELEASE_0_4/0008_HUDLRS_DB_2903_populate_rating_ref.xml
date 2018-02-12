@@ -1,0 +1,18 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_2903_001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+	       INSERT RATING_REF (RATING_ID,CODE, DESCRIPTION, CREATED_BY, CREATED_TS, RANK_ORDER) VALUES ('76CADE8D-6541-44DE-80D3-687ADF536790','C', 'Conforming',   'C20225',   getdate(), 5)
+	       INSERT RATING_REF (RATING_ID,CODE, DESCRIPTION, CREATED_BY, CREATED_TS, RANK_ORDER) VALUES ('B80DA7E7-327C-4C40-9F31-AE8B39309A50','D', 'Deficient',    'C20225',    getdate(), 4)
+	       INSERT RATING_REF (RATING_ID,CODE, DESCRIPTION, CREATED_BY, CREATED_TS, RANK_ORDER) VALUES ('C537C296-E242-44AE-9DEA-695FFCDB2AA1','M', 'Mitigated',    'C20225',    getdate(), 3)
+	       INSERT RATING_REF (RATING_ID,CODE, DESCRIPTION, CREATED_BY, CREATED_TS, RANK_ORDER) VALUES ('27EFBC5C-DB94-41E0-A453-581E73BE219F','R', 'Remediated',   'C20225',   getdate(), 2)
+	       INSERT RATING_REF (RATING_ID,CODE, DESCRIPTION, CREATED_BY, CREATED_TS, RANK_ORDER) VALUES ('1ACDBB52-4DF7-491C-B691-0A86DD839213','U', 'Unacceptable', 'C20225', getdate(), 1)
+		]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>    
+
+
+
+

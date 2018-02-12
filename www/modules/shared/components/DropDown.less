@@ -1,0 +1,42 @@
+@import '../../bootstrap/_variables.less';
+
+:host-context {
+
+    > label {
+        display: block;
+    }
+
+    > .btn-group {
+
+        > button.left-menu {
+            background-color: @gray-lighter;
+
+            .glyphicon-align-justify {
+                color: @brand-secondary;
+            }
+        }
+    }
+
+    &.fill {
+        .btn-group {
+            width: 100%;
+
+            .dropdown-toggle {
+                width: 100%;
+                text-align: left;
+
+                .caret {
+                    float: right;
+                    margin-top: 7px;
+                }
+            }
+
+            &.left-menu-visible {
+                .dropdown-toggle {
+                    width: 80%;
+                }
+            }
+        }
+    }
+}
+

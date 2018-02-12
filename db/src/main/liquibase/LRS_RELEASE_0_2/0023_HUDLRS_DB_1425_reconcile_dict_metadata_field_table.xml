@@ -1,0 +1,472 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1425_insert_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Defect Admin','Defect ID','DEFECT_ID','C20225', getdate(),'STATIC','Defect ID')
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Defect Admin','Model ID','MODEL_ID','C20225', getdate(),'STATIC','Model ID')
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Defect Admin','Relative Order','RELATIVE_ORDER','C20225', getdate(),'STATIC','Relative Order')
+
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Defect Cause Admin','Defect ID','DEFECT_ID','C20225', getdate(),'STATIC','Defect ID')
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Defect Cause Admin','Defect Cause ID','DEFECT_CAUSE_ID','C20225', getdate(),'STATIC','Defect Cause ID')
+
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Defect Severity Tier Admin','Defect ID','DEFECT_ID','C20225', getdate(),'STATIC','Defect ID')
+
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Defect Source Admin','Defect ID','DEFECT_ID','C20225', getdate(),'STATIC','Defect ID')
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Defect Source Admin','Defect Source ID','DEFECT_SOURCE_ID','C20225', getdate(),'STATIC','Defect Source ID')
+
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Dictionary MetaData Field','Display Order','DISPLAY_ORDER','C20225', getdate(),'STATIC','Display Order')
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Dictionary MetaData Field','Entity Name','ENTITY_NAME','C20225', getdate(),'STATIC','Entity Name')
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Dictionary MetaData Field','Field Maximum Value','FIELD_MAX_VALUE','C20225', getdate(),'STATIC','Field Maximum Value')
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Dictionary MetaData Field','Field Minimum Value','FIELD_MIN_VALUE','C20225', getdate(),'STATIC','Field Minimum Value')
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Dictionary MetaData Field','Subject Area','SUBJECT_AREA','C20225', getdate(),'STATIC','Subject Area')
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Dictionary MetaData Field','UI Control Type','UI_CONTROL_TYPE','C20225', getdate(),'STATIC','UI Control Type')
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Dictionary MetaData Field','User Editable Indicator','USER_EDITABLE_IND','C20225', getdate(),'STATIC','User Editable Indicator')
+
+				Insert into dict_metadata_entity(entity_name,db_view_or_table,created_by,created_ts)values('Dictionary MetaData Field Condition','DICT_METADATA_FIELD_CONDITION','C20225',getdate())
+
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Dictionary MetaData Field Condition','Comparison Values'          ,'COMPARISON_VALUES'     ,'C20225',getdate(),'STATIC','Comparison Values'          )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Dictionary MetaData Field Condition','Condition Entity Name'      ,'CONDITION_ENTITY_NAME' ,'C20225',getdate(),'STATIC','Condition Entity Name'      )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Dictionary MetaData Field Condition','Condition Field Name'       ,'CONDITION_FIELD_NAME'  ,'C20225',getdate(),'STATIC','Condition Field Name'       )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Dictionary MetaData Field Condition','Condition Operator'         ,'CONDITION_OPERATOR'    ,'C20225',getdate(),'STATIC','Condition Operator'         )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Dictionary MetaData Field Condition','Entity Name'                ,'ENTITY_NAME'           ,'C20225',getdate(),'STATIC','Entity Name'                )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Dictionary MetaData Field Condition','Field Name'                 ,'FIELD_NAME'            ,'C20225',getdate(),'STATIC','Field Name'                 )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Dictionary MetaData Field Condition','MetaData Field Condition ID','METADATA_FIELD_COND_ID','C20225',getdate(),'STATIC','MetaData Field Condition ID')
+
+				Insert into dict_metadata_entity(entity_name,db_view_or_table,created_by,created_ts)values('Dictionary MetaData Field Defect','DICT_METADATA_FIELD_DEFECT','C20225',getdate())
+
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Dictionary MetaData Field Defect','Defect Code'      ,'DEFECT_CD'  ,'C20225',getdate(),'STATIC','Defect Code'      )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Dictionary MetaData Field Defect','Defect ID'        ,'DEFECT_ID'  ,'C20225',getdate(),'STATIC','Defect ID'        )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Dictionary MetaData Field Defect','Entity Name'      ,'ENTITY_NAME','C20225',getdate(),'STATIC','Entity Name'      )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Dictionary MetaData Field Defect','Field Name'       ,'FIELD_NAME' ,'C20225',getdate(),'STATIC','Field Name'       )
+
+				Insert into dict_metadata_entity(entity_name,db_view_or_table,created_by,created_ts)values('Dictionary MetaData Field Model','DICT_METADATA_FIELD_MODEL','C20225',getdate())
+
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Dictionary MetaData Field Model','Entity Name'    ,'ENTITY_NAME','C20225',getdate(),'STATIC','Entity Name'      )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Dictionary MetaData Field Model','Field Name'     ,'FIELD_NAME' ,'C20225',getdate(),'STATIC','Field Name'       )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Dictionary MetaData Field Model','Model ID'       ,'MODEL_ID'   ,'C20225',getdate(),'STATIC','Model ID'         )
+
+				Insert into dict_metadata_entity(entity_name,db_view_or_table,created_by,created_ts)values('Dictionary MetaData Field Relatives','DICT_METADATA_FIELD_RELATIVES','C20225',getdate())
+
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Dictionary MetaData Field Defect','Entity Name'      ,'ENTITY_NAME'      ,'C20225',getdate(),'STATIC','Entity Name'          )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Dictionary MetaData Field Defect','Field Name'       ,'FIELD_NAME'       ,'C20225',getdate(),'STATIC','Field Name'           )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Dictionary MetaData Field Defect','Defect Code','DEFECT_CD','C20225',getdate(),'STATIC','Defect Code'    )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Dictionary MetaData Field Defect','Defect ID','DEFECT_ID','C20225',getdate(),'STATIC','Defect ID'    )
+
+				Insert into dict_metadata_entity(entity_name,db_view_or_table,created_by,created_ts)values('Finding Rating Rules Administration','FINDING_RATING_RULES_ADMIN','C20225',getdate())
+
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Finding Rating Rules Administration','Defect Cause Code'             ,'DEFECT_CAUSE_CD'              ,'C20225',getdate(),'STATIC','Defect Cause Code'             )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Finding Rating Rules Administration','Defect Cause ID'               ,'DEFECT_CAUSE_ID'              ,'C20225',getdate(),'STATIC','Defect Cause ID'               )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Finding Rating Rules Administration','Defect Code'                   ,'DEFECT_CD'                    ,'C20225',getdate(),'STATIC','Defect Code'                   )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Finding Rating Rules Administration','Defect ID'                     ,'DEFECT_ID'                    ,'C20225',getdate(),'STATIC','Defect ID'                     )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Finding Rating Rules Administration','Defect Severity ID'            ,'DEFECT_SEVERITY_ID'           ,'C20225',getdate(),'STATIC','Defect Severity ID'            )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Finding Rating Rules Administration','Defect Source ID'              ,'DEFECT_SOURCE_ID'             ,'C20225',getdate(),'STATIC','Defect Source ID'              )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Finding Rating Rules Administration','Defect Source Code'            ,'DFCT_SOURCE_CD'               ,'C20225',getdate(),'STATIC','Defect Source Code'            )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Finding Rating Rules Administration','Finding Rating Rules ID'       ,'FINDING_RATING_RULES_ID'      ,'C20225',getdate(),'STATIC','Finding Rating Rules ID'       )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Finding Rating Rules Administration','Severity Tier Code'            ,'SEVERITY_TIER_CD'             ,'C20225',getdate(),'STATIC','Severity Tier Code'            )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Finding Rating Rules Administration','Unacceptable Rating Threshold' ,'UNACCEPTABLE_RATING_THRESHOLD','C20225',getdate(),'STATIC','Unacceptable Rating Threshold' )
+
+				update dict_metadata_field
+				set FIELD_NAME = 'Review Type ID',
+					DISPLAY_NAME = 'Review Type ID'
+				where DB_COLUMN= 'REVIEW_TYPE_ID'
+				and ENTITY_NAME = 'Lender Monitoring Request Model'				
+				
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Lender Monitoring Request Model','Review Type' ,'REVIEW_TYPE','C20225',getdate(),'STATIC','Review Type' )
+
+				update dict_metadata_field
+				set DB_COLUMN = 'BORR_1_YRS_AT_CURR_JOB'
+				where field_name= 'Borrower 1 Years at Current Job'
+				and ENTITY_NAME = 'Case Summary For Selection'					
+				
+				update dict_metadata_field
+				set DB_COLUMN = 'MAX_CLAIM_AMT'
+				where field_name= 'Maximum Claim Amount'
+				and ENTITY_NAME = 'Case Summary For Selection'	
+
+				update dict_metadata_field
+				set DB_COLUMN = 'MAX_RATE'
+				where field_name= 'Maximum Rate'
+				and ENTITY_NAME = 'Case Summary For Selection'	
+
+				update dict_metadata_field
+				set DB_COLUMN = 'ORIGINATION_FEE'
+				where field_name= 'Origination Fee'
+				and ENTITY_NAME = 'Case Summary For Selection'	
+
+				update dict_metadata_field
+				set DB_COLUMN = 'MNFCTRD_HUSNG_IND'
+				where field_name= 'Manufactured Housing Indicator'
+				and ENTITY_NAME = 'Case Summary For Selection'	
+
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary For Selection','Assets After Closing at Underwriting'          ,'ASSETS_AFTER_CLOSING_UW'        ,'C20225',getdate(),'STATIC','Assets After Closing at Underwriting'          )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary For Selection','Bankruptcy Any Indicator'                      ,'BNKRPTCY_ANY_IND'               ,'C20225',getdate(),'STATIC','Bankruptcy Any Indicator'                      )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary For Selection','Borrower Housing Expenses at Endorsement'      ,'BORR_HSNG_EXP_ENDRS'            ,'C20225',getdate(),'STATIC','Borrower Housing Expenses at Endorsement'      )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary For Selection','Borrower Housing Expenses at Underwriting'     ,'BORR_HSNG_EXP_UW'               ,'C20225',getdate(),'STATIC','Borrower Housing Expenses at Underwriting'     )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary For Selection','CoBorrower 1 FICO Count'                       ,'COBORR_1_FICO_CNT'              ,'C20225',getdate(),'STATIC','CoBorrower 1 FICO Count'                       )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary For Selection','Decision Code at Endorsement'                  ,'DCSN_CD_ENDRS'                  ,'C20225',getdate(),'STATIC','Decision Code at Endorsement'                  )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary For Selection','Decision Code at Underwriting'                 ,'DCSN_CD_UW'                     ,'C20225',getdate(),'STATIC','Decision Code at Underwriting'                 )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary For Selection','Default Episode Exists Indicator'              ,'DEFAULT_EPISODE_EXISTS_IND'     ,'C20225',getdate(),'STATIC','Default Episode Exists Indicator'              )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary For Selection','Flipping Category 2 Indicator'                 ,'FLIPPING_CATEGORY_2_IND'        ,'C20225',getdate(),'STATIC','Flipping Category 2 Indicator'                 )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary For Selection','Foreclosure Start Date'                        ,'FRCLSR_STRT_DT'                 ,'C20225',getdate(),'STATIC','Foreclosure Start Date'                        )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary For Selection','Monthly Principle and Interest'                ,'MNTHLY_PRNCPL_AND_INTRST'       ,'C20225',getdate(),'STATIC','Monthly Principle and Interest'                )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary For Selection','Number of Living Units'                        ,'NUM_LIVING_UNITS'               ,'C20225',getdate(),'STATIC','Number of Living Units'                        )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary For Selection','Back End Ratio at Endorsement'                 ,'RATIO_FIX_TEI_ENDRS'            ,'C20225',getdate(),'STATIC','Back End Ratio at Endorsement'                 )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary For Selection','Back End Ratio at Underwriting'                ,'RATIO_FIX_TEI_UW'               ,'C20225',getdate(),'STATIC','Back End Ratio at Underwriting'                )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary For Selection','Front End Ratio at Endorsement'                ,'RATIO_TOT_PMT_TO_TOT_INC_ENDRS' ,'C20225',getdate(),'STATIC','Front End Ratio at Endorsement'                )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary For Selection','Front End Ratio at Underwriting'               ,'RATIO_TOT_PMT_TO_TOT_INC_UW'    ,'C20225',getdate(),'STATIC','Front End Ratio at Underwriting'               )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary For Selection','Refinance Indicator'                           ,'REFINANCE_IND'                  ,'C20225',getdate(),'STATIC','Refinance Indicator'                           )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary For Selection','Total Assets at Endorsement'                   ,'TOT_ASSETS_ENDRS'               ,'C20225',getdate(),'STATIC','Total Assets at Endorsement'                   )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary For Selection','Total Assets at Underwriting'                  ,'TOT_ASSETS_UW'                  ,'C20225',getdate(),'STATIC','Total Assets at Underwriting'                  )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary For Selection','Total Closing Costs at Endorsement'            ,'TOT_CLSNG_CSTS_ENDRS'           ,'C20225',getdate(),'STATIC','Total Closing Costs at Endorsement'            )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary For Selection','Total Closing Costs at Underwriting'           ,'TOT_CLSNG_CSTS_UW'              ,'C20225',getdate(),'STATIC','Total Closing Costs at Underwriting'           )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary For Selection','Total Fixed Payment at Endorsement'            ,'TOT_FIXED_PYMT_ENDRS'           ,'C20225',getdate(),'STATIC','Total Fixed Payment at Endorsement'            )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary For Selection','Total Fixed Payment at Underwriting'           ,'TOT_FIXED_PYMT_UW'              ,'C20225',getdate(),'STATIC','Total Fixed Payment at Underwriting'           )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary For Selection','Total Monthly Mortgage Payment at Endorsement' ,'TOT_MNTHLY_MTG_PYMT_ENDRS'      ,'C20225',getdate(),'STATIC','Total Monthly Mortgage Payment at Endorsement' )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary For Selection','Total Monthly Mortgage Payment at Underwriting','TOT_MNTHLY_MTG_PYMT_UW'         ,'C20225',getdate(),'STATIC','Total Monthly Mortgage Payment at Underwriting')
+
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Generic Lookup','Display Order','DISPLAY_ORDER'         ,'C20225',getdate(),'STATIC','Display Order')
+
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('LRS Notes','Note Type ID','NOTE_TYPE_ID' ,'C20225',getdate(),'STATIC','Note Type ID')
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('LRS Notes','Personnel ID','PRSNNL_ID'    ,'C20225',getdate(),'STATIC','Personnel ID')
+
+				Insert into dict_metadata_entity(entity_name,db_view_or_table,created_by,created_ts)values('Note Type Reference','NOTE_TYPE_REF','C20225',getdate())
+                                                                                                                                                                                         
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Note Type Reference','Description'    ,'DESCRIPTION'         ,'C20225',getdate(),'STATIC','Description'      )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Note Type Reference','Note Type Code' ,'NOTE_TYPE_CD'        ,'C20225',getdate(),'STATIC','Note Type Code'    )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Note Type Reference','Note Type ID'   ,'NOTE_TYPE_ID'        ,'C20225',getdate(),'STATIC','Note Type ID'     )
+
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Review Personnel','Availability Indicator' ,'AVAILABILITY_IND'         ,'C20225',getdate(),'STATIC','Availability Indicator'    )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Review Personnel','Login Credential'       ,'LOGIN_CREDENTIAL'         ,'C20225',getdate(),'STATIC','Login Credential'          )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Review Personnel','Reviewer Capacity'      ,'REVIEWER_CAPACITY'        ,'C20225',getdate(),'STATIC','Reviewer Capacity'         )
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Review Personnel','Status Code'            ,'STATUS_CODE'              ,'C20225',getdate(),'STATIC','Status Code'               )
+
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Review Personnel Assignment Type','Active Indicator'             ,'ACTIVE_IND'                         ,'C20225',getdate(),'STATIC','Active Indicator'               ) 
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Review Personnel Assignment Type','Personnel Assignment Type ID' ,'PERSONNEL_ASSIGNMENT_TYPE_ID'       ,'C20225',getdate(),'STATIC','Personnel Assignment Type ID'    )
+
+				Insert into dict_metadata_entity(entity_name,db_view_or_table,created_by,created_ts)values('Personnel Unavailability','PERSONNEL_UNAVAILABILITY','C20225',getdate())                                                                                                                 
+                                                                                                                                                                                                                                                                                                        
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Personnel Unavailability','Personnel Unavailability ID'    ,'PERSONNEL_UNAVAILABILITY_ID' ,'C20225',getdate(),'STATIC','Personnel Unavailability ID'   )
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Personnel Unavailability','Personnel ID'                   ,'PRSNNL_ID'                   ,'C20225',getdate(),'STATIC','Personnel ID'                  )
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Personnel Unavailability','Unavailability End Timestamp'   ,'UNAVAIL_END_TS'              ,'C20225',getdate(),'STATIC','Unavailability End Timestamp'  )
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Personnel Unavailability','Unavailability Start Timestamp' ,'UNAVAIL_START_TS'            ,'C20225',getdate(),'STATIC','Unavailability Start Timestamp')
+
+				Insert into dict_metadata_entity(entity_name,db_view_or_table,created_by,created_ts)values('Question Answer Model','QA_MODEL','C20225',getdate())                                                                                                                 
+                                                                                                                                                                                                                                                                                                        
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Question Answer Model','Description'    ,'DESCRIPTION' ,'C20225',getdate(),'STATIC','Description'   )
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Question Answer Model','Model ID'       ,'MODEL_ID'    ,'C20225',getdate(),'STATIC','Model ID'      )
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Question Answer Model','Model Name'     ,'MODEL_NAME'  ,'C20225',getdate(),'STATIC','Model Name'    )
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Question Answer Model','Version Number' ,'VERSION_NUM' ,'C20225',getdate(),'STATIC','Version Number')
+
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Question Answer Tree','Defect Code','DEFECT_CD' ,'C20225',getdate(),'STATIC','Defect Code'   )
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Question Answer Tree','Defect ID'  ,'DEFECT_ID' ,'C20225',getdate(),'STATIC','Defect ID'     )
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Question Answer Tree','Model ID'   ,'MODEL_ID'  ,'C20225',getdate(),'STATIC','Model ID'      )
+
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Question Answer Tree Outcome Causes','Defect Cause ID','DEFECT_CAUSE_ID' ,'C20225',getdate(),'STATIC','Defect Cause ID'   )
+
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Question Answer Tree Outcome Tiers','Defect Severity ID','DEFECT_SEVERITY_ID' ,'C20225',getdate(),'STATIC','Defect Severity ID'   )
+
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Question Answer Tree Outcome Sources','Defect Source ID','DEFECT_SOURCE_ID' ,'C20225',getdate(),'STATIC','Defect Source ID'   )
+
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Question Answer Tree Outcome','Defect ID'                ,'DEFECT_ID'                 ,'C20225',getdate(),'STATIC','Defect ID'                   )     
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Question Answer Tree Outcome','Source Filter Question ID','SOURCE_FILTER_QUESTION_ID' ,'C20225',getdate(),'STATIC','Source Filter Question ID'   )     
+
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Question Answer Tree Question Condition','QA Question Condition ID','QATREE_QSTN_CONDITION_ID' ,'C20225',getdate(),'STATIC','QA Question Condition ID'   )     
+
+			   Insert into dict_metadata_entity(entity_name,db_view_or_table,created_by,created_ts)values('Question Answer Question Rules','QATREE_QSTN_RULES','C20225',getdate())                                                                                                                 
+                                                                                                                                                                                                                                                                                                        
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Question Answer Question Rules','QA ID'              ,'QATREE_ID'       ,'C20225',getdate(),'STATIC','QA ID'                 )
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Question Answer Question Rules','Review Type ID'     ,'REVIEW_TYPE_ID'  ,'C20225',getdate(),'STATIC','Review Type ID'        )
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Question Answer Question Rules','Selection Reason ID','SLCTN_REASON_ID' ,'C20225',getdate(),'STATIC','Selection Reason ID'   )
+
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Question Answer Tree Question','Order Number'      ,'ORDER_NUMBER'       ,'C20225',getdate(),'STATIC','Order Number'         )
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Question Answer Tree Question','Parent Question ID','PARENT_QUESTION_ID' ,'C20225',getdate(),'STATIC','Parent Question ID'   )
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Question Answer Tree Question','QA Outcome ID'     ,'QA_OUTCM_ID'        ,'C20225',getdate(),'STATIC','QA Outcome ID'        )
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Question Answer Tree Question','Question Number'   ,'QUESTION_NUMBER'    ,'C20225',getdate(),'STATIC','Question Number'      )
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Question Answer Tree Question','Question Reference','QUESTION_REFERENCE' ,'C20225',getdate(),'STATIC','Question Reference'   )
+
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Question Reference','Question ID','QUESTION_ID'       ,'C20225',getdate(),'STATIC','Question ID'         )
+
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Rating Admin','Rank Order','RANK_ORDER'       ,'C20225',getdate(),'STATIC','Rank Order'         )
+
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Response From Lender','Finding ID','FINDING_ID'       ,'C20225',getdate(),'STATIC','Finding ID'         )
+
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Review','Due Date'    ,'DUE_DATE'           ,'C20225',getdate(),'STATIC','Due Date'            )
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Review','Review Scope','REVIEW_SCOPE'       ,'C20225',getdate(),'STATIC','Review Scope'         )
+
+			   Insert into dict_metadata_entity(entity_name,db_view_or_table,created_by,created_ts)values('Review Question Answer Tree','REVIEW_QATREE','C20225',getdate())                                                                                                                 
+
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Review Question Answer Tree','QA ID'    ,'QATREE_ID'  ,'C20225',getdate(),'STATIC','QA ID'    )
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Review Question Answer Tree','Review ID','REVIEW_ID'  ,'C20225',getdate(),'STATIC','Review ID')
+
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Review Type Defect','Defect ID'    ,'DEFECT_ID'     ,'C20225',getdate(),'STATIC','Defect ID'   )
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Review Type Defect','Order Number' ,'ORDER_NUMBER'  ,'C20225',getdate(),'STATIC','Order Number')
+
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Review Batch','Batch ID'           ,'BATCH_ID'            ,'C20225',getdate(),'STATIC','Batch ID'          )
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Review Batch','Batch Reference ID' ,'BATCH_REFERENCE_ID'  ,'C20225',getdate(),'STATIC','Batch Reference ID')
+
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Review Defect','Defect ID'           ,'DEFECT_ID'            ,'C20225',getdate(),'STATIC','Defect ID'          )
+
+
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary For Review Level','Borrower 1 Birth Date'                         ,'BORR_BRTH_DT'                     , 'C20225',getdate(),'STATIC','Borrower 1 Birth Date'                         )
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary For Review Level','Closing Date'                                  ,'CLSNG_DT'                         , 'C20225',getdate(),'STATIC','Closing Date'                                  )
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary For Review Level','Review ID'                                     ,'REVIEW_ID'                        , 'C20225',getdate(),'STATIC','Review ID'                                     )
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary For Review Level','Review Level ID'                               ,'REVIEW_LVL_ID'                    , 'C20225',getdate(),'STATIC','Review Level ID'                               )
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary For Review Level','Occupancy Status Code'                         ,'OCPNCY_STS_CD'                    , 'C20225',getdate(),'STATIC','Occupancy Status Code'                         )
+
+
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Review Type Defect','Defect ID','DEFECT_ID', 'C20225',getdate(),'STATIC','Defect ID')
+
+			   insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Review Level Defect Audit','Defect ID','DEFECT_ID', 'C20225',getdate(),'STATIC','Defect ID')
+
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Review Level Finding','Finding ID','FINDING_ID', 'C20225',getdate(),'STATIC','Finding ID') 
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Review Level Finding','Unacceptable Indicator','UNACCEPTABLE_IND', 'C20225',getdate(),'STATIC','Unacceptable Indicator') 
+			
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Review Level Finding Audit','Finding ID','FINDING_ID', 'C20225',getdate(),'STATIC','Finding ID') 			
+			
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Review Level Finding Question','Finding Question ID','FINDING_QUESTION_ID', 'C20225',getdate(),'STATIC','Finding Question ID') 						
+			
+				Insert into dict_metadata_entity(entity_name,db_view_or_table,created_by,created_ts)values('Scoring Factors','SCORING_FACTORS','C20225',getdate())                                                                                       			
+                                                                                                                                                                                                                                                   			
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Scoring Factors','Comments'              ,'COMMENTS'              ,'C20225',getdate(),'STATIC','Comments'                ) 			
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Scoring Factors','Description'           ,'DESCRIPTION'           ,'C20225',getdate(),'STATIC','Description'              )			
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Scoring Factors','Factor Attribute Name' ,'FACTOR_ATTRIBUTE_NAME' ,'C20225',getdate(),'STATIC','Factor Attribute Name'   ) 			
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Scoring Factors','Factor ID'             ,'FACTOR_ID'             ,'C20225',getdate(),'STATIC','Factor ID'                )						
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Scoring Factors','Technical Reference'   ,'TECHNICAL_REFERENCE'   ,'C20225',getdate(),'STATIC','Technical Reference'     ) 						
+
+				Insert into dict_metadata_entity(entity_name,db_view_or_table,created_by,created_ts)values('System Parameters','SYSTEM_PARAMETERS','C20225',getdate())                                                                                       			
+			
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('System Parameters','Parameter Name'  ,'PARAMETER_NAME'    ,'C20225',getdate(),'STATIC','Parameter Name'       )									
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('System Parameters','Parameter Value' ,'PARAMETER_VALUE'   ,'C20225',getdate(),'STATIC','Parameter Value'     ) 						
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1425_insert_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Dictionary MetaData Field Relatives','Entity Name'        ,'ENTITY_NAME'     ,'C20225', getdate(),'STATIC','Entity Name')
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Dictionary MetaData Field Relatives','Field Name'         ,'FIELD_NAME'      ,'C20225', getdate(),'STATIC','Field Name')
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Dictionary MetaData Field Relatives','Related DB Column'  ,'RELATED_DB_COLUMN','C20225', getdate(),'STATIC','Related DB Column')
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Dictionary MetaData Field Relatives','Relationshipt Type' ,'RELATIONSHIP_TYPE','C20225', getdate(),'STATIC','Relationshipt Type')
+
+			Insert into dict_metadata_entity(entity_name,db_view_or_table,created_by,created_ts)values('Document Type Reference','DOCUMENT_TYPE_REF','C20225',getdate())                                                                                       			
+			
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Document Type Reference','Description'  ,'DESCRIPTION'    ,'C20225',getdate(),'STATIC','Description'       )									
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Document Type Reference','Document Type Code' ,'DOCUMENT_TYPE_CD'   ,'C20225',getdate(),'STATIC','Document Type Code'     ) 										
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Document Type Reference','Document Type ID' ,'DOCUMENT_TYPE_ID'   ,'C20225',getdate(),'STATIC','Document Type ID'     ) 														
+			
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary for Selection','Payment Plan' ,'PAYMENT_PLAN'   ,'C20225',getdate(),'STATIC','Payment Plan'     ) 																	
+			
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Review Level Defect','Defect ID','DEFECT_ID', 'C20225',getdate(),'STATIC','Defect ID')			
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1425_insert_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+				update dict_metadata_field
+				set DB_COLUMN = 'DEFAULT_EPISODE_EXISTS_IND'
+				where field_name= 'Default Episode Exists'
+				and ENTITY_NAME = 'Case Summary For Selection'	
+				
+				delete from dict_metadata_field
+				where DB_COLUMN= 'LIV_UNITS'
+				and ENTITY_NAME = 'Case Summary For Selection'	
+
+				delete from dict_metadata_field
+				where DB_COLUMN= 'PST_RVW_DCSN_CD'
+				and ENTITY_NAME = 'Case Summary For Selection'					
+				
+				delete from dict_metadata_field
+				where DB_COLUMN= 'RANDOM_NUMBER'
+				and ENTITY_NAME = 'Case Summary For Selection'					
+				
+				delete from dict_metadata_field
+				where DB_COLUMN= 'RATIO_FIX_TEI'
+				and ENTITY_NAME = 'Case Summary For Selection'	
+
+				delete from dict_metadata_field
+				where DB_COLUMN= 'RATIO_TMP_TEI'
+				and ENTITY_NAME = 'Case Summary For Selection'					
+
+				delete from dict_metadata_field
+				where DB_COLUMN= 'RATIO_TMP_TEI'
+				and ENTITY_NAME = 'Case Summary For Selection'	
+
+				delete from dict_metadata_field
+				where DB_COLUMN= 'REFERENCE_ID'
+				and ENTITY_NAME = 'LRS Notes'	
+
+				delete from dict_metadata_field
+				where DB_COLUMN= 'QATREE_VERSION_ID'
+				and ENTITY_NAME = 'Question Answer Tree'	
+
+				delete from dict_metadata_field
+				where DB_COLUMN= 'SUMMARY_FIELD_TO_UPDATE'
+				and ENTITY_NAME = 'Question Reference'	
+																
+				update dict_metadata_field
+				set DB_COLUMN = 'ORGNTNG_MTGEE_NMLS_ID'
+				where field_name= 'Originating Mortgagee NMLS ID'
+				and ENTITY_NAME = 'Case Summary For Selection'	
+				
+				update dict_metadata_field
+				set DB_COLUMN = 'QUALIFIED_MRTG_POINTS_AND_FEES'
+				where field_name= 'QM Points and Fees'
+				and ENTITY_NAME = 'Case Summary For Selection'
+
+				delete from dict_metadata_field where entity_name = 'Response From Lender'
+				
+				delete from dict_metadata_entity where entity_name = 'Response From Lender'
+
+				delete from dict_metadata_field 
+				where entity_name = 'Review Type Defect'				
+				  and db_column = 'DEFECT_CD'
+				  
+				delete from dict_metadata_field 
+				where entity_name = 'Review Batch'				
+				  and db_column = 'SLCTN_REQ_ID'				  
+
+				delete from dict_metadata_field_condition
+				where entity_name = 'Case Summary for Review Level'
+				and field_name in
+				('After Improved Value 203(k)',
+				'Borrower Liabilities',
+				'Case Warning Indicator',
+				'Contract Price',
+				'County Limits based on Living Units',
+				'Date of Contract',
+				'Default status code at end of episdoe',
+				'Delinquent Status',
+				'For update:  Certification of no decline in value indicator',
+				'Mortgage Amount Total',
+				'Renting',
+				'Repair Amount',
+				'Servicer mortgagee ID',
+				'Total Children',
+				'Total Number of Applicants',
+				'UFMIP')
+
+				delete from dict_metadata_field_defect
+				where entity_name = 'Case Summary for Review Level'
+				and field_name in
+				('After Improved Value 203(k)',
+				'Borrower Liabilities',
+				'Case Warning Indicator',
+				'Contract Price',
+				'County Limits based on Living Units',
+				'Date of Contract',
+				'Default status code at end of episdoe',
+				'Delinquent Status',
+				'For update:  Certification of no decline in value indicator',
+				'Mortgage Amount Total',
+				'Renting',
+				'Repair Amount',
+				'Servicer mortgagee ID',
+				'Total Children',
+				'Total Number of Applicants',
+				'UFMIP')
+
+				delete from DICT_METADATA_FIELD_RELATIVES
+				where entity_name = 'Case Summary for Review Level'
+				and field_name in
+				('After Improved Value 203(k)',
+				'Borrower Liabilities',
+				'Case Warning Indicator',
+				'Contract Price',
+				'County Limits based on Living Units',
+				'Date of Contract',
+				'Default status code at end of episdoe',
+				'Delinquent Status',
+				'For update:  Certification of no decline in value indicator',
+				'Mortgage Amount Total',
+				'Renting',
+				'Repair Amount',
+				'Servicer mortgagee ID',
+				'Total Children',
+				'Total Number of Applicants',
+				'UFMIP')				  				  
+				  
+				delete from dict_metadata_field 
+				where entity_name = 'Case Summary for Review Level'				  
+				  and db_column is null
+				  
+				update dict_metadata_field
+				set DB_COLUMN = 'BORR_BRTH_DT'
+				where field_name= 'Borrower Birth Date'
+				and ENTITY_NAME = 'Case Summary for Review Level'
+				
+				update dict_metadata_field
+				set DB_COLUMN = 'CLSNG_DT'
+				where field_name= 'Closing Date of the Mortgage'
+				and ENTITY_NAME = 'Case Summary for Review Level'	
+
+				update dict_metadata_field
+				set DB_COLUMN = 'EFF_DATE_APRSL_UPDATE'
+				where field_name= 'Effective Date of Appraisal'
+				and ENTITY_NAME = 'Case Summary for Review Level'					
+				  
+				update dict_metadata_field
+				set DB_COLUMN = 'OCPNCY_STS_CD'
+				where field_name= 'occupancy status'
+				and ENTITY_NAME = 'Case Summary for Review Level'					
+				  				  
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1425_insert_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,subject_area,display_name) values('Case Summary for Review Level','Assets after Closing at Underwriting'            ,'ASSETS_AFTER_CLOSING_UW'            ,'C20225',getdate(),'STATIC','UNKNOWN', 'Assets after Closing at Underwriting'          )
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,subject_area,display_name) values('Case Summary for Review Level','Borrower Housing Expenses at Endorsement'        ,'BORR_HSNG_EXP_ENDRS'            ,'C20225',getdate(),'STATIC','UNKNOWN', 'Borrower Housing Expenses at Endorsement'      )
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,subject_area,display_name) values('Case Summary for Review Level','Borrower Housing Expenses at Underwriting'       ,'BORR_HSNG_EXP_UW'              ,'C20225',getdate(),'STATIC','UNKNOWN', 'Borrower Housing Expenses at Underwriting'     )
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,subject_area,display_name) values('Case Summary for Review Level','Decision Code at Endorsement'                    ,'DCSN_CD_ENDRS'                              ,'C20225',getdate(),'STATIC','UNKNOWN', 'Decision Code at Endorsement'                  )
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,subject_area,display_name) values('Case Summary for Review Level','Decision Code at Underwriting'                   ,'DCSN_CD_UW'                                ,'C20225',getdate(),'STATIC','UNKNOWN', 'Decision Code at Underwriting'                 )
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,subject_area,display_name) values('Case Summary for Review Level','FICO Decision Score at Endorsement'              ,'FICO_DECISION_SCORE_ENDRS'            ,'C20225',getdate(),'STATIC','UNKNOWN', 'FICO Decision Score at Endorsement'            )
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,subject_area,display_name) values('Case Summary for Review Level','FICO Decision Score at Underwriting'             ,'FICO_DECISION_SCORE_UW'              ,'C20225',getdate(),'STATIC','UNKNOWN', 'FICO Decision Score at Underwriting'           )
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,subject_area,display_name) values('Case Summary for Review Level','Back End Ratio at Endorsement'                   ,'RATIO_FIX_TEI_ENDRS'                       ,'C20225',getdate(),'STATIC','UNKNOWN', 'Back End Ratio at Endorsement'                 )
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,subject_area,display_name) values('Case Summary for Review Level','Back End Ratio at Underwriting'                  ,'RATIO_FIX_TEI_UW'                         ,'C20225',getdate(),'STATIC','UNKNOWN', 'Back End Ratio at Underwriting'                )
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,subject_area,display_name) values('Case Summary for Review Level','Front End Ratio at Endorsement'                  ,'RATIO_TOT_PMT_TO_TOT_INC_ENDRS'           ,'C20225',getdate(),'STATIC','UNKNOWN', 'Front End Ratio at Endorsement'                )
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,subject_area,display_name) values('Case Summary for Review Level','Front End Ratio at Underwriting'                 ,'RATIO_TOT_PMT_TO_TOT_INC_UW'             ,'C20225',getdate(),'STATIC','UNKNOWN', 'Front End Ratio at Underwriting'               )
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,subject_area,display_name) values('Case Summary for Review Level','Total Assets at Endorsement'                     ,'TOT_ASSETS_ENDRS'                            ,'C20225',getdate(),'STATIC','UNKNOWN', 'Total Assets at Endorsement'                   )
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,subject_area,display_name) values('Case Summary for Review Level','Total Assets at Underwriting'                    ,'TOT_ASSETS_UW'                              ,'C20225',getdate(),'STATIC','UNKNOWN', 'Total Assets at Underwriting'                  )
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,subject_area,display_name) values('Case Summary for Review Level','Total Closing Costs at Endorsement'              ,'TOT_CLSNG_CSTS_ENDRS'                 ,'C20225',getdate(),'STATIC','UNKNOWN', 'Total Closing Costs at Endorsement'            )
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,subject_area,display_name) values('Case Summary for Review Level','Total Closing Costs at Underwriting'             ,'TOT_CLSNG_CSTS_UW'                   ,'C20225',getdate(),'STATIC','UNKNOWN', 'Total Closing Costs at Underwriting'           )
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,subject_area,display_name) values('Case Summary for Review Level','Total Fixed Payment at Endorsement'              ,'TOT_FIXED_PYMT_ENDRS'                 ,'C20225',getdate(),'STATIC','UNKNOWN', 'Total Fixed Payment at Endorsement'            )
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,subject_area,display_name) values('Case Summary for Review Level','Total Fixed Payment at Underwriting'             ,'TOT_FIXED_PYMT_UW'                   ,'C20225',getdate(),'STATIC','UNKNOWN', 'Total Fixed Payment at Underwriting'           )
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,subject_area,display_name) values('Case Summary for Review Level','Total Monthly Mortgage Payment at Endorsement'   ,'TOT_MNTHLY_MTG_PYMT_ENDRS' ,'C20225',getdate(),'STATIC','UNKNOWN', 'Total Monthly Mortgage Payment at Endorsement' )
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,subject_area,display_name) values('Case Summary for Review Level','Total Monthly Mortgage Payment at Underwriting'  ,'TOT_MNTHLY_MTG_PYMT_UW'   ,'C20225',getdate(),'STATIC','UNKNOWN', 'Total Monthly Mortgage Payment at Underwriting')
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1425_delete_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from dict_metadata_field
+			where field_name = 'Closing Date'
+			  and entity_name = 'Case Summary for Review Level'
+			  
+				update dict_metadata_field
+				set DB_COLUMN = 'MNFCTRD_HUSNG_IND'
+				where field_name= 'Manufactured Housing Indicator'
+				and ENTITY_NAME = 'Case Summary for Review Level'			  
+
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,subject_area,display_name) values('Case Summary for Review Level','Factory Fabricated Indicator'  ,'FCTRY_FBRCT'   ,'C20225',getdate(),'STATIC','UNKNOWN', 'Factory Fabricated Indicator')				
+			
+			delete from dict_metadata_field
+			where field_name = 'Occupancy Status Code'
+			  and entity_name = 'Case Summary for Review Level'			
+				]]>
+        </sql>
+    </changeSet>		
+ </databaseChangeLog>
+
+
+
+
+
+
+
+
+
+

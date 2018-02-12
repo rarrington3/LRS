@@ -1,0 +1,17 @@
+{
+    "id": "http://LRS/ReviewerAssignmentType",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": ["assignmentTypeId", "assignmentTypeCode"],
+    "additionalProperties": false,
+    "properties": {
+        "assignmentTypeId": {
+            "description": "The assignment type id for the record.",
+            "type": "string"
+        },
+        "assignmentTypeCode": {
+            "description": "The code of an assignment type. Could be a Selection Reason, Review Type, Loan Type, or Review Level.",
+            "type": "string"
+        }
+    }
+}

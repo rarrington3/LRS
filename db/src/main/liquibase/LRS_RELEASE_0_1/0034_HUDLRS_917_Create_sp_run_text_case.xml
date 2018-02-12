@@ -1,0 +1,32 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="TEST"  author="astrauss (generated)" id="HUDLRS_917_Create_sp_run_test_case" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+			create proc sp_run_test_case as
+
+				create table #temp_case
+				(case_number char(11))
+				
+				insert into #temp_case
+				select top 50 case_number from lrsextdb..lrs_case_record
+				
+				declare case_number_crsr cursor for
+				select case_number from #temp_case
+				
+				declare @case_number char(11)
+				
+				open case_number_crsr
+				
+				FETCH NEXT FROM case_number_crsr INTO @case_number
+				
+				WHILE @@FETCH_STATUS = 0   
+				BEGIN 
+				
+					exec sp_get_case @case_number
+				
+					FETCH NEXT FROM case_number_crsr INTO @case_number    
+				
+				end
+        </sql>
+    </changeSet>
+</databaseChangeLog>    

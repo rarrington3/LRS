@@ -1,0 +1,226 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1666_update_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update SCORING_FACTORS 
+			set FACTOR_ATTRIBUTE_NAME = 'Previously Selected for Underwriting Review Multiplier',
+				DESCRIPTION = 'Previously Selected for Underwriting Review Multiplier'
+			where FACTOR_ID = 'DD398435-BD73-4656-BE92-B74EB8517734'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1666_insert_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into scoring_factors (factor_id,factor_attribute_name,description) values('A9FAFE9B-7533-47D5-8450-C5844EB5C564','Claim Type Multiplier'                                     , 'Claim Type Multiplier'                                     )
+			insert into scoring_factors (factor_id,factor_attribute_name,description) values('8D57EAEC-8C3B-4565-B403-C8122F8BBF60','Defect Probability (Fwd) Percentile'                       , 'Defect Probability (Fwd) Percentile'                       )
+			insert into scoring_factors (factor_id,factor_attribute_name,description) values('F397B611-65FC-4D7C-AD0B-A0472A44C3A5','Defect Probability (Rev) Percentile'                       , 'Defect Probability (Rev) Percentile'                       )
+			insert into scoring_factors (factor_id,factor_attribute_name,description) values('82C4D0B5-3183-4F42-BE54-817FA331BFA5','Direct Endorsement Case Indicator'                         , 'Direct Endorsement Case Indicator'                         )
+			insert into scoring_factors (factor_id,factor_attribute_name,description) values('CC2B74A2-9324-4421-AD7B-CC5E0F3DFD1E','Early Claim Multiplier'                                    , 'Early Claim Multiplier'                                    )
+			insert into scoring_factors (factor_id,factor_attribute_name,description) values('1F5CBD53-D3AF-4BF6-9991-AA3DAC13A9E1','Early Payment Default Multiplier'                          , 'Early Payment Default Multiplier'                          )
+			insert into scoring_factors (factor_id,factor_attribute_name,description) values('58B2D767-7854-4E02-87C9-AA4FD0D9CA36','Lender Monitoring Forward Servicing Score Percentile'      , 'Lender Monitoring Forward Servicing Score Percentile'      )
+			insert into scoring_factors (factor_id,factor_attribute_name,description) values('74956A18-8B32-4A21-8FCC-223C2275D1C4','Lender Monitoring Forward Underwriting Score Percentile'   , 'Lender Monitoring Forward Underwriting Score Percentile'   )
+			insert into scoring_factors (factor_id,factor_attribute_name,description) values('1172A4B9-798B-4AC2-8C5C-1E9F33158D33','Lender Monitoring HECM Servicing Score Percentile'         , 'Lender Monitoring HECM Servicing Score Percentile'         )
+			insert into scoring_factors (factor_id,factor_attribute_name,description) values('1B444CFA-D118-4189-A3EC-7C31C3D0D70B','Lender Monitoring HECM Underwriting Score Percentile'      , 'Lender Monitoring HECM Underwriting Score Percentile'      )
+			insert into scoring_factors (factor_id,factor_attribute_name,description) values('B383DA09-0670-4B58-AA1F-0EF1DEE5DCDA','Not Previously Selected for Underwriting Review Multiplier', 'Not Previously Selected for Underwriting Review Multiplier')
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1666_delete_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from scoring_factors
+			where factor_id in
+			('87889198-A50A-4D54-AAE9-A60CB0747D1B',
+			'4F04F8E3-6A68-4429-A153-6AA8AFD8630D',
+			'86B0E3F5-AB94-4892-B1D4-4968ED9DEF94',
+			'00AD6EDB-E8D7-42D2-AD3F-9326EA4DF02B',
+			'4754D9A0-B7E1-4B4D-AF39-097EAFD429DC',
+			'4AE3E6FC-60CA-4C5D-913B-6978E27D4D99',
+			'717C1DF1-2672-40CC-B483-957576EB141C',
+			'58B0FB55-87B2-4315-9590-0F1661F2CDC4',
+			'30F6B436-97B5-4A43-8914-52C9914DCFCA',
+			'4144C205-BCD2-487A-A4F8-30538FC95552',
+			'A7F7503A-BA8A-403F-AC14-BD66BD85F8E7',
+			'6EFF8F46-AEFD-4AF0-8BFC-9358F8DFD1EC',
+			'F7292CF3-DE86-43B3-8DA6-4A1A6AE560A6',
+			'D104F63B-F1F6-4294-8DEE-BCFA63EBB9B1',
+			'A5C7EBBE-DA4C-4CBB-825C-3837362EDAF2',
+			'05716B6C-3CA4-4C75-B97C-D34F64B94DEB')
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1666_insert_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into SCORING_MODEL(MODEL_ID,DESCRIPTION,CREATED_BY,CREATED_TS) values('3CBD624B-8394-490F-BE81-2F849EFE2F70','Underwriter Increased','C20225',getdate())
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1666_insert_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'20F785BE-1836-4AEC-8D11-E2FB45EA66FA', 0.00000     ,         'A9FAFE9B-7533-47D5-8450-C5844EB5C564',   'C20225',getdate()) 
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'20F785BE-1836-4AEC-8D11-E2FB45EA66FA', 1.00000     ,         'CC2B74A2-9324-4421-AD7B-CC5E0F3DFD1E',   'C20225',getdate()) 
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'20F785BE-1836-4AEC-8D11-E2FB45EA66FA', 1.00000     ,         'EF54E9DD-6FBC-434D-A765-D61531B5461E',   'C20225',getdate()) 
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'20F785BE-1836-4AEC-8D11-E2FB45EA66FA', -1000.00000 ,         'DD398435-BD73-4656-BE92-B74EB8517734',   'C20225',getdate()) 
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'20F785BE-1836-4AEC-8D11-E2FB45EA66FA', -1000.00000 ,         '22D43373-576F-4178-A368-2FCC77601781',   'C20225',getdate()) 
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'20F785BE-1836-4AEC-8D11-E2FB45EA66FA', -1000.00000 ,         'CFBE372F-DA58-4A42-A322-28FCE58E5DF3',   'C20225',getdate()) 
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'FCB4565F-4246-4656-9C9A-28F5EAC62B87', 1.00000     ,         '1F5CBD53-D3AF-4BF6-9991-AA3DAC13A9E1',   'C20225',getdate())              
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'FCB4565F-4246-4656-9C9A-28F5EAC62B87', 1.00000     ,         'EF54E9DD-6FBC-434D-A765-D61531B5461E',   'C20225',getdate())              
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'FCB4565F-4246-4656-9C9A-28F5EAC62B87', -1000.00000 ,         '22D43373-576F-4178-A368-2FCC77601781',   'C20225',getdate())              
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'FCB4565F-4246-4656-9C9A-28F5EAC62B87', -1000.00000 ,         'CFBE372F-DA58-4A42-A322-28FCE58E5DF3',   'C20225',getdate())              
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'AFB673A4-2AFB-46EE-8AF0-804B5C831EA3', 0.00000     ,         '82C4D0B5-3183-4F42-BE54-817FA331BFA5',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'AFB673A4-2AFB-46EE-8AF0-804B5C831EA3', 1.00000     ,         '1B89D744-3C7F-458A-BC25-AFBF9A9FEC40',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'AFB673A4-2AFB-46EE-8AF0-804B5C831EA3', 1.00000     ,         'B5BBE9D1-80FF-421F-A77F-1249115226DB',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'AFB673A4-2AFB-46EE-8AF0-804B5C831EA3', -1000.00000 ,         'DD398435-BD73-4656-BE92-B74EB8517734',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'AFB673A4-2AFB-46EE-8AF0-804B5C831EA3', -1000.00000 ,         '22D43373-576F-4178-A368-2FCC77601781',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'25AC4E2E-7082-461B-90D9-36D20643CFA9', 1.00000     ,         '58B2D767-7854-4E02-87C9-AA4FD0D9CA36',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'25AC4E2E-7082-461B-90D9-36D20643CFA9', 1.00000     ,         '74956A18-8B32-4A21-8FCC-223C2275D1C4',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'25AC4E2E-7082-461B-90D9-36D20643CFA9', -1000.00000 ,         'D413D4B1-4D8F-43E6-9697-2F2D1CDB186D',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'25AC4E2E-7082-461B-90D9-36D20643CFA9', -1000.00000 ,         'B383DA09-0670-4B58-AA1F-0EF1DEE5DCDA',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'45B70AA2-E602-4B56-B9B5-7FCDF2B87EE6', 5.00000     ,         'B6BEE973-0A39-48D5-BFCE-EBA98E96F62F',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'45B70AA2-E602-4B56-B9B5-7FCDF2B87EE6', 10.00000    ,         'CA8432EB-2D7D-461A-B074-C93F38A6E4E7',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'45B70AA2-E602-4B56-B9B5-7FCDF2B87EE6', 1.00000     ,         '8D57EAEC-8C3B-4565-B403-C8122F8BBF60',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'45B70AA2-E602-4B56-B9B5-7FCDF2B87EE6', 1.00000     ,         'F397B611-65FC-4D7C-AD0B-A0472A44C3A5',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'45B70AA2-E602-4B56-B9B5-7FCDF2B87EE6', -1000.00000 ,         'D413D4B1-4D8F-43E6-9697-2F2D1CDB186D',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'45B70AA2-E602-4B56-B9B5-7FCDF2B87EE6', -1000.00000 ,         'B383DA09-0670-4B58-AA1F-0EF1DEE5DCDA',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'45B70AA2-E602-4B56-B9B5-7FCDF2B87EE6', 1.00000     ,         '07F50883-8218-43D2-BFC3-8A33F351DCA3',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'45B70AA2-E602-4B56-B9B5-7FCDF2B87EE6', 2.00000     ,         '231E925B-C2F6-42AF-A5A0-472BAFE3416B',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'45B70AA2-E602-4B56-B9B5-7FCDF2B87EE6', 3.00000     ,         '63991602-BF9F-4589-9DAB-1CC19CB1EE34',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'45B70AA2-E602-4B56-B9B5-7FCDF2B87EE6', 1.00000     ,         '3B88322C-FF10-49B0-8B36-AFE866AEDBBE',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'45B70AA2-E602-4B56-B9B5-7FCDF2B87EE6', -1000.00000 ,         'DD398435-BD73-4656-BE92-B74EB8517734',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'45B70AA2-E602-4B56-B9B5-7FCDF2B87EE6', -1000.00000 ,         'CFBE372F-DA58-4A42-A322-28FCE58E5DF3',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'D7B5159D-F035-4E07-8945-A9CC5F372294', 1.00000     ,         '1172A4B9-798B-4AC2-8C5C-1E9F33158D33',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'D7B5159D-F035-4E07-8945-A9CC5F372294', 1.00000     ,         '1B444CFA-D118-4189-A3EC-7C31C3D0D70B',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'D7B5159D-F035-4E07-8945-A9CC5F372294', -1000.00000 ,         'EF54E9DD-6FBC-434D-A765-D61531B5461E',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'D7B5159D-F035-4E07-8945-A9CC5F372294', -1000.00000 ,         'B383DA09-0670-4B58-AA1F-0EF1DEE5DCDA',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'0068C8D1-B029-4EFF-B335-EF29E543F0DE', 20.00000    ,         'C40CD93B-8CDD-4C65-98D3-58BD59D7094D',   'C20225',getdate())           
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'0068C8D1-B029-4EFF-B335-EF29E543F0DE', 100.00000   ,         '1041575E-4F07-48A4-884E-ED15DCC2C85E',   'C20225',getdate())           
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'0068C8D1-B029-4EFF-B335-EF29E543F0DE', -2000.00000 ,         'EF54E9DD-6FBC-434D-A765-D61531B5461E',   'C20225',getdate())           
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'0068C8D1-B029-4EFF-B335-EF29E543F0DE', 1.00000     ,         '77905D7B-03AF-4323-A5EC-E1A59B488D8C',   'C20225',getdate())           
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'0068C8D1-B029-4EFF-B335-EF29E543F0DE', 50.00000    ,         'A01EED5E-B6C0-404F-8E91-2EBC9420110B',   'C20225',getdate())           
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'0068C8D1-B029-4EFF-B335-EF29E543F0DE', 10.00000    ,         'C3AB3DF9-4BF8-44FB-8961-E1E483AEEB9B',   'C20225',getdate())           
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'F7F9E9F6-BBFF-4A1C-9964-6898A16E0DB1', 1.00000     ,         'AECF1CAE-3472-4A3F-82C5-98802CC0BFCB',   'C20225',getdate())                       
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'F7F9E9F6-BBFF-4A1C-9964-6898A16E0DB1', -2000.00000 ,         'EF54E9DD-6FBC-434D-A765-D61531B5461E',   'C20225',getdate())                           
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'3BFA8E82-5F4C-4133-AD55-19B53B4264D7', 1.00000     ,         '90BCDF18-EF60-48E1-946B-14C41A6D5C16',   'C20225',getdate())                                
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'514DFA14-7227-4B80-9E57-69D887D44FDB', 5.00000     ,         'B6BEE973-0A39-48D5-BFCE-EBA98E96F62F',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'514DFA14-7227-4B80-9E57-69D887D44FDB', 10.00000    ,         'CA8432EB-2D7D-461A-B074-C93F38A6E4E7',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'514DFA14-7227-4B80-9E57-69D887D44FDB', 1.00000     ,         '8D57EAEC-8C3B-4565-B403-C8122F8BBF60',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'514DFA14-7227-4B80-9E57-69D887D44FDB', 1.00000     ,         'F397B611-65FC-4D7C-AD0B-A0472A44C3A5',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'514DFA14-7227-4B80-9E57-69D887D44FDB', -1000.00000 ,         'B383DA09-0670-4B58-AA1F-0EF1DEE5DCDA',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'514DFA14-7227-4B80-9E57-69D887D44FDB', 1.00000     ,         '07F50883-8218-43D2-BFC3-8A33F351DCA3',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'514DFA14-7227-4B80-9E57-69D887D44FDB', 2.00000     ,         '231E925B-C2F6-42AF-A5A0-472BAFE3416B',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'514DFA14-7227-4B80-9E57-69D887D44FDB', 3.00000     ,         '63991602-BF9F-4589-9DAB-1CC19CB1EE34',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'514DFA14-7227-4B80-9E57-69D887D44FDB', 1.00000     ,         '3B88322C-FF10-49B0-8B36-AFE866AEDBBE',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'514DFA14-7227-4B80-9E57-69D887D44FDB', -1000.00000 ,         'DD398435-BD73-4656-BE92-B74EB8517734',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'514DFA14-7227-4B80-9E57-69D887D44FDB', -1000.00000 ,         'CFBE372F-DA58-4A42-A322-28FCE58E5DF3',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'750FE77A-6262-470A-BC65-2BF15E099C90', 1.00000     ,         '77905D7B-03AF-4323-A5EC-E1A59B488D8C',   'C20225',getdate())     
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'750FE77A-6262-470A-BC65-2BF15E099C90', -1000.00000 ,         'DD398435-BD73-4656-BE92-B74EB8517734',   'C20225',getdate())    
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'3CBD624B-8394-490F-BE81-2F849EFE2F70', 0.00000     ,         '82C4D0B5-3183-4F42-BE54-817FA331BFA5',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'3CBD624B-8394-490F-BE81-2F849EFE2F70', -1000.00000 ,         'DD398435-BD73-4656-BE92-B74EB8517734',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'3CBD624B-8394-490F-BE81-2F849EFE2F70', -1000.00000 ,         '22D43373-576F-4178-A368-2FCC77601781',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'3CBD624B-8394-490F-BE81-2F849EFE2F70', 1.00000     ,         'B2D78A85-7AB5-4A8F-B680-96890C730FCA',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'3CBD624B-8394-490F-BE81-2F849EFE2F70', 1.00000     ,         'AA49D323-2925-4933-845B-F07F187229AE',   'C20225',getdate())
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1666_alter_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table scoring_model add ORDER_NUMBER int null
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1666_update_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update scoring_model set order_number = 1	where model_id = '62B077CB-24F7-45B0-8CE3-B8B98417CCEA'
+			update scoring_model set order_number = 2	where model_id = '0FB1D82F-A8DA-4C71-9A6E-E21D438C64A1'
+			update scoring_model set order_number = 3	where model_id = '45B70AA2-E602-4B56-B9B5-7FCDF2B87EE6'
+			update scoring_model set order_number = 4	where model_id = '3AEC0413-91DB-49C0-B229-6EF7F5D2A579'
+			update scoring_model set order_number = 5	where model_id = 'F7F9E9F6-BBFF-4A1C-9964-6898A16E0DB1'
+			update scoring_model set order_number = 6	where model_id = '0068C8D1-B029-4EFF-B335-EF29E543F0DE'
+			update scoring_model set order_number = 7	where model_id = '514DFA14-7227-4B80-9E57-69D887D44FDB'
+			update scoring_model set order_number = 8	where model_id = 'AFB673A4-2AFB-46EE-8AF0-804B5C831EA3'
+			update scoring_model set order_number = 9	where model_id = '3CBD624B-8394-490F-BE81-2F849EFE2F70'
+			update scoring_model set order_number = 10	where model_id = '20F785BE-1836-4AEC-8D11-E2FB45EA66FA'
+			update scoring_model set order_number = 11	where model_id = 'FCB4565F-4246-4656-9C9A-28F5EAC62B87'
+			update scoring_model set order_number = 12	where model_id = '25AC4E2E-7082-461B-90D9-36D20643CFA9'
+			update scoring_model set order_number = 13	where model_id = 'D7B5159D-F035-4E07-8945-A9CC5F372294'
+			update scoring_model set order_number = 14	where model_id = '3BFA8E82-5F4C-4133-AD55-19B53B4264D7'
+			update scoring_model set order_number = 15 	where model_id = '750FE77A-6262-470A-BC65-2BF15E099C90'
+			update scoring_model set order_number = 16	where model_id = 'E1DA534E-F26A-494E-8109-B40FDA18AADF'
+			update scoring_model set order_number = 17 	where model_id = '490FC583-86C5-418B-B5C6-3979C9692EDB'			
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1666_insert_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update SCORING_MODEL_FACTORS
+			set FACTOR_ID = '77905D7B-03AF-4323-A5EC-E1A59B488D8C'
+			where FACTOR_ID = '90BCDF18-EF60-48E1-946B-14C41A6D5C16'
+			
+			insert into scoring_factors (factor_id,factor_attribute_name,description) values('8E415F6E-ED1C-46A7-B51A-9CD9CCF79A29','Mortgage Status Reporting Indicator', 'Mortgage Status Reporting Indicator')
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'3AEC0413-91DB-49C0-B229-6EF7F5D2A579', 1.00000     ,         '77905D7B-03AF-4323-A5EC-E1A59B488D8C',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'3AEC0413-91DB-49C0-B229-6EF7F5D2A579', -1000.00000 ,         'D413D4B1-4D8F-43E6-9697-2F2D1CDB186D',   'C20225',getdate())
+			insert into scoring_model_factors(model_ver_num,model_id,weight,factor_id,created_by,created_ts)values(1,'3AEC0413-91DB-49C0-B229-6EF7F5D2A579', 0           ,         '8E415F6E-ED1C-46A7-B51A-9CD9CCF79A29',   'C20225',getdate())			
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1666_delete_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from scoring_factors
+			where factor_id in
+			(
+			'15C06778-03E6-4F17-A3C7-08C2F8C5AF21',
+			'7AA32E95-4107-4047-9F11-E01DEC371352',
+			'1EDC78C9-ED1C-471B-8C80-DD2A0DB1F102',
+			'428429DB-A085-48BF-8CE4-552B1DA1A940',
+			'A5A294DF-F89E-488F-8842-677726301784',
+			'90BCDF18-EF60-48E1-946B-14C41A6D5C16',
+			'DC7FCC92-3593-4F05-889F-911CC008FB94',
+			'9795EC41-81B2-4305-8974-84AEE1035D18',
+			'D102EFFD-FEFC-4EB2-B05B-2913AD2E741E')
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1666_update_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update scoring_factors 
+			set factor_attribute_name = 'Borrower Self Employed Multiplier',
+			    description = 'Borrower Self Employed Multiplier'
+			where factor_attribute_name = 'Borrower Self Employed'
+			
+			update scoring_factors 
+			set factor_attribute_name = 'Buy Down Indicator Multiplier',
+			    description = 'Buy Down Indicator Multiplier'
+			where factor_attribute_name = 'Buy Down Indicator'
+			
+			update scoring_factors 
+			set factor_attribute_name = 'Underserved Indicator Multiplier',
+			    description = 'Underserved Indicator Multiplier'
+			where factor_attribute_name = 'Underserved Indicator'			
+			
+			update scoring_factors 
+			set factor_attribute_name = 'Number of Bedrooms Multiplier',
+			    description = 'Number of Bedrooms Multiplier'
+			where factor_attribute_name = 'Number of Bedrooms'						
+		]]>
+        </sql>
+    </changeSet>	
+ </databaseChangeLog>
+
+
+
+
+
+
+
+
+
+

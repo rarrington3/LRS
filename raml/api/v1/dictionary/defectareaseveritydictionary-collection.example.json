@@ -1,0 +1,202 @@
+[
+  {
+    "defectAreaCode": "LP",
+    "defectSeverityTierCode": "2",
+    "description": "Tier 2: Lender/Loan Officer/Sponsored Third Party is not registered or has improper relationship with borrower, OR\r\nMisuse of escrow, OR \r\nLate endorsement certification is false based upon information from the file, OR\r\nLender never submitted loan binder or submitted loan binder that has “significant” data discrepancies with what the lender entered into FHAC, OR\r\nFailure to follow TOTAL Mortgage Scorecard User Guide and loan is not insurable when loan is rescored through TOTAL, OR\r\nBinder Illegible – Quality of imaged documentation insufficient for review.\r\n"
+  },
+  {
+    "defectAreaCode": "LP",
+    "defectSeverityTierCode": "4",
+    "description": "Tier 4: Errors are made with regards to the Lender/Loan Officer/Sponsored Third Party information in the loan documentation or FHA Connection system, but the Lender/Loan Officer/Sponsored Third Party  has proper registration status, OR\r\nMinor late endorsement issues that cannot be categorized as false certification, OR\r\nLender submitted loan binder that has minor data discrepancies with what the lender entered into FHAC.\r\n"
+  },
+  {
+    "defectAreaCode": "BA",
+    "defectSeverityTierCode": "1",
+    "description": "Tier 1: Error(s) are present in the loan or loan file or in the input of loan file data into TOTAL that represent misrepresentation on the part of the borrower or the lender, which the underwriter knew or should have known, OR\r\nError(s)are present in the loan or loan file or in the input of loan file data into TOTAL that are misrepresented on the part of the borrower or the lender, which the lender did not know or could not have known at the time of underwriting, OR\r\nAsset information provided in the loan file or in the input of  loan file data in TOTAL is significantly inconsistent and cannot be trusted, or is completely missing, and MRI cannot be calculated, OR\r\nError(s) are present in the loan or loan file or in the input of loan file data into TOTAL and lead to MRI being too low by 5% or more than $500, whichever is less.\r\n"
+  },
+  {
+    "defectAreaCode": "BA",
+    "defectSeverityTierCode": "3",
+    "description": "Tier 3: Error(s) are present in the loan or loan file or in the input of loan file data into TOTAL that, once corrected:\r\nlead to statutory Minimum Required Investment being too low in proportion to the loan amount  AND the lender pays down the principal sufficiently, OR\r\nshow sufficient funds for MRI but not closing costs, and the loan reviewer does not have confidence that borrower has sufficient funds to cover shortage through paycheck or other means.\r\n"
+  },
+  {
+    "defectAreaCode": "BA",
+    "defectSeverityTierCode": "4",
+    "description": "Tier 4: Error(s) are present in the loan or loan file or in the input of loan file data into TOTAL, that, once corrected, show sufficient funds for MRI but not closing costs, however loan reviewer has confidence that borrower has sufficient funds to cover shortage through an acceptable source.\r\n"
+  },
+  {
+    "defectAreaCode": "PE",
+    "defectSeverityTierCode": "1",
+    "description": "Tier 1: Error(s) are present in the appraisal report data, involving property eligibility, that indicate misrepresentation on the part of the appraiser/lender, which the lender knew or should have known, OR\r\nError(s) are present in the appraisal report data, involving property eligibility, that indicate misrepresentation on the part of the appraiser /lender, which the lender did not know or could not have known at the time the loan was underwritten, OR\r\nAppraisal information provided is significantly inconsistent and cannot be trusted, or is completely missing, and property eligibility cannot  be assessed.\r\n"
+  },
+  {
+    "defectAreaCode": "PE",
+    "defectSeverityTierCode": "2",
+    "description": "Tier 2: Error(s) are present in the appraisal report that cause major concerns about the property’s eligibility for insurance, OR\r\nRequired Repairs not complete, OR\r\nNo evidence of condo approval.\r\nFlood Certification missing or does not contain life of loan certification.\r\n"
+  },
+  {
+    "defectAreaCode": "PE",
+    "defectSeverityTierCode": "3",
+    "description": "Tier 3: N/A\r\n"
+  },
+  {
+    "defectAreaCode": "PE",
+    "defectSeverityTierCode": "4",
+    "description": "Tier 4: Error(s) are identified with the property, but do not render the property ineligible.\r\n"
+  },
+  {
+    "defectAreaCode": "PA",
+    "defectSeverityTierCode": "1",
+    "description": "Tier 1: Error(s) are present in the appraisal that represent misrepresentation on the part of the appraiser/lender, which the lender knew or should have known, OR\r\nError(s) are present in the appraisal that are misrepresented on the part of the appraiser /lender, which the lender did not know or could not have known at the time the loan was underwritten, OR\r\nAppraisal information provided is significantly inconsistent and cannot be trusted, or is completely missing, and valuation cannot  be assessed.\r\n"
+  },
+  {
+    "defectAreaCode": "PA",
+    "defectSeverityTierCode": "2",
+    "description": "Tier 2: Error(s) are present in the appraisal report that cause major concerns about the accuracy of the valuation.\r\n"
+  },
+  {
+    "defectAreaCode": "PA",
+    "defectSeverityTierCode": "3",
+    "description": "Tier 3: N/A\r\n"
+  },
+  {
+    "defectAreaCode": "PA",
+    "defectSeverityTierCode": "4",
+    "description": "Tier 4: Error(s) are present in the appraisal report, but do not change the valuation to a substantive degree.\r\n"
+  },
+  {
+    "defectAreaCode": "BE",
+    "defectSeverityTierCode": "1",
+    "description": "Tier 1: Error(s) are present in the loan, loan file, or input of loan file into TOTAL that are misrepresented on the part of the borrower or the lender, which the lender knew or should have known, OR\r\nError(s) are present in the loan, loan file, or input of loan file into TOTAL that are misrepresented on the part of the borrower or the lender, which the lender did not know or could not have known at the time the loan was underwritten, OR\r\nBorrower eligibility information provided in the loan file or in the input of  loan file data in TOTAL is significantly inconsistent and cannot be trusted, or is completely missing, and borrower eligibility cannot be determined, OR\r\nBorrower fails to meet HUD requirements on principal residency, OR \r\nBorrower appears on HUD’s LDP and/or GSA’s SAM list.\r\n"
+  },
+  {
+    "defectAreaCode": "BE",
+    "defectSeverityTierCode": "2",
+    "description": "Tier 2: FHA is able to determine that the borrower is ineligible through evidence in the loan file; evidence may be missing, but there is sufficient evidence to make a determination.\r\n"
+  },
+  {
+    "defectAreaCode": "BE",
+    "defectSeverityTierCode": "3",
+    "description": "Tier 3: Minor Evidence to support the eligibility and qualification of the borrower for an FHA loan is insufficient or missing (e.g., failure to clear past delinquencies or non-Federal debts, even though borrowers have sufficient, available liquid funds documented to address)"
+  },
+  {
+    "defectAreaCode": "BE",
+    "defectSeverityTierCode": "4",
+    "description": "Tier 4: Evidence that supports the eligibility and qualification of the borrower for an FHA loan is insufficient or missing, however FHA is able to determine that the borrower is eligible  through other supporting evidence in the loan file.\r\n"
+  },
+  {
+    "defectAreaCode": "ME",
+    "defectSeverityTierCode": "1",
+    "description": "Tier 1: Information related to the eligibility of the mortgage for FHA insurance was provided that was misrepresented and which the lender knew or should have known, OR\r\nInformation related to the eligibility of the mortgage for FHA insurance was provided that was misrepresented and which the lender did not know or could not have known at the time the loan was underwritten, OR\r\nLoan and mortgage information provided in the loan file or in the input of  loan file data in TOTAL is significantly inconsistent and cannot be trusted, or is completely missing, and mortgage eligibility cannot be determined.\r\n"
+  },
+  {
+    "defectAreaCode": "ME",
+    "defectSeverityTierCode": "2",
+    "description": "Tier 2: FHA is able to determine that the mortgage is ineligible through evidence in the loan file; evidence may be missing, but there is sufficient evidence to make a determination, OR\r\nClosing documentation unacceptable to the degree that it could prevent enforcement of mortgage.\r\n"
+  },
+  {
+    "defectAreaCode": "ME",
+    "defectSeverityTierCode": "3",
+    "description": "Tier 3: Lender selected inappropriate FHA loan product, however loan complies with rules for correct FHA loan product when adjusted and there is no reason to believe misrepresentation intended.\r\n"
+  },
+  {
+    "defectAreaCode": "ME",
+    "defectSeverityTierCode": "4",
+    "description": "Tier 4: Some evidence that supports the eligibility and qualification of the mortgage for FHA endorsement is insufficient or missing, however FHA is able to determine that the mortgage is eligible  through other supporting evidence in the loan file.\r\n"
+  },
+  {
+    "defectAreaCode": "LP",
+    "defectSeverityTierCode": "1",
+    "description": "Tier 1: Lender/Loan Officer/Sponsored Third Party misrepresents themselves as registered, OR\r\nMisrepresentation in closing escrow funds or in closing fees.\r\n"
+  },
+  {
+    "defectAreaCode": "LP",
+    "defectSeverityTierCode": "3",
+    "description": "Tier 3: Unallowable or excess fees and charges were charged, and need to be corrected by the lender, OR\r\nLender failed to submit loan binder within 10  days, but submitted  after 10 days, OR\r\nFailure to follow TOTAL Mortgage Scorecard User Guide, but loan is insurable when loan is appropriately rescore through TOTAL.\r\n"
+  },
+  {
+    "defectAreaCode": "BI",
+    "defectSeverityTierCode": "1",
+    "description": "Tier 1: Income information was provided that was potentially misrepresented and which the lender knew or should have known, OR\r\nIncome information was provided that was potentially misrepresented and which the lender did not know or could not have known at underwriting, Or\r\nIncome information provided in the loan file or in the input of  loan file data in TOTAL is significantly inconsistent and cannot be trusted, or is completely missing, and DTI cannot be calculated."
+  },
+  {
+    "defectAreaCode": "BI",
+    "defectSeverityTierCode": "2",
+    "description": "Tier 2: AUS: Errors are present in the sources/calculation of income, which when corrected change TOTAL decision to “refer,” but front and back end ratios exceed approval ratios by more than 3 percentage points (added to base DTI limit), without acceptable compensating factors.\r\nManual: Loan was originally a TOTAL refer; errors, when corrected, result in the front and back end ratios exceeding the approval ratios by more than 3 percentage points (added to base DTI limit), without acceptable compensating factors.\r\n"
+  },
+  {
+    "defectAreaCode": "BI",
+    "defectSeverityTierCode": "3",
+    "description": "Tier 3: AUS: Errors are present in the sources/calculation of income, which when corrected change TOTAL decision to “refer,” but front and back end ratios exceed approval ratios by less than or equal to 3 percentage points (added to allowed ratio), without acceptable compensating factors.\r\nManual: Loan was originally a TOTAL refer; errors related to income, when corrected, result in the front and back end ratios exceeding the approval ratios by less than or equal to 3 percentage points (added to allowed ratio), without acceptable compensating factors.  \r\n"
+  },
+  {
+    "defectAreaCode": "BI",
+    "defectSeverityTierCode": "4",
+    "description": "Tier 4: AUS: Errors are present in the sources/calculation of income, but they were within allowed tolerances, or the sources/calculation of income were outside of tolerances but still returned as “accept” when rerun through TOTAL, or still results in a manual “refer” within policy.\r\nManual: Errors are present in the sources of income, but they were either within allowed variance, or when corrected, front and back end ratios are within policy or have acceptable compensating factors.\r\n"
+  },
+  {
+    "defectAreaCode": "BC",
+    "defectSeverityTierCode": "1",
+    "description": "Tier 1: Both AUS and Manual:\r\nError(s) present in the credit report and credit/debt history that are potential misrepresentations by  the borrower/lender, which lender knew or should have known, OR\r\nError(s) are present in the credit report and credit/debt history that are potential misrepresentations by the borrower/lender which the lender did not know or could not have known  at the time the loan was underwritten OR\r\nBorrower credit information provided is significantly inconsistent and cannot be trusted, or is completely missing, and borrower credit worthiness cannot be assessed and/or DTI cannot be calculated.\r\n"
+  },
+  {
+    "defectAreaCode": "BC",
+    "defectSeverityTierCode": "2",
+    "description": "Tier 2: Errors are present in the credit report and/or credit/debit history, payment history, and the loan is not approvable:\r\nAUS:\r\nLoan was originally a TOTAL accept, and when corrected, TOTAL outputs a “refer.”  The loan is not approvable on a manual basis based on information in the file and exceeds approval DTI ratios by more than 3 percentage points (and there are no compensating factors), OR\r\nLoan cannot be approved via TOTAL due to derogatory information (e.g., bankruptcy) or unrated accounts, and the loan is not approvable on a manual basis based on information in the file.\r\nManual:\r\nBack-end ratios are more than 3 percentage points over the approval back-end ratios, OR\r\nLoan does not qualify based on unacceptable payment history, unrated accounts, serious deficiencies, derogatory credit information, or potential undisclosed debts.\r\n"
+  },
+  {
+    "defectAreaCode": "BC",
+    "defectSeverityTierCode": "3",
+    "description": "Tier 3: AUS:\r\nLoan was originally a TOTAL accept, and when errors are corrected, TOTAL outputs a “refer”; the loan is approvable manually based on information in the file or is less than or equal to 3 percentage points of above approval DTI ratio, OR\r\nLoan was originally a TOTAL accept, but had unrated accounts, serious deficiencies, derogatory credit information, or potential undisclosed debts that would make the TOTAL accept invalid; however, loan is approvable on manual basis based on information in file.\r\nManual:\r\nErrors are present that (1) when corrected result in back end ratios greater than allowed DTI ratios by less than or equal to 3 percentage points (and absent compensating factors, if QAD review) and (2) there are no concerns about undisclosed debts or payment history.\r\n"
+  },
+  {
+    "defectAreaCode": "BC",
+    "defectSeverityTierCode": "4",
+    "description": "Tier 4: Errors are present in the credit report, payment history, and credit/debit history, but there are other sources of borrower credit that are both acceptable and sufficient and FHA assesses borrower creditworthiness:\r\nAUS: Loan was originally a TOTAL accept and had minor errors that when corrected still results in a TOTAL accept, and there are no meaningful concerns about unrated accounts or undisclosed debts, or results in a manual “refer” that was still within policy.\r\nManual: Back end DTI ratios are within approval criteria, as adjusted for credit score (and appropriate compensating factors, if QAD review), and payment history is acceptable and there are no concerns about undisclosed debts/unrated accounts.\r\n"
+  },
+  {
+    "defectAreaCode": "LM",
+    "defectSeverityTierCode": "1",
+    "description": "Tier 1: Error(s) are present in the loan or loan file or in the input of loan file data into TOTAL regarding the calculation of the loan to value or maximum loan amount that represent misrepresentation on the part of the lender or the borrower, which the lender knew or should have known, OR\r\nError(s) are present in the loan or loan file or in the input of loan file data into TOTAL regarding the calculation of the loan to value or maximum loan amount that are misrepresented on the part of the lender or the borrower, which the lender did not know or could not have known at the time the loan was underwritten, OR\r\nLoan and mortgage information provided in the loan file or in the input of  loan file data in TOTAL is significantly inconsistent and cannot be trusted, or is completely missing, and LTV cannot be calculated, OR\r\nError(s) are present in the loan or loan file or in the input of loan file data into TOTAL that lead the mortgage to:\r\nExceed the maximum loan amount by more than $500.\r\n"
+  },
+  {
+    "defectAreaCode": "LM",
+    "defectSeverityTierCode": "2",
+    "description": "Tier 2: Error(s) are present in the loan or loan file or in the input of loan file data into TOTAL that lead the mortgage to:\r\nExceed the principal limit or maximum claim amount (for a HECM), OR\r\nExceed the maximum loan amount by less than $500, and the lender did not pay down the principal.\r\n"
+  },
+  {
+    "defectAreaCode": "LM",
+    "defectSeverityTierCode": "3",
+    "description": "Tier 3: Error(s) are present in the loan or loan file or in the input of loan file data into TOTAL that lead to mortgage exceeding maximum loan amount (i.e., based on LTV limits or  statutory loan limit) by less than $500 AND for which the lender paid down the principal.\r\n"
+  },
+  {
+    "defectAreaCode": "LM",
+    "defectSeverityTierCode": "4",
+    "description": "Tier 4: Error(s) are present in the loan or loan file or in the input of loan file data into TOTAL, but the mortgage does not exceeded the maximum loan limit (i.e., based on LTV limits or  statutory loan limit).\r\n"
+  },
+  {
+    "defectAreaCode": "BA",
+    "defectSeverityTierCode": "2",
+    "description": "Tier 2: Error(s) are present in the loan or loan file or in the input of loan file data into TOTAL and lead to statutory Minimum Required Investment being too low by less than 5%, or no more than $500, whichever is less AND the lender does not pay down the principal.\r\n"
+  },
+  {
+    "defectAreaCode": "LA",
+    "defectSeverityTierCode": "1",
+    "description": "Tier 1: Error(s) are present in the loan or loan file or in the input of loan file data into TOTAL regarding the calculation of the loan to value or maximum loan amount that represent misrepresentation on the part of the lender or the borrower, which the lender knew or should have known, OR Error(s) are present in the loan or loan file or in the input of loan file data into TOTAL regarding the calculation of the loan to value or maximum loan amount that are misrepresented on the part of the lender or the borrower, which the lender did not know or could not have known at the time the loan was underwritten, OR Loan and mortgage information provided in the loan file or in the input of  loan file data in TOTAL is significantly inconsistent and cannot be trusted, or is completely missing, and LTV cannot be calculated, OR Error(s) are present in the loan or loan file or in the input of loan file data into TOTAL that lead the mortgage to: Exceed the maximum loan amount by more than $500.\r\n"
+  },
+  {
+    "defectAreaCode": "LA",
+    "defectSeverityTierCode": "2",
+    "description": "Tier 2: Error(s) are present in the loan or loan file or in the input of loan file data into TOTAL that lead the mortgage to: Exceed the principal limit or maximum claim amount (for a HECM), OR Exceed the maximum loan amount by less than $500, and the lender did not pay down the principal.\r\n"
+  },
+  {
+    "defectAreaCode": "LA",
+    "defectSeverityTierCode": "3",
+    "description": "Tier 3: Error(s) are present in the loan or loan file or in the input of loan file data into TOTAL that lead to mortgage exceeding maximum loan amount (i.e., based on LTV limits or  statutory loan limit) by less than $500 AND for which the lender paid down the principal.\r\n"
+  },
+  {
+    "defectAreaCode": "LA",
+    "defectSeverityTierCode": "4",
+    "description": "Tier 4: Error(s) are present in the loan or loan file or in the input of loan file data into TOTAL, but the mortgage does not exceeded the maximum loan limit (i.e., based on LTV limits or  statutory loan limit).\r\n"
+  }
+]

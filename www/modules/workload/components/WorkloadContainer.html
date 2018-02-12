@@ -1,0 +1,44 @@
+<div class="the-sub-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-9 placeholder">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="review">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="lrs-layout-table">
+                    <td class="lrs-layout-table-cell workload-sidebar left-side-bar">
+                        <div class="lrs-content-panel workload-sidebar-inner">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" [routerLink]="['./summary']" routerLinkActive="active" [ngClass]="isActive('/workload/summary')" (click)="clearFilters('workload')"><a aria-label="Workload">Workload</a></li>
+                                <li *ngIf="isLocationOrHQAdmin()" role="presentation" [routerLink]="['./team']" routerLinkActive="active" [ngClass]="isActive('/workload/team')" (click)="clearFilters('team')"><a aria-label="Team">Team</a></li>
+                                <li *ngIf="isBatchReviewer()" role="presentation" [routerLink]="['./batches']" routerLinkActive="active" [ngClass]="isActive('/workload/batches')" (click)="clearFilters('batches')"><a aria-label="Batches">Batches</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade in" [ngClass]="isActive('/workload/summary')" id="qa-sidebar">
+                                    <cross-filter-view [dimensions]="workloadTabDimensions" [dataSource]="workloadProvider.myReviewsObservable"></cross-filter-view>
+                                </div>
+                                <div *ngIf="isLocationOrHQAdmin()" role="tabpanel" class="tab-pane fade in" [ngClass]="isActive('/workload/team')" id="findings-sidebar">
+                                    <my-team-workload-sidebar></my-team-workload-sidebar>
+                                </div>
+                                <div *ngIf="isBatchReviewer()" role="tabpanel" class="tab-pane fade in" [ngClass]="isActive('/workload/batches')" id="batches-sidebar">
+                                   <workload-batches-sidebar></workload-batches-sidebar>
+                                </div>
+                            </div>
+                            <disclaimer></disclaimer>
+                        </div>
+                    </td>
+                    <td class="lrs-layout-table-cell content-area">
+                        <div class="lrs-content-panel">
+                            <router-outlet></router-outlet>
+                        </div>
+                    </td>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,84 @@
+<form #staffAvailabilityForm="ngForm">
+    <div class="container-fluid">
+        <div class="row staff-range-info">
+            <div class="col-xs-12">
+                <span class="small">Select the date range(s) that this staff member will be unavailable.</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-5">
+                <label class="small">Unavailable from</label>
+            </div>
+            <div class="col-xs-5">
+                <label class="small">Unavailable to</label>
+            </div>
+        </div>
+        <ul class="list-group" *ngIf="unavailabilities.length === 0">
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <span class="small">No date range(s)</span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul class="list-group">
+            <li class="list-group-item aut-unavailability-row" *ngFor="let unavailability of unavailabilities; let i=index">
+                <div class="row">
+                    <div class="col-xs-5">
+                        <div class="form-group-sm">
+                            <div class="input-group">
+                                <input [id]="'staffUnavailableFrom' + i"
+                                       [name]="'staffUnavailableFrom' + i"
+                                       class="form-control input-sm"
+                                       placeholder="mm-dd-yyyy"
+                                       data-provide="datepicker"
+                                       data-date-format="mm-dd-yyyy"
+                                       data-date-autoclose="true"
+                                       [(ngModel)]="unavailability.from"
+                                       [(isOpen)]="unavailability._fromIsOpen">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default btn-sm staff-range-calendar" (click)="unavailability._fromIsOpen = true">
+                                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-5">
+                        <div class="form-group-sm">
+                            <div class="input-group">
+                                <input [id]="'staffUnavailableTo' + i"
+                                       [name]="'staffUnavailableTo' + i"
+                                       class="form-control input-sm"
+                                       placeholder="mm-dd-yyyy"
+                                       data-provide="datepicker"
+                                       data-date-format="mm-dd-yyyy"
+                                       data-date-autoclose="true"
+                                       [(ngModel)]="unavailability.to"
+                                       [(isOpen)]="unavailability._toIsOpen">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default btn-sm staff-range-calendar" (click)="unavailability._toIsOpen = true">
+                                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-2">
+                        <button class="btn btn-default" (click)="remove(unavailability)">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="row">
+            <div class="col-xs-3">
+                <button class="btn btn-secondary btn-block aut-add-unavailability-button" (click)="add()">
+                    <span aria-hidden="true">Add</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</form>

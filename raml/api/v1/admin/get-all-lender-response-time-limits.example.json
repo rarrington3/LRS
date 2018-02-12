@@ -1,0 +1,1649 @@
+[
+    {
+        "reviewLevelDescription": "Binder Delivery",
+        "reviewLevelCode": "BNDR",
+        "selectionReasons": [
+        {
+            "selectionReasonCode": "LENDER_SELF_REPORT",
+            "days": 15
+        },
+        {
+            "selectionReasonCode": "UNDERWRITER_DECREASED_SAMPLING",
+            "days": 15
+        },
+        {
+            "selectionReasonCode": "REVIEW_LOCATION_QC",
+            "days": 15
+        },
+        {
+            "selectionReasonCode": "LENDER_MONITORING",
+            "days": 15
+        },
+        {
+            "selectionReasonCode": "EARLY_CLAIM",
+            "days": 15
+        },
+        {
+            "selectionReasonCode": "TEST_CASE",
+            "days": 15
+        },
+        {
+            "selectionReasonCode": "EARLY_PAYMENT_DEFAULT",
+            "days": 15
+        },
+        {
+            "selectionReasonCode": "OTHER_NON_PERFORMING",
+            "days": 15
+        },
+        {
+            "selectionReasonCode": "FHA_MANUAL",
+            "days": 15
+        },
+        {
+            "selectionReasonCode": "LENDER_INCREASED_SAMPLING",
+            "days": 15
+        },
+        {
+            "selectionReasonCode": "OIG_AUDIT",
+            "days": 15
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RANDOM",
+            "days": 15
+        },
+        {
+            "selectionReasonCode": "NATIONAL_QC",
+            "days": 15
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RISK_THRESHOLD",
+            "days": 15
+        }]
+    },
+    {
+        "reviewLevelDescription": "Initial",
+        "reviewLevelCode": "INIT",
+        "selectionReasons": [
+        {
+            "selectionReasonCode": "LENDER_SELF_REPORT",
+            "days": 7
+        },
+        {
+            "selectionReasonCode": "UNDERWRITER_DECREASED_SAMPLING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "REVIEW_LOCATION_QC",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "LENDER_MONITORING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "EARLY_CLAIM",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "TEST_CASE",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "EARLY_PAYMENT_DEFAULT",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "OTHER_NON_PERFORMING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "FHA_MANUAL",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "LENDER_INCREASED_SAMPLING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "OIG_AUDIT",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RANDOM",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "NATIONAL_QC",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RISK_THRESHOLD",
+            "days": 6
+        }]
+    },
+    {
+        "reviewLevelDescription": "Mitigation 5",
+        "reviewLevelCode": "MITG5",
+        "selectionReasons": [
+        {
+            "selectionReasonCode": "LENDER_SELF_REPORT",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "UNDERWRITER_DECREASED_SAMPLING",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "REVIEW_LOCATION_QC",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "LENDER_MONITORING",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "EARLY_CLAIM",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "TEST_CASE",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "EARLY_PAYMENT_DEFAULT",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "OTHER_NON_PERFORMING",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "FHA_MANUAL",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "LENDER_INCREASED_SAMPLING",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "OIG_AUDIT",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RANDOM",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "NATIONAL_QC",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RISK_THRESHOLD",
+            "days": 8
+        }]
+    },
+    {
+        "reviewLevelDescription": "Mitigation 4",
+        "reviewLevelCode": "MITG4",
+        "selectionReasons": [
+        {
+            "selectionReasonCode": "LENDER_SELF_REPORT",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "UNDERWRITER_DECREASED_SAMPLING",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "REVIEW_LOCATION_QC",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "LENDER_MONITORING",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "EARLY_CLAIM",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "TEST_CASE",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "EARLY_PAYMENT_DEFAULT",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "OTHER_NON_PERFORMING",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "FHA_MANUAL",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "LENDER_INCREASED_SAMPLING",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "OIG_AUDIT",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RANDOM",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "NATIONAL_QC",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RISK_THRESHOLD",
+            "days": 8
+        }]
+    },
+    {
+        "reviewLevelDescription": "Mitigation 3",
+        "reviewLevelCode": "MITG3",
+        "selectionReasons": [
+        {
+            "selectionReasonCode": "LENDER_SELF_REPORT",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "UNDERWRITER_DECREASED_SAMPLING",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "REVIEW_LOCATION_QC",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "LENDER_MONITORING",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "EARLY_CLAIM",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "TEST_CASE",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "EARLY_PAYMENT_DEFAULT",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "OTHER_NON_PERFORMING",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "FHA_MANUAL",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "LENDER_INCREASED_SAMPLING",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "OIG_AUDIT",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RANDOM",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "NATIONAL_QC",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RISK_THRESHOLD",
+            "days": 8
+        }]
+    },
+    {
+        "reviewLevelDescription": "Mitigation 2",
+        "reviewLevelCode": "MITG2",
+        "selectionReasons": [
+        {
+            "selectionReasonCode": "LENDER_SELF_REPORT",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "UNDERWRITER_DECREASED_SAMPLING",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "REVIEW_LOCATION_QC",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "LENDER_MONITORING",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "EARLY_CLAIM",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "TEST_CASE",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "EARLY_PAYMENT_DEFAULT",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "OTHER_NON_PERFORMING",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "FHA_MANUAL",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "LENDER_INCREASED_SAMPLING",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "OIG_AUDIT",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RANDOM",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "NATIONAL_QC",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RISK_THRESHOLD",
+            "days": 8
+        }]
+    },
+    {
+        "reviewLevelDescription": "Mitigation 1",
+        "reviewLevelCode": "MITG1",
+        "selectionReasons": [
+        {
+            "selectionReasonCode": "LENDER_SELF_REPORT",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "UNDERWRITER_DECREASED_SAMPLING",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "REVIEW_LOCATION_QC",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "LENDER_MONITORING",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "EARLY_CLAIM",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "TEST_CASE",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "EARLY_PAYMENT_DEFAULT",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "OTHER_NON_PERFORMING",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "FHA_MANUAL",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "LENDER_INCREASED_SAMPLING",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "OIG_AUDIT",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RANDOM",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "NATIONAL_QC",
+            "days": 8
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RISK_THRESHOLD",
+            "days": 8
+        }]
+    },
+    {
+        "reviewLevelDescription": "Escalation 2",
+        "reviewLevelCode": "ESCL2",
+        "selectionReasons": [
+        {
+            "selectionReasonCode": "LENDER_SELF_REPORT",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "UNDERWRITER_DECREASED_SAMPLING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "REVIEW_LOCATION_QC",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "LENDER_MONITORING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "EARLY_CLAIM",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "TEST_CASE",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "EARLY_PAYMENT_DEFAULT",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "OTHER_NON_PERFORMING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "FHA_MANUAL",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "LENDER_INCREASED_SAMPLING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "OIG_AUDIT",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RANDOM",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "NATIONAL_QC",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RISK_THRESHOLD",
+            "days": 6
+        }]
+    },
+    {
+        "reviewLevelDescription": "Escalation 1",
+        "reviewLevelCode": "ESCL1",
+        "selectionReasons": [
+        {
+            "selectionReasonCode": "LENDER_SELF_REPORT",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "UNDERWRITER_DECREASED_SAMPLING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "REVIEW_LOCATION_QC",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "LENDER_MONITORING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "EARLY_CLAIM",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "TEST_CASE",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "EARLY_PAYMENT_DEFAULT",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "OTHER_NON_PERFORMING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "FHA_MANUAL",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "LENDER_INCREASED_SAMPLING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "OIG_AUDIT",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RANDOM",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "NATIONAL_QC",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RISK_THRESHOLD",
+            "days": 6
+        }]
+    },
+    {
+        "reviewLevelDescription": "Escalation 5",
+        "reviewLevelCode": "ESCL5",
+        "selectionReasons": [
+        {
+            "selectionReasonCode": "LENDER_SELF_REPORT",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "UNDERWRITER_DECREASED_SAMPLING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "REVIEW_LOCATION_QC",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "LENDER_MONITORING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "EARLY_CLAIM",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "TEST_CASE",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "EARLY_PAYMENT_DEFAULT",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "OTHER_NON_PERFORMING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "FHA_MANUAL",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "LENDER_INCREASED_SAMPLING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "OIG_AUDIT",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RANDOM",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "NATIONAL_QC",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RISK_THRESHOLD",
+            "days": 0
+        }]
+    },
+    {
+        "reviewLevelDescription": "Escalation 4",
+        "reviewLevelCode": "ESCL4",
+        "selectionReasons": [
+        {
+            "selectionReasonCode": "LENDER_SELF_REPORT",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "UNDERWRITER_DECREASED_SAMPLING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "REVIEW_LOCATION_QC",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "LENDER_MONITORING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "EARLY_CLAIM",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "TEST_CASE",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "EARLY_PAYMENT_DEFAULT",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "OTHER_NON_PERFORMING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "FHA_MANUAL",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "LENDER_INCREASED_SAMPLING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "OIG_AUDIT",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RANDOM",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "NATIONAL_QC",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RISK_THRESHOLD",
+            "days": 6
+        }]
+    },
+    {
+        "reviewLevelDescription": "Escalation 3",
+        "reviewLevelCode": "ESCL3",
+        "selectionReasons": [
+        {
+            "selectionReasonCode": "LENDER_SELF_REPORT",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "UNDERWRITER_DECREASED_SAMPLING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "REVIEW_LOCATION_QC",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "LENDER_MONITORING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "EARLY_CLAIM",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "TEST_CASE",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "EARLY_PAYMENT_DEFAULT",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "OTHER_NON_PERFORMING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "FHA_MANUAL",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "LENDER_INCREASED_SAMPLING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "OIG_AUDIT",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RANDOM",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "NATIONAL_QC",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RISK_THRESHOLD",
+            "days": 6
+        }]
+    },
+    {
+        "reviewLevelDescription": "HQ Escalation 3",
+        "reviewLevelCode": "HQES3",
+        "selectionReasons": [
+        {
+            "selectionReasonCode": "LENDER_SELF_REPORT",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "UNDERWRITER_DECREASED_SAMPLING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "REVIEW_LOCATION_QC",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "LENDER_MONITORING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "EARLY_CLAIM",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "TEST_CASE",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "EARLY_PAYMENT_DEFAULT",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "OTHER_NON_PERFORMING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "FHA_MANUAL",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "LENDER_INCREASED_SAMPLING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "OIG_AUDIT",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RANDOM",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "NATIONAL_QC",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RISK_THRESHOLD",
+            "days": 6
+        }]
+    },
+    {
+        "reviewLevelDescription": "HQ Escalation 4",
+        "reviewLevelCode": "HQES4",
+        "selectionReasons": [
+        {
+            "selectionReasonCode": "LENDER_SELF_REPORT",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "UNDERWRITER_DECREASED_SAMPLING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "REVIEW_LOCATION_QC",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "LENDER_MONITORING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "EARLY_CLAIM",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "TEST_CASE",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "EARLY_PAYMENT_DEFAULT",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "OTHER_NON_PERFORMING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "FHA_MANUAL",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "LENDER_INCREASED_SAMPLING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "OIG_AUDIT",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RANDOM",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "NATIONAL_QC",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RISK_THRESHOLD",
+            "days": 6
+        }]
+    },
+    {
+        "reviewLevelDescription": "HQ Escalation 5",
+        "reviewLevelCode": "HQES5",
+        "selectionReasons": [
+        {
+            "selectionReasonCode": "LENDER_SELF_REPORT",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "UNDERWRITER_DECREASED_SAMPLING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "REVIEW_LOCATION_QC",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "LENDER_MONITORING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "EARLY_CLAIM",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "TEST_CASE",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "EARLY_PAYMENT_DEFAULT",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "OTHER_NON_PERFORMING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "FHA_MANUAL",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "LENDER_INCREASED_SAMPLING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "OIG_AUDIT",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RANDOM",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "NATIONAL_QC",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RISK_THRESHOLD",
+            "days": 0
+        }]
+    },
+    {
+        "reviewLevelDescription": "HQ Escalation 1",
+        "reviewLevelCode": "HQES1",
+        "selectionReasons": [
+        {
+            "selectionReasonCode": "LENDER_SELF_REPORT",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "UNDERWRITER_DECREASED_SAMPLING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "REVIEW_LOCATION_QC",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "LENDER_MONITORING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "EARLY_CLAIM",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "TEST_CASE",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "EARLY_PAYMENT_DEFAULT",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "OTHER_NON_PERFORMING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "FHA_MANUAL",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "LENDER_INCREASED_SAMPLING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "OIG_AUDIT",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RANDOM",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "NATIONAL_QC",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RISK_THRESHOLD",
+            "days": 6
+        }]
+    },
+    {
+        "reviewLevelDescription": "HQ Escalation 2",
+        "reviewLevelCode": "HQES2",
+        "selectionReasons": [
+        {
+            "selectionReasonCode": "LENDER_SELF_REPORT",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "UNDERWRITER_DECREASED_SAMPLING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "REVIEW_LOCATION_QC",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "LENDER_MONITORING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "EARLY_CLAIM",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "TEST_CASE",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "EARLY_PAYMENT_DEFAULT",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "OTHER_NON_PERFORMING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "FHA_MANUAL",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "LENDER_INCREASED_SAMPLING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "OIG_AUDIT",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RANDOM",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "NATIONAL_QC",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RISK_THRESHOLD",
+            "days": 6
+        }]
+    },
+    {
+        "reviewLevelDescription": "Indemnification 1",
+        "reviewLevelCode": "INDM1",
+        "selectionReasons": [
+        {
+            "selectionReasonCode": "LENDER_SELF_REPORT",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "UNDERWRITER_DECREASED_SAMPLING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "REVIEW_LOCATION_QC",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "LENDER_MONITORING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "EARLY_CLAIM",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "TEST_CASE",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "EARLY_PAYMENT_DEFAULT",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "OTHER_NON_PERFORMING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "FHA_MANUAL",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "LENDER_INCREASED_SAMPLING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "OIG_AUDIT",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RANDOM",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "NATIONAL_QC",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RISK_THRESHOLD",
+            "days": 6
+        }]
+    },
+    {
+        "reviewLevelDescription": "Indemnification 3",
+        "reviewLevelCode": "INDM3",
+        "selectionReasons": [
+        {
+            "selectionReasonCode": "LENDER_SELF_REPORT",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "UNDERWRITER_DECREASED_SAMPLING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "REVIEW_LOCATION_QC",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "LENDER_MONITORING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "EARLY_CLAIM",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "TEST_CASE",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "EARLY_PAYMENT_DEFAULT",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "OTHER_NON_PERFORMING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "FHA_MANUAL",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "LENDER_INCREASED_SAMPLING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "OIG_AUDIT",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RANDOM",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "NATIONAL_QC",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RISK_THRESHOLD",
+            "days": 0
+        }]
+    },
+    {
+        "reviewLevelDescription": "Indemnification 2",
+        "reviewLevelCode": "INDM2",
+        "selectionReasons": [
+        {
+            "selectionReasonCode": "LENDER_SELF_REPORT",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "UNDERWRITER_DECREASED_SAMPLING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "REVIEW_LOCATION_QC",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "LENDER_MONITORING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "EARLY_CLAIM",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "TEST_CASE",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "EARLY_PAYMENT_DEFAULT",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "OTHER_NON_PERFORMING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "FHA_MANUAL",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "LENDER_INCREASED_SAMPLING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "OIG_AUDIT",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RANDOM",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "NATIONAL_QC",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RISK_THRESHOLD",
+            "days": 0
+        }]
+    },
+    {
+        "reviewLevelDescription": "Indemnification 5",
+        "reviewLevelCode": "INDM5",
+        "selectionReasons": [
+        {
+            "selectionReasonCode": "LENDER_SELF_REPORT",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "UNDERWRITER_DECREASED_SAMPLING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "REVIEW_LOCATION_QC",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "LENDER_MONITORING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "EARLY_CLAIM",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "TEST_CASE",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "EARLY_PAYMENT_DEFAULT",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "OTHER_NON_PERFORMING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "FHA_MANUAL",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "LENDER_INCREASED_SAMPLING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "OIG_AUDIT",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RANDOM",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "NATIONAL_QC",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RISK_THRESHOLD",
+            "days": 0
+        }]
+    },
+    {
+        "reviewLevelDescription": "Indemnification 4",
+        "reviewLevelCode": "INDM4",
+        "selectionReasons": [
+        {
+            "selectionReasonCode": "LENDER_SELF_REPORT",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "UNDERWRITER_DECREASED_SAMPLING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "REVIEW_LOCATION_QC",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "LENDER_MONITORING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "EARLY_CLAIM",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "TEST_CASE",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "EARLY_PAYMENT_DEFAULT",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "OTHER_NON_PERFORMING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "FHA_MANUAL",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "LENDER_INCREASED_SAMPLING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "OIG_AUDIT",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RANDOM",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "NATIONAL_QC",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RISK_THRESHOLD",
+            "days": 0
+        }]
+    },
+    {
+        "reviewLevelDescription": "Forced Indemnification 1",
+        "reviewLevelCode": "FRCE1",
+        "selectionReasons": [
+        {
+            "selectionReasonCode": "LENDER_SELF_REPORT",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "UNDERWRITER_DECREASED_SAMPLING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "REVIEW_LOCATION_QC",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "LENDER_MONITORING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "EARLY_CLAIM",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "TEST_CASE",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "EARLY_PAYMENT_DEFAULT",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "OTHER_NON_PERFORMING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "FHA_MANUAL",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "LENDER_INCREASED_SAMPLING",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "OIG_AUDIT",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RANDOM",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "NATIONAL_QC",
+            "days": 6
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RISK_THRESHOLD",
+            "days": 6
+        }]
+    },
+    {
+        "reviewLevelDescription": "Forced Indemnification 2",
+        "reviewLevelCode": "FRCE2",
+        "selectionReasons": [
+        {
+            "selectionReasonCode": "LENDER_SELF_REPORT",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "UNDERWRITER_DECREASED_SAMPLING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "REVIEW_LOCATION_QC",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "LENDER_MONITORING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "EARLY_CLAIM",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "TEST_CASE",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "EARLY_PAYMENT_DEFAULT",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "OTHER_NON_PERFORMING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "FHA_MANUAL",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "LENDER_INCREASED_SAMPLING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "OIG_AUDIT",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RANDOM",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "NATIONAL_QC",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RISK_THRESHOLD",
+            "days": 0
+        }]
+    },
+    {
+        "reviewLevelDescription": "Forced Indemnification 3",
+        "reviewLevelCode": "FRCE3",
+        "selectionReasons": [
+        {
+            "selectionReasonCode": "LENDER_SELF_REPORT",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "UNDERWRITER_DECREASED_SAMPLING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "REVIEW_LOCATION_QC",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "LENDER_MONITORING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "EARLY_CLAIM",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "TEST_CASE",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "EARLY_PAYMENT_DEFAULT",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "OTHER_NON_PERFORMING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "FHA_MANUAL",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "LENDER_INCREASED_SAMPLING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "OIG_AUDIT",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RANDOM",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "NATIONAL_QC",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RISK_THRESHOLD",
+            "days": 0
+        }]
+    },
+    {
+        "reviewLevelDescription": "Forced Indemnification 4",
+        "reviewLevelCode": "FRCE4",
+        "selectionReasons": [
+        {
+            "selectionReasonCode": "LENDER_SELF_REPORT",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "UNDERWRITER_DECREASED_SAMPLING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "REVIEW_LOCATION_QC",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "LENDER_MONITORING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "EARLY_CLAIM",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "TEST_CASE",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "EARLY_PAYMENT_DEFAULT",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "OTHER_NON_PERFORMING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "FHA_MANUAL",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "LENDER_INCREASED_SAMPLING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "OIG_AUDIT",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RANDOM",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "NATIONAL_QC",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RISK_THRESHOLD",
+            "days": 0
+        }]
+    },
+    {
+        "reviewLevelDescription": "Forced Indemnification 5",
+        "reviewLevelCode": "FRCE5",
+        "selectionReasons": [
+        {
+            "selectionReasonCode": "LENDER_SELF_REPORT",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "UNDERWRITER_DECREASED_SAMPLING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "REVIEW_LOCATION_QC",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "LENDER_MONITORING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "EARLY_CLAIM",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "TEST_CASE",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "EARLY_PAYMENT_DEFAULT",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "OTHER_NON_PERFORMING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "FHA_MANUAL",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "LENDER_INCREASED_SAMPLING",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "OIG_AUDIT",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RANDOM",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "NATIONAL_QC",
+            "days": 0
+        },
+        {
+            "selectionReasonCode": "MONTHLY_RISK_THRESHOLD",
+            "days": 0
+        }]
+    }
+]

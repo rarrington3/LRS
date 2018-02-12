@@ -1,0 +1,213 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2401_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into personnel (PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('A1716E15-DE1B-4731-807F-B135AAAD5C17','HDQTR.LRS_TEST_6@huddev.gov'       ,'HDQTR'       ,'LRS TEST 6' ,'C20225',getdate(),'HTH006','Y',20,(select review_location_id from review_location where location_name = 'HQ'     ),(select personnel_status_id from personnel_status_ref where code = 'A'))
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('913A92E5-6D8E-4216-8AD1-6D702C617269','A1716E15-DE1B-4731-807F-B135AAAD5C17','HDQTR.LRS_TEST_5@huddev.gov'       ,'HDQTR'       ,'LRS TEST 5' ,'C20225',getdate(),'HTH005','Y',20,(select review_location_id from review_location where location_name = 'HQ'     ),(select personnel_status_id from personnel_status_ref where code = 'A'))
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('DF86CA3C-FAA1-4B8F-A77A-7BCB2EBF7C41','913A92E5-6D8E-4216-8AD1-6D702C617269','ATLANTA.LRS_TEST_1@huddev.gov'     ,'ATLANTA'     ,'LRS TEST 1' ,'C20225',getdate(),'HTA001','Y',20,(select review_location_id from review_location where location_name = 'ATL-PUD'),(select personnel_status_id from personnel_status_ref where code = 'A'))
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('9BA0E469-4453-47A3-9D93-18FD1C023EDC','913A92E5-6D8E-4216-8AD1-6D702C617269','ATLANTA.LRS_TEST_5@huddev.gov'     ,'ATLANTA'     ,'LRS TEST 5' ,'C20225',getdate(),'HTA005','Y',20,(select review_location_id from review_location where location_name = 'ATL-QAD'),(select personnel_status_id from personnel_status_ref where code = 'A'))
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('1A950B19-E76C-4237-A9CD-92B11FECA6A6','913A92E5-6D8E-4216-8AD1-6D702C617269','DENVER.LRS_TEST_1@huddev.gov'      ,'DENVER'      ,'LRS TEST 1' ,'C20225',getdate(),'HTD001','Y',20,(select review_location_id from review_location where location_name = 'DEN-PUD'),(select personnel_status_id from personnel_status_ref where code = 'A'))
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('E79F9C62-9265-435E-9456-576634656993','913A92E5-6D8E-4216-8AD1-6D702C617269','DENVER.LRS_TEST_5@huddev.gov'      ,'DENVER'      ,'LRS TEST 5' ,'C20225',getdate(),'HTD005','Y',20,(select review_location_id from review_location where location_name = 'DEN-QAD'),(select personnel_status_id from personnel_status_ref where code = 'A'))
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('1E180582-40D2-47C5-A876-B24EECEB8D75','913A92E5-6D8E-4216-8AD1-6D702C617269','HDQTR.LRS_TEST_1@huddev.gov'       ,'HDQTR'       ,'LRS TEST 1' ,'C20225',getdate(),'HTH001','Y',20,(select review_location_id from review_location where location_name = 'HQ'     ),(select personnel_status_id from personnel_status_ref where code = 'A'))
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('D0161BE4-B03C-4978-B26C-4166034C922C','913A92E5-6D8E-4216-8AD1-6D702C617269','PHILADELPHIA.LRS_TEST_1@huddev.gov','PHILADELPHIA','LRS TEST 1' ,'C20225',getdate(),'HTP001','Y',20,(select review_location_id from review_location where location_name = 'PHI-PUD'),(select personnel_status_id from personnel_status_ref where code = 'A'))
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('30A61752-A8AF-4B62-9D95-EA7971377C53','913A92E5-6D8E-4216-8AD1-6D702C617269','PHILADELPHIA.LRS_TEST_5@huddev.gov','PHILADELPHIA','LRS TEST 5' ,'C20225',getdate(),'HTP005','Y',20,(select review_location_id from review_location where location_name = 'PHI-QAD'),(select personnel_status_id from personnel_status_ref where code = 'A'))
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('4635AFDF-4160-48DE-AAA9-CDDEB3FE51BD','913A92E5-6D8E-4216-8AD1-6D702C617269','SANTA_ANA.LRS_TEST_1@huddev.gov'   ,'SANTA ANA'   ,'LRS TEST 1' ,'C20225',getdate(),'HTS001','Y',20,(select review_location_id from review_location where location_name = 'SNA-PUD'),(select personnel_status_id from personnel_status_ref where code = 'A'))
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('98E6DB28-C545-47B8-9004-EE8F68E81669','913A92E5-6D8E-4216-8AD1-6D702C617269','SANTA_ANA.LRS_TEST_5@huddev.gov'   ,'SANTA ANA'   ,'LRS TEST 5' ,'C20225',getdate(),'HTS005','Y',20,(select review_location_id from review_location where location_name = 'SNA-QAD'),(select personnel_status_id from personnel_status_ref where code = 'A'))
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('789E313F-DA77-460D-BEFF-8CBB13A6706D','DF86CA3C-FAA1-4B8F-A77A-7BCB2EBF7C41','ATLANTA.LRS_TEST_2@huddev.gov'     ,'ATLANTA'     ,'LRS TEST 2' ,'C20225',getdate(),'HTA002','Y',20,(select review_location_id from review_location where location_name = 'ATL-PUD'),(select personnel_status_id from personnel_status_ref where code = 'A'))
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('D0511928-E783-4F5F-91CE-C9AEE9B788CE','DF86CA3C-FAA1-4B8F-A77A-7BCB2EBF7C41','ATLANTA.LRS_TEST_3@huddev.gov'     ,'ATLANTA'     ,'LRS TEST 3' ,'C20225',getdate(),'HTA003','Y',20,(select review_location_id from review_location where location_name = 'ATL-PUD'),(select personnel_status_id from personnel_status_ref where code = 'A'))
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('87619038-75EF-48CC-B02C-C2F2CB7E6B69','DF86CA3C-FAA1-4B8F-A77A-7BCB2EBF7C41','ATLANTA.LRS_TEST_4@huddev.gov'     ,'ATLANTA'     ,'LRS TEST 4' ,'C20225',getdate(),'HTA004','Y',20,(select review_location_id from review_location where location_name = 'ATL-PUD'),(select personnel_status_id from personnel_status_ref where code = 'A'))
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('B5ABFD17-7741-4C27-AF11-A19560963A81','9BA0E469-4453-47A3-9D93-18FD1C023EDC','ATLANTA.LRS_TEST_6@huddev.gov'     ,'ATLANTA'     ,'LRS TEST 6' ,'C20225',getdate(),'HTA006','Y',20,(select review_location_id from review_location where location_name = 'ATL-QAD'),(select personnel_status_id from personnel_status_ref where code = 'A'))
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('E9F6F2F3-AF8A-40E9-ADF6-91E7B8EB71BD','9BA0E469-4453-47A3-9D93-18FD1C023EDC','ATLANTA.LRS_TEST_7@huddev.gov'     ,'ATLANTA'     ,'LRS TEST 7' ,'C20225',getdate(),'HTA007','Y',20,(select review_location_id from review_location where location_name = 'ATL-QAD'),(select personnel_status_id from personnel_status_ref where code = 'A'))
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('FC104298-C63C-4345-B325-00F0FA8239D8','9BA0E469-4453-47A3-9D93-18FD1C023EDC','ATLANTA.LRS_TEST_8@huddev.gov'     ,'ATLANTA'     ,'LRS TEST 8' ,'C20225',getdate(),'HTA008','Y',20,(select review_location_id from review_location where location_name = 'ATL-QAD'),(select personnel_status_id from personnel_status_ref where code = 'A'))
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('2C6D27E9-121A-459F-81FC-4A2683710528','1A950B19-E76C-4237-A9CD-92B11FECA6A6','DENVER.LRS_TEST_2@huddev.gov'      ,'DENVER'      ,'LRS TEST 2' ,'C20225',getdate(),'HTD002','Y',20,(select review_location_id from review_location where location_name = 'DEN-PUD'),(select personnel_status_id from personnel_status_ref where code = 'A'))
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('CA22B68E-B390-42C2-A699-195356D28D85','1A950B19-E76C-4237-A9CD-92B11FECA6A6','DENVER.LRS_TEST_3@huddev.gov'      ,'DENVER'      ,'LRS TEST 3' ,'C20225',getdate(),'HTD003','Y',20,(select review_location_id from review_location where location_name = 'DEN-PUD'),(select personnel_status_id from personnel_status_ref where code = 'A'))
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('4967C6FF-05C4-4097-A738-9F2B56451981','1A950B19-E76C-4237-A9CD-92B11FECA6A6','DENVER.LRS_TEST_4@huddev.gov'      ,'DENVER'      ,'LRS TEST 4' ,'C20225',getdate(),'HTD004','Y',20,(select review_location_id from review_location where location_name = 'DEN-PUD'),(select personnel_status_id from personnel_status_ref where code = 'A'))
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('B9DA6B90-E0FB-4EBA-8CBE-74CA1BBDC700','E79F9C62-9265-435E-9456-576634656993','DENVER.LRS_TEST_6@huddev.gov'      ,'DENVER'      ,'LRS TEST 6' ,'C20225',getdate(),'HTD006','Y',20,(select review_location_id from review_location where location_name = 'DEN-QAD'),(select personnel_status_id from personnel_status_ref where code = 'A'))
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('AF9ED239-D135-42F3-BB96-372036FDCB58','E79F9C62-9265-435E-9456-576634656993','DENVER.LRS_TEST_7@huddev.gov'      ,'DENVER'      ,'LRS TEST 7' ,'C20225',getdate(),'HTD007','Y',20,(select review_location_id from review_location where location_name = 'DEN-QAD'),(select personnel_status_id from personnel_status_ref where code = 'A'))
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('10B73276-C86C-46B4-8A88-9CA2246AEDCA','E79F9C62-9265-435E-9456-576634656993','DENVER.LRS_TEST_8@huddev.gov'      ,'DENVER'      ,'LRS TEST 8' ,'C20225',getdate(),'HTD008','Y',20,(select review_location_id from review_location where location_name = 'DEN-QAD'),(select personnel_status_id from personnel_status_ref where code = 'A'))
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('2757324C-EE77-4D63-845B-728127385961','1E180582-40D2-47C5-A876-B24EECEB8D75','HDQTR.LRS_TEST_2@huddev.gov'       ,'HDQTR'       ,'LRS TEST 2' ,'C20225',getdate(),'HTH002','Y',20,(select review_location_id from review_location where location_name = 'HQ'     ),(select personnel_status_id from personnel_status_ref where code = 'A'))
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('596E0659-9450-4142-B1E2-97F1F84E7DA6','1E180582-40D2-47C5-A876-B24EECEB8D75','HDQTR.LRS_TEST_3@huddev.gov'       ,'HDQTR'       ,'LRS TEST 3' ,'C20225',getdate(),'HTH003','Y',20,(select review_location_id from review_location where location_name = 'HQ'     ),(select personnel_status_id from personnel_status_ref where code = 'A'))
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('AF4B223E-7B07-4DD3-919F-32C2A50E53DA','1E180582-40D2-47C5-A876-B24EECEB8D75','HDQTR.LRS_TEST_4@huddev.gov'       ,'HDQTR'       ,'LRS TEST 4' ,'C20225',getdate(),'HTH004','Y',20,(select review_location_id from review_location where location_name = 'HQ'     ),(select personnel_status_id from personnel_status_ref where code = 'A'))
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('FC54A060-47BB-45D1-AF7B-3D58225B154C','D0161BE4-B03C-4978-B26C-4166034C922C','PHILADELPHIA.LRS_TEST_2@huddev.gov','PHILADELPHIA','LRS TEST 2' ,'C20225',getdate(),'HTP002','Y',20,(select review_location_id from review_location where location_name = 'PHI-PUD'),(select personnel_status_id from personnel_status_ref where code = 'A')) 
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('63A37918-BD2C-427C-81E4-07FEEB01977F','D0161BE4-B03C-4978-B26C-4166034C922C','PHILADELPHIA.LRS_TEST_3@huddev.gov','PHILADELPHIA','LRS TEST 3' ,'C20225',getdate(),'HTP003','Y',20,(select review_location_id from review_location where location_name = 'PHI-PUD'),(select personnel_status_id from personnel_status_ref where code = 'A')) 
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('9BF19612-A74C-4114-AAE7-4BA91C9E6FB0','D0161BE4-B03C-4978-B26C-4166034C922C','PHILADELPHIA.LRS_TEST_4@huddev.gov','PHILADELPHIA','LRS TEST 4' ,'C20225',getdate(),'HTP004','Y',20,(select review_location_id from review_location where location_name = 'PHI-PUD'),(select personnel_status_id from personnel_status_ref where code = 'A')) 
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('B771AED1-7571-402F-84CD-A3F9CF2785E8','30A61752-A8AF-4B62-9D95-EA7971377C53','PHILADELPHIA.LRS_TEST_6@huddev.gov','PHILADELPHIA','LRS TEST 6' ,'C20225',getdate(),'HTP006','Y',20,(select review_location_id from review_location where location_name = 'PHI-QAD'),(select personnel_status_id from personnel_status_ref where code = 'A')) 
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('8A4245D4-2E2A-4C72-9C6A-51550EC25AB1','30A61752-A8AF-4B62-9D95-EA7971377C53','PHILADELPHIA.LRS_TEST_7@huddev.gov','PHILADELPHIA','LRS TEST 7' ,'C20225',getdate(),'HTP007','Y',20,(select review_location_id from review_location where location_name = 'PHI-QAD'),(select personnel_status_id from personnel_status_ref where code = 'A')) 
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('7F3C1A85-B352-4712-9466-7A575EAC15AE','30A61752-A8AF-4B62-9D95-EA7971377C53','PHILADELPHIA.LRS_TEST_8@huddev.gov','PHILADELPHIA','LRS TEST 8' ,'C20225',getdate(),'HTP008','Y',20,(select review_location_id from review_location where location_name = 'PHI-QAD'),(select personnel_status_id from personnel_status_ref where code = 'A')) 
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('A384BB83-61AC-44BC-8275-344846921EEC','4635AFDF-4160-48DE-AAA9-CDDEB3FE51BD','SANTA_ANA.LRS_TEST_2@huddev.gov'   ,'SANTA ANA'   ,'LRS TEST 2' ,'C20225',getdate(),'HTS002','Y',20,(select review_location_id from review_location where location_name = 'SNA-PUD'),(select personnel_status_id from personnel_status_ref where code = 'A'))
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('6B3B6941-58D4-4AAE-9089-35CA0F5BE875','4635AFDF-4160-48DE-AAA9-CDDEB3FE51BD','SANTA_ANA.LRS_TEST_3@huddev.gov'   ,'SANTA ANA'   ,'LRS TEST 3' ,'C20225',getdate(),'HTS003','Y',20,(select review_location_id from review_location where location_name = 'SNA-PUD'),(select personnel_status_id from personnel_status_ref where code = 'A'))
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('95CDB3FC-51E0-4BBA-A200-6969D3DCB0D7','4635AFDF-4160-48DE-AAA9-CDDEB3FE51BD','SANTA_ANA.LRS_TEST_4@huddev.gov'   ,'SANTA ANA'   ,'LRS TEST 4' ,'C20225',getdate(),'HTS004','Y',20,(select review_location_id from review_location where location_name = 'SNA-PUD'),(select personnel_status_id from personnel_status_ref where code = 'A'))
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('AFECA2FD-633C-4166-9014-E61A4C5A6095','98E6DB28-C545-47B8-9004-EE8F68E81669','SANTA_ANA.LRS_TEST_6@huddev.gov'   ,'SANTA ANA'   ,'LRS TEST 6' ,'C20225',getdate(),'HTS006','Y',20,(select review_location_id from review_location where location_name = 'SNA-QAD'),(select personnel_status_id from personnel_status_ref where code = 'A'))
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('809DA4C7-E3E6-45E1-BE85-D1FC499BEAE7','98E6DB28-C545-47B8-9004-EE8F68E81669','SANTA_ANA.LRS_TEST_7@huddev.gov'   ,'SANTA ANA'   ,'LRS TEST 7' ,'C20225',getdate(),'HTS007','Y',20,(select review_location_id from review_location where location_name = 'SNA-QAD'),(select personnel_status_id from personnel_status_ref where code = 'A'))
+			insert into personnel (PERSONNEL_ID,REPORTS_TO_PERSONNEL_ID,EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_TS, LOGIN_CREDENTIAL, AVAILABILITY_IND, REVIEWER_CAPACITY, REVIEW_LOCATION_ID, PERSONNEL_STATUS_ID) values('B27CF2F8-5DF8-49C9-A40A-526B7D317FC7','98E6DB28-C545-47B8-9004-EE8F68E81669','SANTA_ANA.LRS_TEST_8@huddev.gov'   ,'SANTA ANA'   ,'LRS TEST 8' ,'C20225',getdate(),'HTS008','Y',20,(select review_location_id from review_location where location_name = 'SNA-QAD'),(select personnel_status_id from personnel_status_ref where code = 'A'))
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2401_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into PERSONNEL_ASSIGNMENT_TYPE
+			(PERSONNEL_ID, ASSIGNMENT_TYPE_CD, CREATED_BY, CREATED_TS, ACTIVE_IND)
+			select a.PERSONNEL_ID,
+				   b.ASSIGNMENT_TYPE_CD,
+				   'C20225',
+				   getdate(),
+				   'Y'
+			from PERSONNEL a,
+				 ASSIGNMENT_TYPE_ADMIN b
+			where a.LOGIN_CREDENTIAL in
+			('HTA001',
+			'HTA002',
+			'HTA003',
+			'HTA004',
+			'HTA005',
+			'HTA006',
+			'HTA007',
+			'HTA008',
+			'HTD001',
+			'HTD002',
+			'HTD003',
+			'HTD004',
+			'HTD005',
+			'HTD006',
+			'HTD007',
+			'HTD008',
+			'HTH001',
+			'HTH002',
+			'HTH003',
+			'HTH004',
+			'HTH005',
+			'HTH006',
+			'HTP001',
+			'HTP002',
+			'HTP003',
+			'HTP004',
+			'HTP005',
+			'HTP006',
+			'HTP007',
+			'HTP008',
+			'HTS001',
+			'HTS002',
+			'HTS003',
+			'HTS004',
+			'HTS005',
+			'HTS006',
+			'HTS007',
+			'HTS008')
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2401_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update review_location set contact_name = 'ATLANTA LRS TEST 1'     , owner_personnel_id = 'DF86CA3C-FAA1-4B8F-A77A-7BCB2EBF7C41'  where location_name = 'ATL-PUD'
+			update review_location set contact_name = 'ATLANTA LRS TEST 5'     , owner_personnel_id = '9BA0E469-4453-47A3-9D93-18FD1C023EDC'  where location_name = 'ATL-QAD'
+			update review_location set contact_name = 'DENVER LRS TEST 1'      , owner_personnel_id = '1A950B19-E76C-4237-A9CD-92B11FECA6A6'  where location_name = 'DEN-PUD'
+			update review_location set contact_name = 'DENVER LRS TEST 5'      , owner_personnel_id = 'E79F9C62-9265-435E-9456-576634656993'  where location_name = 'DEN-QAD'
+			update review_location set contact_name = 'HDQTR LRS TEST 1'       , owner_personnel_id = '1E180582-40D2-47C5-A876-B24EECEB8D75'  where location_name = 'HQ'
+			update review_location set contact_name = 'PHILADELPHIA LRS TEST 1', owner_personnel_id = 'D0161BE4-B03C-4978-B26C-4166034C922C'  where location_name = 'PHI-PUD'
+			update review_location set contact_name = 'PHILADELPHIA LRS TEST 5', owner_personnel_id = '30A61752-A8AF-4B62-9D95-EA7971377C53'  where location_name = 'PHI-QAD'
+			update review_location set contact_name = 'SANTA ANA LRS TEST 1'   , owner_personnel_id = '4635AFDF-4160-48DE-AAA9-CDDEB3FE51BD'  where location_name = 'SNA-PUD'
+			update review_location set contact_name = 'SANTA ANA LRS TEST 5'   , owner_personnel_id = '98E6DB28-C545-47B8-9004-EE8F68E81669'  where location_name = 'SNA-QAD'
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2401_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update REVIEW_LEVEL
+			set ORIGINAL_REVIEWER_PERSONNEL_ID = case when REVIEW_LOCATION_ID in (select REVIEW_LOCATION_ID from REVIEW_LOCATION where LOCATION_NAME = 'ATL-PUD') then 'D0511928-E783-4F5F-91CE-C9AEE9B788CE'
+													  when REVIEW_LOCATION_ID in (select REVIEW_LOCATION_ID from REVIEW_LOCATION where LOCATION_NAME = 'ATL-QAD') then 'B5ABFD17-7741-4C27-AF11-A19560963A81'
+													  when REVIEW_LOCATION_ID in (select REVIEW_LOCATION_ID from REVIEW_LOCATION where LOCATION_NAME = 'DEN-QAD') then 'B9DA6B90-E0FB-4EBA-8CBE-74CA1BBDC700'
+													  when REVIEW_LOCATION_ID in (select REVIEW_LOCATION_ID from REVIEW_LOCATION where LOCATION_NAME = 'DEN-PUD') then '2C6D27E9-121A-459F-81FC-4A2683710528'
+													  when REVIEW_LOCATION_ID in (select REVIEW_LOCATION_ID from REVIEW_LOCATION where LOCATION_NAME = 'HQ')      then '2757324C-EE77-4D63-845B-728127385961'
+													  when REVIEW_LOCATION_ID in (select REVIEW_LOCATION_ID from REVIEW_LOCATION where LOCATION_NAME = 'PHI-QAD') then 'B771AED1-7571-402F-84CD-A3F9CF2785E8'
+													  when REVIEW_LOCATION_ID in (select REVIEW_LOCATION_ID from REVIEW_LOCATION where LOCATION_NAME = 'PHI-PUD') then 'FC54A060-47BB-45D1-AF7B-3D58225B154C'
+													  when REVIEW_LOCATION_ID in (select REVIEW_LOCATION_ID from REVIEW_LOCATION where LOCATION_NAME = 'SNA-QAD') then 'A384BB83-61AC-44BC-8275-344846921EEC'
+													  when REVIEW_LOCATION_ID in (select REVIEW_LOCATION_ID from REVIEW_LOCATION where LOCATION_NAME = 'SNA-PUD') then 'B5ABFD17-7741-4C27-AF11-A19560963A81' end
+
+			update REVIEW_LEVEL
+			set REVIEWER_PERSONNEL_ID = ORIGINAL_REVIEWER_PERSONNEL_ID
+
+			select distinct review_id, ORIGINAL_REVIEWER_PERSONNEL_ID
+			into #temp_review_level
+			from REVIEW_LEVEL
+
+			update review
+			set ORIGINAL_REVIEWER_PERSONNEL_ID = b.ORIGINAL_REVIEWER_PERSONNEL_ID
+			from REVIEW a,
+				 #temp_review_level b
+			where a.REVIEW_ID = b.REVIEW_ID
+		]]>
+        </sql>
+    </changeSet>			
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2401_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			select selection_id, mtgee5, NTILE(5) over(order by mtgee5) as rank
+			into #temp_1
+			from LOAN_SELECTION
+
+			update LOAN_SELECTION 
+			set MTGEE5 = case when rank = 1 then '22995'
+							  when rank = 2 then '13065'
+							  when rank = 3 then '71955'
+							  when rank = 4 then '24603'
+							  when rank = 5 then '13779' end
+			from #temp_1 a,
+				 LOAN_SELECTION b
+			where a.selection_id = b.selection_id
+
+			update LOAN_SELECTION_CASE_SUMMARY
+			set SRVCR_MTGEE5_A43 = b.mtgee5,
+				UNDRWRTING_MTGEE5 = b.mtgee5
+			from LOAN_SELECTION_CASE_SUMMARY a,
+				 LOAN_SELECTION b
+			where a.SELECTION_ID = b.SELECTION_ID
+		]]>
+        </sql>
+    </changeSet>			
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2401_0006" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			select mtgee5, NTILE(5) over(order by mtgee5) as rank
+			into #temp_2
+			from lrsextdb..lrs_case_record
+
+			update lrsextdb..lrs_case_record 
+			set MTGEE5 = case when rank = 1 then '22995'
+							  when rank = 2 then '13065'
+							  when rank = 3 then '71955'
+							  when rank = 4 then '24603'
+							  when rank = 5 then '13779' end
+			from #temp_2 a,
+				 lrsextdb..lrs_case_record b
+			where a.mtgee5 = b.mtgee5
+		]]>
+        </sql>
+    </changeSet>			
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2401_0007" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update BATCH
+			set OWNER_PERSONNEL_ID = case             when REVIEW_LOCATION_ID in (select REVIEW_LOCATION_ID from REVIEW_LOCATION where LOCATION_NAME = 'ATL-PUD') then 'D0511928-E783-4F5F-91CE-C9AEE9B788CE'
+													  when REVIEW_LOCATION_ID in (select REVIEW_LOCATION_ID from REVIEW_LOCATION where LOCATION_NAME = 'ATL-QAD') then 'B5ABFD17-7741-4C27-AF11-A19560963A81'
+													  when REVIEW_LOCATION_ID in (select REVIEW_LOCATION_ID from REVIEW_LOCATION where LOCATION_NAME = 'DEN-QAD') then 'B9DA6B90-E0FB-4EBA-8CBE-74CA1BBDC700'
+													  when REVIEW_LOCATION_ID in (select REVIEW_LOCATION_ID from REVIEW_LOCATION where LOCATION_NAME = 'DEN-PUD') then '2C6D27E9-121A-459F-81FC-4A2683710528'
+													  when REVIEW_LOCATION_ID in (select REVIEW_LOCATION_ID from REVIEW_LOCATION where LOCATION_NAME = 'HQ')      then '2757324C-EE77-4D63-845B-728127385961'
+													  when REVIEW_LOCATION_ID in (select REVIEW_LOCATION_ID from REVIEW_LOCATION where LOCATION_NAME = 'PHI-QAD') then 'B771AED1-7571-402F-84CD-A3F9CF2785E8'
+													  when REVIEW_LOCATION_ID in (select REVIEW_LOCATION_ID from REVIEW_LOCATION where LOCATION_NAME = 'PHI-PUD') then 'FC54A060-47BB-45D1-AF7B-3D58225B154C'
+													  when REVIEW_LOCATION_ID in (select REVIEW_LOCATION_ID from REVIEW_LOCATION where LOCATION_NAME = 'SNA-QAD') then 'A384BB83-61AC-44BC-8275-344846921EEC'
+													  when REVIEW_LOCATION_ID in (select REVIEW_LOCATION_ID from REVIEW_LOCATION where LOCATION_NAME = 'SNA-PUD') then 'B5ABFD17-7741-4C27-AF11-A19560963A81' end
+													  
+			update BATCH_PERSONNEL
+			set PERSONNEL_ID = b.OWNER_PERSONNEL_ID
+			from BATCH_PERSONNEL a,
+			     BATCH b
+			where a.BATCH_ID = b.BATCH_ID
+
+		]]>
+        </sql>
+    </changeSet>				
+</databaseChangeLog>    

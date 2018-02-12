@@ -1,0 +1,31 @@
+@import '../../bootstrap/_variables';
+:host-context {
+	/* styles should be scoped under host-context */
+
+	.field-title {
+		font-size: @font-size-smaller;
+
+		.btn {
+			font-size: @font-size-smaller;
+			margin:0;
+			padding:0;
+			text-decoration: underline;
+		}
+	}
+
+	.field-value {
+		font-weight: bold;
+		color: @brand-secondary;
+		text-transform: uppercase;
+		font-size: @font-size-small;
+	}
+
+	.cases-in-batch {
+		display: inline-block;
+	}
+
+	.cases-select {
+		width: 125px;
+		margin-top: 10px;
+	}
+}

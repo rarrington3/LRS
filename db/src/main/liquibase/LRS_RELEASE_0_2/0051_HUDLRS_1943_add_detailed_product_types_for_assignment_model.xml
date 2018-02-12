@@ -1,0 +1,116 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1943_CREATE_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create table PRODUCT_DETAIL_REF
+			(PRODUCT_DETAIL_ID UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID(),
+			 PRODUCT_DETAIL_CD varchar(16) not null,
+			 DESCRIPTION VARCHAR(50) NOT NULL,
+			 PRODUCT_TYPE_ID UNIQUEIDENTIFIER NOT NULL)
+			 
+			 ALTER TABLE PRODUCT_DETAIL_REF ADD CONSTRAINT PRODUCT_DETAIL_REF_PK PRIMARY KEY (PRODUCT_DETAIL_ID)
+			 alter table product_detail_ref add constraint PRODUCTDETAILREFTOPRODUCTTYP foreign key (PRODUCT_TYPE_ID) references product_type_ref(PRODUCT_TYPE_ID)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1943_insert_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into dict_metadata_entity(ENTITY_NAME, DB_VIEW_OR_TABLE,CREATED_BY,CREATED_TS) values('Product Detail Reference','PRODUCT_DETAIL_REF','C20225',getdate())			  
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Product Detail Reference','Product Detail ID','PRODUCT_DETAIL_ID','C20225', getdate(),'STATIC','Product Detail ID')
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Product Detail Reference','Description','DESCRIPTION','C20225', getdate(),'STATIC','Description')			
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Product Detail Reference','Product Type ID','PRODUCT_TYPE_ID','C20225', getdate(),'STATIC','Product Type ID')			
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Product Detail Reference','Product Detail CD','PRODUCT_DETAIL_CD','C20225', getdate(),'STATIC','Product Detail CD')						
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1943_insert_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into PRODUCT_DETAIL_REF(PRODUCT_DETAIL_ID,PRODUCT_DETAIL_CD,description,product_type_id)values('FF9F653F-F13C-4084-937E-66525A5ECD08','PRCHS','203b Purchase'                                  ,'1B8D99B7-02B3-4569-BD86-4D546A2BB3DF')
+			insert into PRODUCT_DETAIL_REF(PRODUCT_DETAIL_ID,PRODUCT_DETAIL_CD,description,product_type_id)values('4661E6EB-7913-4300-9EA2-34D5B2FF47E0','CASHREFI','203b Cashout Refinance'                         ,'40714384-0ABB-4ACB-BBF1-9AB3526EE118')
+			insert into PRODUCT_DETAIL_REF(PRODUCT_DETAIL_ID,PRODUCT_DETAIL_CD,description,product_type_id)values('4D7AA3B4-56A6-409E-953B-F5AE429396BF','RATEREFI','203b Rate-Term Refinance'                       ,'40714384-0ABB-4ACB-BBF1-9AB3526EE118')
+			insert into PRODUCT_DETAIL_REF(PRODUCT_DETAIL_ID,PRODUCT_DETAIL_CD,description,product_type_id)values('91FF5ED8-688A-49E5-A83D-DD40C81FA923','SIMPLREFI','203b Simple Refinance'                          ,'40714384-0ABB-4ACB-BBF1-9AB3526EE118')
+			insert into PRODUCT_DETAIL_REF(PRODUCT_DETAIL_ID,PRODUCT_DETAIL_CD,description,product_type_id)values('AB8DB692-D8D8-431E-8482-FEC45BE30AC6','STRMREFIN','203b Streamline Refinance Noncredit qualifying' ,'40714384-0ABB-4ACB-BBF1-9AB3526EE118')
+			insert into PRODUCT_DETAIL_REF(PRODUCT_DETAIL_ID,PRODUCT_DETAIL_CD,description,product_type_id)values('68F598D9-06A1-40D6-9EFF-B12227B94576','STRMREFIC','203b Streamline Refinance Credit qualifying'    ,'40714384-0ABB-4ACB-BBF1-9AB3526EE118')
+			insert into PRODUCT_DETAIL_REF(PRODUCT_DETAIL_ID,PRODUCT_DETAIL_CD,description,product_type_id)values('0B8A56B3-E67A-4133-9F39-368C3C2CCA9F','PURCHREHAB','203k Purchase w Rehab'                          ,'36D41974-2F1E-4B99-A5D2-FA63BA14CE09')
+			insert into PRODUCT_DETAIL_REF(PRODUCT_DETAIL_ID,PRODUCT_DETAIL_CD,description,product_type_id)values('49C32623-6073-4740-9D57-4ABD5DA54547','REFIREHAB','203k Refinance w Rehab'                         ,'36D41974-2F1E-4B99-A5D2-FA63BA14CE09')
+			insert into PRODUCT_DETAIL_REF(PRODUCT_DETAIL_ID,PRODUCT_DETAIL_CD,description,product_type_id)values('9142C9E3-D28A-4FBC-B982-18987D6387BC','REHABEXT','203k Rehab Existing'                            ,'36D41974-2F1E-4B99-A5D2-FA63BA14CE09')
+			insert into PRODUCT_DETAIL_REF(PRODUCT_DETAIL_ID,PRODUCT_DETAIL_CD,description,product_type_id)values('48680D28-2704-4E66-9ED6-5BDC587859E9','HECMTRD','HECM Traditional'                               ,'D0F46DE4-CB99-4AF9-A837-669239CF1BAF')
+			insert into PRODUCT_DETAIL_REF(PRODUCT_DETAIL_ID,PRODUCT_DETAIL_CD,description,product_type_id)values('E47DF8BD-B260-4B61-866B-5C52094C86F2','HECMPURCH','HECM for Purchase'                              ,'D0F46DE4-CB99-4AF9-A837-669239CF1BAF')
+			insert into PRODUCT_DETAIL_REF(PRODUCT_DETAIL_ID,PRODUCT_DETAIL_CD,description,product_type_id)values('3A288766-ADC0-4CC8-8D3B-6AB1A7C408DB','HECMREFI','HECM Refinance'                                 ,'D0F46DE4-CB99-4AF9-A837-669239CF1BAF')
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1943_alter_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table LOAN_SELECTION_CASE_SUMMARY add PROD_TYPE VARCHAR(3) NULL
+		]]>
+        </sql>
+    </changeSet>	
+     <changeSet context="ALL"  author="astrauss" id="HUDLRS_1943_alter_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table product_detail_ref drop column product_detail_cd
+		]]>
+        </sql>
+    </changeSet>
+     <changeSet context="ALL"  author="astrauss" id="HUDLRS_1943_alter_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table product_detail_ref add PROD_TYPE VARCHAR(3) NULL
+		]]>
+        </sql>
+    </changeSet>	
+     <changeSet context="ALL"  author="astrauss" id="HUDLRS_1943_update_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update product_detail_ref set prod_type = '001' where product_detail_id = 'FF9F653F-F13C-4084-937E-66525A5ECD08'
+			update product_detail_ref set prod_type = '002' where product_detail_id = '4661E6EB-7913-4300-9EA2-34D5B2FF47E0'
+			update product_detail_ref set prod_type = '003' where product_detail_id = '4D7AA3B4-56A6-409E-953B-F5AE429396BF'
+			update product_detail_ref set prod_type = '004' where product_detail_id = '91FF5ED8-688A-49E5-A83D-DD40C81FA923'
+			update product_detail_ref set prod_type = '005' where product_detail_id = 'AB8DB692-D8D8-431E-8482-FEC45BE30AC6'
+			update product_detail_ref set prod_type = '006' where product_detail_id = '68F598D9-06A1-40D6-9EFF-B12227B94576'
+			update product_detail_ref set prod_type = '007' where product_detail_id = '0B8A56B3-E67A-4133-9F39-368C3C2CCA9F'
+			update product_detail_ref set prod_type = '008' where product_detail_id = '49C32623-6073-4740-9D57-4ABD5DA54547'
+			update product_detail_ref set prod_type = '009' where product_detail_id = '9142C9E3-D28A-4FBC-B982-18987D6387BC'
+			update product_detail_ref set prod_type = '010' where product_detail_id = '48680D28-2704-4E66-9ED6-5BDC587859E9'
+			update product_detail_ref set prod_type = '011' where product_detail_id = 'E47DF8BD-B260-4B61-866B-5C52094C86F2'
+			update product_detail_ref set prod_type = '012' where product_detail_id = '3A288766-ADC0-4CC8-8D3B-6AB1A7C408DB'
+		]]>
+        </sql>
+    </changeSet>	
+     <changeSet context="ALL"  author="astrauss" id="HUDLRS_1943_alter_0006" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table product_detail_ref alter column PROD_TYPE VARCHAR(3) not NULL
+		]]>
+        </sql>
+    </changeSet>	
+     <changeSet context="ALL"  author="astrauss" id="HUDLRS_1943_alter_0007" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create unique index PROD_TYPE_IDX2 on product_detail_ref(PROD_TYPE)
+		]]>
+        </sql>
+    </changeSet>
+     <changeSet context="ALL"  author="astrauss" id="HUDLRS_1943_alter_0008" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table LOAN_SELECTION_CASE_SUMMARY add constraint LOANSELCASESUMTOPRODDETAIL foreign key(PROD_TYPE) references product_detail_ref(PROD_TYPE)
+		]]>
+        </sql>
+    </changeSet>	
+ </databaseChangeLog>
+
+
+
+
+
+
+
+
+
+

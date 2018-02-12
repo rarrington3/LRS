@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "documentType": {
+      "type": "string"
+    },
+    "documentKey": {
+      "type": "string"
+    },
+    "documentName": {
+      "type": "string"
+    },
+    "statusCode": {
+      "type": "string"
+    },
+    "statusMessage": {
+      "type": "string"
+    },
+    "document": {
+      "type": "string"
+    }  },
+  "required": [
+    "documentType",
+    "documentKey",
+    "documentName",
+    "statusCode",
+    "statusMessage"
+  ]
+}

@@ -1,0 +1,260 @@
+<div class="sub-header empty"></div>
+
+<div class="selection-body container-fluid">
+
+    <div class="row">
+
+        <div class="panel selection-panel">
+
+            <div class="selection-heading">CREATE MANUAL SELECTION(S)</div>
+
+            <div class="selection-subhead">ENTER REQUIRED INFORMATION <span class="subtext">(Applies to all selections)</span></div>
+
+            <div class="selection-details">
+                <form #caseForm="ngForm">
+                    <div class="filter-select">
+                        <label class="small required" for="selectionReason">Selection Reason</label>
+                        <select id="selectionReason"
+                                name="selectionReason"
+                                #selectionReason="ngModel"
+                                class="form-control select-sm"
+                                [(ngModel)]="caseFilter.reviewReason"
+                                (ngModelChange)="setSelectionReason()"
+                                [dataTriggered]="true"
+                                required>
+                            <option value="">Select</option>
+                            <option *ngFor="let reason of selectionReasons" [value]="reason.code">
+                                {{reason.description}}
+                            </option>
+                        </select>
+                        <div class="alert alert-danger lrs-alert"
+                             [display]="selectionReason.errors && (selectionReason.dirty || selectionReason.touched)">
+                            <div class="small"
+                                 [hidden]="!(selectionReason.errors && selectionReason.errors.required)">
+                                Selection Reason is required
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="filter-select">
+                        <label class="small required" for="selectionSubReason">Selection Sub-Reason</label>
+                        <select id="selectionSubReason"
+                                name="selectionSubReason"
+                                #subReason="ngModel"
+                                class="form-control select-sm"
+                                [(ngModel)]="caseFilter.reviewSubReason" [attr.required]="!subReasonDisabled" [disabled]="subReasonDisabled">
+                            <option value="">Select</option>
+                            <option *ngFor="let subReason of selectionSubReasons" [value]="subReason.code">
+                                {{subReason.description}}
+                            </option>
+                        </select>
+                        <div class="alert alert-danger lrs-alert"
+                             [display]="subReason.errors && (subReason.dirty || subReason.touched)">
+                            <div class="small"
+                                 [hidden]="!(subReason.errors && subReason.errors.required)">
+                                Selection Sub-Reason is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-select">
+                        <label class="small required" for="reviewType">Review Type</label>
+                        <select id="reviewType"
+                                name="reviewType"
+                                #reviewType="ngModel"
+                                class="form-control select-sm"
+                                [(ngModel)]="caseFilter.reviewType"
+                                (ngModelChange)="setReviewType()"
+                                [disabled]="reviewTypeDisabled"
+                                [dataTriggered]="true"
+                                required>
+                            <option value="">Select</option>
+                            <option *ngFor="let reviewType of reviewTypes" [value]="reviewType.code">
+                                {{reviewType.description}}
+                            </option>
+                        </select>
+                        <div class="alert alert-danger lrs-alert"
+                             [display]="reviewType.errors && (reviewType.dirty || reviewType.touched)">
+                            <div class="small"
+                                 [hidden]="!(reviewType.errors && reviewType.errors.required)">
+                                Review Type is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-select">
+                        <label class="small required" for="reviewLocation">Review Location</label>
+                        <select id="reviewLocation"
+                                name="reviewLocation"
+                                #location="ngModel"
+                                class="form-control select-sm"
+                                [(ngModel)]="caseFilter.reviewLocation" [disabled]="!userIsHqAdmin" required (ngModelChange)="loadBatchReviewers()">
+                            <option value="">Select</option>
+                            <option *ngFor="let location of reviewLocations" [value]="location.locationId">
+                                {{location.name}}
+                            </option>
+                        </select>
+                        <div class="alert alert-danger lrs-alert"
+                             [display]="location.errors && (location.dirty || location.touched)">
+                            <div class="small"
+                                 [hidden]="!(location.errors && location.errors.required)">
+                                Review Location is required
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="selection-input">
+
+                <div class="selection-case-numbers" [ngClass]="{'has-error' : noSearchResults}">
+                    <div class="selection-subhead">ADD CASES(S)</div>
+                    <label id="caseNo" for="cases" class="required">Enter Case Number(s)</label>
+                    <textarea id="cases" name="cases" class="form-control" [(ngModel)]="searchCaseNumbers"
+                              aria-labelledby="caseNo" cols="5" rows="2" (keypress)="keyEventHandler($event)" [attr.aria-invalid]="noSearchResults"></textarea>
+
+                    <div class="msg-and-add">
+                        <div class="msg"><span *ngIf="noSearchResults" role="alert" [innerHtml]="searchErrorMessage"></span></div>
+                        <div class="add">
+                            <button class="btn btn-primary" (click)="lookUpCases()" [disabled]="cannotAddCases()">Add</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="selection-batch">
+                    <div class="selection-subhead">ENTER BATCH SELECTION (IF APPLICABLE)</div>
+
+                    <div class="batch-col-heads">
+                        <div class="batch-col-head case-num">Case #</div>
+                        <div class="batch-col-head borrower">Borrower Name</div>
+                        <div class="batch-col-head address">Property Address</div>
+                        <div class="batch-col-head">Errors/Warnings</div>
+                    </div>
+
+                    <div class="container-fluid batch-panel">
+                        <div class="batch-item" *ngFor="let item of resultingCases; let idx=index">
+                            <div class="item-title" tabindex="0" [attr.aria-label]="'LENDER ' + item.lenderId +  ' - '  + item.lenderName">LENDER {{item.lenderId}} - {{item.lenderName}}</div>
+
+                            <label *ngIf="caseFilter.reviewReason !== SELECTION_REASONS.REVIEW_LOCATION_QC" class="batch-selection-checkbox-wrapper"><input type="checkbox" [(ngModel)]="item.isBatch">Batch Selection(s)</label>
+
+                            <div [attr.id]="'detail_' + idx" class="item-options col-md-12" [class.open]="item.isBatch">
+                                <form #detailsForm="ngForm">
+                                    <div class="col-md-12 no-left-pad">
+                                        <div class="inline-form-item col-md-4">
+
+                                            <label class="block-label">Operational Review</label>
+                                            <input type="radio" id="yes_review" name="yes_no_review" [(ngModel)]="item.batchInfo.requestOperationalReview" [value]="true">
+                                            <label class="right-padded">Yes</label>
+                                            <input type="radio" id="no_review" name="yes_no_review" [(ngModel)]="item.batchInfo.requestOperationalReview" [value]="false">
+                                            <label class="right-padded">No</label>
+
+                                        </div>
+
+                                        <div class="inline-form-item col-md-4">
+                                            <label class="block-label">Secondary ID (optional)</label>
+                                            <input type="text" class="form-control" aria-label="Secondary ID (optional)" name="secondaryId" [(ngModel)]="item.batchInfo.secondaryId">
+                                        </div>
+
+                                        <div class="inline-form-item col-md-4">
+                                            <label for="batchOwner">Batch Owner</label>
+                                            <select id="batchOwner"
+                                                    name="batchOwner"
+                                                    class="reviewer-select form-control"
+                                                    [(ngModel)]="item.batchInfo.batchOwner" required>
+                                                <option value="">Select</option>
+                                                <option *ngFor="let reviewer of batchOwners" [value]="reviewer.reviewerId">
+                                                    {{reviewer.name}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 no-left-pad">
+
+                                        <div class="inline-form-item col-md-4">
+
+                                            <label class="block-label">Request Operational Documents</label>
+                                            <input type="radio" name="yes_no_docs" [(ngModel)]="item.batchInfo.requestOperationalDocuments" [value]="true" [disabled]="item.batchInfo.requestOperationalReview == false">
+                                            <label class="right-padded">Yes</label>
+                                            <input type="radio" name="yes_no_docs" [(ngModel)]="item.batchInfo.requestOperationalDocuments" [value]="false" [disabled]="item.batchInfo.requestOperationalReview == false">
+                                            <label class="right-padded">No</label>
+
+                                        </div>
+
+                                        <div class="inline-form-item col-md-4">
+                                            <label for="guidanceTxt" class="block-label">Operational Review Guidance</label>
+                                            <textarea id="guidanceTxt" name="operationalGuidance" class="form-control" required [(ngModel)]="item.batchInfo.operationalReviewGuidance" [disabled]="item.batchInfo.requestOperationalReview == false"></textarea>
+                                        </div>
+
+                                        <div class="inline-form-item col-md-4 members">
+                                            <label for="batchTeamMembers">Batch Team Members</label>
+                                            <select id="batchTeamMembers"
+                                                    name="batchTeamMembers"
+                                                    #reviewPeople="ngModel"
+                                                    class="reviewer-select form-control"
+                                                    multiple="multiple"
+                                                    [(ngModel)]="item.batchInfo.batchTeamMembers" required>
+                                                <option value="">Select</option>
+                                                <option *ngFor="let reviewer of batchTeamMembers" [value]="reviewer.reviewerId">
+                                                    {{reviewer.name}}
+                                                </option>
+                                            </select>
+                                            <div class="alert alert-danger lrs-alert"
+                                                 [display]="reviewPeople.errors && (reviewPeople.dirty || reviewPeople.touched)">
+                                                <div class="small"
+                                                     [hidden]="!(reviewPeople.errors && reviewPeople.errors.required)">
+                                                    At least one batch team member is required
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="item-details col-md-12"
+                                *ngFor="let case of item.cases; let i=index"
+                                [class.error-no-submit]="!case.canSubmit"
+                                [class.warning-can-submit]="case.canSubmit && case.caseActivity && case.caseActivity.length"
+                                [class.first-one]="i==0"
+                                [class.has-review]="case.caseActivity && case.caseActivity.length">
+
+                                <button class="trash-can" value="Delete case" (click)="deleteCase(item.lenderId, case);">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                                <div class="detail-inline case-num">{{case.caseNumber}}</div>
+                                <div *ngIf="case.borrower" class="detail-inline borrower">{{case.borrower}}</div>
+                                <div *ngIf="!case.borrower" class="detail-inline borrower">-</div>
+                                <div class="detail-inline address">{{case.propertyAddress}}</div>
+
+                                <div class="detail-inline" *ngIf="case.caseActivity && case.caseActivity.length">
+                                    <div *ngFor="let caseActivity of case.caseActivity">
+                                        <span class="glyphicon glyphicon-warning-sign status-icon" [class.blocks-submit]="!!caseActivity.blocksSubmit"></span>
+                                        <span *ngIf="caseActivity.reviewStatus"><a [routerLink]="['../review', caseActivity.reviewId]">{{caseActivity.displayStatus}}</a></span>
+                                        <span *ngIf="!caseActivity.reviewStatus">{{caseActivity.displayStatus}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="no-case-message" *ngIf="!resultingCases.length">No cases selected. Add individual cases or multiple cases separated by commas.</div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="actions">
+                <div class="action-buttons">
+                    <button class="btn btn-secondary" (click)="resetCasesForReview()">Clear</button>
+                    <button class="btn btn-primary" (click)="submitCasesForReview()" [disabled]="!canSubmit()">Submit</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

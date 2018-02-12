@@ -1,0 +1,59 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3043_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+			<![CDATA[
+			update defect set description = 'Borrower Income'                        where defect_cd = 'BI'
+			update defect set description = 'Borrower Credit/Liabilities'            where defect_cd = 'BC'
+			update defect set description = 'LTV/Max Mortgage Amount'                where defect_cd = 'LA'
+			update defect set description = 'Borrower Assets'                        where defect_cd = 'BA'
+			update defect set description = 'Property Eligibility'                   where defect_cd = 'PE'
+			update defect set description = 'Property Appraisal'                     where defect_cd = 'PA'
+			update defect set description = 'Borrower Eligibility/Qualification'     where defect_cd = 'BE'
+			update defect set description = 'Mortgage Eligibility'                   where defect_cd = 'ME'
+			update defect set description = 'Lender Operations'                      where defect_cd = 'LP'
+			]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3043_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+			<![CDATA[
+			update defect set defect_cd = 'LM' where defect_cd = 'LA'
+			update defect set defect_cd = 'LO' where defect_cd = 'LP'			
+			update DEFECT_SOURCE set defect_cd = 'LM' where defect_cd = 'LA'
+			update DEFECT_SOURCE set defect_cd = 'LO' where defect_cd = 'LP'	
+			update DEFECT_SEVERITY set defect_cd = 'LM' where defect_cd = 'LA'
+			update DEFECT_SEVERITY set defect_cd = 'LO' where defect_cd = 'LP'		
+			update DEFECT_CAUSE set defect_cd = 'LM' where defect_cd = 'LA'
+			update DEFECT_CAUSE set defect_cd = 'LO' where defect_cd = 'LP'			
+			]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3043_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+			<![CDATA[
+			update qatree_question set question_reference = 'LM.001' where question_reference = 'LA.001'
+			update qatree_question set question_reference = 'LM.002' where question_reference = 'LA.002'
+			update qatree_question set question_reference = 'LM.005' where question_reference = 'LA.005'
+			update qatree_question set question_reference = 'LM.003' where question_reference = 'LA.003'
+			update qatree_question set question_reference = 'LM.004' where question_reference = 'LA.004'
+
+			update qatree_question set question_reference = 'LO.010'    where question_reference = 'LP.010'  
+			update qatree_question set question_reference = 'LO.011'    where question_reference = 'LP.011'  
+			update qatree_question set question_reference = 'LO.008'    where question_reference = 'LP.008'  
+			update qatree_question set question_reference = 'LO.007.1'  where question_reference = 'LP.007.1'
+			update qatree_question set question_reference = 'LO.007'    where question_reference = 'LP.007'  
+			update qatree_question set question_reference = 'LO.003'    where question_reference = 'LP.003'  
+			update qatree_question set question_reference = 'LO.005'    where question_reference = 'LP.005'  
+			update qatree_question set question_reference = 'LO.009'    where question_reference = 'LP.009'  
+			update qatree_question set question_reference = 'LO.002'    where question_reference = 'LP.002'  
+			update qatree_question set question_reference = 'LO.001'    where question_reference = 'LP.001'  
+			update qatree_question set question_reference = 'LO.012'    where question_reference = 'LP.012'  
+			update qatree_question set question_reference = 'LO.004'    where question_reference = 'LP.004'  
+			update qatree_question set question_reference = 'LO.006'	where question_reference = 'LP.006'	
+			]]>
+        </sql>
+    </changeSet>		
+
+</databaseChangeLog>    
+

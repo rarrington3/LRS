@@ -1,0 +1,72 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3203_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+    <createProcedure>
+		<![CDATA[
+				alter TRIGGER tI_REVIEW ON REVIEW FOR insert AS
+						
+						BEGIN
+						  DECLARE @MTGEE5  CHAR(5),
+								  @counter int,
+								  @char_counter char(6),
+								  @review_id uniqueidentifier,
+								  @case_number char(11),
+								  @year    char(4),
+								  @REVIEW_TYPE_ID uniqueidentifier,
+								  @BATCH_ID uniqueidentifier,
+								  @REVIEW_TYPE_CD char(1)
+						
+						select @review_id = review_id,
+							   @case_number = case_number,
+							   @REVIEW_TYPE_ID = REVIEW_TYPE_ID,
+							   @BATCH_ID = BATCH_ID
+						from inserted
+						
+						select @year = convert(char(4), year(CURRENT_TIMESTAMP) )
+						
+						select @REVIEW_TYPE_CD = REVIEW_TYPE_CD
+						from review_type_ref
+						where REVIEW_TYPE_ID = @REVIEW_TYPE_ID
+						
+						if @REVIEW_TYPE_CD = 'O'
+						begin
+						  select @MTGEE5 = MTGEE5
+						  from batch
+						  where batch_id = @batch_id
+						end
+						else
+						begin
+						  select @MTGEE5 = MTGEE5
+						  from loan_selection
+						  where case_number = @case_number
+						end
+						
+						select @counter = 0
+						
+						select @counter = max(substring(review_reference_id, 12, 17))
+						from review
+						where substring(review_reference_id, 1, 10) = @MTGEE5 + '-' + @year
+						
+						
+						if @counter is null
+						begin
+							select @counter = 1
+						end
+						else    
+						begin
+							select @counter = @counter + 1
+						end
+						
+						select @char_counter = REPLICATE('0', 6 - datalength(convert(varchar(6),@counter)) ) + convert(varchar(6),@counter)
+						
+						update review
+						set review_reference_id = @MTGEE5 + '-' + @year + '-' + @char_counter
+						where review_id = @review_id
+						
+						end
+		]]>
+        </createProcedure>
+    </changeSet>
+</databaseChangeLog>    
+
+

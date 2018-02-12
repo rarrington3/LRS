@@ -1,0 +1,13 @@
+import org.drools.core.process.core.datatype.impl.type.StringDataType;
+import org.drools.core.process.core.datatype.impl.type.ObjectDataType;
+
+[
+	[
+		"name" : "SubmitReviewLevelTask",
+		"displayName" : "Submit Review Level Task",
+		"parameters": [
+			"reviewLevelId": new StringDataType(),
+			"indemnificationTypeCode": new StringDataType()
+		]
+	]
+]

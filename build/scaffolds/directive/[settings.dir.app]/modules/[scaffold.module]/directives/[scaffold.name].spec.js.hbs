@@ -1,0 +1,58 @@
+{{> jsFileHeader }}
+
+import { Component } from '@angular/core';
+import { async, TestBed} from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { {{upperCase scaffold.module}}_COMPONENTS } from '../components/';
+import { {{upperCase scaffold.module}}_DIRECTIVES } from '../directives/';
+import { {{upperCase scaffold.module}}_PROVIDERS } from '../services/';
+import { {{upperCase scaffold.module}}_IMPORTS } from '../main';
+
+describe('{{scaffold.module}}/directives/{{scaffold.name}}.js', () => {
+
+    let SHARED_TEST_COMPONENTS = [];
+
+    @Component({
+        template: '<div {{headlessCamelCase scaffold.name}}></div>'
+    })
+    class TestComponent1 {
+
+    }
+
+    SHARED_TEST_COMPONENTS.push(TestComponent1);
+
+    @Component({
+        template: '<div {{headlessCamelCase scaffold.name}}="true"></div>'
+    })
+    class TestComponent2 {
+
+    }
+
+    SHARED_TEST_COMPONENTS.push(TestComponent2);
+
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+             declarations: [ {{upperCase scaffold.module}}_COMPONENTS, {{upperCase scaffold.module}}_DIRECTIVES, SHARED_TEST_COMPONENTS ],
+             providers: {{upperCase scaffold.module}}_PROVIDERS,
+             imports: [ {{upperCase scaffold.module}}_IMPORTS, RouterTestingModule ]
+        });
+    });
+
+    it('should initialize default value', async(() => {
+        TestBed.compileComponents().then(() => {
+            const fixture = TestBed.createComponent(TestComponent1);
+
+            fixture.detectChanges();
+            expect(fixture.nativeElement.querySelector('[{{headlessCamelCase scaffold.name}}]').classList.contains('{{headlessCamelCase scaffold.name}}')).toBe(false);
+        });
+    }));
+
+    it('should initialize custom value', async(() => {
+        TestBed.compileComponents().then(() => {
+            const fixture = TestBed.createComponent(TestComponent2);
+
+            fixture.detectChanges();
+            expect(fixture.nativeElement.querySelector('[{{headlessCamelCase scaffold.name}}]').classList.contains('{{headlessCamelCase scaffold.name}}')).toBe(true);
+        });
+    }));
+});

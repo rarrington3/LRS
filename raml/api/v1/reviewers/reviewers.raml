@@ -1,0 +1,124 @@
+#https://github.com/raml-org/raml-spec/blob/master/raml-0.8.md
+displayName: reviewer
+get:
+    securedBy:
+      - fhac:
+          roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+    description: Get a list of all available reviewers. If the current user is HQ_ADMIN, all reviewers will be returned. Otherwise, the current user's location.
+    responses:
+        200:
+            body:
+              example: !include "reviewers-example.json"
+              schema: Reviewers
+post:
+    securedBy:
+      - fhac:
+          roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN]
+      - reviewerChainOfCommand
+      - reviewerSupervisorGeographyChainOfCommand
+    description: Create a new reviewer.
+    body:
+        schema: ReviewerCreation
+        example: !include "reviewer-creation-example.json"
+    responses:
+        200:
+            description: The reviewer was successfully created.
+            body:
+              example: !include "reviewer-example.json"
+              schema: Reviewer
+        400:
+            description: The reviewer could not be created.
+            body:
+              example: !include "../common/apierror.example.json"
+              schema: ApiError
+        409:
+            description: There is a conflict creating the user (probable duplicate user).
+            body:
+              example: !include "../common/apierror.example.json"
+              schema: ApiError
+
+/active:
+    displayName: activeReviewers
+    description: |
+        Retrieve a list of active reviewers to be used From the Workload and Team tabs.
+    securedBy:
+        - fhac:
+            roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+    type:
+        collection-readonly:
+            collection-example: !include "reviewers-lite-example.json"
+            collection-schema: ReviewersLite
+
+/hq:
+    displayName: hqUsers
+    description: |
+        Retrieve a list of active  HQ users to be used in the Reports To and Vetted By dropdowns in Staff Management.
+    securedBy:
+        - fhac:
+            roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN]
+    type:
+        collection-readonly:
+            collection-example: !include "reviewers-lite-hq-collection-example.json"
+            collection-schema: ReviewersLite
+
+/qualifiedToReview/{reviewId}:
+    displayName: qualifiedToReviewByReviewId
+    description: |
+        Retrieve a list of available reviewers per the review ID for all locations.
+    securedBy:
+        - fhac:
+            roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN]
+    type:
+        collection-readonly:
+            collection-example: !include "reviewers-lite-example.json"
+            collection-schema: ReviewersLite
+
+    /myLocation:
+        displayName: qualifiedToReviewByReviewIdForLocation
+        description: |
+            Retrieve a list of available reviewers per the review ID for the current users's location.
+        securedBy:
+            - fhac:
+                roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+        type:
+            collection-readonly:
+                collection-example: !include "reviewers-lite-example.json"
+                collection-schema: ReviewersLite
+
+
+/{reviewerId}:
+  displayName: reviewerManagement
+  type:
+    member:
+      member-example: !include "reviewer-example.json"
+      member-schema: Reviewer
+  get:
+    description: Retrieve a specific reviewer by ID.
+    securedBy:
+        - fhac:
+            roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN, ROLE_REVIEWER]
+  put:
+    securedBy:
+      - fhac:
+          roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN]
+      - reviewerChainOfCommand
+      - reviewerSupervisorGeographyChainOfCommand
+      - reviewerVetterGeography
+    description: Update an existing reviewer.
+    responses:
+        200:
+            description: The reviewer was successfully updated.
+        409:
+            description: |
+              The specified reviewer could not be de-activated because they have an active association
+              (reviewer of an active review level, vetter of an active person, supervisor of an active person)
+
+  delete:
+    securedBy:
+      - fhac:
+          roles: [ROLE_HQ_ADMIN, ROLE_REVIEW_LOCATION_ADMIN]
+      - reviewerChainOfCommand
+    description: Delete an existing reviewer.
+    responses:
+        200:
+            description: The reviewer was successfully removed.

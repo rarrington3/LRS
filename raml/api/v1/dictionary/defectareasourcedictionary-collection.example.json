@@ -1,0 +1,342 @@
+[
+  {
+    "defectAreaCode": "BI",
+    "defectSourceCode": "1",
+    "description": "Issues With Standard employment"
+  },
+  {
+    "defectAreaCode": "BI",
+    "defectSourceCode": "2",
+    "description": "Issues With Part-time and seasonal employment"
+  },
+  {
+    "defectAreaCode": "BI",
+    "defectSourceCode": "3",
+    "description": "Issues With Overtime, bonus, and commission income"
+  },
+  {
+    "defectAreaCode": "BI",
+    "defectSourceCode": "4",
+    "description": "Issues With Self-Employment income"
+  },
+  {
+    "defectAreaCode": "BI",
+    "defectSourceCode": "5",
+    "description": "Issues With Pension and retirement income"
+  },
+  {
+    "defectAreaCode": "BI",
+    "defectSourceCode": "6",
+    "description": "Issues With Rental income"
+  },
+  {
+    "defectAreaCode": "BI",
+    "defectSourceCode": "7",
+    "description": "Issues With Social Security income"
+  },
+  {
+    "defectAreaCode": "BI",
+    "defectSourceCode": "8",
+    "description": "Other"
+  },
+  {
+    "defectAreaCode": "BC",
+    "defectSourceCode": "1",
+    "description": "Credit report does not meet requirements or missing"
+  },
+  {
+    "defectAreaCode": "BC",
+    "defectSourceCode": "2",
+    "description": "Non-traditional credit verification does not meet requirements or missing "
+  },
+  {
+    "defectAreaCode": "BC",
+    "defectSourceCode": "3",
+    "description": "Issues in calculating borrower debt"
+  },
+  {
+    "defectAreaCode": "BC",
+    "defectSourceCode": "4",
+    "description": "Payment history not established"
+  },
+  {
+    "defectAreaCode": "BC",
+    "defectSourceCode": "5",
+    "description": "Inquiries and recent debt not properly verified"
+  },
+  {
+    "defectAreaCode": "BC",
+    "defectSourceCode": "6",
+    "description": "Derogatory credit information does not support approval "
+  },
+  {
+    "defectAreaCode": "BC",
+    "defectSourceCode": "7",
+    "description": "Elements of borrowers credit not captured in loan application "
+  },
+  {
+    "defectAreaCode": "BC",
+    "defectSourceCode": "8",
+    "description": "Other"
+  },
+  {
+    "defectAreaCode": "LM",
+    "defectSourceCode": "1",
+    "description": "Issues With Maximum Mortgage amount"
+  },
+  {
+    "defectAreaCode": "LM",
+    "defectSourceCode": "2",
+    "description": "Issues With LTV"
+  },
+  {
+    "defectAreaCode": "LM",
+    "defectSourceCode": "3",
+    "description": "Issues With CLTV"
+  },
+  {
+    "defectAreaCode": "LM",
+    "defectSourceCode": "4",
+    "description": "Issues With HECM – Principal limit and Max Claim amount"
+  },
+  {
+    "defectAreaCode": "LM",
+    "defectSourceCode": "5",
+    "description": "Other"
+  },
+  {
+    "defectAreaCode": "BA",
+    "defectSourceCode": "1",
+    "description": "Minimum required investment not met"
+  },
+  {
+    "defectAreaCode": "BA",
+    "defectSourceCode": "2",
+    "description": "Minimum required investment is met, but closing costs and other"
+  },
+  {
+    "defectAreaCode": "BA",
+    "defectSourceCode": "3",
+    "description": "Minimum required investment is met, but closing costs and other"
+  },
+  {
+    "defectAreaCode": "PE",
+    "defectSourceCode": "1",
+    "description": "Minimum Property Requirements and General Acceptability Criteria "
+  },
+  {
+    "defectAreaCode": "PE",
+    "defectSourceCode": "2",
+    "description": "Property zoning does not meet policy"
+  },
+  {
+    "defectAreaCode": "PE",
+    "defectSourceCode": "3",
+    "description": "Property flood requirements not met"
+  },
+  {
+    "defectAreaCode": "PE",
+    "defectSourceCode": "4",
+    "description": "Manufactured home ineligible"
+  },
+  {
+    "defectAreaCode": "PE",
+    "defectSourceCode": "5",
+    "description": "New Construction ineligible"
+  },
+  {
+    "defectAreaCode": "PE",
+    "defectSourceCode": "6",
+    "description": "Property fails to adhere to flipping guidelines"
+  },
+  {
+    "defectAreaCode": "PE",
+    "defectSourceCode": "7",
+    "description": "Condo project not approved or withdrawn"
+  },
+  {
+    "defectAreaCode": "PE",
+    "defectSourceCode": "8",
+    "description": "Condo – loan level issues"
+  },
+  {
+    "defectAreaCode": "PE",
+    "defectSourceCode": "9",
+    "description": "Repairs not completed or repair escrow account not established (not to include MPR)"
+  },
+  {
+    "defectAreaCode": "PE",
+    "defectSourceCode": "10",
+    "description": "Required compliance inspections not completed"
+  },
+  {
+    "defectAreaCode": "PE",
+    "defectSourceCode": "11",
+    "description": "Property not acceptable"
+  },
+  {
+    "defectAreaCode": "PE",
+    "defectSourceCode": "12",
+    "description": "Non-MPR Property repair issues & escrow account not established"
+  },
+  {
+    "defectAreaCode": "PE",
+    "defectSourceCode": "13",
+    "description": "Other"
+  },
+  {
+    "defectAreaCode": "PA",
+    "defectSourceCode": "1",
+    "description": "Appraisal valuation not supported "
+  },
+  {
+    "defectAreaCode": "PA",
+    "defectSourceCode": "2",
+    "description": "Appraisal missing or expired"
+  },
+  {
+    "defectAreaCode": "PA",
+    "defectSourceCode": "3",
+    "description": "Appraisal report does not meet FHA standards"
+  },
+  {
+    "defectAreaCode": "PA",
+    "defectSourceCode": "4",
+    "description": "New Construction, Construction to Permanent, or Build on own land – Appraisal review has not confirmed maximum financing permitted"
+  },
+  {
+    "defectAreaCode": "BE",
+    "defectSourceCode": "1",
+    "description": "Issues with borrower or non-borrowing spouse’s identity (SSN or TIN)"
+  },
+  {
+    "defectAreaCode": "BE",
+    "defectSourceCode": "2",
+    "description": "Borrower or non-borrowing spouse lacks legal residency status and/or work authorization"
+  },
+  {
+    "defectAreaCode": "BE",
+    "defectSourceCode": "3",
+    "description": "Borrower age does not meet requirement "
+  },
+  {
+    "defectAreaCode": "BE",
+    "defectSourceCode": "4",
+    "description": "Borrower has another property already under HECM rule"
+  },
+  {
+    "defectAreaCode": "BE",
+    "defectSourceCode": "5",
+    "description": "Borrower credit score"
+  },
+  {
+    "defectAreaCode": "BE",
+    "defectSourceCode": "6",
+    "description": "Principal occupancy guidelines not met"
+  },
+  {
+    "defectAreaCode": "BE",
+    "defectSourceCode": "7",
+    "description": "CAIVRS, LDP/GSA authorization  and/or court-ordered judgment issues and/or delinquent federal debt issues "
+  },
+  {
+    "defectAreaCode": "BE",
+    "defectSourceCode": "8",
+    "description": "Valid first lien for refinance"
+  },
+  {
+    "defectAreaCode": "BE",
+    "defectSourceCode": "9",
+    "description": "Borrower removed co-borrower for streamline refinance without credit qualifying"
+  },
+  {
+    "defectAreaCode": "BE",
+    "defectSourceCode": "10",
+    "description": "Other"
+  },
+  {
+    "defectAreaCode": "ME",
+    "defectSourceCode": "1",
+    "description": "Required forms, including URLA 1003 and/or HUD-92900-A are missing or not properly executed"
+  },
+  {
+    "defectAreaCode": "ME",
+    "defectSourceCode": "2",
+    "description": "Mortgage delinquent at endorsement"
+  },
+  {
+    "defectAreaCode": "ME",
+    "defectSourceCode": "3",
+    "description": "Loan does not meet mortgage product eligibility issues"
+  },
+  {
+    "defectAreaCode": "ME",
+    "defectSourceCode": "4",
+    "description": "Lender has not performed program specific insurability obligations"
+  },
+  {
+    "defectAreaCode": "ME",
+    "defectSourceCode": "5",
+    "description": "Restrictive covenants are present in the contract"
+  },
+  {
+    "defectAreaCode": "ME",
+    "defectSourceCode": "6",
+    "description": "Conditions to title of property not acceptable"
+  },
+  {
+    "defectAreaCode": "ME",
+    "defectSourceCode": "7",
+    "description": "Mortgage, note, riders, or allonges are missing, improperly executed, or not executed in compliance with FHA guidance"
+  },
+  {
+    "defectAreaCode": "ME",
+    "defectSourceCode": "8",
+    "description": "Other"
+  },
+  {
+    "defectAreaCode": "LO",
+    "defectSourceCode": "1",
+    "description": "NMLS registration information incorrect or missing"
+  },
+  {
+    "defectAreaCode": "LO",
+    "defectSourceCode": "2",
+    "description": "Unallowable, undisclosed, or excess fees or costs to borrower"
+  },
+  {
+    "defectAreaCode": "LO",
+    "defectSourceCode": "3",
+    "description": "Misuse of escrow"
+  },
+  {
+    "defectAreaCode": "LO",
+    "defectSourceCode": "4",
+    "description": "Issues with late endorsement certification"
+  },
+  {
+    "defectAreaCode": "LO",
+    "defectSourceCode": "5",
+    "description": "Lender compliance issues"
+  },
+  {
+    "defectAreaCode": "LO",
+    "defectSourceCode": "6",
+    "description": "Failure to follow TOTAL Mortgage Scorecard guide  process when entering a loan to TOTAL or interpreting results from TOTAL"
+  },
+  {
+    "defectAreaCode": "LO",
+    "defectSourceCode": "7",
+    "description": "Other parties to the transaction are ineligible"
+  },
+  {
+    "defectAreaCode": "LO",
+    "defectSourceCode": "8",
+    "description": "AUS Feedback Certificate missing"
+  },
+  {
+    "defectAreaCode": "LO",
+    "defectSourceCode": "9",
+    "description": "Other"
+  }
+]

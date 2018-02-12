@@ -1,0 +1,13 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="jordanchavez@kpmg.com" id="HUDLRS_1820_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE JOB ALTER COLUMN COMPLETED_DT DATETIME NULL
+            UPDATE JOB_TYPE_REF SET DESCRIPTION = 'Monthly Endorsement Selection' WHERE CODE = 'ENDR'
+            UPDATE JOB_TYPE_REF SET DESCRIPTION = 'Monthly Early Claim Selection' WHERE CODE = 'ECLM'
+            UPDATE JOB_TYPE_REF SET DESCRIPTION = 'Monthly Early Pending Default Selection' WHERE CODE = 'EPDF'
+		]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>

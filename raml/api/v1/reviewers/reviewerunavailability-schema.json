@@ -1,0 +1,23 @@
+{
+    "id": "http://LRS/ReviewerUnavailability",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": ["unavailabilityId", "from", "to"],
+    "additionalProperties": false,
+    "properties": {
+        "unavailabilityId": {
+            "description": "The unavailability id for the record.",
+            "type": "string"
+        },
+        "from": {
+            "description": "Date when the reviewer's unavailability begins.",
+            "type": "string",
+            "format": "date"
+        },
+        "to": {
+            "description": "Date when the reviewer's unavailabity ends.",
+            "type": "string",
+            "format": "date"
+        }
+    }
+}

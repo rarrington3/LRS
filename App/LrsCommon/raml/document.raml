@@ -1,0 +1,61 @@
+#%RAML 0.8
+title: HUD-ESB Document Store and Retrieve API
+version: 1.0
+baseUri: http://localhost:8104/hud-esb/dms/api/v1.0
+securedBy: [oauth_2_0: {scopes: [ "urn:hud:esb:api:dms:create:document urn:hud:esb:api:dms:update:document urn:hud:esb:api:dms:get:document" ] } ]
+securitySchemes: 
+  - oauth_2_0: !include ./securitySchemes/oauth_2_0.raml
+
+documentation: 
+  - title: HUD-ESB Document API
+    content: HUD-ESB Document API - Store and retrieve documents in the document repository.  This service is owned by CHUMS
+
+/document:
+  get:
+    description: Retrieve a document from the document repository for a given document type, document key, and document name
+    queryParameters:
+      documentType:
+        description: The document type, i.e., 'Mitigating', 'Indemnification', or 'Operational'
+        required: true
+        type: string
+        enum: [Mitigating, Indemnification, Operational]
+      documentKey:
+        description: The document key.  Case number (for Mitigiating and Indemnification types) or Lender ID (for Operational)
+        required: true
+        minLength: 5
+        maxLength: 10
+        pattern: '^[0-9]{5}|[0-9]{10}$'
+        type: string
+        example: '1234567890'
+      documentName:
+        description: The document name.  Free form text
+        type: string
+        example: 'Test Document 1' 
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include ./schema/documentGetOutputSchema.json
+            example: !include ./example/documentGetOutput200Example.json  
+  post:
+    description: Store a new document, or a new version, in the document repository
+    body:
+      application/json:
+        schema: !include ./schema/documentPostInputSchema.json
+        example: !include ./example/documentPostInputExample.json
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include ./schema/documentPostOutputSchema.json
+            example: !include ./example/documentPostOutput200Example.json
+      400:
+        body:
+          application/json:
+            schema: !include ./schema/documentPostOutputSchema.json
+            example: !include ./example/documentPostOutput400Example.json
+      500:
+        body:
+          application/json:
+            schema: !include ./schema/documentPostOutputSchema.json
+            example: !include ./example/documentPostOutput500Example.json

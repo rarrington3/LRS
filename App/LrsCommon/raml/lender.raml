@@ -1,0 +1,76 @@
+#%RAML 0.8
+title: HUD-ESB Query Lender Microservice API
+version: v1.1
+baseUri: http://localhost:8086/hud-esb/api/v1.1
+#securedBy: [oauth_2_0: { scopes: [ "urn:hud:esb:api:partner:get:lender:profile" ] } ]
+securitySchemes:
+  - oauth_2_0: !include securitySchemes/oauth_2_0.raml
+
+protocols: [ HTTP ]
+mediaType: application/json
+documentation:
+    - title: HUD-ESB Query Lender MicroService API
+      content: |
+        HUD ESB Query Lender MicroService API - Contract-first interface development with RAML.  This is the micro-service that that will query a system for lenders.
+
+schemas:
+    - lenderSearchResults:  !include ./schemas/exchange/lender-search-results-exchange-schema.json
+    - esbException:         !include ./schemas/esb-core/1.0/esb-exception-schema.json
+    - serviceConsumerData:  !include ./schemas/esb-core/1.0/service-consumer-data-schema.json
+
+/lenders/{id}:
+  description: query for lenders
+  uriParameters:
+    id:
+      description: The `id` of the specific lender
+      type: number
+      example: 18945
+  get:
+    displayName: query for a specific lenders, identified by its id
+    headers:
+      serviceConsumerData:
+        description: Audit header that should be submitted with each HUD ESB API call
+        type: string
+        required: false
+        example: !include ./examples/esb-core/1.0/service-consumer-data-example.json
+    responses:
+        200:
+          body:
+            application/json:
+                schema: lenderSearchResults
+                example: !include examples/exchange/lender-search-results-example.json
+          headers:
+            application/json:
+                displayName: serviceConsumerData
+                description: Audit header that should be submitted with each HUD ESB API call
+                type: string
+                required: true
+                example: !include ./examples/esb-core/1.0/service-consumer-data-example.json
+        400:
+          description: Internal Server Error.  Return esbException
+          body:
+            application/json:
+                schema: esbException
+                example: !include ./examples/esb-core/1.0/esb-exception-example.json
+
+#/lenders:
+#      displayName: query for lenders based on a provided search criteria
+#      get:
+#        description: query for lenders
+#        queryParameters:
+#          lenderIds:
+#            description: A comma separated list of lender ids whose info should be returned
+#          lenderName:
+#            description: A comma separated list of lender ids whose info should be returned
+#        responses:
+#          200:
+#            body:
+#              application/json:
+#                  schema: lenderSearchResults
+#                  example: !include examples/lender-search-results-example.json
+#          400:
+#            description: Internal Server Error.  Return esbException
+#            body:
+#              application/json:
+#                  schema: esbException
+#                  example: !include ./examples/esb-core/1.0/esb-exception-example.json

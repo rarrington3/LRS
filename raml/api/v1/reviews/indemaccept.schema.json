@@ -1,0 +1,16 @@
+{
+    "id": "http://LRS/IndemAccept",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": ["reviewLocationId", "indemTransferrable"],
+    "properties": {
+        "reviewLocationId": {
+            "description": "The identifier of the review location of the indemnification",
+            "type": "string"
+        },
+        "indemTransferrable": {
+            "description": "The indicator if the indemnification is transferrable",
+            "type": "boolean"
+        }
+    }
+}

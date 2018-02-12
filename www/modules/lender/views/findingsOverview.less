@@ -1,0 +1,148 @@
+@import '../../bootstrap/_variables';
+:host-context {
+	/* styles should be scoped under host-context */
+	.finding-overview-container {
+		position: relative;
+		padding-left: 60px;
+		padding-right: 60px;
+	}
+
+	.footer {
+
+		.review-rating-label {
+			padding: 10px;
+			border: 1px solid @gray-lighter;
+			font-size: @font-size-h6;
+			color: @gray;
+		}
+
+		.review-rating-status {
+			font-size: @font-size-h6;
+			color: @brand-danger;
+			font-weight: bold;
+		}
+
+		>.btn {
+			min-width: 168px;
+		}
+	}
+
+	.severity-tier-label {
+		position: absolute;
+		right: 88px;
+		top: 45px;
+		font-size: @font-size-h6;
+		font-weight: 700;
+	}
+
+	.tier-cell {
+		background-color: @brand-success;
+		border: 1px solid white;
+		color: white;
+
+		&.tier-1, &.tier-2, &.danger {
+			background-color: @brand-danger;
+		}
+
+		&.warning {
+			background-color: @brand-warning;
+		}
+
+		&.tier-3 {
+			background-color: @brand-warning;
+		}
+
+		&.tier-4  {
+			background-color: @brand-warning;
+			opacity: .5;
+		}
+	}
+
+	.btn {
+		float: right;
+	}
+	.view-title {
+		color: @brand-secondary;
+		text-transform: uppercase;
+	}
+
+	.wrap-up-table {
+		border-collapse: separate;
+		border: none;
+		overflow: hidden;
+		thead > tr > th {
+			padding: 10px;
+			font-size: @font-size-h6;
+			font-weight: 700;
+			border: none;
+			text-align: left;
+			font-weight: bold;
+			a {
+				color: @brand-secondary;
+				text-decoration: underline;
+			}
+			&.severity-tier {
+				width: 33px;
+			}
+		}
+		button {
+			padding: 1px 8px;
+			float: right;
+		}
+
+		.conforming {
+			color: @brand-success;
+		}
+
+		.bold-text {
+			font-weight: bold;
+		}
+		// top corners
+		tr:first-child {
+			td:first-child {
+				border-top-left-radius: @border-radius-base;
+			}
+			td:last-child {
+				border-top-right-radius: @border-radius-base;
+			}
+		}
+		// bottom corners
+		tr:last-child {
+			td:first-child {
+				border-bottom-left-radius: @border-radius-base;
+			}
+			td:last-child {
+				border-bottom-right-radius: @border-radius-base;
+			}
+			td {
+				border-bottom: 1px solid @brand-grey-border-color;
+			}
+		}
+		// stripes
+		tr {
+			td:first-child {
+				border-left: 1px solid @brand-grey-border-color;
+			}
+			td:last-child {
+				border-right: 1px solid @brand-grey-border-color;
+			}
+		}
+		td {
+			padding: 10px;
+			font-size: @font-size-h6;
+			font-weight: 400;
+			&.severity-tier {
+				width: 33px;
+			}
+		}
+		.totals {
+			.no-border {
+				border: none;
+			}
+		}
+
+		td:not(:first-child) {
+			padding-left: 16px;
+		}
+	}
+}

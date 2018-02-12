@@ -1,0 +1,32 @@
+{
+    "id": "http://LRS/Config",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "additionalProperties": false,
+    "properties": {
+        "lrsUiDev": {
+            "description": "Determines if the application is running in dev mode.",
+            "type": "boolean"
+        },
+        "microstrategyUrl": {
+            "description": "Url for microstrategy",
+            "type": "string"
+        },
+        "electronicCaseBinder": {
+            "description": "Url for accessing ecase binder.  {caseNumber} in the string is a placeholder for inserting an actual case number",
+            "type": "string"
+        },
+        "electronicAppraisal": {
+            "description": "Url for eAppraisals.  {caseNumber} in the string is a placeholder for inserting an actual case number",
+            "type": "string"
+        },
+        "totalScorecardEmulator": {
+            "description": "Url for accessing TOTAL scorecard emulator.  {caseNumber} in the string is a placeholder for inserting an actual case number",
+            "type": "string"
+        },
+        "totalScorecardEmulatorComparison": {
+            "description": "Url for accessing TOTAL scorecard emulator comparison.  {caseNumber} in the string is a placeholder for inserting an actual case number",
+            "type": "string"
+        }
+    }
+}

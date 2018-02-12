@@ -1,0 +1,42 @@
+<div class="the-sub-header">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-9 placeholder">
+				<div class="loan-overview">{{userSvc.lender.name}} ({{userSvc.lender.lenderId}})</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="review">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="lrs-layout-table">
+                    <td class="lrs-layout-table-cell left-side-bar">
+                        <div class="lrs-content-panel">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" routerLinkActive="active" [routerLink]="['./summary']" [ngClass]="isActive('/activeReviews/summary')"><a aria-label="Requests">Requests</a></li>
+                                <li role="presentation" routerLinkActive="active" [routerLink]="['./batches']" [ngClass]="isActive('/activeReviews/batches')" ><a aria-label="Batches">Batches</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade in" id="requests-sidebar" [ngClass]="isActive('/activeReviews/summary')">
+                                    <cross-filter-view [dimensions]="requestsTabDimensions" [dataSource]="lenderService.allReviewsObservable"></cross-filter-view>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade in" id="batches-sidebar" [ngClass]="isActive('/activeReviews/batches')">
+                                     <lender-batches-sidebar></lender-batches-sidebar>
+                                </div>
+                            </div>
+                            <disclaimer></disclaimer>
+                        </div>
+                    </td>
+                    <td class="layout-table-cell content-area">
+                        <div class="lrs-content-panel">
+                            <router-outlet></router-outlet>
+                        </div>
+                    </td>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

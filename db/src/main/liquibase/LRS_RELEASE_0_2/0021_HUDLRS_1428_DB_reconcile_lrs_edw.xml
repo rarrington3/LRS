@@ -1,0 +1,578 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1428_alter_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table loan_selection_case_summary add COBORR_1_FICO_CNT             smallint       null
+			alter table loan_selection_case_summary add CNDTNL_CMMTMNT_RVWR           varchar(23)    null
+			alter table loan_selection_case_summary add CND_IND                       char(1)        null
+			alter table loan_selection_case_summary add CURR_DLNQNCY_MNTHS_DLNQNT     smallint       null
+			alter table loan_selection_case_summary add ENDRS_APRSL_DAY_DIFF          smallint       null
+			alter table loan_selection_case_summary add ENDRS_PRCSNG_DT               datetime       null
+			alter table loan_selection_case_summary add ESCRW_FLAG                    char(1)        null
+			alter table loan_selection_case_summary add GEOCD_FLAG                    char(3)        null
+			alter table loan_selection_case_summary add INDEM_DT                      datetime       null
+			alter table loan_selection_case_summary add INDEM_STAT                    char(1)        null
+			alter table loan_selection_case_summary add INDEM_TERM                    smallint       null
+			alter table loan_selection_case_summary add INDEM_TYPE                    char(1)        null
+			alter table loan_selection_case_summary add LAST_CASE_QLFCTN_EVNT_DT      datetime       null
+			alter table loan_selection_case_summary add MISC_EBNDR_IND                char(1)        null
+			alter table loan_selection_case_summary add NONPERF_LOAN_IND              char(1)        null
+			alter table loan_selection_case_summary add NOR_ISSUE_DT                  datetime       null
+			alter table loan_selection_case_summary add ORGNTNG_MRTGGEE_INST_STAT     char(1)        null
+			alter table loan_selection_case_summary add PMTS_BFR_FRST_MISSD_PMT       smallint       null
+			alter table loan_selection_case_summary add PREQUAL_CNT                   smallint       null
+			alter table loan_selection_case_summary add PRICE_EXCLDNG_CLSNG_COSTS     numeric(16,2)  null  
+			alter table loan_selection_case_summary add PRICE_INCLDNG_CLSNG_COSTS     numeric(16,2)  null  
+			alter table loan_selection_case_summary add PRR_CASE_MXMM_CLM_AMT         numeric(16,2)  null  
+			alter table loan_selection_case_summary add REFI_PRR_CASE_NBR             char(10)       null
+			alter table loan_selection_case_summary add SPNSR_MRTGGEE_ID_INST         char(5)        null
+			alter table loan_selection_case_summary add TERM_15_YR_IND                char(1)        null
+			alter table loan_selection_case_summary add UNDRSRVD_IND                  char(1)        null
+			alter table loan_selection_case_summary add BORR_1_YRS_AT_CURR_JOB int null
+			alter table loan_selection_case_summary add GIFT_LTR_2_TIN char(11) null
+			alter table loan_selection_case_summary add LOAN_PRPS_IMPRVMNT_IND char(1) null
+			alter table loan_selection_case_summary add LOAN_PRPS_INCM_IND char(1) null
+			alter table loan_selection_case_summary add SPNSR_MTGEE10_ID char(10) null		
+			
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1428_drop_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table loan_selection_case_summary drop column AFFORD_HOUS_PROV_EIN
+			alter table loan_selection_case_summary drop column ASSETS_AFTER_CLOSING
+			alter table loan_selection_case_summary drop column ASSETS_AFTER_CLOSING_ENDRS
+			alter table loan_selection_case_summary drop column AUS_SCORE_CODE
+			alter table loan_selection_case_summary drop column BORR_2_FIRST_TIME_BUYER_IND
+			alter table loan_selection_case_summary drop column BORR_2_RENTING_IND
+			alter table loan_selection_case_summary drop column BORR_2_SELF_EMPL_IND
+			alter table loan_selection_case_summary drop column BORR_2_YEARS_CURRENT_JOB
+			alter table loan_selection_case_summary drop column BORR_HSNG_EXP
+			alter table loan_selection_case_summary drop column CLOSNG_DT
+			alter table loan_selection_case_summary drop column COMM_PROPERTY_STATE_IND
+			alter table loan_selection_case_summary drop column COMMTY_LAND_TRUST_EIN
+			alter table loan_selection_case_summary drop column CONST_COMPLT_YR_MO
+			alter table loan_selection_case_summary drop column CURR_DFLT_MM_CYC_DT
+			alter table loan_selection_case_summary drop column CURR_DFLT_STS_IND
+			alter table loan_selection_case_summary drop column DAYS_IN_DEFAULT
+			alter table loan_selection_case_summary drop column DCSN_CD
+			alter table loan_selection_case_summary drop column DEPO_IS_PRESENT_IND
+			alter table loan_selection_case_summary drop column DERIVED_OPTN_USED_CD
+			alter table loan_selection_case_summary drop column DFLT_90DAY_IND
+			alter table loan_selection_case_summary drop column DFLT_ASGNMNT_DT
+			alter table loan_selection_case_summary drop column DFLT_CRTN_DT
+			alter table loan_selection_case_summary drop column DFLT_CYC_DT
+			alter table loan_selection_case_summary drop column DFLT_EPISODE_NBR
+			alter table loan_selection_case_summary drop column DFLT_HIST_FT_IN_EPS_3M_DELQ_DT
+			alter table loan_selection_case_summary drop column DFLT_HIST_LOSSMIT_CD
+			alter table loan_selection_case_summary drop column DFLT_MM_CYC_DT
+			alter table loan_selection_case_summary drop column DFLT_RSN_CD
+			alter table loan_selection_case_summary drop column DFLT_SRVCR
+			alter table loan_selection_case_summary drop column DFLT_STS_CD
+			alter table loan_selection_case_summary drop column DFLT_STS_DT
+			alter table loan_selection_case_summary drop column DFLT_STS_SUMMARY_CD
+			alter table loan_selection_case_summary drop column DFLT_TRNSCTN_DT
+			alter table loan_selection_case_summary drop column EFF_DATE_APRSL
+			alter table loan_selection_case_summary drop column EFFECTIVE_FICO_SCORE
+			alter table loan_selection_case_summary drop column END_CD
+			alter table loan_selection_case_summary drop column FICO_DECISION_SCORE
+			alter table loan_selection_case_summary drop column FICO_SCORE
+			alter table loan_selection_case_summary drop column FT_IN_EPS_2MNTH_DELQ_DT
+			alter table loan_selection_case_summary drop column FT_IN_EPS_2MNTH_DELQ_IND
+			alter table loan_selection_case_summary drop column FT_IN_EPS_3MNTH_DELQ_IND
+			alter table loan_selection_case_summary drop column FTE_2MNTH_DELQ_DT
+			alter table loan_selection_case_summary drop column HARDCOPY_DOCS_IND
+			alter table loan_selection_case_summary drop column HECM_MNTHLY_INC
+			alter table loan_selection_case_summary drop column HLDR_MTGEE10_A43C
+			alter table loan_selection_case_summary drop column INIT_MIP_FACTOR
+			alter table loan_selection_case_summary drop column LAST_CS_SCORE_DT
+			alter table loan_selection_case_summary drop column LTV_CAT_NEW
+			alter table loan_selection_case_summary drop column LTV_CAT_OLD
+			alter table loan_selection_case_summary drop column MAX_CLAIM_AMT_NEW
+			alter table loan_selection_case_summary drop column MAX_CLAIM_AMT_OLD
+			alter table loan_selection_case_summary drop column MONTHLY_P_I
+			alter table loan_selection_case_summary drop column NBR_MONTHS
+			alter table loan_selection_case_summary drop column OCPNCY_STS
+			alter table loan_selection_case_summary drop column PRC_EXCL_CLSNG_AMT
+			alter table loan_selection_case_summary drop column PRC_INCL_CLSNG_AMT
+			alter table loan_selection_case_summary drop column PREQUAL_OUTPUT
+			alter table loan_selection_case_summary drop column PROP_CURR_OCCUPANCY_TYPE
+			alter table loan_selection_case_summary drop column PROPERTY_REPAIRS
+			alter table loan_selection_case_summary drop column PYMTS_BFR_FRST_MISSED_PYMT
+			alter table loan_selection_case_summary drop column RATIO_LOAN_TO_VL_OLD
+			alter table loan_selection_case_summary drop column REAL_ESTATE_ASSETS
+			alter table loan_selection_case_summary drop column REPAIR_RIDER_IN_FILE_IND
+			alter table loan_selection_case_summary drop column RFNC_IND
+			alter table loan_selection_case_summary drop column RPR_ESCRW_AMT
+			alter table loan_selection_case_summary drop column RQRD_INVEST
+			alter table loan_selection_case_summary drop column SFPCS_MTGEE_ID
+			alter table loan_selection_case_summary drop column SQNC_NBR
+			alter table loan_selection_case_summary drop column SRVCR_MTGEE10_A43C
+			alter table loan_selection_case_summary drop column STRT_STOP_EPS_IND
+			alter table loan_selection_case_summary drop column TAX_INSUR_YR_1_PMTS
+			alter table loan_selection_case_summary drop column TOT_ASSETS
+			alter table loan_selection_case_summary drop column TOT_CLSNG_CSTS
+			alter table loan_selection_case_summary drop column TOT_FIXED_PYMT
+			alter table loan_selection_case_summary drop column TOT_MNTHLY_MTG_PYMT
+			alter table loan_selection_case_summary drop column TRV_SLCT_RSN_CD
+			alter table loan_selection_case_summary drop column BORR_1_YEARS_CURRENT_JOB			
+			alter table loan_selection_case_summary drop column RANDOM_NUMBER
+			alter table loan_selection_case_summary drop column RATIO_FIX_TEI
+			alter table loan_selection_case_summary drop column RATIO_TMP_TEI
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1428_delete_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from DICT_METADATA_FIELD where
+			ENTITY_NAME = 'Case Summary for Selection'
+			 and DB_COLUMN in
+			(
+			'AFFORD_HOUS_PROV_EIN'           ,
+			'ASSETS_AFTER_CLOSING'           ,
+			'ASSETS_AFTER_CLOSING_ENDRS'     ,
+			'AUS_SCORE_CODE'                 ,
+			'BORR_2_FIRST_TIME_BUYER_IND'    ,
+			'BORR_2_RENTING_IND'             ,
+			'BORR_2_SELF_EMPL_IND'           ,
+			'BORR_2_YEARS_CURRENT_JOB'       ,
+			'BORR_HSNG_EXP'                  ,
+			'CLOSNG_DT'                      ,
+			'COMM_PROPERTY_STATE_IND'        ,
+			'COMMTY_LAND_TRUST_EIN'          ,
+			'CONST_COMPLT_YR_MO'             ,
+			'CURR_DFLT_MM_CYC_DT'            ,
+			'CURR_DFLT_STS_IND'              ,
+			'DAYS_IN_DEFAULT'                ,
+			'DCSN_CD'                        ,
+			'DEPO_IS_PRESENT_IND'            ,
+			'DERIVED_OPTN_USED_CD'           ,
+			'DFLT_90DAY_IND'                 ,
+			'DFLT_ASGNMNT_DT'                ,
+			'DFLT_CRTN_DT'                   ,
+			'DFLT_CYC_DT'                    ,
+			'DFLT_EPISODE_NBR'               ,
+			'DFLT_HIST_FT_IN_EPS_3M_DELQ_DT' ,
+			'DFLT_HIST_LOSSMIT_CD'           ,
+			'DFLT_MM_CYC_DT'                 ,
+			'DFLT_RSN_CD'                    ,
+			'DFLT_SRVCR'                     ,
+			'DFLT_STS_CD'                    ,
+			'DFLT_STS_DT'                    ,
+			'DFLT_STS_SUMMARY_CD'            ,
+			'DFLT_TRNSCTN_DT'                ,
+			'EFF_DATE_APRSL'                 ,
+			'EFFECTIVE_FICO_SCORE'           ,
+			'END_CD'                         ,
+			'FICO_DECISION_SCORE'            ,
+			'FICO_SCORE'                     ,
+			'FT_IN_EPS_2MNTH_DELQ_DT'        ,
+			'FT_IN_EPS_2MNTH_DELQ_IND'       ,
+			'FT_IN_EPS_3MNTH_DELQ_IND'       ,
+			'FTE_2MNTH_DELQ_DT'              ,
+			'HARDCOPY_DOCS_IND'              ,
+			'HECM_MNTHLY_INC'                ,
+			'HLDR_MTGEE10_A43C'              ,
+			'INIT_MIP_FACTOR'                ,
+			'LAST_CS_SCORE_DT'               ,
+			'LTV_CAT_NEW'                    ,
+			'LTV_CAT_OLD'                    ,
+			'MAX_CLAIM_AMT_NEW'              ,
+			'MAX_CLAIM_AMT_OLD'              ,
+			'MONTHLY_P_I'                    ,
+			'NBR_MONTHS'                     ,
+			'OCPNCY_STS'                     ,
+			'PRC_EXCL_CLSNG_AMT'             ,
+			'PRC_INCL_CLSNG_AMT'             ,
+			'PREQUAL_OUTPUT'                 ,
+			'PROP_CURR_OCCUPANCY_TYPE'       ,
+			'PROPERTY_REPAIRS'               ,
+			'PYMTS_BFR_FRST_MISSED_PYMT'     ,
+			'RATIO_LOAN_TO_VL_OLD'           ,
+			'REAL_ESTATE_ASSETS'             ,
+			'REPAIR_RIDER_IN_FILE_IND'       ,
+			'RFNC_IND'                       ,
+			'RPR_ESCRW_AMT'                  ,
+			'RQRD_INVEST'                    ,
+			'SFPCS_MTGEE_ID'                 ,
+			'SQNC_NBR'                       ,
+			'SRVCR_MTGEE10_A43C'             ,
+			'STRT_STOP_EPS_IND'              ,
+			'TAX_INSUR_YR_1_PMTS'            ,
+			'TOT_ASSETS'                     ,
+			'TOT_CLSNG_CSTS'                 ,
+			'TOT_FIXED_PYMT'                 ,
+			'TOT_MNTHLY_MTG_PYMT'            ,
+			'TRV_SLCT_RSN_CD'              )
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1428_update_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update dict_metadata_field
+			set FIELD_NAME = 'NOR Issue Report Date'
+			where DB_COLUMN = 'NOR_ISS_RPT_DT'
+			and ENTITY_NAME = 'Case Summary for Selection'
+
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary for Selection','Conditional Commitment Reviewer',            'CNDTNL_CMMTMNT_RVWR',       'C20225', getdate(),'STATIC','CNDTNL_CMMTMNT_RVWR')      
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary for Selection','Condo Indicator',                            'CND_IND',                   'C20225', getdate(),'STATIC','CND_IND')                  
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary for Selection','Current Delinquency Months Delinquent',      'CURR_DLNQNCY_MNTHS_DLNQNT', 'C20225', getdate(),'STATIC','CURR_DLNQNCY_MNTHS_DLNQNT')
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary for Selection','Endorsement Appraisal Day Difference',       'ENDRS_APRSL_DAY_DIFF',      'C20225', getdate(),'STATIC','ENDRS_APRSL_DAY_DIFF')     
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary for Selection','Endorsement Processing Date',                'ENDRS_PRCSNG_DT',           'C20225', getdate(),'STATIC','ENDRS_PRCSNG_DT')          
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary for Selection','Escrow Flag',                                'ESCRW_FLAG',                'C20225', getdate(),'STATIC','ESCRW_FLAG')               
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary for Selection','Geocode Flag',                               'GEOCD_FLAG',                'C20225', getdate(),'STATIC','GEOCD_FLAG')               
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary for Selection','Indemnification Date',                       'INDEM_DT',                  'C20225', getdate(),'STATIC','INDEM_DT')                 
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary for Selection','Indemnification Status',                     'INDEM_STAT',                'C20225', getdate(),'STATIC','INDEM_STAT')               
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary for Selection','Indemnification Term',                       'INDEM_TERM',                'C20225', getdate(),'STATIC','INDEM_TERM')               
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary for Selection','Indemnification Type',                       'INDEM_TYPE',                'C20225', getdate(),'STATIC','INDEM_TYPE')               
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary for Selection','Last Case Qualification Event Date',         'LAST_CASE_QLFCTN_EVNT_DT',  'C20225', getdate(),'STATIC','LAST_CASE_QLFCTN_EVNT_DT') 
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary for Selection','Miscellaneous eBinder Indicator',            'MISC_EBNDR_IND',            'C20225', getdate(),'STATIC','MISC_EBNDR_IND')           
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary for Selection','NonPerforming Loan Indicator',               'NONPERF_LOAN_IND',          'C20225', getdate(),'STATIC','NONPERF_LOAN_IND')         
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary for Selection','NOR Issue Date',                             'NOR_ISSUE_DT',              'C20225', getdate(),'STATIC','NOR_ISSUE_DT')             
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary for Selection','Originating Mortgagee Institution Status',   'ORGNTNG_MRTGGEE_INST_STAT', 'C20225', getdate(),'STATIC','ORGNTNG_MRTGGEE_INST_STAT')
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary for Selection','Payments Before First Missed Payment',       'PMTS_BFR_FRST_MISSD_PMT',   'C20225', getdate(),'STATIC','PMTS_BFR_FRST_MISSD_PMT')  
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary for Selection','Prequalification Count',                     'PREQUAL_CNT',               'C20225', getdate(),'STATIC','PREQUAL_CNT')              
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary for Selection','Price Excluding Closing Costs',              'PRICE_EXCLDNG_CLSNG_COSTS', 'C20225', getdate(),'STATIC','PRICE_EXCLDNG_CLSNG_COSTS')
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary for Selection','Price Including Closing Costs',              'PRICE_INCLDNG_CLSNG_COSTS', 'C20225', getdate(),'STATIC','PRICE_INCLDNG_CLSNG_COSTS')
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary for Selection','Prior Case Maximum Claim Amount',            'PRR_CASE_MXMM_CLM_AMT',     'C20225', getdate(),'STATIC','PRR_CASE_MXMM_CLM_AMT')    
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary for Selection','Refinance Prior Case Number',                'REFI_PRR_CASE_NBR',         'C20225', getdate(),'STATIC','REFI_PRR_CASE_NBR')        
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary for Selection','Sponsor Mortgagee ID Institution',           'SPNSR_MRTGGEE_ID_INST',     'C20225', getdate(),'STATIC','SPNSR_MRTGGEE_ID_INST')    
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary for Selection','Term 15 Year Indicator',                     'TERM_15_YR_IND',            'C20225', getdate(),'STATIC','TERM_15_YR_IND')           
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary for Selection','Underserved Indicator',                      'UNDRSRVD_IND',              'C20225', getdate(),'STATIC','UNDRSRVD_IND')             
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Case Summary for Selection','Gift Letter 2 TIN',            'GIFT_LTR_2_TIN',       'C20225', getdate(),'STATIC','Gift Letter 2 TIN')      
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1428_drop_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			drop trigger tiu_rvw_lvl_qstn_answers
+			alter table question_reference drop column summary_field_to_update
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1428_rename_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			EXEC sp_rename'RVW_LVL_CASE_SUMMARY.BORR_BIRTH_DT','BORR_BRTH_DT','COLUMN'
+			EXEC sp_rename'RVW_LVL_CASE_SUMMARY.CLOSNG_DT','CLSNG_DT','COLUMN'
+			EXEC sp_rename'RVW_LVL_CASE_SUMMARY.OCPNCY_STS','OCPNCY_STS_CD','COLUMN'
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1428_rename_0006" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN ACCSORY_DWELLING_EVIDENCE_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN AFFIL_BUSINESS_ARRNGMNTS_IND;		
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN AFFORD_HOUS_PROV_EIN;
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN AMORT_TYP_CD_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN APPL_INCOME_SOURCES_CSV
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN APPL_INCOME_SOURCES_CSV_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN APPL_INCOME_SOURCES_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN ASSETS_AFTER_CLOSING
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN ASSETS_AFTER_CLOSING_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN BORR_1_YEARS_CURRENT_JOB
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1428_rename_0007" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN BORR_2_FIRST_TIME_BUYER_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN BORR_2_RENTING_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN BORR_2_SELF_EMPL_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN BORR_2_YEARS_CURRENT_JOB
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN BORR_HSNG_EXP
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN BORR_OCCP_PRR_MNTH_IND_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN BORR_OCCUPIED_PRIOR_MNTHS_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN BORR_REOCCP_PRR_MNTH_IND_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN BORR_REOCCUPY_PRIOR_MNTHS_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN BUILD_SKETCH_PROVIDED_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN BUILD_SKTCH_PROVIDED_IND_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN CASE_WARNING_MET_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN CASHOUT_REFI_IND_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN COMM_PROPERTY_STATE_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN COMM_PROPERTY_STATE_IND_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN COMMTY_LAND_TRUST_EIN
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN COMP_WITHIN_TLRANCES_IND_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN COMP_WITHIN_TOLERANCES_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN CONST_CD_ENDRS
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1428_rename_0008" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN CONST_COMPLT_YR_MO
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN CURRENT_AT_ENDORSE_IND_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN DCSN_CD
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN DECLINING_MKT_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN DECLINING_MKT_IND_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN DEPO_IS_PRESENT_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN DEPO_IS_PRESENT_IND_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN DFLT_90DAY_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN DFLT_RSN_CD
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN DFLT_STS_CD
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN EFF_DATE_APRSL
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN ENDRS_BYND_60_DY_CLS_IND_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN EXCESS_LAND_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN EXCESS_LAND_IND_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN FCTRY_FBRCT_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN FEMA_FLOOD_ZONE_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN FHA_MIPS_REMIT_IN_TIME_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN FICO_DECISION_SCORE
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN FINDINGS_RPT_MGT_30DAYS_IND
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1428_rename_0009" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN GUARD_OR_CONSERVATOR_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN GUARD_OR_CONSERVATOR_IND_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN HOLDER_TRANSFER_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN INIT_MIP_FACTOR
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN INVEST_2ND_RESID_IND_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN LENDER_PERF_ORIGINATION_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN LOAN_PRPS_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN LOC_MAP_COMPS_PROV_IND_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN LOC_MAP_COMPS_PROVIDED_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN MARKET_CONDITION_RPT
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN MARKET_CONDITION_RPT_ENDRS
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1428_rename_0010" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN MIXED_USE_PROP_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN MIXED_USE_PROP_IND_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN NEW_CRED_RPT_POST_CLOSING_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN NON_PUBLIC_UTIL_COMM_IND_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN NON_PUBLIC_UTIL_COMMON_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN NONFHA_PROP_OWNED_LESS_12_MNTH
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN NUM_LIVING_UNITS_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN PAYSTUBS_COVER_30_DAYS_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN PAYSTUBS_CVR_30_DAYS_IND_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN PD_STRMLN_FLG_ENDRS
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1428_rename_0011" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN PHOTO_COMPS_PROVIDED_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN PHOTO_SUPPORT_COMPS_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN PHOTO_SUPPORT_COMPS_IND_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN PRODUCT_TYPE_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN PROP_CURR_OCCUPANCY_TYPE
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN PROP_CURR_OCCUPANCY_TYPE_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN PROPERTY_REPAIRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN PROPERTY_REPAIRS_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN PRPTY_RPRS_GTR_15PCT_CLM_AMT
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN PRVD_2CLSD_SALES_90DAYS_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN PRVD_2CLSD_SLS_90DAY_IND_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN PUB_WELL_SEPTIC_AVAIL_AREA_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN PUB_WELL_SEPTIC_AVAIL_SITE_IND
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1428_rename_0012" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN PUB_WELL_SPTC_AVL_AR_IND_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN PUB_WELL_SPTC_AVL_SI_IND_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN RATIO_FIX_TEI
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN RATIO_TOT_PMT_TO_TOT_INC
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN REAL_ESTATE_ASSETS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN REAL_ESTATE_SOLD_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN REPAIR_ESCROW_ACCT_ESTAB
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN REPAIR_ESCROW_ACCT_ESTAB_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN REPAIR_RIDER_IN_FILE_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN REPAIR_RIDER_IN_FILE_IND_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN REVERIFICATION_IND
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1428_rename_0013" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN RFNC_CD_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN RPR_ESCRW_AMT
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN RQRD_INVEST
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN SALES_PRICE_TOT_ADJST_PSTV_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN SERVICER_TRANSFER_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN SITE_UTILITY_PUBLIC_INDICATOR
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN SITE_ZONING_COMPLIANCE_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN SLS_PRC_GT_ACQ_COST_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN SOA_CD_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN TOT_ASSETS
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1428_rename_0014" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN TOT_CLSNG_CSTS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN TOT_FIXED_PYMT
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN TOT_MNTHLY_MTG_PYMT
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN UNDERWRITING_METHOD_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN UTIL_ON_AT_INSPECTION_ENDRS
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN UTIL_ON_AT_INSPECTION_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN VERIFIED_DOCS_POST_CLOSING_IND
+			ALTER TABLE RVW_LVL_CASE_SUMMARY DROP COLUMN WELL_SEPTIC_DISTANCE_IND
+		]]>
+        </sql>
+    </changeSet>	                                
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1428_drop_constraint_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table QATREE_QSTN_CONDITION drop constraint QATREEQSTNCONDTOMETAFIELD
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1428_delete_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from dict_metadata_field where db_column ='ACCSORY_DWELLING_EVIDENCE_IND'      and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='AFFIL_BUSINESS_ARRNGMNTS_IND'       and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='AFFORD_HOUS_PROV_EIN'               and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='AMORT_TYP_CD_ENDRS'                 and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='APPL_INCOME_SOURCES_CSV'            and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='APPL_INCOME_SOURCES_CSV_ENDRS'      and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='APPL_INCOME_SOURCES_IND'            and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='ASSETS_AFTER_CLOSING'               and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='ASSETS_AFTER_CLOSING_ENDRS'         and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='BORR_1_YEARS_CURRENT_JOB'           and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='BORR_2_FIRST_TIME_BUYER_IND'        and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='BORR_2_RENTING_IND'                 and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='BORR_2_SELF_EMPL_IND'               and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='BORR_2_YEARS_CURRENT_JOB'           and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='BORR_HSNG_EXP'                      and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='BORR_OCCP_PRR_MNTH_IND_ENDRS'       and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='BORR_OCCUPIED_PRIOR_MNTHS_IND'      and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='BORR_REOCCP_PRR_MNTH_IND_ENDRS'     and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='BORR_REOCCUPY_PRIOR_MNTHS_IND'      and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='BUILD_SKETCH_PROVIDED_IND'          and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='BUILD_SKTCH_PROVIDED_IND_ENDRS'     and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='CASE_WARNING_MET_IND'               and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='CASHOUT_REFI_IND_ENDRS'             and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='COMM_PROPERTY_STATE_IND'            and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='COMM_PROPERTY_STATE_IND_ENDRS'      and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='COMMTY_LAND_TRUST_EIN'              and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='COMP_WITHIN_TLRANCES_IND_ENDRS'     and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='COMP_WITHIN_TOLERANCES_IND'         and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='CONST_CD_ENDRS'                     and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='CONST_COMPLT_YR_MO'                 and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='CURRENT_AT_ENDORSE_IND_ENDRS'       and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='DCSN_CD'                            and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='DECLINING_MKT_IND'                  and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='DECLINING_MKT_IND_ENDRS'            and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='DEPO_IS_PRESENT_IND'                and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='DEPO_IS_PRESENT_IND_ENDRS'          and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='DFLT_90DAY_IND'                     and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='DFLT_RSN_CD'                        and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='DFLT_STS_CD'                        and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='EFF_DATE_APRSL'                     and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='ENDRS_BYND_60_DY_CLS_IND_ENDRS'     and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='EXCESS_LAND_IND'                    and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='EXCESS_LAND_IND_ENDRS'              and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='FCTRY_FBRCT_ENDRS'                  and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='FEMA_FLOOD_ZONE_IND'                and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='FHA_MIPS_REMIT_IN_TIME_IND'         and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='FICO_DECISION_SCORE'                and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='FINDINGS_RPT_MGT_30DAYS_IND'        and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='GUARD_OR_CONSERVATOR_IND'           and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='GUARD_OR_CONSERVATOR_IND_ENDRS'     and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='HOLDER_TRANSFER_IND'                and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='INIT_MIP_FACTOR'                    and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='INVEST_2ND_RESID_IND_ENDRS'         and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='LENDER_PERF_ORIGINATION_IND'        and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='LOAN_PRPS_ENDRS'                    and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='LOC_MAP_COMPS_PROV_IND_ENDRS'       and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='LOC_MAP_COMPS_PROVIDED_IND'         and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='MARKET_CONDITION_RPT'               and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='MARKET_CONDITION_RPT_ENDRS'         and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='MIXED_USE_PROP_IND'                 and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='MIXED_USE_PROP_IND_ENDRS'           and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='NEW_CRED_RPT_POST_CLOSING_IND'      and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='NON_PUBLIC_UTIL_COMM_IND_ENDRS'     and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='NON_PUBLIC_UTIL_COMMON_IND'         and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='NONFHA_PROP_OWNED_LESS_12_MNTH'     and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='NUM_LIVING_UNITS_ENDRS'             and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='PAYSTUBS_COVER_30_DAYS_IND'         and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='PAYSTUBS_CVR_30_DAYS_IND_ENDRS'     and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='PD_STRMLN_FLG_ENDRS'                and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='PHOTO_COMPS_PROVIDED_IND'           and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='PHOTO_SUPPORT_COMPS_IND'            and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='PHOTO_SUPPORT_COMPS_IND_ENDRS'      and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='PRODUCT_TYPE_ENDRS'                 and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='PROP_CURR_OCCUPANCY_TYPE'           and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='PROP_CURR_OCCUPANCY_TYPE_ENDRS'     and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='PROPERTY_REPAIRS'                   and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='PROPERTY_REPAIRS_ENDRS'             and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='PRPTY_RPRS_GTR_15PCT_CLM_AMT'       and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='PRVD_2CLSD_SALES_90DAYS_IND'        and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='PRVD_2CLSD_SLS_90DAY_IND_ENDRS'     and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='PUB_WELL_SEPTIC_AVAIL_AREA_IND'     and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='PUB_WELL_SEPTIC_AVAIL_SITE_IND'     and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='PUB_WELL_SPTC_AVL_AR_IND_ENDRS'     and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='PUB_WELL_SPTC_AVL_SI_IND_ENDRS'     and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='RATIO_FIX_TEI'                      and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='RATIO_TOT_PMT_TO_TOT_INC'           and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='REAL_ESTATE_ASSETS'                 and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='REAL_ESTATE_SOLD_IND'               and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='REPAIR_ESCROW_ACCT_ESTAB'           and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='REPAIR_ESCROW_ACCT_ESTAB_ENDRS'     and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='REPAIR_RIDER_IN_FILE_IND'           and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='REPAIR_RIDER_IN_FILE_IND_ENDRS'     and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='REVERIFICATION_IND'                 and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='REVIEW_ID'                          and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='REVIEW_LVL_ID'                      and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='REVIEW_TYPE_ID'                     and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='RFNC_CD_ENDRS'                      and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='RPR_ESCRW_AMT'                      and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='RQRD_INVEST'                        and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='SALES_PRICE_TOT_ADJST_PSTV_IND'     and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='SERVICER_TRANSFER_IND'              and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='SITE_UTILITY_PUBLIC_INDICATOR'      and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='SITE_ZONING_COMPLIANCE_IND'         and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='SLS_PRC_GT_ACQ_COST_ENDRS'          and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='SOA_CD_ENDRS'                       and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='TOT_ASSETS'                         and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='TOT_CLSNG_CSTS'                     and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='TOT_FIXED_PYMT'                     and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='TOT_MNTHLY_MTG_PYMT'                and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='UNDERWRITING_METHOD_ENDRS'          and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='UTIL_ON_AT_INSPECTION_ENDRS'        and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='UTIL_ON_AT_INSPECTION_IND'          and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='VERIFIED_DOCS_POST_CLOSING_IND'     and entity_name = 'Case Summary for Review Level'
+			delete from dict_metadata_field where db_column ='WELL_SEPTIC_DISTANCE_IND'           and entity_name = 'Case Summary for Review Level'
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1428_alter_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table loan_selection_case_summary add MNFCTRD_HUSNG_IND char(1) null
+			alter table loan_selection_case_summary add MNTHLY_PRNCPL_AND_INTRST  numeric(16,2)  null 
+		]]>
+        </sql>
+    </changeSet>	
+	
+</databaseChangeLog>
+
+
+
+
+
+
+
+
+
+

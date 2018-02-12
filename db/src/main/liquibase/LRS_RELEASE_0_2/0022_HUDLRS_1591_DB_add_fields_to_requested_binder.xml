@@ -1,0 +1,61 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1591_alter_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+				Alter table requested_binder add SELECTION_ID uniqueidentifier null
+				Alter table requested_binder add BINDER_ID varchar(1000) null
+				Alter table requested_binder add REQUESTED_FROM varchar(30) null
+				Alter table requested_binder add  ASSIGNED_TO uniqueidentifier null
+				Alter table requested_binder add  IS_ELECTRONIC_IND char(1) null
+				Alter table requested_binder add  WAS_DOWNLOADED_IND char(1) null
+				
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1591_alter_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+				Alter table requested_binder add constraint REQUESTEDBINDERTOLOANSEL foreign key(SELECTION_ID) references loan_selection(SELECTION_ID)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1591_insert_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Binder Request','Selection ID','SELECTION_ID','C20225', getdate(),'STATIC','Selection ID')      
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Binder Request','Binder ID','BINDER_ID','C20225', getdate(),'STATIC','Binder ID')      
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Binder Request','Requested From','REQUESTED_FROM','C20225', getdate(),'STATIC','Requested From')      
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Binder Request','Assigned To','ASSIGNED_TO','C20225', getdate(),'STATIC','Assigned To')      
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Binder Request','Is Electronic Indicator','IS_ELECTRONIC_IND','C20225', getdate(),'STATIC','Is Electronic Indicator')      				
+				insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Binder Request','Was Downloaded Indicator','WAS_DOWNLOADED_IND','C20225', getdate(),'STATIC','Was Downloaded Indicator')      								
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1591_alter_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+				Alter table requested_binder drop column  ASSIGNED_TO 
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss (generated)" id="HUDLRS_1591_delete_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+				delete from dict_metadata_field
+                where entity_name = 'Binder Request'
+				  and db_column = 'ASSIGNED_TO'
+		]]>
+        </sql>
+    </changeSet>			
+ </databaseChangeLog>
+
+
+
+
+
+
+
+
+
+

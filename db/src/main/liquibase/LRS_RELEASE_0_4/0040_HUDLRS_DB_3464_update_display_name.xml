@@ -1,0 +1,36 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3464_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update DICT_METADATA_FIELD
+			set DISPLAY_NAME = FIELD_NAME
+			where ENTITY_NAME = 'Case Summary for Review Level'
+			  and FIELD_NAME in
+			  (
+			'Total Fixed Payment',
+			'Review Type',
+			'Total Monthly Mortgage Payment',
+			'Borrower Housing Expenses',
+			'Decision Code',
+			'FICO Decision Score',
+			'Back End Ratio',
+			'Front End Ratio',
+			'Total Assets',
+			'Total Closing Costs'
+			  )
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3464_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update QATREE_QSTN_CONDITION
+			set FIELD_NAME = 'FICO Decision Score'
+			where FIELD_NAME = 'FICO Decision Score at Endorsement'
+		]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>    
+
+

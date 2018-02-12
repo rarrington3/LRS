@@ -1,0 +1,28 @@
+{
+    "selectionReason": "SRasdf",
+    "selectionSubReason": "SSRzxcv",
+    "reviewType": "RT456",
+    "reviewLocation": "ATL_QAD",
+    "casesForReviewByLender": [
+        {
+            "lenderId": "61007",
+            "cases": ["063-7127265", "393-2947472", "903-9387229", "029-1927489", "033-1947755"],
+            "batchInfo": {
+                "requestOperationalReview": true,
+                "requestOperationalDocuments": true,
+                "secondaryId": "",
+                "operationalReviewGuidance": "",
+                "batchOwner": "5CC07A7B-D2F8-4C4C-A355-87F1DADA2AFA",
+                "batchTeamMembers": [
+                    "74DABF03-3621-4E6D-8E25-20CA85868F26",
+                    "EFE7B467-385B-4548-833D-1BBF06FB6B80",
+                    "B84514F2-45EA-423C-BFBE-DFE9ED4F62F6"
+                ]
+            }
+        },
+        {
+            "lenderId": "34098",
+            "cases": ["143-7525565", "493-1474752"]
+        }
+    ]
+}

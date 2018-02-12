@@ -1,0 +1,47 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+	<changeSet context="All"  author="WesMcAfee" id="HUDLRS_3975_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<sql>
+			<![CDATA[
+                   alter table audit_rvw_lvl_case_summary alter column ARM_INDX_EXPCTD_RT             real null
+                   alter table audit_rvw_lvl_case_summary alter column BORR_HSNG_EXP_ENDRS            real null
+                   alter table audit_rvw_lvl_case_summary alter column BORR_PAID_CLOSING_COSTS        real null
+                   alter table audit_rvw_lvl_case_summary alter column BORR_REQD_INVEST_TO_CLOSE      real null
+                   alter table audit_rvw_lvl_case_summary alter column COMBINED_LOAN_TO_VALUE_PCT     real null
+                   alter table audit_rvw_lvl_case_summary alter column ESCROW_AMOUNT                  real null
+                   alter table audit_rvw_lvl_case_summary alter column EXPECTED_RATE                  real null
+                   alter table audit_rvw_lvl_case_summary alter column GIFT_LTR_2_AMT                 real null
+                   alter table audit_rvw_lvl_case_summary alter column GIFT_LTR_AMT                   real null
+                   alter table audit_rvw_lvl_case_summary alter column HECM_PRNCPL_LMT                real null
+                   alter table audit_rvw_lvl_case_summary alter column HUD_REO_REPAIR_AMT             real null
+                   alter table audit_rvw_lvl_case_summary alter column INIT_DISBURSEMENT_LIMIT        real null
+                   alter table audit_rvw_lvl_case_summary alter column INT_RT                         real null
+                   alter table audit_rvw_lvl_case_summary alter column MANDATORY_OBLIG_BORR_AMT       real null
+                   alter table audit_rvw_lvl_case_summary alter column MANDATORY_OBLIG_LEND_AMT       real null
+                   alter table audit_rvw_lvl_case_summary alter column MAX_CLAIM_AMT                  real null
+                   alter table audit_rvw_lvl_case_summary alter column MAX_RATE                       real null
+                   alter table audit_rvw_lvl_case_summary alter column MNDTRY_OBLGTNS_AMT             real null
+                   alter table audit_rvw_lvl_case_summary alter column MORT_EXCLD_FNCD_MIP            real null
+                   alter table audit_rvw_lvl_case_summary alter column ORIG_MRTG_AMT                  real null
+                   alter table audit_rvw_lvl_case_summary alter column ORIGINATION_FEE                real null
+                   alter table audit_rvw_lvl_case_summary alter column PRICE_OF_PRIOR_SALE            real null
+                   alter table audit_rvw_lvl_case_summary alter column PRPRTY_APRSL_VL                real null
+                   alter table audit_rvw_lvl_case_summary alter column QUALIFIED_MRTG_POINTS_AND_FEES real null
+                   alter table audit_rvw_lvl_case_summary alter column RATIO_FIX_TEI_ENDRS            real null
+                   alter table audit_rvw_lvl_case_summary alter column RATIO_LOAN_TO_VL_NEW           real null
+                   alter table audit_rvw_lvl_case_summary alter column RATIO_TOT_PMT_TO_TOT_INC_ENDRS real null
+                   alter table audit_rvw_lvl_case_summary alter column SALES_PRICE                    real null
+                   alter table audit_rvw_lvl_case_summary alter column SECONDARY_FINANCE_AMT          real null
+                   alter table audit_rvw_lvl_case_summary alter column SELLER_CNTRBTN                 real null
+                   alter table audit_rvw_lvl_case_summary alter column SELLER_CNTRBTN_PCNT            real null
+                   alter table audit_rvw_lvl_case_summary alter column TAXES_INSRNC_FRST_YR_AMT       real null
+                   alter table audit_rvw_lvl_case_summary alter column TOT_ASSETS_ENDRS               real null
+                   alter table audit_rvw_lvl_case_summary alter column TOT_CLSNG_CSTS_ENDRS           real null
+                   alter table audit_rvw_lvl_case_summary alter column TOT_FIXED_PYMT_ENDRS           real null
+                   alter table audit_rvw_lvl_case_summary alter column TOT_MNTHLY_EFF_INCM            real null
+                   alter table audit_rvw_lvl_case_summary alter column TOT_MNTHLY_MTG_PYMT_ENDRS      real null
+                   alter table audit_rvw_lvl_case_summary alter column TOTAL_REQUIRED_FUNDS_TO_CLOSE  real null
+			]]>
+		</sql>
+	</changeSet>
+</databaseChangeLog>

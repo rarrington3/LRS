@@ -1,0 +1,77 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2649_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create table RVW_LVL_RFRRL_SOURCE_REF 
+			(RVW_LVL_RFRRL_SOURCE_REF_ID uniqueidentifier not null default newid(),
+			 CODE varchar(16) not null,
+			 DESCRIPTION varchar(30) not null)
+
+			alter table RVW_LVL_RFRRL_SOURCE_REF add constraint RVW_LVL_RFRRL_SOURCE_REF_PK primary key (RVW_LVL_RFRRL_SOURCE_REF_ID)
+
+			create table RVW_LVL_RFRRL_TYPE_REF 
+			(RVW_LVL_RFRRL_TYPE_REF_ID uniqueidentifier not null default newid(),
+			CODE varchar(16) not null,
+			DESCRIPTION varchar(30) not null)
+
+			alter table RVW_LVL_RFRRL_TYPE_REF add constraint RVW_LVL_RFRRL_TYPE_REF_PK primary key (RVW_LVL_RFRRL_TYPE_REF_ID)
+
+			alter table RVW_LVL_RFRRL drop constraint RVW_LVL_RFRRL_PK
+
+			alter table RVW_LVL_RFRRL add RVW_LVL_RFRRL_ID uniqueidentifier not null default newid()
+
+			alter table RVW_LVL_RFRRL add constraint RVW_LVL_RFRRL_PK primary key (RVW_LVL_RFRRL_ID)
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2649_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[	
+			sp_rename 'RVW_LVL_RFRRL.REFERRAL_TYPE', 'RVW_LVL_RFRRL_TYPE_REF_ID'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_2649_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[	
+			alter table RVW_LVL_RFRRL alter column RVW_LVL_RFRRL_TYPE_REF_ID uniqueidentifier
+
+			alter table RVW_LVL_RFRRL add constraint RVW_LVL_RFRRL_FK_RVW_LVL_RFRRL_TYPE_REF_ID foreign key  (RVW_LVL_RFRRL_TYPE_REF_ID) references RVW_LVL_RFRRL_TYPE_REF(RVW_LVL_RFRRL_TYPE_REF_ID)
+
+			alter table RVW_LVL_RFRRL add RVW_LVL_RFRRL_SOURCE_REF_ID uniqueidentifier null
+
+			alter table RVW_LVL_RFRRL add constraint RVW_LVL_RFRRL_FK_RVW_LVL_RFRRL_SOURCE_REF_ID foreign key  (RVW_LVL_RFRRL_SOURCE_REF_ID) references RVW_LVL_RFRRL_SOURCE_REF(RVW_LVL_RFRRL_SOURCE_REF_ID)
+
+			insert into RVW_LVL_RFRRL_SOURCE_REF(RVW_LVL_RFRRL_SOURCE_REF_ID,CODE,DESCRIPTION)values('9FC2AE6D-3229-4ACE-BA1A-360A129A542A','B', 'Borrower')
+			insert into RVW_LVL_RFRRL_SOURCE_REF(RVW_LVL_RFRRL_SOURCE_REF_ID,CODE,DESCRIPTION)values('93DD9959-E09C-4647-BF51-664807A0C6A1','F', 'FHA'		)
+			insert into RVW_LVL_RFRRL_SOURCE_REF(RVW_LVL_RFRRL_SOURCE_REF_ID,CODE,DESCRIPTION)values('3A6B2A84-65C5-43BD-A48B-986A34CFD22B','I', 'Industry')
+			insert into RVW_LVL_RFRRL_SOURCE_REF(RVW_LVL_RFRRL_SOURCE_REF_ID,CODE,DESCRIPTION)values('726D3F3E-1DEE-47D6-93A1-E66865626EC9','L', 'Lender'	)
+										
+																									   
+			insert into RVW_LVL_RFRRL_TYPE_REF(RVW_LVL_RFRRL_TYPE_REF_ID,CODE,DESCRIPTION)values('769EE980-007D-4DFE-A502-287D742FE6DD','OIG', 'OIG')
+			insert into RVW_LVL_RFRRL_TYPE_REF(RVW_LVL_RFRRL_TYPE_REF_ID,CODE,DESCRIPTION)values('63EF2242-310E-4F58-8DF6-57D454195AC3','EXT', 'External'		)
+			insert into RVW_LVL_RFRRL_TYPE_REF(RVW_LVL_RFRRL_TYPE_REF_ID,CODE,DESCRIPTION)values('CDB3DE30-95D6-42BD-BA78-D63713B0E076','HUD', 'HUD')
+
+			insert into DICT_METADATA_ENTITY(ENTITY_NAME, DB_VIEW_OR_TABLE, CREATED_BY,CREATED_TS) values('Review Level Referral Source Reference', 'RVW_LVL_RFRRL_SOURCE_REF','C20225',getdate())		
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Review Level Referral Source Reference','Review Level Referral Source Reference ID','RVW_LVL_RFRRL_SOURCE_REF_ID','C20225',getdate(),'Review Level Referral Source Reference ID')
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Review Level Referral Source Reference','Code','CODE','C20225',getdate(),'Code')
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Review Level Referral Source Reference','Description Cause ID','DESCRIPTION','C20225',getdate(),'Description')			
+			insert into DICT_METADATA_ENTITY(ENTITY_NAME, DB_VIEW_OR_TABLE, CREATED_BY,CREATED_TS) values('Review Level Referral Type Reference', 'RVW_LVL_RFRRL_TYPE_REF','C20225',getdate())		
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Review Level Referral Type Reference','Review Level Referral Type Reference ID','RVW_LVL_RFRRL_TYPE_REF_ID','C20225',getdate(),'Review Level Referral Type Reference ID')
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Review Level Referral Type Reference','Code','CODE','C20225',getdate(),'Code')
+			insert into DICT_METADATA_FIELD(ENTITY_NAME, FIELD_NAME, DB_COLUMN, CREATED_BY, CREATED_TS, DISPLAY_NAME)values('Review Level Referral Type Reference','Description Cause ID','DESCRIPTION','C20225',getdate(),'Description')				
+		]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>    
+
+
+
+
+
+
+
+
+
+

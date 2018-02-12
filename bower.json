@@ -1,0 +1,16 @@
+{
+  "name": "webstart",
+  "version": "0.0.0",
+  "dependencies": {
+    "jquery": "1.10.2"
+  },
+  "devDependencies": {
+    "modernizr": "2.8.3",
+    "bootstrap": "3.2.0",
+    "bootstrap-accessibility-plugin": "bootstrapaccessibilityplugin#1.0.4",
+    "bootstrap-datepicker": "1.6.4",
+    "select2": "4.0.3",
+    "pdfjs-dist": "1.6.258",
+    "jquery-file-upload": "9.12.6"
+  }
+}

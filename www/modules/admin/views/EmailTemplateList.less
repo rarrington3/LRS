@@ -1,0 +1,53 @@
+@import '../../bootstrap/_variables';
+@import '../../shared/_mixins';
+:host-context {
+    /* styles should be scoped under host-context */
+
+    .model-admin-body {
+        padding: 30px 60px;
+    }
+
+    .section-heading {
+        font-size: @font-size-large;
+        color: @link-light-blue;
+        font-weight: 600;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+    }
+
+    .sub-section-heading {
+        font-size: @font-size-large;
+        font-weight: 600;
+        color: @gray-darker;
+        margin-top: 28px;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+    }
+
+    .lrs-case-table {
+        td {
+            .glyphicon-check {
+                color: @brand-success;
+            }
+
+            &.active-status {
+                color: @brand-success;
+                font-weight: 700;
+            }
+
+            &.edit-action {
+                min-width: 75px;
+            }
+
+            &.delete-action {
+                min-width: 88px;
+            }
+
+            .btn {
+                height: 24px;
+                line-height: 10px;
+                font-size: 12px;
+            }
+        }
+    }
+}

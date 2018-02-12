@@ -1,0 +1,16 @@
+{
+    "id": "http://LRS/TimeLimit",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": ["selectionReasonCode", "days"],
+    "properties": {
+        "selectionReasonCode": {
+            "description": "The code of the selection reason this time limit is for.",
+            "type": "string"
+        },
+        "days": {
+            "description": "The number of days allowed as a time limit.",
+            "type": "number"
+        }
+    }
+}

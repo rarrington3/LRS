@@ -1,0 +1,107 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3466_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update LRS_GEN_LOOKUP
+			set LOOKUP_DESCRIPTION = 'Self-Employed'
+			where LOOKUP_DESCRIPTION = 'Self-Employeed'
+			  and LOOKUP_FIELD = 'Borrower 1 Self Employed Indicator'
+			  and LOOKUP_CODE = 'S'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3466_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update LRS_GEN_LOOKUP
+			set LOOKUP_DESCRIPTION = 'Employed'
+			where LOOKUP_DESCRIPTION = 'Employeed'
+			  and LOOKUP_FIELD = 'Borrower 1 Self Employed Indicator'
+			  and LOOKUP_CODE = 'E'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3501_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update LRS_GEN_LOOKUP
+			set LOOKUP_DESCRIPTION = 'No'
+			where LOOKUP_FIELD = 'Factory Fabricated Indicator'
+			  and LOOKUP_CODE in ('2', '0')
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3501_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update LRS_GEN_LOOKUP
+			set LOOKUP_DESCRIPTION = 'Yes'
+			where LOOKUP_FIELD = 'Factory Fabricated Indicator'
+			  and LOOKUP_CODE = '3'
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3501_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update LRS_GEN_LOOKUP
+			set LOOKUP_CODE = ' '
+			where LOOKUP_FIELD = 'Factory Fabricated Indicator'
+			  and LOOKUP_CODE = 'U'
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3501_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update LRS_GEN_LOOKUP
+			set DISPLAY_ORDER = 1
+			where LOOKUP_FIELD = 'Factory Fabricated Indicator'
+			  and LOOKUP_CODE = ' '
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3501_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update LRS_GEN_LOOKUP
+			set DISPLAY_ORDER = 2
+			where LOOKUP_FIELD = 'Factory Fabricated Indicator'
+			  and LOOKUP_CODE = '0'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3501_0006" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update LRS_GEN_LOOKUP
+			set DISPLAY_ORDER = 3
+			where LOOKUP_FIELD = 'Factory Fabricated Indicator'
+			  and LOOKUP_CODE = '2'
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3501_0007" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update LRS_GEN_LOOKUP
+			set DISPLAY_ORDER = 4
+			where LOOKUP_FIELD = 'Factory Fabricated Indicator'
+			  and LOOKUP_CODE = '3'
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="All"  author="astrauss" id="HUDLRS_3501_0008" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update DICT_METADATA_FIELD
+			set UI_CONTROL_TYPE = 'SELECT'
+			where FIELD_NAME = 'Manufactured Housing Indicator'
+			  and ENTITY_NAME = 'Case Summary for Review Level'
+		]]>
+        </sql>
+    </changeSet>	
+</databaseChangeLog>    
+
+

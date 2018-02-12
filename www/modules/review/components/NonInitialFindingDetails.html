@@ -1,0 +1,75 @@
+<div class="header">
+	<span class="finding-status-icon" aria-hidden="true" [class.danger]="(finding?.ratingCode === RATING_TYPE.UNACCEPTABLE.code || finding?.ratingCode === RATING_TYPE.MITIGATED.code  || finding?.ratingCode === RATING_TYPE.REMEDIATED.code)" [class.warning]="(finding?.ratingCode === RATING_TYPE.DEFICIENT.code)" [class.conforming]="(finding?.ratingCode === RATING_TYPE.CONFORMING.code)">{{finding?.ratingCode !== RATING_TYPE.CONFORMING.code ? finding?.selectedTierCode : RATING_TYPE.CONFORMING.code}}</span>
+	<span class="icon-text sr-only" >{{status}}</span>
+	<span class="finding-title">{{finding.defectAreaCode}}.{{finding.selectedSourceCode}}.{{finding.selectedCauseCode}} </span>
+	<span class="finding-title status" *ngIf="status !== 'normal'"> - {{status.toUpperCase()}}</span>
+</div>
+<ul class="list-group source-cause">
+	<li class="list-group-item"><span class="list-name">Source: </span><span class="list-description">{{findingSourceDescription}}</span></li>
+	<li class="list-group-item"><span class="list-name">Cause: </span><span class="list-description">{{findingCauseDescription}}</span></li>
+</ul>
+
+<!-- completed level cards -->
+<review-level-finding-renderer  *ngFor="let completedLevelData of completedReviewLevelsData" [data]="completedLevelData"></review-level-finding-renderer>
+
+<!-- the current review level. we just need to show the levelType/title for the current review. -->
+<div class="panel panel-default" *ngIf="!isInitialQCoriginalReview">
+	<div class="panel-body" >
+		<div class="finding-title level-type">{{currentReviewLevelData?.levelType}}</div>
+		<div class="section-divider"><hr/></div>
+
+		<!-- the current review level footer -->
+		<div class="footer clearfix reviewer-response" >
+			<button type="button" [disabled]="!isActionActive(RESPONSE_TYPE.NOT_MITIGATED.code)" (click)="onReviewResponseUpdate(RESPONSE_TYPE.NOT_MITIGATED.code)" class="btn btn-default" [class.active]="(reviewerResponseAction === RESPONSE_TYPE.NOT_MITIGATED.code)">Did Not Mitigate</button>
+			<button type="button" [disabled]="!isActionActive(RATING_TYPE.MITIGATED.code)" (click)="onReviewResponseUpdate(RATING_TYPE.MITIGATED.code)" class="btn btn-default" [class.active]="(reviewerResponseAction === RATING_TYPE.MITIGATED.code)">Mitigated</button>
+			<button type="button" [disabled]="!isActionActive(RATING_TYPE.REMEDIATED.code)" (click)="onReviewResponseUpdate(RATING_TYPE.REMEDIATED.code)" class="btn btn-default" [class.active]="(reviewerResponseAction === RATING_TYPE.REMEDIATED.code)">Financial Remediation</button>
+			<button type="button" [disabled]="!isActionActive(RESPONSE_TYPE.ADJUSTED.code)" (click)="onReviewResponseUpdate(RESPONSE_TYPE.ADJUSTED.code)" class="btn btn-default" [class.active]="(reviewerResponseAction === RESPONSE_TYPE.ADJUSTED.code)">Adjust Severity</button>
+		</div>
+		<form #reviewResponseForm="ngForm" [ngSwitch]="reviewerResponseAction">
+
+			<!-- Did Not Mitigate -->
+			<div class="footer clearfix reviewer-response-form" *ngSwitchCase="RESPONSE_TYPE.NOT_MITIGATED.code">
+				<label class="list-name" for="#commentToLender">DESCRIPTION TO LENDER</label>
+				<textarea  id="#commentToLender" class="form-control" rows="3" [disabled]="!isActionActive(RESPONSE_TYPE.NOT_MITIGATED.code)" [attr.disabled]="!isActionActive(RESPONSE_TYPE.NOT_MITIGATED.code) || null" required name="commentToLender" [(ngModel)]="commentToLender"></textarea>
+			</div>
+
+			<!-- Mitigated -->
+			<div class="footer clearfix reviewer-response-form" *ngSwitchCase="RATING_TYPE.MITIGATED.code">
+				<span class="list-description">This finding will be set to Mitigated. Please click "Submit".</span>
+			</div>
+
+			<!-- Financial Remediation -->
+			<div class="footer clearfix reviewer-response-form" *ngSwitchCase="RATING_TYPE.REMEDIATED.code">
+				<div class="sub-title">CHOOSE A REMEDIATION TYPE & AMOUNT</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<select id="finantialRemediation" name="finantialRemediation" [disabled]="!isActionActive(RATING_TYPE.REMEDIATED.code)"  class="form-control input-sm financial-remediation" [(ngModel)]="selectedRemediationTypeCode">
+                            <option [value]="''">Select a Remediation Type</option>
+							<option *ngFor="let item of financialRemediationItems" [value]="item.code">{{item.description}}</option>
+						</select>
+					</div>
+					<div class="col-xs-6">
+						<div class="input-group input-sm">
+							<div class="input-group-addon">$</div>
+							<input type="number" step=".01" name="selectedRemediationAmount" required class="form-control input-sm" [disabled]="!isActionActive(RATING_TYPE.REMEDIATED.code)" [attr.disabled]="!isActionActive(RATING_TYPE.REMEDIATED.code) || null"  [attr.aria-label]="amount" [(ngModel)]="selectedRemediationAmount">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Adjust Severity -->
+			<div class="footer clearfix reviewer-response-form" *ngSwitchCase="RESPONSE_TYPE.ADJUSTED.code">
+				<div class="sub-title">CHOOSE A NEW SEVERITY TIER</div>
+				<select id="adjustSeverity" name="adjustSeverity" class="form-control input-sm"  [(ngModel)]="selectedAdjustSeverityValue" required>
+					<option *ngFor="let item of adjustSeverityItems" [value]="item.defectSeverityTierCode || item.ratingCode">{{item.description}}</option>
+				</select>
+			</div>
+
+			<!-- Finding Submit-->
+			<div class="footer clearfix">
+				<button type="button" (click)="onSubmit()" [disabled]="(!reviewResponseForm.valid || (reviewerResponseAction === 'R' && (selectedRemediationTypeCode === null  || !selectedRemediationTypeCode.length))) || isReviewReadOnly"  class="btn btn-primary pull-right">Submit</button>
+			</div>
+
+		</form>
+	</div>
+</div>

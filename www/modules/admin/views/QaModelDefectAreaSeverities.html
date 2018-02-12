@@ -1,0 +1,42 @@
+<form class="container-fluid">
+    <div *ngIf="defectAreaLoading" class="lrs-loading">
+        <span class="glyphicon glyphicon-refresh"
+              aria-label="loading" title="Loading">
+        </span>
+    </div>
+    <div *ngIf="!defectAreaLoading && !defectArea.sources.length" class="lrs-no-results">
+        <span class="small" aria-label="no results">No results found</span>
+    </div>
+    <div *ngIf="!defectAreaLoading && defectArea.sources.length">
+        <div *ngFor="let severity of defectArea.severities; let i=index" class="tier-repeater">
+            <div>
+                <h6 aria-hidden="true">Tier {{severity.code}}</h6>
+            </div>
+            <div class="row">
+                <div class="col-xs-8">
+                    <div class="form-group">
+                        <label class="control-label small">
+                            Tier Criteria
+                        </label>
+                        <p>
+                            {{severity.description}}
+                        </p>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <label class="control-label small">
+                        Examples
+                    </label>
+                    <p>
+                        {{severity.examples}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 hr-wrapper">
+                    <hr/>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

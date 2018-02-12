@@ -1,0 +1,16 @@
+{
+    "qaModelId": "QM12",
+    "name": "Upgrade 2017 copy",
+    "description": "This is a change to address the specific issues surrounding the shortcommings found in the previous version of the model.",
+    "version": 12,
+    "activeReviews": 625,
+    "completedReviews": 345,
+    "isActive": true,
+    "isReadonly": true,
+    "createdDate": "2016-10-20",
+    "modifiedDate": "2016-10-21",
+    "activatedDate": "2016-10-21",
+    "modifiedBy": "Justin Burch",
+    "statusCode": "D",
+    "status": "Draft"
+}

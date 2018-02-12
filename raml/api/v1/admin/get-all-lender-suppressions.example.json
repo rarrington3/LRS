@@ -1,0 +1,50 @@
+[
+    {
+        "lender": {
+            "lenderId": "4581160",
+            "name": "BB&T"
+        },
+        "activeReviews": 87,
+        "startDate": "2012-11-22"
+    },
+    {
+        "lender": {
+            "lenderId": "20063",
+            "name": "Wells Fargo Bank"
+        },
+        "activeReviews": 95,
+        "startDate": "2013-11-01"
+    },
+    {
+        "lender": {
+            "lenderId": "20064",
+            "name": "M&T Bank"
+        },
+        "activeReviews": 76,
+        "startDate": "2013-11-03"
+    },
+    {
+        "lender": {
+            "lenderId": "20065",
+            "name": "SunTrust Bank"
+        },
+        "activeReviews": 34,
+        "startDate": "2014-01-22"
+    },
+    {
+        "lender": {
+            "lenderId": "20066",
+            "name": "Bank of America, N.A."
+        },
+        "activeReviews": 86,
+        "startDate": "2014-03-20"
+    },
+    {
+        "lender": {
+            "lenderId": "20067",
+            "name": "United Bank"
+        },
+        "activeReviews": 64,
+        "startDate": "2015-06-19"
+    }
+]

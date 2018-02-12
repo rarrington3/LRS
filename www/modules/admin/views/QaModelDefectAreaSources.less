@@ -1,0 +1,70 @@
+@import '../../bootstrap/_variables';
+
+:host-context {
+    /* styles should be scoped under host-context */
+
+    .causes-table, .sources-table, .threshold-table {
+        tr {
+            th, td {
+                &:not(:last-child) {
+                    padding-right: 0;
+                }
+            }
+        }
+    }
+
+    .causes-code-col, .sources-code-col {
+        width: 30px;
+    }
+
+    .causes-desc-col, .sources-desc-col {
+        width: 100%;
+    }
+
+    .threshold-panel {
+        border-color: transparent;
+
+        .panel-heading {
+            border-bottom-width: 0;
+            border-top-width: 1px;
+            border-top-style: solid;
+            margin-top: 15px;
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+    .threshold-table {
+        width: auto;
+
+        th {
+            text-align: center;
+            width: 50px;
+        }
+
+        td {
+            width: 80px;
+        }
+
+        thead {
+            th:first-child {
+                border-bottom-color: transparent;
+            }
+        }
+
+        tbody {
+            th {
+                vertical-align: middle;
+                border-color: transparent;
+
+                &:first-child {
+                    border-right-color: @table-border-color;
+                }
+            }
+        }
+    }
+
+    .threshold-code-col {
+        text-align: center;
+    }
+}

@@ -1,0 +1,46 @@
+
+<ng-content></ng-content>
+
+<div class="filterTitle">FILTERS <span class="clearFilters" (click)="onShowAllClick()" [class.disabledClear]="selections.length"><a href="javascript:void(0);">Show All</a></span></div>
+
+<template ngFor let-dimension [ngForOf]="dimensions">
+    <div *ngIf="dimension.title && dimension.title.length" class="small">{{dimension.title.toUpperCase()}}</div>
+
+    <div  [ngSwitch]="dimension.controlType">
+
+        <div *ngSwitchCase="'button'">
+            <ul class="list-group">
+                <template ngFor let-key [ngForOf]="dimension.keys">
+                    <li *ngIf="!dimension.hideEmptyGroups || key.value > 0"
+                        [class]="'list-group-item category ' + (dimension.style ? dimension.style(key.key) : '')"
+                        [class.disabled]="key.value == 0" [class.activeFilter]="isDimensionKeyActive(dimension, key.key)"
+                        (click)="onButtonFilterSelect(dimension, key.key)">
+                        <a href="javascript:void(0);">{{key.key}}</a><div class="badge">{{key.value}}</div>
+                    </li>
+                </template>
+            </ul>
+        </div>
+
+        <div *ngSwitchCase="'dropdown'">
+            <div class="form-group">
+                <select [disabled]="dimension.disabled" class="form-control select-sm" [name]="'f' + dimension.dimensionId" [(ngModel)]="dropdownSelections[dimension.dimensionId]"  (ngModelChange)="onDropdownFilterSelect(dimension, $event)">
+                    <option *ngIf="!dimension.default && dropdownSelections[dimension.dimensionId]">(All)</option>
+                    <template ngFor let-key [ngForOf]="dimension.keys" [ngForTrackBy]="trackByKey">
+                        //@formatter:off
+                        <option *ngIf="!dimension.hideEmptyGroups  || key.value > 0"
+                                [class.disabled]="key.value == 0"
+                                value="{{key.key}}">{{key.key}}</option>
+                        //@formatter:on
+                    </template>
+                </select>
+            </div>
+        </div>
+
+        <form *ngSwitchCase="'text'">
+            <div class="form-group">
+                <input type="text" class="form-control" name="'textFilter' + dimension.dimensionId" [(ngModel)]="textSelections[dimension.dimensionId]" (ngModelChange)="searchByText(dimension, $event)"/>
+            </div>
+        </form>
+
+    </div>
+</template>

@@ -1,0 +1,62 @@
+#%RAML 0.8
+title: HUD ESB Binder Receipt
+version: v1.0
+baseUri: http://localhost:8105/hud-esb/sfo/api/v1.0
+securedBy: [oauth_2_0: { scopes: [ "urn:hud:esb:api:sfunderwriting:get:binder:request" ] } ]
+securitySchemes:
+ - oauth_2_0: !include securitySchemes/oauth_2_0.raml
+protocols: [ HTTP ]
+mediaType: application/json
+documentation:
+  - title: HUD-ESB Binder Receipt API
+    content:  HUD-ESB Binder Receipt API - Return case binder info for a list of input case numbers.
+schemas:
+  - binderReceiptSearchCriteria:  !include ./schemas/binderReceiptInputMessage.json
+  - binderReceiptSearchResults: !include ./schemas/binderReceiptOutputMessage.json
+  - esbException: !include http://nexus2.hhq.hud.dev/content/repositories/releases/gov/hud/ciem/esb-core/schemas/esb-exception-schema/1.0/esb-exception-schema-1.0.json
+  - serviceConsumerData: !include http://nexus2.hhq.hud.dev/content/repositories/releases/gov/hud/ciem/esb-core/schemas/service-consumer-data-schema/1.0/service-consumer-data-schema-1.0.json    
+
+/binderReceipt:
+  post:
+    description: Return case binder info for a list of input case numbers.
+    headers:
+    body:
+      application/json:
+       # schema: !include schemas/binderReceiptInputMessage.json
+       # example: [{"caseNumbers": ["490129044", "528404138"]}]
+       schema:  binderReceiptSearchCriteria
+
+    responses:
+      200:
+        description: Success.    
+        body:
+          application/json:
+#            example: !include examples/outputExample.json
+#            schema:  !include schemas/binderReceiptOutputMessage.json
+            schema:  binderReceiptSearchResults
+        headers:
+          application/json:
+                  displayName: serviceConsumerData
+                  description: Audit header that should be submitted with each HUD ESB API call
+                  type: string
+                  required: true  # require it by changing this to true
+                  example:  !include http://nexus2.hhq.hud.dev/content/repositories/releases/gov/hud/ciem/esb-core/schemas/service-consumer-data-schema/1.0/service-consumer-data-schema-1.0.json
+                  #example: !include http://nexus/service/local/repositories/releases/content/gov/hud/ciem/esb-core/examples/service-consumer-data-example/1.0/service-consumer-data-example-1.0.json
+        
+            
+      400:
+        description: Internal Server Error.  Return esbException
+        body:
+          application/json:
+              schema: esbException
+
+        headers:
+          application/json:
+              displayName: serviceConsumerData
+              description: Audit header that should be submitted with each HUD ESB API call
+              type: string
+              required: true  # require it by changing this to true
+              example:  !include http://nexus2.hhq.hud.dev/content/repositories/releases/gov/hud/ciem/esb-core/schemas/service-consumer-data-schema/1.0/service-consumer-data-schema-1.0.json
+              #example: !include http://nexus/service/local/repositories/releases/content/gov/hud/ciem/esb-core/examples/service-consumer-data-example/1.0/service-consumer-data-example-1.0.json
+
+  

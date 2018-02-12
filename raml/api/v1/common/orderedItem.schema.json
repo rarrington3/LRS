@@ -1,0 +1,25 @@
+{
+    "id": "http://LRS/OrderedItem",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": ["id", "order", "description"],
+    "additionalProperties": false,
+    "properties": {
+        "id": {
+            "description": "The id for this item.",
+            "type": "string"
+        },
+        "code": {
+            "description": "The unique code for this item.",
+            "type": "string"
+        },
+        "description": {
+            "description": "The display text for this detail object.",
+            "type": "string"
+        },
+        "order": {
+            "description": "The order of the item",
+            "type": "number"
+        }
+    }
+}

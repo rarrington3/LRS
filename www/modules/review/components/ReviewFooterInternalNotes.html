@@ -1,0 +1,58 @@
+<!-- Filters -->
+<div class="form-inline">
+	<div class="form-group">
+		<form  [formGroup]="filterForm" class="clearfix">
+			<div class="filter-select-container pull-left">
+				<select  id="#noteDefectAreaFilter"  [formControl]="filterForm.controls.noteDefectAreaFilter" class="form-control input-sm comment-filter">
+					<option value="all">All Defect Areas</option>
+					<option *ngFor="let defectArea of defectAreas" [value]="defectArea.defectAreaCode">{{defectArea.defectAreaCode}} {{defectArea.title}}</option>
+				</select>
+			</div>
+
+			<div class="filter-select-container pull-right">
+				<select id="#sortBy" [formControl]="filterForm.controls.sortBy"  class="form-control input-sm comment-filter sort">
+					<option value="sortByDate">Sort By Date</option>
+					<option value="sortByReviewers">Sort By Reviewers</option>
+				</select>
+			</div>
+
+		</form>
+	</div>
+</div>
+
+<!-- Post a Note -->
+<form  #newNoteForm="ngForm">
+	<div class="row finding-comment">
+
+		<div class="col-xs-12">
+			<textarea id="#newInternalNote" placeholder="Your note here..." class="form-control" rows="2" required name="newNote" [(ngModel)]="newNote"></textarea>
+			<button type="button" (click)="onPostNewNote()" [disabled]="!newNoteForm.valid"  class="btn btn-primary btn-sm pull-left post-btn">Post</button>
+		</div>
+	</div>
+</form>
+<!-- Note list -->
+<div class="list-container">
+	<div class="row finding-comment" *ngFor="let note of reviewNotes">
+		<div class="col-xs-12">
+			<div class="comment-header">
+				<span class="reviewer-name">{{note.hudId}} {{note.nameFirst}} {{note.nameLast}}</span>
+				<span class="vertical-divider">|</span>
+				<span class="last-updated">{{note.lastUpdated | datePipe}}</span>
+				<span class="divider"></span>
+				<span *ngIf="note.defectAreaCode">Defect Area:</span>
+				<span *ngIf="note.defectAreaCode" class="defect-area-title">{{getDefectAreaTitleByCode(note.defectAreaCode)}}</span>
+				<span *ngIf="note.defectAreaCode" class="divider"></span>
+
+				<div class="warning-wrapper internal-notes">
+					<span class="glyphicon glyphicon-eye-open icon"></span>
+					<span class="warning">Internal Only Note</span></div>
+			</div>
+			<div class="comment-text">
+				{{note.text}}
+			</div>
+		</div>
+	</div>
+
+</div>
+
+

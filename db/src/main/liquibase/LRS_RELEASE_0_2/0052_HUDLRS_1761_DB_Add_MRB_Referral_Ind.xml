@@ -1,0 +1,17 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="wmcafee" id="HUDLRS_1761_alter_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table REVIEW add MRB_REFERRAL_IND CHAR(1) NOT NULL DEFAULT 'N'
+		]]>
+        </sql>
+    </changeSet>
+	<changeSet context="ALL"  author="wmcafee" id="HUDLRS_1761_insert_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Review','MRB Referral Indicator','MRB_REFERRAL_IND','C20225', getdate(),'STATIC','MRB Referral Indicator')						
+		]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>

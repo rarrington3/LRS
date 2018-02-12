@@ -1,0 +1,18 @@
+@import '../../bootstrap/_variables.less';
+
+:host-context {
+	/* styles should be scoped under host-context */
+	.container-inner {
+		padding: 10px;
+		background-color: @brand-gray;
+		width: 100%;
+		height: 700px;
+		overflow: auto;
+		text-align: center;
+
+		> canvas {
+			margin-bottom: 10px;
+		}
+	}
+
+}

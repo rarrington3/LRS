@@ -1,0 +1,55 @@
+<!-- Filters -->
+<div class="form-inline">
+    <div class="form-group">
+        <form  [formGroup]="form" class="clearfix">
+            <div class="filter-select-container">
+                <label id="defectAreaFilterLabel" class="sr-only">Filter by defect area</label>
+                <select #test id="#defectAreaFilter"  [formControl]="form.controls.defectAreaFilter" class="form-control input-sm comment-filter" aria-labelledby="defectAreaFilterLabel">
+                    <option value="all">All Defect Areas</option>
+                    <option *ngFor="let defectArea of globalStateService.defectAreasForCurrentReview"  [value]="defectArea.defectAreaCode">{{defectArea.defectAreaCode}} {{defectArea.title}}</option>
+                </select>
+            </div>
+            <div class="filter-select-container" *ngIf="showFindingFilter">
+                <label id="findingFilterLabel" class="sr-only">Filter by cause or source</label>
+                <select id="#findingFilter" *ngIf="showFindingFilter" [formControl]="form.controls.findingFilter" class="form-control input-sm comment-filter" aria-labelledby="findingFilterLabel">
+                    <option value="all">All Causes and Sources</option>
+                    <option *ngFor="let code of allSourceCauseCollection"  [value]="code.value">{{code.label}}</option>
+                </select>
+            </div>
+            <div class="filter-select-container sort">
+                <label id="sortByLabel" class="sr-only">Sort by</label>
+                <select id="#sortBy" [formControl]="form.controls.sortBy"  class="form-control input-sm comment-filter sort" aria-labelledby="sortByLabel">
+                    <option value="defectAreaCode">Sort By Defect Area</option>
+                    <option value="defectAreaCauseSource">Sort By Finding</option>
+                </select>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Comment list -->
+<div class="list-container">
+<div class="row finding-comment" *ngFor="let finding of findingsWithComment" >
+    <div class="col-xs-12">
+        <div class="comment-header">
+            <span class="last-comment-name">{{finding.nameFirst}} {{finding.nameLast}}</span>
+            <span> | </span>
+            <span>{{formatDate(finding.lastUpdated)}}</span>
+            <span class="divider"></span>
+            <span>Defect Area:</span>
+            <span class="defect-area-title">{{finding.defectAreaCode}} {{getDefectAreaTitleByCode(finding.defectAreaCode)}}</span>
+            <span class="divider"></span>
+
+            <a href="javascript:void(0)" type="button" role="link" (click)="navigateToFinding(finding)" class="group-link">Finding: <span class="codes">{{finding.selectedSourceCode}}.{{finding.selectedCauseCode}}</span></a>
+            <span class="divider"></span>
+            <div class="warning-wrapper">
+                <span class="glyphicon glyphicon-eye-open icon"></span>
+                <span class="warning">Lender Visible Comment</span></div>
+        </div>
+        <div class="comment-text">
+            {{finding.commentToLender}}
+        </div>
+    </div>
+</div>
+</div>
+

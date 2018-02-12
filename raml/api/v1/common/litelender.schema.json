@@ -1,0 +1,17 @@
+{
+    "id": "http://LRS/LiteLender",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": ["lenderId", "name"],
+    "additionalProperties": false,
+    "properties": {
+        "lenderId": {
+            "description": "The identifier of this lender",
+            "type": "string"
+        },
+        "name": {
+            "description": "The human readable name of the lender",
+            "type": "string"
+        }
+    }
+}

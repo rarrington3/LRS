@@ -1,0 +1,182 @@
+<div class="lrs-content-panel admin-model-body container-fluid">
+
+
+    <form>
+        <div class="header-row">
+            <div *ngIf="selectedModel.status == MODEL_STATUSES.ACTIVE" class="section-heading">{{selectedModel.name ? selectedModel.name : selectedModel.label}} <span class="glyphicon glyphicon-check" aria-hidden="true"></span><span class="status-label status-active">{{selectedModel.status}}</span></div>
+            <div *ngIf="selectedModel.status == MODEL_STATUSES.DRAFT" class="section-heading">{{selectedModel.name ? selectedModel.name : selectedModel.label}} <span class="glyphicon glyphicon-cog" aria-hidden="true"></span><span class="status-label">{{selectedModel.status}}</span></div>
+            <div *ngIf="selectedModel.status == MODEL_STATUSES.ARCHIVED" class="section-heading">{{selectedModel.name ? selectedModel.name : selectedModel.label}} <span class="glyphicon glyphicon-lock" aria-hidden="true"></span><span class="status-label">{{selectedModel.status}}</span></div>
+            <hr/>
+        </div>
+
+        <div class="col-xs-6">
+            <div class="form-item">
+                <label for="model_name" class="small">Model Name</label>
+                <input type="text" id="model_name" name="model_name" *ngIf="selectedModel.status == MODEL_STATUSES.DRAFT"
+                       [(ngModel)]="selectedModel.name" (ngModelChange)="saveChanges()" [disabled]="selectedModel.status != MODEL_STATUSES.DRAFT">
+                <span *ngIf="selectedModel.status != MODEL_STATUSES.DRAFT">{{selectedModel.name ? selectedModel.name : selectedModel.label}}</span>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-item">
+                <label for="model_desc" class="small">Model Description</label>
+                <textarea id="model_desc" name="model_desc" wrap="hard" *ngIf="selectedModel.status == MODEL_STATUSES.DRAFT"
+                          [(ngModel)]="selectedModel.description" [disabled]="selectedModel.status != MODEL_STATUSES.DRAFT"></textarea>
+                <span *ngIf="selectedModel.status != MODEL_STATUSES.DRAFT">{{selectedModel.description}}</span>
+            </div>
+        </div>
+
+        <div class="col-xs-12">
+            <hr/>
+            <div class="sub-section-heading">{{adminModelType}} MODEL FACTORS</div>
+
+            <table class="table workload-table">
+                <thead>
+                <tr>
+                    <th scope="col">Factor</th>
+                    <th scope="col">Description</th>
+                    <th scope="col"><span id="weightLabel">Weight</span></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let factor of selectedModel.factors; let idx = index">
+                    <td scope="row" class="factor">{{factor.name}}</td>
+                    <td class="description"><span class="truncate" data-toggle="tooltip" title="{{factor.description}}">{{factor.description}}</span></td>
+                    <td><input type="number" [id]="'factor_weight_' + idx" [name]="'factor_weight_' + idx" *ngIf="selectedModel.status == MODEL_STATUSES.DRAFT"
+                               step="0.5" max="99999" class="factor-weight" [(ngModel)]="factor.weight" aria-describedby="weightLabel"
+                               [disabled]="selectedModel.status != MODEL_STATUSES.DRAFT" (change)="checkWeight(factor)">
+                        <span class="factor-weight" *ngIf="selectedModel.status != MODEL_STATUSES.DRAFT">{{factor.weight}}</span>
+                    </td>
+                    <td>
+                        <button *ngIf="selectedModel.status == MODEL_STATUSES.DRAFT" class="trash-can" aria-label="Delete factor" (click)="deleteFactor(factor.id)">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div *ngIf="selectedModel.status == MODEL_STATUSES.DRAFT" class="col-xs-8">
+
+                <div class="col-xs-6">
+                    <select id="selectionModelFactors"
+                            name="selectionModelFactors"
+                            class="form-control select-sm"
+                            [(ngModel)]="selectedModelFactorId">
+                        <option value="">Select Factor to add</option>
+                        <option *ngFor="let factor of modelFactors" [value]="factor.id">
+                            {{factor.name}}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="col-xs-1">
+                    <button class="btn btn-primary btn-add-factor" (click)="addModelFactor()">+ Add Factor</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-xs-12 top-padded">
+
+            <div class="sub-section-heading">SELECTION PARAMETERS</div>
+
+            <div class="col-xs-3 form-item">
+                <label class="small-bold" for="selectionThreshold">Selection Threshold</label>
+                <input type="number" step="0.1" id="selectionThreshold" name="selectionThreshold" class="factor-weight" *ngIf="selectedModel.status == MODEL_STATUSES.DRAFT"
+                       [(ngModel)]="selectedModel.selectionThreshold"
+                       min="0" (change)="saveChanges()"/>
+
+                <span class="factor-weight" *ngIf="selectedModel.status != MODEL_STATUSES.DRAFT">{{selectedModel.selectionThreshold}}</span>
+
+            </div>
+
+            <div class="col-xs-3 form-item">
+                <label class="small-bold" for="selectionAllocation">Allocation Percentage</label>
+                <input type="number" id="selectionAllocation" name="selectionAllocation" class="factor-weight" *ngIf="selectedModel.status == MODEL_STATUSES.DRAFT"
+                       [(ngModel)]="selectedModel.allocationPercentage"
+                       min="0" max="100" (change)="saveChanges()"/>
+
+                <span class="factor-weight" *ngIf="selectedModel.status != MODEL_STATUSES.DRAFT">{{selectedModel.allocationPercentage}}%</span>
+            </div>
+
+            <div *ngIf="selectedModel.status == MODEL_STATUSES.DRAFT" class="col-xs-3 form-item">
+                <label class="small-bold" for="selectionReviewType">Default Review Type</label>
+                <select id="selectionReviewType"
+                        name="selectionReviewType"
+                        class="form-control select-sm"
+                        [(ngModel)]="selectedModel.defaultReviewTypeCode"
+                        (ngModelChange)="saveChanges()">
+                    <option value="">Select</option>
+                    <option *ngFor="let type of reviewTypes" [value]="type.code">
+                        {{type.description}}
+                    </option>
+                </select>
+
+                <span class="factor-weight" *ngIf="selectedModel.status != MODEL_STATUSES.DRAFT">{{selectedModel.defaultReviewType}}</span>
+            </div>
+
+            <div *ngIf="adminModelType === MODEL_TYPES.SELECTION" class="col-xs-3 form-item left-padded">
+                <label class="small-bold">Review Scope</label>
+                <div class="radio-btn-element" *ngIf="selectedModel.status == MODEL_STATUSES.DRAFT">
+                    <input type="radio" id="rb_fullScope" name="rb_fullScope" [(ngModel)]="selectedModel.scopeCode"
+                           [value]="MODEL_SCOPE_CODE.FULL" (ngModelChange)="saveChanges()">
+                    <label for="rb_fullScope">Full Scope</label>
+                </div>
+                <div class="radio-btn-element marg-left" *ngIf="selectedModel.status == MODEL_STATUSES.DRAFT">
+                    <input type="radio" id="rb_ltdScope" name="rb_ltdScope" [(ngModel)]="selectedModel.scopeCode"
+                           [value]="MODEL_SCOPE_CODE.LIMITED" (ngModelChange)="saveChanges()">
+                    <label for="rb_ltdScope">Limited Scope</label>
+                </div>
+
+                <span class="factor-weight" *ngIf="selectedModel.status != MODEL_STATUSES.DRAFT">{{selectedModel.scope}}</span>
+
+            </div>
+
+        </div>
+    </form>
+
+    <div *ngIf="selectedModel.status == MODEL_STATUSES.ACTIVE" class="col-xs-12">
+        <hr/>
+        <div class="form-actions">
+            <button class="btn btn-primary" (click)="displayCopyModal(selectedModel)">Duplicate</button>
+        </div>
+    </div>
+
+    <div *ngIf="selectedModel.status == MODEL_STATUSES.DRAFT" class="col-xs-12">
+        <hr/>
+        <div class="form-actions">
+            <button class="btn btn-secondary" (click)="deleteModel()">Delete</button>
+            <button class="btn btn-primary" (click)="activateModel()">Activate Model</button>
+            <button class="btn btn-primary" (click)="displayCopyModal(selectedModel)">Duplicate</button>
+        </div>
+    </div>
+
+    <div *ngIf="selectedModel.status == MODEL_STATUSES.ARCHIVED" class="col-xs-12">
+        <hr/>
+        <div class="form-actions">
+            <button class="btn btn-secondary" (click)="displayCopyModal(selectedModel)">Duplicate</button>
+            <button class="btn btn-primary" (click)="activateModel()">Activate Model</button>
+        </div>
+    </div>
+
+    <modal [(isOpen)]="copyModelOpen"
+           confirmText="Save"
+           [closeOnSave]="false"
+           title="DUPLICATE MODEL"
+           (confirmChange)="duplicateModel()">
+        <div class="modal-inner-body container-fluid">
+            <div class="row">
+                <p class="small modal-msg" role="region">Enter new version name for duplicate of model.</p>
+            </div>
+            <div class="row tall" tabindex="0">
+                <div class="form-item">
+                    <label for="new_model_name" class="small">Model Version Name</label>
+                    <input type="text" id="new_model_name" name="new_model_name" [(ngModel)]="modelToDuplicate.name" placeholder="{{placeholderName}}">
+                </div>
+            </div>
+        </div>
+    </modal>
+
+</div>

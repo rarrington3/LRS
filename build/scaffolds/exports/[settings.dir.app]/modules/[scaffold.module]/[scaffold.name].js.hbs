@@ -1,0 +1,19 @@
+{{> jsFileHeader }}
+
+/**
+ * @example
+ * import {{camelCase scaffold.name}} from 'modules/{{scaffold.module}}/{{scaffold.name}}';
+ * let {{headlessCamelCase scaffold.name}} = new {{camelCase scaffold.name}}();
+ */
+export default class {{camelCase scaffold.name}} {
+	constructor() {
+
+	}
+
+	/**
+	 * Returns name of the class
+	 */
+	getName():string {
+		return '{{scaffold.name}}';
+	}
+}

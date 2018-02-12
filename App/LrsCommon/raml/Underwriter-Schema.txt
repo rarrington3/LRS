@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "underwriterId": {
+      "type": "string"
+    },
+    "underwriterName": {
+      "type": "string"
+    },
+    "houseNumber": {
+      "type": "string"
+    },
+    "streetName": {
+      "type": "string"
+    },
+    "streetType": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "zip": {
+      "type": "string"
+    },
+    "lender": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+	 "statusCode": {
+      "type": "string"
+    },
+    "statusMessage": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "underwriterId",
+    "underwriterName",
+    "houseNumber",
+    "streetName",
+    "streetType",
+    "city",
+    "state",
+    "zip",
+    "lender",
+    "status"
+  ]
+}

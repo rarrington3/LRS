@@ -1,0 +1,16 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="TEST"  author="astrauss" id="HUDLRS_2013_update_insert_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			  update ASSIGNMENT_TYPE_ADMIN
+			  set ASSIGNMENT_TYPE_REF_ID = '62856DD0-95FF-4D85-9EBA-9339B853D807'
+			  where ASSIGNMENT_TYPE_CD = 'S150'
+
+			  insert into ASSIGNMENT_TYPE_ADMIN (ASSIGNMENT_TYPE_CD, ASSIGNMENT_TYPE_CATEGORY, CREATED_BY, CREATED_TS, ASSIGNMENT_TYPE_REF_ID) 
+			  values ('S170','Selection Reason','C20225',getdate(),'26795599-DC6C-449A-BE7D-432434952429')
+		]]>
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>    

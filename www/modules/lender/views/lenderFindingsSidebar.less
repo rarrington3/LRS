@@ -1,0 +1,38 @@
+@import "../../review/components/FindingsSideBar";
+
+:host-context {
+    /* styles should be scoped under host-context */
+
+	/* FindingSideBar.less overides */
+	.finding-item {
+		 position: relative;
+
+		.finding-title {
+			margin-left: 20px;
+		}
+
+		.icon-text, .finding-status-icon {
+			text-align: center;
+			left: 5px;
+		}
+
+		.response-progress {
+			display: block;
+			position: absolute;
+			right: 10px;
+			top: 10px;
+            color: @brand-success;
+			&.sr-only {
+				right: 210px;
+			}
+		}
+	}
+
+	.finding-item > a.btn.active {
+		text-align: initial;
+		border: 1px solid @brand-secondary;
+		background-color: initial;
+		width: 100%;
+	}
+
+}

@@ -1,0 +1,2849 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="C20225 (generated)" id="1488285079993-1" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="ASSIGNMENT_TYPE_ADMIN">
+            <column name="ASSIGNMENT_TYPE_CD" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ASSIGNMENT_TYPE_CATEGORY" type="varchar(36)"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="ASSIGNMENT_TYPE_REF_ID" type="uniqueidentifier"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-2" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="BATCH">
+            <column defaultValueComputed="newid()" name="BATCH_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OWNER_PERSONNEL_ID" type="uniqueidentifier"/>
+            <column name="MTGEE5" type="char(5)"/>
+            <column name="ORIGINAL_OWNER_PERSONNEL_ID" type="uniqueidentifier"/>
+            <column name="CREATED_BY" type="char(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="char(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_TS" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_TS" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BATCH_REFERENCE_ID" type="varchar(16)"/>
+            <column name="OPERATIONAL_REVIEW_IND" type="char(1)"/>
+            <column name="REQUEST_OPERATIONAL_DOCUMENTS_IND" type="char(1)"/>
+            <column name="SECONDARY_REFERENCE" type="varchar(100)"/>
+            <column name="OPERATIONAL_REVIEW_GUIDANCE" type="varchar(MAX)"/>
+            <column name="SELECTION_REQUEST_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BATCH_STATUS_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVIEW_LOCATION_ID" type="uniqueidentifier"/>
+            <column name="RECEIVED_OPERATIONAL_DOCUMENTS_IND" type="char(1)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-3" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="BATCH_PERSONNEL">
+            <column name="BATCH_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PERSONNEL_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-4" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="BATCH_STATUS_REF">
+            <column name="BATCH_STATUS_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODE" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-5" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="BINDER_DELIVERY_LOCATION_REF">
+            <column defaultValueComputed="newid()" name="BINDER_DELIVERY_LOCATION_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODE" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-6" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="BINDER_REQUEST">
+            <column name="BINDER_REQUEST_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CASE_NUMBER" type="char(11)"/>
+            <column name="REQUESTED_DATE" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DUE_DATE" type="datetime"/>
+            <column name="CREATED_BY" type="char(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="char(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_TS" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_TS" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SELECTION_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IS_ELECTRONIC_IND" type="char(1)"/>
+            <column name="BINDER_REQUEST_STATUS_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LENDER_SENT_DATE" type="datetime"/>
+            <column name="BINDER_REQUEST_SOURCE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-7" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="BINDER_REQUEST_SOURCE_REF">
+            <column name="BINDER_REQUEST_SOURCE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODE" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-8" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="BINDER_REQUEST_STATUS_REF">
+            <column defaultValueComputed="newid()" name="BINDER_REQUEST_STATUS_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODE" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-9" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="COMM_ACTIVITY">
+            <column defaultValueComputed="newid()" name="COMMUNICATION_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CORRESPONDENCE_TYPE" type="varchar(16)"/>
+            <column name="RECEIVED_DT" type="datetime"/>
+            <column name="SENT_DT" type="datetime"/>
+            <column name="MTGEE5" type="char(5)"/>
+            <column name="REVIEW_ID" type="uniqueidentifier"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-10" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="COMM_TEMPLATE">
+            <column name="TEMPLATE_ID" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TEMPLATE_CONTENT" type="varchar(MAX)"/>
+            <column name="TEMPLATE_PRPS" type="varchar(16)"/>
+            <column name="TEMPLATE_SUB_PRPS" type="varchar(16)"/>
+            <column name="TEMPLATE_TYPE" type="varchar(16)"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-11" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="COMM_TEMPLATE_AUDIT">
+            <column name="AUDIT_TMSTMP" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TEMPLATE_ID" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TEMPLATE_CONTENT" type="varchar(MAX)"/>
+            <column name="TEMPLATE_PRPS" type="varchar(16)"/>
+            <column name="TEMPLATE_SUB_PRPS" type="varchar(16)"/>
+            <column name="TEMPLATE_TYPE" type="varchar(16)"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-12" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="DEFECT">
+            <column name="DEFECT_CD" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(150)"/>
+            <column name="RELATIVE_ORDER" type="int"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="QA_MODEL_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="newid()" name="DEFECT_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-13" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="DEFECT_CAUSE">
+            <column defaultValueComputed="newid()" name="DEFECT_CAUSE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEFECT_CAUSE_CD" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEFECT_CD" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(150)"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="DEFECT_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RELATIVE_ORDER" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-14" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="DEFECT_REMEDY_TYPE">
+            <column name="DEFECT_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="DESCRIPTION" type="varchar(30)"/>
+            <column name="ORDER_NUMBER" type="int"/>
+            <column name="CODE" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="newid()" name="DEFECT_REMEDY_TYPE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-15" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="DEFECT_SEVERITY">
+            <column defaultValueComputed="newid()" name="DEFECT_SEVERITY_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEFECT_CD" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SEVERITY_TIER_CD" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(1024)"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="DEFECT_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RELATIVE_ORDER" type="int"/>
+            <column name="EXAMPLE_TEXT" type="varchar(1024)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-16" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="DEFECT_SOURCE">
+            <column defaultValueComputed="newid()" name="DEFECT_SOURCE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEFECT_CD" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEFECT_SOURCE_CD" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(150)"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="DEFECT_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RELATIVE_ORDER" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-17" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="DEFECT_TYPE_REF">
+            <column defaultValueComputed="newid()" name="DEFECT_TYPE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEFECT_TYPE_DESCRIPTION" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-18" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="DELIV_PARMS_BINDER">
+            <column name="RQST_DOCS_SOURCE_CD" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DAYS_TO_SATISFY" type="numeric(3, 0)"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-19" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="DELIV_PARMS_ITERATION">
+            <column name="SLCTN_REASON_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NUMBER_OF_ITERATIONS" type="numeric(3, 0)"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="REVIEW_LEVEL_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-20" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="DELIV_PARMS_REQUEST">
+            <column name="INTERATION_NUM" type="numeric(3, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SLCTN_REASON_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ESCALATION_ACTION" type="varchar(16)"/>
+            <column name="DAYS_TO_SATISFY" type="numeric(3, 0)"/>
+            <column name="ESCALATION_REVIEW_LEVEL" type="varchar(16)"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="REVIEW_LEVEL_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-21" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="DICT_METADATA_ENTITY">
+            <column name="ENTITY_NAME" type="varchar(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DB_VIEW_OR_TABLE" type="varchar(128)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(MAX)"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-22" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="DICT_METADATA_FIELD">
+            <column name="ENTITY_NAME" type="varchar(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FIELD_NAME" type="varchar(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DB_COLUMN" type="varchar(128)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(MAX)"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column defaultValue="N" name="USER_EDITABLE_IND" type="char(1)"/>
+            <column name="UI_CONTROL_TYPE" type="varchar(20)"/>
+            <column name="FIELD_MIN_VALUE" type="numeric(10, 0)"/>
+            <column name="FIELD_MAX_VALUE" type="numeric(10, 0)"/>
+            <column name="DISPLAY_ORDER" type="int"/>
+            <column name="DISPLAY_NAME" type="varchar(60)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-23" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="DICT_METADATA_FIELD_CONDITION">
+            <column name="ENTITY_NAME" type="varchar(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FIELD_NAME" type="varchar(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CONDITION_ENTITY_NAME" type="varchar(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CONDITION_FIELD_NAME" type="varchar(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="COMPARISON_VALUES" type="varchar(200)"/>
+            <column name="CONDITION_OPERATOR" type="varchar(16)"/>
+            <column defaultValueComputed="newid()" name="METADATA_FIELD_COND_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-24" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="DICT_METADATA_FIELD_DEFECT">
+            <column name="ENTITY_NAME" type="varchar(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FIELD_NAME" type="varchar(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEFECT_CD" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="DEFECT_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ORDER_NUMBER" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-25" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="DICT_METADATA_FIELD_MODEL">
+            <column name="ENTITY_NAME" type="varchar(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FIELD_NAME" type="varchar(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="QA_MODEL_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="ORDER_NUMBER" type="int"/>
+            <column name="DICT_METADATA_FIELD_SUBJECT_AREA_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-26" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="DICT_METADATA_FIELD_RELATIVES">
+            <column name="ENTITY_NAME" type="varchar(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FIELD_NAME" type="varchar(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RELATIONSHIP_TYPE" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="RELATED_DB_COLUMN" type="varchar(30)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-27" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="DICT_METADATA_FIELD_SUBJECT_AREA">
+            <column defaultValueComputed="newid()" name="DICT_METADATA_FIELD_SUBJECT_AREA_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="QA_MODEL_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SUBJECT_AREA" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DISPLAY_ORDER" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-28" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="DOCUMENT">
+            <column defaultValueComputed="newid()" name="DOCUMENT_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DOCUMENT_TYPE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FILE_NAME" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVIEW_ID" type="uniqueidentifier"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="DOCUMENT_FILE_ID" type="uniqueidentifier"/>
+            <column name="BATCH_ID" type="uniqueidentifier"/>
+            <column name="REVIEW_LEVEL_ID" type="uniqueidentifier"/>
+            <column name="MEDIA_TYPE" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-29" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="DOCUMENT_FILE">
+            <column defaultValueComputed="newid()" name="DOCUMENT_FILE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DOCUMENT_FILE" type="varbinary(MAX)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-30" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="DOCUMENT_TYPE_REF">
+            <column defaultValueComputed="newid()" name="DOCUMENT_TYPE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODE" type="varchar(4)"/>
+            <column name="DESCRIPTION" type="varchar(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-31" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="FILE_DELIVERY_LOCATION_REF">
+            <column name="FILE_DELIVERY_LOCATION_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODE" type="varchar(4)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-32" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="FINDING_DOCUMENT">
+            <column name="FINDING_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DOCUMENT_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FINDING_DOCUMENT_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-33" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="FINDING_RATING_RULE">
+            <column defaultValueComputed="newid()" name="FINDING_RATING_RULE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEFECT_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEFECT_CAUSE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEFECT_SOURCE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UNACCEPTABLE_RATING_THRESHOLD" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-34" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="FRAUD_PARTICIPANT_REF">
+            <column defaultValueComputed="newid()" name="FRAUD_PARTICIPANT_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FRAUD_PARTICIPANT_DESCRIPTION" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-35" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="FRAUD_TYPE_REF">
+            <column defaultValueComputed="newid()" name="FRAUD_TYPE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FRAUD_TYPE_DESCRIPTION" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-36" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="INDEMNIFICATION">
+            <column name="REVIEW_LEVEL_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="START_DATE" type="datetime"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="TRANSFERRABLE_IND" type="char(1)"/>
+            <column name="INDEMNIFICATION_AGREEMENT_NUMBER" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="INDEMNIFICATION_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LENDER_SIGNER_USER_ID" type="varchar(6)"/>
+            <column name="LENDER_SIGNER_NAME" type="varchar(100)"/>
+            <column name="LENDER_SIGNED_DATE" type="datetime"/>
+            <column name="FHA_SIGNER_PERSONNEL_ID" type="uniqueidentifier"/>
+            <column name="FHA_SIGNER_NAME" type="varchar(100)"/>
+            <column name="FHA_SIGNER_DIVISION" type="varchar(3)"/>
+            <column name="FHA_SIGNED_DATE" type="datetime"/>
+            <column name="REVIEW_LOCATION_ID" type="uniqueidentifier"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-37" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="INDEMNIFICATION_TYPE_REF">
+            <column defaultValueComputed="newid()" name="INDEMNIFICATION_TYPE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODE" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-38" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="JOB">
+            <column name="JOB_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="JOB_TYPE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CANCELLED" type="bit">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OFFICIAL_DT" type="datetime"/>
+            <column name="START_DT" type="datetime"/>
+            <column name="END_DT" type="datetime"/>
+            <column name="CREATED_BY" type="char(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_DT" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="char(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_DT" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-39" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="JOB_EXECUTION">
+            <column name="JOB_EXECUTION_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="JOB_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="JOB_EXECUTION_STATUS_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EXCEPTION_DETAILS" type="varchar(MAX)"/>
+            <column name="ENDED_DT" type="datetime"/>
+            <column name="CREATED_BY" type="char(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_DT" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="char(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_DT" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-40" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="JOB_EXECUTION_STATUS_REF">
+            <column name="JOB_EXECUTION_STATUS_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODE" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="char(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_DT" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="char(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_DT" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-41" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="JOB_TYPE_REF">
+            <column name="JOB_TYPE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODE" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="char(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_TS" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="char(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_TS" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-42" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="LENDER_INCREASED_SELECTION">
+            <column name="MTGEE5" type="char(5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="COMMENTS" type="varchar(MAX)"/>
+            <column name="EFFECTIVE_DATE" type="datetime"/>
+            <column name="TARGET_FWD_PCT" type="int"/>
+            <column name="TARGET_HECM_PCT" type="int"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-43" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="LENDER_MONITORING_SELECTION_REQUEST">
+            <column name="SELECTION_REQUEST_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LENDER_ID" type="varchar(5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVIEW_LOCATION_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVIEW_TYPE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FILE_DELIVERY_LOCATION_ID" type="uniqueidentifier"/>
+            <column name="SITE_VISIT_DT" type="datetime"/>
+            <column name="PRODUCT_TYPE_ID" type="uniqueidentifier"/>
+            <column name="CASE_COUNT" type="int"/>
+            <column name="START_DT" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="END_DT" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="char(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_TS" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="char(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_TS" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LOAN_TYPE_REF_ID" type="uniqueidentifier"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-44" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="LENDER_REQUEST">
+            <column defaultValueComputed="newid()" name="LENDER_REQUEST_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REQUESTED_DATE" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DUE_DATE" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="REVIEW_LEVEL_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LENDER_REQUEST_STATUS_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-45" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="LENDER_REQUEST_STATUS_REF">
+            <column name="LENDER_REQUEST_STATUS_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODE" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-46" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="LENDER_SELF_REPORT_SELECTION_REQUEST">
+            <column name="SELECTION_REQUEST_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FINDINGS_DESCRIPTION" type="varchar(MAX)"/>
+            <column name="CORRECTIVE_ACTIONS_DESCRIPTION" type="varchar(MAX)"/>
+            <column name="CREATED_BY" type="char(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_TS" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="char(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_TS" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LENDER_ID" type="varchar(5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FRAUD_DETECTED_IND" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LOAN_COVERED_UNDER_SETTLEMTN_WITH_HUD_IND" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-47" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="LENDER_SELF_REPORT_SELECTION_REQUEST_DEFECT">
+            <column name="SELECTION_REQUEST_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEFECT_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="char(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_TS" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="char(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_TS" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-48" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="LENDER_SELF_REPORT_SELECTION_REQUEST_DEFECT_TYPE_REF">
+            <column name="SELECTION_REQUEST_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEFECT_TYPE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="char(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_TS" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="char(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_TS" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-49" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="LENDER_SELF_REPORT_SELECTION_REQUEST_FRAUD_PARTICIPANT_REF">
+            <column name="SELECTION_REQUEST_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FRAUD_PARTICIPANT_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="char(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_TS" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="char(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_TS" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-50" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="LENDER_SELF_REPORT_SELECTION_REQUEST_FRAUD_TYPE_REF">
+            <column name="SELECTION_REQUEST_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FRAUD_TYPE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="char(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_TS" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="char(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_TS" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-51" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="LENDER_SUPPRESSION">
+            <column name="MTGEE5" type="char(5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-52" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="LENDE_PARMS_FINDINGS">
+            <column name="AUDIT_FINDING" type="varchar(2000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CASE_NUMBER" type="char(11)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CORRECTIVE_ACTION" type="varchar(2000)"/>
+            <column name="EXPLANATION" type="varchar(2000)"/>
+            <column name="PARTY_TO_FINDING" type="varchar(100)"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-53" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="LOAN_SELECTION">
+            <column name="SELECTION_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BATCH_ID" type="uniqueidentifier"/>
+            <column name="CASE_NUMBER" type="char(11)"/>
+            <column name="DISTRIBUTION_DT" type="datetime"/>
+            <column name="MTGEE5" type="char(5)"/>
+            <column name="DUE_DATE" type="datetime"/>
+            <column name="PREFERRED_REVIEW_LOCATION_ID" type="uniqueidentifier"/>
+            <column name="RECEIVED_DT" type="datetime"/>
+            <column name="RQST_DOCS_SOURCE_CD" type="varchar(16)"/>
+            <column name="REQUESTED_DT_TM" type="datetime"/>
+            <column name="SELECTION_DT" type="datetime"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="SELECTION_REASON_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVIEW_TYPE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PRODUCT_TYPE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVIEW_LOCATION_ID" type="uniqueidentifier"/>
+            <column name="LOAN_SELECTION_STATUS_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-54" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="LOAN_SELECTION_CASE_SUMMARY">
+            <column name="APRSL_CMPLTN_DT" type="datetime"/>
+            <column name="CASE_NUMBER" type="char(11)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="newid()" name="SELECTION_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PREQUAL_DT" type="datetime"/>
+            <column name="ADDTNL_10PCT_IPL_USAGE_AMT" type="numeric(16, 2)"/>
+            <column name="ADDTNL_10PCT_IPL_USAGE_IND" type="char(1)"/>
+            <column name="ADP_CODE" type="varchar(16)"/>
+            <column name="ALLOW_CLSG_COST" type="numeric(16, 2)"/>
+            <column name="AMORT_TYP_CD" type="varchar(16)"/>
+            <column name="APLCTN_MTHD" type="varchar(10)"/>
+            <column name="ARM_ADJ_PRD" type="varchar(16)"/>
+            <column name="ARM_INDX_EXPCTD_RT" type="numeric(10, 5)"/>
+            <column name="ARM_INDX_IND" type="varchar(3)"/>
+            <column name="ARM_IND" type="varchar(3)"/>
+            <column name="ARM_MRGN_AMT" type="numeric(10, 5)"/>
+            <column name="ARM_DT" type="datetime"/>
+            <column name="COUNT_AUS" type="int"/>
+            <column name="BSMT_CD" type="varchar(16)"/>
+            <column name="BNKRPTCY_CD" type="varchar(16)"/>
+            <column name="BNKRPTCY_DT" type="datetime"/>
+            <column name="BORR_BRTH_DT" type="datetime"/>
+            <column name="BORR_CNSL_TYP" type="varchar(16)"/>
+            <column name="BORR_GENDER" type="varchar(13)"/>
+            <column name="BORR_TYP" type="varchar(16)"/>
+            <column name="BUY_DWN_IND" type="varchar(3)"/>
+            <column name="CS_ESTAB_DT" type="datetime"/>
+            <column name="CCT_REINS_DT" type="datetime"/>
+            <column name="CS_TYP" type="varchar(16)"/>
+            <column name="CASHOUT_REFI_IND" type="char(1)"/>
+            <column name="CLAIM_TYPE" type="varchar(16)"/>
+            <column name="CLSNG_DT" type="datetime"/>
+            <column name="CF_EQUIVICAL_ASSETS_IND" type="char(1)"/>
+            <column name="CF_EXPECTED_SSI_IND" type="char(1)"/>
+            <column name="CF_HECM_SUFFICIENT_IND" type="char(1)"/>
+            <column name="CF_IMPUTED_INCOME_IND" type="char(1)"/>
+            <column name="CF_NBS_INCOME_IND" type="char(1)"/>
+            <column name="CF_OT_INCOME_IND" type="char(1)"/>
+            <column name="CF_OTHER_INCOME_IND" type="char(1)"/>
+            <column name="CF_PROP_PMT_HIST_IND" type="char(1)"/>
+            <column name="CONDO_FEE_CURR_IND" type="char(1)"/>
+            <column name="CONDO_FEE_DELINQ_IND" type="char(1)"/>
+            <column name="CONST_CD" type="varchar(16)"/>
+            <column name="CONST_STS_CD" type="varchar(16)"/>
+            <column name="CORP_ADVNC_AMT" type="numeric(16, 2)"/>
+            <column name="CURR_DFLT_90DAY_IND" type="char(1)"/>
+            <column name="CURR_DFLT_CYC_DT" type="datetime"/>
+            <column name="CURR_DFLT_EPISODE_NBR" type="int"/>
+            <column name="CURR_DFLT_RSN_CD" type="varchar(16)"/>
+            <column name="CURR_DFLT_STS_CD" type="varchar(16)"/>
+            <column name="CURR_DFLT_STS_DT" type="datetime"/>
+            <column name="CURR_DFLT_STS_SUMMARY_CD" type="varchar(16)"/>
+            <column name="DPNDNT_CNT" type="numeric(3, 0)"/>
+            <column name="DIR_LENDING_BRANCH_IND" type="varchar(16)"/>
+            <column name="EARLY_CLAIM_IND" type="char(1)"/>
+            <column name="EARLY_DEFAULT_IND" type="char(1)"/>
+            <column name="ENDRSMNT_DT" type="datetime"/>
+            <column name="ENDRSMNT_RVW_PRSNNL_ID" type="varchar(32)"/>
+            <column name="ENERGY_EFF_MRTG" type="varchar(3)"/>
+            <column name="FCTRY_FBRCT" type="char(1)"/>
+            <column name="FEMA_FLOOD_AREA_IND" type="char(1)"/>
+            <column name="FHAC_ADDR_CHG" type="varchar(3)"/>
+            <column name="FNCNG_TYP" type="varchar(16)"/>
+            <column name="FRCLSR_IND" type="char(1)"/>
+            <column name="FT_IN_EPS_3MNTH_DELQ_DT" type="datetime"/>
+            <column name="GIFT_LTR_AMT" type="numeric(16, 2)"/>
+            <column name="GIFT_LTR_2_AMT" type="numeric(16, 2)"/>
+            <column name="GIFT_LTR_SRC" type="varchar(30)"/>
+            <column name="GIFT_LTR_TIN" type="varchar(13)"/>
+            <column name="HECM_ASSETS" type="numeric(16, 2)"/>
+            <column name="HECM_COUNSEL_DT" type="datetime"/>
+            <column name="HECM_LIENS" type="numeric(16, 2)"/>
+            <column name="HECM_PRNCPL_LMT" type="numeric(16, 2)"/>
+            <column name="HLDR_MTGEE5_A43" type="varchar(15)"/>
+            <column name="HSNG_PGM_CD" type="varchar(16)"/>
+            <column name="INIT_DISBURSEMENT_LIMIT" type="numeric(16, 2)"/>
+            <column name="INIT_FEE" type="numeric(16, 2)"/>
+            <column name="INSRNC_STATUS_CD" type="varchar(16)"/>
+            <column name="INT_RT" type="numeric(10, 5)"/>
+            <column name="MISC_LNDR_INSRNC_IND" type="varchar(13)"/>
+            <column name="LE_COMPOUND_RATE" type="numeric(10, 5)"/>
+            <column name="LE_EXPECTED_RATE" type="numeric(10, 5)"/>
+            <column name="LE_PROJECTED_AMT" type="numeric(16, 2)"/>
+            <column name="LESA_FUNDING_AMT" type="numeric(16, 2)"/>
+            <column name="LESA_FUNDING_TYPE" type="varchar(16)"/>
+            <column name="LE_SETASIDE_AMT" type="numeric(16, 2)"/>
+            <column name="LE_TALC_MONTHS" type="int"/>
+            <column name="LOAN_NBR" type="varchar(30)"/>
+            <column name="LOAN_PRPS" type="varchar(3)"/>
+            <column name="LOAN_PRPS_FRWD_PYMT_IND" type="char(1)"/>
+            <column name="LOAN_PRPS_IMPRVMNT_IND" type="char(1)"/>
+            <column name="LOAN_PRPS_INCM_IND" type="char(1)"/>
+            <column name="LOAN_PRPS_INSRNC_IND" type="char(1)"/>
+            <column name="LOAN_PRPS_LEISURE_IND" type="char(1)"/>
+            <column name="LOAN_PRPS_MEDCL_IND" type="char(1)"/>
+            <column name="LOAN_PRPS_OTHR_IND" type="char(1)"/>
+            <column name="PROP_TYP" type="varchar(16)"/>
+            <column name="LOAN_PRPS_TAXES_IND" type="char(1)"/>
+            <column name="LOAN_PRPS_TEXT" type="varchar(100)"/>
+            <column name="LTV_CAT" type="varchar(16)"/>
+            <column name="RATIO_LOAN_TO_VL_NEW" type="numeric(10, 5)"/>
+            <column name="LOAN_TYPE" type="varchar(16)"/>
+            <column name="LOSSMIT_CD" type="varchar(16)"/>
+            <column name="MNDTRY_OBLGTNS_AMT" type="numeric(16, 2)"/>
+            <column name="MARRIED_TO_NBS_IND" type="char(1)"/>
+            <column name="CURR_MNTHLY_MIP" type="numeric(16, 2)"/>
+            <column name="MISC_AUS_DCSN_CD" type="varchar(16)"/>
+            <column name="MISC_AUS_IND" type="varchar(3)"/>
+            <column name="ME_DEBT_AMT" type="numeric(16, 2)"/>
+            <column name="ME_OTHER_AMT" type="numeric(16, 2)"/>
+            <column name="ME_RE_AMT" type="numeric(16, 2)"/>
+            <column name="ME_TOTAL_AMT" type="numeric(16, 2)"/>
+            <column name="MI_IMPUTED_AMT" type="numeric(16, 2)"/>
+            <column name="MI_OTHER_AMT" type="numeric(16, 2)"/>
+            <column name="MI_TOTAL_AMT" type="numeric(16, 2)"/>
+            <column name="MNTHLY_SET_ASIDE" type="numeric(16, 2)"/>
+            <column name="MORT_EXCLD_FNCD_MIP" type="numeric(16, 2)"/>
+            <column name="MIP_FINANCED_IND" type="char(1)"/>
+            <column name="NBS_FIRST_MIDDLE_LAST" type="varchar(150)"/>
+            <column name="NBRHD_PCT_OWNED" type="numeric(10, 5)"/>
+            <column name="NBRHD_PRICE" type="numeric(16, 2)"/>
+            <column name="NOR_ISS_RPT_DT" type="datetime"/>
+            <column name="NBR_BTHRMS" type="numeric(3, 1)"/>
+            <column name="NBR_BDRM" type="numeric(3, 0)"/>
+            <column name="NBR_RMS" type="numeric(3, 0)"/>
+            <column name="NUM_LIVING_UNITS" type="numeric(3, 0)"/>
+            <column name="OCPNCY_STS_CD" type="varchar(16)"/>
+            <column name="OCPNCY_STS_DT" type="datetime"/>
+            <column name="OLDST_UNPD_DT" type="datetime"/>
+            <column name="ORIG_MRTG_AMT" type="numeric(16, 2)"/>
+            <column name="ORGNTNG_MTGEE5" type="varchar(5)"/>
+            <column name="ORGNTNG_MTGEE10_ID" type="varchar(10)"/>
+            <column name="TYP_ORGNTNG_MTGEE" type="varchar(16)"/>
+            <column name="OTHER_DEBT_CURR_IND" type="char(1)"/>
+            <column name="OTHER_DEBT_LATE_PMT_IND" type="char(1)"/>
+            <column name="PRE_RVW_DCSN" type="varchar(16)"/>
+            <column name="PRE_CLSNG_IND" type="varchar(3)"/>
+            <column name="PREV_COMPLT_SBDVSN_IND" type="char(1)"/>
+            <column name="PRNCPL_RDCTN_AMT" type="numeric(16, 2)"/>
+            <column name="PRIOR_SALE_RQRD_IND" type="char(1)"/>
+            <column name="PRCSNG_TYP" type="varchar(16)"/>
+            <column name="PROG_ID_F17" type="varchar(16)"/>
+            <column name="DT_ACQ" type="datetime"/>
+            <column name="PROP_ADDR_ST" type="varchar(10)"/>
+            <column name="PRPRTY_APRSL_VL" type="numeric(16, 2)"/>
+            <column name="PC_CONDO_FEE_AMT" type="numeric(16, 2)"/>
+            <column name="PC_FLOOD_INS_AMT" type="numeric(16, 2)"/>
+            <column name="PC_HAZ_INS_AMT" type="numeric(16, 2)"/>
+            <column name="PC_OTHER_AMT" type="numeric(16, 2)"/>
+            <column name="PC_RE_TAX_AMT" type="numeric(16, 2)"/>
+            <column name="PC_SETASIDE_TOT_AMT" type="numeric(16, 2)"/>
+            <column name="PC_TOTAL_AMT" type="numeric(16, 2)"/>
+            <column name="PRPRTY_CNVRSN_TYP" type="varchar(16)"/>
+            <column name="PD_STRMLN_FLG" type="varchar(3)"/>
+            <column name="RATIO_ORE_TEI" type="numeric(10, 5)"/>
+            <column name="PTI_CAT" type="varchar(5)"/>
+            <column name="RE_DEBT_CURR_IND" type="char(1)"/>
+            <column name="RE_DEBT_LATE_PMT_IND" type="char(1)"/>
+            <column name="RE_TAX_CURR_IND" type="char(1)"/>
+            <column name="RE_TAX_DELINQ_IND" type="char(1)"/>
+            <column name="RFNC_CD" type="varchar(16)"/>
+            <column name="RFNC_NEXT_CASE_NBR" type="varchar(11)"/>
+            <column name="RPR_SET_ASIDE" type="numeric(16, 2)"/>
+            <column name="RI_FAMILY_SIZE" type="numeric(3, 0)"/>
+            <column name="RI_SHORTFALL_AMT" type="numeric(16, 2)"/>
+            <column name="RI_STANDARD_AMT" type="numeric(16, 2)"/>
+            <column name="RI_TOTAL_AMT" type="numeric(16, 2)"/>
+            <column name="REVOLVE_DEBT_CURR_IND" type="char(1)"/>
+            <column name="REVOLVE_DEBT_LATE_PMT_IND" type="char(1)"/>
+            <column name="NBRHD_CD" type="varchar(16)"/>
+            <column name="RCV_SALE_DT" type="datetime"/>
+            <column name="SCNDRY_FNC_SRC" type="varchar(16)"/>
+            <column name="SECONDARY_FINANCE_AMT" type="numeric(16, 2)"/>
+            <column name="SELLER_CNTRBTN" type="numeric(16, 2)"/>
+            <column name="SEND_MIC_IND" type="char(1)"/>
+            <column name="OLD_SRVCR_MTGEE" type="varchar(5)"/>
+            <column name="SRVCR_MTGEE5_A43" type="varchar(5)"/>
+            <column name="SNGL_DSBRSE_LMP_SUM_PMT_OPT" type="char(1)"/>
+            <column name="PCT_1_FMLY" type="numeric(10, 5)"/>
+            <column name="SOA_CD" type="varchar(16)"/>
+            <column name="SPNSR_MTGEE10_ID" type="varchar(10)"/>
+            <column name="STRMNLN_REFI_TYPE" type="char(1)"/>
+            <column name="SBDVSN_SPOT_LOT" type="varchar(16)"/>
+            <column name="TAXES_INSRNC_FRST_YR_AMT" type="numeric(16, 2)"/>
+            <column name="TERM" type="int"/>
+            <column name="TERM_TYP_CD" type="varchar(16)"/>
+            <column name="TOT_ANN_EFF_INCM" type="numeric(16, 2)"/>
+            <column name="TOT_MNTHLY_EFF_INCM" type="numeric(16, 2)"/>
+            <column name="TOT_ACQ_COSTS" type="numeric(16, 2)"/>
+            <column name="TRNSMSN_TYP" type="varchar(16)"/>
+            <column name="UFMIP_PD_AMT" type="numeric(16, 2)"/>
+            <column name="UFMIP_PD_CASH" type="numeric(16, 2)"/>
+            <column name="UFMIP_EARNED_CURR_MM" type="numeric(16, 2)"/>
+            <column name="UFMIP_FACTOR" type="numeric(10, 5)"/>
+            <column name="UNDERWRITER_ID" type="varchar(16)"/>
+            <column name="UNDRWRTING_MTGEE5" type="varchar(5)"/>
+            <column name="UNPD_BAL" type="numeric(16, 2)"/>
+            <column name="VAL_PLUS_CLSNG" type="numeric(16, 2)"/>
+            <column name="CREATED_BY" type="varchar(6)"/>
+            <column name="UPDATED_BY" type="varchar(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="BLDG_TYP" type="char(1)"/>
+            <column name="REO_100_DOWN_PMT_PROG_IND" type="char(1)"/>
+            <column name="APPRAISER_NAME" type="varchar(100)"/>
+            <column name="ASSETS_AFTER_CLOSING_UW" type="numeric(16, 2)"/>
+            <column name="ASSUMED_LOAN_IND" type="char(1)"/>
+            <column name="RATIO_FIX_TEI_ENDRS" type="numeric(10, 5)"/>
+            <column name="RATIO_FIX_TEI_UW" type="numeric(10, 5)"/>
+            <column name="BACK_TO_WORK_IND" type="char(1)"/>
+            <column name="BNKRPTCY_ANY_IND" type="char(1)"/>
+            <column name="BORR_1_FIRST_TIME_BUYER_IND" type="char(1)"/>
+            <column name="BORR_1_NAME" type="varchar(100)"/>
+            <column name="BORR_1_RENTING_IND" type="char(1)"/>
+            <column name="BORR_1_SELF_EMPL_IND" type="char(1)"/>
+            <column name="BORR_1_SSN" type="varchar(11)"/>
+            <column name="BORR_2_NAME" type="varchar(100)"/>
+            <column name="BORR_2_SSN" type="varchar(11)"/>
+            <column name="BORR_REQD_INVEST_TO_CLOSE" type="numeric(16, 2)"/>
+            <column name="BORR_HSNG_EXP_ENDRS" type="numeric(16, 2)"/>
+            <column name="BORR_HSNG_EXP_UW" type="numeric(16, 2)"/>
+            <column name="BORR_PAID_CLOSING_COSTS" type="numeric(16, 2)"/>
+            <column name="BUILDING_ON_OWN_LAND_IND" type="char(1)"/>
+            <column name="BNKRPTCY_CHPTR13_IND" type="char(1)"/>
+            <column name="BNKRPTCY_CHPTR7_IND" type="char(1)"/>
+            <column name="COMBINED_LOAN_TO_VALUE_PCT" type="numeric(10, 5)"/>
+            <column name="APPLICATION_DATE" type="datetime"/>
+            <column name="DATE_OF_PRIOR_SALE" type="datetime"/>
+            <column name="DCSN_CD_ENDRS" type="varchar(16)"/>
+            <column name="DCSN_CD_UW" type="varchar(16)"/>
+            <column name="DEFAULT_EPISODE_EXISTS_IND" type="char(1)"/>
+            <column name="DISASTER_IND" type="char(1)"/>
+            <column name="EFF_DATE_APRSL_UPDATE" type="datetime"/>
+            <column name="ENDRS_BYND_60_DAYS_CLOSE_IND" type="char(1)"/>
+            <column name="ESCROW_AMOUNT" type="numeric(16, 2)"/>
+            <column name="FICO_DECISION_SCORE_UW" type="int"/>
+            <column name="FICO_DECISION_SCORE_ENDRS" type="int"/>
+            <column name="FLIPPING_CATEGORY_2_IND" type="char(1)"/>
+            <column name="RATIO_TOT_PMT_TO_TOT_INC_UW" type="numeric(10, 5)"/>
+            <column name="RATIO_TOT_PMT_TO_TOT_INC_ENDRS" type="numeric(10, 5)"/>
+            <column name="GIFT_LTR_2_SOURCE" type="varchar(32)"/>
+            <column name="HECM_COUNSEL_CERT_NO" type="varchar(36)"/>
+            <column name="HUD_REO_REPAIR_AMT" type="numeric(16, 2)"/>
+            <column name="INSUR_APP_IN_TIME_IND" type="char(1)"/>
+            <column name="INVEST_2ND_RESID_IND" type="char(1)"/>
+            <column name="LAST_SERVICING_MRTG_XFER_DT" type="datetime"/>
+            <column name="LOAN_OFFICER" type="varchar(100)"/>
+            <column name="LOAN_OFFICER_NMLS" type="varchar(12)"/>
+            <column name="MANDATORY_OBLIG_BORR_AMT" type="numeric(16, 2)"/>
+            <column name="MANDATORY_OBLIG_LEND_AMT" type="numeric(16, 2)"/>
+            <column name="MAN_UW_STRETCH_RATIO_IND" type="char(1)"/>
+            <column name="MAX_CLAIM_AMT" type="numeric(16, 2)"/>
+            <column name="MAX_RATE" type="numeric(10, 5)"/>
+            <column name="CURRENT_AT_ENDORSE_IND" type="char(1)"/>
+            <column name="NON_OCCUPYING_BORR_IND" type="char(1)"/>
+            <column name="ORGNTNG_MTGEE_NMLS_ID" type="varchar(12)"/>
+            <column name="ORIGINATION_FEE" type="numeric(16, 2)"/>
+            <column name="PAYMENT_PLAN" type="varchar(16)"/>
+            <column name="PRICE_OF_PRIOR_SALE" type="numeric(16, 2)"/>
+            <column name="PRIOR_SALE_WITHIN_LAST_3YR_IND" type="char(1)"/>
+            <column name="QUALIFIED_MRTG_POINTS_AND_FEES" type="numeric(16, 2)"/>
+            <column name="REPAIR_COMPLETION_DATE" type="datetime"/>
+            <column name="SALES_PRICE" type="numeric(16, 2)"/>
+            <column name="SALE_PRICE_GTR_ACQ_COST_IND" type="char(1)"/>
+            <column name="SECONDARY_FINANCE_EXISTS_IND" type="char(1)"/>
+            <column name="SELLER_CNTRBTN_PCNT" type="numeric(10, 5)"/>
+            <column name="SITE_TYPE" type="varchar(30)"/>
+            <column name="SPECIAL_PROGRAM" type="varchar(30)"/>
+            <column name="TEN_YR_RATE_LOCK_IND" type="char(1)"/>
+            <column name="TOT_ASSETS_ENDRS" type="numeric(16, 2)"/>
+            <column name="TOT_ASSETS_UW" type="numeric(16, 2)"/>
+            <column name="TOT_CLSNG_CSTS_ENDRS" type="numeric(16, 2)"/>
+            <column name="TOT_CLSNG_CSTS_UW" type="numeric(16, 2)"/>
+            <column name="TOT_FIXED_PYMT_ENDRS" type="numeric(16, 2)"/>
+            <column name="TOT_FIXED_PYMT_UW" type="numeric(16, 2)"/>
+            <column name="TOT_MNTHLY_MTG_PYMT_ENDRS" type="numeric(16, 2)"/>
+            <column name="TOT_MNTHLY_MTG_PYMT_UW" type="numeric(16, 2)"/>
+            <column name="TOTAL_REQUIRED_FUNDS_TO_CLOSE" type="numeric(16, 2)"/>
+            <column name="UNDERWRITING_METHOD" type="varchar(16)"/>
+            <column name="YEAR_BUILT" type="varchar(4)"/>
+            <column name="FRCLSR_STRT_DT" type="datetime"/>
+            <column name="REFINANCE_IND" type="char(1)"/>
+            <column name="PROP_ADDR_1" type="varchar(100)"/>
+            <column name="PROP_ADDR_2" type="varchar(100)"/>
+            <column name="PROP_ADDR_CITY" type="varchar(100)"/>
+            <column name="PROP_ADDR_ZIP" type="varchar(5)"/>
+            <column name="COBORR_1_FICO_CNT" type="smallint"/>
+            <column name="CNDTNL_CMMTMNT_RVWR" type="varchar(23)"/>
+            <column name="CND_IND" type="char(1)"/>
+            <column name="CURR_DLNQNCY_MNTHS_DLNQNT" type="smallint"/>
+            <column name="ENDRS_APRSL_DAY_DIFF" type="smallint"/>
+            <column name="ENDRS_PRCSNG_DT" type="datetime"/>
+            <column name="ESCRW_FLAG" type="char(1)"/>
+            <column name="GEOCD_FLAG" type="varchar(3)"/>
+            <column name="INDEM_DT" type="datetime"/>
+            <column name="INDEM_STAT" type="char(1)"/>
+            <column name="INDEM_TERM" type="smallint"/>
+            <column name="INDEM_TYPE" type="char(1)"/>
+            <column name="LAST_CASE_QLFCTN_EVNT_DT" type="datetime"/>
+            <column name="MISC_EBNDR_IND" type="char(1)"/>
+            <column name="NONPERF_LOAN_IND" type="char(1)"/>
+            <column name="NOR_ISSUE_DT" type="datetime"/>
+            <column name="ORGNTNG_MRTGGEE_INST_STAT" type="char(1)"/>
+            <column name="PMTS_BFR_FRST_MISSD_PMT" type="smallint"/>
+            <column name="PREQUAL_CNT" type="smallint"/>
+            <column name="PRICE_EXCLDNG_CLSNG_COSTS" type="numeric(16, 2)"/>
+            <column name="PRICE_INCLDNG_CLSNG_COSTS" type="numeric(16, 2)"/>
+            <column name="PRR_CASE_MXMM_CLM_AMT" type="numeric(16, 2)"/>
+            <column name="REFI_PRR_CASE_NBR" type="varchar(10)"/>
+            <column name="SPNSR_MRTGGEE_ID_INST" type="varchar(5)"/>
+            <column name="TERM_15_YR_IND" type="char(1)"/>
+            <column name="UNDRSRVD_IND" type="char(1)"/>
+            <column name="BORR_1_YRS_AT_CURR_JOB" type="int"/>
+            <column name="GIFT_LTR_2_TIN" type="varchar(11)"/>
+            <column name="MNFCTRD_HUSNG_IND" type="char(1)"/>
+            <column name="MNTHLY_PRNCPL_AND_INTRST" type="numeric(16, 2)"/>
+            <column name="PROD_TYPE" type="varchar(3)"/>
+            <column name="SELECTION_REQUEST_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EXPECTED_RATE" type="numeric(10, 5)"/>
+            <column name="YR_MO_CONST_CMPLTD" type="smallint"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-55" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="LOAN_SELECTION_PENDING">
+            <column name="SELECTION_DT" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SELECTION_REASON_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="REVIEW_TYPE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVIEW_LOCATION_ID" type="uniqueidentifier"/>
+            <column name="LOAN_SELECTION_PENDING_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SELECTION_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SELECTION_SUB_REASON_ID" type="uniqueidentifier"/>
+            <column name="BATCH_ID" type="uniqueidentifier"/>
+            <column name="PRODUCT_TYPE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-56" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="LOAN_SELECTION_STATUS_REF">
+            <column name="LOAN_SELECTION_STATUS_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODE" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-57" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="LOAN_TYPE_REF">
+            <column defaultValueComputed="newid()" name="LOAN_TYPE_REF_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODE" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-58" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="LOCATION_ASSIGNMENT_TYPE">
+            <column name="REVIEW_LOCATION_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ASSIGNMENT_TYPE_CD" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATE_BY" type="char(6)"/>
+            <column name="UPDATE_TS" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-59" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="LRS_GEN_LOOKUP">
+            <column name="LOOKUP_ENTITY" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LOOKUP_FIELD" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LOOKUP_CODE" type="varchar(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LOOKUP_DESCRIPTION" type="varchar(256)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ADDL_LOOKUP_CATEGORY" type="varchar(100)"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="DISPLAY_ORDER" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-60" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="MANUAL_SELECTION_REQUEST">
+            <column name="SELECTION_REQUEST_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SELECTION_REASON_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SELECTION_SUB_REASON_ID" type="uniqueidentifier"/>
+            <column name="REVIEW_TYPE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVIEW_LOCATION_ID" type="uniqueidentifier"/>
+            <column name="CREATED_BY" type="char(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_TS" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="char(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_TS" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-61" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="MODEL_SCORE">
+            <column name="LENDER_SCORE_PCTILE" type="int"/>
+            <column name="MODEL_SCORE" type="numeric(10, 5)"/>
+            <column name="SCORE_PCTILE" type="int"/>
+            <column name="SCORE_RANK" type="int"/>
+            <column name="UWRTR_SCORE_PCTILE" type="int"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="MODEL_SCORE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SELECTION_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SCORING_MODEL_VERSION_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-62" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="NOTE">
+            <column defaultValueComputed="newid()" name="NOTE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVIEW_ID" type="uniqueidentifier"/>
+            <column name="REVIEW_LEVEL_ID" type="uniqueidentifier"/>
+            <column name="FINDING_ID" type="uniqueidentifier"/>
+            <column name="ASSOCIATED_DEFECT_CD" type="varchar(16)"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="NOTE_TEXT" type="varchar(MAX)"/>
+            <column name="NOTE_TYPE_ID" type="uniqueidentifier"/>
+            <column name="PERSONNEL_ID" type="uniqueidentifier"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-63" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="NOTE_TYPE_REF">
+            <column defaultValueComputed="newid()" name="NOTE_TYPE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NOTE_TYPE_CD" type="varchar(4)"/>
+            <column name="DESCRIPTION" type="varchar(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-64" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="PERSONNEL">
+            <column defaultValueComputed="newid()" name="PERSONNEL_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EMAIL_ADDRESS" type="varchar(255)"/>
+            <column name="REPORTS_TO_PERSONNEL_ID" type="uniqueidentifier"/>
+            <column name="FIRST_NAME" type="varchar(100)"/>
+            <column name="LAST_NAME" type="varchar(100)"/>
+            <column name="VETTING_PERSONNEL_ID" type="uniqueidentifier"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="LOGIN_CREDENTIAL" type="varchar(32)"/>
+            <column defaultValue="N" name="AVAILABILITY_IND" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="REVIEWER_CAPACITY" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVIEW_LOCATION_ID" type="uniqueidentifier"/>
+            <column name="PERSONNEL_STATUS_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-65" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="PERSONNEL_ASSIGNMENT_TYPE">
+            <column name="PERSONNEL_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ASSIGNMENT_TYPE_CD" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column defaultValueComputed="newid()" name="PERSONNEL_ASSIGNMENT_TYPE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="Y" name="ACTIVE_IND" type="char(1)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-66" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="PERSONNEL_STATUS_REF">
+            <column name="PERSONNEL_STATUS_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODE" type="varchar(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-67" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="PERSONNEL_UNAVAILABILITY">
+            <column name="PERSONNEL_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UNAVAIL_START_TS" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UNAVAIL_END_TS" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column defaultValueComputed="newid()" name="PERSONNEL_UNAVAILABILITY_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-68" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="PRODUCT_DETAIL_REF">
+            <column defaultValueComputed="newid()" name="PRODUCT_DETAIL_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PRODUCT_TYPE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PROD_TYPE" type="varchar(3)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-69" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="PRODUCT_TYPE_REF">
+            <column defaultValueComputed="newid()" name="PRODUCT_TYPE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PRODUCT_TYPE_CD" type="varchar(5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-70" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="QATREE">
+            <column defaultValueComputed="newid()" name="QATREE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="QA_MODEL_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEFECT_ID" type="uniqueidentifier"/>
+            <column defaultValue="N" name="ENABLE_PRE_QUAL_QUESTION_IND" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-71" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="QATREE_OUTCOME">
+            <column name="QATREE_OUTCOME_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="SOURCE_FILTER_QUESTION_ID" type="uniqueidentifier"/>
+            <column name="DEFECT_ID" type="uniqueidentifier"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-72" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="QATREE_OUTCOME_DEFECT_CAUSE">
+            <column name="QATREE_OUTCOME_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="DEFECT_CAUSE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-73" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="QATREE_OUTCOME_DEFECT_SEVERITY">
+            <column name="QATREE_OUTCOME_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="DEFECT_SEVERITY_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-74" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="QATREE_OUTCOME_DEFECT_SOURCE">
+            <column name="QATREE_OUTCOME_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="DEFECT_SOURCE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-75" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="QATREE_QSTN_CAPTURE">
+            <column name="ENTITY_NAME" type="varchar(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FIELD_NAME" type="varchar(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="QUESTION_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="QATREE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-76" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="QATREE_QSTN_CONDITION">
+            <column name="ENTITY_NAME" type="varchar(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FIELD_NAME" type="varchar(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="QUESTION_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="QATREE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="COMPARISON_VALUES" type="varchar(200)"/>
+            <column name="CONDITION_OPERATOR" type="varchar(16)"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column defaultValueComputed="newid()" name="QATREE_QSTN_CONDITION_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-77" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="QATREE_QSTN_RULES">
+            <column name="SELECTION_REASON_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="QATREE_ID" type="uniqueidentifier"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="REVIEW_TYPE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-78" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="QATREE_QUESTION">
+            <column name="QUESTION_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="QATREE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="QUESTION_NUMBER" type="varchar(10)"/>
+            <column name="QUESTION_REFERENCE" type="varchar(16)"/>
+            <column name="QATREE_OUTCOME_ID" type="uniqueidentifier"/>
+            <column name="PARENT_QUESTION_ID" type="uniqueidentifier"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="ORDER_NUMBER" type="int"/>
+            <column name="PARENT_QUESTION_CONDITION_ANSWER" type="varchar(16)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-79" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="QA_MODEL">
+            <column defaultValueComputed="newid()" name="QA_MODEL_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MODEL_NAME" type="varchar(30)"/>
+            <column name="VERSION_NUM" type="int"/>
+            <column name="DESCRIPTION" type="varchar(255)"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="ACTIVATION_DATE" type="datetime"/>
+            <column name="QA_MODEL_STATUS_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-80" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="QA_MODEL_PREQUAL">
+            <column name="QUESTION_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PRE_QUAL_POTENTIAL_ANSWER_CD" type="varchar(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="QUESTION_REF_ID_CSV" type="varchar(125)"/>
+            <column name="DESCRIPTION" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-81" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="QA_MODEL_STATUS_REF">
+            <column defaultValueComputed="newid()" name="QA_MODEL_STATUS_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODE" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-82" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="QUESTION_REFERENCE">
+            <column name="QUESTION_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="QUESTION_DESCRIPTION" type="varchar(2000)"/>
+            <column name="VALUE_TO_TRIGGER_ACTION" type="varchar(10)"/>
+            <column name="RESPONSE_TYPE" type="varchar(16)"/>
+            <column name="ANSWER_VALUES" type="varchar(36)"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="UPDATED_TS" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-83" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="RATING_REF">
+            <column name="CODE" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(150)"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="RANK_ORDER" type="int"/>
+            <column name="RATING_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-84" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="REVIEW">
+            <column defaultValueComputed="newid()" name="REVIEW_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BATCH_ID" type="uniqueidentifier"/>
+            <column name="CASE_NUMBER" type="char(11)"/>
+            <column name="ORIG_MIT_RQST_DT" type="datetime"/>
+            <column name="ORIG_ASSIGN_DT" type="datetime"/>
+            <column name="SELECTION_ID" type="uniqueidentifier"/>
+            <column name="ORIGINAL_REVIEWER_PERSONNEL_ID" type="uniqueidentifier"/>
+            <column name="RVW_COMPLTD_DT" type="datetime"/>
+            <column name="RVW_STARTED_DT_TM" type="datetime"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="REVIEW_REFERENCE_ID" type="varchar(20)"/>
+            <column name="DUE_DATE" type="datetime"/>
+            <column name="CANCELLATION_REASON_ID" type="uniqueidentifier"/>
+            <column name="QC_OUTCOME_CD" type="char(2)"/>
+            <column defaultValue="N" name="MRB_REFERRAL_IND" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVIEW_STATUS_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SUMMARY_RATING_ID" type="uniqueidentifier"/>
+            <column name="REVIEW_SCOPE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVIEW_TYPE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PRODUCT_TYPE_ID" type="uniqueidentifier"/>
+            <column name="SELECTION_REASON_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="QA_MODEL_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-85" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="REVIEW_LEVEL">
+            <column defaultValueComputed="newid()" name="REVIEW_LEVEL_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ASSIGN_DT" type="datetime"/>
+            <column name="COMPLT_DT" type="datetime"/>
+            <column name="INDEMNIFICATION_TYPE_ID" type="uniqueidentifier"/>
+            <column name="ITERATION_NUMBER" type="numeric(3, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NOTES" type="varchar(MAX)"/>
+            <column name="ORIGINAL_REVIEWER_PERSONNEL_ID" type="uniqueidentifier"/>
+            <column name="REVIEW_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RVW_STARTED_DT_TM" type="datetime"/>
+            <column name="REVIEWER_PERSONNEL_ID" type="uniqueidentifier"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="DUE_DATE" type="datetime"/>
+            <column name="REVIEW_LEVEL_TYPE_ID" type="uniqueidentifier"/>
+            <column name="REVIEW_LOCATION_ID" type="uniqueidentifier"/>
+            <column name="REVIEW_LEVEL_STATUS_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RATING_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VETTING_IND" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VETTEE_ACKNOWLEDGEMENT_DT" type="datetime"/>
+            <column name="VETTEE_ACKNOWLEDGEMENT_DUE_DT" type="datetime"/>
+            <column name="REASSIGNMENT_REASON_ID" type="uniqueidentifier"/>
+            <column name="CANCELLATION_REASON_ID" type="uniqueidentifier"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-86" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="REVIEW_LEVEL_ADMIN">
+            <column name="ASSIGNMENT_TYPE_CD" type="varchar(16)"/>
+            <column name="FORCE_ESCALATE_ALLOWED" type="char(1)"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="REVIEW_LEVEL_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-87" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="REVIEW_LEVEL_CANCELLATION_REASON_REF">
+            <column defaultValueComputed="newid()" name="CANCELLATION_REASON_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODE" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-88" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="REVIEW_LEVEL_ITERATION_TIMEFRAME">
+            <column defaultValueComputed="newid()" name="REVIEW_LEVEL_ITERATION_TIMEFRAME_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ITERATION_NUMBER" type="int"/>
+            <column name="REVIEW_DAYS_ITERATION_1" type="int"/>
+            <column name="REVIEW_DAYS_ITERATION_2" type="int"/>
+            <column name="REVIEW_DAYS_ITERATION_3" type="int"/>
+            <column name="REVIEW_DAYS_ITERATION_4" type="int"/>
+            <column name="REVIEW_DAYS_ITERATION_5" type="int"/>
+            <column name="RESPONSE_DAYS_ITERATION_1" type="int"/>
+            <column name="RESPONSE_DAYS_ITERATION_2" type="int"/>
+            <column name="RESPONSE_DAYS_ITERATION_3" type="int"/>
+            <column name="RESPONSE_DAYS_ITERATION_4" type="int"/>
+            <column name="RESPONSE_DAYS_ITERATION_5" type="int"/>
+            <column name="SELECTION_REASON_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVIEW_LEVEL_TYPE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVIEW_DAYS_ITERATION_6" type="int"/>
+            <column name="CREATED_BY" type="char(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_TS" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="char(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_TS" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-89" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="REVIEW_LEVEL_REASSIGNMENT_REASON_REF">
+            <column defaultValueComputed="newid()" name="REASSIGNMENT_REASON_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODE" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-90" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="REVIEW_LEVEL_STATUS_REF">
+            <column name="REVIEW_LEVEL_STATUS_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODE" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-91" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="REVIEW_LEVEL_TYPE_REF">
+            <column defaultValueComputed="newid()" name="REVIEW_LEVEL_TYPE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVIEW_LEVEL_CD" type="varchar(4)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(50)"/>
+            <column name="ORDINAL" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-92" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="REVIEW_LOCATION">
+            <column name="LOCATION_NAME" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CONTACT_NAME" type="varchar(100)"/>
+            <column name="CONTACT_PHONE_NUMBER" type="varchar(32)"/>
+            <column name="MAILING_ADDRESS" type="varchar(100)"/>
+            <column name="MAILING_CITY" type="varchar(100)"/>
+            <column name="MAILING_STATE" type="varchar(16)"/>
+            <column name="MAILING_ZIP" type="varchar(16)"/>
+            <column name="COMMITTED_MONTHLY_CAPACITY" type="int"/>
+            <column name="OWNER_PERSONNEL_ID" type="uniqueidentifier"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="PHONE_EXTENSION" type="char(4)"/>
+            <column defaultValueComputed="newid()" name="REVIEW_LOCATION_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ACTIVATION_DATE" type="datetime"/>
+            <column name="DEACTIVATION_DATE" type="datetime"/>
+            <column name="MAILING_ADDRESS_2" type="varchar(100)"/>
+            <column name="BINDER_DELIVERY_LOCATION_ID" type="uniqueidentifier"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-93" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="REVIEW_PROCESS_EXCEPTION">
+            <column defaultValueComputed="newid()" name="REVIEW_PROCESS_EXCEPTION_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BATCH_ID" type="uniqueidentifier"/>
+            <column name="SELECTION_ID" type="uniqueidentifier"/>
+            <column name="REVIEW_ID" type="uniqueidentifier"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="CASE_NUMBER" type="char(11)"/>
+            <column name="REVIEW_PROCESS_EXCEPTION_TYPE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="N" name="RESOLVED_IND" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-94" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="REVIEW_PROCESS_EXCEPTION_TYPE_REF">
+            <column name="REVIEW_PROCESS_EXCEPTION_TYPE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODE" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-95" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="REVIEW_REFERRAL">
+            <column name="NOTES" type="varchar(MAX)"/>
+            <column name="REVIEW_REFERRAL_TYPE_REF_ID" type="uniqueidentifier"/>
+            <column name="REFERRAL_TMSTMP" type="datetime"/>
+            <column name="REVIEW_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column defaultValueComputed="newid()" name="REVIEW_REFERRAL_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVIEW_REFERRAL_SOURCE_REF_ID" type="uniqueidentifier"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-96" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="REVIEW_REFERRAL_AUD">
+            <column name="AUDIT_TMSTMP" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVIEW_REFERRAL_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NOTES" type="varchar(MAX)"/>
+            <column name="REFERRAL_TMSTMP" type="datetime"/>
+            <column name="RVWR_PRSNNL_ID" type="uniqueidentifier"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-97" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="REVIEW_REFERRAL_SOURCE_REF">
+            <column defaultValueComputed="newid()" name="REVIEW_REFERRAL_SOURCE_REF_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODE" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-98" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="REVIEW_REFERRAL_TYPE_REF">
+            <column defaultValueComputed="newid()" name="REVIEW_REFERRAL_TYPE_REF_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODE" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-99" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="REVIEW_SCOPE_REF">
+            <column defaultValueComputed="newid()" name="REVIEW_SCOPE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODE" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-100" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="REVIEW_STATUS_REF">
+            <column name="REVIEW_STATUS_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODE" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-101" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="REVIEW_TYPE_DEFECT">
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="ORDER_NUMBER" type="int"/>
+            <column name="REVIEW_TYPE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEFECT_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-102" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="REVIEW_TYPE_REF">
+            <column defaultValueComputed="newid()" name="REVIEW_TYPE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVIEW_TYPE_CD" type="char(1)"/>
+            <column name="DESCRIPTION" type="varchar(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-103" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="RVW_DEFECT">
+            <column name="REVIEW_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEFECT_CD" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SUMMARY_RATING_CD" type="varchar(16)"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="DEFECT_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-104" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="RVW_HISTORY">
+            <column name="CASE_NUMBER" type="char(11)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="WORST_RATING" type="varchar(16)"/>
+            <column name="LATEST_SVCNG_RVW_DT" type="datetime"/>
+            <column name="LATEST_UWRTG_RVW_DT" type="datetime"/>
+            <column name="QTY_SVCNG_RVWS" type="int"/>
+            <column name="QTY_UWRTNG_RVWS" type="int"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-105" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="RVW_LOCATION_REASON">
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="SELECTION_REASON_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVIEW_LOCATION_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-106" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="RVW_LVL_AUDIT">
+            <column name="AUDIT_TMSTMP" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVIEW_LVL_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="INDEM_DATE" type="datetime"/>
+            <column name="INDEM_TYPE" type="varchar(16)"/>
+            <column name="NOTES" type="varchar(MAX)"/>
+            <column name="RVWR_PRSNNL_ID" type="uniqueidentifier"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-107" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="RVW_LVL_CASE_SUMMARY">
+            <column name="REVIEW_LEVEL_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ASSUMED_LOAN_IND" type="char(1)"/>
+            <column name="CASHOUT_REFI_IND" type="char(1)"/>
+            <column name="DISASTER_IND" type="char(1)"/>
+            <column name="GIFT_LTR_AMT" type="numeric(16, 2)"/>
+            <column name="GIFT_LTR_2_AMT" type="numeric(16, 2)"/>
+            <column name="GIFT_LTR_SRC" type="varchar(32)"/>
+            <column name="GIFT_LTR_2_SOURCE" type="varchar(32)"/>
+            <column name="INVEST_2ND_RESID_IND" type="char(1)"/>
+            <column name="NUM_LIVING_UNITS" type="numeric(3, 0)"/>
+            <column name="LOAN_PRPS" type="varchar(3)"/>
+            <column name="RATIO_LOAN_TO_VL_NEW" type="numeric(10, 5)"/>
+            <column name="LOAN_TYPE" type="varchar(16)"/>
+            <column name="FCTRY_FBRCT" type="char(1)"/>
+            <column name="MAX_CLAIM_AMT" type="numeric(16, 2)"/>
+            <column name="CURRENT_AT_ENDORSE_IND" type="char(1)"/>
+            <column name="PD_STRMLN_FLG" type="varchar(3)"/>
+            <column name="RFNC_CD" type="varchar(16)"/>
+            <column name="SOA_CD" type="varchar(16)"/>
+            <column name="UNDERWRITING_METHOD" type="varchar(16)"/>
+            <column name="ENDRS_BYND_60_DAYS_CLOSE_IND" type="char(1)"/>
+            <column name="NON_OCCUPYING_BORR_IND" type="char(1)"/>
+            <column name="SALE_PRICE_GTR_ACQ_COST_IND" type="char(1)"/>
+            <column name="INSUR_APP_IN_TIME_IND" type="char(1)"/>
+            <column name="CREATED_BY" type="varchar(6)"/>
+            <column name="UPDATED_BY" type="varchar(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="ASSETS_AFTER_CLOSING_UW" type="numeric(16, 2)"/>
+            <column name="TOT_ASSETS_UW" type="numeric(16, 2)"/>
+            <column name="RATIO_FIX_TEI_UW" type="numeric(10, 5)"/>
+            <column name="BORR_HSNG_EXP_UW" type="numeric(16, 2)"/>
+            <column name="FICO_DECISION_SCORE_UW" type="int"/>
+            <column name="RATIO_TOT_PMT_TO_TOT_INC_UW" type="numeric(10, 5)"/>
+            <column name="TOT_MNTHLY_MTG_PYMT_UW" type="numeric(16, 2)"/>
+            <column name="TOT_CLSNG_CSTS_UW" type="numeric(16, 2)"/>
+            <column name="DCSN_CD_UW" type="varchar(16)"/>
+            <column name="TOT_FIXED_PYMT_UW" type="numeric(16, 2)"/>
+            <column name="TOT_ASSETS_ENDRS" type="numeric(16, 2)"/>
+            <column name="RATIO_FIX_TEI_ENDRS" type="numeric(10, 5)"/>
+            <column name="BORR_HSNG_EXP_ENDRS" type="numeric(16, 2)"/>
+            <column name="FICO_DECISION_SCORE_ENDRS" type="int"/>
+            <column name="RATIO_TOT_PMT_TO_TOT_INC_ENDRS" type="numeric(10, 5)"/>
+            <column name="TOT_MNTHLY_MTG_PYMT_ENDRS" type="numeric(16, 2)"/>
+            <column name="TOT_CLSNG_CSTS_ENDRS" type="numeric(16, 2)"/>
+            <column name="DCSN_CD_ENDRS" type="varchar(16)"/>
+            <column name="TOT_FIXED_PYMT_ENDRS" type="numeric(16, 2)"/>
+            <column name="MNDTRY_OBLGTNS_AMT" type="numeric(16, 2)"/>
+            <column name="BNKRPTCY_CHPTR13_IND" type="char(1)"/>
+            <column name="BNKRPTCY_CHPTR7_IND" type="char(1)"/>
+            <column name="GIFT_LTR_TIN" type="varchar(13)"/>
+            <column name="ORIG_MRTG_AMT" type="numeric(16, 2)"/>
+            <column name="PRPRTY_APRSL_VL" type="numeric(16, 2)"/>
+            <column name="SECONDARY_FINANCE_AMT" type="numeric(16, 2)"/>
+            <column name="CLAIM_TYPE" type="varchar(16)"/>
+            <column name="MARRIED_TO_NBS_IND" type="char(1)"/>
+            <column name="BORR_1_NAME" type="varchar(100)"/>
+            <column name="BORR_2_NAME" type="varchar(100)"/>
+            <column name="BORR_1_SSN" type="varchar(11)"/>
+            <column name="BORR_2_SSN" type="varchar(11)"/>
+            <column name="CLSNG_DT" type="datetime"/>
+            <column name="CONST_CD" type="varchar(16)"/>
+            <column name="BNKRPTCY_ANY_IND" type="char(1)"/>
+            <column name="SECONDARY_FINANCE_EXISTS_IND" type="char(1)"/>
+            <column name="BORR_TYP" type="varchar(16)"/>
+            <column name="REO_100_DOWN_PMT_PROG_IND" type="char(1)"/>
+            <column name="AMORT_TYP_CD" type="varchar(16)"/>
+            <column name="LOAN_OFFICER" type="varchar(100)"/>
+            <column name="LOAN_OFFICER_NMLS" type="varchar(12)"/>
+            <column name="SELLER_CNTRBTN" type="numeric(16, 2)"/>
+            <column name="SELLER_CNTRBTN_PCNT" type="numeric(10, 5)"/>
+            <column name="BORR_PAID_CLOSING_COSTS" type="numeric(16, 2)"/>
+            <column name="BORR_REQD_INVEST_TO_CLOSE" type="numeric(16, 2)"/>
+            <column name="BACK_TO_WORK_IND" type="char(1)"/>
+            <column name="COMBINED_LOAN_TO_VALUE_PCT" type="numeric(10, 5)"/>
+            <column name="ESCROW_AMOUNT" type="numeric(16, 2)"/>
+            <column name="TOTAL_REQUIRED_FUNDS_TO_CLOSE" type="numeric(16, 2)"/>
+            <column name="HUD_REO_REPAIR_AMT" type="numeric(16, 2)"/>
+            <column name="MORT_EXCLD_FNCD_MIP" type="numeric(16, 2)"/>
+            <column name="MAN_UW_STRETCH_RATIO_IND" type="char(1)"/>
+            <column name="ORGNTNG_MTGEE_NMLS_ID" type="varchar(12)"/>
+            <column name="QUALIFIED_MRTG_POINTS_AND_FEES" type="numeric(16, 2)"/>
+            <column name="INT_RT" type="numeric(10, 5)"/>
+            <column name="SALES_PRICE" type="numeric(16, 2)"/>
+            <column name="SPECIAL_PROGRAM" type="varchar(30)"/>
+            <column name="TOT_MNTHLY_EFF_INCM" type="numeric(16, 2)"/>
+            <column name="YEAR_BUILT" type="varchar(4)"/>
+            <column name="EFF_DATE_APRSL_UPDATE" type="datetime"/>
+            <column name="APPRAISER_NAME" type="varchar(100)"/>
+            <column name="SITE_TYPE" type="varchar(30)"/>
+            <column name="PRIOR_SALE_WITHIN_LAST_3YR_IND" type="char(1)"/>
+            <column name="DATE_OF_PRIOR_SALE" type="datetime"/>
+            <column name="PRICE_OF_PRIOR_SALE" type="numeric(16, 2)"/>
+            <column name="RCV_SALE_DT" type="datetime"/>
+            <column name="LAST_SERVICING_MRTG_XFER_DT" type="datetime"/>
+            <column name="ARM_INDX_EXPCTD_RT" type="numeric(10, 5)"/>
+            <column name="TEN_YR_RATE_LOCK_IND" type="char(1)"/>
+            <column name="ADDTNL_10PCT_IPL_USAGE_IND" type="char(1)"/>
+            <column name="MANDATORY_OBLIG_BORR_AMT" type="numeric(16, 2)"/>
+            <column name="MANDATORY_OBLIG_LEND_AMT" type="numeric(16, 2)"/>
+            <column name="HECM_COUNSEL_DT" type="datetime"/>
+            <column name="APPLICATION_DATE" type="datetime"/>
+            <column name="BORR_BRTH_DT" type="datetime"/>
+            <column name="EXPECTED_RATE" type="numeric(10, 5)"/>
+            <column name="HECM_COUNSEL_CERT_NO" type="varchar(36)"/>
+            <column name="INIT_DISBURSEMENT_LIMIT" type="numeric(16, 2)"/>
+            <column name="HECM_PRNCPL_LMT" type="numeric(16, 2)"/>
+            <column name="MAX_RATE" type="numeric(10, 5)"/>
+            <column name="ORIGINATION_FEE" type="numeric(16, 2)"/>
+            <column name="PAYMENT_PLAN" type="varchar(16)"/>
+            <column name="TAXES_INSRNC_FRST_YR_AMT" type="numeric(16, 2)"/>
+            <column name="REPAIR_COMPLETION_DATE" type="datetime"/>
+            <column name="BORR_1_RENTING_IND" type="char(1)"/>
+            <column name="BORR_1_SELF_EMPL_IND" type="char(1)"/>
+            <column name="BORR_1_FIRST_TIME_BUYER_IND" type="char(1)"/>
+            <column name="ARM_IND" type="varchar(3)"/>
+            <column name="BLDG_TYP" type="char(1)"/>
+            <column name="BUILDING_ON_OWN_LAND_IND" type="char(1)"/>
+            <column name="FLIPPING_CATEGORY_2_IND" type="char(1)"/>
+            <column name="FRCLSR_IND" type="char(1)"/>
+            <column name="DEFAULT_EPISODE_EXISTS_IND" type="char(1)"/>
+            <column name="ADP_CODE" type="varchar(16)"/>
+            <column name="GIFT_LTR_2_TIN" type="varchar(11)"/>
+            <column name="MISC_AUS_DCSN_CD" type="varchar(16)"/>
+            <column name="BNKRPTCY_CD" type="varchar(16)"/>
+            <column name="FRCLSR_STRT_DT" type="datetime"/>
+            <column name="FT_IN_EPS_3MNTH_DELQ_DT" type="datetime"/>
+            <column name="LOSSMIT_CD" type="varchar(16)"/>
+            <column name="OCPNCY_STS_CD" type="varchar(16)"/>
+            <column name="OLDST_UNPD_DT" type="datetime"/>
+            <column name="TERM_TYP_CD" type="varchar(16)"/>
+            <column name="ENDRSMNT_DT" type="datetime"/>
+            <column name="REFINANCE_IND" type="char(1)"/>
+            <column name="CASE_NUMBER" type="varchar(11)"/>
+            <column name="PROP_ADDR_1" type="varchar(100)"/>
+            <column name="PROP_ADDR_2" type="varchar(100)"/>
+            <column name="PROP_ADDR_CITY" type="varchar(100)"/>
+            <column name="PROP_ADDR_ZIP" type="varchar(5)"/>
+            <column name="PROP_ADDR_ST" type="char(2)"/>
+            <column name="BNKRPTCY_DT" type="datetime"/>
+            <column name="MNFCTRD_HUSNG_IND" type="char(1)"/>
+            <column name="PRODUCT_TYPE_CD" type="varchar(5)"/>
+            <column name="REVIEW_TYPE_CD" type="char(1)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-108" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="RVW_LVL_DEFECT">
+            <column name="REVIEW_LEVEL_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEFECT_CD" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVIEW_ID" type="uniqueidentifier"/>
+            <column name="COMMENTS" type="varchar(MAX)"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="DEFECT_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-109" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="RVW_LVL_DEFECT_AUD">
+            <column name="REVIEW_LVL_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEFECT_CD" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="AUDIT_TMSTMP" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVIEW_ID" type="uniqueidentifier"/>
+            <column name="COMMENTS" type="varchar(MAX)"/>
+            <column name="RVWR_PRSNNL_ID" type="uniqueidentifier"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="DEFECT_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-110" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="RVW_LVL_FINDING">
+            <column defaultValueComputed="newid()" name="FINDING_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVIEW_LEVEL_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEFECT_CD" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEFECT_SOURCE_CD" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEFECT_CAUSE_CD" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SEVERITY_TIER_CD" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEFECT_REMEDY_TYPE_ID" type="uniqueidentifier"/>
+            <column name="NOTES" type="varchar(MAX)"/>
+            <column name="RECISSION_IND" type="char(1)"/>
+            <column name="REMEDIED_DT" type="datetime"/>
+            <column name="REMEDY_AMOUNT" type="int"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="RATING_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEFECT_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEFECT_SOURCE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEFECT_CAUSE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEFECT_SEVERITY_ID" type="uniqueidentifier"/>
+            <column name="ORIGINAL_REVIEW_LEVEL_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-111" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="RVW_LVL_FINDING_AUD">
+            <column name="FINDING_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVIEW_LVL_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEFECT_CD" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DFCT_SOURCE_CD" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEFECT_CAUSE_CD" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="AUDIT_TMSTMP" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NOTES" type="varchar(MAX)"/>
+            <column name="SEVERITY_TIER_CD" type="varchar(16)"/>
+            <column name="RECISSION_IND" type="char(1)"/>
+            <column name="REMEDIED_DT" type="datetime"/>
+            <column name="REMEDY_AMOUNT" type="int"/>
+            <column name="REMEDY_TYPE" type="varchar(16)"/>
+            <column name="RVWR_PRSNNL_ID" type="uniqueidentifier"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-112" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="RVW_LVL_FINDING_QUESTION">
+            <column defaultValueComputed="newid()" name="FINDING_QUESTION_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FINDING_ID" type="uniqueidentifier"/>
+            <column name="QUESTION_ID" type="uniqueidentifier"/>
+            <column name="QATREE_ID" type="uniqueidentifier"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-113" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="RVW_LVL_QSTN_ANSWERS">
+            <column defaultValueComputed="newid()" name="ANSWER_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVIEW_LEVEL_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="QATREE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="QUESTION_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ANSWER" type="varchar(16)"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-114" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="SCORING_FACTOR">
+            <column defaultValueComputed="newid()" name="SCORING_FACTOR_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FACTOR_ATTRIBUTE_NAME" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(256)"/>
+            <column name="COMMENTS" type="varchar(256)"/>
+            <column name="TECHNICAL_REFERENCE" type="varchar(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-115" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="SCORING_MODEL">
+            <column defaultValueComputed="newid()" name="SCORING_MODEL_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(100)"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="ORDER_NUMBER" type="int"/>
+            <column name="SCORING_MODEL_TYPE_ID" type="uniqueidentifier"/>
+            <column name="CODE" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LOAN_TYPE_REF_ID" type="uniqueidentifier"/>
+            <column name="REVIEW_TYPE_ID" type="uniqueidentifier"/>
+            <column name="SELECTION_REASON_ID" type="uniqueidentifier"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-116" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="SCORING_MODEL_FACTOR">
+            <column defaultValueComputed="newid()" name="SCORING_FACTOR_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SCORING_MODEL_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FIELD_NAME" type="varchar(60)"/>
+            <column name="COMMENTS" type="varchar(MAX)"/>
+            <column name="ENTITY_NAME" type="varchar(60)"/>
+            <column name="WEIGHT" type="numeric(10, 5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="SCORING_MODEL_VERSION_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-117" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="SCORING_MODEL_TYPE_REF">
+            <column name="SCORING_MODEL_TYPE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODE" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-118" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="SCORING_MODEL_VERSION">
+            <column name="SCORING_MODEL_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MODEL_VER_NUM" type="numeric(3, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MODEL_SCORE_THRESHOLD" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="MODEL_NAME" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVIEW_SCOPE_ID" type="uniqueidentifier"/>
+            <column name="ALLOCATION_PCT" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEFAULT_REVIEW_TYPE_ID" type="uniqueidentifier"/>
+            <column defaultValueComputed="newid()" name="SCORING_MODEL_VERSION_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SCORING_MODEL_VERSION_STATUS_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-119" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="SCORING_MODEL_VERSION_STATUS_REF">
+            <column name="SCORING_MODEL_VERSION_STATUS_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODE" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-120" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="SELECTION_REASON">
+            <column defaultValueComputed="newid()" name="SELECTION_REASON_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BATCHES_ALLOWED_IND" type="char(1)"/>
+            <column name="CAPACITY_HANDLING_RULE" type="varchar(16)"/>
+            <column name="SCORING_MODEL_ID" type="uniqueidentifier"/>
+            <column name="PRIORITY" type="numeric(3, 0)"/>
+            <column name="PROCESSING_CYCLE" type="varchar(16)"/>
+            <column name="REQUIRE_FULL_QATREE_IND" type="char(1)"/>
+            <column name="SELECT_REVIEW_TYPE" type="varchar(16)"/>
+            <column name="SAMPLING_METHOD" type="varchar(16)"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+            <column name="DESCRIPTION" type="varchar(50)"/>
+            <column name="COUNTS_TWD_MNTHLY_CAPACITY_IND" type="char(1)"/>
+            <column name="AUTOMATED_IND" type="char(1)"/>
+            <column name="CODE" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-121" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="SELECTION_REQUEST">
+            <column name="SELECTION_REQUEST_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SELECTION_REQUEST_TYPE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="char(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_TS" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="char(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_TS" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-122" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="SELECTION_REQUEST_TYPE_REF">
+            <column name="SELECTION_REQUEST_TYPE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODE" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-123" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="SELECTION_SUB_REASON_REF">
+            <column name="SELECTION_SUB_REASON_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODE" type="varchar(4)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-124" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="SYSTEM_PARAMETERS">
+            <column name="PARAMETER_NAME" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PARAMETER_VALUE" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-125" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="UNDERWRITER_INCREASED_SELECTION">
+            <column name="UNDERWRITER_ID" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="COMMENTS" type="varchar(MAX)"/>
+            <column name="EFFECTIVE_DATE" type="datetime"/>
+            <column name="FWD_PERCENT" type="numeric(3, 0)"/>
+            <column name="HECM_PERCENT" type="numeric(3, 0)"/>
+            <column name="CREATED_BY" type="char(6)"/>
+            <column name="UPDATED_BY" type="char(6)"/>
+            <column name="CREATED_TS" type="datetime"/>
+            <column name="UPDATED_TS" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-126" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="UNIVERSE_REF">
+            <column defaultValueComputed="newid()" name="UNIVERSE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODE" type="varchar(4)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="C20225 (generated)" id="1488285079993-127" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="UNIVERSE_SELECTION_REQUEST">
+            <column name="SELECTION_REQUEST_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UNIVERSE_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+            <column name="START_DT" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="END_DT" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="char(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_TS" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="char(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_TS" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="COMPLETED_TS" type="datetime"/>
+            <column name="JOB_ID" type="uniqueidentifier">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>	

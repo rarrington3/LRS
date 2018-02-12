@@ -1,0 +1,686 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create table QA_MODEL
+			(MODEL_ID uniqueidentifier not null default newid(),
+			 MODEL_NAME varchar(30) null,
+			 VERSION_NUM INT NULL,
+			 DESCRIPTION VARCHAR(255) NULL,
+			 CREATED_BY CHAR(6) NULL,
+			 CREATED_TS DATETIME NULL,
+			 UPDATED_BY CHAR(6) NULL,
+			 UPDATED_TS DATETIME NULL,
+			 ACTIVATION_DATE DATETIME NULL)
+			 
+			 alter table QA_MODEL add constraint QA_MODEL_PK primary key nonclustered (MODEL_ID)	
+
+			INSERT INTO qa_model (MODEL_ID, MODEL_NAME, VERSION_NUM, DESCRIPTION, CREATED_BY, CREATED_TS) values('20477262-40F9-420F-93B7-EC25CF6FBAE4','LRS Initial QA Model',1,'LRS Initial QA Model','C20225',getdate())						 
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0002" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table defect add MODEL_ID UNIQUEIDENTIFIER NULL
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0003" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update defect set MODEL_ID = '20477262-40F9-420F-93B7-EC25CF6FBAE4'
+		]]>
+        </sql>
+    </changeSet>			
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0004" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table defect alter column MODEL_ID UNIQUEIDENTIFIER not NULL			
+
+			ALTER TABLE defect ADD CONSTRAINT DEFECTTOQAMODEL FOREIGN KEY (MODEL_ID) REFERENCES QA_MODEL(MODEL_ID)
+
+			alter table defect add DEFECT_ID UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID()		 
+		]]>
+        </sql>
+    </changeSet>			
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0005" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table DEFECT_CAUSE                 drop constraint DEFECTCAUSETODEFECT  
+
+			alter table defect_cause add DEFECT_ID UNIQUEIDENTIFIER NULL
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0006" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update DEFECT_CAUSE
+			set DEFECT_ID = b.defect_id
+			from DEFECT_CAUSE a,
+				 DEFECT b
+			where a.DEFECT_CD = b.DEFECT_CD	 
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0007" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			drop table FINDING_RATING_RULES_ADMIN
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0008" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			CREATE TABLE FINDING_RATING_RULES_ADMIN(
+				FINDING_RATING_RULES_ID uniqueidentifier NOT NULL default newid(),
+				DEFECT_ID UNIQUEIDENTIFIER NOT NULL,
+				DEFECT_CAUSE_ID UNIQUEIDENTIFIER NOT NULL,
+				DEFECT_SOURCE_ID UNIQUEIDENTIFIER NOT NULL,
+				DEFECT_CD VARCHAR(16) NULL	,
+				DEFECT_CAUSE_CD VARCHAR(16) NULL	,
+				DFCT_SOURCE_CD VARCHAR(16) NULL	,
+				UNACCEPTABLE_RATING_THRESHOLD varchar(16) NOT NULL)
+
+			 alter table FINDING_RATING_RULES_ADMIN add constraint FINDING_RATING_RULES_ADMIN_PK primary key nonclustered (FINDING_RATING_RULES_ID)	 
+		]]>
+        </sql>
+    </changeSet>			
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0009" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			 alter table defect_cause drop constraint DEFECT_CAUSE_PK
+
+			 alter table defect_cause alter column DEFECT_ID uniqueidentifier not null
+
+			 alter table defect_cause add constraint DEFECT_CAUSE_PK primary key nonclustered (defect_cause_id)	 
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0010" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table DEFECT_SEVERITY                 drop constraint DFCTSEVERITYTIERTODEFECT
+
+			alter table DEFECT_SEVERITY add DEFECT_ID UNIQUEIDENTIFIER NULL
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0011" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update DEFECT_SEVERITY
+			set DEFECT_ID = b.defect_id
+			from DEFECT_SEVERITY a,
+				 DEFECT b
+			where a.DEFECT_CD = b.DEFECT_CD
+
+			 alter table DEFECT_SEVERITY drop constraint DEFECT_SEVERITY_PK
+			 alter table DEFECT_SEVERITY alter column DEFECT_ID uniqueidentifier not null
+
+			alter table DEFECT_SEVERITY add constraint DEFECT_SEVERITY_PK primary key nonclustered (defect_severity_id)	 
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0012" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table DEFECT_SOURCE                 drop constraint DFCTSOURCETODEFECT
+
+			alter table DEFECT_SOURCE add DEFECT_ID UNIQUEIDENTIFIER NULL
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0013" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update DEFECT_SOURCE
+			set DEFECT_ID = b.defect_id
+			from DEFECT_SOURCE a,
+				 DEFECT b
+			where a.DEFECT_CD = b.DEFECT_CD
+
+			 alter table DEFECT_SOURCE drop constraint DEFECT_SOURCE_PK
+			 alter table DEFECT_SOURCE alter column DEFECT_ID uniqueidentifier not null
+
+			alter table DEFECT_SOURCE add constraint DEFECT_SOURCE_PK primary key nonclustered (defect_source_id)	 
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0014" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table DICT_METADATA_FIELD_DEFECT                 drop constraint DICTMETADEFECTTODEFECT
+
+			alter table DICT_METADATA_FIELD_DEFECT add DEFECT_ID UNIQUEIDENTIFIER NULL
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0015" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update DICT_METADATA_FIELD_DEFECT
+			set DEFECT_ID = b.defect_id
+			from DICT_METADATA_FIELD_DEFECT a,
+				 DEFECT b
+			where a.DEFECT_CD = b.DEFECT_CD
+
+			 alter table DICT_METADATA_FIELD_DEFECT drop constraint DICT_META_FIELD_DEF_PK
+			 alter table DICT_METADATA_FIELD_DEFECT alter column DEFECT_ID uniqueidentifier not null
+
+			alter table DICT_METADATA_FIELD_DEFECT add constraint DICT_META_FIELD_DEF_PK primary key nonclustered (ENTITY_NAME,FIELD_NAME,defect_id)	 
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0016" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table RVW_DEFECT                 drop constraint REVIEWDEFECTTODEFECT
+
+			alter table RVW_DEFECT add DEFECT_ID UNIQUEIDENTIFIER NOT NULL
+
+			alter table RVW_DEFECT drop constraint RVW_DEFECT_PK
+
+			alter table RVW_DEFECT add constraint RVW_DEFECT_PK primary key nonclustered (REVIEW_ID,defect_id)	 
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0017" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table RVW_LVL_DEFECT                 drop constraint REVIEWLEVELDEFECTTOAUDIT
+
+			alter table RVW_LVL_DEFECT add DEFECT_ID UNIQUEIDENTIFIER NOT NULL
+
+			alter table RVW_LVL_DEFECT_AUD                 drop constraint RVWLVLDEFAUDTORVWLVLDEF
+
+			alter table RVW_LVL_DEFECT drop constraint RVW_LVL_DEFECT_PK
+
+			alter table RVW_LVL_DEFECT add constraint RVW_LVL_DEFECT_PK primary key nonclustered (REVIEW_LVL_ID,defect_id)	 
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0018" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table RVW_LVL_DEFECT_AUD add DEFECT_ID UNIQUEIDENTIFIER NOT NULL
+
+			alter table RVW_LVL_DEFECT_AUD drop constraint RVW_LVL_DEFECT_AUD_PK
+
+			alter table RVW_LVL_DEFECT_AUD add constraint RVW_LVL_DEFECT_AUD_PK primary key nonclustered (REVIEW_LVL_ID,defect_id,AUDIT_TMSTMP)
+			
+			alter table SELECT_REQUEST_DEFECT add DEFECT_ID UNIQUEIDENTIFIER NOT NULL			
+
+			alter table SELECT_REQUEST_DEFECT drop constraint SELECTRQSTDEFECTFKDEFECT	
+			
+			alter table SELECT_REQUEST_DEFECT drop constraint SELECT_REQUEST_DEFECT_PK		
+
+			alter table SELECT_REQUEST_DEFECT add constraint SELECT_REQUEST_DEFECT_PK primary key nonclustered (SLCTN_REQ_ID,defect_id)			
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0019" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table RVW_LVL_DEFECT_AUD                 drop constraint RVWLVLDEFAUDTODEFECT
+
+			alter table DEFECT drop constraint DEFECT_PK
+
+			alter table defect add constraint DEFECT_PK  primary key  nonclustered (defect_id)	 
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0020" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [dbo].[DEFECT_CAUSE]  WITH CHECK ADD  CONSTRAINT [DEFECTCAUSETODEFECT] FOREIGN KEY([defect_id])
+			REFERENCES [dbo].[DEFECT] ([defect_id])
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0021" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [dbo].[DEFECT_SEVERITY]  WITH CHECK ADD  CONSTRAINT [DFCTSEVERITYTIERTODEFECT] FOREIGN KEY([defect_id])
+			REFERENCES [dbo].[DEFECT] ([defect_id])
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0022" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [dbo].[DEFECT_SOURCE]  WITH CHECK ADD  CONSTRAINT [DFCTSOURCETODEFECT] FOREIGN KEY([defect_id])
+			REFERENCES [dbo].[DEFECT] ([defect_id])
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0023" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [dbo].[DICT_METADATA_FIELD_DEFECT]  WITH CHECK ADD  CONSTRAINT [DICTMETADEFECTTODEFECT] FOREIGN KEY([defect_id])
+			REFERENCES [dbo].[DEFECT] ([defect_id])
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0024" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [dbo].[FINDING_RATING_RULES_ADMIN]  WITH CHECK ADD  CONSTRAINT [FINDING_RATING_TO_CAUSE] FOREIGN KEY([DEFECT_CAUSE_ID])
+			REFERENCES [dbo].[DEFECT_CAUSE] ([DEFECT_CAUSE_ID])
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0025" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [dbo].[FINDING_RATING_RULES_ADMIN]  WITH CHECK ADD  CONSTRAINT [FINDING_RATING_TO_DEFECT] FOREIGN KEY([defect_id])
+			REFERENCES [dbo].[DEFECT] ([defect_id])
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0027" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [dbo].[FINDING_RATING_RULES_ADMIN]  WITH CHECK ADD  CONSTRAINT [FINDING_RATING_TO_SOURCE] FOREIGN KEY([DEFECT_SOURCE_id])
+			REFERENCES [dbo].[DEFECT_SOURCE] ([DEFECT_SOURCE_id])
+		]]>
+        </sql>
+    </changeSet>				
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0028" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [dbo].[RVW_DEFECT]  WITH CHECK ADD  CONSTRAINT [REVIEWDEFECTTODEFECT] FOREIGN KEY([defect_id])
+			REFERENCES [dbo].[DEFECT] ([defect_id])
+		]]>
+        </sql>
+    </changeSet>				
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0029" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [dbo].[RVW_LVL_DEFECT]  WITH CHECK ADD  CONSTRAINT [REVIEWLEVELDEFECTTOAUDIT] FOREIGN KEY([defect_id])
+			REFERENCES [dbo].[DEFECT] ([defect_id])
+		]]>
+        </sql>
+    </changeSet>				
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0030" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [dbo].[RVW_LVL_DEFECT_AUD]  WITH CHECK ADD  CONSTRAINT [RVWLVLDEFAUDTODEFECT] FOREIGN KEY([defect_id])
+			REFERENCES [dbo].[DEFECT] ([defect_id])
+
+			ALTER TABLE [dbo].[SELECT_REQUEST_DEFECT]  WITH CHECK ADD  CONSTRAINT [SELECTRQSTDEFECTFKDEFECT] FOREIGN KEY([defect_id])
+			REFERENCES [dbo].[DEFECT] ([defect_id])			
+		]]>
+        </sql>
+    </changeSet>				
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0031" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			ALTER TABLE [dbo].[RVW_LVL_DEFECT_AUD]  WITH CHECK ADD  CONSTRAINT [RVWLVLDEFAUDTORVWLVLDEF] FOREIGN KEY([REVIEW_LVL_ID], [defect_id])
+			REFERENCES [dbo].[RVW_LVL_DEFECT] ([REVIEW_LVL_ID], [defect_id])	 	 	 	 	 
+		]]>
+        </sql>
+    </changeSet>				
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0032" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into FINDING_RATING_RULES_ADMIN (DEFECT_ID, DEFECT_CAUSE_ID, DEFECT_SOURCE_ID, DEFECT_CD ,DEFECT_CAUSE_CD , DFCT_SOURCE_CD , UNACCEPTABLE_RATING_THRESHOLD)
+			select a.defect_id, a.DEFECT_CAUSE_ID, b.DEFECT_SOURCE_ID, a.DEFECT_CD ,DEFECT_CAUSE_CD , DFCT_SOURCE_CD , 2 
+			from DEFECT_CAUSE a, DEFECT_SOURCE b
+			where
+			a.DEFECT_CD = b.DEFECT_CD
+		]]>
+        </sql>
+    </changeSet>				
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0033" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table qatree add MODEL_ID UNIQUEIDENTIFIER NULL
+		]]>
+        </sql>
+    </changeSet>				
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0034" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update qatree set model_id = '20477262-40F9-420F-93B7-EC25CF6FBAE4'
+
+			alter table qatree alter column MODEL_ID UNIQUEIDENTIFIER not NULL
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0035" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			CREATE TABLE DICT_METADATA_FIELD_MODEL(
+				ENTITY_NAME varchar(60) NOT NULL,
+				FIELD_NAME varchar(60) NOT NULL,
+			    MODEL_ID uniqueidentifier NOT NULL,
+				CREATED_BY char(6) NULL,
+				UPDATED_BY char(6) NULL,
+				CREATED_TS datetime NULL,
+				UPDATED_TS datetime NULL)
+
+			alter table DICT_METADATA_FIELD_MODEL add	constraint DICT_METADATA_FIELD_MODEL_PK primary key nonclustered (ENTITY_NAME, FIELD_NAME, MODEL_ID)
+
+			alter table DICT_METADATA_FIELD_MODEL add constraint METADATAFIELDMODELTOMETAFIELD FOREIGN KEY (ENTITY_NAME, FIELD_NAME) REFERENCEs DICT_METADATA_FIELD (ENTITY_NAME, FIELD_NAME)
+
+			alter table DICT_METADATA_FIELD_MODEL add constraint METADATAFIELDMODELTOMODEL FOREIGN KEY (MODEL_ID) references QA_MODEL (MODEL_ID)
+		]]>
+        </sql>
+    </changeSet>				
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0036" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table qatree_outcome add DEFECT_ID uniqueidentifier NULL
+		]]>
+        </sql>
+    </changeSet>				
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0037" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			UPDATE qatree_outcome 
+			set defect_id = b.defect_id
+			from qatree_outcome a,
+				 defect b 
+			where a.defect_cd = b.defect_cd
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0038" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table qatree_outcm_causes add DEFECT_CAUSE_ID uniqueidentifier NULL
+		]]>
+        </sql>
+    </changeSet>				
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0039" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			UPDATE qatree_outcm_causes 
+			set DEFECT_CAUSE_ID = b.DEFECT_CAUSE_ID
+			from qatree_outcm_causes a,
+				 DEFECT_CAUSE b 
+			where a.DEFECT_CAUSE_CD = b.DEFECT_CAUSE_CD
+
+			alter table qatree_outcm_causes alter column DEFECT_CAUSE_ID uniqueidentifier not NULL
+
+			alter table qatree_outcm_causes drop constraint QATREE_OUTCM_CAUSES_PK
+
+			alter table qatree_outcm_causes add constraint QATREE_OUTCM_CAUSES_PK primary key nonclustered (qa_outcm_id, DEFECT_CAUSE_ID)
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0040" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table qatree_outcm_severity add DEFECT_SEVERITY_ID uniqueidentifier NULL
+		]]>
+        </sql>
+    </changeSet>					
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0041" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			UPDATE qatree_outcm_severity 
+			set DEFECT_SEVERITY_ID = b.DEFECT_SEVERITY_ID
+			from qatree_outcm_severity a,
+				 DEFECT_SEVERITY b 
+			where a.SEVERITY_TIER_CD = b.SEVERITY_TIER_CD
+
+			alter table qatree_outcm_severity alter column DEFECT_SEVERITY_ID uniqueidentifier not NULL
+
+			alter table qatree_outcm_severity drop constraint QATREE_OUTCM_TIERS_PK
+
+			alter table qatree_outcm_severity add constraint QATREE_OUTCM_TIERS_PK primary key nonclustered (qa_outcm_id, DEFECT_SEVERITY_ID)
+		]]>
+        </sql>
+    </changeSet>					
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0042" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table qatree_outcm_sources add DEFECT_SOURCE_ID uniqueidentifier NULL
+		]]>
+        </sql>
+    </changeSet>					
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0043" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			UPDATE qatree_outcm_sources 
+			set DEFECT_SOURCE_ID = b.DEFECT_SOURCE_ID
+			from qatree_outcm_sources a,
+				 DEFECT_SOURCE b 
+			where a.DFCT_SOURCE_CD = b.DFCT_SOURCE_CD
+
+			alter table qatree_outcm_sources alter column DEFECT_SOURCE_ID uniqueidentifier not NULL
+
+			alter table qatree_outcm_sources drop constraint QATREE_OUTCM_SOURCES_PK
+
+			alter table qatree_outcm_sources add constraint QATREE_OUTCM_SOURCES_PK primary key nonclustered (qa_outcm_id, DEFECT_SOURCE_ID)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0044" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table QATREE  add DEFECT_ID  uniqueidentifier NULL
+		]]>
+        </sql>
+    </changeSet>					
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0045" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			UPDATE QATREE  
+			set DEFECT_ID  = b.DEFECT_ID 
+			from QATREE  a,
+				 DEFECT b 
+			where a.DEFECT_CD = b.DEFECT_CD
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0046" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table review_type_defect  add DEFECT_ID  uniqueidentifier NULL
+		]]>
+        </sql>
+    </changeSet>					
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0047" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			UPDATE review_type_defect  
+			set DEFECT_ID  = b.DEFECT_ID 
+			from review_type_defect  a,
+				 DEFECT b 
+			where a.DEFECT_CD = b.DEFECT_CD
+
+			alter table review_type_defect alter column DEFECT_ID uniqueidentifier not NULL
+
+			alter table review_type_defect drop constraint REVIEW_TYPE_DEFECT_PK
+
+			alter table review_type_defect add constraint REVIEW_TYPE_DEFECT_PK primary key nonclustered (review_type_id, DEFECT_ID)
+
+
+			alter table review_type_defect  drop column DEFECT_CD	 
+		]]>
+        </sql>
+    </changeSet>					
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0048" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table qatree drop column qatree_version_id 
+		]]>
+        </sql>
+    </changeSet>					
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0049" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table question_reference add CREATED_BY char(6) null
+			alter table question_reference add CREATED_TS datetime null
+			alter table question_reference add UPDATED_BY char(6) null
+			alter table question_reference add UPDATED_TS datetime null
+		]]>
+        </sql>
+    </changeSet>					
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0050" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table SELECT_REQUEST_DEFECT drop column defect_cd
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0051" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into DICT_METADATA_FIELD_MODEL 
+			(ENTITY_NAME,
+			 FIELD_NAME,
+			 MODEL_ID,
+			 created_by,
+			 created_ts)
+			select 
+			distinct
+			ENTITY_NAME,
+			 FIELD_NAME,
+			 '20477262-40F9-420F-93B7-EC25CF6FBAE4',
+			 'C20225',
+			 getdate()
+			from DICT_METADATA_FIELD_DEFECT
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0052" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create table QA_MODEL_INCOME_SOURCES
+			(QUESTION_ID uniqueidentifier not null,
+			 INCOME_SOURCE_CD char(1) null, 
+			 QUESTION_REF_ID_CSV VARCHAR(100) null)
+			 
+			alter table QA_MODEL_INCOME_SOURCES add constraint QA_MODEL_INCOME_SOURCES_PK primary key (QUESTION_ID)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0054" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			create unique index QATREE_QUESTION_IDX ON QATREE_QUESTION(QUESTION_ID)
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0055" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table QA_MODEL_INCOME_SOURCES add constraint QAMODELINCOMESRCTOQUESTION foreign key (QUESTION_ID) references qatree_question (QUESTION_ID)
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0056" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			delete from DICT_METADATA_FIELD
+			where entity_name = 'Finding Rating Rules Administration'
+			and FIELD_NAME in ('Defect Severity ID', 'Severity Tier Code')
+			
+			insert into dict_metadata_entity(ENTITY_NAME, DB_VIEW_OR_TABLE,CREATED_BY,CREATED_TS) values('Question Answer Model Income Sources','QA_MODEL_INCOME_SOURCES','C20225',getdate())			  
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Question Answer Model Income Sources','Question ID','QUESTION_ID','C20225', getdate(),'STATIC','Question ID')
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Question Answer Model Income Sources','Income Source Code','INCOME_SOURCE_CD','C20225', getdate(),'STATIC','Income Source Code')			
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Question Answer Model Income Sources','Question Reference ID CSV','QUESTION_REF_ID_CSV','C20225', getdate(),'STATIC','Question Reference ID CSV')						
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0057" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table defect_cause add  RELATIVE_ORDER INT NULL
+			alter table defect_source add  RELATIVE_ORDER INT NULL
+			alter table defect_severity add  RELATIVE_ORDER INT NULL			
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0058" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Defect Cause Admin','Relative Order','RELATIVE_ORDER','C20225', getdate(),'STATIC','Relative Order')
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Defect Severity Tier Admin','Relative Order','RELATIVE_ORDER','C20225', getdate(),'STATIC','Relative Order')			
+			insert into dict_metadata_field (entity_name,field_name,db_column,created_by,created_ts,ui_control_type,display_name) values('Defect Source Admin','Relative Order','RELATIVE_ORDER','C20225', getdate(),'STATIC','Relative Order')						
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0059" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			update DEFECT_SEVERITY
+			set RELATIVE_ORDER = convert(int, SEVERITY_TIER_CD) 
+			
+			update DEFECT_SOURCE
+			set RELATIVE_ORDER = convert(int, DFCT_SOURCE_CD) 
+			
+			UPDATE DEFECT_CAUSE  
+			set relative_order =  B.RANK_NUM
+			FROM DEFECT_CAUSE A, (
+			select DEFECT_CD,dEFECT_CAUSE_cd, RANK() OVER ( PARTITION BY DEFECT_CD ORDER BY dEFECT_CAUSE_cd ASC) AS RANK_NUM
+			from DEFECT_CAUSE)B
+			WHERE A.DEFECT_CD =B.DEFECT_CD
+			AND A.dEFECT_CAUSE_cd =B.dEFECT_CAUSE_cd			
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0060" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table QA_MODEL_INCOME_SOURCES drop constraint QA_MODEL_INCOME_SOURCES_pk			
+		]]>
+        </sql>
+    </changeSet>
+   <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0061" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table QA_MODEL_INCOME_SOURCES alter column INCOME_SOURCE_CD varchar(1) not null
+		]]>
+        </sql>
+    </changeSet>	
+   <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0062" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table QA_MODEL_INCOME_SOURCES add constraint QA_MODEL_INCOME_SOURCES_PK primary key (QUESTION_ID,INCOME_SOURCE_CD)
+		]]>
+        </sql>
+    </changeSet>	
+   <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0063" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table QA_MODEL_INCOME_SOURCES alter column QUESTION_REF_ID_CSV varchar(125) null
+		]]>
+        </sql>
+    </changeSet>		
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0064" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			insert into QA_MODEL_INCOME_SOURCES (QUESTION_ID, INCOME_SOURCE_CD, QUESTION_REF_ID_CSV) values('BDA507D2-B8A7-4E35-AD43-0DA659E88CBB','1','BI.40,BI.41,BI.42,BI.43,BI.45,BI.55,BI.56,BI.57')
+			insert into QA_MODEL_INCOME_SOURCES (QUESTION_ID, INCOME_SOURCE_CD, QUESTION_REF_ID_CSV) values('BDA507D2-B8A7-4E35-AD43-0DA659E88CBB','2','BI.40,BI.41,BI.42,BI.43,BI.45,BI.55,BI.56,BI.57')
+			insert into QA_MODEL_INCOME_SOURCES (QUESTION_ID, INCOME_SOURCE_CD, QUESTION_REF_ID_CSV) values('BDA507D2-B8A7-4E35-AD43-0DA659E88CBB','3','BI.40,BI.41,BI.42,BI.43,BI.45,BI.55,BI.56,BI.57')
+			insert into QA_MODEL_INCOME_SOURCES (QUESTION_ID, INCOME_SOURCE_CD, QUESTION_REF_ID_CSV) values('BDA507D2-B8A7-4E35-AD43-0DA659E88CBB','4','BI.40,BI.41,BI.42,BI.43,BI.44,BI.45,BI.46,BI.47,BI.55,BI.56,BI.57')
+			insert into QA_MODEL_INCOME_SOURCES (QUESTION_ID, INCOME_SOURCE_CD, QUESTION_REF_ID_CSV) values('BDA507D2-B8A7-4E35-AD43-0DA659E88CBB','5','BI.43,BI.48,BI.49,BI.51,BI.52,BI.53,BI.55,BI.56,BI.57')
+			insert into QA_MODEL_INCOME_SOURCES (QUESTION_ID, INCOME_SOURCE_CD, QUESTION_REF_ID_CSV) values('BDA507D2-B8A7-4E35-AD43-0DA659E88CBB','6','BI.40,BI.44,BI.55,BI.56,BI.57')
+			insert into QA_MODEL_INCOME_SOURCES (QUESTION_ID, INCOME_SOURCE_CD, QUESTION_REF_ID_CSV) values('BDA507D2-B8A7-4E35-AD43-0DA659E88CBB','7','BI.43,BI.44,BI.50,BI.53,BI.55,BI.56,BI.57')
+			insert into QA_MODEL_INCOME_SOURCES (QUESTION_ID, INCOME_SOURCE_CD, QUESTION_REF_ID_CSV) values('BDA507D2-B8A7-4E35-AD43-0DA659E88CBB','8','BI.40,BI.41,BI.42,BI.44,BI.45,BI.46,BI.47,BI.48,BI.49,BI.50,BI.51,BI.52,BI.53,BI.54,BI.55,BI.56,BI.57')			
+		]]>
+        </sql>
+    </changeSet>	
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0065" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table QA_MODEL_INCOME_SOURCES drop constraint QAMODELINCOMESRCTOQUESTION
+		]]>
+        </sql>
+    </changeSet>
+    <changeSet context="ALL"  author="astrauss" id="HUDLRS_1222_0066" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+		<![CDATA[
+			alter table QA_MODEL_INCOME_SOURCES add constraint QAMODELINCOMESRCTOQUESTION foreign key (QUESTION_ID) references question_reference (QUESTION_ID)
+		]]>
+        </sql>
+    </changeSet>		
+</databaseChangeLog>

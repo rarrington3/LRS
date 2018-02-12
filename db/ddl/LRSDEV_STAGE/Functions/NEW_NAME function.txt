@@ -1,0 +1,36 @@
+USE LRSDEV_STAGE
+go
+
+DROP FUNCTION dbo.NEW_NAME
+go
+
+Create FUNCTION dbo.NEW_NAME (@Length int)
+Returns Char(50)
+as
+BEGIN
+DECLARE @ret Char(11);
+DECLARE @CharPool Varchar(50);
+DECLARE @PoolLength int;
+DECLARE @LoopCount int;
+DECLARE @RandomString Varchar(50);
+-- min_length = 8, max_length = 12
+--SET @Length = RAND() * 5 + 8
+-- SET @Length = RAND() * (max_length - min_length + 1) + min_length
+
+-- define allowable character explicitly - easy to read this way an easy to 
+-- omit easily confused chars like l (ell) and 1 (one) or 0 (zero) and O (oh)
+SET @CharPool = 
+    'AAAAAABCDEEEEEEFGHIIIIIIJKLMNOOOOOOPQRSTUUUUUUVWXYZ'
+SET @PoolLength = Len(@CharPool)
+
+SET @LoopCount = 0
+SET @RandomString = ''
+
+WHILE (@LoopCount < @Length) BEGIN
+    SELECT @RandomString = @RandomString + 
+        SUBSTRING(@CharPool, CONVERT(int, dbo.LRS_Rand() * @PoolLength +1), 1)
+    SELECT @LoopCount = @LoopCount + 1
+END
+Return @RandomString;
+END;
+go

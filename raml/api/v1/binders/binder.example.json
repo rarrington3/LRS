@@ -1,0 +1,16 @@
+{
+    "binderId": "11A75226-4290-43CC-9EC7-E7A0C6617E66",
+    "caseNumber": "351-3576307",
+    "borrowerName": "Robinson, Lawrence",
+    "lenderName": "Wells Fargo",
+    "propertyStreetAddress": "1001 Delaware Street",
+    "requestedFrom": "Records Center",
+    "requestedDate": "2016-07-21",
+    "dueDate": "2016-08-01",
+    "sentDate": "2016-09-30",
+    "receivedDate": "2016-09-30",
+    "reviewLocationId": "SNA-QAD",
+    "assignedTo": "Burty Convy",
+    "isElectronic": false,
+    "statusCode": "RECEIVED"
+}
